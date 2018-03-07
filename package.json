@@ -50,6 +50,7 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "styled-jsx": "^2.2.5"
+    "styled-jsx": "^2.2.5",
+    "i18next": "10.5.0"
   }
 }
