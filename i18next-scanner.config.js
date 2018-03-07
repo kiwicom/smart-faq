@@ -1,6 +1,7 @@
 // copy pasted from https://github.com/i18next/i18next-scanner/blob/master/examples/i18next-scanner.config.js
 const fs = require('fs');
 const chalk = require('chalk');
+const languages = require('./i18n/languages');
 
 module.exports = {
   options: {
@@ -15,7 +16,7 @@ module.exports = {
         return value;
       }
     },
-    lngs: ['en','es'],
+    lngs: languages,
     ns: [
       'translation',
     ],

@@ -2,14 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const languages = require('./i18n/languages');
 
-// list of supported languages
-const languages = process.env.LANGUAGE ? [process.env.LANGUAGE] : [
-  'en',
-  'es',
-];
+const langs = process.env.LANGUAGE ? [process.env.LANGUAGE] : languages;
 
-module.exports = languages.map(language => ({
+module.exports = langs.map(language => ({
   name: language,
   entry: './src/index.js',
   output: {
