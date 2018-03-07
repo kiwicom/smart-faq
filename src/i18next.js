@@ -15,15 +15,8 @@ i18next
     load: 'currentOnly', // strictly load only current language
     debug: isDev,
     resources: {
-      en: { // TODO load resources from files
-        translation: {
-          "hello": "hello world, captain!",
-        }
-      },
-      es: {
-        translation: {
-          "hello": "hola mundo, el capitán!",
-        }
+      [language]: {
+        translation: require(process.env.TRANSLATION_PATH)
       }
     },
     interpolation: {
