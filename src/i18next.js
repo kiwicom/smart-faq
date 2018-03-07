@@ -15,9 +15,14 @@ i18next
     load: 'currentOnly', // strictly load only current language
     debug: isDev,
     resources: {
-      en: {
+      en: { // TODO load resources from files
         translation: {
-          "hello": "hello world, captain!"
+          "hello": "hello world, captain!",
+        }
+      },
+      es: {
+        translation: {
+          "hello": "hola mundo, el capitán!",
         }
       }
     },
