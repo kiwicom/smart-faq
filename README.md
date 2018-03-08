@@ -4,6 +4,7 @@ Smart FAQ
 ## Translations
 
 - Check out [react-i18next](https://react.i18next.com/) and [i18next](https://www.i18next.com/) docs for more info.
+- [DOCs for Phraseapp](https://phraseapp.com/docs/) - where the translations are stored for translators
 - List of all supported languages is defined by file `i18n/languages.js`
 
 ### How to code
