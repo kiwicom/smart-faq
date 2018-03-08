@@ -6,15 +6,7 @@ Smart FAQ
 - Check out [react-i18next](https://react.i18next.com/) and [i18next](https://www.i18next.com/) docs for more info.
 - List of all supported languages is defined by file `i18n/languages.js`
 
-### Build process
-
-TODO
-
-### Collect all used translations in the code
-
-- run `yarn translations:collect` to recollect all translations for all supported languages
-
-### Howto
+### How to code
 - be declarative & use `Trans` component whenever it's possible: 
 ```
 <Trans i18nKey="translation_key">
@@ -22,3 +14,12 @@ TODO
 </Trans>
 ```
 - use `i18n.t` function only when `Trans` can't be used
+
+### Before you are done
+
+- run `yarn translations:collect` to recollect all translations for all supported languages
+- provide translations for all keys with `__STRING_NOT_TRANSLATED__` as value
+
+### Build process
+
+TODO
