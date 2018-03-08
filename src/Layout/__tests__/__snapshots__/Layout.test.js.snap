@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout should match snapshot 1`] = `
+<div
+  className="jsx-4212418802 Layout"
+>
+  Aloha, I am a 
+  <span
+    className="jsx-4212418802 name"
+  >
+    Layout
+  </span>
+  <JSXStyle
+    css="*.jsx-4212418802{font-family:Roboto;}div.Layout.jsx-4212418802 span.name.jsx-4212418802{color:blue;}"
+    styleId="4212418802"
+  />
+</div>
+`;

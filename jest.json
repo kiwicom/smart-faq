@@ -1,0 +1,7 @@
+{
+  "setupFiles": [
+    "raf/polyfill",
+    "<rootDir>/config/enzymeConfig.js"
+  ],
+  "snapshotSerializers": ["enzyme-to-json/serializer"]
+}
