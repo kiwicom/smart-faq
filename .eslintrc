@@ -1,0 +1,65 @@
+{
+  "env": {
+    "node": true,
+    "jest": true,
+    "browser": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "prettier",
+    "plugin:flowtype/recommended",
+    "plugin:react/recommended",
+    "plugin:jest/recommended"
+  ],
+  "plugins": [
+    "import", 
+    "jest", 
+    "prettier", 
+    "flowtype", 
+    "react"
+  ],
+  "rules": {
+    "react/jsx-uses-vars": 2,
+    "react/require-default-props": "off", // Optional props can be undefined.
+    "react/jsx-filename-extension": ["error", { "extensions": [".js"] }], // Don't use jsx
+    "react/prefer-stateless-function": 1,
+    "no-use-before-define": 0,
+    "no-shadow": 0,
+    "no-warning-comments": "error",
+    "prefer-const": "error",
+    "import/prefer-default-export": 0,
+    "prettier/prettier": [
+      "error",
+      {
+        "bracketSpacing": true,
+        "printWidth": 80,
+        "singleQuote": true,
+        "tabWidth": 2,
+        "trailingComma": "all"
+      }
+    ],
+    "flowtype/require-valid-file-annotation": [
+      "error",
+      "always",
+      {
+        "annotationStyle": "line"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.js",
+          "**/*.spec.js",
+          "**/*.stories.js",
+          "**/stories/**",
+          "/config/**"
+        ]
+      }
+    ],
+    "eol-last": "error"
+  }
+}
