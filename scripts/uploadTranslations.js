@@ -10,21 +10,21 @@ const prepareRequest = (language, translationOpts) => {
   const options = {
     method: 'POST',
     uri: `https://api.phraseapp.com/api/v2/projects/${projectId}/uploads`,
-    headers:
-      {
-        authorization: `token ${accessToken}`,
+    headers: {
+      authorization: `token ${accessToken}`,
+    },
+    formData: {
+      file: {
+        value: fs.createReadStream(`i18n/${language}/translation.json`),
+        options: {
+          filename: 'translation.json',
+          contentType: 'application/json',
+        },
       },
-    formData:
-      {
-        file:
-          {
-            value: fs.createReadStream(`i18n/${language}/translation.json`),
-            options: {filename: 'translation.json', contentType: 'application/json'}
-          },
-        locale_id: language,
-        file_format: 'simple_json',
-        ...translationOpts,
-      }
+      locale_id: language,
+      file_format: 'simple_json',
+      ...translationOpts,
+    },
   };
 
   return request(options);
@@ -36,13 +36,13 @@ const uploadTranslations = async () => {
     branch: argv.branch || '',
   };
 
-  await Promise.all(languages.map(lang => prepareRequest(lang, options)))
+  await Promise.all(languages.map(lang => prepareRequest(lang, options)));
 };
 
 uploadTranslations().then(
   () => console.log('Success'),
-  (error) => {
+  error => {
     console.log(error);
     process.exit(1);
-  }
+  },
 );

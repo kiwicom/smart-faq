@@ -7,22 +7,21 @@ const language = process.env.LANGUAGE ? process.env.LANGUAGE : 'en';
 const env = process.env.NODE_ENV;
 const isDev = env === 'development';
 
-i18next
-  .use(reactI18nextModule)
-  .init({
+const initTranslation = (translation: Object) =>
+  i18next.use(reactI18nextModule).init({
     lng: language,
     fallbackLng: isDev ? 'dev' : language, // no fallback on production
     load: 'currentOnly', // strictly load only current language
     debug: isDev,
     resources: {
       [language]: {
-        translation: require(process.env.TRANSLATION_PATH)
-      }
+        translation,
+      },
     },
     interpolation: {
       escapeValue: false, // not needed for react!!
     },
-    initImmediate: false
+    initImmediate: false,
   });
 
-export default i18next;
+export default initTranslation;

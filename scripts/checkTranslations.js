@@ -7,10 +7,12 @@ const checkTranslations = async () => {
   const translations = await Promise.all(files.map(t => fse.readJson(t)));
   const errors = translations.reduce((memo, translation, i) => {
     const missing = Object.entries(translation)
-      .filter(([key, value]) => value === '__STRING_NOT_TRANSLATED__')
+      .filter(entry => entry[1] === '__STRING_NOT_TRANSLATED__')
       .map(([key, value]) => `${key}=${value}`);
 
-    return missing.length ? `${memo}\n\n${files[i]}\n${missing.join('\\n')}` : memo;
+    return missing.length
+      ? `${memo}\n\n${files[i]}\n${missing.join('\\n')}`
+      : memo;
   }, '');
 
   if (errors) {
@@ -25,5 +27,5 @@ checkTranslations().then(
   () => {
     console.log('Fail');
     process.exit(1);
-  }
+  },
 );
