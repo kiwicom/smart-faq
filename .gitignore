@@ -4,6 +4,7 @@
 /dist/
 .env
 package-lock.json
+.DS_Store
 
 # Logs
 logs
@@ -13,5 +14,5 @@ yarn-debug.log*
 yarn-error.log*
 
 
-lib 
+lib
 es
