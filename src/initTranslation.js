@@ -7,7 +7,7 @@ const language = process.env.LANGUAGE ? process.env.LANGUAGE : 'en';
 const env = process.env.NODE_ENV;
 const isDev = env === 'development';
 
-const initTranslation = (translation: Object) =>
+const initTranslation = (translation: Object) => {
   i18next.use(reactI18nextModule).init({
     lng: language,
     fallbackLng: isDev ? 'dev' : language, // no fallback on production
@@ -23,5 +23,7 @@ const initTranslation = (translation: Object) =>
     },
     initImmediate: false,
   });
+  return i18next;
+};
 
 export default initTranslation;
