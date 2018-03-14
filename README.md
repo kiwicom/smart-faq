@@ -24,3 +24,7 @@ Smart FAQ
 ### Build process
 
 TODO
+
+### TO REVISIT
+- [ ] Intro page "Need help" re-implement with `Typography` Orbit component once it provides the necessary fontsize
+- [ ] Intro page Button needs text in bold, re-implement once the component allows for it.
