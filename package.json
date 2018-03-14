@@ -69,7 +69,8 @@
     "webpack-dev-server": "3.1.0"
   },
   "dependencies": {
-    "@kiwicom/balkan-ui": "^0.1.0",
+    "@kiwicom/icons": "^0.0.1-final",
+    "@kiwicom/orbit-components": "^0.0.0-rc1",
     "i18next": "10.5.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
