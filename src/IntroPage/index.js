@@ -1,9 +1,12 @@
 // @flow
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Typography, Button } from '@kiwicom/orbit-components';
-import { Close, OpenInNew } from '@kiwicom/icons';
+import { Icons } from '@kiwicom/orbit-components';
 import image from '../../static/woman-with-laptop@2x.jpg';
+
+console.log('icons', Icons);
+
+const { Close, OpenInNew, Typography, Button } = Icons;
 
 const style = css`
   .Intro {
@@ -27,8 +30,8 @@ const style = css`
     margin-top: 56.4px;
   }
   div.picture img {
-    height: 203px;
-    widht: 156px;
+    width: 203px;
+    height: 156px;
   }
   p.title {
     color: #171b1e;
@@ -57,7 +60,7 @@ const style = css`
     margin-left: 182px;
     line-height: 1.4;
   }
-  div.faq-link span.inline-icon {
+  div.faq-link .inline-icon {
     padding: 8px;
     margin-left: 4px;
   }
@@ -111,9 +114,14 @@ const Intro = () => (
     <div className="faq-link">
       <Typography className="faq-link" type="attention" variant="bold">
         Full FAQ Site
-        <span className="inline-icon">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.kiwi.com/helpcenter/"
+          className="inline-icon"
+        >
           <OpenInNew fill="#171b1e" size="32" />
-        </span>
+        </a>
       </Typography>
     </div>
     <style jsx>{style}</style>

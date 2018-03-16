@@ -71,10 +71,6 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@kiwicom/icons@^0.0.1-final":
-  version "0.0.1-final"
-  resolved "https://registry.yarnpkg.com/@kiwicom/icons/-/icons-0.0.1-final.tgz#bae77a11eb3c3c0ec10003ac6c7e540b60114329"
-
 "@kiwicom/orbit-components@^0.0.0-rc1":
   version "0.0.0-rc1"
   resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.0.0-rc1.tgz#3418fb5c8cd0b0379ed19120ffa76f31218817bb"
