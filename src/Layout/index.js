@@ -1,19 +1,36 @@
 // @flow
 import * as React from 'react';
 import css from 'styled-jsx/css';
+import Intro from '../IntroPage';
 
 const style = css`
   * {
-    font-family: Roboto;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
   }
-  div.Layout span.name {
-    color: blue;
+  html,
+  body {
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+  }
+  span.inline-icon svg {
+    display: inline-block;
+    vertical-align: bottom;
   }
 `;
 const Layout = () => (
   <div className="Layout">
-    Aloha, I am a <span className="name">Layout</span>
-    <style jsx>{style}</style>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <Intro />
+    <style jsx global>
+      {style}
+    </style>
   </div>
 );
 

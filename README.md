@@ -30,3 +30,7 @@ Smart FAQ
 
 - After every merge into master, standalone version of this project is published using Github Pages 
 - Inspired by repository [Circle CI and Github Pages](https://github.com/Villanuevand/deployment-circleci-gh-pages) and further described on [Github](https://github.com/DevProgress/onboarding/wiki/Using-Circle-CI-with-Github-Pages-for-Continuous-Delivery)
+
+### TO RE-FACTOR (when Orbit is ready)
+- `Button`s at Intro page need to have bold text
+- `Need help?` needs to be re-factor to use the `Text` component from Orbit(currenty it's hardcoded CSS)

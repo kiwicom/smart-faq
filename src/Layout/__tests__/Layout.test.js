@@ -9,7 +9,4 @@ describe('Layout', () => {
   it('should match snapshot', () => {
     expect(component).toMatchSnapshot();
   });
-  it('should render the Layout', () => {
-    expect(component.html()).toMatch(/Aloha/);
-  });
 });
