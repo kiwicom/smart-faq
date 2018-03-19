@@ -327,21 +327,12 @@ exports[`Layout should match snapshot 1`] = `
         "97": "h",
         "98": ";",
         "99": "p",
-<<<<<<< HEAD
-        "__hash": "2127344134",
-        "__scoped": "*.jsx-1992557223{box-sizing:border-box;padding:0;margin:0;font-family:'Roboto',sans-serif;}html.jsx-1992557223,body.jsx-1992557223{height:100vh;padding:0;margin:0;}span.inline-icon.jsx-1992557223 svg.jsx-1992557223{display:inline-block;vertical-align:bottom;}",
-        "__scopedHash": "1992557223",
-      }
-    }
-    styleId="2127344134"
-=======
         "__hash": "384954136",
         "__scoped": "*.jsx-2065562393{box-sizing:border-box;padding:0;margin:0;font-family:'Roboto',sans-serif;}html.jsx-2065562393,body.jsx-2065562393{height:100vh;padding:0;margin:0;}div.Layout.jsx-2065562393{position:absolute;right:0;min-width:480px;height:100vh;background-color:#ffffff;box-shadow:0 4px 7px 0 rgba(0,0,0,0.15);}span.inline-icon.jsx-2065562393 svg.jsx-2065562393{display:inline-block;vertical-align:bottom;}",
         "__scopedHash": "2065562393",
       }
     }
     styleId="384954136"
->>>>>>> 25d232ae7dff189e1b0fee834e0cdc299c463f82
   />
 </div>
 `;

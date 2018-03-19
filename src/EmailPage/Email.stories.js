@@ -4,10 +4,10 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import Layout from '../Layout/index';
-import Email from './index';
+import Layout from '../Layout';
+import Email from './';
 
-storiesOf('Layout', module).add('Default', () => (
+storiesOf('Email', module).add('Default', () => (
   <Layout action={action}>
     <Email email="example@kiwi.com" />
   </Layout>

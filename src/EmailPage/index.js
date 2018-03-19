@@ -3,20 +3,16 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
+import { Typography } from '@kiwicom/orbit-components';
 import image from '../../static/mailbox@2x.png';
 
-type EmailType = {
+type Props = {
   email: string,
 };
 
 const style = css`
   .Email {
-    position: absolute;
-    right: 0;
     width: 480px;
-    height: 100vh;
-    background-color: #ffffff;
-    box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.15);
     padding-top: 240px;
   }
   p.title {
@@ -25,6 +21,7 @@ const style = css`
     font-size: 28px;
     font-weight: bold;
     line-height: 1.2;
+    margin-bottom: 6px;
     text-align: left;
     color: #171b1e;
   }
@@ -51,17 +48,9 @@ const style = css`
     font-weight: bold;
     color: #171b1e;
   }
-  p.secondary {
-    width: 352px;
-    height: 44.8px;
-    font-size: 16px;
-    line-height: 1.4;
-    text-align: left;
-    color: #7f91a8;
-  }
 `;
 
-const Email = ({ email = 'example@gmail.com' }: EmailType) => (
+const Email = ({ email = 'example@gmail.com' }: Props) => (
   <div className="Email">
     <div className="close-icon">
       <Close fill="#7f91a8" size="32" />
@@ -71,10 +60,10 @@ const Email = ({ email = 'example@gmail.com' }: EmailType) => (
     </div>
     <div className="text">
       <p className="title">Check your e-mail inbox</p>
-      <p className="secondary">
+      <Typography size="large" type="secondary">
         To sign in, just click the link in the email we sent to
         <span className="email-text">{` ${email}`}</span>.
-      </p>
+      </Typography>
     </div>
     <style jsx>{style}</style>
   </div>
