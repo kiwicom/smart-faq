@@ -4,6 +4,8 @@
   "scripts": {
     "start": "NODE_ENV=development LANGUAGE=en webpack-dev-server --open --mode development",
     "build": "npm run clean && npm run build:lib && npm run build:flow",
+    "build:bundle": "NODE_ENV=production LANGUAGE=en webpack --mode production",
+    "build:pages": "yarn build:bundle && ./scripts/deploy-ghpages.sh",
     "build:lib": "babel --out-dir lib --ignore *.stories.js,*.test.js src",
     "build:flow": "flow-copy-source -v -i '**/*.?(stories|test).js' src lib",
     "clean": "rimraf lib es dist",
@@ -66,12 +68,13 @@
     "webpack-dev-server": "3.1.0"
   },
   "dependencies": {
-    "@kiwicom/icons": "^0.0.1-final",
     "@kiwicom/orbit-components": "^0.0.0-rc1",
     "i18next": "10.5.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-i18next": "7.4.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "styled-jsx": "^2.2.5"
   }
 }

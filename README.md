@@ -7,7 +7,10 @@ Smart FAQ
 - [DOCs for Phraseapp](https://phraseapp.com/docs/) - where the translations are stored for translators
 - List of all supported languages is defined by file `i18n/languages.js`
 
-### How to code
+### How to contribute
+
+#### Translations
+
 - be declarative & use `Trans` component whenever it's possible: 
 ```
 <Trans i18nKey="translation_key">
@@ -16,15 +19,20 @@ Smart FAQ
 ```
 - use `i18n.t` function only when `Trans` can't be used
 
-### Before you are done
+#### Before you are done
 
 - run `yarn translations:collect` to recollect all translations for all supported languages
 - provide translations for all keys with `__STRING_NOT_TRANSLATED__` as value
 
 ### Build process
 
-TODO
+#### Github Pages
 
-### TO REVISIT
-- [ ] Intro page "Need help" re-implement with `Typography` Orbit component once it provides the necessary fontsize
-- [ ] Intro page Button needs text in bold, re-implement once the component allows for it.
+- After every merge into master, standalone version of this project is published using Github Pages 
+- Inspired by repository [Circle CI and Github Pages](https://github.com/Villanuevand/deployment-circleci-gh-pages) and further described on [Github](https://github.com/DevProgress/onboarding/wiki/Using-Circle-CI-with-Github-Pages-for-Continuous-Delivery)
+
+### TO RE-FACTOR (when Orbit is ready)
+- `Button`s at Intro page need to have bold text
+- `Need help?` needs to be re-factor to use the `Text` component from Orbit(currenty it's hardcoded CSS)
+- At `IntroPage`: replace the `history.push` onChange trigger with `Button` using a children of type `Link`(already merged in Orbit master but not published yet)
+
