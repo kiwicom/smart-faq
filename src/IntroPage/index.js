@@ -1,12 +1,9 @@
 // @flow
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Icons } from '@kiwicom/orbit-components';
+import { Close, OpenInNew } from '@kiwicom/orbit-components/lib/icons';
+import { Typography, Button } from '@kiwicom/orbit-components';
 import image from '../../static/woman-with-laptop@2x.jpg';
-
-console.log('icons', Icons);
-
-const { Close, OpenInNew, Typography, Button } = Icons;
 
 const style = css`
   .Intro {
@@ -74,6 +71,7 @@ const style = css`
 
 function haveBooking() {}
 function noBooking() {}
+
 const Intro = () => (
   <div className="Intro">
     <div className="close-icon">
