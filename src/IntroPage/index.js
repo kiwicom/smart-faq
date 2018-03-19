@@ -4,15 +4,11 @@ import css from 'styled-jsx/css';
 import { Close, OpenInNew } from '@kiwicom/orbit-components/lib/icons';
 import { Typography, Button } from '@kiwicom/orbit-components';
 import image from '../../static/woman-with-laptop@2x.jpg';
+import { allRoutes } from '../Routes';
 
 const style = css`
   .Intro {
-    position: absolute;
-    right: 0;
     width: 480px;
-    height: 100vh;
-    background-color: #ffffff;
-    box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.15);
     padding-top: 128px;
   }
   div.picture {
@@ -69,10 +65,13 @@ const style = css`
   }
 `;
 
-function haveBooking() {}
-function noBooking() {}
+type Props = {
+  history: {
+    push: string => void,
+  },
+};
 
-const Intro = () => (
+const Intro = (props: Props) => (
   <div className="Intro">
     <div className="close-icon">
       <Close fill="#7f91a8" size="32" />
@@ -91,7 +90,7 @@ const Intro = () => (
         <div className="button">
           <Button
             isDisabled={false}
-            onClick={haveBooking}
+            onClick={() => props.history.push(allRoutes.LOGIN)}
             size="large"
             title="I have an existing booking"
             type="primary"
@@ -100,7 +99,7 @@ const Intro = () => (
         <div className="button">
           <Button
             isDisabled={false}
-            onClick={noBooking}
+            onClick={() => props.history.push(allRoutes.STATIC_FAQ)}
             size="large"
             title="I don't have a booking"
             type="secondary"
