@@ -34,3 +34,5 @@ Smart FAQ
 ### TO RE-FACTOR (when Orbit is ready)
 - `Button`s at Intro page need to have bold text
 - `Need help?` needs to be re-factor to use the `Text` component from Orbit(currenty it's hardcoded CSS)
+- At `IntroPage`: replace the `history.push` onChange trigger with `Button` using a children of type `Link`(already merged in Orbit master but not published yet)
+

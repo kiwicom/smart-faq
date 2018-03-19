@@ -15,13 +15,17 @@
     "plugin:jest/recommended"
   ],
   "plugins": [
-    "import", 
-    "jest", 
-    "prettier", 
-    "flowtype", 
+    "import",
+    "jest",
+    "prettier",
+    "flowtype",
     "react"
   ],
   "rules": {
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "to" ]
+    }],
     "react/jsx-uses-vars": 2,
     "react/require-default-props": "off", // Optional props can be undefined.
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }], // Don't use jsx

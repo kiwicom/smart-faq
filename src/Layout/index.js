@@ -1,8 +1,10 @@
 // @flow
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import Intro from '../IntroPage';
 
+type Props = {
+  children?: React.Node,
+};
 const style = css`
   * {
     box-sizing: border-box;
@@ -16,18 +18,26 @@ const style = css`
     padding: 0;
     margin: 0;
   }
+  div.Layout {
+    position: absolute;
+    right: 0;
+    min-width: 480px;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.15);
+  }
   span.inline-icon svg {
     display: inline-block;
     vertical-align: bottom;
   }
 `;
-const Layout = () => (
+const Layout = (props: Props) => (
   <div className="Layout">
     <link
       href="https://fonts.googleapis.com/css?family=Roboto"
       rel="stylesheet"
     />
-    <Intro />
+    {props.children}
     <style jsx global>
       {style}
     </style>
