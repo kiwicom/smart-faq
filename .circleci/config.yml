@@ -3,13 +3,13 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 
 version: 2
+defaults: &defaults
+  working_directory: ~/smart-faq
+  docker:
+    - image: circleci/node:8.0
 jobs:
-  build: # smart-faq
-    docker:
-      - image: circleci/node:8
-
-    working_directory: ~/smart-faq
-
+  build:
+    <<: *defaults
     steps:
       - checkout
 
@@ -30,8 +30,7 @@ jobs:
       - run: yarn test-ci
 
   deploy:
-    docker:
-      - image: circleci/node:8
+    <<: *defaults
     steps:
       - checkout
       # Download and cache dependencies
@@ -42,6 +41,23 @@ jobs:
           - v1-dependencies-
       - run: yarn && yarn build:bundle && yarn build:pages
 
+  publish:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Write NPM Token to ~/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - run:
+          name: Install dot-json package
+          command: yarn add dot-json --dev
+      - run:
+          name: Write version to package.json
+          command: $(yarn bin)/dot-json package.json version ${CIRCLE_TAG:1}
+      - run:
+          name: Publish to NPM
+          command: npm publish --access=public
+
 workflows:
   version: 2
   build-and-deploy:
@@ -51,5 +67,16 @@ workflows:
           requires:
             - build
           filters:
+            branches:
+              only: master
+  build-and-publish:
+    jobs:
+      - build
+      - publish:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/ # only valid version tags, e.g. v0.0.1, v12.3.5
             branches:
               only: master
