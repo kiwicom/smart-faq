@@ -8,6 +8,7 @@ import { Typography } from '@kiwicom/orbit-components';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import arrow from '../../static/arrow-16-px@3x.png';
 import facebookLogo from '../../static/facebook-icon.png';
+import googleLogo from '../../static/google-logo.png';
 import { allRoutes } from '../Routes';
 
 const style = css`
@@ -50,26 +51,26 @@ const style = css`
     font-weight: bold;
     margin-bottom: 6px;
   }
-
   .button-inside {
     display: inline-flex;
     width: 352px;
   }
   .button-inside input {
     width: 315px;
-    height: 42px;
+    height: 41px;
     border: 0px;
+    font-size: 16px;
+    padding-left: 16px;
   }
   .button-inside input::placeholder {
     font-size: 16px;
     line-height: 1.25;
     text-align: left;
     color: #bac7d5;
-    padding-left: 16px;
   }
   .button-inside button {
     width: 83px;
-    height: 44px;
+    height: 43px;
     border-radius: 0px 3px 3px 0px;
     background-color: #00a991;
     font-size: 14px;
@@ -83,12 +84,8 @@ const style = css`
     line-height: 1.43;
     text-align: left;
     color: #46515e;
-    margin-top: 36.2px;
-    margin-bottom: 4px;
-    margin-left: 64px;
-    margin-right: 64px;
+    margin: 36.2px 64px 4px 64px;
   }
-  
   div.button-inside-wrapper {
     width: 352px;
     height: 44px;
@@ -98,7 +95,6 @@ const style = css`
     margin-left: 64px;
     margin-right: 64px;
   }
-
   .buttons {
     margin-right: 134px;
     margin-left: 134px;
@@ -108,6 +104,7 @@ const style = css`
     height: 44px;
     border-radius: 3px;
     margin-bottom: 16px;
+    border: none;
   }
 
   button.get-help{
@@ -118,38 +115,31 @@ const style = css`
 
   button.google {
     background-color: #d24318;
-    border-color: #d24318;
   }
   button.facebook {
     background-color: #4465ad;
-    border-color: #4465ad;
   }
   button.kiwi {
     background-color: #e8edf1;
-    border-color: #e8edf1;
   }
   span.label {
-    width: 139px;
-    height: 20px;
     font-size: 14px;
     font-weight: bold;
     line-height: 1.43;
-    text-align: left;
     color: #ffffff;
   }
   span.kiwi-label {
-    width: 144px;
-    height: 20px;
     font-size: 14px;
     font-weight: bold;
     line-height: 1.43;
-    text-align: center;
     color: #46515e;
   }
 
-  .facebook-icon {
-    width: 24px;
-    height: 24px;
+  .facebook-icon, .google-icon {
+    width: 16px;
+    height: 16px;
+    float: left;
+    margin-left: 8px; 
   }
   p.or {
     width: 15px;
@@ -209,6 +199,7 @@ const SignIn = (props: Props) => (
     <p className="or"> or </p>
     <div className="buttons">
       <button className="google">
+        <img className="google-icon" src={googleLogo} alt="Login with google" />
         <span className="label">Continue with Google </span>
       </button>
       <button className="facebook">

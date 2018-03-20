@@ -2,10 +2,10 @@
 
 exports[`SignIn should match snapshot 1`] = `
 <div
-  className="jsx-1137414042 SignIn"
+  className="jsx-1845906739 SignIn"
 >
   <div
-    className="jsx-1137414042 close-icon"
+    className="jsx-1845906739 close-icon"
   >
     <Close
       fill="#7f91a8"
@@ -17,11 +17,11 @@ exports[`SignIn should match snapshot 1`] = `
     to="/"
   >
     <div
-      className="jsx-1137414042 back"
+      className="jsx-1845906739 back"
     >
       <img
         alt="back"
-        className="jsx-1137414042 arrow"
+        className="jsx-1845906739 arrow"
         src="test-file-stub"
       />
       <Typography
@@ -33,22 +33,22 @@ exports[`SignIn should match snapshot 1`] = `
     </div>
   </Link>
   <div
-    className="jsx-1137414042 picture"
+    className="jsx-1845906739 picture"
   >
     <img
       alt="Help"
-      className="jsx-1137414042"
+      className="jsx-1845906739"
       src="test-file-stub"
     />
   </div>
   <div
-    className="jsx-1137414042 content"
+    className="jsx-1845906739 content"
   >
     <div
-      className="jsx-1137414042 text"
+      className="jsx-1845906739 text"
     >
       <p
-        className="jsx-1137414042 title"
+        className="jsx-1845906739 title"
       >
         Sign in
       </p>
@@ -60,24 +60,24 @@ exports[`SignIn should match snapshot 1`] = `
     </div>
   </div>
   <p
-    className="jsx-1137414042 button-inside-label"
+    className="jsx-1845906739 button-inside-label"
   >
     Email used for your booking:
   </p>
   <div
-    className="jsx-1137414042 button-inside-wrapper"
+    className="jsx-1845906739 button-inside-wrapper"
   >
     <span
-      className="jsx-1137414042 button-inside"
+      className="jsx-1845906739 button-inside"
     >
       <input
-        className="jsx-1137414042"
+        className="jsx-1845906739"
         name="email"
         placeholder="your@email.com"
         type="text"
       />
       <button
-        className="jsx-1137414042 get-help"
+        className="jsx-1845906739 get-help"
         onClick={[Function]}
       >
         Get Help
@@ -85,49 +85,54 @@ exports[`SignIn should match snapshot 1`] = `
     </span>
   </div>
   <p
-    className="jsx-1137414042 or"
+    className="jsx-1845906739 or"
   >
      or 
   </p>
   <div
-    className="jsx-1137414042 buttons"
+    className="jsx-1845906739 buttons"
   >
     <button
-      className="jsx-1137414042 google"
+      className="jsx-1845906739 google"
     >
+      <img
+        alt="Login with google"
+        className="jsx-1845906739 google-icon"
+        src="test-file-stub"
+      />
       <span
-        className="jsx-1137414042 label"
+        className="jsx-1845906739 label"
       >
         Continue with Google 
       </span>
     </button>
     <button
-      className="jsx-1137414042 facebook"
+      className="jsx-1845906739 facebook"
     >
       <img
         alt="Login with facebook"
-        className="jsx-1137414042 facebook-icon"
+        className="jsx-1845906739 facebook-icon"
         src="test-file-stub"
       />
       <span
-        className="jsx-1137414042 label"
+        className="jsx-1845906739 label"
       >
         Continue with Facebook 
       </span>
     </button>
     <button
-      className="jsx-1137414042 kiwi"
+      className="jsx-1845906739 kiwi"
     >
       <span
-        className="jsx-1137414042 kiwi-label"
+        className="jsx-1845906739 kiwi-label"
       >
         Kiwi.com Account
       </span>
     </button>
   </div>
   <JSXStyle
-    css=".SignIn.jsx-1137414042{width:480px;padding-top:128px;}div.picture.jsx-1137414042 img.jsx-1137414042{width:203px;height:156px;}div.picture.jsx-1137414042{margin-left:150px;margin-bottom:68px;}div.close-icon.jsx-1137414042{position:absolute;top:12px;right:12px;padding:8px;}div.back.jsx-1137414042{position:absolute;top:18px;left:27px;}img.arrow.jsx-1137414042{width:6px;height:8px;object-fit:contain;margin-right:4px;}div.text.jsx-1137414042{margin-left:64px;margin-right:64px;}p.title.jsx-1137414042{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:6px;}.button-inside.jsx-1137414042{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;width:352px;}.button-inside.jsx-1137414042 input.jsx-1137414042{width:315px;height:42px;border:0px;}.button-inside.jsx-1137414042 input.jsx-1137414042::-webkit-input-placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;padding-left:16px;}.button-inside.jsx-1137414042 input.jsx-1137414042::-moz-placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;padding-left:16px;}.button-inside.jsx-1137414042 input.jsx-1137414042:-ms-input-placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;padding-left:16px;}.button-inside.jsx-1137414042 input.jsx-1137414042::placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;padding-left:16px;}.button-inside.jsx-1137414042 button.jsx-1137414042{width:83px;height:44px;border-radius:0px 3px 3px 0px;background-color:#00a991;font-size:14px;font-weight:bold;color:#ffffff;}p.button-inside-label.jsx-1137414042{width:352px;height:20px;font-size:14px;line-height:1.43;text-align:left;color:#46515e;margin-top:36.2px;margin-bottom:4px;margin-left:64px;margin-right:64px;}div.button-inside-wrapper.jsx-1137414042{width:352px;height:44px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;margin-left:64px;margin-right:64px;}.buttons.jsx-1137414042{margin-right:134px;margin-left:134px;}button.jsx-1137414042{width:212px;height:44px;border-radius:3px;margin-bottom:16px;}button.get-help.jsx-1137414042{width:83px;background-color:#00a991;border:0;}button.google.jsx-1137414042{background-color:#d24318;border-color:#d24318;}button.facebook.jsx-1137414042{background-color:#4465ad;border-color:#4465ad;}button.kiwi.jsx-1137414042{background-color:#e8edf1;border-color:#e8edf1;}span.label.jsx-1137414042{width:139px;height:20px;font-size:14px;font-weight:bold;line-height:1.43;text-align:left;color:#ffffff;}span.kiwi-label.jsx-1137414042{width:144px;height:20px;font-size:14px;font-weight:bold;line-height:1.43;text-align:center;color:#46515e;}.facebook-icon.jsx-1137414042{width:24px;height:24px;}p.or.jsx-1137414042{width:15px;height:23px;font-size:16px;line-height:1.4;color:#46515e;margin:0 auto;margin-top:32px;margin-bottom:32px;}"
-    styleId="1137414042"
+    css=".SignIn.jsx-1845906739{width:480px;padding-top:128px;}div.picture.jsx-1845906739 img.jsx-1845906739{width:203px;height:156px;}div.picture.jsx-1845906739{margin-left:150px;margin-bottom:68px;}div.close-icon.jsx-1845906739{position:absolute;top:12px;right:12px;padding:8px;}div.back.jsx-1845906739{position:absolute;top:18px;left:27px;}img.arrow.jsx-1845906739{width:6px;height:8px;object-fit:contain;margin-right:4px;}div.text.jsx-1845906739{margin-left:64px;margin-right:64px;}p.title.jsx-1845906739{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:6px;}.button-inside.jsx-1845906739{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;width:352px;}.button-inside.jsx-1845906739 input.jsx-1845906739{width:315px;height:41px;border:0px;font-size:16px;padding-left:16px;}.button-inside.jsx-1845906739 input.jsx-1845906739::-webkit-input-placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}.button-inside.jsx-1845906739 input.jsx-1845906739::-moz-placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}.button-inside.jsx-1845906739 input.jsx-1845906739:-ms-input-placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}.button-inside.jsx-1845906739 input.jsx-1845906739::placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}.button-inside.jsx-1845906739 button.jsx-1845906739{width:83px;height:43px;border-radius:0px 3px 3px 0px;background-color:#00a991;font-size:14px;font-weight:bold;color:#ffffff;}p.button-inside-label.jsx-1845906739{width:352px;height:20px;font-size:14px;line-height:1.43;text-align:left;color:#46515e;margin:36.2px 64px 4px 64px;}div.button-inside-wrapper.jsx-1845906739{width:352px;height:44px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;margin-left:64px;margin-right:64px;}.buttons.jsx-1845906739{margin-right:134px;margin-left:134px;}button.jsx-1845906739{width:212px;height:44px;border-radius:3px;margin-bottom:16px;border:none;}button.get-help.jsx-1845906739{width:83px;background-color:#00a991;border:0;}button.google.jsx-1845906739{background-color:#d24318;}button.facebook.jsx-1845906739{background-color:#4465ad;}button.kiwi.jsx-1845906739{background-color:#e8edf1;}span.label.jsx-1845906739{font-size:14px;font-weight:bold;line-height:1.43;color:#ffffff;}span.kiwi-label.jsx-1845906739{font-size:14px;font-weight:bold;line-height:1.43;color:#46515e;}.facebook-icon.jsx-1845906739,.google-icon.jsx-1845906739{width:16px;height:16px;float:left;margin-left:8px;}p.or.jsx-1845906739{width:15px;height:23px;font-size:16px;line-height:1.4;color:#46515e;margin:0 auto;margin-top:32px;margin-bottom:32px;}"
+    styleId="1845906739"
   />
 </div>
 `;
