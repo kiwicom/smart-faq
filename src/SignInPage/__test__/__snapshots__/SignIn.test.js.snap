@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignIn should match snapshot 1`] = `
+<div
+  className="jsx-1137414042 SignIn"
+>
+  <div
+    className="jsx-1137414042 close-icon"
+  >
+    <Close
+      fill="#7f91a8"
+      size="32"
+    />
+  </div>
+  <Link
+    replace={false}
+    to="/"
+  >
+    <div
+      className="jsx-1137414042 back"
+    >
+      <img
+        alt="back"
+        className="jsx-1137414042 arrow"
+        src="test-file-stub"
+      />
+      <Typography
+        type="secondary"
+        variant="bold"
+      >
+        Back
+      </Typography>
+    </div>
+  </Link>
+  <div
+    className="jsx-1137414042 picture"
+  >
+    <img
+      alt="Help"
+      className="jsx-1137414042"
+      src="test-file-stub"
+    />
+  </div>
+  <div
+    className="jsx-1137414042 content"
+  >
+    <div
+      className="jsx-1137414042 text"
+    >
+      <p
+        className="jsx-1137414042 title"
+      >
+        Sign in
+      </p>
+      <Typography
+        type="secondary"
+      >
+        We need your email address to send you a magic link for signing in. Then you'll be able to receive personalised help about your particular situation.
+      </Typography>
+    </div>
+  </div>
+  <p
+    className="jsx-1137414042 button-inside-label"
+  >
+    Email used for your booking:
+  </p>
+  <div
+    className="jsx-1137414042 button-inside-wrapper"
+  >
+    <span
+      className="jsx-1137414042 button-inside"
+    >
+      <input
+        className="jsx-1137414042"
+        name="email"
+        placeholder="your@email.com"
+        type="text"
+      />
+      <button
+        className="jsx-1137414042 get-help"
+        onClick={[Function]}
+      >
+        Get Help
+      </button>
+    </span>
+  </div>
+  <p
+    className="jsx-1137414042 or"
+  >
+     or 
+  </p>
+  <div
+    className="jsx-1137414042 buttons"
+  >
+    <button
+      className="jsx-1137414042 google"
+    >
+      <span
+        className="jsx-1137414042 label"
+      >
+        Continue with Google 
+      </span>
+    </button>
+    <button
+      className="jsx-1137414042 facebook"
+    >
+      <img
+        alt="Login with facebook"
+        className="jsx-1137414042 facebook-icon"
+        src="test-file-stub"
+      />
+      <span
+        className="jsx-1137414042 label"
+      >
+        Continue with Facebook 
+      </span>
+    </button>
+    <button
+      className="jsx-1137414042 kiwi"
+    >
+      <span
+        className="jsx-1137414042 kiwi-label"
+      >
+        Kiwi.com Account
+      </span>
+    </button>
+  </div>
+  <JSXStyle
+    css=".SignIn.jsx-1137414042{width:480px;padding-top:128px;}div.picture.jsx-1137414042 img.jsx-1137414042{width:203px;height:156px;}div.picture.jsx-1137414042{margin-left:150px;margin-bottom:68px;}div.close-icon.jsx-1137414042{position:absolute;top:12px;right:12px;padding:8px;}div.back.jsx-1137414042{position:absolute;top:18px;left:27px;}img.arrow.jsx-1137414042{width:6px;height:8px;object-fit:contain;margin-right:4px;}div.text.jsx-1137414042{margin-left:64px;margin-right:64px;}p.title.jsx-1137414042{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:6px;}.button-inside.jsx-1137414042{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;width:352px;}.button-inside.jsx-1137414042 input.jsx-1137414042{width:315px;height:42px;border:0px;}.button-inside.jsx-1137414042 input.jsx-1137414042::-webkit-input-placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;padding-left:16px;}.button-inside.jsx-1137414042 input.jsx-1137414042::-moz-placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;padding-left:16px;}.button-inside.jsx-1137414042 input.jsx-1137414042:-ms-input-placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;padding-left:16px;}.button-inside.jsx-1137414042 input.jsx-1137414042::placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;padding-left:16px;}.button-inside.jsx-1137414042 button.jsx-1137414042{width:83px;height:44px;border-radius:0px 3px 3px 0px;background-color:#00a991;font-size:14px;font-weight:bold;color:#ffffff;}p.button-inside-label.jsx-1137414042{width:352px;height:20px;font-size:14px;line-height:1.43;text-align:left;color:#46515e;margin-top:36.2px;margin-bottom:4px;margin-left:64px;margin-right:64px;}div.button-inside-wrapper.jsx-1137414042{width:352px;height:44px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;margin-left:64px;margin-right:64px;}.buttons.jsx-1137414042{margin-right:134px;margin-left:134px;}button.jsx-1137414042{width:212px;height:44px;border-radius:3px;margin-bottom:16px;}button.get-help.jsx-1137414042{width:83px;background-color:#00a991;border:0;}button.google.jsx-1137414042{background-color:#d24318;border-color:#d24318;}button.facebook.jsx-1137414042{background-color:#4465ad;border-color:#4465ad;}button.kiwi.jsx-1137414042{background-color:#e8edf1;border-color:#e8edf1;}span.label.jsx-1137414042{width:139px;height:20px;font-size:14px;font-weight:bold;line-height:1.43;text-align:left;color:#ffffff;}span.kiwi-label.jsx-1137414042{width:144px;height:20px;font-size:14px;font-weight:bold;line-height:1.43;text-align:center;color:#46515e;}.facebook-icon.jsx-1137414042{width:24px;height:24px;}p.or.jsx-1137414042{width:15px;height:23px;font-size:16px;line-height:1.4;color:#46515e;margin:0 auto;margin-top:32px;margin-bottom:32px;}"
+    styleId="1137414042"
+  />
+</div>
+`;

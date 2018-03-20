@@ -77,7 +77,7 @@ const Intro = (props: Props) => (
       <Close fill="#7f91a8" size="32" />
     </div>
     <div className="picture">
-      <img className="woman-with-laptop" alt="Help" src={image} />
+      <img alt="Help" src={image} />
     </div>
     <div className="content">
       <div className="text">
@@ -90,7 +90,7 @@ const Intro = (props: Props) => (
         <div className="button">
           <Button
             isDisabled={false}
-            onClick={() => props.history.push(allRoutes.LOGIN)}
+            onClick={() => props.history.push(allRoutes.SIGN_IN)}
             size="large"
             title="I have an existing booking"
             type="primary"
