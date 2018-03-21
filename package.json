@@ -70,7 +70,9 @@
   },
   "dependencies": {
     "@kiwicom/orbit-components": "^0.0.0-rc1",
+    "axios": "^0.18.0",
     "i18next": "10.5.0",
+    "js-cookie": "^2.2.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-i18next": "7.4.0",
