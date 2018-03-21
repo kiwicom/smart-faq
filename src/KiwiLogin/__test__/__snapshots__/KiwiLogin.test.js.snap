@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`KiwiLogin should match snapshot 1`] = `
+<div
+  className="jsx-3302851857 KiwiLogin"
+>
+  <div
+    className="jsx-3302851857 close-icon"
+  >
+    <Close
+      fill="#7f91a8"
+      size="32"
+    />
+  </div>
+  <Link
+    replace={false}
+    to="/sign-in"
+  >
+    <div
+      className="jsx-3302851857 back"
+    >
+      <img
+        alt="back"
+        className="jsx-3302851857 arrow"
+        src="test-file-stub"
+      />
+      <Typography
+        type="secondary"
+        variant="bold"
+      >
+        Back
+      </Typography>
+    </div>
+  </Link>
+  <div
+    className="jsx-3302851857 picture"
+  >
+    <img
+      alt="Help"
+      className="jsx-3302851857"
+      src="test-file-stub"
+    />
+  </div>
+  <div
+    className="jsx-3302851857 main"
+  >
+    <p
+      className="jsx-3302851857 title"
+    >
+      Kiwi.com account
+    </p>
+    <Typography
+      type="secondary"
+    >
+      If you have an account with us, just use your credentials to sign in.
+    </Typography>
+    <form
+      className="jsx-3302851857"
+    >
+      <label
+        className="jsx-3302851857"
+        htmlFor="email"
+      >
+        Email:
+        <input
+          className="jsx-3302851857"
+          id="email"
+          placeholder="e.g. your@email.com"
+          type="email"
+        />
+      </label>
+      <label
+        className="jsx-3302851857"
+        htmlFor="password"
+      >
+        Password:
+        <input
+          className="jsx-3302851857"
+          id="password"
+          type="password"
+        />
+      </label>
+    </form>
+    <div
+      className="jsx-3302851857 forgot-password"
+    >
+      <Typography
+        type="active"
+      >
+        Forgot your password?
+      </Typography>
+    </div>
+    <span
+      className="jsx-3302851857 singIn"
+    >
+      <Button
+        isDisabled={false}
+        onClick={[Function]}
+        size="large"
+        title="Sign In"
+        type="primary"
+      />
+    </span>
+  </div>
+  <JSXStyle
+    css=".KiwiLogin.jsx-3302851857{width:480px;padding-top:128px;}div.close-icon.jsx-3302851857{position:absolute;top:12px;right:12px;padding:8px;}div.back.jsx-3302851857{position:absolute;top:18px;left:27px;}img.arrow.jsx-3302851857{width:6px;height:8px;object-fit:contain;margin-right:4px;}div.picture.jsx-3302851857 img.jsx-3302851857{width:203px;height:156px;}div.picture.jsx-3302851857{margin-left:150px;margin-bottom:68px;}div.main.jsx-3302851857{margin-left:40px;margin-right:40px;}p.title.jsx-3302851857{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:8px;line-height:1.2;}.forgot-password.jsx-3302851857{margin-top:12px;display:inline-block;}.singIn.jsx-3302851857{float:right;}form.jsx-3302851857{margin-top:32.8px;}input.jsx-3302851857{width:400px;height:44px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;margin-bottom:34px;margin-top:4px;font-size:16px;line-height:1.25;padding:12px 24px 12px 16px;}input.jsx-3302851857::-webkit-input-placeholder{width:315px;height:20px;font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}input.jsx-3302851857::-moz-placeholder{width:315px;height:20px;font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}input.jsx-3302851857:-ms-input-placeholder{width:315px;height:20px;font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}input.jsx-3302851857::placeholder{width:315px;height:20px;font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}label.jsx-3302851857{width:352px;height:20px;font-size:14px;line-height:1.43;text-align:left;color:#46515e;display:inline-table;}"
+    styleId="3302851857"
+  />
+</div>
+`;

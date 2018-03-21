@@ -2,10 +2,10 @@
 
 exports[`SignIn should match snapshot 1`] = `
 <div
-  className="jsx-1845906739 SignIn"
+  className="jsx-1019410750 SignIn"
 >
   <div
-    className="jsx-1845906739 close-icon"
+    className="jsx-1019410750 close-icon"
   >
     <Close
       fill="#7f91a8"
@@ -17,11 +17,11 @@ exports[`SignIn should match snapshot 1`] = `
     to="/"
   >
     <div
-      className="jsx-1845906739 back"
+      className="jsx-1019410750 back"
     >
       <img
         alt="back"
-        className="jsx-1845906739 arrow"
+        className="jsx-1019410750 arrow"
         src="test-file-stub"
       />
       <Typography
@@ -33,51 +33,47 @@ exports[`SignIn should match snapshot 1`] = `
     </div>
   </Link>
   <div
-    className="jsx-1845906739 picture"
+    className="jsx-1019410750 picture"
   >
     <img
       alt="Help"
-      className="jsx-1845906739"
+      className="jsx-1019410750"
       src="test-file-stub"
     />
   </div>
   <div
-    className="jsx-1845906739 content"
+    className="jsx-1019410750 text"
   >
-    <div
-      className="jsx-1845906739 text"
+    <p
+      className="jsx-1019410750 title"
     >
-      <p
-        className="jsx-1845906739 title"
-      >
-        Sign in
-      </p>
-      <Typography
-        type="secondary"
-      >
-        We need your email address to send you a magic link for signing in. Then you'll be able to receive personalised help about your particular situation.
-      </Typography>
-    </div>
+      Sign in
+    </p>
+    <Typography
+      type="secondary"
+    >
+      We need your email address to send you a magic link for signing in. Then you'll be able to receive personalised help about your particular situation.
+    </Typography>
   </div>
   <p
-    className="jsx-1845906739 button-inside-label"
+    className="jsx-1019410750 button-inside-label"
   >
     Email used for your booking:
   </p>
   <div
-    className="jsx-1845906739 button-inside-wrapper"
+    className="jsx-1019410750 button-inside-wrapper"
   >
     <span
-      className="jsx-1845906739 button-inside"
+      className="jsx-1019410750 button-inside"
     >
       <input
-        className="jsx-1845906739"
+        className="jsx-1019410750"
         name="email"
         placeholder="your@email.com"
-        type="text"
+        type="email"
       />
       <button
-        className="jsx-1845906739 get-help"
+        className="jsx-1019410750 get-help"
         onClick={[Function]}
       >
         Get Help
@@ -85,54 +81,59 @@ exports[`SignIn should match snapshot 1`] = `
     </span>
   </div>
   <p
-    className="jsx-1845906739 or"
+    className="jsx-1019410750 or"
   >
      or 
   </p>
   <div
-    className="jsx-1845906739 buttons"
+    className="jsx-1019410750 buttons"
   >
     <button
-      className="jsx-1845906739 google"
+      className="jsx-1019410750 google"
     >
       <img
         alt="Login with google"
-        className="jsx-1845906739 google-icon"
+        className="jsx-1019410750 google-icon"
         src="test-file-stub"
       />
       <span
-        className="jsx-1845906739 label"
+        className="jsx-1019410750 label"
       >
         Continue with Google 
       </span>
     </button>
     <button
-      className="jsx-1845906739 facebook"
+      className="jsx-1019410750 facebook"
     >
       <img
         alt="Login with facebook"
-        className="jsx-1845906739 facebook-icon"
+        className="jsx-1019410750 facebook-icon"
         src="test-file-stub"
       />
       <span
-        className="jsx-1845906739 label"
+        className="jsx-1019410750 label"
       >
         Continue with Facebook 
       </span>
     </button>
-    <button
-      className="jsx-1845906739 kiwi"
+    <Link
+      replace={false}
+      to="/kiwi-login"
     >
-      <span
-        className="jsx-1845906739 kiwi-label"
+      <button
+        className="jsx-1019410750 kiwi"
       >
-        Kiwi.com Account
-      </span>
-    </button>
+        <span
+          className="jsx-1019410750 kiwi-label"
+        >
+          Kiwi.com Account
+        </span>
+      </button>
+    </Link>
   </div>
   <JSXStyle
-    css=".SignIn.jsx-1845906739{width:480px;padding-top:128px;}div.picture.jsx-1845906739 img.jsx-1845906739{width:203px;height:156px;}div.picture.jsx-1845906739{margin-left:150px;margin-bottom:68px;}div.close-icon.jsx-1845906739{position:absolute;top:12px;right:12px;padding:8px;}div.back.jsx-1845906739{position:absolute;top:18px;left:27px;}img.arrow.jsx-1845906739{width:6px;height:8px;object-fit:contain;margin-right:4px;}div.text.jsx-1845906739{margin-left:64px;margin-right:64px;}p.title.jsx-1845906739{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:6px;}.button-inside.jsx-1845906739{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;width:352px;}.button-inside.jsx-1845906739 input.jsx-1845906739{width:315px;height:41px;border:0px;font-size:16px;padding-left:16px;}.button-inside.jsx-1845906739 input.jsx-1845906739::-webkit-input-placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}.button-inside.jsx-1845906739 input.jsx-1845906739::-moz-placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}.button-inside.jsx-1845906739 input.jsx-1845906739:-ms-input-placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}.button-inside.jsx-1845906739 input.jsx-1845906739::placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}.button-inside.jsx-1845906739 button.jsx-1845906739{width:83px;height:43px;border-radius:0px 3px 3px 0px;background-color:#00a991;font-size:14px;font-weight:bold;color:#ffffff;}p.button-inside-label.jsx-1845906739{width:352px;height:20px;font-size:14px;line-height:1.43;text-align:left;color:#46515e;margin:36.2px 64px 4px 64px;}div.button-inside-wrapper.jsx-1845906739{width:352px;height:44px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;margin-left:64px;margin-right:64px;}.buttons.jsx-1845906739{margin-right:134px;margin-left:134px;}button.jsx-1845906739{width:212px;height:44px;border-radius:3px;margin-bottom:16px;border:none;}button.get-help.jsx-1845906739{width:83px;background-color:#00a991;border:0;}button.google.jsx-1845906739{background-color:#d24318;}button.facebook.jsx-1845906739{background-color:#4465ad;}button.kiwi.jsx-1845906739{background-color:#e8edf1;}span.label.jsx-1845906739{font-size:14px;font-weight:bold;line-height:1.43;color:#ffffff;}span.kiwi-label.jsx-1845906739{font-size:14px;font-weight:bold;line-height:1.43;color:#46515e;}.facebook-icon.jsx-1845906739,.google-icon.jsx-1845906739{width:16px;height:16px;float:left;margin-left:8px;}p.or.jsx-1845906739{width:15px;height:23px;font-size:16px;line-height:1.4;color:#46515e;margin:0 auto;margin-top:32px;margin-bottom:32px;}"
-    styleId="1845906739"
+    css=".SignIn.jsx-1019410750{width:480px;padding-top:128px;}div.picture.jsx-1019410750 img.jsx-1019410750{width:203px;height:156px;}div.picture.jsx-1019410750{margin-left:150px;margin-bottom:68px;}div.close-icon.jsx-1019410750{position:absolute;top:12px;right:12px;padding:8px;}div.back.jsx-1019410750{position:absolute;top:18px;left:27px;}img.arrow.jsx-1019410750{width:6px;height:8px;object-fit:contain;margin-right:4px;}div.text.jsx-1019410750{margin-left:64px;margin-right:64px;}p.title.jsx-1019410750{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:6px;}.button-inside.jsx-1019410750{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;width:352px;}.button-inside.jsx-1019410750 input.jsx-1019410750{width:315px;height:41px;border:0px;font-size:16px;padding-left:16px;}.button-inside.jsx-1019410750 input.jsx-1019410750::-webkit-input-placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}.button-inside.jsx-1019410750 input.jsx-1019410750::-moz-placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}.button-inside.jsx-1019410750 input.jsx-1019410750:-ms-input-placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}.button-inside.jsx-1019410750 input.jsx-1019410750::placeholder{font-size:16px;line-height:1.25;text-align:left;color:#bac7d5;}.button-inside.jsx-1019410750 button.jsx-1019410750{width:83px;height:43px;border-radius:0px 3px 3px 0px;background-color:#00a991;font-size:14px;font-weight:bold;color:#ffffff;}p.button-inside-label.jsx-1019410750{width:352px;height:20px;font-size:14px;line-height:1.43;text-align:left;color:#46515e;margin:36.2px 64px 4px 64px;}div.button-inside-wrapper.jsx-1019410750{width:352px;height:44px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;margin-left:64px;margin-right:64px;}.buttons.jsx-1019410750{margin-right:134px;margin-left:134px;}button.jsx-1019410750{width:212px;height:44px;border-radius:3px;margin-bottom:16px;border:none;cursor:pointer;}button.get-help.jsx-1019410750{width:83px;background-color:#00a991;border:0;}button.google.jsx-1019410750{background-color:#d24318;}button.facebook.jsx-1019410750{background-color:#4465ad;}button.kiwi.jsx-1019410750{background-color:#e8edf1;}span.label.jsx-1019410750{font-size:14px;font-weight:bold;line-height:1.43;color:#ffffff;}span.kiwi-label.jsx-1019410750{font-size:14px;font-weight:bold;line-height:1.43;color:#46515e;}.facebook-icon.jsx-1019410750,.google-icon.jsx-1019410750{width:16px;height:16px;float:left;margin-left:8px;}p.or.jsx-1019410750{width:15px;height:23px;font-size:16px;line-height:1.4;color:#46515e;margin:0 auto;margin-top:32px;margin-bottom:32px;}"
+    styleId="1019410750"
   />
 </div>
 `;
