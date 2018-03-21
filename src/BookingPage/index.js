@@ -41,7 +41,31 @@ type Props = {
   },
 };
 
-class BookingPage extends React.Component {
+const Requester = {
+  allBookings: token =>
+    axios({
+      method: 'get',
+      url: endPoints.bookingApiUrl + '/api/v0.1/users/self/bookings',
+      params: {
+        token: token,
+      },
+    }),
+  login: (login, password) =>
+    axios({
+      method: 'post',
+      url: endPoints.authApiUrl + '/v1/user.login',
+      auth: {
+        username: '5433ecccaff67',
+        password: '',
+      },
+      data: {
+        login,
+        password,
+      },
+    }),
+};
+
+class BookingPage extends React.Component<{}, {}> {
   state = {
     bookings: [],
   };
@@ -51,27 +75,30 @@ class BookingPage extends React.Component {
     //  'WyJnUDVIdmdlVURmZlU4MVVjVWtBYW4xIiwiQzR0RzR1ZHk3dHdkbDBSeEpQbWFadUl1MnhSUS92NnhCTFJzSS51ZGhoMXAySTduRk5KQVciLDEwNzEzNzM3ODNd.LIaOSlkufG8KPbtpdGatnmur1-Q',
     //  { path: '/', domain: null },
     //);
-    console.log('AUTHURL', endPoints.authApiUrl + '/v1/user.login');
-    axios({
-      method: 'post',
-      url: endPoints.authApiUrl + '/v1/user.login',
-      data: {
-        login: 'tony@kiwi.com',
-        password: 'Bflmpsvz',
-      },
-    }).then(res => {
-      Cookies.set('ua_session_token', res.token, { path: '/', domain: null });
-      axios({
-        method: 'post',
-        url: endPoints.bookingApiUrl + '/v0.1/users/self/bookings',
-        params: {
-          token: res.token,
-        },
-      }).then(res => {
-        console.log('bookings res', res);
-        //this.setState({})
-      });
-    });
+    //console.log('AUTHURL', endPoints.authApiUrl + '/v1/user.login');
+    Requester.login('tony@kiwi.com', 'Bflmpsvz').then(res =>
+      Requester.allBookings(res.data.token).then(b => console.log('book', b)),
+    );
+    //axios({
+    //  method: 'post',
+    //  url: endPoints.authApiUrl + '/v1/user.login',
+    //  data: {
+    //    login: 'tony@kiwi.com',
+    //    password: 'Bflmpsvz',
+    //  },
+    //}).then(res => {
+    //  Cookies.set('ua_session_token', res.token, { path: '/', domain: null });
+    //  axios({
+    //    method: 'post',
+    //    url: endPoints.bookingApiUrl + '/v0.1/users/self/bookings',
+    //    params: {
+    //      token: res.token,
+    //    },
+    //  }).then(res => {
+    //    console.log('bookings res', res);
+    //    //this.setState({})
+    //  });
+    //});
   }
   render() {
     return (
