@@ -7,7 +7,7 @@ import { Close } from '@kiwicom/orbit-components/lib/icons';
 import { Typography, Button } from '@kiwicom/orbit-components';
 import image from '../../static/woman-with-laptop.jpg';
 import arrow from '../../static/arrow-16-px@3x.png';
-import { allRoutes } from '../Routes';
+import routeDefinitions from '../routeDefinitions';
 
 const style = css`
   .KiwiLogin {
@@ -96,7 +96,7 @@ const KiwiLogin = () => (
     <div className="close-icon">
       <Close fill="#7f91a8" size="32" />
     </div>
-    <Link to={allRoutes.SIGN_IN}>
+    <Link to={routeDefinitions.SIGN_IN}>
       <div className="back">
         <img className="arrow" src={arrow} alt="back" />
         <Typography type="secondary" variant="bold">

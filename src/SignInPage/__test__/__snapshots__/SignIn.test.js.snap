@@ -4,14 +4,7 @@ exports[`SignIn should match snapshot 1`] = `
 <div
   className="jsx-689811259 SignIn"
 >
-  <div
-    className="jsx-689811259 close-icon"
-  >
-    <Close
-      fill="#7f91a8"
-      size="32"
-    />
-  </div>
+  <CloseIcon />
   <Link
     replace={false}
     to="/"

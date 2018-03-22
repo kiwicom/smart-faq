@@ -1,10 +1,12 @@
 // @flow
+
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Close, OpenInNew } from '@kiwicom/orbit-components/lib/icons';
+import { OpenInNew } from '@kiwicom/orbit-components/lib/icons';
 import { Typography, Button } from '@kiwicom/orbit-components';
 import image from '../../static/woman-with-laptop@2x.jpg';
-import { allRoutes } from '../Routes';
+import routeDefinitions from '../routeDefinitions';
+import CloseIcon from './../common/CloseIcon';
 
 const style = css`
   .Intro {
@@ -57,12 +59,6 @@ const style = css`
     padding: 8px;
     margin-left: 4px;
   }
-  div.close-icon {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    padding: 8px;
-  }
 `;
 
 type Props = {
@@ -73,9 +69,7 @@ type Props = {
 
 const Intro = (props: Props) => (
   <div className="Intro">
-    <div className="close-icon">
-      <Close fill="#7f91a8" size="32" />
-    </div>
+    <CloseIcon />
     <div className="picture">
       <img alt="Help" src={image} />
     </div>
@@ -90,7 +84,7 @@ const Intro = (props: Props) => (
         <div className="button">
           <Button
             isDisabled={false}
-            onClick={() => props.history.push(allRoutes.SIGN_IN)}
+            onClick={() => props.history.push(routeDefinitions.SIGN_IN)}
             size="large"
             title="I have an existing booking"
             type="primary"
@@ -99,7 +93,7 @@ const Intro = (props: Props) => (
         <div className="button">
           <Button
             isDisabled={false}
-            onClick={() => props.history.push(allRoutes.STATIC_FAQ)}
+            onClick={() => props.history.push(routeDefinitions.STATIC_FAQ)}
             size="large"
             title="I don't have a booking"
             type="secondary"
