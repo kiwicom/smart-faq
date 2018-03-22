@@ -1,18 +1,16 @@
 // @flow
 
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import { Typography, Button } from '@kiwicom/orbit-components';
-import CloseIcon from './../common/CloseIcon';
 import BackButton from '../common/BackButton';
+import CloseIcon from '../common/CloseIcon';
 import Input from '../common/Input';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import routeDefinitions from '../routeDefinitions';
-import withAuth from '../HOC/withAuth';
 
 const style = css`
-  .KiwiLogin {
+  .ForgottenPassword {
     width: 480px;
     padding-top: 128px;
   }
@@ -35,17 +33,14 @@ const style = css`
     margin-bottom: 8px;
     line-height: 1.2;
   }
-  .forgot-password {
-    margin-top: 12px;
-    display: inline-block;
-  }
-  .singIn {
+  .send {
     float: right;
   }
   form {
     margin-top: 32.8px;
   }
   div.input {
+    display: inline-block;
     width: 400px;
     height: 44px;
     margin-bottom: 34px;
@@ -61,41 +56,34 @@ const style = css`
     display: inline-table;
   }
 `;
-type Props = {|
-  doSignIn: Function,
-|};
+
+type Props = {||};
 
 type State = {|
   email: string,
-  password: string,
 |};
 
-class KiwiLogin extends React.Component<Props, State> {
+class ForgottenPasword extends React.Component<Props, State> {
   state = {
     email: '',
-    password: '',
   };
 
-  handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({ [e.target.name]: e.target.value });
+  handleSubmitEmail = (e: SyntheticInputEvent<HTMLInputElement>) => {
+    this.setState({ email: e.target.value });
   };
-  handleSignIn = () => {
-    this.props.doSignIn(this.state.email, this.state.password);
-  };
+
   render() {
     return (
-      <div className="KiwiLogin">
+      <div className="ForgottenPassword">
         <CloseIcon />
-        <BackButton text="Back" link={routeDefinitions.SIGN_IN} />
+        <BackButton text="Back" link={routeDefinitions.KIWI_LOGIN} />
         <div className="picture">
           <img alt="Help" src={image} />
         </div>
         <div className="main">
-          <p className="title">Kiwi.com account</p>
+          <p className="title">Forgotten password</p>
           <Typography type="secondary">
-            {
-              'If you have an account with us, just use your credentials to sign in.'
-            }
+            {`Enter your email address and we'll send you the instructions to set your new password.`}
           </Typography>
           <form>
             <label htmlFor="email">
@@ -105,34 +93,18 @@ class KiwiLogin extends React.Component<Props, State> {
                   type="email"
                   name="email"
                   value={this.state.email}
-                  onChange={this.handleChange}
+                  onChange={this.handleSubmitEmail}
                   placeholder="e.g. your@email.com"
                 />
               </div>
             </label>
-            <label htmlFor="password">
-              Password:
-              <div className="input">
-                <Input
-                  type="password"
-                  name="password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                />
-              </div>
-            </label>
           </form>
-          <Link to={routeDefinitions.FORGOTTEN_PASSWORD}>
-            <div className="forgot-password">
-              <Typography type="active">Forgot your password?</Typography>
-            </div>
-          </Link>
-          <span className="singIn">
+          <span className="send">
             <Button
               isDisabled={false}
-              onClick={this.handleSignIn}
+              onClick={() => {}}
               size="large"
-              title="Sign In"
+              title="Send"
               type="primary"
             />
           </span>
@@ -142,5 +114,4 @@ class KiwiLogin extends React.Component<Props, State> {
     );
   }
 }
-
-export default withAuth(KiwiLogin);
+export default ForgottenPasword;
