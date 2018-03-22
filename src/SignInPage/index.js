@@ -3,14 +3,14 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
-import { Close } from '@kiwicom/orbit-components/lib/icons';
 import { Typography } from '@kiwicom/orbit-components';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import chevronLeft from '../../static/arrow-16-px@3x.png';
 import chevronRight from '../../static/chevron-right.png';
 import facebookLogo from '../../static/facebook-icon.png';
 import googleLogo from '../../static/google-logo.png';
-import { allRoutes } from '../Routes';
+import routeDefinitions from '../routeDefinitions';
+import CloseIcon from '../common/CloseIcon';
 
 const style = css`
   .SignIn {
@@ -151,10 +151,8 @@ type Props = {
 
 const SignIn = (props: Props) => (
   <div className="SignIn">
-    <div className="close-icon">
-      <Close fill="#7f91a8" size="32" />
-    </div>
-    <Link to={allRoutes.HOME}>
+    <CloseIcon />
+    <Link to={routeDefinitions.HOME}>
       <div className="back">
         <img className="chevronLeft" src={chevronLeft} alt="back" />
         <Typography type="secondary" variant="bold">
@@ -181,7 +179,7 @@ const SignIn = (props: Props) => (
       <button
         className="get-help"
         onClick={() => {
-          props.history.push(allRoutes.CHECK_EMAIL);
+          props.history.push(routeDefinitions.CHECK_EMAIL);
         }}
       >
         Get Help
@@ -203,7 +201,7 @@ const SignIn = (props: Props) => (
       </button>
     </div>
     <div className="kiwi-account">
-      <Link to={allRoutes.KIWI_LOGIN} style={{ textDecoration: 'none' }}>
+      <Link to={routeDefinitions.KIWI_LOGIN} style={{ textDecoration: 'none' }}>
         <Typography type="active">I want to use my Kiwi.com account</Typography>
         <img src={chevronRight} className="chevron" alt="kiwi login" />
       </Link>

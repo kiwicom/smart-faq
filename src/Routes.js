@@ -4,27 +4,19 @@ import { Route, Switch } from 'react-router-dom';
 import * as React from 'react';
 import Intro from './IntroPage';
 import Email from './EmailPage';
+import StaticFAQ from './StaticFAQ';
 import SignIn from './SignInPage';
 import KiwiLogin from './KiwiLogin';
+import routeDefinitions from './routeDefinitions';
 
-export const allRoutes = {
-  HOME: '/',
-  SIGN_IN: '/sign-in',
-  CHECK_EMAIL: '/check-email',
-  STATIC_FAQ: '/static-faq',
-  KIWI_LOGIN: '/kiwi-login',
-};
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path={allRoutes.HOME} component={Intro} />
-      <Route path={allRoutes.SIGN_IN} component={SignIn} />
-      <Route
-        path={allRoutes.STATIC_FAQ}
-        component={() => <div>STATIC FAQ PAGE</div>}
-      />
-      <Route exact path={allRoutes.CHECK_EMAIL} component={Email} />
-      <Route exact path={allRoutes.KIWI_LOGIN} component={KiwiLogin} />
+      <Route exact path={routeDefinitions.HOME} component={Intro} />
+      <Route path={routeDefinitions.SIGN_IN} component={SignIn} />
+      <Route path={routeDefinitions.STATIC_FAQ} component={StaticFAQ} />
+      <Route exact path={routeDefinitions.CHECK_EMAIL} component={Email} />
+      <Route exact path={routeDefinitions.KIWI_LOGIN} component={KiwiLogin} />
     </Switch>
   );
 };
