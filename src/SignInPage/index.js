@@ -6,7 +6,8 @@ import css from 'styled-jsx/css';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
 import { Typography } from '@kiwicom/orbit-components';
 import image from '../../static/woman-with-laptop@2x.jpg';
-import arrow from '../../static/arrow-16-px@3x.png';
+import chevronLeft from '../../static/arrow-16-px@3x.png';
+import chevronRight from '../../static/chevron-right.png';
 import facebookLogo from '../../static/facebook-icon.png';
 import googleLogo from '../../static/google-logo.png';
 import { allRoutes } from '../Routes';
@@ -21,8 +22,7 @@ const style = css`
     height: 156px;
   }
   div.picture {
-    margin-left: 150px;
-    margin-bottom: 68px;
+    margin: 0px 127px 0px 150px;
   }
   div.close-icon {
     position: absolute;
@@ -35,65 +35,58 @@ const style = css`
     top: 18px;
     left: 27px;
   }
-  img.arrow {
+  img.chevronLeft {
     width: 6px;
     height: 8px;
     object-fit: contain;
     margin-right: 4px;
   }
   div.text {
-    margin-left: 64px;
-    margin-right: 64px;
+    margin: 52px 40px 32.2px 40px;
   }
   p.title {
     color: #171b1e;
     font-size: 28px;
     font-weight: bold;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
-  .button-inside {
-    display: inline-flex;
-    width: 352px;
+  label {
+    font-size: 14px;
+    line-height: 1.43;
+    color: #46515e;
   }
-  .button-inside input {
-    width: 315px;
-    height: 41px;
-    border: 0px;
+  form {
+    margin: 0px 40px 0px 40px;
+  }
+  input {
+    width: 309px;
+    height: 44px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    border: solid 1px #bac7d5;
     font-size: 16px;
     padding-left: 16px;
+    margin-top: 4px;
+    margin-right: 8px;
+    line-height: 1.25;
+    padding: 12px 19px 12px 16px;
   }
-  .button-inside input::placeholder {
+  input::placeholder {
+    width: 315px;
+    height: 20px;
     font-size: 16px;
     line-height: 1.25;
     text-align: left;
     color: #bac7d5;
   }
-  .button-inside button {
+  form button {
     width: 83px;
-    height: 43px;
-    border-radius: 0px 3px 3px 0px;
+    height: 44px;
+    border-radius: 3px;
     background-color: #00a991;
     font-size: 14px;
     font-weight: bold;
     color: #ffffff;
-  }
-  p.button-inside-label {
-    width: 352px;
-    height: 20px;
-    font-size: 14px;
-    line-height: 1.43;
-    text-align: left;
-    color: #46515e;
-    margin: 36.2px 64px 4px 64px;
-  }
-  div.button-inside-wrapper {
-    width: 352px;
-    height: 44px;
-    border-radius: 3px;
-    background-color: #ffffff;
-    border: solid 1px #bac7d5;
-    margin-left: 64px;
-    margin-right: 64px;
   }
   .buttons {
     margin-right: 134px;
@@ -107,21 +100,26 @@ const style = css`
     border: none;
     cursor: pointer;
   }
-
   button.get-help{
     width: 83px;
     background-color: #00a991;
     border: 0;
   }
-
   button.google {
     background-color: #d24318;
   }
   button.facebook {
     background-color: #4465ad;
   }
-  button.kiwi {
-    background-color: #e8edf1;
+  div.kiwi-account {
+    margin-top: 8px;
+    text-align: center;
+  }
+  img.chevron {
+    width: 8px;
+    height: 8px;
+    margin-left: 5px;
+    object-fit: contain;
   }
   span.label {
     font-size: 14px;
@@ -129,13 +127,6 @@ const style = css`
     line-height: 1.43;
     color: #ffffff;
   }
-  span.kiwi-label {
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 1.43;
-    color: #46515e;
-  }
-
   .facebook-icon, .google-icon {
     width: 16px;
     height: 16px;
@@ -149,10 +140,11 @@ const style = css`
     line-height: 1.4;
     color: #46515e;
     margin 0 auto;
-    margin-top: 32px;
-    margin-bottom: 32px;
+    margin-top: 26px;
+    margin-bottom: 24px;
   }
 `;
+
 type Props = {
   history: Object,
 };
@@ -164,7 +156,7 @@ const SignIn = (props: Props) => (
     </div>
     <Link to={allRoutes.HOME}>
       <div className="back">
-        <img className="arrow" src={arrow} alt="back" />
+        <img className="chevronLeft" src={chevronLeft} alt="back" />
         <Typography type="secondary" variant="bold">
           Back
         </Typography>
@@ -181,20 +173,20 @@ const SignIn = (props: Props) => (
         }
       </Typography>
     </div>
-    <p className="button-inside-label">Email used for your booking:</p>
-    <div className="button-inside-wrapper">
-      <span className="button-inside">
-        <input type="email" name="email" placeholder="your@email.com" />
-        <button
-          className="get-help"
-          onClick={() => {
-            props.history.push(allRoutes.CHECK_EMAIL);
-          }}
-        >
-          Get Help
-        </button>
-      </span>
-    </div>
+    <form>
+      <label htmlFor="email">
+        Email used for your booking:
+        <input type="email" id="email" placeholder="your@email.com" />
+      </label>
+      <button
+        className="get-help"
+        onClick={() => {
+          props.history.push(allRoutes.CHECK_EMAIL);
+        }}
+      >
+        Get Help
+      </button>
+    </form>
     <p className="or"> or </p>
     <div className="buttons">
       <button className="google">
@@ -209,10 +201,11 @@ const SignIn = (props: Props) => (
         />
         <span className="label">Continue with Facebook </span>
       </button>
-      <Link to={allRoutes.KIWI_LOGIN}>
-        <button className="kiwi">
-          <span className="kiwi-label">Kiwi.com Account</span>
-        </button>
+    </div>
+    <div className="kiwi-account">
+      <Link to={allRoutes.KIWI_LOGIN} style={{ textDecoration: 'none' }}>
+        <Typography type="active">I want to use my Kiwi.com account</Typography>
+        <img src={chevronRight} className="chevron" alt="kiwi login" />
       </Link>
     </div>
     <style jsx>{style}</style>
