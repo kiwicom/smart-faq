@@ -105,6 +105,7 @@ const style = css`
     border-radius: 3px;
     margin-bottom: 16px;
     border: none;
+    cursor: pointer;
   }
 
   button.get-help{
@@ -172,20 +173,18 @@ const SignIn = (props: Props) => (
     <div className="picture">
       <img alt="Help" src={image} />
     </div>
-    <div className="content">
-      <div className="text">
-        <p className="title">Sign in</p>
-        <Typography type="secondary">
-          {
-            "We need your email address to send you a magic link for signing in. Then you'll be able to receive personalised help about your particular situation."
-          }
-        </Typography>
-      </div>
+    <div className="text">
+      <p className="title">Sign in</p>
+      <Typography type="secondary">
+        {
+          "We need your email address to send you a magic link for signing in. Then you'll be able to receive personalised help about your particular situation."
+        }
+      </Typography>
     </div>
     <p className="button-inside-label">Email used for your booking:</p>
     <div className="button-inside-wrapper">
       <span className="button-inside">
-        <input type="text" name="email" placeholder="your@email.com" />
+        <input type="email" name="email" placeholder="your@email.com" />
         <button
           className="get-help"
           onClick={() => {
@@ -210,9 +209,11 @@ const SignIn = (props: Props) => (
         />
         <span className="label">Continue with Facebook </span>
       </button>
-      <button className="kiwi">
-        <span className="kiwi-label">Kiwi.com Account</span>
-      </button>
+      <Link to={allRoutes.KIWI_LOGIN}>
+        <button className="kiwi">
+          <span className="kiwi-label">Kiwi.com Account</span>
+        </button>
+      </Link>
     </div>
     <style jsx>{style}</style>
   </div>
