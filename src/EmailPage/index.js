@@ -4,7 +4,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
 import { Typography } from '@kiwicom/orbit-components';
-import image from '../../static/mailbox@2x.png';
+import image from '../../static/mailbox@3x.png';
 
 type Props = {
   email: string,
@@ -16,27 +16,22 @@ const style = css`
     padding-top: 240px;
   }
   p.title {
-    width: 305px;
-    height: 34px;
     font-size: 28px;
     font-weight: bold;
     line-height: 1.2;
-    margin-bottom: 6px;
-    text-align: left;
+    margin-bottom: 8px;
     color: #171b1e;
   }
   div.picture {
-    margin-left: 127px;
-    margin-right: 127px;
-    margin-bottom: 61px;
+    margin: 0px 127px 52px 127px;
   }
   div.picture img {
     height: 188px;
     widht: 226px;
   }
   div.text {
-    margin-left: 64px;
-    margin-right: 64px;
+    margin-left: 40px;
+    margin-right: 40px;
   }
   div.close-icon {
     position: absolute;
