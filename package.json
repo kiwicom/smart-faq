@@ -2,10 +2,10 @@
   "name": "@kiwicom/smart-faq",
   "version": "0.0.1",
   "scripts": {
-    "start": "NODE_ENV=development LANGUAGE=en webpack-dev-server --open --mode development",
-    "build": "npm run clean && npm run build:lib && npm run build:flow",
-    "build:bundle": "NODE_ENV=production LANGUAGE=en webpack --mode production",
-    "build:pages": "yarn build:bundle && ./scripts/deploy-ghpages.sh",
+    "start": "better-npm-run start",
+    "build": "better-npm-run build",
+    "build:bundle": "better-npm-run build:bundle",
+    "build:pages": "better-npm-run build:bundle && ./scripts/deploy-ghpages.sh",
     "build:lib": "babel --out-dir lib --ignore *.stories.js,*.test.js src",
     "build:flow": "flow-copy-source -v -i '**/*.?(stories|test).js' src lib",
     "clean": "rimraf lib es dist",
@@ -22,6 +22,23 @@
     "translations:collect": "i18next-scanner 'src/**/*.{js,jsx}'",
     "translations:check": "node scripts/checkTranslations.js"
   },
+  "betterScripts": {
+    "start": {
+      "command": "webpack-dev-server --open --mode development",
+      "env": {
+        "NODE_ENV": "development",
+        "LANGUAGE": "en"
+      }
+    },
+    "build": "npm run clean && npm run build:lib && npm run build:flow",
+    "build:bundle": {
+      "command": "webpack --mode production",
+      "env": {
+        "NODE_ENV": "production",
+        "LANGUAGE": "en"
+      }
+    }
+  },
   "main": "lib/index.js",
   "author": "kiwi.com",
   "devDependencies": {
@@ -32,9 +49,11 @@
     "babel-core": "6.26.0",
     "babel-eslint": "^8.2.2",
     "babel-loader": "7.1.4",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "better-npm-run": "^0.1.0",
     "dotenv": "5.0.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -76,8 +95,11 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-i18next": "7.4.0",
+    "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "styled-jsx": "^2.2.5"
   }
 }

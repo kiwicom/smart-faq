@@ -9,7 +9,7 @@ const language = process.env.LANGUAGE || 'en';
 
 module.exports = {
   name: language,
-  entry: './src/index.js',
+  entry: ['babel-polyfill', './src/index.js'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: `smart-faq.${language}.js`,
