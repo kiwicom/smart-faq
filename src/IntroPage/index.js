@@ -55,8 +55,9 @@ const style = css`
     margin-left: 182px;
     line-height: 1.4;
   }
-  div.faq-link .inline-icon {
-    padding: 8px;
+  div.open-icon {
+    display: inline-block;
+    vertical-align: -3px;
     margin-left: 4px;
   }
 `;
@@ -103,17 +104,19 @@ const Intro = (props: Props) => (
     </div>
     <hr className="hr-line" />
     <div className="faq-link">
-      <Typography className="faq-link" type="attention" variant="bold">
+      <Typography type="attention" variant="bold">
         Full FAQ Site
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.kiwi.com/helpcenter/"
-          className="inline-icon"
-        >
-          <OpenInNew fill="#171b1e" size="32" />
-        </a>
       </Typography>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.kiwi.com/helpcenter/"
+        className="inline-icon"
+      >
+        <div className="open-icon">
+          <OpenInNew fill="#171b1e" height="16" />
+        </div>
+      </a>
     </div>
     <style jsx>{style}</style>
   </div>

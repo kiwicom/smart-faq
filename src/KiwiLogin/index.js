@@ -1,35 +1,18 @@
 // @flow
 
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
-import { Close } from '@kiwicom/orbit-components/lib/icons';
 import { Typography, Button } from '@kiwicom/orbit-components';
-import image from '../../static/woman-with-laptop.jpg';
-import arrow from '../../static/arrow-16-px@3x.png';
+import CloseIcon from './../common/CloseIcon';
+import BackButton from '../common/BackButton';
+import Input from '../common/Input';
+import image from '../../static/woman-with-laptop@2x.jpg';
 import routeDefinitions from '../routeDefinitions';
 
 const style = css`
   .KiwiLogin {
     width: 480px;
     padding-top: 128px;
-  }
-  div.close-icon {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    padding: 8px;
-  }
-  div.back {
-    position: absolute;
-    top: 18px;
-    left: 27px;
-  }
-  img.arrow {
-    width: 6px;
-    height: 8px;
-    object-fit: contain;
-    margin-right: 4px;
   }
   div.picture img {
     width: 203px;
@@ -60,25 +43,11 @@ const style = css`
   form {
     margin-top: 32.8px;
   }
-  input {
+  div.input {
     width: 400px;
     height: 44px;
-    border-radius: 3px;
-    background-color: #ffffff;
-    border: solid 1px #bac7d5;
     margin-bottom: 34px;
     margin-top: 4px;
-    font-size: 16px;
-    line-height: 1.25;
-    padding: 12px 24px 12px 16px;
-  }
-  input::placeholder {
-    width: 315px;
-    height: 20px;
-    font-size: 16px;
-    line-height: 1.25;
-    text-align: left;
-    color: #bac7d5;
   }
   label {
     width: 352px;
@@ -90,55 +59,79 @@ const style = css`
     display: inline-table;
   }
 `;
+type Props = {||};
 
-const KiwiLogin = () => (
-  <div className="KiwiLogin">
-    <div className="close-icon">
-      <Close fill="#7f91a8" size="32" />
-    </div>
-    <Link to={routeDefinitions.SIGN_IN}>
-      <div className="back">
-        <img className="arrow" src={arrow} alt="back" />
-        <Typography type="secondary" variant="bold">
-          Back
-        </Typography>
+type State = {|
+  email: string,
+  password: string,
+|};
+
+class KiwiLogin extends React.Component<Props, State> {
+  state = {
+    email: '',
+    password: '',
+  };
+
+  handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  render() {
+    return (
+      <div className="KiwiLogin">
+        <CloseIcon />
+        <BackButton text="Back" link={routeDefinitions.SIGN_IN} />
+        <div className="picture">
+          <img alt="Help" src={image} />
+        </div>
+        <div className="main">
+          <p className="title">Kiwi.com account</p>
+          <Typography type="secondary">
+            {
+              'If you have an account with us, just use your credentials to sign in.'
+            }
+          </Typography>
+          <form>
+            <label htmlFor="email">
+              Email:
+              <div className="input">
+                <Input
+                  type="email"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  placeholder="e.g. your@email.com"
+                />
+              </div>
+            </label>
+            <label htmlFor="password">
+              Password:
+              <div className="input">
+                <Input
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </label>
+          </form>
+          <div className="forgot-password">
+            <Typography type="active">Forgot your password?</Typography>
+          </div>
+          <span className="singIn">
+            <Button
+              isDisabled={false}
+              onClick={() => {}}
+              size="large"
+              title="Sign In"
+              type="primary"
+            />
+          </span>
+        </div>
+        <style jsx>{style}</style>
       </div>
-    </Link>
-    <div className="picture">
-      <img alt="Help" src={image} />
-    </div>
-    <div className="main">
-      <p className="title">Kiwi.com account</p>
-      <Typography type="secondary">
-        {
-          'If you have an account with us, just use your credentials to sign in.'
-        }
-      </Typography>
-      <form>
-        <label htmlFor="email">
-          Email:
-          <input type="email" id="email" placeholder="e.g. your@email.com" />
-        </label>
-        <label htmlFor="password">
-          Password:
-          <input type="password" id="password" />
-        </label>
-      </form>
-      <div className="forgot-password">
-        <Typography type="active">Forgot your password?</Typography>
-      </div>
-      <span className="singIn">
-        <Button
-          isDisabled={false}
-          onClick={() => {}}
-          size="large"
-          title="Sign In"
-          type="primary"
-        />
-      </span>
-    </div>
-    <style jsx>{style}</style>
-  </div>
-);
+    );
+  }
+}
 
 export default KiwiLogin;
