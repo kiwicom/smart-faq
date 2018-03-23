@@ -33,31 +33,23 @@ const style = css`
     margin-bottom: 8px;
     line-height: 1.2;
   }
-  .send {
-    float: right;
-  }
   form {
-    margin-top: 32.8px;
+    margin: 32.8px 40px 0px 40px;
   }
   div.input {
     display: inline-block;
-    width: 400px;
+    width: 300px;
     height: 44px;
-    margin-bottom: 34px;
     margin-top: 4px;
-  }
-  label {
-    width: 352px;
-    height: 20px;
-    font-size: 14px;
-    line-height: 1.43;
-    text-align: left;
-    color: #46515e;
-    display: inline-table;
+    margin-right: 8px;
   }
 `;
 
-type Props = {||};
+type Props = {
+  history: {
+    push: string => void,
+  },
+};
 
 type State = {|
   email: string,
@@ -68,8 +60,13 @@ class ForgottenPasword extends React.Component<Props, State> {
     email: '',
   };
 
-  handleSubmitEmail = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  handleChangeEmail = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({ email: e.target.value });
+  };
+
+  handleSubmitEmail = (e: SyntheticEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    this.props.history.push(routeDefinitions.CHECK_RECOVERY_LINK);
   };
 
   render() {
@@ -83,32 +80,30 @@ class ForgottenPasword extends React.Component<Props, State> {
         <div className="main">
           <p className="title">Forgotten password</p>
           <Typography type="secondary">
-            {`Enter your email address and we'll send you the instructions to set your new password.`}
+            {`Please enter your email address. We'll send you instructions to reset your password.`}{' '}
           </Typography>
-          <form>
-            <label htmlFor="email">
-              Email:
-              <div className="input">
-                <Input
-                  type="email"
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.handleSubmitEmail}
-                  placeholder="e.g. your@email.com"
-                />
-              </div>
-            </label>
-          </form>
-          <span className="send">
-            <Button
-              isDisabled={false}
-              onClick={() => {}}
-              size="large"
-              title="Send"
-              type="primary"
-            />
-          </span>
         </div>
+        <form onSubmit={this.handleSubmitEmail}>
+          <label htmlFor="email">
+            <div>Email:</div>
+            <div className="input">
+              <Input
+                type="email"
+                value={this.state.email}
+                onChange={this.handleChangeEmail}
+                placeholder="e.g. your@email.com"
+                required
+              />
+            </div>
+          </label>
+          <Button
+            isDisabled={false}
+            onClick={() => {}}
+            size="large"
+            title="Send"
+            type="primary"
+          />
+        </form>
         <style jsx>{style}</style>
       </div>
     );

@@ -105,7 +105,7 @@ const Intro = (props: Props) => (
     <hr className="hr-line" />
     <div className="faq-link">
       <Typography type="attention" variant="bold">
-        Full FAQ Site
+        Full FAQ site
       </Typography>
       <a
         target="_blank"
