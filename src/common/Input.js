@@ -5,6 +5,8 @@ import * as React from 'react';
 type Props = {
   value: string,
   onChange: (SyntheticInputEvent<HTMLInputElement>) => any,
+  type?: string,
+  name?: string,
   placeholder?: string,
   icon?: React.Node,
   error?: string,
@@ -13,6 +15,8 @@ type Props = {
 const InputText = (props: Props) => (
   <div className="wrapper">
     <input
+      type={props.type}
+      name={props.name}
       value={props.value}
       placeholder={props.placeholder}
       onChange={props.onChange}
