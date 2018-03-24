@@ -1,7 +1,7 @@
 // @flow
 import { SIGN_IN } from '../actions/SessionActions';
 
-type State = {
+export type State = {
   token: string,
 };
 

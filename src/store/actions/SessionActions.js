@@ -9,7 +9,9 @@ export const saveToken = (token: string) => ({
 });
 
 export const signIn = (email: string, password: string) => {
-  return dispatch => {
-    doLogin(email, password).then(token => dispatch(saveToken(token)));
+  return (dispatch: Function) => {
+    doLogin(email, password).then((token: string) =>
+      dispatch(saveToken(token)),
+    );
   };
 };

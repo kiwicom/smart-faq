@@ -10,7 +10,8 @@ export async function doLogin(email: string, password: string) {
     Cookies.set('ua_session_token', token, { path: '/', domain: null });
     return token;
   } catch (error) {
-    console.error(error.message);
+    console.error(error.message); //eslint-disable-line
+    return '';
   }
 }
 export const getCookieToken = () => Cookies.get('ua_session_token');
