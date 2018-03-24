@@ -1,9 +1,11 @@
 // @flow
 import * as React from 'react';
 import css from 'styled-jsx/css';
+import withAuth from '../HOC/withAuth';
 
 type Props = {
   children?: React.Node,
+  token: string,
 };
 const style = css`
   * {
@@ -31,6 +33,24 @@ const style = css`
     vertical-align: bottom;
   }
 `;
+const smallStyle = css`
+  div.logged-out {
+    border: 1px solid #b22222;
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+    color: #b22222;
+    padding: 0.5em;
+  }
+  div.logged-in {
+    border: 1px solid #85c285;
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+    color: #85c285;
+    padding: 0.5em;
+  }
+`;
 const Layout = (props: Props) => (
   <div className="Layout">
     <link
@@ -38,10 +58,16 @@ const Layout = (props: Props) => (
       rel="stylesheet"
     />
     {props.children}
+    {props.token ? (
+      <div className="logged-in">Logged in</div>
+    ) : (
+      <div className="logged-out">Logged out</div>
+    )}
+    <style jsx>{smallStyle}</style>
     <style jsx global>
       {style}
     </style>
   </div>
 );
 
-export default Layout;
+export default withAuth(Layout);

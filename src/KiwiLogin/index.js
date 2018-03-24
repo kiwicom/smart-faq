@@ -8,6 +8,7 @@ import BackButton from '../common/BackButton';
 import Input from '../common/Input';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import routeDefinitions from '../routeDefinitions';
+import withAuth from '../HOC/withAuth';
 
 const style = css`
   .KiwiLogin {
@@ -59,7 +60,9 @@ const style = css`
     display: inline-table;
   }
 `;
-type Props = {||};
+type Props = {|
+  doSignIn: Function,
+|};
 
 type State = {|
   email: string,
@@ -74,6 +77,9 @@ class KiwiLogin extends React.Component<Props, State> {
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+  handleSignIn = () => {
+    this.props.doSignIn(this.state.email, this.state.password);
   };
   render() {
     return (
@@ -121,7 +127,7 @@ class KiwiLogin extends React.Component<Props, State> {
           <span className="singIn">
             <Button
               isDisabled={false}
-              onClick={() => {}}
+              onClick={this.handleSignIn}
               size="large"
               title="Sign In"
               type="primary"
@@ -134,4 +140,4 @@ class KiwiLogin extends React.Component<Props, State> {
   }
 }
 
-export default KiwiLogin;
+export default withAuth(KiwiLogin);

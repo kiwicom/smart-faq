@@ -14,7 +14,7 @@ type Props = {
 function withAuth(BaseComponent: ComponentType) {
   class WithAuth extends React.Component<Props> {
     constructor(props) {
-      const JWT_Token = getCookieToken().token;
+      const JWT_Token = getCookieToken();
       if (JWT_Token) {
         props.doSaveToken(JWT_Token);
       }

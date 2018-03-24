@@ -4,6 +4,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const language = process.env.LANGUAGE || 'en';
 
@@ -32,6 +33,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Smart FAQ demo',
     }),
+    new Dotenv(),
   ],
   devServer: {
     contentBase: './dist',

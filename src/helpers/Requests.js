@@ -31,5 +31,5 @@ export const Requester = {
         login,
         password,
       },
-    }).then(r => r.data),
+    }).then(r => (r.data.token ? r.data.token : Promise.reject(r.data))),
 };
