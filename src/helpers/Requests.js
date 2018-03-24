@@ -8,6 +8,7 @@ export const endPoints = {
   bookingApiUrl: 'https://booking-api.skypicker.com',
   mmbApiUrl: 'https://booking-api.skypicker.com',
 };
+export const loginEndpoint = endPoints.authApiUrl + '/v1/user.login';
 const USER = process.env.KIWILOGIN_USER;
 
 export const Requester = {
@@ -22,7 +23,7 @@ export const Requester = {
   login: (login: string, password: string) =>
     axios({
       method: 'post',
-      url: endPoints.authApiUrl + '/v1/user.login',
+      url: loginEndpoint,
       auth: {
         username: USER,
         password: '',
