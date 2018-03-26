@@ -24,6 +24,16 @@ App demo: [https://kiwicom.github.io/smart-faq/](https://kiwicom.github.io/smart
 - run `yarn translations:collect` to recollect all translations for all supported languages
 - provide translations for all keys with `__STRING_NOT_TRANSLATED__` as value
 
+## Dev process
+In order to be able to login one requires an `.env` file at the root of the codebase, with the following contents:
+```javascript
+KIWILOGIN_USER=XXXXXXXX
+```
+Where the value of `KIWILOGIN_USER` will be provided privately.
+
+Webpack and particularly `dotenv-webpack` package will take care of importing the variables from `.env` to your resulting build app or dev-server.
+
+
 ## Build process
 
 ### Github Pages
