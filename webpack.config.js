@@ -4,12 +4,13 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const language = process.env.LANGUAGE || 'en';
 
 module.exports = {
   name: language,
-  entry: './src/index.js',
+  entry: ['babel-polyfill', './src/index.js'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: `smart-faq.${language}.js`,
@@ -32,6 +33,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Smart FAQ demo',
     }),
+    new Dotenv(),
   ],
   devServer: {
     contentBase: './dist',

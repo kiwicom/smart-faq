@@ -4,7 +4,6 @@ import * as React from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import initTranslation from './initTranslation';
-import Layout from './Layout';
 import Routes from './Routes';
 
 type Props = {
@@ -24,9 +23,7 @@ class App extends React.Component<Props> {
     return (
       <I18nextProvider i18n={this.i18n}>
         <MemoryRouter>
-          <Layout>
-            <Routes />
-          </Layout>
+          <Routes />
         </MemoryRouter>
       </I18nextProvider>
     );
