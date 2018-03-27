@@ -1,4 +1,14 @@
 {
-  "presets": ["env", "react", "stage-0"],
-  "plugins":["styled-jsx/babel"]
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": ["last 2 Chrome versions", "ie >= 7"]
+        }
+      }
+    ],
+    "react",
+    "stage-0"],
+  "plugins":["styled-jsx/babel","transform-runtime"]
 }
