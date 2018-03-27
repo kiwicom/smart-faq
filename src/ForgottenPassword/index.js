@@ -3,6 +3,7 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Typography, Button } from '@kiwicom/orbit-components';
+import { Requester } from '../helpers/Requests';
 import BackButton from '../common/BackButton';
 import CloseIcon from '../common/CloseIcon';
 import Input from '../common/Input';
@@ -47,7 +48,12 @@ const style = css`
 
 type Props = {
   history: {
-    push: string => void,
+    push: ({
+      pathname: string,
+      state: {
+        email: string,
+      },
+    }) => void,
   },
 };
 
@@ -66,7 +72,12 @@ class ForgottenPasword extends React.Component<Props, State> {
 
   handleSubmitEmail = (e: SyntheticEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    this.props.history.push(routeDefinitions.CHECK_RECOVERY_LINK);
+    const { email } = this.state;
+    Requester.resetPassword(email);
+    this.props.history.push({
+      pathname: routeDefinitions.CHECK_RECOVERY_LINK,
+      state: { email },
+    });
   };
 
   render() {
@@ -80,7 +91,7 @@ class ForgottenPasword extends React.Component<Props, State> {
         <div className="main">
           <p className="title">Forgotten password</p>
           <Typography type="secondary">
-            {`Please enter your email address. We'll send you instructions to reset your password.`}{' '}
+            {`Please enter your email address. We'll send you instructions to reset your password.`}
           </Typography>
         </div>
         <form onSubmit={this.handleSubmitEmail}>
@@ -92,7 +103,6 @@ class ForgottenPasword extends React.Component<Props, State> {
                 value={this.state.email}
                 onChange={this.handleChangeEmail}
                 placeholder="e.g. your@email.com"
-                required
               />
             </div>
           </label>

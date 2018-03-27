@@ -33,4 +33,14 @@ export const Requester = {
         password,
       },
     }).then(r => (r.data.token ? r.data.token : Promise.reject(r.data))),
+  resetPassword: (email: string) =>
+    axios({
+      method: 'post',
+      url: endPoints.authApiUrl + '/v1/user.resetPassword',
+      auth: {
+        username: USER,
+        password: '',
+      },
+      data: { login: email },
+    }),
 };

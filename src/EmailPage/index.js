@@ -38,33 +38,39 @@ const style = css`
 type Props = {
   email: string,
   text: string,
+  location: {
+    state: {
+      email: string,
+    },
+  },
 };
 
-const CheckEmail = ({ email, text }: Props) => (
-  <div className="Email">
-    <CloseIcon />
-    <div className="picture">
-      <img alt="Email" src={image} />
+const CheckEmail = (props: Props) => {
+  const email = props.location.state.email || 'example@gmail.com';
+  return (
+    <div className="Email">
+      <CloseIcon />
+      <div className="picture">
+        <img alt="Email" src={image} />
+      </div>
+      <div className="text">
+        <p className="title">Check your e-mail inbox</p>
+        <Typography size="large" type="secondary">
+          {props.text}
+          <span className="email-text">{` ${email}`}</span>.
+        </Typography>
+      </div>
+      <style jsx>{style}</style>
     </div>
-    <div className="text">
-      <p className="title">Check your e-mail inbox</p>
-      <Typography size="large" type="secondary">
-        {text}
-        <span className="email-text">{` ${email}`}</span>.
-      </Typography>
-    </div>
-    <style jsx>{style}</style>
-  </div>
-);
+  );
+};
 
-export const CheckRecoveryLink = () => {
+export const CheckRecoveryLink = (props: Object) => {
   const text = 'We sent a recovery link to';
-  const email = 'example@gmail.com';
-  return <CheckEmail text={text} email={email} />;
+  return <CheckEmail text={text} {...props} />;
 };
 
-export const CheckMagicLink = () => {
+export const CheckMagicLink = (props: Object) => {
   const text = 'To sign in, just click the link in the email we sent to';
-  const email = 'example@gmail.com';
-  return <CheckEmail text={text} email={email} />;
+  return <CheckEmail text={text} {...props} />;
 };
