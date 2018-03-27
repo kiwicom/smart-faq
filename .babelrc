@@ -9,6 +9,10 @@
       }
     ],
     "react",
-    "stage-0"],
-  "plugins":["styled-jsx/babel","transform-runtime"]
+    "stage-0"
+  ],
+  "plugins":[
+    "styled-jsx/babel",
+    "transform-runtime"
+  ]
 }
