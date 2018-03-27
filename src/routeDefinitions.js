@@ -9,4 +9,5 @@ export default {
   KIWI_LOGIN: '/kiwi-login',
   FORGOTTEN_PASSWORD: '/forgotten-password',
   SET_PASSWORD: '/set-password',
+  PASSWORD_IS_SET: '/password-is-set',
 };

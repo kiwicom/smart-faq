@@ -70,9 +70,9 @@ class SetPassword extends React.Component<Props, State> {
     this.setState({ password: e.target.value });
   };
 
-  handleSubmit = () => {
-    // implement logic
-    this.props.history.push(routeDefinitions.PASSWORD_SET);
+  handleSubmit = (e: SyntheticEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    this.props.history.push(routeDefinitions.PASSWORD_IS_SET);
   };
 
   render() {
@@ -85,7 +85,7 @@ class SetPassword extends React.Component<Props, State> {
             Please enter your new secure password.
           </Typography>
         </div>
-        <form className="form">
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor="email">
             New password:
             <div className="input">
@@ -93,16 +93,15 @@ class SetPassword extends React.Component<Props, State> {
                 type="password"
                 value={this.state.password}
                 onChange={this.handleChangePassword}
-                required
               />
             </div>
           </label>
           <Button
             isDisabled={false}
-            onClick={this.handleSubmit}
+            onClick={() => {}}
             size="large"
             title="Set"
-            type="secondary"
+            type="primary"
           />
         </form>
         <style jsx>{style}</style>
