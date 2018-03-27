@@ -5,10 +5,16 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import Layout from '../Layout';
-import Email from './';
+import { CheckRecoveryLink, CheckMagicLink } from './';
 
-storiesOf('Email', module).add('Default', () => (
-  <Layout action={action}>
-    <Email email="example@kiwi.com" />
-  </Layout>
-));
+storiesOf('CheckEmail', module)
+  .add('Magical Link', () => (
+    <Layout action={action}>
+      <CheckMagicLink />
+    </Layout>
+  ))
+  .add('Recovery Link', () => (
+    <Layout action={action}>
+      <CheckRecoveryLink />
+    </Layout>
+  ));

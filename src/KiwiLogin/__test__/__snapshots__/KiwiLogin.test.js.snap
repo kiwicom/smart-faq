@@ -337,30 +337,40 @@ exports[`KiwiLogin should match snapshot 1`] = `
                   </div>
                 </label>
               </form>
-              <div
-                className="jsx-347799831 forgot-password"
+              <Link
+                replace={false}
+                to="/forgotten-password"
               >
-                <Typography
-                  type="active"
+                <a
+                  href="/forgotten-password"
+                  onClick={[Function]}
                 >
-                  <span
-                    className="jsx-4212733848"
+                  <div
+                    className="jsx-347799831 forgot-password"
                   >
-                    Forgot your password?
-                    <JSXStyle
-                      css="span.__jsx-style-dynamic-selector{font-family:Roboto,-apple-system,sans-serif;font-size:14px;color:#00a991;;}"
-                      dynamic={
-                        Array [
-                          "14px",
-                          "#00a991",
-                          "",
-                        ]
-                      }
-                      styleId="1112443529"
-                    />
-                  </span>
-                </Typography>
-              </div>
+                    <Typography
+                      type="active"
+                    >
+                      <span
+                        className="jsx-4212733848"
+                      >
+                        Forgot your password?
+                        <JSXStyle
+                          css="span.__jsx-style-dynamic-selector{font-family:Roboto,-apple-system,sans-serif;font-size:14px;color:#00a991;;}"
+                          dynamic={
+                            Array [
+                              "14px",
+                              "#00a991",
+                              "",
+                            ]
+                          }
+                          styleId="1112443529"
+                        />
+                      </span>
+                    </Typography>
+                  </div>
+                </a>
+              </Link>
               <span
                 className="jsx-347799831 singIn"
               >

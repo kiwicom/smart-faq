@@ -7,6 +7,7 @@ type Props = {
   onChange: (SyntheticInputEvent<HTMLInputElement>) => any,
   type?: string,
   name?: string,
+  required?: boolean,
   placeholder?: string,
   icon?: React.Node,
   error?: string,
@@ -20,6 +21,7 @@ const InputText = (props: Props) => (
       value={props.value}
       placeholder={props.placeholder}
       onChange={props.onChange}
+      required={props.required}
     />
     {props.icon && <div className="inputIcon">{props.icon}</div>}
     <style jsx>

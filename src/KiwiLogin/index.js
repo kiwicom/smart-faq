@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import { Typography, Button } from '@kiwicom/orbit-components';
 import CloseIcon from './../common/CloseIcon';
@@ -121,9 +122,11 @@ class KiwiLogin extends React.Component<Props, State> {
               </div>
             </label>
           </form>
-          <div className="forgot-password">
-            <Typography type="active">Forgot your password?</Typography>
-          </div>
+          <Link to={routeDefinitions.FORGOTTEN_PASSWORD}>
+            <div className="forgot-password">
+              <Typography type="active">Forgot your password?</Typography>
+            </div>
+          </Link>
           <span className="singIn">
             <Button
               isDisabled={false}

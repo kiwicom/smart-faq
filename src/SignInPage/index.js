@@ -163,7 +163,7 @@ class SignIn extends React.Component<Props, State> {
           <button
             className="get-help"
             onClick={() => {
-              this.props.history.push(routeDefinitions.CHECK_EMAIL);
+              this.props.history.push(routeDefinitions.CHECK_MAGIC_LINK);
             }}
           >
             Get Help

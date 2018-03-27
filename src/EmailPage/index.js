@@ -6,10 +6,6 @@ import { Typography } from '@kiwicom/orbit-components';
 import image from '../../static/mailbox@3x.png';
 import CloseIcon from './../common/CloseIcon';
 
-type Props = {
-  email: string,
-};
-
 const style = css`
   .Email {
     width: 480px;
@@ -39,7 +35,12 @@ const style = css`
   }
 `;
 
-const Email = ({ email = 'example@gmail.com' }: Props) => (
+type Props = {
+  email: string,
+  text: string,
+};
+
+const CheckEmail = ({ email, text }: Props) => (
   <div className="Email">
     <CloseIcon />
     <div className="picture">
@@ -48,7 +49,7 @@ const Email = ({ email = 'example@gmail.com' }: Props) => (
     <div className="text">
       <p className="title">Check your e-mail inbox</p>
       <Typography size="large" type="secondary">
-        To sign in, just click the link in the email we sent to
+        {text}
         <span className="email-text">{` ${email}`}</span>.
       </Typography>
     </div>
@@ -56,4 +57,14 @@ const Email = ({ email = 'example@gmail.com' }: Props) => (
   </div>
 );
 
-export default Email;
+export const CheckRecoveryLink = () => {
+  const text = 'We sent a recovery link to';
+  const email = 'example@gmail.com';
+  return <CheckEmail text={text} email={email} />;
+};
+
+export const CheckMagicLink = () => {
+  const text = 'To sign in, just click the link in the email we sent to';
+  const email = 'example@gmail.com';
+  return <CheckEmail text={text} email={email} />;
+};
