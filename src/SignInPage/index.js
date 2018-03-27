@@ -39,7 +39,7 @@ const style = css`
     line-height: 1.43;
     color: #46515e;
   }
-  .form {
+  form {
     margin: 0px 40px 0px 40px;
   }
   div.input {
@@ -49,7 +49,7 @@ const style = css`
     margin-top: 4px;
     margin-right: 8px;
   }
-  .form button {
+  form button {
     width: 83px;
     height: 44px;
     border-radius: 3px;
@@ -101,7 +101,7 @@ const style = css`
     width: 16px;
     height: 16px;
     float: left;
-    margin-left: 8px; 
+    margin-left: 8px;
   }
   p.or {
     width: 15px;
@@ -128,8 +128,16 @@ class SignIn extends React.Component<Props, State> {
     email: '',
   };
 
-  handleSubmitEmail = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  handleChangeEmail = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({ email: e.target.value });
+  };
+
+  handleSubmitEmail = (e: SyntheticEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    this.props.history.push({
+      pathname: routeDefinitions.CHECK_MAGIC_LINK,
+      state: { email: this.state.email },
+    });
   };
 
   render() {
@@ -148,27 +156,20 @@ class SignIn extends React.Component<Props, State> {
             }
           </Typography>
         </div>
-        <div className="form">
+        <form onSubmit={this.handleSubmitEmail}>
           <label htmlFor="email">
             Email used for your booking:
             <div className="input">
               <Input
                 type="email"
                 value={this.state.email}
-                onChange={this.handleSubmitEmail}
+                onChange={this.handleChangeEmail}
                 placeholder="your@email.com"
               />
             </div>
           </label>
-          <button
-            className="get-help"
-            onClick={() => {
-              this.props.history.push(routeDefinitions.CHECK_MAGIC_LINK);
-            }}
-          >
-            Get Help
-          </button>
-        </div>
+          <button className="get-help">Get Help</button>
+        </form>
         <p className="or"> or </p>
         <div className="buttons">
           <button className="google">
