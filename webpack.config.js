@@ -33,7 +33,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Smart FAQ demo',
     }),
-    new Dotenv(),
+    new Dotenv({
+      systemvars: true,
+    }),
   ],
   devServer: {
     contentBase: './dist',
