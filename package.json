@@ -25,7 +25,6 @@
   "main": "lib/index.js",
   "author": "kiwi.com",
   "devDependencies": {
-    "@babel/preset-env": "^7.0.0-beta.42",
     "@storybook/addon-actions": "^3.3.15",
     "@storybook/addon-knobs": "^3.3.15",
     "@storybook/react": "^3.3.15",
