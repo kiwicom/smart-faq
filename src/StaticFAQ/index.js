@@ -8,7 +8,7 @@ import { Magnify } from '@kiwicom/orbit-components/lib/icons';
 
 import Input from './../common/Input';
 import CloseIcon from '../common/CloseIcon';
-import FAQCategory from './FAQCategory';
+import FAQCategoryList from './FAQCategoryList';
 import routeDefinitions from '../routeDefinitions';
 
 const style = css`
@@ -38,8 +38,6 @@ type Props = {||};
 type State = {|
   value: string,
 |};
-
-const renderStaticFAQ = (item, i) => <FAQCategory key={i} />;
 
 class StaticFAQ extends React.Component<Props, State> {
   state = {
@@ -73,7 +71,7 @@ class StaticFAQ extends React.Component<Props, State> {
             placeholder="What can we help you with?"
             icon={<Magnify />}
           />
-          <div>{[1, 2, 3].map(renderStaticFAQ)}</div>
+          <FAQCategoryList />
         </div>
         <style jsx>{style}</style>
       </div>

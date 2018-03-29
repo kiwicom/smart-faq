@@ -47,10 +47,7 @@
     ],
     "flowtype/require-valid-file-annotation": [
       "error",
-      "always",
-      {
-        "annotationStyle": "line"
-      }
+      "always"
     ],
     "import/no-extraneous-dependencies": [
       "error",
