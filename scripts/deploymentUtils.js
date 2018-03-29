@@ -1,5 +1,8 @@
 // @flow
-//import octokit from '@octokit/rest';
+const resolve = require('path').resolve;
+
+require('dotenv').config({ path: resolve('.env') });
+
 const octokit = require('@octokit/rest')();
 
 const childProcess = require('child_process');
@@ -9,27 +12,49 @@ const gitBranch = childProcess
   .toString()
   .replace(/\n/g, '');
 
+const lastUrl = 'https://'.concat(
+  childProcess
+    .execSync("now ls | grep -o -e '[a-zA-Z0-9.-]*.now.sh' | head -1")
+    .toString(),
+);
+
 export const getPr = async () => {
   const res = await octokit.pullRequests.getAll({
     owner: 'kiwicom',
     repo: 'smart-faq',
-    head: gitBranch,
-    state: 'open',
+    head: `kiwicom:${gitBranch}`,
   });
-  //console.log('getPR res', res);
   return res.data[0];
 };
-export const printNum = n => console.log('munumber', n);
-export const createComments = async () => {
+
+export const updateLiveURL = async () => {
   const pr = await getPr();
-  console.log('PR', pr.number);
-  //const res = await octokit.pullRequests.getComments({
-  const res = await octokit.issues.getComments({
+  octokit.authenticate({
+    type: 'integration',
+    token: process.env.GH_ACCESS_TOKEN,
+  });
+  const res = await octokit.pullRequests.get({
     owner: 'kiwicom',
     repo: 'smart-faq',
     number: pr.number,
   });
-  console.log('all Comments', res);
+  let newBody;
+  if (res.data.body.match(/<url>/)) {
+    newBody = res.data.body.replace(
+      /<url>(.*)(<\/url>)?/,
+      `<url>LiveURL: ${lastUrl}</url>`,
+    );
+  } else {
+    newBody = res.data.body.concat(
+      `<br/><br/><br/><url>LiveURL: ${lastUrl}</url>`,
+    );
+  }
+  await octokit.pullRequests.update({
+    owner: 'kiwicom',
+    repo: 'smart-faq',
+    number: pr.number,
+    body: newBody,
+  });
 };
 
 require('make-runnable');
