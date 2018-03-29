@@ -13,6 +13,7 @@
   ],
   "plugins":[
     "styled-jsx/babel",
-    "transform-runtime"
+    "transform-runtime",
+    "relay"
   ]
 }
