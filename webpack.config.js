@@ -47,6 +47,6 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     historyApiFallback: true,
-    disableHostCheck: true, // That solved it
+    disableHostCheck: true,
   },
 };

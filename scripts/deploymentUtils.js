@@ -1,11 +1,8 @@
 // @flow
-const resolve = require('path').resolve;
-
-require('dotenv').config({ path: resolve('.env') });
-
-const octokit = require('@octokit/rest')();
-
 const childProcess = require('child_process');
+const resolve = require('path').resolve;
+const octokit = require('@octokit/rest')();
+require('dotenv').config({ path: resolve('.env') });
 
 const gitBranch = childProcess
   .execSync('git symbolic-ref --short HEAD')
