@@ -2,8 +2,11 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
+import { graphql, createFragmentContainer } from 'react-relay';
 import { Typography } from '@kiwicom/orbit-components';
 import { ChevronRight } from '@kiwicom/orbit-components/lib/icons';
+
+import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
 
 const styles = css`
   .faq-category {
@@ -27,11 +30,15 @@ const styles = css`
   }
 `;
 
-const FAQCategory = () => (
+type Props = {|
+  category: FAQCategory_category,
+|};
+
+const FAQCategory = (props: Props) => (
   <div className="faq-category">
     <div>
       <Typography type="attention" size="large">
-        Searching for a flight
+        {props.category.title}
       </Typography>
     </div>
     <div>
@@ -46,4 +53,12 @@ const FAQCategory = () => (
   </div>
 );
 
-export default FAQCategory;
+export default createFragmentContainer(
+  FAQCategory,
+  graphql`
+    fragment FAQCategory_category on AllFAQCategories {
+      id
+      title
+    }
+  `,
+);
