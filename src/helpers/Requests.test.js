@@ -1,9 +1,13 @@
 // @flow
 
 import { Requester } from './Requests';
-import { goodEmail, goodPassword, defaultToken } from '../../__mocks__/axios';
+import {
+  goodEmail,
+  goodPassword,
+  defaultToken,
+} from '../../__mocks__/constants';
 
-jest.mock('axios');
+jest.mock('isomorphic-fetch');
 
 describe('Requester', () => {
   describe('login', () => {

@@ -8,9 +8,9 @@ import {
   goodEmail,
   goodPassword,
   defaultToken,
-} from '../../../__mocks__/axios';
+} from '../../../__mocks__/constants';
 
-jest.mock('axios');
+jest.mock('isomorphic-fetch');
 describe('SessionActions', () => {
   describe('signIn', () => {
     it('saves token to store and Cookies', async () => {
