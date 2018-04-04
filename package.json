@@ -20,6 +20,7 @@
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
     "deploy:now": "now --dotenv --public",
+    "deploy:now-ci": "now --public",
     "deploy:updateURL": "yarn babel-node scripts/deploymentUtils.js updateLiveURL",
     "translations:collect": "i18next-scanner 'src/**/*.{js,jsx}'",
     "translations:check": "node scripts/checkTranslations.js",
