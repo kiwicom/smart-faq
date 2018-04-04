@@ -7395,6 +7395,10 @@ now-cli@^0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/now-cli/-/now-cli-0.0.0.tgz#eb0e63426999815b344313ba3ea99a4f7cf8dc0b"
 
+now@^11.0.2:
+  version "11.0.2"
+  resolved "https://registry.yarnpkg.com/now/-/now-11.0.2.tgz#7f1159ae913a0362594da3b369ed191dfa887e8e"
+
 npm-paths@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/npm-paths/-/npm-paths-1.0.0.tgz#6e66ffc8887d27db71f9e8c4edd17e11c78a1c73"
