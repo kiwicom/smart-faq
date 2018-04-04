@@ -10,6 +10,7 @@ import { Magnify } from '@kiwicom/orbit-components/lib/icons';
 import Input from './../common/Input';
 import CloseIcon from '../common/CloseIcon';
 import FAQCategoryList from './FAQCategoryList';
+import SearchAllFAQs from './SearchAllFAQs';
 import routeDefinitions from '../routeDefinitions';
 
 const style = css`
@@ -55,9 +56,15 @@ class StaticFAQ extends React.Component<Props, State> {
     this.setState({ value: e.target.value });
   };
 
+  handleCancelSearch = () => {
+    this.setState({ value: '' });
+  };
+
   render() {
     const categoryId = idx(this.props.match, _ => _.params.categoryId) || null;
 
+    const { value } = this.state;
+    const isSearching = value.length;
     return (
       <div className="static-faq">
         <CloseIcon />
@@ -79,8 +86,13 @@ class StaticFAQ extends React.Component<Props, State> {
             onChange={this.handleSearchChange}
             placeholder="What can we help you with?"
             icon={<Magnify />}
+            withCancel={isSearching ? this.handleCancelSearch : undefined}
           />
-          <FAQCategoryList categoryId={categoryId} />
+          {isSearching ? (
+            <SearchAllFAQs querySearch={value} />
+          ) : (
+            <FAQCategoryList categoryId={categoryId} />
+          )}
         </div>
         <style jsx>{style}</style>
       </div>
