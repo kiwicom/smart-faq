@@ -4,11 +4,6 @@ const resolve = require('path').resolve;
 const octokit = require('@octokit/rest')();
 require('dotenv').config({ path: resolve('.env') });
 
-//const gitBranch = childProcess
-//  .execSync('git symbolic-ref --short HEAD')
-//  .toString()
-//  .replace(/\n/g, '');
-
 const lastUrl = 'https://'.concat(
   childProcess
     .execSync(
