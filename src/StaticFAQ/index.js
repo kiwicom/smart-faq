@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import idx from 'idx';
 import css from 'styled-jsx/css';
 import { Link } from 'react-router-dom';
 import { Typography } from '@kiwicom/orbit-components';
@@ -33,7 +34,13 @@ const style = css`
   }
 `;
 
-type Props = {||};
+type Props = {|
+  match: {
+    params: {
+      categoryId: ?string,
+    },
+  },
+|};
 
 type State = {|
   value: string,
@@ -49,6 +56,8 @@ class StaticFAQ extends React.Component<Props, State> {
   };
 
   render() {
+    const categoryId = idx(this.props.match, _ => _.params.categoryId) || null;
+
     return (
       <div className="static-faq">
         <CloseIcon />
@@ -71,7 +80,7 @@ class StaticFAQ extends React.Component<Props, State> {
             placeholder="What can we help you with?"
             icon={<Magnify />}
           />
-          <FAQCategoryList />
+          <FAQCategoryList categoryId={categoryId} />
         </div>
         <style jsx>{style}</style>
       </div>

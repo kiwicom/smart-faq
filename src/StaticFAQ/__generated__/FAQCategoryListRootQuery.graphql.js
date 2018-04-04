@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 91356dbbacf2dd1fd96511e4c0789de0
+ * @relayHash 135167955226ea839f759915e4d79436
  */
 
 /* eslint-disable */
@@ -10,8 +10,8 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type FAQCategory_category$ref = any;
-export type FAQCategoryListQueryVariables = {| |};
-export type FAQCategoryListQueryResponse = {|
+export type FAQCategoryListRootQueryVariables = {| |};
+export type FAQCategoryListRootQueryResponse = {|
   +allFAQCategories: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
@@ -25,7 +25,7 @@ export type FAQCategoryListQueryResponse = {|
 
 
 /*
-query FAQCategoryListQuery {
+query FAQCategoryListRootQuery {
   allFAQCategories(language: en) {
     edges {
       node {
@@ -61,13 +61,13 @@ v1 = {
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "FAQCategoryListQuery",
+  "name": "FAQCategoryListRootQuery",
   "id": null,
-  "text": "query FAQCategoryListQuery {\n  allFAQCategories(language: en) {\n    edges {\n      node {\n        id\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n}\n",
+  "text": "query FAQCategoryListRootQuery {\n  allFAQCategories(language: en) {\n    edges {\n      node {\n        id\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "FAQCategoryListQuery",
+    "name": "FAQCategoryListRootQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": [],
@@ -115,7 +115,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "FAQCategoryListQuery",
+    "name": "FAQCategoryListRootQuery",
     "argumentDefinitions": [],
     "selections": [
       {
@@ -163,5 +163,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '7e173537cffa406b475e2055431a7fe8';
+(node/*: any*/).hash = '28df0b5abaffe8be6871bbc2b2d1eba9';
 module.exports = node;

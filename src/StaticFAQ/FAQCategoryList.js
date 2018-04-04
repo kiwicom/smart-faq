@@ -2,21 +2,35 @@
 
 import * as React from 'react';
 import idx from 'idx';
+import { Link } from 'react-router-dom';
 import { graphql, QueryRenderer } from 'react-relay';
 
+import FAQArticle from './FAQArticle';
 import FAQCategory from './FAQCategory';
 import environment from '../relay/environment';
-import type { FAQCategoryListQueryResponse } from './__generated__/FAQCategoryListQuery.graphql';
+import routeDefinitions from './../routeDefinitions';
 
-type Props = {};
+import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
+import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
+import type { FAQCategoryListRootQueryResponse } from './__generated__/FAQCategoryListRootQuery.graphql';
+import type { FAQCategoryListSubcategoryQueryResponse } from './__generated__/FAQCategoryListSubcategoryQuery.graphql';
 
-type QueryRendererParams = {
-  props: FAQCategoryListQueryResponse,
+type Props = {|
+  categoryId: string | null,
+|};
+
+type RootQueryRendererParams = {
+  props: FAQCategoryListRootQueryResponse,
   error: Error,
 };
 
-const query = graphql`
-  query FAQCategoryListQuery {
+type SubcategoryQueryRendererParams = {
+  props: FAQCategoryListSubcategoryQueryResponse,
+  error: Error,
+};
+
+const queryRoot = graphql`
+  query FAQCategoryListRootQuery {
     allFAQCategories(language: en) {
       edges {
         node {
@@ -27,29 +41,80 @@ const query = graphql`
     }
   }
 `;
+const querySubcategory = graphql`
+  query FAQCategoryListSubcategoryQuery($id: ID!) {
+    FAQCategory(id: $id, language: en) {
+      subcategories {
+        id
+        ...FAQCategory_category
+      }
+      FAQs {
+        id
+        ...FAQArticle_article
+      }
+    }
+  }
+`;
 
 class FAQCategoryList extends React.Component<Props> {
-  renderStaticFAQs = (rendererProps: QueryRendererParams) => {
+  renderFAQArticlePerexes = (faqs: FAQArticle_article[]) => {
+    return (
+      <div>{faqs.map(faq => <FAQArticle key={faq.id} article={faq} />)}</div>
+    );
+  };
+
+  renderCategories = (categories: FAQCategory_category[]) => {
+    return (
+      <div>
+        {categories.map(category => {
+          if (category) {
+            return (
+              <Link
+                key={category.id}
+                to={`${routeDefinitions.STATIC_FAQ}/${category.id}`}
+                style={{ textDecoration: 'none' }}
+              >
+                <FAQCategory category={category} />
+              </Link>
+            );
+          }
+
+          return null;
+        })}
+      </div>
+    );
+  };
+
+  renderRootCategory = (rendererProps: RootQueryRendererParams) => {
+    if (rendererProps.error) {
+      return <div>Error</div>;
+    }
+
+    if (rendererProps.props) {
+      const edges =
+        idx(rendererProps.props, _ => _.allFAQCategories.edges) || [];
+      const categories = edges.map(edge => edge.node);
+      return this.renderCategories(categories);
+    }
+
+    return <div>Loading</div>;
+  };
+
+  renderSubcategory = (rendererProps: SubcategoryQueryRendererParams) => {
     if (rendererProps.error) {
       return <div>Error</div>;
     }
 
     if (rendererProps.props) {
       const categories =
-        idx(rendererProps.props, _ => _.allFAQCategories.edges) || [];
+        idx(rendererProps.props, _ => _.FAQCategory.subcategories) || [];
+      const faqs = idx(rendererProps.props, _ => _.FAQCategory.FAQs) || [];
 
       return (
-        <div>
-          {categories.map(category => {
-            if (category && category.node) {
-              return (
-                <FAQCategory key={category.node.id} category={category.node} />
-              );
-            }
-
-            return null;
-          })}
-        </div>
+        <React.Fragment>
+          {this.renderCategories(categories)}
+          {this.renderFAQArticlePerexes(faqs)}
+        </React.Fragment>
       );
     }
 
@@ -57,11 +122,24 @@ class FAQCategoryList extends React.Component<Props> {
   };
 
   render() {
+    const { categoryId } = this.props;
+
+    if (categoryId) {
+      return (
+        <QueryRenderer
+          environment={environment}
+          query={querySubcategory}
+          render={this.renderSubcategory}
+          variables={{ id: categoryId }}
+        />
+      );
+    }
+
     return (
       <QueryRenderer
         environment={environment}
-        query={query}
-        render={this.renderStaticFAQs}
+        query={queryRoot}
+        render={this.renderRootCategory}
       />
     );
   }

@@ -16,7 +16,11 @@ const Routes = () => {
       <Switch>
         <Route exact path={routeDefinitions.HOME} component={Intro} />
         <Route exact path={routeDefinitions.SIGN_IN} component={SignIn} />
-        <Route exact path={routeDefinitions.STATIC_FAQ} component={StaticFAQ} />
+        <Route
+          exact
+          path={`${routeDefinitions.STATIC_FAQ}/:categoryId?`}
+          component={StaticFAQ}
+        />
         <Route exact path={routeDefinitions.KIWI_LOGIN} component={KiwiLogin} />
         <Route
           exact
