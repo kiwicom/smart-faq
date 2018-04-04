@@ -42,7 +42,7 @@ const FAQCategory = (props: Props) => (
       </Typography>
     </div>
     <div>
-      <Typography type="secondary">
+      <Typography type="secondary" size="small">
         How to find your best deal fast and easy
       </Typography>
     </div>

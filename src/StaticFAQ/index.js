@@ -60,7 +60,7 @@ class StaticFAQ extends React.Component<Props, State> {
           </div>
         </Link>
         <div className="static-faq-header">
-          <Typography size="header" type="attention">
+          <Typography size="header" type="attention" variant="bold">
             Help
           </Typography>
         </div>
