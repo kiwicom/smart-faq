@@ -11,7 +11,11 @@ require('dotenv').config({ path: resolve('.env') });
 
 const lastUrl = 'https://'.concat(
   childProcess
-    .execSync("now ls | grep -o -e '[a-zA-Z0-9.-]*.now.sh' | head -1")
+    .execSync(
+      `now ls -t ${
+        process.env.NOW_TOKEN
+      }| grep -o -e '[a-zA-Z0-9.-]*.now.sh' | head -1`,
+    )
     .toString(),
 );
 
