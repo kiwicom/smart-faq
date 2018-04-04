@@ -38,12 +38,16 @@ const InputText = (props: Props) => (
           box-sizing: border-box;
           width: 100%;
           border-radius: 3px;
+          color: #46515e;
           background-color: white;
           border: solid 1px ${props.error ? '#d02228' : '#bac7d5'};
           font-size: 16px;
           line-height: 1.25;
           padding: 12px 16px;
           padding-left: ${props.icon ? 44 : 16}px;
+        }
+        input::placeholder {
+          color: #bac7d5;
         }
       `}
     </style>
