@@ -79,7 +79,6 @@
   },
   "dependencies": {
     "@kiwicom/orbit-components": "^0.0.0-rc1",
-    "axios": "^0.18.0",
     "babel-runtime": "^6.26.0",
     "i18next": "10.5.0",
     "idx": "2.2.0",

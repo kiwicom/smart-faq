@@ -1,22 +1,24 @@
 // @flow
 
 import { loginEndpoint } from '../src/helpers/Requests';
+import {
+  goodEmail,
+  goodPassword,
+  defaultToken,
+  defaultUserId,
+} from './constants';
 
 const makeResponse = (status = 200, statusText = 'OK', data = {}) => ({
-  data,
+  json: () => data,
   status,
   statusText,
   headers: {},
   config: {},
 });
-export const defaultToken = 'blablablaWWW';
-export const defaultUserId = 'user2344';
-export const goodEmail = 'email@hola.com';
-export const goodPassword = 'goodPass';
 
-export default function axios(obj: Object): Promise<Object> {
-  if (obj.url === loginEndpoint) {
-    const { login, password } = obj.data;
+export default function fetch(url: string, obj: Object): Promise<Object> {
+  if (url === loginEndpoint) {
+    const { login, password } = JSON.parse(obj.body);
     if (login === goodEmail && password === goodPassword) {
       return Promise.resolve(
         makeResponse(200, 'OK', {
