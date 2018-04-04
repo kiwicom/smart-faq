@@ -4,10 +4,10 @@ const resolve = require('path').resolve;
 const octokit = require('@octokit/rest')();
 require('dotenv').config({ path: resolve('.env') });
 
-const gitBranch = childProcess
-  .execSync('git symbolic-ref --short HEAD')
-  .toString()
-  .replace(/\n/g, '');
+//const gitBranch = childProcess
+//  .execSync('git symbolic-ref --short HEAD')
+//  .toString()
+//  .replace(/\n/g, '');
 
 const lastUrl = 'https://'.concat(
   childProcess
@@ -15,17 +15,17 @@ const lastUrl = 'https://'.concat(
     .toString(),
 );
 
-export const getPr = async () => {
+export const getPr = async (branchName: string) => {
   const res = await octokit.pullRequests.getAll({
     owner: 'kiwicom',
     repo: 'smart-faq',
-    head: `kiwicom:${gitBranch}`,
+    head: `kiwicom:${branchName}`,
   });
   return res.data[0];
 };
 
-export const updateLiveURL = async () => {
-  const pr = await getPr();
+export const updateLiveURL = async (branchName: string) => {
+  const pr = await getPr(branchName);
   octokit.authenticate({
     type: 'integration',
     token: process.env.GH_ACCESS_TOKEN,

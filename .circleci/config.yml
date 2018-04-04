@@ -41,6 +41,18 @@ jobs:
           - v1-dependencies-
       - run: yarn && yarn build:bundle && yarn build:pages
 
+  now-deploy:
+    <<: *defaults
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+      - run: yarn && yarn deploy:now && yarn deploy:updateURL ${CIRCLE_BRANCH}
+
   publish:
     <<: *defaults
     steps:
@@ -81,3 +93,13 @@ workflows:
               only: /v[0-9]+(\.[0-9]+)*/ # only valid version tags, e.g. v0.0.1, v12.3.5
             branches:
               ignore: /.*/
+
+  build-and-now-deploy:
+    jobs:
+      - build
+      - now-deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: branches
