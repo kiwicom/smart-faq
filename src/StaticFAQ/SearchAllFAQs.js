@@ -6,6 +6,7 @@ import { QueryRenderer, graphql } from 'react-relay';
 import idx from 'idx';
 import environment from '../relay/environment';
 import ArticleCard from '../common/ArticleCard';
+import Loader from '../common/Loader';
 
 const style = css`
   div.scrollable-box {
@@ -16,10 +17,10 @@ const style = css`
   }
 `;
 
-type Props = {
+type Props = {|
   querySearch: string,
   language?: string,
-};
+|};
 
 const SearchAllFAQsQuery = graphql`
   query SearchAllFAQsQuery($search: String, $language: Language) {
@@ -73,7 +74,7 @@ const SearchAllFAQs = ({ querySearch, language = 'en' }: Props) => {
             </div>
           );
         } else {
-          return <div>Loading</div>;
+          return <Loader />;
         }
       }}
     />

@@ -4,6 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import { Link } from 'react-router-dom';
 import { graphql, QueryRenderer } from 'react-relay';
+import Loader from '../common/Loader';
 
 import FAQArticle from './FAQArticle';
 import FAQCategory from './FAQCategory';
@@ -118,7 +119,7 @@ class FAQCategoryList extends React.Component<Props> {
       );
     }
 
-    return <div>Loading</div>;
+    return <Loader />;
   };
 
   render() {
