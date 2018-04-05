@@ -48,6 +48,14 @@ Done automatically when you add new release on [Github](https://github.com/kiwic
 
 - automatically updates package.json with correct version and publish changes into npm
 
+## Release per branch
+Everytime one sends a Pull Request the app is deployed to a different URL endpoint. This URL is then automatically added to the PR description.
+
+Relevant `package.json` scripts:
+- `deploy:now`: used to deploy to a new URL from localhost. Useful to debug production code. Requires you to have an `.env` file with `NOW_TOKEN` var.
+- `deploy:now-cli`: deployment script used by our CI. No configuration necessary.
+- `deploy:updateURL`: Updates the PR description with the latest URL deployed from the machine it was called from. Requires you to pass the branchname as argument.
+
 ## TO RE-FACTOR (when Orbit is ready)
 - `Button`s at Intro page need to have bold text
 - `Need help?` needs to be re-factor to use the `Text` component from Orbit(currenty it's hardcoded CSS)
