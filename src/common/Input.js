@@ -11,7 +11,7 @@ type Props = {
   required?: boolean,
   placeholder?: string,
   icon?: React.Node,
-  withCancel?: Function,
+  onReset?: (SyntheticEvent<HTMLButtonElement>) => any,
   error?: string,
 };
 
@@ -26,8 +26,8 @@ const InputText = (props: Props) => (
       required={props.required}
     />
     {props.icon && <div className="inputIcon">{props.icon}</div>}
-    {props.withCancel && (
-      <button onClick={props.withCancel}>
+    {props.onReset && (
+      <button onClick={props.onReset}>
         <img className="cancelInput" src={cancel} alt="Cancel" />
       </button>
     )}

@@ -4,9 +4,11 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { QueryRenderer, graphql } from 'react-relay';
 import idx from 'idx';
+import { Typography } from '@kiwicom/orbit-components';
+
 import environment from '../relay/environment';
-import ArticleCard from '../common/ArticleCard';
 import Loader from '../common/Loader';
+import Card from '../common/Card';
 
 const style = css`
   div.scrollable-box {
@@ -18,8 +20,13 @@ const style = css`
 `;
 
 type Props = {|
-  querySearch: string,
+  search: string,
   language?: string,
+|};
+
+type ArticleProps = {|
+  title: string,
+  perex: string,
 |};
 
 const SearchAllFAQsQuery = graphql`
@@ -29,17 +36,7 @@ const SearchAllFAQsQuery = graphql`
         node {
           results {
             title
-            content
-            upvotes
-            downvotes
-            categories {
-              name
-              items {
-                title
-                icon
-                style
-              }
-            }
+            articleId
           }
         }
       }
@@ -47,13 +44,27 @@ const SearchAllFAQsQuery = graphql`
   }
 `;
 
-const SearchAllFAQs = ({ querySearch, language = 'en' }: Props) => {
-  if (!querySearch) return null;
+const FAQArticle = ({ title, perex }: ArticleProps) => (
+  <Card>
+    <div>
+      <Typography type="attention" size="large">
+        {title}
+      </Typography>
+    </div>
+    <div>
+      <Typography type="secondary" size="small">
+        {perex}
+      </Typography>
+    </div>
+  </Card>
+);
+
+const SearchAllFAQs = ({ search, language = 'en' }: Props) => {
   return (
     <QueryRenderer
       environment={environment}
       query={SearchAllFAQsQuery}
-      variables={{ search: querySearch, language }}
+      variables={{ search, language }}
       render={({ err, props }) => {
         if (err) {
           return <div>{err.message}</div>;
@@ -64,18 +75,17 @@ const SearchAllFAQs = ({ querySearch, language = 'en' }: Props) => {
           return (
             <div className="scrollable-box">
               {results.map(result => (
-                <ArticleCard
-                  key={result.title}
+                <FAQArticle
+                  key={result.articleId}
                   title={result.title}
-                  content="How to find your best deal fast and easy"
+                  perex="How to find your best deal fast and easy"
                 />
               ))}
               <style jsx>{style}</style>
             </div>
           );
-        } else {
-          return <Loader />;
         }
+        return <Loader />;
       }}
     />
   );

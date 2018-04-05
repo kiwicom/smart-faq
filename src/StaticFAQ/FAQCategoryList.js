@@ -98,7 +98,7 @@ class FAQCategoryList extends React.Component<Props> {
       return this.renderCategories(categories);
     }
 
-    return <div>Loading</div>;
+    return <Loader />;
   };
 
   renderSubcategory = (rendererProps: SubcategoryQueryRendererParams) => {

@@ -62,9 +62,9 @@ class StaticFAQ extends React.Component<Props, State> {
 
   render() {
     const categoryId = idx(this.props.match, _ => _.params.categoryId) || null;
-
     const { value } = this.state;
     const isSearching = value.length;
+
     return (
       <div className="static-faq">
         <CloseIcon />
@@ -86,10 +86,10 @@ class StaticFAQ extends React.Component<Props, State> {
             onChange={this.handleSearchChange}
             placeholder="What can we help you with?"
             icon={<Magnify />}
-            withCancel={isSearching ? this.handleCancelSearch : undefined}
+            onReset={isSearching ? this.handleCancelSearch : undefined}
           />
           {isSearching ? (
-            <SearchAllFAQs querySearch={value} />
+            <SearchAllFAQs search={value} />
           ) : (
             <FAQCategoryList categoryId={categoryId} />
           )}
