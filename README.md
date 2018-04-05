@@ -57,7 +57,5 @@ Relevant `package.json` scripts:
 - `deploy:updateURL`: Updates the PR description with the latest URL deployed from the machine it was called from. Requires you to pass the branchname as argument.
 
 ## TO RE-FACTOR (when Orbit is ready)
-- `Button`s at Intro page need to have bold text
 - `Need help?` needs to be re-factor to use the `Text` component from Orbit(currenty it's hardcoded CSS)
-- At `IntroPage`: replace the `history.push` onChange trigger with `Button` using a children of type `Link`(already merged in Orbit master but not published yet)
 
