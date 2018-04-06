@@ -10,6 +10,8 @@ import environment from '../relay/environment';
 import Loader from '../common/Loader';
 import Card from '../common/Card';
 
+import type { SearchAllFAQsQuery } from './__generated__/SearchAllFAQsQuery.graphql';
+
 const style = css`
   div.scrollable-box {
     overflow-y: scroll;
@@ -18,6 +20,16 @@ const style = css`
     padding: 2px;
   }
 `;
+
+type AllFAQsQueryRendererParams = {|
+  props: SearchAllFAQsQuery,
+  error: Error,
+|};
+
+type FAQs = {|
+  articleId: string,
+  title: string,
+|};
 
 type Props = {|
   search: string,
@@ -29,7 +41,7 @@ type ArticleProps = {|
   perex: string,
 |};
 
-const SearchAllFAQsQuery = graphql`
+const queryAllFAQs = graphql`
   query SearchAllFAQsQuery($search: String, $language: Language) {
     allFAQs(search: $search, language: $language) {
       edges {
@@ -59,36 +71,44 @@ const FAQArticle = ({ title, perex }: ArticleProps) => (
   </Card>
 );
 
-const SearchAllFAQs = ({ search, language = 'en' }: Props) => {
-  return (
-    <QueryRenderer
-      environment={environment}
-      query={SearchAllFAQsQuery}
-      variables={{ search, language }}
-      render={({ err, props }) => {
-        if (err) {
-          return <div>{err.message}</div>;
-        }
-        if (props) {
-          const edges = idx(props, _ => _.allFAQs.edges) || [];
-          const results = edges.map(edge => edge.node.results);
-          return (
-            <div className="scrollable-box">
-              {results.map(result => (
-                <FAQArticle
-                  key={result.articleId}
-                  title={result.title}
-                  perex="How to find your best deal fast and easy"
-                />
-              ))}
-              <style jsx>{style}</style>
-            </div>
-          );
-        }
-        return <Loader />;
-      }}
-    />
+class SearchAllFAQs extends React.Component<Props> {
+  renderSearchFAQs = (rendererProps: AllFAQsQueryRendererParams) => {
+    const { props, error } = rendererProps;
+    if (error) {
+      return <div>{error.message}</div>;
+    }
+    if (props) {
+      const edges = idx(props, _ => _.allFAQs.edges) || [];
+      const results = edges.map(edge => edge.node.results);
+      return this.renderFAQs(results);
+    }
+    return <Loader />;
+  };
+
+  renderFAQs = (results: FAQs[]) => (
+    <div className="scrollable-box">
+      {results.map(result => (
+        <FAQArticle
+          key={result.articleId}
+          title={result.title}
+          perex="How to find your best deal fast and easy"
+        />
+      ))}
+      <style jsx>{style}</style>
+    </div>
   );
-};
+
+  render() {
+    const { search, language } = this.props;
+    return (
+      <QueryRenderer
+        environment={environment}
+        query={queryAllFAQs}
+        variables={{ search, language }}
+        render={this.renderSearchFAQs}
+      />
+    );
+  }
+}
 
 export default SearchAllFAQs;

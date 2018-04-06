@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash bd778d6d7b7c19b40a77e7c48add0cbd
+ * @relayHash 4217d4203bed3d10e3775530f8a7c29c
  */
 
 /* eslint-disable */
@@ -20,17 +20,7 @@ export type SearchAllFAQsQueryResponse = {|
       +node: ?{|
         +results: ?{|
           +title: ?string,
-          +content: ?string,
-          +upvotes: ?number,
-          +downvotes: ?number,
-          +categories: ?$ReadOnlyArray<?{|
-            +name: ?string,
-            +items: ?$ReadOnlyArray<?{|
-              +title: ?string,
-              +icon: ?string,
-              +style: ?string,
-            |}>,
-          |}>,
+          +articleId: string,
         |},
       |},
     |}>,
@@ -49,17 +39,7 @@ query SearchAllFAQsQuery(
       node {
         results {
           title
-          content
-          upvotes
-          downvotes
-          categories {
-            name
-            items {
-              title
-              icon
-              style
-            }
-          }
+          articleId
         }
       }
     }
@@ -82,14 +62,7 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "title",
-  "args": null,
-  "storageKey": null
-},
-v2 = [
+v1 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -139,71 +112,19 @@ v2 = [
                 "concreteType": "Results",
                 "plural": false,
                 "selections": [
-                  v1,
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "name": "content",
+                    "name": "title",
                     "args": null,
                     "storageKey": null
                   },
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "name": "upvotes",
+                    "name": "articleId",
                     "args": null,
                     "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "downvotes",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "categories",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "Categories",
-                    "plural": true,
-                    "selections": [
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "name",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "items",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "Items",
-                        "plural": true,
-                        "selections": [
-                          v1,
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "icon",
-                            "args": null,
-                            "storageKey": null
-                          },
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "style",
-                            "args": null,
-                            "storageKey": null
-                          }
-                        ]
-                      }
-                    ]
                   }
                 ]
               }
@@ -219,7 +140,7 @@ return {
   "operationKind": "query",
   "name": "SearchAllFAQsQuery",
   "id": null,
-  "text": "query SearchAllFAQsQuery(\n  $search: String\n  $language: Language\n) {\n  allFAQs(search: $search, language: $language) {\n    edges {\n      node {\n        results {\n          title\n          content\n          upvotes\n          downvotes\n          categories {\n            name\n            items {\n              title\n              icon\n              style\n            }\n          }\n        }\n      }\n    }\n  }\n}\n",
+  "text": "query SearchAllFAQsQuery(\n  $search: String\n  $language: Language\n) {\n  allFAQs(search: $search, language: $language) {\n    edges {\n      node {\n        results {\n          title\n          articleId\n        }\n      }\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -227,15 +148,15 @@ return {
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
-    "selections": v2
+    "selections": v1
   },
   "operation": {
     "kind": "Operation",
     "name": "SearchAllFAQsQuery",
     "argumentDefinitions": v0,
-    "selections": v2
+    "selections": v1
   }
 };
 })();
-(node/*: any*/).hash = '453a04c28d9275ba27325bb797d6465a';
+(node/*: any*/).hash = 'af46a24c35cf7c379a267fd741ba1c98';
 module.exports = node;

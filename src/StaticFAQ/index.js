@@ -60,6 +60,16 @@ class StaticFAQ extends React.Component<Props, State> {
     this.setState({ value: '' });
   };
 
+  renderInput = (isSearching: number) => (
+    <Input
+      value={this.state.value}
+      onChange={this.handleSearchChange}
+      placeholder="What can we help you with?"
+      icon={<Magnify />}
+      onReset={isSearching ? this.handleCancelSearch : undefined}
+    />
+  );
+
   render() {
     const categoryId = idx(this.props.match, _ => _.params.categoryId) || null;
     const { value } = this.state;
@@ -81,13 +91,7 @@ class StaticFAQ extends React.Component<Props, State> {
           </Typography>
         </div>
         <div className="static-faq-body">
-          <Input
-            value={this.state.value}
-            onChange={this.handleSearchChange}
-            placeholder="What can we help you with?"
-            icon={<Magnify />}
-            onReset={isSearching ? this.handleCancelSearch : undefined}
-          />
+          {!categoryId && this.renderInput(isSearching)}
           {isSearching ? (
             <SearchAllFAQs search={value} />
           ) : (
