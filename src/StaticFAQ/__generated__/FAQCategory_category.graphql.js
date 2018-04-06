@@ -11,7 +11,7 @@ import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type FAQCategory_category$ref: FragmentReference;
 export type FAQCategory_category = {|
-  +id: ?number,
+  +id: string,
   +title: ?string,
   +$refType: FAQCategory_category$ref,
 |};
@@ -21,7 +21,7 @@ export type FAQCategory_category = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "FAQCategory_category",
-  "type": "AllFAQCategories",
+  "type": "FAQCategory",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -41,5 +41,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = '20e5ff8fc66e4a602411e7737f72d5ff';
+(node/*: any*/).hash = 'a1a0bd0176262bba61ea56e8d80df92f';
 module.exports = node;

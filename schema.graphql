@@ -1,5 +1,5 @@
-# source: http://localhost:3000/
-# timestamp: Wed Mar 28 2018 15:14:53 GMT+0100 (WEST)
+# source: https://graphql.kiwi.com
+# timestamp: Fri Apr 06 2018 10:13:53 GMT+0100 (WEST)
 
 schema {
   query: RootQuery
@@ -29,38 +29,6 @@ type Airline {
 
   """Airline is low cost carrier."""
   isLowCost: Boolean
-}
-
-type AllFAQCategories {
-  """Id of the FAQ category"""
-  id: Int
-
-  """Title of the FAQ category"""
-  title: String
-
-  """List of subcategories"""
-  subcategories: [AllFAQCategories]
-
-  """List of FAQ articles"""
-  FAQs: [FAQArticle]
-}
-
-"""A connection to a list of items."""
-type AllFAQCategoriesConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [AllFAQCategoriesEdge]
-}
-
-"""An edge in a connection."""
-type AllFAQCategoriesEdge {
-  """The item at the end of the edge"""
-  node: AllFAQCategories
-
-  """A cursor for use in pagination"""
-  cursor: String!
 }
 
 type AllFAQs {
@@ -423,8 +391,8 @@ input DurationInput {
 }
 
 type FAQArticle {
-  """Id of the article"""
-  id: Int
+  """The ID of an object"""
+  id: ID!
 
   """Title of the article"""
   title: String
@@ -440,6 +408,38 @@ type FAQArticle {
 
   """Downvotes about the utility of the article"""
   downvotes: Int
+}
+
+type FAQCategory {
+  """The ID of an object"""
+  id: ID!
+
+  """Title of the FAQ category"""
+  title: String
+
+  """List of subcategories"""
+  subcategories: [FAQCategory]
+
+  """List of FAQ articles"""
+  FAQs: [FAQArticle]
+}
+
+"""A connection to a list of items."""
+type FAQCategoryConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [FAQCategoryEdge]
+}
+
+"""An edge in a connection."""
+type FAQCategoryEdge {
+  """The item at the end of the edge"""
+  node: FAQCategory
+
+  """A cursor for use in pagination"""
+  cursor: String!
 }
 
 type Flight {
@@ -1132,6 +1132,9 @@ type Results {
   """Id of the article"""
   id: Int
 
+  """The ID of an object"""
+  articleId: ID!
+
   """Title of the article"""
   title: String
 
@@ -1270,7 +1273,18 @@ type RootQuery {
     first: Int
     before: String
     last: Int
-  ): AllFAQCategoriesConnection
+  ): FAQCategoryConnection
+
+  """Retrieve specific FAQ category and its subcategories & articles."""
+  FAQCategory(
+    """ID of FAQ category to retrieve."""
+    id: ID!
+
+    """
+    Language in which the titles and perexes of FAQ categories are returned.
+    """
+    language: Language
+  ): FAQCategory
 }
 
 type RouteStop {
