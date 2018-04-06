@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 078d45bdb6a13da21f37efcdf1a2efa4
+ * @relayHash 91356dbbacf2dd1fd96511e4c0789de0
  */
 
 /* eslint-disable */
@@ -15,7 +15,7 @@ export type FAQCategoryListQueryResponse = {|
   +allFAQCategories: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
-        +id: ?number,
+        +id: string,
         +$fragmentRefs: FAQCategory_category$ref,
       |},
     |}>,
@@ -36,7 +36,7 @@ query FAQCategoryListQuery {
   }
 }
 
-fragment FAQCategory_category on AllFAQCategories {
+fragment FAQCategory_category on FAQCategory {
   id
   title
 }
@@ -63,7 +63,7 @@ return {
   "operationKind": "query",
   "name": "FAQCategoryListQuery",
   "id": null,
-  "text": "query FAQCategoryListQuery {\n  allFAQCategories(language: en) {\n    edges {\n      node {\n        id\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQCategory_category on AllFAQCategories {\n  id\n  title\n}\n",
+  "text": "query FAQCategoryListQuery {\n  allFAQCategories(language: en) {\n    edges {\n      node {\n        id\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -78,7 +78,7 @@ return {
         "name": "allFAQCategories",
         "storageKey": "allFAQCategories(language:\"en\")",
         "args": v0,
-        "concreteType": "AllFAQCategoriesConnection",
+        "concreteType": "FAQCategoryConnection",
         "plural": false,
         "selections": [
           {
@@ -87,7 +87,7 @@ return {
             "name": "edges",
             "storageKey": null,
             "args": null,
-            "concreteType": "AllFAQCategoriesEdge",
+            "concreteType": "FAQCategoryEdge",
             "plural": true,
             "selections": [
               {
@@ -96,7 +96,7 @@ return {
                 "name": "node",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "AllFAQCategories",
+                "concreteType": "FAQCategory",
                 "plural": false,
                 "selections": [
                   v1,
@@ -124,7 +124,7 @@ return {
         "name": "allFAQCategories",
         "storageKey": "allFAQCategories(language:\"en\")",
         "args": v0,
-        "concreteType": "AllFAQCategoriesConnection",
+        "concreteType": "FAQCategoryConnection",
         "plural": false,
         "selections": [
           {
@@ -133,7 +133,7 @@ return {
             "name": "edges",
             "storageKey": null,
             "args": null,
-            "concreteType": "AllFAQCategoriesEdge",
+            "concreteType": "FAQCategoryEdge",
             "plural": true,
             "selections": [
               {
@@ -142,7 +142,7 @@ return {
                 "name": "node",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "AllFAQCategories",
+                "concreteType": "FAQCategory",
                 "plural": false,
                 "selections": [
                   v1,

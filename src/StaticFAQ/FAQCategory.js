@@ -56,7 +56,7 @@ const FAQCategory = (props: Props) => (
 export default createFragmentContainer(
   FAQCategory,
   graphql`
-    fragment FAQCategory_category on AllFAQCategories {
+    fragment FAQCategory_category on FAQCategory {
       id
       title
     }
