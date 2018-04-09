@@ -2,6 +2,7 @@
   "name": "@kiwicom/smart-faq",
   "version": "0.0.1",
   "scripts": {
+    "preinstall": "npm run build",
     "start": "NODE_ENV=development LANGUAGE=en webpack-dev-server --open --mode development",
     "build": "npm run clean && npm run build:lib && npm run build:flow",
     "build:bundle": "NODE_ENV=production LANGUAGE=en webpack --mode production",
@@ -27,7 +28,7 @@
     "relay": "relay-compiler --src ./src --schema ./schema.graphql",
     "schema": "graphql get-schema dev"
   },
-  "main": "lib/index.js",
+  "main": "lib/App.js",
   "author": "kiwi.com",
   "devDependencies": {
     "@octokit/rest": "^15.2.5",
