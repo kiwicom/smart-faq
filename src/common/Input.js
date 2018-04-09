@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import cancel from '../../static/cancelx32.png';
 
 type Props = {
   value: string,
@@ -10,6 +11,7 @@ type Props = {
   required?: boolean,
   placeholder?: string,
   icon?: React.Node,
+  onReset?: (SyntheticEvent<HTMLButtonElement>) => any,
   error?: string,
 };
 
@@ -24,6 +26,11 @@ const InputText = (props: Props) => (
       required={props.required}
     />
     {props.icon && <div className="inputIcon">{props.icon}</div>}
+    {props.onReset && (
+      <button onClick={props.onReset}>
+        <img className="cancelInput" src={cancel} alt="Cancel" />
+      </button>
+    )}
     <style jsx>
       {`
         .wrapper {
@@ -33,6 +40,17 @@ const InputText = (props: Props) => (
           position: absolute;
           top: 13px;
           left: 15px;
+        }
+        .cancelInput {
+          position: absolute;
+          top: 14px;
+          right: 16px;
+          width: 16px;
+          height: 16px;
+          cursor: pointer;
+        }
+        button {
+          border: none;
         }
         input {
           box-sizing: border-box;

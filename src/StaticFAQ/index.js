@@ -10,6 +10,7 @@ import { Magnify } from '@kiwicom/orbit-components/lib/icons';
 import Input from './../common/Input';
 import CloseIcon from '../common/CloseIcon';
 import FAQCategoryList from './FAQCategoryList';
+import SearchAllFAQs from './SearchAllFAQs';
 import routeDefinitions from '../routeDefinitions';
 
 const style = css`
@@ -55,8 +56,24 @@ class StaticFAQ extends React.Component<Props, State> {
     this.setState({ value: e.target.value });
   };
 
+  handleCancelSearch = () => {
+    this.setState({ value: '' });
+  };
+
+  renderInput = (isSearching: number) => (
+    <Input
+      value={this.state.value}
+      onChange={this.handleSearchChange}
+      placeholder="What can we help you with?"
+      icon={<Magnify />}
+      onReset={isSearching ? this.handleCancelSearch : undefined}
+    />
+  );
+
   render() {
     const categoryId = idx(this.props.match, _ => _.params.categoryId) || null;
+    const { value } = this.state;
+    const isSearching = value.length;
 
     return (
       <div className="static-faq">
@@ -74,13 +91,12 @@ class StaticFAQ extends React.Component<Props, State> {
           </Typography>
         </div>
         <div className="static-faq-body">
-          <Input
-            value={this.state.value}
-            onChange={this.handleSearchChange}
-            placeholder="What can we help you with?"
-            icon={<Magnify />}
-          />
-          <FAQCategoryList categoryId={categoryId} />
+          {!categoryId && this.renderInput(isSearching)}
+          {isSearching ? (
+            <SearchAllFAQs search={value} />
+          ) : (
+            <FAQCategoryList categoryId={categoryId} />
+          )}
         </div>
         <style jsx>{style}</style>
       </div>
