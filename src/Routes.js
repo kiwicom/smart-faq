@@ -6,6 +6,7 @@ import Intro from './IntroPage';
 import StaticFAQ from './StaticFAQ';
 import SignIn from './SignInPage';
 import KiwiLogin from './KiwiLogin';
+import UpcomingBooking from './UpcomingBooking';
 import ForgottenPassword from './ForgottenPassword';
 import { CheckRecoveryLink, CheckMagicLink } from './EmailPage';
 import routeDefinitions from './routeDefinitions';
@@ -14,7 +15,7 @@ const Routes = () => {
   return (
     <MemoryRouter>
       <Switch>
-        <Route exact path={routeDefinitions.HOME} component={Intro} />
+        <Route exact path={routeDefinitions.HOME} component={UpcomingBooking} />
         <Route exact path={routeDefinitions.SIGN_IN} component={SignIn} />
         <Route
           exact
