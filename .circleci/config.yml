@@ -90,9 +90,7 @@ workflows:
           # https://circleci.com/docs/2.0/workflows/#git-tag-job-execution
           filters:
             tags:
-              only: /^v.*/ # only valid version tags, e.g. v0.0.1, v12.3.5
-            branches:
-              ignore: /.*/
+              only: /v[0-9]+(\.[0-9]+)*/ # only valid version tags, e.g. v0.0.1, v12.3.5
 
   build-and-now-deploy:
     jobs:
