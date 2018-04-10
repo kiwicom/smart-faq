@@ -2,9 +2,8 @@
   "name": "@kiwicom/smart-faq",
   "version": "0.0.1",
   "scripts": {
-    "preinstall": "npm run build",
     "start": "NODE_ENV=development LANGUAGE=en webpack-dev-server --open --mode development",
-    "build": "npm run clean && npm run build:lib && npm run build:flow",
+    "build": "npm run clean && npm run build:lib",
     "build:bundle": "NODE_ENV=production LANGUAGE=en webpack --mode production",
     "build:pages": "yarn build:bundle && ./scripts/deploy-ghpages.sh",
     "build:lib": "babel --out-dir lib --ignore *.stories.js,*.test.js src",
