@@ -13,11 +13,22 @@ import Card from '../common/Card';
 import type { SearchAllFAQsQuery } from './__generated__/SearchAllFAQsQuery.graphql';
 
 const style = css`
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: white;
+    margin-top: 25px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: rgba(171, 181, 195, 0.6);
+  }
   div.scrollable-box {
     overflow-y: scroll;
     max-height: 78vh;
     margin: 0 auto;
-    padding: 2px;
+    padding: 4px;
   }
 `;
 
