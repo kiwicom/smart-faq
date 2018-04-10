@@ -57,6 +57,11 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
       - run: yarn
       - run:
           name: Write NPM Token to ~/.npmrc
@@ -87,7 +92,7 @@ workflows:
       - build:
           filters:
             tags:
-              only: /.*/ 
+              only: /.*/
       - publish:
           requires:
             - build
