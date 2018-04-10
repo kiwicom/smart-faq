@@ -42,15 +42,16 @@ const InputText = (props: Props) => (
           left: 15px;
         }
         .cancelInput {
-          position: absolute;
-          top: 14px;
-          right: 16px;
-          width: 16px;
-          height: 16px;
-          cursor: pointer;
+          width: 18px;
+          height: 18px;
         }
         button {
           border: none;
+          position: absolute;
+          background-color: white;
+          top: 14px;
+          right: 16px;
+          cursor: pointer;
         }
         input {
           box-sizing: border-box;

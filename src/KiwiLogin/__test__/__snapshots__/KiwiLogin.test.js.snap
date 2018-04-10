@@ -274,10 +274,10 @@ exports[`KiwiLogin should match snapshot 1`] = `
                       value=""
                     >
                       <div
-                        className="jsx-3001624149 wrapper"
+                        className="jsx-3898176834 wrapper"
                       >
                         <input
-                          className="jsx-3001624149"
+                          className="jsx-3898176834"
                           name="email"
                           onChange={[Function]}
                           placeholder="e.g. your@email.com"
@@ -285,14 +285,14 @@ exports[`KiwiLogin should match snapshot 1`] = `
                           value=""
                         />
                         <JSXStyle
-                          css=".wrapper.__jsx-style-dynamic-selector{position:relative;}.inputIcon.__jsx-style-dynamic-selector{position:absolute;top:13px;left:15px;}.cancelInput.__jsx-style-dynamic-selector{position:absolute;top:14px;right:16px;width:16px;height:16px;cursor:pointer;}button.__jsx-style-dynamic-selector{border:none;}input.__jsx-style-dynamic-selector{box-sizing:border-box;width:100%;border-radius:3px;color:#46515e;background-color:white;border:solid 1px #bac7d5;font-size:16px;line-height:1.25;padding:12px 16px;padding-left:16px;}input.__jsx-style-dynamic-selector::-webkit-input-placeholder{color:#bac7d5;}input.__jsx-style-dynamic-selector::-moz-placeholder{color:#bac7d5;}input.__jsx-style-dynamic-selector:-ms-input-placeholder{color:#bac7d5;}input.__jsx-style-dynamic-selector::placeholder{color:#bac7d5;}"
+                          css=".wrapper.__jsx-style-dynamic-selector{position:relative;}.inputIcon.__jsx-style-dynamic-selector{position:absolute;top:13px;left:15px;}.cancelInput.__jsx-style-dynamic-selector{width:18px;height:18px;}button.__jsx-style-dynamic-selector{border:none;position:absolute;background-color:white;top:14px;right:16px;cursor:pointer;}input.__jsx-style-dynamic-selector{box-sizing:border-box;width:100%;border-radius:3px;color:#46515e;background-color:white;border:solid 1px #bac7d5;font-size:16px;line-height:1.25;padding:12px 16px;padding-left:16px;}input.__jsx-style-dynamic-selector::-webkit-input-placeholder{color:#bac7d5;}input.__jsx-style-dynamic-selector::-moz-placeholder{color:#bac7d5;}input.__jsx-style-dynamic-selector:-ms-input-placeholder{color:#bac7d5;}input.__jsx-style-dynamic-selector::placeholder{color:#bac7d5;}"
                           dynamic={
                             Array [
                               "#bac7d5",
                               16,
                             ]
                           }
-                          styleId="784583622"
+                          styleId="3405102630"
                         />
                       </div>
                     </InputText>
@@ -313,24 +313,24 @@ exports[`KiwiLogin should match snapshot 1`] = `
                       value=""
                     >
                       <div
-                        className="jsx-3001624149 wrapper"
+                        className="jsx-3898176834 wrapper"
                       >
                         <input
-                          className="jsx-3001624149"
+                          className="jsx-3898176834"
                           name="password"
                           onChange={[Function]}
                           type="password"
                           value=""
                         />
                         <JSXStyle
-                          css=".wrapper.__jsx-style-dynamic-selector{position:relative;}.inputIcon.__jsx-style-dynamic-selector{position:absolute;top:13px;left:15px;}.cancelInput.__jsx-style-dynamic-selector{position:absolute;top:14px;right:16px;width:16px;height:16px;cursor:pointer;}button.__jsx-style-dynamic-selector{border:none;}input.__jsx-style-dynamic-selector{box-sizing:border-box;width:100%;border-radius:3px;color:#46515e;background-color:white;border:solid 1px #bac7d5;font-size:16px;line-height:1.25;padding:12px 16px;padding-left:16px;}input.__jsx-style-dynamic-selector::-webkit-input-placeholder{color:#bac7d5;}input.__jsx-style-dynamic-selector::-moz-placeholder{color:#bac7d5;}input.__jsx-style-dynamic-selector:-ms-input-placeholder{color:#bac7d5;}input.__jsx-style-dynamic-selector::placeholder{color:#bac7d5;}"
+                          css=".wrapper.__jsx-style-dynamic-selector{position:relative;}.inputIcon.__jsx-style-dynamic-selector{position:absolute;top:13px;left:15px;}.cancelInput.__jsx-style-dynamic-selector{width:18px;height:18px;}button.__jsx-style-dynamic-selector{border:none;position:absolute;background-color:white;top:14px;right:16px;cursor:pointer;}input.__jsx-style-dynamic-selector{box-sizing:border-box;width:100%;border-radius:3px;color:#46515e;background-color:white;border:solid 1px #bac7d5;font-size:16px;line-height:1.25;padding:12px 16px;padding-left:16px;}input.__jsx-style-dynamic-selector::-webkit-input-placeholder{color:#bac7d5;}input.__jsx-style-dynamic-selector::-moz-placeholder{color:#bac7d5;}input.__jsx-style-dynamic-selector:-ms-input-placeholder{color:#bac7d5;}input.__jsx-style-dynamic-selector::placeholder{color:#bac7d5;}"
                           dynamic={
                             Array [
                               "#bac7d5",
                               16,
                             ]
                           }
-                          styleId="784583622"
+                          styleId="3405102630"
                         />
                       </div>
                     </InputText>
