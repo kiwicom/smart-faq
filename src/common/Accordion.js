@@ -4,7 +4,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
 import { ChevronDown } from '@kiwicom/orbit-components/lib/icons';
-import logo from '../../static/vueling-logo.jpg';
+import { formatDate } from '../helpers/utils';
 
 const styles = css`
   .Accordion {
@@ -43,42 +43,60 @@ const styles = css`
 `;
 
 type Props = {|
-  children: React.Node,
+  flight: {
+    date: string,
+    airlineUrl: string,
+    departureCity: {
+      name: string,
+      iataCode: string,
+    },
+    arrivalCity: {
+      name: string,
+      iataCode: string,
+    },
+  },
 |};
 
-const Accordion = (props: Props) => (
-  <div className="Accordion">
-    <div className="header">
-      <div className="logo">
-        <img src={logo} alt="Vueling" />
-      </div>
-      <div className="info">
-        <Typography type="secondary" size="small">
-          Sat, Mar 31
-        </Typography>
-        <div className="itinerary">
-          <span className="location">
-            <Typography variant="bold" type="primary">
-              Prague (PRG)
-            </Typography>
-          </span>
-          <span className="arrow">
-            <Typography type="secondary">&#8594;</Typography>
-          </span>
-          <span className="location">
-            <Typography variant="bold" type="primary">
-              Vancouver (YVR)
-            </Typography>
-          </span>
+const Accordion = (props: Props) => {
+  const flight = props.flight;
+  return (
+    <div className="Accordion">
+      <div className="header">
+        <div className="logo">
+          <img src={flight.airlineUrl} alt="Vueling" />
+        </div>
+        <div className="info">
+          <Typography type="secondary" size="small">
+            {formatDate(flight.date)}
+          </Typography>
+          <div className="itinerary">
+            <span className="location">
+              <Typography variant="bold" type="primary">
+                {flight.departureCity.name}&nbsp;({
+                  flight.departureCity.iataCode
+                })
+              </Typography>
+            </span>
+            <span className="arrow">
+              <Typography type="secondary">&#8594;</Typography>
+            </span>
+            <span className="location">
+              <Typography variant="bold" type="primary">
+                {flight.arrivalCity.name}&nbsp;({flight.arrivalCity.iataCode})
+              </Typography>
+            </span>
+          </div>
+        </div>
+        <div className="toggle">
+          <ChevronDown />
         </div>
       </div>
-      <div className="toggle">
-        <ChevronDown />
-      </div>
+      <style jsx>{styles}</style>
     </div>
-    {props.children}
-    <style jsx>{styles}</style>
-  </div>
-);
+  );
+};
+
+const AccordionHeader = () => <div className="super-header">Im a header</div>;
+Accordion.Header = AccordionHeader;
 
 export default Accordion;

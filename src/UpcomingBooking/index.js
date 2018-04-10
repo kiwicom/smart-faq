@@ -1,17 +1,18 @@
 // @flow
 
 import * as React from 'react';
-//import { Link } from 'react-router-dom';
+import { graphql, QueryRenderer } from 'react-relay';
 import css from 'styled-jsx/css';
 import { SystemMessage, Typography } from '@kiwicom/orbit-components';
-import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
+import environment from '../relay/environment';
 import routeDefinitions from '../routeDefinitions';
+import { formatBookingId } from '../helpers/utils';
 import { BackButton, CloseIcon, Accordion, Box } from '../common';
+import type { UpcomingBookingQueryResponse } from './__generated__/UpcomingBookingQuery.graphql';
 
 const style = css`
   .UpcomingBooking {
     width: 480px;
-    ////padding-top: 128px;
     padding: 40px;
     padding-top: 128px;
     background-color: #f5f7f9;
@@ -21,7 +22,6 @@ const style = css`
     margin-bottom: 12px;
   }
   div.notification {
-    //display: none;
     margin-bottom: 8px;
   }
   .outbound,
@@ -65,25 +65,13 @@ type State = {|
 |};
 
 class UpcomingBooking extends React.Component<Props, State> {
-  state = {
-    email: '',
-  };
-
-  handleChangeEmail = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({ email: e.target.value });
-  };
-
-  handleSubmitEmail = (e: SyntheticEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    this.props.history.push({
-      pathname: routeDefinitions.CHECK_MAGIC_LINK,
-      state: { email: this.state.email },
-    });
-  };
   renderOutbound = () => {
     return (
       <Box padding="12px 16px 16px 12px">
-        <Accordion />
+        <Accordion>
+          <Accordion.Header />
+          <span>nononon</span>
+        </Accordion>
       </Box>
     );
   };
@@ -95,7 +83,8 @@ class UpcomingBooking extends React.Component<Props, State> {
     );
   };
 
-  render() {
+  renderPage = (booking: UpcomingBookingQueryResponse) => {
+    console.log('mybooking', booking);
     return (
       <div className="UpcomingBooking">
         <BackButton text="Back" link={routeDefinitions.HOME} />
@@ -114,7 +103,9 @@ class UpcomingBooking extends React.Component<Props, State> {
             </span>
           </div>
           <div className="booking-id">
-            <Typography type="secondary"># 265 784</Typography>
+            <Typography type="secondary">
+              # {formatBookingId(343453453)}
+            </Typography>
           </div>
         </div>
         <div className="notification">
@@ -129,7 +120,6 @@ class UpcomingBooking extends React.Component<Props, State> {
               Outbound
             </Typography>
           </div>
-          {this.renderOutbound()}
         </div>
         <div className="inbound">
           <div className="title">
@@ -137,7 +127,6 @@ class UpcomingBooking extends React.Component<Props, State> {
               Inbound
             </Typography>
           </div>
-          {this.renderInbound()}
         </div>
         <div className="buttons">
           <button className="manage-booking">Manage my booking</button>
@@ -145,7 +134,42 @@ class UpcomingBooking extends React.Component<Props, State> {
         <style jsx>{style}</style>
       </div>
     );
+  };
+          //{this.renderOutbound()}
+          //{this.renderInbound()}
+  render() {
+    return (
+      <QueryRenderer
+        environment={environment}
+        query={bookingQuery}
+        render={this.renderPage}
+      />
+    );
   }
 }
+
+const bookingQuery = graphql`
+  query UpcomingBookingQuery {
+    booking(id: 6375499) {
+      legs {
+        airline {
+          name
+          code
+          logoUrl
+        }
+      }
+      arrival {
+        time
+        localTime
+        airport {
+          locationId
+          city {
+            name
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default UpcomingBooking;

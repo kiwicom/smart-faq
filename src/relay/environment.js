@@ -12,6 +12,8 @@ function fetchQuery(operation, variables) {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
+      Authorization:
+        'WyJnUDVIdmdlVURmZlU4MVVjVWtBYW4xIiwiQzR0RzR1ZHk3dHdkbDBSeEpQbWFadUl1MnhSUS92NnhCTFJzSS51ZGhoMXAySTduRk5KQVciLDIxMTU4MDg2NjZd.2q4_W34IS8YCX4PshJuKQkZt8VQ',
     },
     body: JSON.stringify({
       query: operation.text, // GraphQL text from input
