@@ -11,3 +11,6 @@ flow-typed
 
 [options]
 emoji=true
+
+suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError: .+
+suppress_comment=\\(.\\|\n\\)*\\$FlowIssue: https://github.com/facebook/flow/issues/[0-9]+

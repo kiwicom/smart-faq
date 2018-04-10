@@ -5,7 +5,7 @@ import css from 'styled-jsx/css';
 import { Typography, Button } from '@kiwicom/orbit-components';
 import { Requester } from '../helpers/Requests';
 import BackButton from '../common/BackButton';
-import CloseIcon from '../common/CloseIcon';
+import CloseButton from '../common/CloseButton';
 import Input from '../common/Input';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import routeDefinitions from '../routeDefinitions';
@@ -83,7 +83,7 @@ class ForgottenPasword extends React.Component<Props, State> {
   render() {
     return (
       <div className="ForgottenPassword">
-        <CloseIcon />
+        <CloseButton />
         <BackButton text="Back" link={routeDefinitions.KIWI_LOGIN} />
         <div className="picture">
           <img alt="Help" src={image} />

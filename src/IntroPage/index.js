@@ -6,7 +6,7 @@ import { OpenInNew } from '@kiwicom/orbit-components/lib/icons';
 import { Typography, Button } from '@kiwicom/orbit-components';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import routeDefinitions from '../routeDefinitions';
-import CloseIcon from './../common/CloseIcon';
+import CloseButton from './../common/CloseButton';
 
 const style = css`
   .Intro {
@@ -70,7 +70,7 @@ type Props = {
 
 const Intro = (props: Props) => (
   <div className="Intro">
-    <CloseIcon />
+    <CloseButton />
     <div className="picture">
       <img alt="Help" src={image} />
     </div>

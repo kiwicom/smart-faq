@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import initTranslation from './initTranslation';
 import store from './store';
 import Routes from './Routes';
+import { CloseContext } from './common/CloseButton';
 
 const style = css`
   * {
@@ -38,7 +39,7 @@ const style = css`
 type Props = {
   language: string,
   locale: Object,
-  onClose: () => void, // eslint-disable-line react/no-unused-prop-types
+  onClose: () => void,
 };
 
 class App extends React.Component<Props> {
@@ -59,7 +60,9 @@ class App extends React.Component<Props> {
         />
         <I18nextProvider i18n={this.i18n}>
           <Provider store={store}>
-            <Routes />
+            <CloseContext.Provider value={this.props.onClose}>
+              <Routes />
+            </CloseContext.Provider>
           </Provider>
         </I18nextProvider>
         <style jsx global>
