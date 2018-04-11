@@ -4,13 +4,12 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { QueryRenderer, graphql } from 'react-relay';
 import idx from 'idx';
-import { Typography } from '@kiwicom/orbit-components';
-
+import FAQArticle from './FAQArticle';
 import environment from '../relay/environment';
 import Loader from '../common/Loader';
-import Card from '../common/Card';
 
 import type { SearchAllFAQsQuery } from './__generated__/SearchAllFAQsQuery.graphql';
+import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
 
 const style = css`
   ::-webkit-scrollbar {
@@ -37,19 +36,9 @@ type AllFAQsQueryRendererParams = {|
   error: Error,
 |};
 
-type FAQs = {|
-  articleId: string,
-  title: string,
-|};
-
 type Props = {|
   search: string,
   language?: string,
-|};
-
-type ArticleProps = {|
-  title: string,
-  perex: string,
 |};
 
 const queryAllFAQs = graphql`
@@ -57,30 +46,13 @@ const queryAllFAQs = graphql`
     allFAQs(search: $search, language: $language) {
       edges {
         node {
-          results {
-            title
-            articleId
-          }
+          id
+          ...FAQArticle_article
         }
       }
     }
   }
 `;
-
-const FAQArticle = ({ title, perex }: ArticleProps) => (
-  <Card>
-    <div>
-      <Typography type="attention" size="large">
-        {title}
-      </Typography>
-    </div>
-    <div>
-      <Typography type="secondary" size="small">
-        {perex}
-      </Typography>
-    </div>
-  </Card>
-);
 
 class SearchAllFAQs extends React.Component<Props> {
   renderSearchFAQs = (rendererProps: AllFAQsQueryRendererParams) => {
@@ -90,21 +62,15 @@ class SearchAllFAQs extends React.Component<Props> {
     }
     if (props) {
       const edges = idx(props, _ => _.allFAQs.edges) || [];
-      const results = edges.map(edge => edge.node.results);
-      return this.renderFAQs(results);
+      const faqs = edges.map(edge => edge.node);
+      return this.renderFAQs(faqs);
     }
     return <Loader />;
   };
 
-  renderFAQs = (results: FAQs[]) => (
+  renderFAQs = (faqs: FAQArticle_article[]) => (
     <div className="scrollable-box">
-      {results.map(result => (
-        <FAQArticle
-          key={result.articleId}
-          title={result.title}
-          perex="How to find your best deal fast and easy"
-        />
-      ))}
+      {faqs.map(faq => <FAQArticle key={faq.id} article={faq} />)}
       <style jsx>{style}</style>
     </div>
   );
