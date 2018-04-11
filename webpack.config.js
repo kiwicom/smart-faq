@@ -2,7 +2,6 @@
 // @noflow
 
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
@@ -30,13 +29,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      'process.env.LANGUAGE': JSON.stringify(language),
-      'process.env.TRANSLATION_PATH': JSON.stringify(
-        `../i18n/${language}/translation.json`,
-      ), // dynamic imports suck
-    }),
     new HtmlWebpackPlugin({
       title: 'Smart FAQ demo',
     }),

@@ -3,11 +3,10 @@
 import i18next from 'i18next';
 import { reactI18nextModule } from 'react-i18next';
 
-const language = process.env.LANGUAGE ? process.env.LANGUAGE : 'en';
 const env = process.env.NODE_ENV;
-const isDev = env === 'development';
+const isDev = env !== 'production';
 
-const initTranslation = (translation: Object) => {
+const initTranslation = (language: string, translation: Object) => {
   i18next.use(reactI18nextModule).init({
     lng: language,
     fallbackLng: isDev ? 'dev' : language, // no fallback on production
