@@ -1,5 +1,5 @@
-# source: https://graphql.kiwi.com
-# timestamp: Fri Apr 06 2018 12:57:32 GMT+0100 (WEST)
+# source: https://graphql.kiwi.com/
+# timestamp: Wed Apr 11 2018 15:18:39 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
@@ -29,29 +29,6 @@ type Airline {
 
   """Airline is low cost carrier."""
   isLowCost: Boolean
-}
-
-type AllFAQs {
-  """Results of allFAQs search"""
-  results: Results
-}
-
-"""A connection to a list of items."""
-type AllFAQsConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [AllFAQsEdge]
-}
-
-"""An edge in a connection."""
-type AllFAQsEdge {
-  """The item at the end of the edge"""
-  node: AllFAQs
-
-  """A cursor for use in pagination"""
-  cursor: String!
 }
 
 type AllowedBaggage {
@@ -150,17 +127,6 @@ enum BookingStatus {
   DELETED
   CLOSED
   EXPIRED
-}
-
-type Categories {
-  """Id of the category"""
-  id: Int
-
-  """Name of the category"""
-  name: String
-
-  """Items that belong to the category"""
-  items: [Items]
 }
 
 type Coordinates {
@@ -408,6 +374,24 @@ type FAQArticle {
 
   """Downvotes about the utility of the article"""
   downvotes: Int
+}
+
+"""A connection to a list of items."""
+type FAQArticleConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [FAQArticleEdge]
+}
+
+"""An edge in a connection."""
+type FAQArticleEdge {
+  """The item at the end of the edge"""
+  node: FAQArticle
+
+  """A cursor for use in pagination"""
+  cursor: String!
 }
 
 type FAQCategory {
@@ -874,20 +858,6 @@ type Identity {
   login: String
 }
 
-type Items {
-  """Id of the item"""
-  id: Int
-
-  """Title of the item"""
-  title: String
-
-  """Icon type of the item"""
-  icon: String
-
-  """Color of the item"""
-  style: String
-}
-
 enum Language {
   ar
   bg
@@ -1073,6 +1043,14 @@ input LocationInput {
   radius: RadiusInput
 }
 
+input LocationsOptionsInput {
+  """Language tag in the format of the RFC 5646."""
+  locale: Locale
+
+  """Desired location type the response should only include."""
+  locationType: LocationType
+}
+
 """Type of location"""
 enum LocationType {
   airport
@@ -1081,14 +1059,6 @@ enum LocationType {
   country
   station
   subdivision
-}
-
-input LocationsOptionsInput {
-  """Language tag in the format of the RFC 5646."""
-  locale: Locale
-
-  """Desired location type the response should only include."""
-  locationType: LocationType
 }
 
 """Information about pagination in a connection."""
@@ -1126,29 +1096,6 @@ input RadiusInput {
 
   """Distance in kilometers."""
   radius: Int!
-}
-
-type Results {
-  """Id of the article"""
-  id: Int
-
-  """The ID of an object"""
-  articleId: ID!
-
-  """Title of the article"""
-  title: String
-
-  """Content of the article"""
-  content: String
-
-  """Upvotes about the utility of the article"""
-  upvotes: Int
-
-  """Downvotes about the utility of the article"""
-  downvotes: Int
-
-  """Category to which the article belongs"""
-  categories: [Categories]
 }
 
 input RoomsChildrenConfiguration {
@@ -1261,7 +1208,7 @@ type RootQuery {
     first: Int
     before: String
     last: Int
-  ): AllFAQsConnection
+  ): FAQArticleConnection
 
   """Retrieve list of FAQ categories."""
   allFAQCategories(
@@ -1285,6 +1232,15 @@ type RootQuery {
     """
     language: Language
   ): FAQCategory
+
+  """Retrieve single FAQ article."""
+  FAQArticle(
+    """ID of FAQ article to retrieve."""
+    id: ID!
+
+    """Language in which the text of the article is returned."""
+    language: Language
+  ): FAQArticle
 }
 
 type RouteStop {
