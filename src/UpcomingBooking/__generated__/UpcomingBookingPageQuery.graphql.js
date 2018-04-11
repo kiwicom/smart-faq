@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 03d73320a714bc139f72d081c496b617
+ * @relayHash eeecb645621bdcfc2d9bf2fbae0cffad
  */
 
 /* eslint-disable */
@@ -9,8 +9,8 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type UpcomingBookingQueryVariables = {| |};
-export type UpcomingBookingQueryResponse = {|
+export type UpcomingBookingPageQueryVariables = {| |};
+export type UpcomingBookingPageQueryResponse = {|
   +booking: ?{|
     +legs: ?$ReadOnlyArray<?{|
       +airline: ?{|
@@ -19,6 +19,16 @@ export type UpcomingBookingQueryResponse = {|
         +logoUrl: ?string,
       |},
     |}>,
+    +departure: ?{|
+      +time: ?any,
+      +localTime: ?any,
+      +airport: ?{|
+        +locationId: ?string,
+        +city: ?{|
+          +name: ?string,
+        |},
+      |},
+    |},
     +arrival: ?{|
       +time: ?any,
       +localTime: ?any,
@@ -35,7 +45,7 @@ export type UpcomingBookingQueryResponse = {|
 
 
 /*
-query UpcomingBookingQuery {
+query UpcomingBookingPageQuery {
   booking(id: 6375499) {
     legs {
       airline {
@@ -44,6 +54,16 @@ query UpcomingBookingQuery {
         logoUrl
       }
       id
+    }
+    departure {
+      time
+      localTime
+      airport {
+        locationId
+        city {
+          name
+        }
+      }
     }
     arrival {
       time
@@ -102,7 +122,63 @@ v2 = {
     }
   ]
 },
-v3 = {
+v3 = [
+  {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "time",
+    "args": null,
+    "storageKey": null
+  },
+  {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "localTime",
+    "args": null,
+    "storageKey": null
+  },
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "airport",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "Location",
+    "plural": false,
+    "selections": [
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "locationId",
+        "args": null,
+        "storageKey": null
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "city",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "LocationArea",
+        "plural": false,
+        "selections": [
+          v1
+        ]
+      }
+    ]
+  }
+],
+v4 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "departure",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": v3
+},
+v5 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "arrival",
@@ -110,54 +186,9 @@ v3 = {
   "args": null,
   "concreteType": "RouteStop",
   "plural": false,
-  "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "time",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "localTime",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "airport",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "Location",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "locationId",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "city",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "LocationArea",
-          "plural": false,
-          "selections": [
-            v1
-          ]
-        }
-      ]
-    }
-  ]
+  "selections": v3
 },
-v4 = {
+v6 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
@@ -167,13 +198,13 @@ v4 = {
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "UpcomingBookingQuery",
+  "name": "UpcomingBookingPageQuery",
   "id": null,
-  "text": "query UpcomingBookingQuery {\n  booking(id: 6375499) {\n    legs {\n      airline {\n        name\n        code\n        logoUrl\n      }\n      id\n    }\n    arrival {\n      time\n      localTime\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    id\n  }\n}\n",
+  "text": "query UpcomingBookingPageQuery {\n  booking(id: 6375499) {\n    legs {\n      airline {\n        name\n        code\n        logoUrl\n      }\n      id\n    }\n    departure {\n      time\n      localTime\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    arrival {\n      time\n      localTime\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "UpcomingBookingQuery",
+    "name": "UpcomingBookingPageQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": [],
@@ -199,14 +230,15 @@ return {
               v2
             ]
           },
-          v3
+          v4,
+          v5
         ]
       }
     ]
   },
   "operation": {
     "kind": "Operation",
-    "name": "UpcomingBookingQuery",
+    "name": "UpcomingBookingPageQuery",
     "argumentDefinitions": [],
     "selections": [
       {
@@ -228,16 +260,17 @@ return {
             "plural": true,
             "selections": [
               v2,
-              v4
+              v6
             ]
           },
-          v3,
-          v4
+          v4,
+          v5,
+          v6
         ]
       }
     ]
   }
 };
 })();
-(node/*: any*/).hash = '4763312def7da60e826d836324ae20ef';
+(node/*: any*/).hash = '442d4dc4896ab26f7b0086c5ae151077';
 module.exports = node;

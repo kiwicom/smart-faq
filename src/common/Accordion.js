@@ -96,7 +96,4 @@ const Accordion = (props: Props) => {
   );
 };
 
-const AccordionHeader = () => <div className="super-header">Im a header</div>;
-Accordion.Header = AccordionHeader;
-
 export default Accordion;

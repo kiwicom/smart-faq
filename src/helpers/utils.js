@@ -13,3 +13,8 @@ function chunkArray(arr, chunkSize = 3) {
 }
 export const formatBookingId = (bid: string | number) =>
   chunkArray(bid.toString().split());
+
+export const decodeId = (hashedId: string) =>
+  Buffer.from(hashedId, 'base64')
+    .toString()
+    .match(/:(.*)/)[1];
