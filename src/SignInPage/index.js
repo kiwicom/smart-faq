@@ -74,7 +74,7 @@ const style = css`
     cursor: pointer;
     display: inline-block;
   }
-  button.get-help{
+  button.get-help {
     width: 83px;
     background-color: #00a991;
     border: 0;
@@ -101,12 +101,15 @@ const style = css`
     font-weight: bold;
     line-height: 1.43;
     color: #ffffff;
+    display: block;
+    text-align: left;
   }
   .facebook-icon, .google-icon {
     width: 16px;
     height: 16px;
     float: left;
-    margin-left: 8px;
+    margin-left: 13px;
+    margin-right: 13px;
   }
   p.or {
     width: 15px;
@@ -117,6 +120,41 @@ const style = css`
     margin 0 auto;
     margin-top: 26px;
     margin-bottom: 24px;
+  }
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .SignIn {
+      width: 100%;
+      padding-top: 22px;
+    }
+    div.picture img {
+      display: none;
+    }
+    div.text {
+      margin: 64px 16px 33px 16px;
+    }
+    form {
+      margin: 0px 16px;
+    }
+    div.input {
+      width: 100%;
+      margin-right: 0px;
+      margin-bottom: 8px;
+    }
+    form button {
+      width: 100%;
+    }
+    .buttons {
+      margin-right: 16px;
+      margin-left: 16px;
+    }
+    p.or {
+      margin 0 auto;
+      margin-bottom: 20px;
+    }
+    button {
+      width: 100%;
+      margin-bottom: 20px;
+    }
   }
 `;
 
@@ -175,6 +213,7 @@ class SignIn extends React.Component<Props, State> {
                 value={this.state.email}
                 onChange={this.handleChangeEmail}
                 placeholder="your@email.com"
+                required
               />
             </div>
           </label>

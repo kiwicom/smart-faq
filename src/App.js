@@ -30,6 +30,11 @@ const style = css`
     background-color: #ffffff;
     box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.15);
   }
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    div.App {
+      min-width: 100%;
+    }
+  }
   span.inline-icon svg {
     display: inline-block;
     vertical-align: bottom;
@@ -54,6 +59,11 @@ class App extends React.Component<Props> {
   render() {
     return (
       <div className="App">
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1 shrink-to-fit=no"
+        />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <link
           href="https://fonts.googleapis.com/css?family=Roboto"
           rel="stylesheet"

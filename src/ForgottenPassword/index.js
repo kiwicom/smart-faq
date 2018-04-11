@@ -67,6 +67,42 @@ const style = css`
     height: 44px;
     margin-top: 4px;
   }
+  form button {
+    width: 83px;
+    height: 44px;
+    border-radius: 3px;
+    background-color: #00a991;
+    font-size: 14px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 1.43;
+    text-align: center;
+    border: none;
+  }
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .ForgottenPassword {
+      width: 100%;
+      padding-top: 64px;
+    }
+    div.picture {
+      display: none;
+    }
+    div.main {
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+    form {
+      margin: 28px 16px 0px 16px;
+    }
+    div.input {
+      width: 100%;
+    }
+    form button {
+      margin-top: 8px;
+      width: 100%;
+    }
+  }
 `;
 
 type Props = {
@@ -126,10 +162,11 @@ class ForgottenPasword extends React.Component<Props, State> {
                 value={this.state.email}
                 onChange={this.handleChangeEmail}
                 placeholder="e.g. your@email.com"
+                required
               />
             </div>
           </label>
-          <button className="send">Send</button>
+          <button>Send</button>
         </form>
         <style jsx>{style}</style>
       </div>

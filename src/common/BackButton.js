@@ -32,6 +32,12 @@ const BackButton = (props: Props) => (
             object-fit: contain;
             margin-right: 4px;
           }
+          @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+            div.back {
+              top: 22px;
+              left: 21px;
+            }
+          }
         `}
       </style>
     </div>
