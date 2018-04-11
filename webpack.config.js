@@ -3,15 +3,17 @@
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 const language = process.env.LANGUAGE || 'en';
+const destination = path.join(__dirname, 'dist');
 
 module.exports = {
   name: language,
   entry: ['./src/index.js'],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: destination,
     filename: `smart-faq.${language}.js`,
   },
   module: {
@@ -35,6 +37,9 @@ module.exports = {
     new Dotenv({
       systemvars: true,
     }),
+    new CopyWebpackPlugin([
+      { from: 'static', to: path.join(destination, 'static') },
+    ]),
   ],
   devServer: {
     contentBase: './dist',
