@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import { Typography, Button } from '@kiwicom/orbit-components';
-import CloseIcon from './../common/CloseIcon';
+import CloseButton from './../common/CloseButton';
 import BackButton from '../common/BackButton';
 import Input from '../common/Input';
 import image from '../../static/woman-with-laptop@2x.jpg';
@@ -85,7 +85,7 @@ class KiwiLogin extends React.Component<Props, State> {
   render() {
     return (
       <div className="KiwiLogin">
-        <CloseIcon />
+        <CloseButton />
         <BackButton text="Back" link={routeDefinitions.SIGN_IN} />
         <div className="picture">
           <img alt="Help" src={image} />

@@ -10,7 +10,7 @@ import facebookLogo from '../../static/facebook-icon.png';
 import googleLogo from '../../static/google-logo.png';
 import routeDefinitions from '../routeDefinitions';
 import BackButton from '../common/BackButton';
-import CloseIcon from '../common/CloseIcon';
+import CloseButton from '../common/CloseButton';
 import Input from '../common/Input';
 
 const style = css`
@@ -143,7 +143,7 @@ class SignIn extends React.Component<Props, State> {
   render() {
     return (
       <div className="SignIn">
-        <CloseIcon />
+        <CloseButton />
         <BackButton text="Back" link={routeDefinitions.HOME} />
         <div className="picture">
           <img alt="Help" src={image} />

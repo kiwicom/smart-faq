@@ -4,7 +4,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
 import image from '../../static/mailbox@3x.png';
-import CloseIcon from './../common/CloseIcon';
+import CloseButton from './../common/CloseButton';
 
 const style = css`
   .Email {
@@ -49,7 +49,7 @@ const CheckEmail = (props: Props) => {
   const email = props.location.state.email || 'example@gmail.com';
   return (
     <div className="Email">
-      <CloseIcon />
+      <CloseButton />
       <div className="picture">
         <img alt="Email" src={image} />
       </div>

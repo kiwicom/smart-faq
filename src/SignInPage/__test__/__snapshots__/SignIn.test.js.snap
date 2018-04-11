@@ -4,7 +4,7 @@ exports[`SignIn should match snapshot 1`] = `
 <div
   className="jsx-145019557 SignIn"
 >
-  <CloseIcon />
+  <CloseButton />
   <BackButton
     link="/"
     text="Back"

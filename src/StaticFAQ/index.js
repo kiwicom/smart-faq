@@ -8,7 +8,7 @@ import { Typography } from '@kiwicom/orbit-components';
 import { Magnify } from '@kiwicom/orbit-components/lib/icons';
 
 import Input from './../common/Input';
-import CloseIcon from '../common/CloseIcon';
+import CloseButton from '../common/CloseButton';
 import FAQCategoryList from './FAQCategoryList';
 import SearchAllFAQs from './SearchAllFAQs';
 import routeDefinitions from '../routeDefinitions';
@@ -77,7 +77,7 @@ class StaticFAQ extends React.Component<Props, State> {
 
     return (
       <div className="static-faq">
-        <CloseIcon />
+        <CloseButton />
         <Link to={routeDefinitions.SIGN_IN}>
           <div className="signIn">
             <Typography type="attention" variant="bold">
