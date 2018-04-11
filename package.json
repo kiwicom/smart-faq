@@ -2,7 +2,7 @@
   "name": "@kiwicom/smart-faq",
   "version": "0.0.1",
   "scripts": {
-    "postinstall": "yarn install && yarn build",
+    "prepublish": "yarn build",
     "start": "NODE_ENV=development LANGUAGE=en webpack-dev-server --open --mode development",
     "build": "yarn clean && yarn build:lib",
     "build:bundle": "NODE_ENV=production LANGUAGE=en webpack --mode production",
