@@ -3,35 +3,19 @@
 import * as React from 'react';
 import idx from 'idx';
 import css from 'styled-jsx/css';
-import { Link } from 'react-router-dom';
-import { Typography } from '@kiwicom/orbit-components';
 import { Magnify } from '@kiwicom/orbit-components/lib/icons';
 
 import Input from './../common/Input';
-import CloseButton from '../common/CloseButton';
+import Header from './Header';
 import FAQCategoryList from './FAQCategoryList';
 import SearchAllFAQs from './SearchAllFAQs';
-import routeDefinitions from '../routeDefinitions';
 
 const style = css`
   .static-faq {
     width: 480px;
   }
-  .static-faq-header {
-    width: 100%;
-    height: 64px;
-    box-shadow: inset 0 -1px 0 0 #e8edf1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   .static-faq-body {
     padding: 24px 40px;
-  }
-  .signIn {
-    position: absolute;
-    top: 23px;
-    left: 16px;
   }
 `;
 
@@ -77,19 +61,7 @@ class StaticFAQ extends React.Component<Props, State> {
 
     return (
       <div className="static-faq">
-        <CloseButton />
-        <Link to={routeDefinitions.SIGN_IN}>
-          <div className="signIn">
-            <Typography type="attention" variant="bold">
-              Sign In
-            </Typography>
-          </div>
-        </Link>
-        <div className="static-faq-header">
-          <Typography size="header" type="attention" variant="bold">
-            Help
-          </Typography>
-        </div>
+        <Header leftButton={categoryId ? 'Back' : 'SignIn'} />
         <div className="static-faq-body">
           {!categoryId && this.renderInput(isSearching)}
           {isSearching ? (
