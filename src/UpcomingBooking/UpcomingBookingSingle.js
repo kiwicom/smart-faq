@@ -1,18 +1,17 @@
 // @flow
 
 import * as React from 'react';
+import idx from 'idx';
 //import { QueryRenderer } from 'react-relay';
 import { graphql, createFragmentContainer } from 'react-relay';
 import css from 'styled-jsx/css';
 import { SystemMessage, Typography } from '@kiwicom/orbit-components';
 //import createEnvironment from '../relay/environment';
 import routeDefinitions from '../routeDefinitions';
-import { formatBookingId } from '../helpers/utils';
-import { BackButton, CloseIcon, Accordion, Box } from '../common';
-//import type { UpcomingBookingQueryPageResponse as BookingType } from './__generated__/UpcomingBookingPageQuery.graphql';
-
-const token =
-  'WyJnUDVIdmdlVURmZlU4MVVjVWtBYW4xIiwiQzR0RzR1ZHk3dHdkbDBSeEpQbWFadUl1MnhSUS92NnhCTFJzSS51ZGhoMXAySTduRk5KQVciLDk4MzY0MzkwXQ.oidzgbuq4aNtxfp1QoF9a3CPgpk';
+import { URGENCY_THRESHOLD, decodeId, formatBookingId } from '../helpers/utils';
+import { BackButton, CloseButton, Box } from '../common';
+import Accordion from './Accordion';
+import type { UpcomingBookingSingle_booking as BookingType } from './__generated__/UpcomingBookingSingle_booking.graphql';
 
 const style = css`
   .UpcomingBooking {
@@ -26,14 +25,6 @@ const style = css`
     margin-bottom: 12px;
   }
   div.notification {
-    margin-bottom: 8px;
-  }
-  .outbound,
-  .inbound {
-    margin-top: 16px;
-  }
-  .outbound .title,
-  .inbound .title {
     margin-bottom: 8px;
   }
   div.buttons {
@@ -60,39 +51,152 @@ const style = css`
   }
 `;
 
+const legStyle = css`
+  .inbound,
+  .outbound {
+    margin-top: 16px;
+  }
+  .outbound .title,
+  .inbound .title {
+    margin-bottom: 8px;
+  }
+`;
+
 type Props = {
-  //booking: BookingType,
+  booking: BookingType,
 };
 
-type State = {|
-  email: string,
-|};
+type State = {||};
 
+const calcTimeLeft = (refDate: string) => {
+  const departure = new Date(refDate);
+  const now = new Date();
+  return (departure - now) / 36e5;
+};
 class UpcomingBookingSingle extends React.Component<Props, State> {
-  renderOutbound = () => {
-    return (
-      <Box padding="12px 16px 16px 12px">
-        <Accordion>
-          <Accordion.Header />
-          <span>nononon</span>
-        </Accordion>
-      </Box>
-    );
-  };
-  renderInbound = () => {
-    return (
-      <Box padding="12px 16px 16px 12px">
-        <Accordion />
-      </Box>
-    );
-  };
+  renderOutbound = (booking: BookingType) => {
+    const leg = booking.legs && booking.legs[0];
+    //const { airline: { logoUrl } } = leg;
+    const logoUrl = idx(leg, _ => _.airline.logoUrl) || '';
+    const departureTime = idx(leg, _ => _.departure.localTime) || '';
+    const departureCityCode =
+      idx(leg, _ => _.departure.airport.locationId) || '';
+    const departureCityName =
+      idx(leg, _ => _.departure.airport.city.name) || '';
+    const arrivalCityCode = idx(leg, _ => _.arrival.airport.locationId) || '';
+    const arrivalCityName = idx(leg, _ => _.arrival.airport.city.name) || '';
 
-  renderPage = (booking: UpcomingBookingQueryResponse) => {
-    console.log('mybooking', booking);
+    //const {
+    //  localTime: departureTime,
+    //  airport: {
+    //    locationId: departureCityCode,
+    //    city: { name: departureCityName },
+    //  },
+    //} = leg.departure;
+    //const {
+    //  airport: { locationId: arrivalCityCode, city: { name: arrivalCityName } },
+    //} = leg.arrival;
+    return (
+      <div className="outbound">
+        <div className="title">
+          <Typography size="large" type="attention">
+            Outbound
+          </Typography>
+          <Box padding="12px 16px 16px 12px">
+            <Accordion
+              date={departureTime}
+              airlineUrl={logoUrl}
+              departureCityName={departureCityName}
+              departureCityCode={departureCityCode}
+              arrivalCityName={arrivalCityName}
+              arrivalCityCode={arrivalCityCode}
+            />
+          </Box>
+        </div>
+        <style jsx>{legStyle}</style>
+      </div>
+    );
+  };
+  renderInbound = (booking: BookingType) => {
+    if (booking.legs && booking.legs.length > 1) {
+      //const leg = booking.legs[booking.legs.length - 1];
+      //const { airline: { logoUrl } } = leg;
+      //const {
+      //  localTime: departureTime,
+      //  airport: {
+      //    locationId: departureCityCode,
+      //    city: { name: departureCityName },
+      //  },
+      //} = leg.departure;
+      //const {
+      //  airport: {
+      //    locationId: arrivalCityCode,
+      //    city: { name: arrivalCityName },
+      //  },
+      //} = leg.arrival;
+
+      const leg = booking.legs && booking.legs[0];
+      //const { airline: { logoUrl } } = leg;
+      const logoUrl = idx(leg, _ => _.airline.logoUrl) || '';
+      const departureTime = idx(leg, _ => _.departure.localTime) || '';
+      const departureCityCode =
+        idx(leg, _ => _.departure.airport.locationId) || '';
+      const departureCityName =
+        idx(leg, _ => _.departure.airport.city.name) || '';
+      const arrivalCityCode = idx(leg, _ => _.arrival.airport.locationId) || '';
+      const arrivalCityName = idx(leg, _ => _.arrival.airport.city.name) || '';
+      return (
+        <div className="inbound">
+          <div className="title">
+            <Typography size="large" type="attention">
+              Outbound
+            </Typography>
+            <Box padding="12px 16px 16px 12px">
+              <Accordion
+                date={departureTime}
+                airlineUrl={logoUrl}
+                departureCityName={departureCityName}
+                departureCityCode={departureCityCode}
+                arrivalCityName={arrivalCityName}
+                arrivalCityCode={arrivalCityCode}
+              />
+            </Box>
+          </div>
+          <style jsx>{legStyle}</style>
+        </div>
+      );
+    }
+    return null;
+  };
+  renderNotification = (booking: BookingType) => {
+    //const { booking } = this.props;
+    //const departureTime = booking.legs && booking.legs[0].departure.time;
+    const leg = booking.legs && booking.legs[0];
+    if (!leg) return null;
+    const departureTime = idx(leg, _ => _.departure.time) || '';
+    const hoursLeft = calcTimeLeft(departureTime);
+    if (hoursLeft < URGENCY_THRESHOLD) {
+      return (
+        <SystemMessage type="warning">
+          You depart in {Math.round(hoursLeft)}h. Don&rsquo;t hesitate to call
+          us if you have an urgent problem.
+        </SystemMessage>
+      );
+    } else {
+      return (
+        <SystemMessage type="info">
+          You depart in 32 days. There is still time to add some nice extras or
+          even change your booking.
+        </SystemMessage>
+      );
+    }
+  };
+  render() {
+    const { booking } = this.props;
     return (
       <div className="UpcomingBooking">
         <BackButton text="Back" link={routeDefinitions.HOME} />
-        <CloseIcon />
+        <CloseButton />
         <div className="Screen-title">
           <div className="title">
             <span className="main-title">
@@ -108,78 +212,51 @@ class UpcomingBookingSingle extends React.Component<Props, State> {
           </div>
           <div className="booking-id">
             <Typography type="secondary">
-              # {formatBookingId(343453453)}
+              # {formatBookingId(decodeId(booking.id))}
             </Typography>
           </div>
         </div>
-        <div className="notification">
-          <SystemMessage type="info">
-            You depart in 32 days. There is still time to add some nice extras
-            or even change your booking.
-          </SystemMessage>
-        </div>
-        <div className="outbound">
-          <div className="title">
-            <Typography size="large" type="attention">
-              Outbound
-            </Typography>
-          </div>
-        </div>
-        <div className="inbound">
-          <div className="title">
-            <Typography size="large" type="attention">
-              Inbound
-            </Typography>
-          </div>
-        </div>
+        <div className="notification">{this.renderNotification(booking)}</div>
+        {this.renderOutbound(booking)}
+        {this.renderInbound(booking)}
         <div className="buttons">
           <button className="manage-booking">Manage my booking</button>
         </div>
         <style jsx>{style}</style>
       </div>
     );
-  };
-  render() {
-    console.log('bookingsingle', this.props);
-    return null;
-    //return (
-    //  <QueryRenderer
-    //    environment={createEnvironment(token)}
-    //    query={bookingQuery}
-    //    render={this.renderPage}
-    //  />
-    //);
   }
 }
 
 export default createFragmentContainer(
   UpcomingBookingSingle,
   graphql`
-    fragment UpcomingBookingSingle_booking on UpcomingBookingSingle {
+    fragment UpcomingBookingSingle_booking on Booking {
+      id
       legs {
         airline {
           name
           code
           logoUrl
         }
-      }
-      departure {
-        time
-        localTime
-        airport {
-          locationId
-          city {
-            name
+        departure {
+          time
+          localTime
+          airport {
+            locationId
+            city {
+              name
+            }
           }
         }
-      }
-      arrival {
-        time
-        localTime
-        airport {
-          locationId
-          city {
-            name
+        arrival {
+          time
+          localTime
+          airport {
+            locationId
+            city {
+              name
+            }
           }
         }
       }

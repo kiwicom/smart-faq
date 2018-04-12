@@ -43,38 +43,37 @@ const styles = css`
 `;
 
 type Props = {|
-  flight: {
-    date: string,
-    airlineUrl: string,
-    departureCity: {
-      name: string,
-      iataCode: string,
-    },
-    arrivalCity: {
-      name: string,
-      iataCode: string,
-    },
-  },
+  date: string,
+  airlineUrl: string,
+  departureCityName: string,
+  departureCityCode: string,
+  arrivalCityName: string,
+  arrivalCityCode: string,
 |};
 
 const Accordion = (props: Props) => {
-  const flight = props.flight;
+  const {
+    date,
+    airlineUrl,
+    departureCityName,
+    departureCityCode,
+    arrivalCityName,
+    arrivalCityCode,
+  } = props;
   return (
     <div className="Accordion">
       <div className="header">
         <div className="logo">
-          <img src={flight.airlineUrl} alt="Vueling" />
+          <img src={airlineUrl} alt="Vueling" />
         </div>
         <div className="info">
           <Typography type="secondary" size="small">
-            {formatDate(flight.date)}
+            {formatDate(date)}
           </Typography>
           <div className="itinerary">
             <span className="location">
               <Typography variant="bold" type="primary">
-                {flight.departureCity.name}&nbsp;({
-                  flight.departureCity.iataCode
-                })
+                {departureCityName}&nbsp;({departureCityCode})
               </Typography>
             </span>
             <span className="arrow">
@@ -82,7 +81,7 @@ const Accordion = (props: Props) => {
             </span>
             <span className="location">
               <Typography variant="bold" type="primary">
-                {flight.arrivalCity.name}&nbsp;({flight.arrivalCity.iataCode})
+                {arrivalCityName}&nbsp;({arrivalCityCode})
               </Typography>
             </span>
           </div>
