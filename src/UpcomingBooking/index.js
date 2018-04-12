@@ -5,8 +5,10 @@ import idx from 'idx';
 import { graphql, QueryRenderer } from 'react-relay';
 import createEnvironment from '../relay/environment';
 import { Loader } from '../common';
+import { calcTimeLeft } from '../helpers/utils';
 import UpcomingBookingSingle from './UpcomingBookingSingle';
 import UpcomingBookingError from './UpcomingBookingError';
+import UpcomingBookingPassed from './UpcomingBookingPassed';
 import type { UpcomingBookingAllBookingsQueryResponse } from './__generated__/UpcomingBookingAllBookingsQuery.graphql';
 
 type Props = {};
@@ -32,6 +34,8 @@ class UpcomingBooking extends React.Component<Props, State> {
     const nodes = edges.map(e => idx(e, _ => _.node));
     const latestBooking = sortByDate(nodes)[0];
     if (!latestBooking) return <UpcomingBookingError />;
+    if (calcTimeLeft(latestBooking.departure.time) < 0)
+      return <UpcomingBookingPassed />;
     return <UpcomingBookingSingle booking={latestBooking} />;
   };
   render() {
