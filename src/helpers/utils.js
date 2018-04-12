@@ -30,6 +30,7 @@ export const decodeId = (hashedId: string) => {
 };
 
 export const calcTimeLeft = (refDate: string) => {
+  if (refDate === '') return -1;
   const ref = new Date(refDate);
   const now = new Date();
   return (ref - now) / 36e5;

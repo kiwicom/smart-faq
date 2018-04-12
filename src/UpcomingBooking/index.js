@@ -34,8 +34,9 @@ class UpcomingBooking extends React.Component<Props, State> {
     const nodes = edges.map(e => idx(e, _ => _.node));
     const latestBooking = sortByDate(nodes)[0];
     if (!latestBooking) return <UpcomingBookingError />;
-    if (calcTimeLeft(latestBooking.departure.time) < 0)
-      return <UpcomingBookingPassed />;
+    const refTime = idx(latestBooking, _ => _.departure.time) || '';
+    const timeLeft = calcTimeLeft(refTime);
+    if (timeLeft < 0) return <UpcomingBookingPassed />;
     return <UpcomingBookingSingle booking={latestBooking} />;
   };
   render() {
