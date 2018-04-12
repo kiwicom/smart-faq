@@ -3,7 +3,10 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
-import { ChevronDown } from '@kiwicom/orbit-components/lib/icons';
+import {
+  AirplaneRight,
+  ChevronDown,
+} from '@kiwicom/orbit-components/lib/icons';
 import { formatDate } from '../helpers/utils';
 
 const styles = css`
@@ -26,8 +29,8 @@ const styles = css`
     justify-content: center;
   }
   div.logo img {
-    height: 16px;
-    width: 16px;
+    height: 32px;
+    width: 32px;
   }
   div.toggle {
     position: relative;
@@ -64,7 +67,7 @@ const Accordion = (props: Props) => {
     <div className="Accordion">
       <div className="header">
         <div className="logo">
-          <img src={airlineUrl} alt="Vueling" />
+          <img src={airlineUrl} alt="" />
         </div>
         <div className="info">
           <Typography type="secondary" size="small">
@@ -77,7 +80,9 @@ const Accordion = (props: Props) => {
               </Typography>
             </span>
             <span className="arrow">
-              <Typography type="secondary">&#8594;</Typography>
+              <span className="inline-icon">
+                <AirplaneRight />
+              </span>
             </span>
             <span className="location">
               <Typography variant="bold" type="primary">

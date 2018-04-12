@@ -1,6 +1,7 @@
 // @noflow
 
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
+import { getSessionToken } from '../helpers/Auth';
 
 require('isomorphic-fetch');
 
@@ -19,9 +20,10 @@ const buildFetchQuery = (token: string = '') => {
     }).then(response => response.json());
   };
 };
-const buildEnvironment = (token: string = '') => {
+
+const buildEnvironment = () => {
   return new Environment({
-    network: Network.create(buildFetchQuery(token)),
+    network: Network.create(buildFetchQuery(getSessionToken())),
     store: new Store(new RecordSource()),
   });
 };

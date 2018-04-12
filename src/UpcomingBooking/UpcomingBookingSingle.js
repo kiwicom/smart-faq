@@ -2,13 +2,23 @@
 
 import * as React from 'react';
 import idx from 'idx';
-//import { QueryRenderer } from 'react-relay';
 import { graphql, createFragmentContainer } from 'react-relay';
 import css from 'styled-jsx/css';
 import { SystemMessage, Typography } from '@kiwicom/orbit-components';
-//import createEnvironment from '../relay/environment';
+import {
+  Loading,
+  ChevronDown,
+  Phone,
+  Alert,
+} from '@kiwicom/orbit-components/lib/icons';
 import routeDefinitions from '../routeDefinitions';
-import { URGENCY_THRESHOLD, decodeId, formatBookingId } from '../helpers/utils';
+import {
+  calcTimeLeft,
+  formatCountDown,
+  URGENCY_THRESHOLD,
+  decodeId,
+  formatBookingId,
+} from '../helpers/utils';
 import { BackButton, CloseButton, Box } from '../common';
 import Accordion from './Accordion';
 import type { UpcomingBookingSingle_booking as BookingType } from './__generated__/UpcomingBookingSingle_booking.graphql';
@@ -61,6 +71,57 @@ const legStyle = css`
     margin-bottom: 8px;
   }
 `;
+const contactStyle = css`
+  .contact {
+    margin-top: 32px;
+  }
+  .contact .title {
+    margin-bottom: 18px;
+  }
+  .contact-options {
+    display: flex;
+  }
+  .phone {
+    margin-right: 40px;
+  }
+  hr {
+    margin-bottom: 16px;
+    border: none;
+    border-bottom: 1px solid #e8edf1;
+  }
+  .phone-icon {
+    margin-right: 7px;
+  }
+  .chevron-icon {
+    margin-left: 5px;
+  }
+  .chat-icon {
+    margin-right: 14px;
+  }
+`;
+const instructionsStyle = css`
+  .instructions {
+    margin-left: 20px;
+    margin-top: 34px;
+    font-size: 14px;
+    color: #46515e;
+  }
+  .instructions ol {
+    list-style-type: decimal;
+  }
+  li {
+    margin-bottom: 7px;
+    padding-left: 10px;
+  }
+`;
+const msgStyle = css`
+  .system-message {
+    display: flex;
+  }
+  .system-message .icon {
+    margin-right: 14px;
+  }
+`;
 
 type Props = {
   booking: BookingType,
@@ -68,15 +129,9 @@ type Props = {
 
 type State = {||};
 
-const calcTimeLeft = (refDate: string) => {
-  const departure = new Date(refDate);
-  const now = new Date();
-  return (departure - now) / 36e5;
-};
 class UpcomingBookingSingle extends React.Component<Props, State> {
   renderOutbound = (booking: BookingType) => {
     const leg = booking.legs && booking.legs[0];
-    //const { airline: { logoUrl } } = leg;
     const logoUrl = idx(leg, _ => _.airline.logoUrl) || '';
     const departureTime = idx(leg, _ => _.departure.localTime) || '';
     const departureCityCode =
@@ -86,57 +141,30 @@ class UpcomingBookingSingle extends React.Component<Props, State> {
     const arrivalCityCode = idx(leg, _ => _.arrival.airport.locationId) || '';
     const arrivalCityName = idx(leg, _ => _.arrival.airport.city.name) || '';
 
-    //const {
-    //  localTime: departureTime,
-    //  airport: {
-    //    locationId: departureCityCode,
-    //    city: { name: departureCityName },
-    //  },
-    //} = leg.departure;
-    //const {
-    //  airport: { locationId: arrivalCityCode, city: { name: arrivalCityName } },
-    //} = leg.arrival;
     return (
       <div className="outbound">
         <div className="title">
           <Typography size="large" type="attention">
             Outbound
           </Typography>
-          <Box padding="12px 16px 16px 12px">
-            <Accordion
-              date={departureTime}
-              airlineUrl={logoUrl}
-              departureCityName={departureCityName}
-              departureCityCode={departureCityCode}
-              arrivalCityName={arrivalCityName}
-              arrivalCityCode={arrivalCityCode}
-            />
-          </Box>
         </div>
+        <Box padding="12px 16px 16px 12px">
+          <Accordion
+            date={departureTime}
+            airlineUrl={logoUrl}
+            departureCityName={departureCityName}
+            departureCityCode={departureCityCode}
+            arrivalCityName={arrivalCityName}
+            arrivalCityCode={arrivalCityCode}
+          />
+        </Box>
         <style jsx>{legStyle}</style>
       </div>
     );
   };
   renderInbound = (booking: BookingType) => {
     if (booking.legs && booking.legs.length > 1) {
-      //const leg = booking.legs[booking.legs.length - 1];
-      //const { airline: { logoUrl } } = leg;
-      //const {
-      //  localTime: departureTime,
-      //  airport: {
-      //    locationId: departureCityCode,
-      //    city: { name: departureCityName },
-      //  },
-      //} = leg.departure;
-      //const {
-      //  airport: {
-      //    locationId: arrivalCityCode,
-      //    city: { name: arrivalCityName },
-      //  },
-      //} = leg.arrival;
-
       const leg = booking.legs && booking.legs[0];
-      //const { airline: { logoUrl } } = leg;
       const logoUrl = idx(leg, _ => _.airline.logoUrl) || '';
       const departureTime = idx(leg, _ => _.departure.localTime) || '';
       const departureCityCode =
@@ -149,19 +177,19 @@ class UpcomingBookingSingle extends React.Component<Props, State> {
         <div className="inbound">
           <div className="title">
             <Typography size="large" type="attention">
-              Outbound
+              Return
             </Typography>
-            <Box padding="12px 16px 16px 12px">
-              <Accordion
-                date={departureTime}
-                airlineUrl={logoUrl}
-                departureCityName={departureCityName}
-                departureCityCode={departureCityCode}
-                arrivalCityName={arrivalCityName}
-                arrivalCityCode={arrivalCityCode}
-              />
-            </Box>
           </div>
+          <Box padding="12px 16px 16px 12px">
+            <Accordion
+              date={departureTime}
+              airlineUrl={logoUrl}
+              departureCityName={departureCityName}
+              departureCityCode={departureCityCode}
+              arrivalCityName={arrivalCityName}
+              arrivalCityCode={arrivalCityCode}
+            />
+          </Box>
           <style jsx>{legStyle}</style>
         </div>
       );
@@ -169,8 +197,6 @@ class UpcomingBookingSingle extends React.Component<Props, State> {
     return null;
   };
   renderNotification = (booking: BookingType) => {
-    //const { booking } = this.props;
-    //const departureTime = booking.legs && booking.legs[0].departure.time;
     const leg = booking.legs && booking.legs[0];
     if (!leg) return null;
     const departureTime = idx(leg, _ => _.departure.time) || '';
@@ -178,21 +204,97 @@ class UpcomingBookingSingle extends React.Component<Props, State> {
     if (hoursLeft < URGENCY_THRESHOLD) {
       return (
         <SystemMessage type="warning">
-          You depart in {Math.round(hoursLeft)}h. Don&rsquo;t hesitate to call
-          us if you have an urgent problem.
+          <div className="system-message">
+            <div className="icon">
+              <Alert fill="#f9971e" />
+            </div>
+            <div className="text">
+              You depart in {formatCountDown(hoursLeft)}. Don&rsquo;t hesitate
+              to call us if you have an urgent problem.
+            </div>
+            <style jsx>{msgStyle}</style>
+          </div>
         </SystemMessage>
       );
     } else {
       return (
         <SystemMessage type="info">
-          You depart in 32 days. There is still time to add some nice extras or
-          even change your booking.
+          <div className="system-message">
+            <div className="icon">
+              <Alert fill="#10709f" />
+            </div>
+            <div className="text">
+              You depart in {formatCountDown(hoursLeft)}. There is still time to
+              add some nice extras or even change your booking.
+            </div>
+            <style jsx>{msgStyle}</style>
+          </div>
         </SystemMessage>
       );
     }
   };
+  renderContact = (booking: BookingType) => {
+    const leg = booking.legs && booking.legs[0];
+    if (!leg) return null;
+    const departureTime = idx(leg, _ => _.departure.time) || '';
+    const hoursLeft = calcTimeLeft(departureTime);
+    if (hoursLeft < URGENCY_THRESHOLD) {
+      return (
+        <div className="contact">
+          <hr />
+          <div className="title">
+            <Typography size="large" type="attention">
+              Contacts
+            </Typography>
+          </div>
+          <div className="contact-options">
+            <div className="phone">
+              <span className="phone-icon inline-icon">
+                <Phone fill="#00a991" />
+              </span>
+              <Typography size="normal" type="active">
+                +42 987 876 567 CZ
+              </Typography>
+              <span className="chevron-icon inline-icon">
+                <ChevronDown height="16" fill="#00a991" />
+              </span>
+            </div>
+            <div className="chat">
+              <span className="chat-icon inline-icon">
+                <Loading fill="#00a991" />
+              </span>
+              <Typography size="normal" type="active">
+                Write us a message
+              </Typography>
+            </div>
+          </div>
+          {this.renderContactInstructions()}
+          <style jsx>{contactStyle}</style>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+  renderContactInstructions = () => {
+    return (
+      <div className="instructions">
+        <ol>
+          <li>
+            When contacting us we will ask the <b>full name</b> of at least one
+            of the passengers.
+          </li>
+          <li>
+            The full <b>email address</b> provided during the booking.
+          </li>
+        </ol>
+        <style jsx>{instructionsStyle}</style>
+      </div>
+    );
+  };
   render() {
     const { booking } = this.props;
+    if (!booking) return null;
     return (
       <div className="UpcomingBooking">
         <BackButton text="Back" link={routeDefinitions.HOME} />
@@ -222,6 +324,7 @@ class UpcomingBookingSingle extends React.Component<Props, State> {
         <div className="buttons">
           <button className="manage-booking">Manage my booking</button>
         </div>
+        {this.renderContact(booking)}
         <style jsx>{style}</style>
       </div>
     );

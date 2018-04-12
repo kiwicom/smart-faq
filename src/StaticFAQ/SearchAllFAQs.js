@@ -5,7 +5,7 @@ import css from 'styled-jsx/css';
 import { QueryRenderer, graphql } from 'react-relay';
 import idx from 'idx';
 import FAQArticle from './FAQArticle';
-import environment from '../relay/environment';
+import createEnvironment from '../relay/environment';
 import Loader from '../common/Loader';
 
 import type { SearchAllFAQsQuery } from './__generated__/SearchAllFAQsQuery.graphql';
@@ -79,7 +79,7 @@ class SearchAllFAQs extends React.Component<Props> {
     const { search, language } = this.props;
     return (
       <QueryRenderer
-        environment={environment}
+        environment={createEnvironment()}
         query={queryAllFAQs}
         variables={{ search, language }}
         render={this.renderSearchFAQs}

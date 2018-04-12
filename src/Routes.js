@@ -15,7 +15,7 @@ const Routes = () => {
   return (
     <MemoryRouter>
       <Switch>
-        <Route exact path={routeDefinitions.HOME} component={UpcomingBooking} />
+        <Route exact path={routeDefinitions.HOME} component={Intro} />
         <Route exact path={routeDefinitions.SIGN_IN} component={SignIn} />
         <Route
           exact
@@ -37,6 +37,11 @@ const Routes = () => {
           exact
           path={routeDefinitions.FORGOTTEN_PASSWORD}
           component={ForgottenPassword}
+        />
+        <Route
+          exact
+          path={routeDefinitions.UPCOMING_BOOKING}
+          component={UpcomingBooking}
         />
       </Switch>
     </MemoryRouter>

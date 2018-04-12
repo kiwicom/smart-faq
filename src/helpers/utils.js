@@ -28,3 +28,19 @@ export const decodeId = (hashedId: string) => {
     .match(/:(.*)/);
   return (match && match[1]) || '';
 };
+
+export const calcTimeLeft = (refDate: string) => {
+  const ref = new Date(refDate);
+  const now = new Date();
+  return (ref - now) / 36e5;
+};
+
+export const formatCountDown = (nh: number) => {
+  const nhours = Math.floor(nh);
+  const nmins = Math.floor((nh - nhours) * 60);
+  const ndays = Math.floor(nh / 60);
+  if (nh < URGENCY_THRESHOLD) {
+    return nmins ? `${nhours}h ${nmins}min` : `${nhours}h`;
+  }
+  return `${ndays} days`;
+};
