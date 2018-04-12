@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
+import { socialLogin } from '../helpers/Auth';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import chevronRight from '../../static/chevron-right.png';
 import facebookLogo from '../../static/facebook-icon.png';
@@ -140,6 +141,11 @@ class SignIn extends React.Component<Props, State> {
     });
   };
 
+  handleSocialLogin = async (provider: string) => {
+    const authUrl = await socialLogin(provider);
+    window.location = authUrl;
+  };
+
   render() {
     return (
       <div className="SignIn">
@@ -172,7 +178,10 @@ class SignIn extends React.Component<Props, State> {
         </form>
         <p className="or"> or </p>
         <div className="buttons">
-          <button className="google">
+          <button
+            className="google"
+            onClick={() => this.handleSocialLogin('google')}
+          >
             <img
               className="google-icon"
               src={googleLogo}
@@ -180,7 +189,10 @@ class SignIn extends React.Component<Props, State> {
             />
             <span className="label">Continue with Google </span>
           </button>
-          <button className="facebook">
+          <button
+            className="facebook"
+            onClick={() => this.handleSocialLogin('facebook')}
+          >
             <img
               className="facebook-icon"
               src={facebookLogo}
