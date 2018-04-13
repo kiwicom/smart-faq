@@ -17,11 +17,7 @@ module.exports = {
     filename: `smart-faq.${language}.js`,
   },
   module: {
-    rules: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: /\.jpg$/, use: ['file-loader'] },
-      { test: /\.png$/, use: ['url-loader?mimetype=image/png'] },
-    ],
+    rules: [{ test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }],
   },
   plugins: [
     new HtmlWebpackPlugin({
