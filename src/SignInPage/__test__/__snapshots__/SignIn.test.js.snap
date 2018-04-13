@@ -15,7 +15,7 @@ exports[`SignIn should match snapshot 1`] = `
     <img
       alt="Help"
       className="jsx-145019557"
-      src="static/woman-with-laptop@2x.jpg"
+      src="https://images.kiwi.com/smart-faq/woman-with-laptop@2x.jpg"
     />
   </div>
   <div
@@ -73,7 +73,7 @@ exports[`SignIn should match snapshot 1`] = `
       <img
         alt="Login with google"
         className="jsx-145019557 google-icon"
-        src="static/google-logo.png"
+        src="https://images.kiwi.com/smart-faq/google-logo.png"
       />
       <span
         className="jsx-145019557 label"
@@ -88,7 +88,7 @@ exports[`SignIn should match snapshot 1`] = `
       <img
         alt="Login with facebook"
         className="jsx-145019557 facebook-icon"
-        src="static/facebook-icon.png"
+        src="https://images.kiwi.com/smart-faq/facebook-icon.png"
       />
       <span
         className="jsx-145019557 label"
@@ -117,7 +117,7 @@ exports[`SignIn should match snapshot 1`] = `
       <img
         alt="kiwi login"
         className="jsx-145019557 chevron"
-        src="static/chevron-right.png"
+        src="https://images.kiwi.com/smart-faq/chevron-right.png"
       />
     </Link>
   </div>
