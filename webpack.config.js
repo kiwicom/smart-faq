@@ -17,18 +17,7 @@ module.exports = {
     filename: `smart-faq.${language}.js`,
   },
   module: {
-    rules: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: /\.jpg$/, use: ['file-loader'] },
-      { test: /\.png$/, use: ['url-loader?mimetype=image/png'] },
-      {
-        // compatibility issue between webpack 4 and Apollo:
-        // https://github.com/apollographql/react-apollo/issues/1737
-        test: /\.mjs$/,
-        include: /node_modules/,
-        type: 'javascript/auto',
-      },
-    ],
+    rules: [{ test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }],
   },
   plugins: [
     new HtmlWebpackPlugin({

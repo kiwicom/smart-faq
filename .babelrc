@@ -16,7 +16,8 @@
     "transform-runtime",
     "relay",
     ["transform-assets-import-to-string", {
-      "baseDir": "static"
+      "baseDir": "/",
+      "baseUri": "https://images.kiwi.com/smart-faq"
     }]
   ]
 }
