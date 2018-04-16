@@ -4,6 +4,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { OpenInNew } from '@kiwicom/orbit-components/lib/icons';
 import { Typography, Button } from '@kiwicom/orbit-components';
+import { getSessionToken } from '../helpers/Auth';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import routeDefinitions from '../routeDefinitions';
 import CloseButton from './../common/CloseButton';
@@ -85,7 +86,11 @@ const Intro = (props: Props) => (
         <div className="button">
           <Button
             isDisabled={false}
-            onClick={() => props.history.push(routeDefinitions.SIGN_IN)}
+            onClick={() =>
+              getSessionToken()
+                ? props.history.push(routeDefinitions.UPCOMING_BOOKING)
+                : props.history.push(routeDefinitions.SIGN_IN)
+            }
             size="large"
             title="I have an existing booking"
             type="primary"

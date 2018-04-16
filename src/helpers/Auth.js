@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import { Requester } from './Requests';
 
 export const COOKIE_LOGIN_KEY = 'ua_session_token';
-export const getCookieToken = () => Cookies.get(COOKIE_LOGIN_KEY);
+export const getSessionToken = () => Cookies.get(COOKIE_LOGIN_KEY);
 
 export async function doLogin(email: string, password: string) {
   try {

@@ -5,7 +5,7 @@ import type { StoreType } from '../store/reducers';
 import type { State as SessionState } from '../store/reducers/SessionReducer';
 import type { ActionType } from '../store/actions';
 import { saveToken, signIn } from '../store/actions/SessionActions';
-import { getCookieToken } from '../helpers/Auth';
+import { getSessionToken } from '../helpers/Auth';
 
 type Props = {
   doSignIn: (
@@ -19,7 +19,7 @@ function withAuth(BaseComponent: React.ComponentType<any>) {
   class WithAuth extends React.Component<Props> {
     constructor(props) {
       super(props);
-      const JWT_Token = getCookieToken();
+      const JWT_Token = getSessionToken();
       if (JWT_Token) {
         props.doSaveToken(JWT_Token);
       }

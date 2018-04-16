@@ -8,7 +8,7 @@ import Loader from '../common/Loader';
 
 import FAQArticle from './FAQArticle';
 import FAQCategory from './FAQCategory';
-import environment from '../relay/environment';
+import createEnvironment from '../relay/environment';
 import routeDefinitions from './../routeDefinitions';
 
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
@@ -128,7 +128,7 @@ class FAQCategoryList extends React.Component<Props> {
     if (categoryId) {
       return (
         <QueryRenderer
-          environment={environment}
+          environment={createEnvironment()}
           query={querySubcategory}
           render={this.renderSubcategory}
           variables={{ id: categoryId }}
@@ -138,7 +138,7 @@ class FAQCategoryList extends React.Component<Props> {
 
     return (
       <QueryRenderer
-        environment={environment}
+        environment={createEnvironment()}
         query={queryRoot}
         render={this.renderRootCategory}
       />
