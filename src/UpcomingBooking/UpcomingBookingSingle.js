@@ -11,7 +11,6 @@ import {
   Phone,
   Alert,
 } from '@kiwicom/orbit-components/lib/icons';
-import routeDefinitions from '../routeDefinitions';
 import {
   calcTimeLeft,
   formatCountDown,
@@ -19,7 +18,7 @@ import {
   decodeId,
   formatBookingId,
 } from '../helpers/utils';
-import { BackButton, CloseButton, Box } from '../common';
+import { Box } from '../common';
 import Accordion from './Accordion';
 import type { UpcomingBookingSingle_booking as BookingType } from './__generated__/UpcomingBookingSingle_booking.graphql';
 
@@ -27,7 +26,6 @@ const style = css`
   .UpcomingBooking {
     width: 480px;
     padding: 40px;
-    padding-top: 128px;
     background-color: #f5f7f9;
     height: 100%;
   }
@@ -297,8 +295,6 @@ class UpcomingBookingSingle extends React.Component<Props, State> {
     if (!booking) return null;
     return (
       <div className="UpcomingBooking">
-        <BackButton text="Back" link={routeDefinitions.HOME} />
-        <CloseButton />
         <div className="Screen-title">
           <div className="title">
             <span className="main-title">

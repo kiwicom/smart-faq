@@ -8,6 +8,7 @@ import { saveToken, signIn } from '../store/actions/SessionActions';
 import { getSessionToken } from '../helpers/Auth';
 
 type Props = {
+  token: string,
   doSignIn: (
     email: string,
     password: string,

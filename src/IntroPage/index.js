@@ -123,7 +123,7 @@ const Intro = (props: Props) => (
           <button
             onClick={() =>
               getSessionToken()
-                ? props.history.push(routeDefinitions.UPCOMING_BOOKING)
+                ? props.history.push(routeDefinitions.CONTENT)
                 : props.history.push(routeDefinitions.SIGN_IN)
             }
           >
@@ -133,7 +133,9 @@ const Intro = (props: Props) => (
       </div>
       <div className="secondary">
         <Link to={routeDefinitions.STATIC_FAQ}>
-          <button>I don&apos;t have a booking</button>
+          <button onClick={() => props.history.push(routeDefinitions.CONTENT)}>
+            I don&apos;t have a booking
+          </button>
         </Link>
       </div>
     </div>

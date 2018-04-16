@@ -29,7 +29,6 @@ const style = css`
     min-width: 480px;
     height: 100vh;
     background-color: #ffffff;
-    box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.15);
   }
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     div.App {
