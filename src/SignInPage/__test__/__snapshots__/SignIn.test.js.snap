@@ -2,7 +2,7 @@
 
 exports[`SignIn should match snapshot 1`] = `
 <div
-  className="jsx-145019557 SignIn"
+  className="jsx-208629844 SignIn"
 >
   <CloseButton />
   <BackButton
@@ -10,19 +10,19 @@ exports[`SignIn should match snapshot 1`] = `
     text="Back"
   />
   <div
-    className="jsx-145019557 picture"
+    className="jsx-208629844 picture"
   >
     <img
       alt="Help"
-      className="jsx-145019557"
+      className="jsx-208629844"
       src="https://images.kiwi.com/smart-faq/woman-with-laptop@2x.jpg"
     />
   </div>
   <div
-    className="jsx-145019557 text"
+    className="jsx-208629844 text"
   >
     <p
-      className="jsx-145019557 title"
+      className="jsx-208629844 title"
     >
       Sign in
     </p>
@@ -33,16 +33,16 @@ exports[`SignIn should match snapshot 1`] = `
     </Typography>
   </div>
   <form
-    className="jsx-145019557"
+    className="jsx-208629844"
     onSubmit={[Function]}
   >
     <label
-      className="jsx-145019557"
+      className="jsx-208629844"
       htmlFor="email"
     >
       Email used for your booking:
       <div
-        className="jsx-145019557 input"
+        className="jsx-208629844 input"
       >
         <InputText
           onChange={[Function]}
@@ -53,52 +53,52 @@ exports[`SignIn should match snapshot 1`] = `
       </div>
     </label>
     <button
-      className="jsx-145019557 get-help"
+      className="jsx-208629844 get-help"
     >
       Get Help
     </button>
   </form>
   <p
-    className="jsx-145019557 or"
+    className="jsx-208629844 or"
   >
      or 
   </p>
   <div
-    className="jsx-145019557 buttons"
+    className="jsx-208629844 buttons"
   >
     <button
-      className="jsx-145019557 google"
+      className="jsx-208629844 google"
       onClick={[Function]}
     >
       <img
         alt="Login with google"
-        className="jsx-145019557 google-icon"
+        className="jsx-208629844 google-icon"
         src="https://images.kiwi.com/smart-faq/google-logo.png"
       />
       <span
-        className="jsx-145019557 label"
+        className="jsx-208629844 label"
       >
         Continue with Google 
       </span>
     </button>
     <button
-      className="jsx-145019557 facebook"
+      className="jsx-208629844 facebook"
       onClick={[Function]}
     >
       <img
         alt="Login with facebook"
-        className="jsx-145019557 facebook-icon"
+        className="jsx-208629844 facebook-icon"
         src="https://images.kiwi.com/smart-faq/facebook-icon.png"
       />
       <span
-        className="jsx-145019557 label"
+        className="jsx-208629844 label"
       >
         Continue with Facebook 
       </span>
     </button>
   </div>
   <div
-    className="jsx-145019557 kiwi-account"
+    className="jsx-208629844 kiwi-account"
   >
     <Link
       replace={false}
@@ -116,14 +116,14 @@ exports[`SignIn should match snapshot 1`] = `
       </Typography>
       <img
         alt="kiwi login"
-        className="jsx-145019557 chevron"
+        className="jsx-208629844 chevron"
         src="https://images.kiwi.com/smart-faq/chevron-right.png"
       />
     </Link>
   </div>
   <JSXStyle
-    css=".SignIn.jsx-145019557{width:480px;padding-top:128px;}div.picture.jsx-145019557 img.jsx-145019557{width:203px;height:156px;}div.picture.jsx-145019557{margin:0px 127px 0px 150px;}div.text.jsx-145019557{margin:52px 40px 32.2px 40px;}p.title.jsx-145019557{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:8px;}label.jsx-145019557{font-size:14px;line-height:1.43;color:#46515e;}form.jsx-145019557{margin:0px 40px 0px 40px;}div.input.jsx-145019557{display:inline-block;width:309px;height:44px;margin-top:4px;margin-right:8px;}form.jsx-145019557 button.jsx-145019557{width:83px;height:44px;border-radius:3px;background-color:#00a991;font-size:14px;font-weight:bold;color:#ffffff;}.buttons.jsx-145019557{margin-right:134px;margin-left:134px;}button.jsx-145019557{width:212px;height:44px;border-radius:3px;margin-bottom:16px;border:none;cursor:pointer;}button.get-help.jsx-145019557{width:83px;background-color:#00a991;border:0;}button.google.jsx-145019557{background-color:#d24318;}button.facebook.jsx-145019557{background-color:#4465ad;}div.kiwi-account.jsx-145019557{margin-top:8px;text-align:center;}img.chevron.jsx-145019557{width:8px;height:8px;margin-left:5px;object-fit:contain;}span.label.jsx-145019557{font-size:14px;font-weight:bold;line-height:1.43;color:#ffffff;}.facebook-icon.jsx-145019557,.google-icon.jsx-145019557{width:16px;height:16px;float:left;margin-left:8px;}p.or.jsx-145019557{width:15px;height:23px;font-size:16px;line-height:1.4;color:#46515e;margin:0 auto;margin-top:26px;margin-bottom:24px;}"
-    styleId="145019557"
+    css=".SignIn.jsx-208629844{width:480px;padding-top:128px;}div.picture.jsx-208629844 img.jsx-208629844{width:203px;height:156px;}div.picture.jsx-208629844{margin:0px 127px 0px 150px;}div.text.jsx-208629844{margin:52px 40px 32.2px 40px;}p.title.jsx-208629844{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:8px;}label.jsx-208629844{font-size:14px;line-height:1.43;color:#46515e;display:inline-block;width:309px;height:44px;}form.jsx-208629844{margin:0px 40px 0px 40px;}div.input.jsx-208629844{display:inline-block;width:309px;height:44px;margin-top:4px;}form.jsx-208629844 button.jsx-208629844{width:83px;height:44px;border-radius:3px;background-color:#00a991;font-size:14px;font-weight:bold;color:#ffffff;}.buttons.jsx-208629844{margin-right:134px;margin-left:134px;}button.jsx-208629844{width:212px;height:44px;border-radius:3px;margin-bottom:16px;border:none;cursor:pointer;display:inline-block;}button.get-help.jsx-208629844{width:83px;background-color:#00a991;border:0;margin-left:8px;}button.google.jsx-208629844{background-color:#d24318;}button.facebook.jsx-208629844{background-color:#4465ad;}div.kiwi-account.jsx-208629844{margin-top:8px;text-align:center;}img.chevron.jsx-208629844{width:8px;height:8px;margin-left:5px;object-fit:contain;}span.label.jsx-208629844{font-size:14px;font-weight:bold;line-height:1.43;color:#ffffff;}.facebook-icon.jsx-208629844,.google-icon.jsx-208629844{width:16px;height:16px;float:left;margin-left:8px;}p.or.jsx-208629844{width:15px;height:23px;font-size:16px;line-height:1.4;color:#46515e;margin:0 auto;margin-top:26px;margin-bottom:24px;}"
+    styleId="208629844"
   />
 </div>
 `;

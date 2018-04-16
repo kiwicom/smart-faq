@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Typography, Button } from '@kiwicom/orbit-components';
+import { Typography } from '@kiwicom/orbit-components';
 import { Requester } from '../helpers/Requests';
 import BackButton from '../common/BackButton';
 import CloseButton from '../common/CloseButton';
@@ -34,6 +34,30 @@ const style = css`
     margin-bottom: 8px;
     line-height: 1.2;
   }
+  button {
+    width: 212px;
+    height: 44px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+    margin-left: 8px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+  }
+  button.send {
+    width: 83px;
+    background-color: #00a991;
+    border: 0;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.43;
+    color: #ffffff;
+  }
+  label {
+    display: inline-block;
+    width: 300px;
+    height: 44px;
+  }
   form {
     margin: 32.8px 40px 0px 40px;
   }
@@ -42,7 +66,6 @@ const style = css`
     width: 300px;
     height: 44px;
     margin-top: 4px;
-    margin-right: 8px;
   }
 `;
 
@@ -106,13 +129,7 @@ class ForgottenPasword extends React.Component<Props, State> {
               />
             </div>
           </label>
-          <Button
-            isDisabled={false}
-            onClick={() => {}}
-            size="large"
-            title="Send"
-            type="primary"
-          />
+          <button className="send">Send</button>
         </form>
         <style jsx>{style}</style>
       </div>
