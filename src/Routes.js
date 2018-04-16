@@ -8,6 +8,8 @@ import SignIn from './SignInPage';
 import KiwiLogin from './KiwiLogin';
 import ForgottenPassword from './ForgottenPassword';
 import { CheckRecoveryLink, CheckMagicLink } from './EmailPage';
+import SetPassword from './SetPassword';
+import PasswordIsSet from './PasswordIsSet';
 import routeDefinitions from './routeDefinitions';
 
 const Routes = () => {
@@ -22,6 +24,16 @@ const Routes = () => {
           component={StaticFAQ}
         />
         <Route exact path={routeDefinitions.KIWI_LOGIN} component={KiwiLogin} />
+        <Route
+          exact
+          path={routeDefinitions.SET_PASSWORD}
+          component={SetPassword}
+        />
+        <Route
+          exact
+          path={routeDefinitions.PASSWORD_IS_SET}
+          component={PasswordIsSet}
+        />
         <Route
           exact
           path={routeDefinitions.CHECK_MAGIC_LINK}
