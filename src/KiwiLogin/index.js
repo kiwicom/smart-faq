@@ -15,18 +15,16 @@ const style = css`
   .KiwiLogin {
     width: 480px;
     padding-top: 128px;
+    padding-left: 40px;
+    padding-right: 40px;
   }
   div.picture img {
     width: 203px;
     height: 156px;
   }
   div.picture {
-    margin-left: 150px;
+    text-align: center;
     margin-bottom: 68px;
-  }
-  div.main {
-    margin-left: 40px;
-    margin-right: 40px;
   }
   p.title {
     color: #171b1e;
@@ -72,19 +70,21 @@ const style = css`
   }
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     .KiwiLogin {
-      width: 100%;
+      width: auto;
       padding-top: 64px;
+      padding-left: 0px;
+      padding-right: 0px;
     }
     div.picture {
       display: none;
     }
-    div.main {
-      margin-left: 16px;
-      margin-right: 16px;
-    }
     div.input {
       width: 100%;
       margin-bottom: 26px;
+    }
+    div.main {
+      margin-left: 16px;
+      margin-right: 16px;
     }
     div.forgot-password {
       text-align: center;

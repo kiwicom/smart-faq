@@ -48,7 +48,7 @@ const style = css`
   }
   div.input {
     display: inline-block;
-    width: 309px;
+    width: 100%;
     height: 44px;
     margin-top: 4px;
   }
@@ -135,6 +135,10 @@ const style = css`
     form {
       margin: 0px 16px;
     }
+    label {
+      margin-bottom: 33px;
+      width: 100%;
+    }
     div.input {
       width: 100%;
       margin-right: 0px;
@@ -154,6 +158,17 @@ const style = css`
     button {
       width: 100%;
       margin-bottom: 20px;
+    }
+    button.get-help {
+      width: 83px;
+      background-color: #00a991;
+      border: 0;
+      margin-left: 0px;
+    }
+    @media only screen and (width: 320px) {
+      .SignIn {
+        padding-top: 0px;
+      }
     }
   }
 `;

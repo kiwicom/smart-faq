@@ -41,11 +41,11 @@ const style = css`
     font-weight: bold;
     line-height: 1.43;
     padding: 12px 16px;
-    margin-bottom: 16px;
   }
   .primary button {
     background-color: #00a991;
     color: #ffffff;
+    margin-bottom: 16px;
   }
   .secondary button {
     background-color: #e8edf1;
@@ -87,7 +87,7 @@ const style = css`
       margin-right: 16px;
     }
     div.buttons {
-      margin: 28px 16px 44px 16px;
+      margin: 28px 16px 24px 16px;
     }
     button {
       width: 100%;

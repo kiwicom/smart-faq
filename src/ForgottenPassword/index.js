@@ -34,16 +34,6 @@ const style = css`
     margin-bottom: 8px;
     line-height: 1.2;
   }
-  button {
-    width: 212px;
-    height: 44px;
-    border-radius: 3px;
-    margin-bottom: 16px;
-    margin-left: 8px;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-  }
   button.send {
     width: 83px;
     background-color: #00a991;
@@ -63,7 +53,7 @@ const style = css`
   }
   div.input {
     display: inline-block;
-    width: 300px;
+    width: 100%;
     height: 44px;
     margin-top: 4px;
   }
@@ -79,6 +69,7 @@ const style = css`
     line-height: 1.43;
     text-align: center;
     border: none;
+    margin-left: 8px;
   }
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     .ForgottenPassword {
@@ -95,12 +86,23 @@ const style = css`
     form {
       margin: 28px 16px 0px 16px;
     }
-    div.input {
+    label {
+      display: block;
       width: 100%;
+      height: 44px;
+      margin-bottom: 33px;
     }
     form button {
-      margin-top: 8px;
       width: 100%;
+      border-radius: 3px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      display: block;
+      width: 100%;
+    }
+    button.send {
+      width: 288px;
+      height: 44px;
     }
   }
 `;
@@ -166,7 +168,7 @@ class ForgottenPasword extends React.Component<Props, State> {
               />
             </div>
           </label>
-          <button>Send</button>
+          <button className="send">Send</button>
         </form>
         <style jsx>{style}</style>
       </div>
