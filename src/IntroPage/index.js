@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Link } from 'react-router-dom';
 import { OpenInNew } from '@kiwicom/orbit-components/lib/icons';
 import { Typography } from '@kiwicom/orbit-components';
 import { getSessionToken } from '../helpers/Auth';
@@ -119,24 +118,20 @@ const Intro = (props: Props) => (
     </div>
     <div className="buttons">
       <div className="primary">
-        <Link to={routeDefinitions.SIGN_IN}>
-          <button
-            onClick={() =>
-              getSessionToken()
-                ? props.history.push(routeDefinitions.CONTENT)
-                : props.history.push(routeDefinitions.SIGN_IN)
-            }
-          >
-            I have an existing booking
-          </button>
-        </Link>
+        <button
+          onClick={() =>
+            getSessionToken()
+              ? props.history.push(routeDefinitions.CONTENT)
+              : props.history.push(routeDefinitions.SIGN_IN)
+          }
+        >
+          I have an existing booking
+        </button>
       </div>
       <div className="secondary">
-        <Link to={routeDefinitions.STATIC_FAQ}>
-          <button onClick={() => props.history.push(routeDefinitions.CONTENT)}>
-            I don&apos;t have a booking
-          </button>
-        </Link>
+        <button onClick={() => props.history.push(routeDefinitions.NO_BOOKING)}>
+          I don&apos;t have a booking
+        </button>
       </div>
     </div>
     <hr className="hr-line" />
