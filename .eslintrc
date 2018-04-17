@@ -59,7 +59,7 @@
         ]
       }
     ],
-    "import/order": ["warn",
+    "import/order": ["error",
       {
         "groups": [
           [
