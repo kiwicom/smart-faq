@@ -70,7 +70,7 @@ const style = css`
   }
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     .KiwiLogin {
-      width: auto;
+      width: 100%;
       padding-top: 64px;
       padding-left: 0px;
       padding-right: 0px;
@@ -97,6 +97,9 @@ const style = css`
     }
     .singIn {
       float: none;
+      width: 100%;
+    }
+    label {
       width: 100%;
     }
   }
