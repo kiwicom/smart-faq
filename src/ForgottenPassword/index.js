@@ -34,16 +34,6 @@ const style = css`
     margin-bottom: 8px;
     line-height: 1.2;
   }
-  button {
-    width: 212px;
-    height: 44px;
-    border-radius: 3px;
-    margin-bottom: 16px;
-    margin-left: 8px;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-  }
   button.send {
     width: 83px;
     background-color: #00a991;
@@ -63,9 +53,57 @@ const style = css`
   }
   div.input {
     display: inline-block;
-    width: 300px;
+    width: 100%;
     height: 44px;
     margin-top: 4px;
+  }
+  form button {
+    width: 83px;
+    height: 44px;
+    border-radius: 3px;
+    background-color: #00a991;
+    font-size: 14px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 1.43;
+    text-align: center;
+    border: none;
+    margin-left: 8px;
+  }
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .ForgottenPassword {
+      width: 100%;
+      padding-top: 64px;
+    }
+    div.picture {
+      display: none;
+    }
+    div.main {
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+    form {
+      margin: 28px 16px 0px 16px;
+    }
+    label {
+      display: block;
+      width: 100%;
+      height: 44px;
+      margin-bottom: 33px;
+    }
+    form button {
+      width: 100%;
+      border-radius: 3px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      display: block;
+      width: 100%;
+    }
+    button.send {
+      width: 288px;
+      height: 44px;
+    }
   }
 `;
 
@@ -126,6 +164,7 @@ class ForgottenPasword extends React.Component<Props, State> {
                 value={this.state.email}
                 onChange={this.handleChangeEmail}
                 placeholder="e.g. your@email.com"
+                required
               />
             </div>
           </label>

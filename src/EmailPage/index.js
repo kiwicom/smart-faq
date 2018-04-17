@@ -7,6 +7,9 @@ import image from '../../static/mailbox@3x.png';
 import CloseButton from './../common/CloseButton';
 
 const style = css`
+  div.mobile-header {
+    display: none;
+  }
   .Email {
     width: 480px;
     padding-top: 240px;
@@ -33,6 +36,35 @@ const style = css`
     font-weight: bold;
     color: #171b1e;
   }
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .Email {
+      width: 100%;
+      padding-top: 42px;
+    }
+    div.mobile-header {
+      display: block;
+      width: 100%;
+      height: 66px;
+      background-color: #ffffff;
+      box-shadow: inset 0 -1px 0 0 #e8edf1;
+      padding-top: 21px;
+    }
+    div.help-title {
+      height: 24px;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 1.2;
+      text-align: center;
+      color: #171b1e;
+    }
+    div.text {
+      margin: 40px 16px 0px 16px;
+    }
+    div.picture {
+      text-align: center;
+      margin: 0;
+    }
+  }
 `;
 
 type Props = {
@@ -48,20 +80,25 @@ type Props = {
 const CheckEmail = (props: Props) => {
   const email = props.location.state.email || 'example@gmail.com';
   return (
-    <div className="Email">
-      <CloseButton />
-      <div className="picture">
-        <img alt="Email" src={image} />
+    <React.Fragment>
+      <div className="mobile-header">
+        <div className="help-title">Help</div>
       </div>
-      <div className="text">
-        <p className="title">Check your e-mail inbox</p>
-        <Typography size="large" type="secondary">
-          {props.text}
-          <span className="email-text">{` ${email}`}</span>.
-        </Typography>
+      <div className="Email">
+        <CloseButton />
+        <div className="picture">
+          <img alt="Email" src={image} />
+        </div>
+        <div className="text">
+          <p className="title">Check your e-mail inbox</p>
+          <Typography size="large" type="secondary">
+            {props.text}
+            <span className="email-text">{` ${email}`}</span>.
+          </Typography>
+        </div>
       </div>
       <style jsx>{style}</style>
-    </div>
+    </React.Fragment>
   );
 };
 

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
-import { Typography, Button } from '@kiwicom/orbit-components';
+import { Typography } from '@kiwicom/orbit-components';
 import CloseButton from './../common/CloseButton';
 import BackButton from '../common/BackButton';
 import Input from '../common/Input';
@@ -15,18 +15,16 @@ const style = css`
   .KiwiLogin {
     width: 480px;
     padding-top: 128px;
+    padding-left: 40px;
+    padding-right: 40px;
   }
   div.picture img {
     width: 203px;
     height: 156px;
   }
   div.picture {
-    margin-left: 150px;
+    text-align: center;
     margin-bottom: 68px;
-  }
-  div.main {
-    margin-left: 40px;
-    margin-right: 40px;
   }
   p.title {
     color: #171b1e;
@@ -41,6 +39,16 @@ const style = css`
   }
   .singIn {
     float: right;
+  }
+  .singIn button {
+    width: 100px;
+    height: 44px;
+    border-radius: 3px;
+    background-color: #00a991;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    border: none;
   }
   form {
     margin-top: 32.8px;
@@ -59,6 +67,41 @@ const style = css`
     text-align: left;
     color: #46515e;
     display: inline-table;
+  }
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .KiwiLogin {
+      width: 100%;
+      padding-top: 64px;
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+    div.picture {
+      display: none;
+    }
+    div.input {
+      width: 100%;
+      margin-bottom: 26px;
+    }
+    div.main {
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+    div.forgot-password {
+      text-align: center;
+      display: block;
+      margin-bottom: 20px;
+      margin-top: 0px;
+    }
+    .singIn button {
+      width: 100%;
+    }
+    .singIn {
+      float: none;
+      width: 100%;
+    }
+    label {
+      width: 100%;
+    }
   }
 `;
 type Props = {|
@@ -122,19 +165,16 @@ class KiwiLogin extends React.Component<Props, State> {
               </div>
             </label>
           </form>
-          <Link to={routeDefinitions.FORGOTTEN_PASSWORD}>
+          <Link
+            to={routeDefinitions.FORGOTTEN_PASSWORD}
+            style={{ textDecoration: 'none' }}
+          >
             <div className="forgot-password">
               <Typography type="active">Forgot your password?</Typography>
             </div>
           </Link>
           <span className="singIn">
-            <Button
-              isDisabled={false}
-              onClick={this.handleSignIn}
-              size="large"
-              title="Sign In"
-              type="primary"
-            />
+            <button onClick={this.handleSignIn}>Sign In</button>
           </span>
         </div>
         <style jsx>{style}</style>

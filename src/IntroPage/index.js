@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
+import { Link } from 'react-router-dom';
 import { OpenInNew } from '@kiwicom/orbit-components/lib/icons';
-import { Typography, Button } from '@kiwicom/orbit-components';
+import { Typography } from '@kiwicom/orbit-components';
 import { getSessionToken } from '../helpers/Auth';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import routeDefinitions from '../routeDefinitions';
@@ -21,10 +22,6 @@ const style = css`
   div.text {
     margin-left: 64px;
   }
-  div.buttons {
-    margin-left: 0px 64px;
-    margin-top: 56.4px;
-  }
   div.picture img {
     width: 203px;
     height: 156px;
@@ -35,19 +32,31 @@ const style = css`
     font-weight: bold;
     margin-bottom: 6px;
   }
-  div.buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 64px;
-    margin-right: auto;
-    width: auto;
+  button {
+    cursor: pointer;
+    height: 44px;
+    border-radius: 3px;
+    border: 0;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.43;
+    padding: 12px 16px;
   }
-  div.buttons .button:nth-child(1) {
+  .primary button {
+    background-color: #00a991;
+    color: #ffffff;
     margin-bottom: 16px;
   }
+  .secondary button {
+    background-color: #e8edf1;
+    color: #46515e;
+  }
+  div.buttons {
+    margin-left: 64px;
+    margin-top: 52.4px;
+  }
   hr.hr-line {
-    margin: 56px 64px 22px 64px;
+    margin: 36px 64px 22px 64px;
     height: 0;
     border: 0;
     border-top: 1px solid #e8edf1;
@@ -60,6 +69,33 @@ const style = css`
     display: inline-block;
     vertical-align: -3px;
     margin-left: 4px;
+  }
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .Intro {
+      width: 100%;
+      padding-top: 75px;
+    }
+    div.picture {
+      text-align: center;
+      margin: 0px 0px 40px 0px;
+    }
+    hr.hr-line {
+      margin: 28px 16px 22px 16px;
+    }
+    div.text {
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+    div.buttons {
+      margin: 28px 16px 24px 16px;
+    }
+    button {
+      width: 100%;
+    }
+    div.faq-link {
+      text-align: center;
+      margin: 0;
+    }
   }
 `;
 
@@ -75,36 +111,30 @@ const Intro = (props: Props) => (
     <div className="picture">
       <img alt="Help" src={image} />
     </div>
-    <div className="content">
-      <div className="text">
-        <p className="title">Need help?</p>
-        <Typography type="secondary">
-          {"We're here for you. First, let's narrow down your request."}
-        </Typography>
-      </div>
-      <div className="buttons">
-        <div className="button">
-          <Button
-            isDisabled={false}
+    <div className="text">
+      <p className="title">Need help?</p>
+      <Typography type="secondary">
+        {"We're here for you. First, let's narrow down your request."}
+      </Typography>
+    </div>
+    <div className="buttons">
+      <div className="primary">
+        <Link to={routeDefinitions.SIGN_IN}>
+          <button
             onClick={() =>
               getSessionToken()
                 ? props.history.push(routeDefinitions.UPCOMING_BOOKING)
                 : props.history.push(routeDefinitions.SIGN_IN)
             }
-            size="large"
-            title="I have an existing booking"
-            type="primary"
-          />
-        </div>
-        <div className="button">
-          <Button
-            isDisabled={false}
-            onClick={() => props.history.push(routeDefinitions.STATIC_FAQ)}
-            size="large"
-            title="I don't have a booking"
-            type="secondary"
-          />
-        </div>
+          >
+            I have an existing booking
+          </button>
+        </Link>
+      </div>
+      <div className="secondary">
+        <Link to={routeDefinitions.STATIC_FAQ}>
+          <button>I don&apos;t have a booking</button>
+        </Link>
       </div>
     </div>
     <hr className="hr-line" />
