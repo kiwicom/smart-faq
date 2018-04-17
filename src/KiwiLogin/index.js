@@ -37,7 +37,7 @@ const style = css`
     margin-top: 12px;
     display: inline-block;
   }
-  .singIn {
+  .signIn {
     float: right;
   }
   .singIn button {
@@ -106,6 +106,9 @@ const style = css`
 `;
 type Props = {|
   doSignIn: Function,
+  history: {
+    push: string => void,
+  },
 |};
 
 type State = {|
@@ -124,6 +127,7 @@ class KiwiLogin extends React.Component<Props, State> {
   };
   handleSignIn = () => {
     this.props.doSignIn(this.state.email, this.state.password);
+    this.props.history.push(routeDefinitions.CONTENT);
   };
   render() {
     return (

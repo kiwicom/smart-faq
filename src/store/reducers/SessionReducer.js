@@ -1,5 +1,5 @@
 // @flow
-import { SIGN_IN } from '../actions/SessionActions';
+import { SIGN_OUT, SIGN_IN } from '../actions/SessionActions';
 
 export type State = {
   token: string,
@@ -7,7 +7,7 @@ export type State = {
 
 type Action = {
   type: string,
-  token: string,
+  token?: string,
 };
 
 const initialState = {
@@ -21,6 +21,8 @@ export default function sessionReducer(
   switch (action.type) {
     case SIGN_IN:
       return { ...state, token: action.token };
+    case SIGN_OUT:
+      return { ...state, token: '' };
     default:
       return state;
   }

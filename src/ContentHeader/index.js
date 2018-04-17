@@ -47,6 +47,22 @@ const loggedInStyle = css`
   }
 `;
 
+const loggedOutStyle = css`
+  div.help-header {
+    font-size: 28px;
+    font-weight: bold;
+    color: #171b1e;
+  }
+  div.logged-out {
+    display: flex;
+    padding: 16px;
+    align-items: center;
+  }
+  div.signin-or-back {
+    margin-right: 149px;
+  }
+`;
+
 type Props = {
   token?: string,
 };
@@ -87,12 +103,24 @@ const renderLoggedIn = () => {
   );
 };
 const renderLoggedOut = () => {
-  return <div> I am logged OUT</div>;
+  return (
+    <div className="logged-out">
+      <div className="signin-or-back">
+        <Link to={routeDefinitions.SIGN_IN} style={{ textDecoration: 'none' }}>
+          <Typography type="attention" variant="normal">
+            Sign In
+          </Typography>
+        </Link>
+      </div>
+      <div className="help-header">Help</div>
+      <style jsx>{loggedOutStyle}</style>
+    </div>
+  );
 };
 const ContentHeader = (props: Props) => {
   return (
     <div className="ContentHeader">
-      <CloseButton />
+      <CloseButton height="24" />
       {props.token ? renderLoggedIn() : renderLoggedOut()}
       <style jsx>{style}</style>
     </div>

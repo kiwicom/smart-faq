@@ -4,6 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import css from 'styled-jsx/css';
 import { Magnify } from '@kiwicom/orbit-components/lib/icons';
+import { withRouter } from 'react-router-dom';
 
 import Input from './../common/Input';
 import FAQCategoryList from './FAQCategoryList';
@@ -74,4 +75,4 @@ class StaticFAQ extends React.Component<Props, State> {
   }
 }
 
-export default StaticFAQ;
+export default withRouter(StaticFAQ);

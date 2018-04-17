@@ -15,6 +15,7 @@ exports[`withAuth loads session from Cookies 1`] = `
   <WithAuth
     doSaveToken={[Function]}
     doSignIn={[Function]}
+    doSignOut={[Function]}
     store={
       Object {
         "dispatch": [Function],
@@ -49,6 +50,7 @@ exports[`withAuth loads session from Cookies 1`] = `
     <Component
       doSaveToken={[Function]}
       doSignIn={[Function]}
+      doSignOut={[Function]}
       store={
         Object {
           "dispatch": [Function],
@@ -103,6 +105,7 @@ exports[`withAuth should match snapshot 1`] = `
   <WithAuth
     doSaveToken={[Function]}
     doSignIn={[Function]}
+    doSignOut={[Function]}
     store={
       Object {
         "dispatch": [Function],
@@ -137,6 +140,7 @@ exports[`withAuth should match snapshot 1`] = `
     <Component
       doSaveToken={[Function]}
       doSignIn={[Function]}
+      doSignOut={[Function]}
       store={
         Object {
           "dispatch": [Function],

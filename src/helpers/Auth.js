@@ -15,6 +15,15 @@ export async function doLogin(email: string, password: string) {
     return '';
   }
 }
+export function doLogout() {
+  try {
+    Cookies.remove(COOKIE_LOGIN_KEY);
+    return true;
+  } catch (error) {
+    console.error(error.message); //eslint-disable-line
+    return '';
+  }
+}
 
 export async function socialLogin(provider: string) {
   const location = window.location.href.replace(

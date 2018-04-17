@@ -11,5 +11,6 @@ export default {
   KIWI_LOGIN: '/kiwi-login',
   FORGOTTEN_PASSWORD: '/forgotten-password',
   UPCOMING_BOOKING: '/upcoming-booking',
+  NO_BOOKING: '/no-booking',
   CONTENT: '/content',
 };
