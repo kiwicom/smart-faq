@@ -37,7 +37,7 @@ const style = css`
     margin-top: 12px;
     display: inline-block;
   }
-  .signIn {
+  .singIn {
     float: right;
   }
   .singIn button {
