@@ -8,6 +8,7 @@ import initTranslation from './initTranslation';
 import store from './store';
 import Routes from './Routes';
 import { CloseContext } from './common/CloseButton';
+import { LanguageContext } from './common/Language';
 
 const style = css`
   * {
@@ -36,11 +37,11 @@ const style = css`
   }
 `;
 
-type Props = {
+type Props = {|
   language: string,
   locale: Object,
   onClose: () => void,
-};
+|};
 
 class App extends React.Component<Props> {
   constructor(props: Props) {
@@ -60,9 +61,11 @@ class App extends React.Component<Props> {
         />
         <I18nextProvider i18n={this.i18n}>
           <Provider store={store}>
-            <CloseContext.Provider value={this.props.onClose}>
-              <Routes />
-            </CloseContext.Provider>
+            <LanguageContext.Provider value={this.props.language}>
+              <CloseContext.Provider value={this.props.onClose}>
+                <Routes />
+              </CloseContext.Provider>
+            </LanguageContext.Provider>
           </Provider>
         </I18nextProvider>
         <style jsx global>

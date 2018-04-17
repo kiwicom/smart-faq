@@ -4,6 +4,7 @@ import { Route, Switch, MemoryRouter } from 'react-router-dom';
 import * as React from 'react';
 import Intro from './IntroPage';
 import StaticFAQ from './StaticFAQ';
+import FAQArticleDetail from './StaticFAQ/FAQArticleDetail';
 import SignIn from './SignInPage';
 import KiwiLogin from './KiwiLogin';
 import UpcomingBooking from './UpcomingBooking';
@@ -21,6 +22,11 @@ const Routes = () => {
           exact
           path={`${routeDefinitions.STATIC_FAQ}/:categoryId?`}
           component={StaticFAQ}
+        />
+        <Route
+          exact
+          path={`${routeDefinitions.FAQ_ARTICLE}/:articleId`}
+          component={FAQArticleDetail}
         />
         <Route exact path={routeDefinitions.KIWI_LOGIN} component={KiwiLogin} />
         <Route
