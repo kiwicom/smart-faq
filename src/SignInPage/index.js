@@ -39,6 +39,9 @@ const style = css`
     font-size: 14px;
     line-height: 1.43;
     color: #46515e;
+    display: inline-block;
+    width: 309px;
+    height: 44px;
   }
   form {
     margin: 0px 40px 0px 40px;
@@ -48,7 +51,6 @@ const style = css`
     width: 309px;
     height: 44px;
     margin-top: 4px;
-    margin-right: 8px;
   }
   form button {
     width: 83px;
@@ -70,11 +72,13 @@ const style = css`
     margin-bottom: 16px;
     border: none;
     cursor: pointer;
+    display: inline-block;
   }
   button.get-help{
     width: 83px;
     background-color: #00a991;
     border: 0;
+    margin-left: 8px;
   }
   button.google {
     background-color: #d24318;
