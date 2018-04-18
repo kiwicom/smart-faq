@@ -38,7 +38,7 @@ type AllFAQsQueryRendererParams = {|
 
 type Props = {|
   search: string,
-  language?: string,
+  language: string,
 |};
 
 const queryAllFAQs = graphql`

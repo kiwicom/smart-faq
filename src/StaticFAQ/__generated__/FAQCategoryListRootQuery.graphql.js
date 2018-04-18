@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 135167955226ea839f759915e4d79436
+ * @relayHash c6d6bd3c9a88baa05d618ca09b692c26
  */
 
 /* eslint-disable */
@@ -10,7 +10,10 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type FAQCategory_category$ref = any;
-export type FAQCategoryListRootQueryVariables = {| |};
+export type Language = ('ar' | 'bg' | 'ca' | 'cs' | 'da' | 'de' | 'el' | 'en' | 'engb' | 'enus' | 'es' | 'esar' | 'et' | 'fi' | 'fr' | 'he' | 'hr' | 'hu' | 'id' | 'is' | 'it' | 'ja' | 'ko' | 'lt' | 'lv' | 'ms' | 'nl' | 'no' | 'pl' | 'pt' | 'ptbr' | 'ptpt' | 'ro' | 'ru' | 'sk' | 'sl' | 'sr' | 'sv' | 'th' | 'tl' | 'tr' | 'uk' | 'vi' | 'zh' | 'zhcn' | 'zhtw' | '%future added value');
+export type FAQCategoryListRootQueryVariables = {|
+  language?: ?Language,
+|};
 export type FAQCategoryListRootQueryResponse = {|
   +allFAQCategories: ?{|
     +edges: ?$ReadOnlyArray<?{|
@@ -25,8 +28,10 @@ export type FAQCategoryListRootQueryResponse = {|
 
 
 /*
-query FAQCategoryListRootQuery {
-  allFAQCategories(language: en) {
+query FAQCategoryListRootQuery(
+  $language: Language
+) {
+  allFAQCategories(language: $language) {
     edges {
       node {
         id
@@ -45,13 +50,21 @@ fragment FAQCategory_category on FAQCategory {
 const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
-    "kind": "Literal",
+    "kind": "LocalArgument",
     "name": "language",
-    "value": "en",
+    "type": "Language",
+    "defaultValue": null
+  }
+],
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "language",
+    "variableName": "language",
     "type": "Language"
   }
 ],
-v1 = {
+v2 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
@@ -63,21 +76,21 @@ return {
   "operationKind": "query",
   "name": "FAQCategoryListRootQuery",
   "id": null,
-  "text": "query FAQCategoryListRootQuery {\n  allFAQCategories(language: en) {\n    edges {\n      node {\n        id\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n}\n",
+  "text": "query FAQCategoryListRootQuery(\n  $language: Language\n) {\n  allFAQCategories(language: $language) {\n    edges {\n      node {\n        id\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "FAQCategoryListRootQuery",
     "type": "RootQuery",
     "metadata": null,
-    "argumentDefinitions": [],
+    "argumentDefinitions": v0,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "allFAQCategories",
-        "storageKey": "allFAQCategories(language:\"en\")",
-        "args": v0,
+        "storageKey": null,
+        "args": v1,
         "concreteType": "FAQCategoryConnection",
         "plural": false,
         "selections": [
@@ -99,7 +112,7 @@ return {
                 "concreteType": "FAQCategory",
                 "plural": false,
                 "selections": [
-                  v1,
+                  v2,
                   {
                     "kind": "FragmentSpread",
                     "name": "FAQCategory_category",
@@ -116,14 +129,14 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "FAQCategoryListRootQuery",
-    "argumentDefinitions": [],
+    "argumentDefinitions": v0,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "allFAQCategories",
-        "storageKey": "allFAQCategories(language:\"en\")",
-        "args": v0,
+        "storageKey": null,
+        "args": v1,
         "concreteType": "FAQCategoryConnection",
         "plural": false,
         "selections": [
@@ -145,7 +158,7 @@ return {
                 "concreteType": "FAQCategory",
                 "plural": false,
                 "selections": [
-                  v1,
+                  v2,
                   {
                     "kind": "ScalarField",
                     "alias": null,
@@ -163,5 +176,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '28df0b5abaffe8be6871bbc2b2d1eba9';
+(node/*: any*/).hash = '07c9a2e8c96e5d562d371c93beaec1f9';
 module.exports = node;
