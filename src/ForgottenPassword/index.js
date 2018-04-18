@@ -70,6 +70,7 @@ const style = css`
     text-align: center;
     border: none;
     margin-left: 8px;
+    display: inline-block;
   }
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     .ForgottenPassword {
