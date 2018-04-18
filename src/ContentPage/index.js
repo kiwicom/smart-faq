@@ -45,6 +45,22 @@ const BookingRoutes = (
     </Switch>
   </MemoryRouter>
 );
+const FAQRoutes = (
+  <MemoryRouter initialEntries={[routeDefinitions.STATIC_FAQ]} initialIndex={0}>
+    <Switch>
+      <Route
+        exact
+        path={`${routeDefinitions.STATIC_FAQ}/:categoryId?`}
+        component={StaticFAQ}
+      />
+      <Route
+        exact
+        path={`${routeDefinitions.FAQ_ARTICLE}/:articleId`}
+        component={FAQArticleDetail}
+      />
+    </Switch>
+  </MemoryRouter>
+);
 const ContentPage = () => {
   return (
     <div className="ContentPage">
@@ -53,25 +69,7 @@ const ContentPage = () => {
       </div>
       <div className="Body">
         <div className="BookingInfo">{BookingRoutes}</div>
-        <div className="FAQ">
-          <MemoryRouter
-            initialEntries={[routeDefinitions.STATIC_FAQ]}
-            initialIndex={0}
-          >
-            <Switch>
-              <Route
-                exact
-                path={`${routeDefinitions.STATIC_FAQ}/:categoryId?`}
-                component={StaticFAQ}
-              />
-              <Route
-                exact
-                path={`${routeDefinitions.FAQ_ARTICLE}/:articleId`}
-                component={FAQArticleDetail}
-              />
-            </Switch>
-          </MemoryRouter>
-        </div>
+        <div className="FAQ">{FAQRoutes}</div>
       </div>
       <style jsx global>
         {style}
