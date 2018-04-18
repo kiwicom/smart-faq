@@ -14,9 +14,9 @@ export const removeToken = () => ({
 
 export const signIn = (email: string, password: string) => {
   return (dispatch: Function) => {
-    return doLogin(email, password).then((token: string) =>
-      dispatch(saveToken(token)),
-    );
+    return doLogin(email, password)
+      .then((token: string) => dispatch(saveToken(token)))
+      .catch(e => Promise.reject(e));
   };
 };
 

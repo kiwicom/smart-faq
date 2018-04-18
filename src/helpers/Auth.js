@@ -12,7 +12,7 @@ export async function doLogin(email: string, password: string) {
     return token;
   } catch (error) {
     console.error(error.message); //eslint-disable-line
-    return '';
+    throw new Error(error.message);
   }
 }
 export function doLogout() {

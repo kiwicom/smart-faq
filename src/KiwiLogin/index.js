@@ -125,9 +125,13 @@ class KiwiLogin extends React.Component<Props, State> {
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  handleSignIn = () => {
-    this.props.doSignIn(this.state.email, this.state.password);
-    this.props.history.push(routeDefinitions.CONTENT);
+  handleSignIn = async () => {
+    try {
+      await this.props.doSignIn(this.state.email, this.state.password);
+      this.props.history.push(routeDefinitions.CONTENT);
+    } catch (e) {
+      console.error('Bad SignIn');//eslint-disable-line
+    }
   };
   render() {
     return (
