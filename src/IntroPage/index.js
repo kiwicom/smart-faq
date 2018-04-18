@@ -104,54 +104,61 @@ type Props = {
   },
 };
 
-const Intro = (props: Props) => (
-  <div className="Intro">
-    <CloseButton />
-    <div className="picture">
-      <img alt="Help" src={image} />
-    </div>
-    <div className="text">
-      <p className="title">Need help?</p>
-      <Typography type="secondary">
-        {"We're here for you. First, let's narrow down your request."}
-      </Typography>
-    </div>
-    <div className="buttons">
-      <div className="primary">
-        <button
-          onClick={() =>
-            getSessionToken()
-              ? props.history.push(routeDefinitions.CONTENT)
-              : props.history.push(routeDefinitions.SIGN_IN)
-          }
-        >
-          I have an existing booking
-        </button>
-      </div>
-      <div className="secondary">
-        <button onClick={() => props.history.push(routeDefinitions.NO_BOOKING)}>
-          I don&apos;t have a booking
-        </button>
-      </div>
-    </div>
-    <hr className="hr-line" />
-    <div className="faq-link">
-      <Typography type="attention" variant="bold">
-        Full FAQ site
-      </Typography>
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.kiwi.com/helpcenter/"
-        className="inline-icon"
-      >
-        <div className="open-icon">
-          <OpenInNew fill="#171b1e" height="16" />
+//const Intro = (props: Props) => (
+class Intro extends React.Component<Props> {
+  existingBookingRoute = () => {
+    getSessionToken()
+      ? this.props.history.push(routeDefinitions.CONTENT)
+      : this.props.history.push(routeDefinitions.SIGN_IN);
+  };
+  noBookingRoute = () => {
+    this.props.history.push(routeDefinitions.NO_BOOKING);
+  };
+  render() {
+    return (
+      <div className="Intro">
+        <CloseButton />
+        <div className="picture">
+          <img alt="Help" src={image} />
         </div>
-      </a>
-    </div>
-    <style jsx>{style}</style>
-  </div>
-);
+        <div className="text">
+          <p className="title">Need help?</p>
+          <Typography type="secondary">
+            {"We're here for you. First, let's narrow down your request."}
+          </Typography>
+        </div>
+        <div className="buttons">
+          <div className="primary">
+            <button onClick={this.existingBookingRoute}>
+              I have an existing booking
+            </button>
+          </div>
+          <div className="secondary">
+            <button onClick={this.noBookingRoute}>
+              I don&apos;t have a booking
+            </button>
+          </div>
+        </div>
+        <hr className="hr-line" />
+        <div className="faq-link">
+          <Typography type="attention" variant="bold">
+            Full FAQ site
+          </Typography>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.kiwi.com/helpcenter/"
+            className="inline-icon"
+          >
+            <div className="open-icon">
+              <OpenInNew fill="#171b1e" height="16" />
+            </div>
+          </a>
+        </div>
+        <style jsx>{style}</style>
+      </div>
+    );
+  }
+}
 
 export default Intro;

@@ -5,7 +5,7 @@ import routeDefinitions from '../routeDefinitions';
 import withAuth from '../HOC/withAuth';
 
 type Props = {
-  doSignOut: Function,
+  doSignOut: () => void,
   history: {
     push: string => void,
   },

@@ -1,15 +1,12 @@
 // @flow
 import { doLogin, doLogout } from '../../helpers/Auth';
 
-export const SIGN_IN = 'session/signin';
-export const SIGN_OUT = 'session/signout';
-
 export const saveToken = (token: string) => ({
-  type: SIGN_IN,
+  type: 'session/signin',
   token,
 });
 export const removeToken = () => ({
-  type: SIGN_OUT,
+  type: 'session/signout',
 });
 
 export const signIn = (email: string, password: string) => {
