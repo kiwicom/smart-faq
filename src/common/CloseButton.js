@@ -34,7 +34,6 @@ const CloseIcon = ({ onClick }: Props) => (
   </div>
 );
 
-// $FlowExpectedError: will be fixed with new flow releases
 export const CloseContext = React.createContext(() => {});
 
 const CloseButton = () => (
