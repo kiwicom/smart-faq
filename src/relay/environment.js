@@ -14,11 +14,16 @@ require('isomorphic-fetch');
 const uri = 'https://graphql.kiwi.com';
 const cache = new QueryResponseCache({ size: 200, ttl: 30 * 60 * 1000 });
 
+const shouldRouteCache = (queryName: string) => queryName.startsWith('FAQ');
+
 const buildFetchQuery = (token: string = '') => {
   return function fetchQuery(operation, variables) {
-    const cachedData = cache.get(operation.text, variables);
-    if (cachedData && operation.operationKind === 'query') {
-      return cachedData;
+    const routeCached = shouldRouteCache(operation.name);
+    if (routeCached) {
+      const cachedData = cache.get(operation.text, variables);
+      if (cachedData && operation.operationKind === 'query') {
+        return cachedData;
+      }
     }
     return fetch(process.env.GRAPHQL_URI || uri, {
       method: 'POST',
@@ -32,7 +37,7 @@ const buildFetchQuery = (token: string = '') => {
       }),
     }).then(response => {
       const data = response.json();
-      cache.set(operation.text, variables, data);
+      routeCached && cache.set(operation.text, variables, data);
       return data;
     });
   };
