@@ -3,6 +3,7 @@
 export default {
   HOME: '/',
   SIGN_IN: '/sign-in',
+  SIGN_OUT: '/sign-out',
   CHECK_MAGIC_LINK: '/check-magic-link',
   CHECK_RECOVERY_LINK: '/check-recovery-link',
   STATIC_FAQ: '/static-faq',
@@ -10,4 +11,6 @@ export default {
   KIWI_LOGIN: '/kiwi-login',
   FORGOTTEN_PASSWORD: '/forgotten-password',
   UPCOMING_BOOKING: '/upcoming-booking',
+  NO_BOOKING: '/no-booking',
+  CONTENT: '/content',
 };

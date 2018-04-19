@@ -3,11 +3,11 @@
 import { Route, Switch, MemoryRouter } from 'react-router-dom';
 import * as React from 'react';
 import Intro from './IntroPage';
-import StaticFAQ from './StaticFAQ';
-import FAQArticleDetail from './StaticFAQ/FAQArticleDetail';
+import ContentPage from './ContentPage';
+import NoBookingPage from './NoBookingPage';
 import SignIn from './SignInPage';
+import SignOut from './SignOutPage';
 import KiwiLogin from './KiwiLogin';
-import UpcomingBooking from './UpcomingBooking';
 import ForgottenPassword from './ForgottenPassword';
 import { CheckRecoveryLink, CheckMagicLink } from './EmailPage';
 import routeDefinitions from './routeDefinitions';
@@ -18,16 +18,7 @@ const Routes = () => {
       <Switch>
         <Route exact path={routeDefinitions.HOME} component={Intro} />
         <Route exact path={routeDefinitions.SIGN_IN} component={SignIn} />
-        <Route
-          exact
-          path={`${routeDefinitions.STATIC_FAQ}/:categoryId?`}
-          component={StaticFAQ}
-        />
-        <Route
-          exact
-          path={`${routeDefinitions.FAQ_ARTICLE}/:articleId`}
-          component={FAQArticleDetail}
-        />
+        <Route exact path={routeDefinitions.SIGN_OUT} component={SignOut} />
         <Route exact path={routeDefinitions.KIWI_LOGIN} component={KiwiLogin} />
         <Route
           exact
@@ -44,10 +35,11 @@ const Routes = () => {
           path={routeDefinitions.FORGOTTEN_PASSWORD}
           component={ForgottenPassword}
         />
+        <Route exact path={routeDefinitions.CONTENT} component={ContentPage} />
         <Route
           exact
-          path={routeDefinitions.UPCOMING_BOOKING}
-          component={UpcomingBooking}
+          path={routeDefinitions.NO_BOOKING}
+          component={NoBookingPage}
         />
       </Switch>
     </MemoryRouter>

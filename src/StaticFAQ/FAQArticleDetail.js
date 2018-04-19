@@ -4,7 +4,6 @@ import * as React from 'react';
 import idx from 'idx';
 import { QueryRenderer, graphql } from 'react-relay';
 
-import Header from './Header';
 import Loader from '../common/Loader';
 import FAQArticleDetailContent from './FAQArticleDetailContent';
 import createEnvironment from '../relay/environment';
@@ -49,7 +48,6 @@ class FAQArticleDetail extends React.Component<Props> {
 
     return (
       <div className="faq-article-detail">
-        <Header leftButton="Back" />
         <LanguageContext.Consumer>
           {(language: string) => (
             <QueryRenderer

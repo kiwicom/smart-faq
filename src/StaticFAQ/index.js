@@ -4,9 +4,9 @@ import * as React from 'react';
 import idx from 'idx';
 import css from 'styled-jsx/css';
 import { Magnify } from '@kiwicom/orbit-components/lib/icons';
+import { withRouter } from 'react-router-dom';
 
 import Input from './../common/Input';
-import Header from './Header';
 import FAQCategoryList from './FAQCategoryList';
 import SearchAllFAQs from './SearchAllFAQs';
 
@@ -61,7 +61,6 @@ class StaticFAQ extends React.Component<Props, State> {
 
     return (
       <div className="static-faq">
-        <Header leftButton={categoryId ? 'Back' : 'SignIn'} />
         <div className="static-faq-body">
           {!categoryId && this.renderInput(isSearching)}
           {isSearching ? (
@@ -76,4 +75,4 @@ class StaticFAQ extends React.Component<Props, State> {
   }
 }
 
-export default StaticFAQ;
+export default withRouter(StaticFAQ);

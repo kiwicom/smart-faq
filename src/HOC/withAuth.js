@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import type { StoreType } from '../store/reducers';
 import type { State as SessionState } from '../store/reducers/SessionReducer';
 import type { ActionType } from '../store/actions';
-import { saveToken, signIn } from '../store/actions/SessionActions';
+import { saveToken, signIn, signOut } from '../store/actions/SessionActions';
 import { getSessionToken } from '../helpers/Auth';
 
 type Props = {
+  token: string,
   doSignIn: (
     email: string,
     password: string,
@@ -38,6 +39,7 @@ const mapStateToProps = (state: StoreType): SessionState => ({
 const mapDispatchToProps = {
   doSignIn: signIn,
   doSaveToken: saveToken,
+  doSignOut: signOut,
 };
 
 export default withAuth;
