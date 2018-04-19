@@ -18,6 +18,7 @@ import type { FAQCategoryListSubcategoryQueryResponse } from './__generated__/FA
 
 type Props = {|
   categoryId: string | null,
+  language: string,
 |};
 
 type RootQueryRendererParams = {
@@ -31,8 +32,8 @@ type SubcategoryQueryRendererParams = {
 };
 
 const queryRoot = graphql`
-  query FAQCategoryListRootQuery {
-    allFAQCategories(language: en) {
+  query FAQCategoryListRootQuery($language: Language) {
+    allFAQCategories(language: $language) {
       edges {
         node {
           id
@@ -43,8 +44,8 @@ const queryRoot = graphql`
   }
 `;
 const querySubcategory = graphql`
-  query FAQCategoryListSubcategoryQuery($id: ID!) {
-    FAQCategory(id: $id, language: en) {
+  query FAQCategoryListSubcategoryQuery($id: ID!, $language: Language) {
+    FAQCategory(id: $id, language: $language) {
       subcategories {
         id
         ...FAQCategory_category
@@ -123,7 +124,7 @@ class FAQCategoryList extends React.Component<Props> {
   };
 
   render() {
-    const { categoryId } = this.props;
+    const { categoryId, language } = this.props;
 
     if (categoryId) {
       return (
@@ -131,7 +132,7 @@ class FAQCategoryList extends React.Component<Props> {
           environment={createEnvironment()}
           query={querySubcategory}
           render={this.renderSubcategory}
-          variables={{ id: categoryId }}
+          variables={{ id: categoryId, language }}
         />
       );
     }
@@ -141,6 +142,7 @@ class FAQCategoryList extends React.Component<Props> {
         environment={createEnvironment()}
         query={queryRoot}
         render={this.renderRootCategory}
+        variables={{ language }}
       />
     );
   }
