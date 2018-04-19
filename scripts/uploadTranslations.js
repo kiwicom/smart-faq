@@ -2,6 +2,7 @@ require('dotenv').config();
 const fs = require('fs');
 const request = require('request-promise-native');
 const argv = require('minimist')(process.argv.slice(2));
+
 const languages = require('../i18n/languages');
 
 const prepareRequest = (language, translationOpts) => {

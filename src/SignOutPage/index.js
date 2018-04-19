@@ -1,6 +1,7 @@
 // @flow
 
 import { withRouter } from 'react-router-dom';
+
 import routeDefinitions from '../routeDefinitions';
 import withAuth from '../HOC/withAuth';
 

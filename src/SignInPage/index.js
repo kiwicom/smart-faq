@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
+
 import { socialLogin } from '../helpers/Auth';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import chevronRight from '../../static/chevron-right.png';

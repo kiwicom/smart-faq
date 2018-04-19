@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
+
 import type { StoreType } from '../store/reducers';
 import type { State as SessionState } from '../store/reducers/SessionReducer';
 import type { ActionType } from '../store/actions';

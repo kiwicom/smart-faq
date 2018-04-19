@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+
 import cancel from '../../static/cancelx32.png';
 
 type Props = {

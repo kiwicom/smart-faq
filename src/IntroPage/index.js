@@ -4,6 +4,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { OpenInNew } from '@kiwicom/orbit-components/lib/icons';
 import { Typography } from '@kiwicom/orbit-components';
+
 import { getSessionToken } from '../helpers/Auth';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import routeDefinitions from '../routeDefinitions';

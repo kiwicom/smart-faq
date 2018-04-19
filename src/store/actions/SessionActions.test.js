@@ -1,6 +1,7 @@
 // @flow
 
 import Cookies from 'js-cookie';
+
 import { signIn } from './SessionActions';
 import { COOKIE_LOGIN_KEY } from '../../helpers/Auth';
 import store from '../';

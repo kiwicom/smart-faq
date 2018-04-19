@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { mount } from 'enzyme';
+
 import store from '../../store';
 import ContentHeader from '../';
 

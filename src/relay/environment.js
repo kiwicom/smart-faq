@@ -1,6 +1,7 @@
 // @noflow
 
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
+
 import { getSessionToken } from '../helpers/Auth';
 
 require('isomorphic-fetch');

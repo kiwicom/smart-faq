@@ -2,6 +2,7 @@
 import * as React from 'react';
 import Cookies from 'js-cookie';
 import { mount } from 'enzyme';
+
 import { COOKIE_LOGIN_KEY } from '../helpers/Auth';
 import store from '../store';
 import withAuth from './withAuth';

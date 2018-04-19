@@ -11,6 +11,7 @@ import {
   Phone,
   Alert,
 } from '@kiwicom/orbit-components/lib/icons';
+
 import {
   calcTimeLeft,
   formatCountDown,

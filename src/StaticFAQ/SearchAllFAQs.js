@@ -4,10 +4,10 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { QueryRenderer, graphql } from 'react-relay';
 import idx from 'idx';
+
 import FAQArticle from './FAQArticle';
 import createEnvironment from '../relay/environment';
 import Loader from '../common/Loader';
-
 import type { SearchAllFAQsQuery } from './__generated__/SearchAllFAQsQuery.graphql';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
 
