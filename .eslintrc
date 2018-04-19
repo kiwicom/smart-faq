@@ -22,19 +22,11 @@
     "react"
   ],
   "rules": {
-    "jsx-a11y/anchor-is-valid": [ "error", {
-      "components": [ "Link" ],
-      "specialLink": [ "to" ]
-    }],
-    "react/jsx-uses-vars": 2,
-    "react/require-default-props": "off", // Optional props can be undefined.
-    "react/jsx-filename-extension": ["error", { "extensions": [".js"] }], // Don't use jsx
-    "react/prefer-stateless-function": 1,
-    "no-use-before-define": 0,
-    "no-shadow": 0,
+    "no-use-before-define": "off",
+    "no-shadow": "off",
     "no-warning-comments": "error",
     "prefer-const": "error",
-    "import/prefer-default-export": 0,
+    "eol-last": "error",
     "prettier/prettier": [
       "error",
       {
@@ -45,10 +37,16 @@
         "trailingComma": "all"
       }
     ],
-    "flowtype/require-valid-file-annotation": [
-      "error",
-      "always"
-    ],
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "to" ]
+    }],
+    "react/jsx-uses-vars": "error",
+    "react/require-default-props": "off", // Optional props can be undefined.
+    "react/jsx-filename-extension": ["error", { "extensions": [".js"] }], // Don't use jsx
+    "react/default-props-match-prop-types": "off",
+    "react/prefer-stateless-function": "warn",
+    "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -61,6 +59,32 @@
         ]
       }
     ],
-    "eol-last": "error"
+    "import/order": ["warn",
+      {
+        "groups": [
+          [
+            "builtin",
+            "external"
+          ],
+          [
+            "parent",
+            "sibling"
+          ],
+          "index"
+        ],
+        "newlines-between": "always"
+      }],
+    "flowtype/require-valid-file-annotation": [
+      "error",
+      "always"
+    ],
+    "flowtype/no-weak-types": [
+      "warn",
+      {
+        "any": false,
+        "Object": true,
+        "Function": true
+      }
+    ]
   }
 }

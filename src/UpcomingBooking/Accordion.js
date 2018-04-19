@@ -7,6 +7,7 @@ import {
   AirplaneRight,
   ChevronDown,
 } from '@kiwicom/orbit-components/lib/icons';
+
 import { formatDate } from '../helpers/utils';
 
 const styles = css`

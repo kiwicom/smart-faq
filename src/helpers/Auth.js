@@ -1,5 +1,6 @@
 // @flow
 import Cookies from 'js-cookie';
+
 import { Requester } from './Requests';
 
 export const COOKIE_LOGIN_KEY = 'ua_session_token';

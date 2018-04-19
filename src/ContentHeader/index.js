@@ -5,6 +5,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
 import { OpenInNew } from '@kiwicom/orbit-components/lib/icons';
+
 import CloseButton from '../common/CloseButton';
 import withAuth from '../HOC/withAuth';
 import routeDefinitions from '../routeDefinitions';

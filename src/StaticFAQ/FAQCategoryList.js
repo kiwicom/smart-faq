@@ -4,13 +4,12 @@ import * as React from 'react';
 import idx from 'idx';
 import { Link } from 'react-router-dom';
 import { graphql, QueryRenderer } from 'react-relay';
-import Loader from '../common/Loader';
 
+import Loader from '../common/Loader';
 import FAQArticle from './FAQArticle';
 import FAQCategory from './FAQCategory';
 import createEnvironment from '../relay/environment';
 import routeDefinitions from './../routeDefinitions';
-
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
 import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
 import type { FAQCategoryListRootQueryResponse } from './__generated__/FAQCategoryListRootQuery.graphql';

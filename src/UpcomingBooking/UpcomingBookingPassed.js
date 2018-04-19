@@ -3,6 +3,7 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
+
 import routeDefinitions from '../routeDefinitions';
 import { BackButton, CloseButton } from '../common';
 

@@ -3,6 +3,7 @@
 import { Route, Switch, MemoryRouter } from 'react-router-dom';
 import * as React from 'react';
 import css from 'styled-jsx/css';
+
 import withAuth from '../HOC/withAuth';
 import ContentHeader from '../ContentHeader';
 import StaticFAQ from '../StaticFAQ';

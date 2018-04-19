@@ -2,6 +2,7 @@
 
 import { Route, Switch, MemoryRouter } from 'react-router-dom';
 import * as React from 'react';
+
 import Intro from './IntroPage';
 import ContentPage from './ContentPage';
 import NoBookingPage from './NoBookingPage';

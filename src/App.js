@@ -4,6 +4,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
+
 import initTranslation from './initTranslation';
 import store from './store';
 import Routes from './Routes';

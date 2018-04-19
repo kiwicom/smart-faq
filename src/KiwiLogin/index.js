@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
+
 import CloseButton from './../common/CloseButton';
 import BackButton from '../common/BackButton';
 import Input from '../common/Input';

@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+
 import Spinner from '../../static/spinner@2x.png';
 
 const Loader = () => (
