@@ -14,6 +14,7 @@ const style = css`
   div.ContentHeader {
     width: 100%;
     border-bottom: 1px solid #e8edf1;
+    background-color: #ffffff;
   }
   div.FAQ {
     width: 480px;
