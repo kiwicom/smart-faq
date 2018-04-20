@@ -15,6 +15,7 @@ import type { UpcomingBookingAllBookingsQueryResponse } from './__generated__/Up
 type Props = {};
 type AllBookingProps = {
   props: UpcomingBookingAllBookingsQueryResponse,
+  error: Error,
 };
 
 type State = {|
@@ -30,8 +31,16 @@ const sortByDate = bookings =>
 
 class UpcomingBooking extends React.Component<Props, State> {
   renderPage = (queryProps: AllBookingProps) => {
+    if (queryProps.error) {
+      return <div>Error</div>;
+    }
+
+    if (!queryProps.props) {
+      return <Loader />;
+    }
+
     const edges = idx(queryProps.props, _ => _.allBookings.edges);
-    if (!edges) return <Loader />;
+    if (!edges) return <UpcomingBookingPassed />;
     const nodes = edges.map(e => idx(e, _ => _.node));
     const latestBooking = sortByDate(nodes)[0];
     if (!latestBooking) return <UpcomingBookingError />;
