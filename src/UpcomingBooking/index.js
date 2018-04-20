@@ -46,6 +46,7 @@ class UpcomingBooking extends React.Component<Props, State> {
         environment={createEnvironment()}
         query={allBookingsQuery}
         render={this.renderPage}
+        cacheConfig={{ force: true }}
       />
     );
   }
