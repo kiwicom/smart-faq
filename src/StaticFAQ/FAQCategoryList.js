@@ -8,6 +8,7 @@ import { graphql, QueryRenderer } from 'react-relay';
 import Loader from '../common/Loader';
 import FAQArticle from './FAQArticle';
 import FAQCategory from './FAQCategory';
+import Breadcrumbs from './Breadcrumbs';
 import createEnvironment from '../relay/environment';
 import routeDefinitions from './../routeDefinitions';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
@@ -45,9 +46,14 @@ const queryRoot = graphql`
 const querySubcategory = graphql`
   query FAQCategoryListSubcategoryQuery($id: ID!, $language: Language) {
     FAQCategory(id: $id, language: $language) {
+      title
       subcategories {
         id
         ...FAQCategory_category
+      }
+      ancestors {
+        id
+        ...Breadcrumbs_breadcrumbs
       }
       FAQs {
         id
@@ -109,10 +115,20 @@ class FAQCategoryList extends React.Component<Props> {
     if (rendererProps.props) {
       const categories =
         idx(rendererProps.props, _ => _.FAQCategory.subcategories) || [];
+      const ancestors =
+        idx(rendererProps.props, _ => _.FAQCategory.ancestors) || [];
+      const currentCategory = idx(
+        rendererProps.props,
+        _ => _.FAQCategory.title,
+      );
       const faqs = idx(rendererProps.props, _ => _.FAQCategory.FAQs) || [];
 
       return (
         <React.Fragment>
+          <Breadcrumbs
+            breadcrumbs={ancestors}
+            currentCategory={currentCategory}
+          />
           {this.renderCategories(categories)}
           {this.renderFAQArticlePerexes(faqs)}
         </React.Fragment>
