@@ -16,12 +16,11 @@ import {
   calcTimeLeft,
   formatCountDown,
   URGENCY_THRESHOLD,
-  decodeId,
   formatBookingId,
 } from '../helpers/utils';
-import { Box } from '../common';
+import Box from '../common/Box';
 import Accordion from './Accordion';
-import type { UpcomingBookingSingle_booking as BookingType } from './__generated__/UpcomingBookingSingle_booking.graphql';
+import type { UpcomingBooking_booking as BookingType } from './__generated__/UpcomingBooking_booking.graphql';
 
 const style = css`
   .UpcomingBooking {
@@ -128,7 +127,7 @@ type Props = {
 
 type State = {||};
 
-class UpcomingBookingSingle extends React.Component<Props, State> {
+class UpcomingBooking extends React.Component<Props, State> {
   renderOutbound = (booking: BookingType) => {
     const leg = booking.legs && booking.legs[0];
     const logoUrl = idx(leg, _ => _.airline.logoUrl) || '';
@@ -310,9 +309,11 @@ class UpcomingBookingSingle extends React.Component<Props, State> {
             </span>
           </div>
           <div className="booking-id">
-            <Typography type="secondary">
-              # {formatBookingId(decodeId(booking.id))}
-            </Typography>
+            {booking.databaseId && (
+              <Typography type="secondary">
+                # {formatBookingId(booking.databaseId)}
+              </Typography>
+            )}
           </div>
         </div>
         <div className="notification">{this.renderNotification(booking)}</div>
@@ -329,10 +330,10 @@ class UpcomingBookingSingle extends React.Component<Props, State> {
 }
 
 export default createFragmentContainer(
-  UpcomingBookingSingle,
+  UpcomingBooking,
   graphql`
-    fragment UpcomingBookingSingle_booking on Booking {
-      id
+    fragment UpcomingBooking_booking on Booking {
+      databaseId
       legs {
         airline {
           name

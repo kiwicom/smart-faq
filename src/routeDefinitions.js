@@ -3,7 +3,6 @@
 export default {
   HOME: '/',
   SIGN_IN: '/sign-in',
-  SIGN_OUT: '/sign-out',
   CHECK_MAGIC_LINK: '/check-magic-link',
   CHECK_RECOVERY_LINK: '/check-recovery-link',
   STATIC_FAQ: '/static-faq',

@@ -7,7 +7,7 @@ import { QueryRenderer, graphql } from 'react-relay';
 import Loader from '../common/Loader';
 import FAQArticleDetailContent from './FAQArticleDetailContent';
 import createEnvironment from '../relay/environment';
-import { LanguageContext } from '../common/Language';
+import { LanguageContext } from '../context/Language';
 import type { FAQArticleDetailQuery } from './__generated__/FAQArticleDetailQuery.graphql';
 
 const queryFAQArticleDetail = graphql`

@@ -2,16 +2,16 @@
 
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import type { Dispatch } from 'redux';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
 
 import CloseButton from './../common/CloseButton';
 import BackButton from '../common/BackButton';
 import Input from '../common/Input';
+import { withLogin } from '../context/User';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import routeDefinitions from '../routeDefinitions';
-import withAuth from '../HOC/withAuth';
+import type { onLogin } from '../types';
 
 const style = css`
   .KiwiLogin {
@@ -106,15 +106,12 @@ const style = css`
     }
   }
 `;
-type Props = {|
-  doSignIn: (
-    email: string,
-    password: string,
-  ) => (dispatch: Dispatch) => Promise<Dispatch>,
+type Props = {
+  onLogin: onLogin,
   history: {
     push: string => void,
   },
-|};
+};
 
 type State = {|
   email: string,
@@ -133,10 +130,10 @@ class KiwiLogin extends React.Component<Props, State> {
   handleSignIn = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await this.props.doSignIn(this.state.email, this.state.password);
+      await this.props.onLogin(this.state.email, this.state.password);
       this.props.history.push(routeDefinitions.CONTENT);
     } catch (e) {
-      console.error('Bad SignIn'); //eslint-disable-line
+      console.error('Bad SignIn', e); //eslint-disable-line
     }
   };
   render() {
@@ -197,4 +194,4 @@ class KiwiLogin extends React.Component<Props, State> {
   }
 }
 
-export default withAuth(KiwiLogin);
+export default withLogin(KiwiLogin);

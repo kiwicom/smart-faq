@@ -12,7 +12,7 @@ function chunkArray(arr, chunkSize = 3) {
   }
   return groups;
 }
-export const formatBookingId = (bid: string | number) =>
+export const formatBookingId = (bid: number) =>
   chunkArray(
     bid
       .toString()
@@ -21,13 +21,6 @@ export const formatBookingId = (bid: string | number) =>
   )
     .reverse()
     .join(' ');
-
-export const decodeId = (hashedId: string) => {
-  const match = Buffer.from(hashedId, 'base64')
-    .toString()
-    .match(/:(.*)/);
-  return (match && match[1]) || '';
-};
 
 export const calcTimeLeft = (refDate: string) => {
   if (refDate === '') return -1;

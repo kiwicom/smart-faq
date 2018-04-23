@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ea01bde688ae9fc2bf554a372983dc59
+ * @relayHash b0026613f8125e1e834231cd87ff2e14
  */
 
 /* eslint-disable */
@@ -9,16 +9,16 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type UpcomingBookingSingle_booking$ref = any;
-export type UpcomingBookingAllBookingsQueryVariables = {| |};
-export type UpcomingBookingAllBookingsQueryResponse = {|
+type UpcomingBooking_booking$ref = any;
+export type UpcomingBookingQueryVariables = {| |};
+export type UpcomingBookingQueryResponse = {|
   +allBookings: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +departure: ?{|
           +time: ?any,
         |},
-        +$fragmentRefs: UpcomingBookingSingle_booking$ref,
+        +$fragmentRefs: UpcomingBooking_booking$ref,
       |},
     |}>,
   |},
@@ -27,22 +27,22 @@ export type UpcomingBookingAllBookingsQueryResponse = {|
 
 
 /*
-query UpcomingBookingAllBookingsQuery {
+query UpcomingBookingQuery {
   allBookings {
     edges {
       node {
         departure {
           time
         }
-        ...UpcomingBookingSingle_booking
+        ...UpcomingBooking_booking
         id
       }
     }
   }
 }
 
-fragment UpcomingBookingSingle_booking on Booking {
-  id
+fragment UpcomingBooking_booking on Booking {
+  databaseId
   legs {
     airline {
       name
@@ -97,18 +97,11 @@ v1 = {
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
   "name": "name",
   "args": null,
   "storageKey": null
 },
-v4 = [
+v3 = [
   v0,
   {
     "kind": "ScalarField",
@@ -142,22 +135,29 @@ v4 = [
         "concreteType": "LocationArea",
         "plural": false,
         "selections": [
-          v3
+          v2
         ]
       }
     ]
   }
-];
+],
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "UpcomingBookingAllBookingsQuery",
+  "name": "UpcomingBookingQuery",
   "id": null,
-  "text": "query UpcomingBookingAllBookingsQuery {\n  allBookings {\n    edges {\n      node {\n        departure {\n          time\n        }\n        ...UpcomingBookingSingle_booking\n        id\n      }\n    }\n  }\n}\n\nfragment UpcomingBookingSingle_booking on Booking {\n  id\n  legs {\n    airline {\n      name\n      code\n      logoUrl\n    }\n    departure {\n      time\n      localTime\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    arrival {\n      time\n      localTime\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    id\n  }\n}\n",
+  "text": "query UpcomingBookingQuery {\n  allBookings {\n    edges {\n      node {\n        departure {\n          time\n        }\n        ...UpcomingBooking_booking\n        id\n      }\n    }\n  }\n}\n\nfragment UpcomingBooking_booking on Booking {\n  databaseId\n  legs {\n    airline {\n      name\n      code\n      logoUrl\n    }\n    departure {\n      time\n      localTime\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    arrival {\n      time\n      localTime\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "UpcomingBookingAllBookingsQuery",
+    "name": "UpcomingBookingQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": [],
@@ -192,7 +192,7 @@ return {
                   v1,
                   {
                     "kind": "FragmentSpread",
-                    "name": "UpcomingBookingSingle_booking",
+                    "name": "UpcomingBooking_booking",
                     "args": null
                   }
                 ]
@@ -205,7 +205,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "UpcomingBookingAllBookingsQuery",
+    "name": "UpcomingBookingQuery",
     "argumentDefinitions": [],
     "selections": [
       {
@@ -236,7 +236,13 @@ return {
                 "plural": false,
                 "selections": [
                   v1,
-                  v2,
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "databaseId",
+                    "args": null,
+                    "storageKey": null
+                  },
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -255,7 +261,7 @@ return {
                         "concreteType": "Airline",
                         "plural": false,
                         "selections": [
-                          v3,
+                          v2,
                           {
                             "kind": "ScalarField",
                             "alias": null,
@@ -280,7 +286,7 @@ return {
                         "args": null,
                         "concreteType": "RouteStop",
                         "plural": false,
-                        "selections": v4
+                        "selections": v3
                       },
                       {
                         "kind": "LinkedField",
@@ -290,11 +296,12 @@ return {
                         "args": null,
                         "concreteType": "RouteStop",
                         "plural": false,
-                        "selections": v4
+                        "selections": v3
                       },
-                      v2
+                      v4
                     ]
-                  }
+                  },
+                  v4
                 ]
               }
             ]
@@ -305,5 +312,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '8b3eb853b8a0d82491a70cffc21a5b1a';
+(node/*: any*/).hash = '44220eb83169d635bd0e135da80d58bd';
 module.exports = node;

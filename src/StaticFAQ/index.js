@@ -7,7 +7,7 @@ import { Magnify } from '@kiwicom/orbit-components/lib/icons';
 import { withRouter } from 'react-router-dom';
 
 import Input from './../common/Input';
-import { LanguageContext } from '../common/Language';
+import { LanguageContext } from '../context/Language';
 import FAQCategoryList from './FAQCategoryList';
 import SearchAllFAQs from './SearchAllFAQs';
 

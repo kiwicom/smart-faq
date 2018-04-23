@@ -4,9 +4,6 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
 
-import routeDefinitions from '../routeDefinitions';
-import { BackButton, CloseButton } from '../common';
-
 const style = css`
   .UpcomingBooking {
     width: 480px;
@@ -21,14 +18,12 @@ const style = css`
   }
 `;
 
-const UpcomingBookingError = () => {
+const BookingPassed = () => {
   return (
     <div className="UpcomingBooking">
-      <BackButton text="Back" link={routeDefinitions.HOME} />
-      <CloseButton />
       <div className="feedback">
         <Typography type="secondary" size="large">
-          No Bookings found
+          You don&rsquo;t have upcoming bookings.
         </Typography>
       </div>
       <style jsx>{style}</style>
@@ -36,4 +31,4 @@ const UpcomingBookingError = () => {
   );
 };
 
-export default UpcomingBookingError;
+export default BookingPassed;

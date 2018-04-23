@@ -11,8 +11,6 @@ import routeDefinitions from '../routeDefinitions';
 
 const style = css`
   div.NoBookingPage {
-    position: absolute;
-    right: 0;
     min-width: 480px;
     height: 100vh;
   }

@@ -1,30 +1,6 @@
 // @flow
-import Cookies from 'js-cookie';
 
 import { Requester } from './Requests';
-
-export const COOKIE_LOGIN_KEY = 'ua_session_token';
-export const getSessionToken = () => Cookies.get(COOKIE_LOGIN_KEY);
-
-export async function doLogin(email: string, password: string) {
-  try {
-    const token = await Requester.login(email, password);
-    Cookies.set(COOKIE_LOGIN_KEY, token, { path: '/', domain: null });
-    return token;
-  } catch (error) {
-    console.error(error.message); //eslint-disable-line
-    throw new Error(error.message);
-  }
-}
-export function doLogout() {
-  try {
-    Cookies.remove(COOKIE_LOGIN_KEY);
-    return true;
-  } catch (error) {
-    console.error(error.message); //eslint-disable-line
-    return '';
-  }
-}
 
 export async function socialLogin(provider: string) {
   const location = window.location.href.replace(

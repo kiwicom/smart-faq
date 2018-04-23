@@ -3,6 +3,8 @@
 import * as React from 'react';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
 
+import { CloseContext } from '../context/Close';
+
 type Props = {
   onClick: () => void,
 };
@@ -33,8 +35,6 @@ const CloseIcon = ({ onClick }: Props) => (
     </style>
   </div>
 );
-
-export const CloseContext = React.createContext(() => {});
 
 const CloseButton = () => (
   <CloseContext.Consumer>

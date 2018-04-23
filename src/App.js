@@ -3,63 +3,58 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { I18nextProvider } from 'react-i18next';
-import { Provider } from 'react-redux';
 
 import initTranslation from './initTranslation';
-import store from './store';
 import Routes from './Routes';
-import { CloseContext } from './common/CloseButton';
-import { LanguageContext } from './common/Language';
+import { CloseContext } from './context/Close';
+import { LanguageContext } from './context/Language';
+import { UserContext } from './context/User';
+import type { onLogin, onLogout, User } from './types';
 
 const style = css`
-  * {
+  .smartFAQ {
+    position: relative;
+    min-width: 480px;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #fff;
+    font-family: 'Roboto', sans-serif;
+  }
+  .smartFAQ * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
     font-family: 'Roboto', sans-serif;
   }
-  html,
-  body {
-    height: 100vh;
-    padding: 0;
-    margin: 0;
-  }
-  div.App {
-    position: absolute;
-    right: 0;
-    min-width: 480px;
-    height: 100vh;
-    background-color: #ffffff;
-  }
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    div.App {
+    .smartFAQ {
       min-width: 100%;
     }
-  }
-  span.inline-icon svg {
-    display: inline-block;
-    vertical-align: bottom;
   }
 `;
 
 type Props = {|
   language: string,
   locale: {},
+  user: User,
+  loginToken: string | null,
   onClose: () => void,
+  onLogin: onLogin,
+  onLogout: onLogout,
 |};
 
 class App extends React.Component<Props> {
+  i18n: {};
+
   constructor(props: Props) {
     super(props);
 
     this.i18n = initTranslation(props.language, props.locale);
   }
 
-  i18n: {};
-
   render() {
     return (
-      <div className="App">
+      <div className="smartFAQ">
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1 shrink-to-fit=no"
@@ -70,13 +65,20 @@ class App extends React.Component<Props> {
           rel="stylesheet"
         />
         <I18nextProvider i18n={this.i18n}>
-          <Provider store={store}>
-            <LanguageContext.Provider value={this.props.language}>
-              <CloseContext.Provider value={this.props.onClose}>
+          <LanguageContext.Provider value={this.props.language}>
+            <CloseContext.Provider value={this.props.onClose}>
+              <UserContext.Provider
+                value={{
+                  user: this.props.user,
+                  onLogin: this.props.onLogin,
+                  onLogout: this.props.onLogout,
+                  loginToken: this.props.loginToken,
+                }}
+              >
                 <Routes />
-              </CloseContext.Provider>
-            </LanguageContext.Provider>
-          </Provider>
+              </UserContext.Provider>
+            </CloseContext.Provider>
+          </LanguageContext.Provider>
         </I18nextProvider>
         <style jsx global>
           {style}

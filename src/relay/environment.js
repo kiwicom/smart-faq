@@ -8,8 +8,6 @@ import {
   QueryResponseCache,
 } from 'relay-runtime';
 
-import { getSessionToken } from '../helpers/Auth';
-
 require('isomorphic-fetch');
 // used when smart FAQ installed as dependency
 const uri = 'https://graphql.kiwi.com';
@@ -44,11 +42,11 @@ const buildFetchQuery = (token: string = '') => {
   };
 };
 
-const buildEnvironment = () => {
+const createEnvironment = (token?: string) => {
   return new Environment({
-    network: Network.create(buildFetchQuery(getSessionToken())),
+    network: Network.create(buildFetchQuery(token)),
     store: new Store(new RecordSource()),
   });
 };
 
-export default buildEnvironment;
+export default createEnvironment;

@@ -5,10 +5,11 @@ import css from 'styled-jsx/css';
 import { OpenInNew } from '@kiwicom/orbit-components/lib/icons';
 import { Typography } from '@kiwicom/orbit-components';
 
-import { getSessionToken } from '../helpers/Auth';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import routeDefinitions from '../routeDefinitions';
 import CloseButton from './../common/CloseButton';
+import { withUser } from '../context/User';
+import type { User } from '../types';
 
 const style = css`
   .Intro {
@@ -100,21 +101,23 @@ const style = css`
 `;
 
 type Props = {
+  user: User,
   history: {
     push: string => void,
   },
 };
 
-//const Intro = (props: Props) => (
 class Intro extends React.Component<Props> {
-  existingBookingRoute = () => {
-    getSessionToken()
+  goToExistingBooking = () => {
+    this.props.user
       ? this.props.history.push(routeDefinitions.CONTENT)
       : this.props.history.push(routeDefinitions.SIGN_IN);
   };
-  noBookingRoute = () => {
+
+  goToNoBooking = () => {
     this.props.history.push(routeDefinitions.NO_BOOKING);
   };
+
   render() {
     return (
       <div className="Intro">
@@ -130,12 +133,12 @@ class Intro extends React.Component<Props> {
         </div>
         <div className="buttons">
           <div className="primary">
-            <button onClick={this.existingBookingRoute}>
+            <button onClick={this.goToExistingBooking}>
               I have an existing booking
             </button>
           </div>
           <div className="secondary">
-            <button onClick={this.noBookingRoute}>
+            <button onClick={this.goToNoBooking}>
               I don&apos;t have a booking
             </button>
           </div>
@@ -162,4 +165,4 @@ class Intro extends React.Component<Props> {
   }
 }
 
-export default Intro;
+export default withUser(Intro);

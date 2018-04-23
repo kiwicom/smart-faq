@@ -9,9 +9,9 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from 'relay-runtime';
-declare export opaque type UpcomingBookingSingle_booking$ref: FragmentReference;
-export type UpcomingBookingSingle_booking = {|
-  +id: string,
+declare export opaque type UpcomingBooking_booking$ref: FragmentReference;
+export type UpcomingBooking_booking = {|
+  +databaseId: ?number,
   +legs: ?$ReadOnlyArray<?{|
     +airline: ?{|
       +name: ?string,
@@ -39,7 +39,7 @@ export type UpcomingBookingSingle_booking = {|
       |},
     |},
   |}>,
-  +$refType: UpcomingBookingSingle_booking$ref,
+  +$refType: UpcomingBooking_booking$ref,
 |};
 */
 
@@ -100,7 +100,7 @@ v1 = [
 ];
 return {
   "kind": "Fragment",
-  "name": "UpcomingBookingSingle_booking",
+  "name": "UpcomingBooking_booking",
   "type": "Booking",
   "metadata": null,
   "argumentDefinitions": [],
@@ -108,7 +108,7 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "id",
+      "name": "databaseId",
       "args": null,
       "storageKey": null
     },
@@ -172,5 +172,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = 'a4565ea33b6b82cfab1efd7202513613';
+(node/*: any*/).hash = '10e11e28f7a8a459e40668d947e28b0e';
 module.exports = node;
