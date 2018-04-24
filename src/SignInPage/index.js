@@ -191,7 +191,7 @@ class SignIn extends React.Component<Props, State> {
     this.setState({ email: e.target.value });
   };
 
-  handleSubmitEmail = (e: SyntheticEvent<HTMLButtonElement>) => {
+  handleSubmitEmail = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     this.props.history.push({
       pathname: routeDefinitions.CHECK_MAGIC_LINK,
