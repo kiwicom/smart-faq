@@ -1,4 +1,6 @@
 // @flow
+import type { Dispatch } from 'redux';
+
 import { doLogin, doLogout } from '../../helpers/Auth';
 
 export const saveToken = (token: string) => ({
@@ -10,7 +12,7 @@ export const removeToken = () => ({
 });
 
 export const signIn = (email: string, password: string) => {
-  return (dispatch: Function) => {
+  return (dispatch: Dispatch) => {
     return doLogin(email, password)
       .then((token: string) => dispatch(saveToken(token)))
       .catch(e => Promise.reject(e));
@@ -18,7 +20,7 @@ export const signIn = (email: string, password: string) => {
 };
 
 export const signOut = () => {
-  return (dispatch: Function) => {
+  return (dispatch: Dispatch) => {
     doLogout();
     return dispatch(removeToken());
   };

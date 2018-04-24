@@ -103,12 +103,12 @@ const CheckEmail = (props: Props) => {
   );
 };
 
-export const CheckRecoveryLink = (props: Object) => {
+export const CheckRecoveryLink = (props: Props) => {
   const text = 'We sent a recovery link to';
   return <CheckEmail text={text} {...props} />;
 };
 
-export const CheckMagicLink = (props: Object) => {
+export const CheckMagicLink = (props: Props) => {
   const text = 'To sign in, just click the link in the email we sent to';
   return <CheckEmail text={text} {...props} />;
 };

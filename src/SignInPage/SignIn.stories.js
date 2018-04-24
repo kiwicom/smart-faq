@@ -6,6 +6,9 @@ import StoryRouter from 'storybook-router';
 
 import SignIn from './';
 
+const history = {
+  push: () => {},
+};
 storiesOf('SignIn', module)
   .addDecorator(StoryRouter())
-  .add('Default', () => <SignIn history={{}} />);
+  .add('Default', () => <SignIn history={history} />);

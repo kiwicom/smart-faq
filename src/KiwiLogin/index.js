@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import type { Dispatch } from 'redux';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
 
@@ -106,7 +107,10 @@ const style = css`
   }
 `;
 type Props = {|
-  doSignIn: Function,
+  doSignIn: (
+    email: string,
+    password: string,
+  ) => (dispatch: Dispatch) => Promise<Dispatch>,
   history: {
     push: string => void,
   },

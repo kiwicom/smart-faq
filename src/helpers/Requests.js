@@ -25,7 +25,7 @@ export const Requester = {
     })
       .then(r => r.json())
       .then(r => (r.token ? r.token : Promise.reject(r))),
-  socialLogin: (payload: Object) =>
+  socialLogin: (payload: {}) =>
     fetch(socialLoginEndpoint, {
       method: 'post',
       headers: {
