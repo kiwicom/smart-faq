@@ -126,12 +126,13 @@ class KiwiLogin extends React.Component<Props, State> {
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  handleSignIn = async () => {
+  handleSignIn = async (e: SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
     try {
       await this.props.doSignIn(this.state.email, this.state.password);
       this.props.history.push(routeDefinitions.CONTENT);
     } catch (e) {
-      console.error('Bad SignIn');//eslint-disable-line
+      console.error('Bad SignIn'); //eslint-disable-line
     }
   };
   render() {
@@ -149,7 +150,7 @@ class KiwiLogin extends React.Component<Props, State> {
               'If you have an account with us, just use your credentials to sign in.'
             }
           </Typography>
-          <form>
+          <form onSubmit={this.handleSignIn}>
             <label htmlFor="email">
               Email:
               <div className="input">
@@ -173,6 +174,9 @@ class KiwiLogin extends React.Component<Props, State> {
                 />
               </div>
             </label>
+            <span className="singIn">
+              <button>Sign In</button>
+            </span>
           </form>
           <Link
             to={routeDefinitions.FORGOTTEN_PASSWORD}
@@ -182,9 +186,6 @@ class KiwiLogin extends React.Component<Props, State> {
               <Typography type="active">Forgot your password?</Typography>
             </div>
           </Link>
-          <span className="singIn">
-            <button onClick={this.handleSignIn}>Sign In</button>
-          </span>
         </div>
         <style jsx>{style}</style>
       </div>

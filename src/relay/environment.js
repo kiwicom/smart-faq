@@ -7,6 +7,7 @@ import {
   Store,
   QueryResponseCache,
 } from 'relay-runtime';
+
 import { getSessionToken } from '../helpers/Auth';
 
 require('isomorphic-fetch');
