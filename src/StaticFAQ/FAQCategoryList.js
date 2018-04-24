@@ -5,7 +5,7 @@ import idx from 'idx';
 import { Link } from 'react-router-dom';
 import { graphql, QueryRenderer } from 'react-relay';
 
-import Loader from '../common/Loader';
+import { Loader, ScrollableBox } from '../common';
 import FAQArticle from './FAQArticle';
 import FAQCategory from './FAQCategory';
 import Breadcrumbs from './Breadcrumbs';
@@ -129,8 +129,10 @@ class FAQCategoryList extends React.Component<Props> {
             breadcrumbs={ancestors}
             currentCategory={currentCategory}
           />
-          {this.renderCategories(categories)}
-          {this.renderFAQArticlePerexes(faqs)}
+          <ScrollableBox>
+            {this.renderCategories(categories)}
+            {this.renderFAQArticlePerexes(faqs)}
+          </ScrollableBox>
         </React.Fragment>
       );
     }
