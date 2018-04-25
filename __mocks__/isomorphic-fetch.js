@@ -10,7 +10,7 @@ import {
 } from './constants';
 
 type Response = {
-  json: () => {},
+  json: () => Promise<{}>,
   status: string | number,
   statusText: string,
   headers: {},
@@ -25,7 +25,7 @@ const makeResponse = (
   statusText = 'OK',
   data = {},
 ): Response => ({
-  json: () => data,
+  json: () => new Promise(resolve => resolve(data)),
   status,
   statusText,
   headers: {},
