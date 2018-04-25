@@ -6,7 +6,7 @@ import { reactI18nextModule } from 'react-i18next';
 const env = process.env.NODE_ENV;
 const isDev = env !== 'production';
 
-const initTranslation = (language: string, translation: Object) => {
+const initTranslation = (language: string, translation: {}) => {
   i18next.use(reactI18nextModule).init({
     lng: language,
     fallbackLng: isDev ? 'dev' : language, // no fallback on production

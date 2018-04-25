@@ -44,7 +44,7 @@ const style = css`
 
 type Props = {|
   language: string,
-  locale: Object,
+  locale: {},
   onClose: () => void,
 |};
 
@@ -55,7 +55,7 @@ class App extends React.Component<Props> {
     this.i18n = initTranslation(props.language, props.locale);
   }
 
-  i18n: Object;
+  i18n: {};
 
   render() {
     return (

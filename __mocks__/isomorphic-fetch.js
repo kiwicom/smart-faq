@@ -9,15 +9,33 @@ import {
   goodPayload,
 } from './constants';
 
-const makeResponse = (status = 200, statusText = 'OK', data = {}) => ({
-  json: () => data,
+type Response = {
+  json: () => Promise<{}>,
+  status: string | number,
+  statusText: string,
+  headers: {},
+  config: {},
+};
+type RequestType = {
+  body: string,
+};
+
+const makeResponse = (
+  status = 200,
+  statusText = 'OK',
+  data = {},
+): Response => ({
+  json: () => new Promise(resolve => resolve(data)),
   status,
   statusText,
   headers: {},
   config: {},
 });
 
-export default function fetch(url: string, obj: Object): Promise<Object> {
+export default function fetch(
+  url: string,
+  obj: RequestType,
+): Promise<Response | {}> {
   if (url === loginEndpoint) {
     const { login, password } = JSON.parse(obj.body);
     if (login === goodEmail && password === goodPassword) {

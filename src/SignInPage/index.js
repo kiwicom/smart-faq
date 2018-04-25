@@ -175,7 +175,9 @@ const style = css`
 `;
 
 type Props = {
-  history: Object,
+  history: {
+    push: (string | { pathname: string, state: { email: string } }) => void,
+  },
 };
 
 type State = {|

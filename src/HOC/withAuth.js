@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
+import type { Dispatch } from 'redux';
 
 import type { StoreType } from '../store/reducers';
 import type { State as SessionState } from '../store/reducers/SessionReducer';
@@ -13,7 +14,7 @@ type Props = {
   doSignIn: (
     email: string,
     password: string,
-  ) => (dispatch: Function) => Promise<Function>,
+  ) => (dispatch: Dispatch) => Promise<Dispatch>,
   doSaveToken: (token: string) => ActionType,
 };
 
