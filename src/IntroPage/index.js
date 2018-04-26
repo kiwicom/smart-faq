@@ -1,15 +1,15 @@
 // @flow
 
-import * as React from "react";
-import css from "styled-jsx/css";
-import { Typography } from "@kiwicom/orbit-components";
+import * as React from 'react';
+import css from 'styled-jsx/css';
+import { Typography } from '@kiwicom/orbit-components';
 
-import image from "../../static/woman-with-laptop@2x.jpg";
-import routeDefinitions from "../routeDefinitions";
-import CloseButton from "./../common/CloseButton";
-import { withUser } from "../context/User";
-import type { User } from "../types";
-import FullFAQLink from '../common/FullFAQLink'
+import image from '../../static/woman-with-laptop@2x.jpg';
+import routeDefinitions from '../routeDefinitions';
+import CloseButton from './../common/CloseButton';
+import { withUser } from '../context/User';
+import type { User } from '../types';
+import FullFAQLink from '../common/FullFAQLink';
 
 const style = css`
   .Intro {
@@ -128,16 +128,20 @@ class Intro extends React.Component<Props> {
         </div>
         <div className="buttons">
           <div className="primary">
-            <button onClick={this.goToExistingBooking}>I have an existing booking</button>
+            <button onClick={this.goToExistingBooking}>
+              I have an existing booking
+            </button>
           </div>
           <div className="secondary">
-            <button onClick={this.goToNoBooking}>I don&apos;t have a booking</button>
+            <button onClick={this.goToNoBooking}>
+              I don&apos;t have a booking
+            </button>
           </div>
         </div>
         <hr className="hr-line" />
-          <div className="faq-link">
-            <FullFAQLink />
-          </div>
+        <div className="faq-link">
+          <FullFAQLink />
+        </div>
         <style jsx>{style}</style>
       </div>
     );

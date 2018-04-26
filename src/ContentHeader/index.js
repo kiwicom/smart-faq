@@ -4,14 +4,13 @@ import { Link } from 'react-router-dom';
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
-import { OpenInNew } from '@kiwicom/orbit-components/lib/icons';
 
 import CloseButton from '../common/CloseButton';
 import SignOutButton from './SignOutButton';
 import routeDefinitions from '../routeDefinitions';
 import { withUser } from '../context/User';
 import type { User } from '../types';
-import FullFAQLink from '../common/FullFAQLink'
+import FullFAQLink from '../common/FullFAQLink';
 
 const style = css`
   div.ContentHeader {
