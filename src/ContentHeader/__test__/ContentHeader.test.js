@@ -4,7 +4,6 @@ import * as React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { mount } from 'enzyme';
 
-import store from '../../store';
 import ContentHeader from '../';
 
 describe.skip('ContentHeader', () => {
@@ -12,7 +11,7 @@ describe.skip('ContentHeader', () => {
   it('when session exists should match snapshot', () => {
     const component = mount(
       <Router>
-        <ContentHeader store={store} token="hola" />
+        <ContentHeader token="hola" />
       </Router>,
     );
     expect(component).toMatchSnapshot();
@@ -20,7 +19,7 @@ describe.skip('ContentHeader', () => {
   it('when no session should match snapshot', () => {
     const component = mount(
       <Router>
-        <ContentHeader store={store} token={null} />
+        <ContentHeader />
       </Router>,
     );
     expect(component).toMatchSnapshot();

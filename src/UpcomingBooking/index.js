@@ -5,16 +5,20 @@ import idx from 'idx';
 import { graphql, QueryRenderer } from 'react-relay';
 
 import createEnvironment from '../relay/environment';
-import { Loader } from '../common';
+import { withLoginToken } from '../context/User';
+import Loader from '../common/Loader';
 import { calcTimeLeft } from '../helpers/utils';
-import UpcomingBookingSingle from './UpcomingBookingSingle';
-import UpcomingBookingError from './UpcomingBookingError';
-import UpcomingBookingPassed from './UpcomingBookingPassed';
-import type { UpcomingBookingAllBookingsQueryResponse } from './__generated__/UpcomingBookingAllBookingsQuery.graphql';
+import UpcomingBooking from './UpcomingBooking';
+import BookingError from './BookingError';
+import BookingPassed from './BookingPassed';
+import type { UpcomingBookingQueryResponse } from './__generated__/UpcomingBookingQuery.graphql';
 
-type Props = {};
+type Props = {
+  loginToken: string | null,
+};
+
 type AllBookingProps = {
-  props: UpcomingBookingAllBookingsQueryResponse,
+  props: UpcomingBookingQueryResponse,
   error: Error,
 };
 
@@ -29,7 +33,7 @@ const sortByDate = bookings =>
       (idx(b, _ => _.departure.time) || 0),
   );
 
-class UpcomingBooking extends React.Component<Props, State> {
+class UpcomingBookingContainer extends React.Component<Props, State> {
   renderPage = (queryProps: AllBookingProps) => {
     if (queryProps.error) {
       return <div>Error</div>;
@@ -40,19 +44,22 @@ class UpcomingBooking extends React.Component<Props, State> {
     }
 
     const edges = idx(queryProps.props, _ => _.allBookings.edges);
-    if (!edges) return <UpcomingBookingPassed />;
+    if (!edges) return <BookingPassed />;
     const nodes = edges.map(e => idx(e, _ => _.node));
     const latestBooking = sortByDate(nodes)[0];
-    if (!latestBooking) return <UpcomingBookingError />;
+    if (!latestBooking) return <BookingError />;
     const refTime = idx(latestBooking, _ => _.departure.time) || '';
     const timeLeft = calcTimeLeft(refTime);
-    if (timeLeft < 0) return <UpcomingBookingPassed />;
-    return <UpcomingBookingSingle booking={latestBooking} />;
+    if (timeLeft < 0) return <BookingPassed />;
+    return <UpcomingBooking booking={latestBooking} />;
   };
+
   render() {
+    const token = this.props.loginToken;
+
     return (
       <QueryRenderer
-        environment={createEnvironment()}
+        environment={createEnvironment(token)}
         query={allBookingsQuery}
         render={this.renderPage}
         cacheConfig={{ force: true }}
@@ -61,18 +68,18 @@ class UpcomingBooking extends React.Component<Props, State> {
   }
 }
 const allBookingsQuery = graphql`
-  query UpcomingBookingAllBookingsQuery {
+  query UpcomingBookingQuery {
     allBookings {
       edges {
         node {
           departure {
             time
           }
-          ...UpcomingBookingSingle_booking
+          ...UpcomingBooking_booking
         }
       }
     }
   }
 `;
 
-export default UpcomingBooking;
+export default withLoginToken(UpcomingBookingContainer);

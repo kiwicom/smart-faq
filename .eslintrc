@@ -46,6 +46,15 @@
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }], // Don't use jsx
     "react/default-props-match-prop-types": "off",
     "react/prefer-stateless-function": "warn",
+    "react/sort-comp": ["error", {
+      "order": [
+        "type-annotations",
+        "static-methods",
+        "lifecycle",
+        "everything-else",
+        "render"
+      ]
+    }],
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": [
       "error",

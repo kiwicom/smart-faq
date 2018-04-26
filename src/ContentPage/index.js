@@ -4,7 +4,6 @@ import { Route, Switch, MemoryRouter } from 'react-router-dom';
 import * as React from 'react';
 import css from 'styled-jsx/css';
 
-import withAuth from '../HOC/withAuth';
 import ContentHeader from '../ContentHeader';
 import StaticFAQ from '../StaticFAQ';
 import FAQArticleDetail from '../StaticFAQ/FAQArticleDetail';
@@ -13,8 +12,6 @@ import routeDefinitions from '../routeDefinitions';
 
 const style = css`
   div.ContentPage {
-    position: absolute;
-    right: 0;
     min-width: 480px;
     height: 100vh;
   }
@@ -79,4 +76,4 @@ const ContentPage = () => {
   );
 };
 
-export default withAuth(ContentPage);
+export default ContentPage;

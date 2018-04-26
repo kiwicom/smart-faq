@@ -19,6 +19,7 @@ const style = css`
   .SignIn {
     width: 480px;
     padding-top: 128px;
+    padding-bottom: 50px;
   }
   div.picture img {
     width: 203px;

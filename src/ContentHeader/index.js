@@ -7,8 +7,10 @@ import { Typography } from '@kiwicom/orbit-components';
 import { OpenInNew } from '@kiwicom/orbit-components/lib/icons';
 
 import CloseButton from '../common/CloseButton';
-import withAuth from '../HOC/withAuth';
+import SignOutButton from './SignOutButton';
 import routeDefinitions from '../routeDefinitions';
+import { withUser } from '../context/User';
+import type { User } from '../types';
 
 const style = css`
   div.ContentHeader {
@@ -66,7 +68,7 @@ const loggedOutStyle = css`
 `;
 
 type Props = {
-  token?: string,
+  user: User,
 };
 
 const renderLoggedIn = () => {
@@ -89,16 +91,7 @@ const renderLoggedIn = () => {
             </span>
           </a>
         </div>
-        <div className="sign-out">
-          <Link
-            to={routeDefinitions.SIGN_OUT}
-            style={{ textDecoration: 'none' }}
-          >
-            <Typography type="attention" variant="normal">
-              Sign out
-            </Typography>
-          </Link>
-        </div>
+        <SignOutButton />
       </div>
       <style jsx>{loggedInStyle}</style>
     </div>
@@ -123,10 +116,10 @@ const ContentHeader = (props: Props) => {
   return (
     <div className="ContentHeader">
       <CloseButton height="24" />
-      {props.token ? renderLoggedIn() : renderLoggedOut()}
+      {props.user ? renderLoggedIn() : renderLoggedOut()}
       <style jsx>{style}</style>
     </div>
   );
 };
 
-export default withAuth(ContentHeader);
+export default withUser(ContentHeader);
