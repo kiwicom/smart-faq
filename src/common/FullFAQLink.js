@@ -23,7 +23,7 @@ const style = css`
 `;
 
 type Props = {
-  className: String,
+  className: ?String,
 };
 
 const FullFAQLink = (props: Props) => (
