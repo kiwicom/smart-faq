@@ -28,10 +28,10 @@ const BookingNotFound = () => {
   return (
     <div className="UpcomingBooking">
       <div className="feedback">
-        <h1 className="title">Something's not right</h1>
+        <h1 className="title">Something&apos;s not right</h1>
         <Typography type="secondary" size="large">
-          We weren't able to find your booking. Please, check your credentials
-          and try again.
+          We weren&apos;t able to find your booking. Please, check your
+          credentials and try again.
         </Typography>
       </div>
       <style jsx>{style}</style>
