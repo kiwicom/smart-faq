@@ -8,19 +8,13 @@ const style = css`
   .UpcomingBooking {
     width: 480px;
     padding: 40px;
+    padding-top: 128px;
     background-color: #f5f7f9;
     height: 100%;
   }
   div.feedback {
-    margin-top: 75%;
-  }
-  h1.title {
-    font-family: Roboto;
-    font-size: 28px;
-    font-weight: bold;
-    line-height: 100%;
-    color: #171b1e;
-    margin-bottom: 8px;
+    margin-top: 32px;
+    text-align: center;
   }
 `;
 
@@ -28,10 +22,8 @@ const BookingNotFound = () => {
   return (
     <div className="UpcomingBooking">
       <div className="feedback">
-        <h1 className="title">Something's not right</h1>
         <Typography type="secondary" size="large">
-          We weren't able to find your booking. Please, check your credentials
-          and try again.
+          No Bookings found
         </Typography>
       </div>
       <style jsx>{style}</style>
