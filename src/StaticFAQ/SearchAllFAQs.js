@@ -1,35 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import css from 'styled-jsx/css';
 import { QueryRenderer, graphql } from 'react-relay';
 import idx from 'idx';
 
 import FAQArticle from './FAQArticle';
 import createEnvironment from '../relay/environment';
-import Loader from '../common/Loader';
+import { Loader, ScrollableBox } from '../common';
 import type { SearchAllFAQsQuery } from './__generated__/SearchAllFAQsQuery.graphql';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
-
-const style = css`
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: white;
-    margin-top: 25px;
-  }
-  ::-webkit-scrollbar-thumb {
-    border-radius: 3px;
-    background-color: rgba(171, 181, 195, 0.6);
-  }
-  div.scrollable-box {
-    overflow-y: scroll;
-    max-height: 78vh;
-    margin: 0 auto;
-    padding: 4px;
-  }
-`;
 
 type AllFAQsQueryRendererParams = {|
   props: SearchAllFAQsQuery,
@@ -69,10 +48,9 @@ class SearchAllFAQs extends React.Component<Props> {
   };
 
   renderFAQs = (faqs: FAQArticle_article[]) => (
-    <div className="scrollable-box">
+    <ScrollableBox>
       {faqs.map(faq => <FAQArticle key={faq.id} article={faq} />)}
-      <style jsx>{style}</style>
-    </div>
+    </ScrollableBox>
   );
 
   render() {
