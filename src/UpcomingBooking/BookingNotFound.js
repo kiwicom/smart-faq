@@ -18,17 +18,15 @@ const style = css`
   }
 `;
 
-const BookingNotFound = () => {
-  return (
-    <div className="UpcomingBooking">
-      <div className="feedback">
-        <Typography type="secondary" size="large">
-          No Bookings found
-        </Typography>
-      </div>
-      <style jsx>{style}</style>
+const BookingNotFound = () => (
+  <div className="UpcomingBooking">
+    <div className="feedback">
+      <Typography type="secondary" size="large">
+        No Bookings found
+      </Typography>
     </div>
-  );
-};
+    <style jsx>{style}</style>
+  </div>
+);
 
 export default BookingNotFound;

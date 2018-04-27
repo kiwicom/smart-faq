@@ -132,6 +132,7 @@ class KiwiLogin extends React.Component<Props, State> {
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({ [e.target.name]: e.target.value });
+    this.state.showError && this.setState({ showError: false });
   };
   handleSignIn = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();

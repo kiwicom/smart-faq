@@ -5,14 +5,14 @@ import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
 
 const style = css`
-  .UpcomingBooking {
+  .BookingError {
     width: 480px;
     padding: 40px;
     background-color: #f5f7f9;
     height: 100%;
-  }
-  div.feedback {
-    margin-top: 75%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
   h1.title {
     font-family: Roboto;
@@ -24,19 +24,15 @@ const style = css`
   }
 `;
 
-const BookingNotFound = () => {
-  return (
-    <div className="UpcomingBooking">
-      <div className="feedback">
-        <h1 className="title">Something&apos;s not right</h1>
-        <Typography type="secondary" size="large">
-          We weren&apos;t able to find your booking. Please, check your
-          credentials and try again.
-        </Typography>
-      </div>
-      <style jsx>{style}</style>
-    </div>
-  );
-};
+const BookingError = () => (
+  <div className="BookingError">
+    <h1 className="title">Something&apos;s not right</h1>
+    <Typography type="secondary" size="large">
+      We weren&apos;t able to find your booking. Please, check your credentials
+      and try again.
+    </Typography>
+    <style jsx>{style}</style>
+  </div>
+);
 
-export default BookingNotFound;
+export default BookingError;
