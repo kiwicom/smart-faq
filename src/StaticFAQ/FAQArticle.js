@@ -8,10 +8,21 @@ import { Typography } from '@kiwicom/orbit-components';
 import Card from './../common/Card';
 import routeDefinitions from '../routeDefinitions';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
+import css from 'styled-jsx/css';
 
 type Props = {|
   article: FAQArticle_article,
 |};
+
+const style = css`
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #171b1e; // needed because the ... takes the color from the <div>
+}
+`;
+
 
 const FAQArticle = (props: Props) => (
   <Link
@@ -19,7 +30,7 @@ const FAQArticle = (props: Props) => (
     style={{ textDecoration: 'none' }}
   >
     <Card>
-      <div>
+      <div className="ellipsis">
         <Typography type="attention" size="large">
           {props.article.title}
         </Typography>
@@ -30,6 +41,7 @@ const FAQArticle = (props: Props) => (
         </Typography>
       </div>
     </Card>
+    <style jsx>{style}</style>
   </Link>
 );
 
