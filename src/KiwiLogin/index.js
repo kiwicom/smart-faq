@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import { Typography, SystemMessage } from '@kiwicom/orbit-components';
-import AlertCircle from '@kiwicom/orbit-components/lib/icons';
+import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
 
 import CloseButton from './../common/CloseButton';
 import BackButton from '../common/BackButton';
@@ -72,7 +72,7 @@ const style = css`
     display: inline-table;
   }
   div.errorMessage {
-    margin-bottom: 34px;
+    margin-bottom: 15px;
   }
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     .KiwiLogin {
