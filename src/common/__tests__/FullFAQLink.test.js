@@ -1,12 +1,12 @@
 // @flow
 import * as React from 'react';
-import renderer from 'react-test-renderer';
+import { mount } from 'enzyme';
 
 import FullFAQLink from '../FullFAQLink';
 
 describe('FullFAQLink', () => {
   it('should match snapshot', () => {
-    const result = renderer.create(<FullFAQLink />).toJSON();
+    const result = mount(<FullFAQLink />);
     expect(result).toMatchSnapshot();
   });
 });

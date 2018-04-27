@@ -77,7 +77,6 @@
     "now": "^11.0.2",
     "now-cli": "^0.0.0",
     "prettier-eslint": "^8.8.1",
-    "react-test-renderer": "^16.3.2",
     "relay-compiler": "1.5.0",
     "request": "2.83.0",
     "request-promise-native": "1.0.5",
