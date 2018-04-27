@@ -8,7 +8,7 @@ const styles = css`
     padding: 14px 22px;
     position: relative;
     margin-top: 24px;
-    height: 100px;
+    min-height: 100px;
     width: 100%;
     border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12);
