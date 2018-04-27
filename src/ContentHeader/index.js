@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
-import { OpenInNew } from '@kiwicom/orbit-components/lib/icons';
 
 import CloseButton from '../common/CloseButton';
 import SignOutButton from './SignOutButton';
 import routeDefinitions from '../routeDefinitions';
 import { withUser } from '../context/User';
 import type { User } from '../types';
+import FullFAQLink from '../common/FullFAQLink';
 
 const style = css`
   div.ContentHeader {
@@ -77,19 +77,7 @@ const renderLoggedIn = () => {
       <div className="help-header">Help</div>
       <div className="links">
         <div className="faq-link">
-          <Typography type="active" variant="normal">
-            Full FAQ site
-          </Typography>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.kiwi.com/helpcenter/"
-            className="open-icon"
-          >
-            <span className="inline-icon">
-              <OpenInNew fill="#00a991" height="16" />
-            </span>
-          </a>
+          <FullFAQLink className="primary" />
         </div>
         <SignOutButton />
       </div>
