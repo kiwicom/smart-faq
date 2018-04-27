@@ -4,25 +4,24 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { Typography } from '@kiwicom/orbit-components';
+import css from 'styled-jsx/css';
 
 import Card from './../common/Card';
 import routeDefinitions from '../routeDefinitions';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
-import css from 'styled-jsx/css';
 
 type Props = {|
   article: FAQArticle_article,
 |};
 
 const style = css`
-.ellipsis {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  color: #171b1e; // needed because the ... takes the color from the <div>
-}
+  .ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #171b1e; // needed because the ... takes the color from the <div>
+  }
 `;
-
 
 const FAQArticle = (props: Props) => (
   <Link
