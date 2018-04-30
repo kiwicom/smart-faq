@@ -2,10 +2,9 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { graphql, QueryRenderer } from 'react-relay';
+import { graphql } from 'react-relay';
 
-import createEnvironment from '../relay/environment';
-import { withLoginToken } from '../context/User';
+import QueryRenderer from '../relay/QueryRenderer';
 import Loader from '../common/Loader';
 import { calcTimeLeft } from '../helpers/utils';
 import UpcomingBooking from './UpcomingBooking';
@@ -14,9 +13,7 @@ import BookingPassed from './BookingPassed';
 import BookingError from './BookingError';
 import type { UpcomingBookingQueryResponse } from './__generated__/UpcomingBookingQuery.graphql';
 
-type Props = {
-  loginToken: ?string,
-};
+type Props = {||};
 
 type AllBookingProps = {
   props: ?UpcomingBookingQueryResponse,
@@ -56,11 +53,8 @@ class UpcomingBookingContainer extends React.Component<Props, State> {
   };
 
   render() {
-    const token = this.props.loginToken;
-
     return (
       <QueryRenderer
-        environment={createEnvironment(token)}
         query={allBookingsQuery}
         render={this.renderPage}
         cacheConfig={{ force: true }}
@@ -84,4 +78,4 @@ const allBookingsQuery = graphql`
   }
 `;
 
-export default withLoginToken(UpcomingBookingContainer);
+export default UpcomingBookingContainer;

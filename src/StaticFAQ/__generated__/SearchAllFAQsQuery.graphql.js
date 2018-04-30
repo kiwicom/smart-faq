@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 168c3915a28241bf668cecfa4c761427
+ * @relayHash 1d5d34a36205c8be37812fd3831113db
  */
 
 /* eslint-disable */
@@ -10,10 +10,8 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type FAQArticle_article$ref = any;
-export type Language = ('ar' | 'bg' | 'ca' | 'cs' | 'da' | 'de' | 'el' | 'en' | 'engb' | 'enus' | 'es' | 'esar' | 'et' | 'fi' | 'fr' | 'he' | 'hr' | 'hu' | 'id' | 'is' | 'it' | 'ja' | 'ko' | 'lt' | 'lv' | 'ms' | 'nl' | 'no' | 'pl' | 'pt' | 'ptbr' | 'ptpt' | 'ro' | 'ru' | 'sk' | 'sl' | 'sr' | 'sv' | 'th' | 'tl' | 'tr' | 'uk' | 'vi' | 'zh' | 'zhcn' | 'zhtw' | '%future added value');
 export type SearchAllFAQsQueryVariables = {|
   search?: ?string,
-  language?: ?Language,
 |};
 export type SearchAllFAQsQueryResponse = {|
   +allFAQs: ?{|
@@ -31,9 +29,8 @@ export type SearchAllFAQsQueryResponse = {|
 /*
 query SearchAllFAQsQuery(
   $search: String
-  $language: Language
 ) {
-  allFAQs(search: $search, language: $language) {
+  allFAQs(search: $search) {
     edges {
       node {
         id
@@ -57,21 +54,9 @@ var v0 = [
     "name": "search",
     "type": "String",
     "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
-    "name": "language",
-    "type": "Language",
-    "defaultValue": null
   }
 ],
 v1 = [
-  {
-    "kind": "Variable",
-    "name": "language",
-    "variableName": "language",
-    "type": "Language"
-  },
   {
     "kind": "Variable",
     "name": "search",
@@ -91,7 +76,7 @@ return {
   "operationKind": "query",
   "name": "SearchAllFAQsQuery",
   "id": null,
-  "text": "query SearchAllFAQsQuery(\n  $search: String\n  $language: Language\n) {\n  allFAQs(search: $search, language: $language) {\n    edges {\n      node {\n        id\n        ...FAQArticle_article\n      }\n    }\n  }\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n",
+  "text": "query SearchAllFAQsQuery(\n  $search: String\n) {\n  allFAQs(search: $search) {\n    edges {\n      node {\n        id\n        ...FAQArticle_article\n      }\n    }\n  }\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -198,5 +183,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '4a1c6640b98f4e0d1a280b85be991d31';
+(node/*: any*/).hash = '2fc27a8be5aea7d60772e52909f41bfd';
 module.exports = node;
