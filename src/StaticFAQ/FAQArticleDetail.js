@@ -11,9 +11,12 @@ import { LanguageContext } from '../context/Language';
 import type { FAQArticleDetailQuery } from './__generated__/FAQArticleDetailQuery.graphql';
 
 const queryFAQArticleDetail = graphql`
-  query FAQArticleDetailQuery($id: ID!, $language: Language) {
+  query FAQArticleDetailQuery($id: ID!, $language: Language, $category_id: ID!) {
     FAQArticle(id: $id, language: $language) {
       ...FAQArticleDetailContent_article
+    }
+    FAQCategory(id: $category_id) {
+      id, title, ancestors { id, ...Breadcrumbs_breadcrumbs }
     }
   }
 `;
@@ -37,7 +40,7 @@ class FAQArticleDetail extends React.Component<Props> {
       return <div>{params.error.message}</div>;
     }
     if (params.props) {
-      return <FAQArticleDetailContent article={params.props.FAQArticle} />;
+      return <FAQArticleDetailContent category={params.props.FAQCategory} article={params.props.FAQArticle} />;
     }
 
     return <Loader />;
@@ -45,6 +48,8 @@ class FAQArticleDetail extends React.Component<Props> {
 
   render() {
     const articleId = idx(this.props.match, _ => _.params.articleId);
+    const categoryId = this.props.history.entries
+      .slice(-2)[0].pathname.split('/').slice(-1)[0]
 
     return (
       <div className="faq-article-detail">
@@ -53,7 +58,7 @@ class FAQArticleDetail extends React.Component<Props> {
             <QueryRenderer
               environment={createEnvironment()}
               query={queryFAQArticleDetail}
-              variables={{ language, id: articleId }}
+              variables={{ language, id: articleId, category_id: categoryId }}
               render={this.renderDetailContent}
             />
           )}
