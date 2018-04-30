@@ -42,13 +42,13 @@ export const animationStyles = (delayTime: number) => `
   }
   @keyframes exitRight {
     0% {
-      //opacity: 1;
+      opacity: 1;
       -webkit-transform: translateX(0px);
       transform: translateX(0px);
       will-change: transform;
     }
     100% {
-      //opacity: 0;
+      opacity: 0;
       -webkit-transform: translateX(400px);
       transform: translateX(400px);
       will-change: transform;

@@ -25,7 +25,6 @@ const style = css`
   div.NoBookingPage .Body {
     display: flex;
     height: calc(100% - (64px));
-    scroll-y: none;
   }
   div.FAQ {
     width: 480px;
