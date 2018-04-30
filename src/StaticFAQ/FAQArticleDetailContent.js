@@ -6,13 +6,9 @@ import { Typography } from '@kiwicom/orbit-components';
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import Breadcrumbs from './Breadcrumbs';
-import type { FAQArticleDetailContent_article } from './__generated__/FAQArticleDetailContent_article.graphql';
-import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
+import type {FAQArticleDetailQuery } from './__generated__/FAQArticleDetailQuery.graphql';
 
-type Props = {
-  article: FAQArticleDetailContent_article,
-  category: FAQCategory_category,
-};
+type Props = FAQArticleDetailQuery;
 
 const Detail = ({ article, category }: Props) => (
   <React.Fragment>
