@@ -22,14 +22,20 @@ type Props = {|
 |};
 
 type RootQueryRendererParams = {
-  props: FAQCategoryListRootQueryResponse,
-  error: Error,
+  props: ?FAQCategoryListRootQueryResponse,
+  error: ?Error,
 };
 
 type SubcategoryQueryRendererParams = {
-  props: FAQCategoryListSubcategoryQueryResponse,
-  error: Error,
+  props: ?FAQCategoryListSubcategoryQueryResponse,
+  error: ?Error,
 };
+
+type CategoryFragment = {| +id: string, +$fragmentRefs: FAQCategory_category |};
+type FAQArticlePerexFragment = {|
+  +id: string,
+  +$fragmentRefs: FAQArticle_article,
+|};
 
 const queryRoot = graphql`
   query FAQCategoryListRootQuery($language: Language) {
@@ -64,13 +70,19 @@ const querySubcategory = graphql`
 `;
 
 class FAQCategoryList extends React.Component<Props> {
-  renderFAQArticlePerexes = (faqs: FAQArticle_article[]) => {
+  renderFAQArticlePerexes = (
+    faqs: $ReadOnlyArray<?FAQArticlePerexFragment>,
+  ) => {
     return (
-      <div>{faqs.map(faq => <FAQArticle key={faq.id} article={faq} />)}</div>
+      <div>
+        {faqs
+          .filter(Boolean)
+          .map(faq => <FAQArticle key={faq.id} article={faq} />)}
+      </div>
     );
   };
 
-  renderCategories = (categories: FAQCategory_category[]) => {
+  renderCategories = (categories: $ReadOnlyArray<CategoryFragment>) => {
     return (
       <div>
         {categories.map(category => {
@@ -100,7 +112,7 @@ class FAQCategoryList extends React.Component<Props> {
     if (rendererProps.props) {
       const edges =
         idx(rendererProps.props, _ => _.allFAQCategories.edges) || [];
-      const categories = edges.map(edge => edge.node);
+      const categories = edges.map(edge => edge && edge.node).filter(Boolean);
       return this.renderCategories(categories);
     }
 
@@ -130,7 +142,7 @@ class FAQCategoryList extends React.Component<Props> {
             currentCategory={currentCategory}
           />
           <ScrollableBox>
-            {this.renderCategories(categories)}
+            {this.renderCategories(categories.filter(Boolean))}
             {this.renderFAQArticlePerexes(faqs)}
           </ScrollableBox>
         </React.Fragment>

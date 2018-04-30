@@ -37,7 +37,7 @@ type Props = {|
   language: string,
   locale: {},
   user: User,
-  loginToken: string | null,
+  loginToken: ?string,
   onClose: () => void,
   onLogin: onLogin,
   onLogout: onLogout,

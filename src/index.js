@@ -14,7 +14,7 @@ type Props = {||};
 
 type State = {|
   user: User,
-  loginToken: string | null,
+  loginToken: ?string,
 |};
 
 const user = {

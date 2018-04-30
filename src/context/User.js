@@ -6,7 +6,7 @@ import type { User, onLogin, onLogout } from '../types';
 
 type UserContextType = {
   user: User,
-  loginToken: string | null,
+  loginToken: ?string,
   onLogin: onLogin,
   onLogout: onLogout,
 };
@@ -58,7 +58,7 @@ export const withUser = <Props>(
   };
 
 export const withLoginToken = <Props>(
-  Component: React.ComponentType<{ loginToken: string | null } & Props>,
+  Component: React.ComponentType<{ loginToken: ?string } & Props>,
 ) =>
   function withLoginTokenHOC(props: Props) {
     return (

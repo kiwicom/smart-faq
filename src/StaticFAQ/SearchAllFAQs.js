@@ -11,10 +11,10 @@ import { Loader, ScrollableBox } from '../common';
 import type { SearchAllFAQsQuery } from './__generated__/SearchAllFAQsQuery.graphql';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
 
-type AllFAQsQueryRendererParams = {|
-  props: SearchAllFAQsQuery,
-  error: Error,
-|};
+type AllFAQsQueryRendererParams = {
+  props: ?SearchAllFAQsQuery,
+  error: ?Error,
+};
 
 type Props = {|
   search: string,
