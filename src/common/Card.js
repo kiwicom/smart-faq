@@ -11,7 +11,12 @@ const styles = css`
     height: 100px;
     width: 100%;
     border-radius: 3px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.06), 0px 3px 6px rgba(0, 0, 0, 0.09);
+    transition: box-shadow 0.25s ease-in-out;
+  }
+  .card:hover {
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06),
+      0px 6px 6px rgba(0, 0, 0, 0.09);
   }
 `;
 

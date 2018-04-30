@@ -15,7 +15,7 @@ const BackArrow = ({ id }: Props) => {
     ? `${routeDefinitions.STATIC_FAQ}/${id}`
     : routeDefinitions.STATIC_FAQ;
   return (
-    <Link to={url}>
+    <Link to={{ pathname: url, state: { slideRight: true } }}>
       <div className="circle">
         <span className="chevron">
           <ChevronLeft width="12" height="16" fill="#171b1e" />
