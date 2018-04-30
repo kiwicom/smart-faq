@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookingError should match snapshot 1`] = `
+<div
+  className="jsx-1862283839 BookingError"
+>
+  <h1
+    className="jsx-1862283839 title"
+  >
+    Something's not right
+  </h1>
+  <Typography
+    size="large"
+    type="secondary"
+  >
+    We weren't able to find your booking. Please, check your credentials and try again.
+  </Typography>
+  <JSXStyle
+    css=".BookingError.jsx-1862283839{width:480px;padding:40px;background-color:#f5f7f9;height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}h1.title.jsx-1862283839{font-family:Roboto;font-size:28px;font-weight:bold;line-height:100%;color:#171b1e;margin-bottom:8px;}"
+    styleId="1862283839"
+  />
+</div>
+`;

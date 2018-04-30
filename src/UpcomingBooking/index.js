@@ -9,8 +9,9 @@ import { withLoginToken } from '../context/User';
 import Loader from '../common/Loader';
 import { calcTimeLeft } from '../helpers/utils';
 import UpcomingBooking from './UpcomingBooking';
-import BookingError from './BookingError';
+import BookingNotFound from './BookingNotFound';
 import BookingPassed from './BookingPassed';
+import BookingError from './BookingError';
 import type { UpcomingBookingQueryResponse } from './__generated__/UpcomingBookingQuery.graphql';
 
 type Props = {
@@ -36,7 +37,7 @@ const sortByDate = bookings =>
 class UpcomingBookingContainer extends React.Component<Props, State> {
   renderPage = (queryProps: AllBookingProps) => {
     if (queryProps.error) {
-      return <div>Error</div>;
+      return <BookingError />;
     }
 
     if (!queryProps.props) {
@@ -47,7 +48,7 @@ class UpcomingBookingContainer extends React.Component<Props, State> {
     if (!edges) return <BookingPassed />;
     const nodes = edges.map(e => idx(e, _ => _.node));
     const latestBooking = sortByDate(nodes)[0];
-    if (!latestBooking) return <BookingError />;
+    if (!latestBooking) return <BookingNotFound />;
     const refTime = idx(latestBooking, _ => _.departure.time) || '';
     const timeLeft = calcTimeLeft(refTime);
     if (timeLeft < 0) return <BookingPassed />;

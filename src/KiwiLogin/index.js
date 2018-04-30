@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
-import { Typography } from '@kiwicom/orbit-components';
+import { Typography, SystemMessage } from '@kiwicom/orbit-components';
+import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
 
 import CloseButton from './../common/CloseButton';
 import BackButton from '../common/BackButton';
@@ -70,6 +71,9 @@ const style = css`
     color: #46515e;
     display: inline-table;
   }
+  div.errorMessage {
+    margin-bottom: 15px;
+  }
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     .KiwiLogin {
       width: 100%;
@@ -116,16 +120,19 @@ type Props = {
 type State = {|
   email: string,
   password: string,
+  showError: boolean,
 |};
 
 class KiwiLogin extends React.Component<Props, State> {
   state = {
     email: '',
     password: '',
+    showError: false,
   };
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({ [e.target.name]: e.target.value });
+    this.state.showError && this.setState({ showError: false });
   };
   handleSignIn = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -133,10 +140,11 @@ class KiwiLogin extends React.Component<Props, State> {
       await this.props.onLogin(this.state.email, this.state.password);
       this.props.history.push(routeDefinitions.CONTENT);
     } catch (e) {
-      console.error('Bad SignIn', e); //eslint-disable-line
+      this.setState({ showError: true });
     }
   };
   render() {
+    const { showError } = this.state;
     return (
       <div className="KiwiLogin">
         <CloseButton />
@@ -175,18 +183,25 @@ class KiwiLogin extends React.Component<Props, State> {
                 />
               </div>
             </label>
+            {showError && (
+              <div className="errorMessage">
+                <SystemMessage type="error" Icon={AlertCircle}>
+                  The username or password you&apos;ve entered is invalid.
+                </SystemMessage>
+              </div>
+            )}
+            <Link
+              to={routeDefinitions.FORGOTTEN_PASSWORD}
+              style={{ textDecoration: 'none' }}
+            >
+              <div className="forgot-password">
+                <Typography type="active">Forgot your password?</Typography>
+              </div>
+            </Link>
             <span className="singIn">
               <button>Sign In</button>
             </span>
           </form>
-          <Link
-            to={routeDefinitions.FORGOTTEN_PASSWORD}
-            style={{ textDecoration: 'none' }}
-          >
-            <div className="forgot-password">
-              <Typography type="active">Forgot your password?</Typography>
-            </div>
-          </Link>
         </div>
         <style jsx>{style}</style>
       </div>

@@ -5,30 +5,34 @@ import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
 
 const style = css`
-  .UpcomingBooking {
+  .BookingError {
     width: 480px;
     padding: 40px;
-    padding-top: 128px;
     background-color: #f5f7f9;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
-  div.feedback {
-    margin-top: 32px;
-    text-align: center;
+  h1.title {
+    font-family: Roboto;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 100%;
+    color: #171b1e;
+    margin-bottom: 8px;
   }
 `;
 
-const BookingError = () => {
-  return (
-    <div className="UpcomingBooking">
-      <div className="feedback">
-        <Typography type="secondary" size="large">
-          No Bookings found
-        </Typography>
-      </div>
-      <style jsx>{style}</style>
-    </div>
-  );
-};
+const BookingError = () => (
+  <div className="BookingError">
+    <h1 className="title">Something&apos;s not right</h1>
+    <Typography type="secondary" size="large">
+      We weren&apos;t able to find your booking. Please, check your credentials
+      and try again.
+    </Typography>
+    <style jsx>{style}</style>
+  </div>
+);
 
 export default BookingError;
