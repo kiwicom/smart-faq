@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b0026613f8125e1e834231cd87ff2e14
+ * @relayHash 386199551a347cc38230227ddfd5b79a
  */
 
 /* eslint-disable */
@@ -43,6 +43,7 @@ query UpcomingBookingQuery {
 
 fragment UpcomingBooking_booking on Booking {
   databaseId
+  status
   legs {
     airline {
       name
@@ -153,7 +154,7 @@ return {
   "operationKind": "query",
   "name": "UpcomingBookingQuery",
   "id": null,
-  "text": "query UpcomingBookingQuery {\n  allBookings {\n    edges {\n      node {\n        departure {\n          time\n        }\n        ...UpcomingBooking_booking\n        id\n      }\n    }\n  }\n}\n\nfragment UpcomingBooking_booking on Booking {\n  databaseId\n  legs {\n    airline {\n      name\n      code\n      logoUrl\n    }\n    departure {\n      time\n      localTime\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    arrival {\n      time\n      localTime\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    id\n  }\n}\n",
+  "text": "query UpcomingBookingQuery {\n  allBookings {\n    edges {\n      node {\n        departure {\n          time\n        }\n        ...UpcomingBooking_booking\n        id\n      }\n    }\n  }\n}\n\nfragment UpcomingBooking_booking on Booking {\n  databaseId\n  status\n  legs {\n    airline {\n      name\n      code\n      logoUrl\n    }\n    departure {\n      time\n      localTime\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    arrival {\n      time\n      localTime\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -240,6 +241,13 @@ return {
                     "kind": "ScalarField",
                     "alias": null,
                     "name": "databaseId",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "status",
                     "args": null,
                     "storageKey": null
                   },
