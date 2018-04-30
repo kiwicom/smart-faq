@@ -1,22 +1,27 @@
 // @flow
 
-import * as React from "react";
-import Markdown from "markdown-to-jsx";
-import { Typography } from "@kiwicom/orbit-components";
-import { createFragmentContainer, graphql } from "react-relay";
-import Breadcrumbs from "./Breadcrumbs";
+import * as React from 'react';
+import Markdown from 'markdown-to-jsx';
+import { Typography } from '@kiwicom/orbit-components';
+import { createFragmentContainer, graphql } from 'react-relay';
 
-import type { FAQArticleDetailContent_article } from "./__generated__/FAQArticleDetailContent_article.graphql";
+import Breadcrumbs from './Breadcrumbs';
+import type { FAQArticleDetailContent_article } from './__generated__/FAQArticleDetailContent_article.graphql';
+import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
 
 type Props = {
   article: FAQArticleDetailContent_article,
+  category: FAQCategory_category,
 };
 
 const Detail = ({ article, category }: Props) => (
   <React.Fragment>
     <div className="faq-article-content">
       <div>
-        <Breadcrumbs breadcrumbs={category.ancestors} currentCategory={article.title} />
+        <Breadcrumbs
+          breadcrumbs={category.ancestors}
+          currentCategory={article.title}
+        />
       </div>
       <Typography size="header" type="attention">
         {article.title}

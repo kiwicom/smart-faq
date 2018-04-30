@@ -11,12 +11,21 @@ import { LanguageContext } from '../context/Language';
 import type { FAQArticleDetailQuery } from './__generated__/FAQArticleDetailQuery.graphql';
 
 const queryFAQArticleDetail = graphql`
-  query FAQArticleDetailQuery($id: ID!, $language: Language, $category_id: ID!) {
+  query FAQArticleDetailQuery(
+    $id: ID!
+    $language: Language
+    $category_id: ID!
+  ) {
     FAQArticle(id: $id, language: $language) {
       ...FAQArticleDetailContent_article
     }
     FAQCategory(id: $category_id) {
-      id, title, ancestors { id, ...Breadcrumbs_breadcrumbs }
+      id
+      title
+      ancestors {
+        id
+        ...Breadcrumbs_breadcrumbs
+      }
     }
   }
 `;
@@ -32,6 +41,9 @@ type Props = {|
       articleId: string,
     },
   },
+  history: {
+    entries: [],
+  },
 |};
 
 class FAQArticleDetail extends React.Component<Props> {
@@ -40,7 +52,12 @@ class FAQArticleDetail extends React.Component<Props> {
       return <div>{params.error.message}</div>;
     }
     if (params.props) {
-      return <FAQArticleDetailContent category={params.props.FAQCategory} article={params.props.FAQArticle} />;
+      return (
+        <FAQArticleDetailContent
+          category={params.props.FAQCategory}
+          article={params.props.FAQArticle}
+        />
+      );
     }
 
     return <Loader />;
@@ -49,7 +66,9 @@ class FAQArticleDetail extends React.Component<Props> {
   render() {
     const articleId = idx(this.props.match, _ => _.params.articleId);
     const categoryId = this.props.history.entries
-      .slice(-2)[0].pathname.split('/').slice(-1)[0]
+      .slice(-2)[0]
+      .pathname.split('/')
+      .slice(-1)[0];
 
     return (
       <div className="faq-article-detail">
