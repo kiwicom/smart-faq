@@ -13,6 +13,7 @@ declare export opaque type FAQCategory_category$ref: FragmentReference;
 export type FAQCategory_category = {|
   +id: string,
   +title: ?string,
+  +perex: ?string,
   +$refType: FAQCategory_category$ref,
 |};
 */
@@ -38,8 +39,15 @@ const node/*: ConcreteFragment*/ = {
       "name": "title",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "perex",
+      "args": null,
+      "storageKey": null
     }
   ]
 };
-(node/*: any*/).hash = 'a1a0bd0176262bba61ea56e8d80df92f';
+(node/*: any*/).hash = 'e39a5b7fbed4e1e8890047248d8a4555';
 module.exports = node;

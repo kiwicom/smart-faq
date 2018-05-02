@@ -35,7 +35,7 @@ const FAQCategory = (props: Props) => (
     </div>
     <div>
       <Typography type="secondary" size="small">
-        How to find your best deal fast and easy
+        {props.category.perex}
       </Typography>
     </div>
     <div className="faq-item-chevron">
@@ -51,6 +51,7 @@ export default createFragmentContainer(
     fragment FAQCategory_category on FAQCategory {
       id
       title
+      perex
     }
   `,
 );
