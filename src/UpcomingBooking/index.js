@@ -15,12 +15,12 @@ import BookingError from './BookingError';
 import type { UpcomingBookingQueryResponse } from './__generated__/UpcomingBookingQuery.graphql';
 
 type Props = {
-  loginToken: string | null,
+  loginToken: ?string,
 };
 
 type AllBookingProps = {
-  props: UpcomingBookingQueryResponse,
-  error: Error,
+  props: ?UpcomingBookingQueryResponse,
+  error: ?Error,
 };
 
 type State = {|
@@ -64,6 +64,7 @@ class UpcomingBookingContainer extends React.Component<Props, State> {
         query={allBookingsQuery}
         render={this.renderPage}
         cacheConfig={{ force: true }}
+        variables={{}}
       />
     );
   }

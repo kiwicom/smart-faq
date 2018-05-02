@@ -34,13 +34,17 @@ const styles = css`
   }
 `;
 
-type Props = {|
+type Props = {
   match: {
     params: {
-      categoryId: string,
+      categoryId: ?string,
+      [key: string]: ?string,
     },
+    isExact: boolean,
+    path: string,
+    url: string,
   },
-|};
+};
 
 const NoSearchResults = (props: Props) => {
   const categoryId = idx(props.match, _ => _.params.categoryId) || null;
