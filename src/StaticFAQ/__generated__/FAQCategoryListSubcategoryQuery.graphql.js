@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash bdc4ff1c991bd717f479ab17756ca315
+ * @relayHash acb6a7bb2d53739ba8b2b36ace98feda
  */
 
 /* eslint-disable */
@@ -19,6 +19,7 @@ export type FAQCategoryListSubcategoryQueryVariables = {|
 |};
 export type FAQCategoryListSubcategoryQueryResponse = {|
   +FAQCategory: ?{|
+    +id: string,
     +title: ?string,
     +subcategories: ?$ReadOnlyArray<?{|
       +id: string,
@@ -43,6 +44,7 @@ query FAQCategoryListSubcategoryQuery(
   $language: Language
 ) {
   FAQCategory(id: $id, language: $language) {
+    id
     title
     subcategories {
       id
@@ -56,7 +58,6 @@ query FAQCategoryListSubcategoryQuery(
       id
       ...FAQArticle_article
     }
-    id
   }
 }
 
@@ -109,27 +110,27 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "title",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "title",
   "args": null,
   "storageKey": null
 },
 v4 = [
-  v3,
-  v2
+  v2,
+  v3
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "FAQCategoryListSubcategoryQuery",
   "id": null,
-  "text": "query FAQCategoryListSubcategoryQuery(\n  $id: ID!\n  $language: Language\n) {\n  FAQCategory(id: $id, language: $language) {\n    title\n    subcategories {\n      id\n      ...FAQCategory_category\n    }\n    ancestors {\n      id\n      ...Breadcrumbs_breadcrumbs\n    }\n    FAQs {\n      id\n      ...FAQArticle_article\n    }\n    id\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n",
+  "text": "query FAQCategoryListSubcategoryQuery(\n  $id: ID!\n  $language: Language\n) {\n  FAQCategory(id: $id, language: $language) {\n    id\n    title\n    subcategories {\n      id\n      ...FAQCategory_category\n    }\n    ancestors {\n      id\n      ...Breadcrumbs_breadcrumbs\n    }\n    FAQs {\n      id\n      ...FAQArticle_article\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -148,6 +149,7 @@ return {
         "plural": false,
         "selections": [
           v2,
+          v3,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -157,7 +159,7 @@ return {
             "concreteType": "FAQCategory",
             "plural": true,
             "selections": [
-              v3,
+              v2,
               {
                 "kind": "FragmentSpread",
                 "name": "FAQCategory_category",
@@ -174,7 +176,7 @@ return {
             "concreteType": "FAQCategory",
             "plural": true,
             "selections": [
-              v3,
+              v2,
               {
                 "kind": "FragmentSpread",
                 "name": "Breadcrumbs_breadcrumbs",
@@ -191,7 +193,7 @@ return {
             "concreteType": "FAQArticle",
             "plural": true,
             "selections": [
-              v3,
+              v2,
               {
                 "kind": "FragmentSpread",
                 "name": "FAQArticle_article",
@@ -218,6 +220,7 @@ return {
         "plural": false,
         "selections": [
           v2,
+          v3,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -247,8 +250,8 @@ return {
             "concreteType": "FAQArticle",
             "plural": true,
             "selections": [
-              v3,
               v2,
+              v3,
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -257,13 +260,12 @@ return {
                 "storageKey": null
               }
             ]
-          },
-          v3
+          }
         ]
       }
     ]
   }
 };
 })();
-(node/*: any*/).hash = '40dc6d97b2fd0e41e432db8672cdb91c';
+(node/*: any*/).hash = 'b70b7c5c03025430c0b12ed2c1034b27';
 module.exports = node;

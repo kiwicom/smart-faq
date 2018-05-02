@@ -39,10 +39,8 @@ type Props = {|
   match: {
     params: {
       articleId: string,
+      categoryId: string,
     },
-  },
-  history: {
-    entries: [],
   },
 |};
 
@@ -65,10 +63,7 @@ class FAQArticleDetail extends React.Component<Props> {
 
   render() {
     const articleId = idx(this.props.match, _ => _.params.articleId);
-    const categoryId = this.props.history.entries
-      .slice(-2)[0]
-      .pathname.split('/')
-      .slice(-1)[0];
+    const categoryId = idx(this.props.match, _ => _.params.categoryId);
 
     return (
       <div className="faq-article-detail">
