@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f067053569a5c1c8ceac9bffcee07a70
+ * @relayHash 8b867b663172c64638b2d0af3fd336a4
  */
 
 /* eslint-disable */
@@ -22,10 +22,7 @@ export type FAQArticleDetailQueryResponse = {|
     +$fragmentRefs: FAQArticleDetailContent_article$ref,
   |},
   +FAQCategory: ?{|
-    +id: string,
-    +title: ?string,
     +ancestors: ?$ReadOnlyArray<?{|
-      +id: string,
       +$fragmentRefs: Breadcrumbs_breadcrumbs$ref,
     |}>,
   |},
@@ -44,12 +41,11 @@ query FAQArticleDetailQuery(
     id
   }
   FAQCategory(id: $category_id) {
-    id
-    title
     ancestors {
-      id
       ...Breadcrumbs_breadcrumbs
+      id
     }
+    id
   }
 }
 
@@ -111,14 +107,14 @@ v2 = [
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "title",
   "args": null,
   "storageKey": null
 },
 v4 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "title",
+  "name": "id",
   "args": null,
   "storageKey": null
 };
@@ -127,7 +123,7 @@ return {
   "operationKind": "query",
   "name": "FAQArticleDetailQuery",
   "id": null,
-  "text": "query FAQArticleDetailQuery(\n  $id: ID!\n  $language: Language\n  $category_id: ID!\n) {\n  FAQArticle(id: $id, language: $language) {\n    ...FAQArticleDetailContent_article\n    id\n  }\n  FAQCategory(id: $category_id) {\n    id\n    title\n    ancestors {\n      id\n      ...Breadcrumbs_breadcrumbs\n    }\n  }\n}\n\nfragment FAQArticleDetailContent_article on FAQArticle {\n  title\n  perex\n  content\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n",
+  "text": "query FAQArticleDetailQuery(\n  $id: ID!\n  $language: Language\n  $category_id: ID!\n) {\n  FAQArticle(id: $id, language: $language) {\n    ...FAQArticleDetailContent_article\n    id\n  }\n  FAQCategory(id: $category_id) {\n    ancestors {\n      ...Breadcrumbs_breadcrumbs\n      id\n    }\n    id\n  }\n}\n\nfragment FAQArticleDetailContent_article on FAQArticle {\n  title\n  perex\n  content\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -161,8 +157,6 @@ return {
         "concreteType": "FAQCategory",
         "plural": false,
         "selections": [
-          v3,
-          v4,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -172,7 +166,6 @@ return {
             "concreteType": "FAQCategory",
             "plural": true,
             "selections": [
-              v3,
               {
                 "kind": "FragmentSpread",
                 "name": "Breadcrumbs_breadcrumbs",
@@ -198,7 +191,7 @@ return {
         "concreteType": "FAQArticle",
         "plural": false,
         "selections": [
-          v4,
+          v3,
           {
             "kind": "ScalarField",
             "alias": null,
@@ -213,7 +206,7 @@ return {
             "args": null,
             "storageKey": null
           },
-          v3
+          v4
         ]
       },
       {
@@ -225,8 +218,6 @@ return {
         "concreteType": "FAQCategory",
         "plural": false,
         "selections": [
-          v3,
-          v4,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -236,15 +227,16 @@ return {
             "concreteType": "FAQCategory",
             "plural": true,
             "selections": [
-              v3,
-              v4
+              v4,
+              v3
             ]
-          }
+          },
+          v4
         ]
       }
     ]
   }
 };
 })();
-(node/*: any*/).hash = '5740f02ff0fe311d2b95449381d840b4';
+(node/*: any*/).hash = '5cd7a7d567f28b965d39dff47bdb1c1c';
 module.exports = node;

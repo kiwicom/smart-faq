@@ -20,10 +20,7 @@ const queryFAQArticleDetail = graphql`
       ...FAQArticleDetailContent_article
     }
     FAQCategory(id: $category_id) {
-      id
-      title
       ancestors {
-        id
         ...Breadcrumbs_breadcrumbs
       }
     }
