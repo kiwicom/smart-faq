@@ -1,10 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import Markdown from 'markdown-to-jsx';
 import { Typography } from '@kiwicom/orbit-components';
 import { createFragmentContainer, graphql } from 'react-relay';
 
+import Markdown from '../common/Markdown';
 import type { FAQArticleDetailContent_article } from './__generated__/FAQArticleDetailContent_article.graphql';
 
 type Props = {
