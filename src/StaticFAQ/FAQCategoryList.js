@@ -130,7 +130,7 @@ class FAQCategoryList extends React.Component<Props> {
         _ => _.FAQCategory.title,
       );
       const faqs = idx(rendererProps.props, _ => _.FAQCategory.FAQs) || [];
-      const category = idx(rendererProps.props, _ => _.FAQCategory) || [];
+      const category = rendererProps.props.FAQCategory;
 
       return (
         <React.Fragment>
