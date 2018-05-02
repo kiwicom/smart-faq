@@ -70,6 +70,11 @@ const loggedOutStyle = css`
   }
   div.signin-or-back {
     margin-right: 149px;
+    width: 43px;
+    height: 20px;
+  }
+  span.back-button {
+    line-height: 2;
   }
 `;
 
@@ -79,6 +84,12 @@ type Props = {
     params: {
       categoryId: ?string,
     },
+  },
+  history: {
+    entries: [],
+  },
+  location: {
+    pathname: string,
   },
 };
 
@@ -97,31 +108,51 @@ const renderLoggedIn = () => {
   );
 };
 
-const renderLoggedOut = (hasCategory: string | null) => (
-  <div className="logged-out">
-    <div className="signin-or-back">
-      {hasCategory ? (
-        <BackButton text="Back" />
-      ) : (
-        <Link to={routeDefinitions.SIGN_IN} style={{ textDecoration: 'none' }}>
-          <Typography type="attention" variant="normal">
-            Sign In
-          </Typography>
-        </Link>
-      )}
+const renderLoggedOut = (
+  hasCategory: string | null,
+  isArticle: boolean,
+  comesFromSearch: boolean,
+) => {
+  return (
+    <div className="logged-out">
+      <div className="signin-or-back">
+        {hasCategory || isArticle ? (
+          <span className="back-button">
+            <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
+          </span>
+        ) : (
+          <Link
+            to={routeDefinitions.SIGN_IN}
+            style={{ textDecoration: 'none' }}
+          >
+            <Typography type="attention" variant="normal">
+              Sign In
+            </Typography>
+          </Link>
+        )}
+      </div>
+      <div className="help-header">Help</div>
+      <style jsx>{loggedOutStyle}</style>
     </div>
-    <div className="help-header">Help</div>
-    <style jsx>{loggedOutStyle}</style>
-  </div>
-);
+  );
+};
 
 const ContentHeader = (props: Props) => {
   const hasCategory = idx(props.match, _ => _.params.categoryId) || null;
+  const entries = props.history && props.history.entries;
+  const currentpath = props.location && props.location.pathname;
+
+  const isArticle = currentpath.includes('article');
+  const lastEntry = isArticle && entries[entries.length - 2];
+  const comesFromSearch = lastEntry && lastEntry.pathname === '/static-faq';
+
   return (
     <div className="header">
       <div className="ContentHeader">
         <CloseButton height="24" />
-        {props.user ? renderLoggedIn() : renderLoggedOut(hasCategory)}
+        {props.user
+          ? renderLoggedIn()
+          : renderLoggedOut(hasCategory, isArticle, comesFromSearch)}
         <style jsx>{style}</style>
       </div>
     </div>

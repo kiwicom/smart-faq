@@ -8,6 +8,7 @@ import QueryRenderer from '../relay/QueryRenderer';
 import Loader from '../common/Loader';
 import ContentHeader from '../ContentHeader';
 import FAQArticleDetailContent from './FAQArticleDetailContent';
+import { withUser } from '../context/User';
 import type { FAQArticleDetailQuery } from './__generated__/FAQArticleDetailQuery.graphql';
 import type { User } from '../types';
 
