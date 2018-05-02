@@ -5,9 +5,11 @@ import Markdown from 'markdown-to-jsx';
 import { Typography } from '@kiwicom/orbit-components';
 import { createFragmentContainer, graphql } from 'react-relay';
 
-import type { FAQArticleDetailQuery } from './__generated__/FAQArticleDetailQuery.graphql';
+import type { FAQArticleDetailContent_article } from './__generated__/FAQArticleDetailContent_article.graphql';
 
-type Props = FAQArticleDetailQuery;
+type Props = {
+  article: FAQArticleDetailContent_article,
+};
 
 const Detail = ({ article }: Props) => (
   <div className="faq-article-content">
