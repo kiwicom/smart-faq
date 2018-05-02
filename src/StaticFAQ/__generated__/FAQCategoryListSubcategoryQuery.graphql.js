@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 091688bca5be57a55ce9325f36e7153f
+ * @relayHash 93093d82d51e76e680b62e7954dccb37
  */
 
 /* eslint-disable */
@@ -123,8 +123,8 @@ v3 = {
   "storageKey": null
 },
 v4 = [
-  v3,
   v2,
+  v3,
   {
     "kind": "ScalarField",
     "alias": null,
@@ -138,7 +138,7 @@ return {
   "operationKind": "query",
   "name": "FAQCategoryListSubcategoryQuery",
   "id": null,
-  "text": "query FAQCategoryListSubcategoryQuery(\n  $id: ID!\n  $language: Language\n) {\n  FAQCategory(id: $id, language: $language) {\n    title\n    subcategories {\n      id\n      ...FAQCategory_category\n    }\n    ancestors {\n      id\n      ...Breadcrumbs_breadcrumbs\n    }\n    FAQs {\n      id\n      ...FAQArticle_article\n    }\n    id\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n",
+  "text": "query FAQCategoryListSubcategoryQuery(\n  $id: ID!\n  $language: Language\n) {\n  FAQCategory(id: $id, language: $language) {\n    id\n    title\n    subcategories {\n      id\n      ...FAQCategory_category\n    }\n    ancestors {\n      id\n      ...Breadcrumbs_breadcrumbs\n    }\n    FAQs {\n      id\n      ...FAQArticle_article\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -248,8 +248,8 @@ return {
             "concreteType": "FAQCategory",
             "plural": true,
             "selections": [
-              v3,
-              v2
+              v2,
+              v3
             ]
           },
           {
@@ -261,8 +261,7 @@ return {
             "concreteType": "FAQArticle",
             "plural": true,
             "selections": v4
-          },
-          v3
+          }
         ]
       }
     ]
