@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8b867b663172c64638b2d0af3fd336a4
+ * @relayHash 95628aa0c684784974079521d55facea
  */
 
 /* eslint-disable */
@@ -19,6 +19,7 @@ export type FAQArticleDetailQueryVariables = {|
 |};
 export type FAQArticleDetailQueryResponse = {|
   +FAQArticle: ?{|
+    +title: ?string,
     +$fragmentRefs: FAQArticleDetailContent_article$ref,
   |},
   +FAQCategory: ?{|
@@ -37,6 +38,7 @@ query FAQArticleDetailQuery(
   $category_id: ID!
 ) {
   FAQArticle(id: $id, language: $language) {
+    title
     ...FAQArticleDetailContent_article
     id
   }
@@ -96,7 +98,14 @@ v1 = [
     "type": "Language"
   }
 ],
-v2 = [
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "title",
+  "args": null,
+  "storageKey": null
+},
+v3 = [
   {
     "kind": "Variable",
     "name": "id",
@@ -104,13 +113,6 @@ v2 = [
     "type": "ID!"
   }
 ],
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "title",
-  "args": null,
-  "storageKey": null
-},
 v4 = {
   "kind": "ScalarField",
   "alias": null,
@@ -123,7 +125,7 @@ return {
   "operationKind": "query",
   "name": "FAQArticleDetailQuery",
   "id": null,
-  "text": "query FAQArticleDetailQuery(\n  $id: ID!\n  $language: Language\n  $category_id: ID!\n) {\n  FAQArticle(id: $id, language: $language) {\n    ...FAQArticleDetailContent_article\n    id\n  }\n  FAQCategory(id: $category_id) {\n    ancestors {\n      ...Breadcrumbs_breadcrumbs\n      id\n    }\n    id\n  }\n}\n\nfragment FAQArticleDetailContent_article on FAQArticle {\n  title\n  perex\n  content\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n",
+  "text": "query FAQArticleDetailQuery(\n  $id: ID!\n  $language: Language\n  $category_id: ID!\n) {\n  FAQArticle(id: $id, language: $language) {\n    title\n    ...FAQArticleDetailContent_article\n    id\n  }\n  FAQCategory(id: $category_id) {\n    ancestors {\n      ...Breadcrumbs_breadcrumbs\n      id\n    }\n    id\n  }\n}\n\nfragment FAQArticleDetailContent_article on FAQArticle {\n  title\n  perex\n  content\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -141,6 +143,7 @@ return {
         "concreteType": "FAQArticle",
         "plural": false,
         "selections": [
+          v2,
           {
             "kind": "FragmentSpread",
             "name": "FAQArticleDetailContent_article",
@@ -153,7 +156,7 @@ return {
         "alias": null,
         "name": "FAQCategory",
         "storageKey": null,
-        "args": v2,
+        "args": v3,
         "concreteType": "FAQCategory",
         "plural": false,
         "selections": [
@@ -191,7 +194,7 @@ return {
         "concreteType": "FAQArticle",
         "plural": false,
         "selections": [
-          v3,
+          v2,
           {
             "kind": "ScalarField",
             "alias": null,
@@ -214,7 +217,7 @@ return {
         "alias": null,
         "name": "FAQCategory",
         "storageKey": null,
-        "args": v2,
+        "args": v3,
         "concreteType": "FAQCategory",
         "plural": false,
         "selections": [
@@ -228,7 +231,7 @@ return {
             "plural": true,
             "selections": [
               v4,
-              v3
+              v2
             ]
           },
           v4
@@ -238,5 +241,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '5cd7a7d567f28b965d39dff47bdb1c1c';
+(node/*: any*/).hash = '97a6d072b79c2159b247c5a9032fa07a';
 module.exports = node;

@@ -9,6 +9,7 @@ import FAQArticleDetailContent from './FAQArticleDetailContent';
 import createEnvironment from '../relay/environment';
 import { LanguageContext } from '../context/Language';
 import type { FAQArticleDetailQuery } from './__generated__/FAQArticleDetailQuery.graphql';
+import Breadcrumbs from './Breadcrumbs';
 
 const queryFAQArticleDetail = graphql`
   query FAQArticleDetailQuery(
@@ -17,6 +18,7 @@ const queryFAQArticleDetail = graphql`
     $category_id: ID!
   ) {
     FAQArticle(id: $id, language: $language) {
+      title,
       ...FAQArticleDetailContent_article
     }
     FAQCategory(id: $category_id) {
@@ -48,10 +50,15 @@ class FAQArticleDetail extends React.Component<Props> {
     }
     if (params.props) {
       return (
-        <FAQArticleDetailContent
-          category={params.props.FAQCategory}
-          article={params.props.FAQArticle}
-        />
+        <React.Fragment>
+          <Breadcrumbs
+            breadcrumbs={params.props.FAQCategory.ancestors}
+            currentCategory={params.props.FAQArticle.title}
+          />
+          <FAQArticleDetailContent
+            article={params.props.FAQArticle}
+          />
+        </React.Fragment>
       );
     }
 
