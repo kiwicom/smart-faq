@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash bdc4ff1c991bd717f479ab17756ca315
+ * @relayHash 091688bca5be57a55ce9325f36e7153f
  */
 
 /* eslint-disable */
@@ -63,6 +63,7 @@ query FAQCategoryListSubcategoryQuery(
 fragment FAQCategory_category on FAQCategory {
   id
   title
+  perex
 }
 
 fragment Breadcrumbs_breadcrumbs on FAQCategory {
@@ -122,14 +123,21 @@ v3 = {
 },
 v4 = [
   v3,
-  v2
+  v2,
+  {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "perex",
+    "args": null,
+    "storageKey": null
+  }
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "FAQCategoryListSubcategoryQuery",
   "id": null,
-  "text": "query FAQCategoryListSubcategoryQuery(\n  $id: ID!\n  $language: Language\n) {\n  FAQCategory(id: $id, language: $language) {\n    title\n    subcategories {\n      id\n      ...FAQCategory_category\n    }\n    ancestors {\n      id\n      ...Breadcrumbs_breadcrumbs\n    }\n    FAQs {\n      id\n      ...FAQArticle_article\n    }\n    id\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n",
+  "text": "query FAQCategoryListSubcategoryQuery(\n  $id: ID!\n  $language: Language\n) {\n  FAQCategory(id: $id, language: $language) {\n    title\n    subcategories {\n      id\n      ...FAQCategory_category\n    }\n    ancestors {\n      id\n      ...Breadcrumbs_breadcrumbs\n    }\n    FAQs {\n      id\n      ...FAQArticle_article\n    }\n    id\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -236,7 +244,10 @@ return {
             "args": null,
             "concreteType": "FAQCategory",
             "plural": true,
-            "selections": v4
+            "selections": [
+              v3,
+              v2
+            ]
           },
           {
             "kind": "LinkedField",
@@ -246,17 +257,7 @@ return {
             "args": null,
             "concreteType": "FAQArticle",
             "plural": true,
-            "selections": [
-              v3,
-              v2,
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "perex",
-                "args": null,
-                "storageKey": null
-              }
-            ]
+            "selections": v4
           },
           v3
         ]
