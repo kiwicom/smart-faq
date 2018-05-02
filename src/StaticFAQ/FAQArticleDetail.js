@@ -29,19 +29,23 @@ const queryFAQArticleDetail = graphql`
   }
 `;
 
-type FAQArticleDetailParams = {|
+type FAQArticleDetailParams = {
   props: FAQArticleDetailQuery,
   error: Error,
-|};
+};
 
-type Props = {|
+type Props = {
   match: {
     params: {
       articleId: string,
       categoryId: string,
+      [key: string]: ?string,
     },
+    isExact: boolean,
+    path: string,
+    url: string,
   },
-|};
+};
 
 class FAQArticleDetail extends React.Component<Props> {
   renderDetailContent = (params: FAQArticleDetailParams) => {

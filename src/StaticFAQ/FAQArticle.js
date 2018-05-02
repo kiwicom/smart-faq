@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { Typography } from '@kiwicom/orbit-components';
+import css from 'styled-jsx/css';
 
 import Card from './../common/Card';
 import routeDefinitions from '../routeDefinitions';
@@ -15,6 +16,15 @@ type Props = {|
   category: FAQCategory_category,
 |};
 
+const style = css`
+  .ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #171b1e; // needed because the ... takes the color from the <div>
+  }
+`;
+
 const FAQArticle = (props: Props) => (
   <Link
     to={`${routeDefinitions.FAQ_ARTICLE}/${props.category.id}/${
@@ -23,7 +33,7 @@ const FAQArticle = (props: Props) => (
     style={{ textDecoration: 'none' }}
   >
     <Card>
-      <div>
+      <div className="ellipsis">
         <Typography type="attention" size="large">
           {props.article.title}
         </Typography>
@@ -34,6 +44,7 @@ const FAQArticle = (props: Props) => (
         </Typography>
       </div>
     </Card>
+    <style jsx>{style}</style>
   </Link>
 );
 

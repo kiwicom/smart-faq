@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FullFAQLink should match snapshot 1`] = `
+<FullFAQLink>
+  <div
+    className="jsx-760019255"
+  >
+    <Typography
+      type="attention"
+    >
+      <span
+        className="jsx-410270121"
+      >
+        <a
+          className="jsx-760019255 "
+          href="https://www.kiwi.com/helpcenter/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Full FAQ site
+          <span
+            className="jsx-760019255 inline-icon"
+          >
+            <div
+              className="jsx-760019255 open-icon"
+            >
+              <OpenInNew
+                fill="#171b1e"
+                height="16"
+              >
+                <svg
+                  fill="#171b1e"
+                  height="16"
+                  viewBox="0 0 32 32"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18.667 4v2.667h4.786L10.347 19.773l1.88 1.88L25.333 8.547v4.786H28V4h-9.333zm6.666 21.333H6.667V6.667H16V4H6.667C5.187 4 4 5.2 4 6.667v18.666A2.667 2.667 0 0 0 6.667 28h18.666A2.667 2.667 0 0 0 28 25.333V16h-2.667v9.333z"
+                  />
+                </svg>
+              </OpenInNew>
+            </div>
+          </span>
+        </a>
+        <JSXStyle
+          css="span.__jsx-style-dynamic-selector{font-family:Roboto,-apple-system,sans-serif;font-size:14px;color:#171b1e;;}"
+          dynamic={
+            Array [
+              "14px",
+              "#171b1e",
+              "",
+            ]
+          }
+          styleId="1112443529"
+        />
+      </span>
+    </Typography>
+    <JSXStyle
+      css="div.open-icon.jsx-760019255{display:inline-block;vertical-align:-3px;margin-left:4px;}a.jsx-760019255{-webkit-text-decoration:none;text-decoration:none;color:inherit;}.primary.jsx-760019255{color:#00a991;}"
+      styleId="760019255"
+    />
+  </div>
+</FullFAQLink>
+`;

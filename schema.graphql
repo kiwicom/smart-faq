@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com
-# timestamp: Fri Apr 20 2018 11:01:11 GMT+0200 (CEST)
+# timestamp: Wed May 02 2018 11:00:47 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
@@ -321,6 +321,53 @@ enum Currency {
   XAU
 }
 
+type CurrencyDetail implements Node {
+  """The ID of an object"""
+  id: ID!
+
+  """The code of the currency as used on Kiwi.com frontend"""
+  code: String
+
+  """The name of the currency"""
+  name: String
+
+  """Format string of the currency"""
+  format: String
+
+  """Whether the format of the currency is universally accepted"""
+  uncertainFormat: Boolean
+
+  """Number of digits to round the currency to when doing conversion"""
+  round: Int
+
+  """List of affiliate IDs to enable the currency on"""
+  enabledOnAffilId: [String]
+
+  """The code of the currency used as a fallback"""
+  fallback: String
+
+  """Currency rate compared to Euro"""
+  rate: Float
+}
+
+"""A connection to a list of items."""
+type CurrencyDetailConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [CurrencyDetailEdge]
+}
+
+"""An edge in a connection."""
+type CurrencyDetailEdge {
+  """The item at the end of the edge"""
+  node: CurrencyDetail
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
 """
 A date string, such as 2007-12-03, compliant with the `full-date` format
 outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
@@ -400,6 +447,9 @@ type FAQCategory {
 
   """Title of the FAQ category"""
   title: String
+
+  """Perex of the FAQ category"""
+  perex: String
 
   """List of subcategories"""
   subcategories: [FAQCategory]
@@ -570,6 +620,9 @@ type HotelAvailabilityConnection {
   """A list of edges."""
   edges: [HotelAvailabilityEdge]
   stats: HotelAvailabilityStats
+
+  """Name of the closest city when quering with latitude & longitude"""
+  cityName: String
 }
 
 """An edge in a connection."""
@@ -847,8 +900,6 @@ input HotelsSearchInput {
   roomsConfiguration: [RoomsConfiguration!]!
 }
 
-scalar IP
-
 type Identity {
   """The ID of an object"""
   id: ID!
@@ -871,53 +922,56 @@ type Identity {
   login: String
 }
 
+scalar IP
+
+"""Use "Accept-Language" HTTP header to specify locale."""
 enum Language {
-  ar
-  bg
-  ca
-  cs
-  da
-  de
-  el
-  en
-  engb
-  enus
-  es
-  esar
-  et
-  fi
-  fr
-  he
-  hr
-  hu
-  id
-  is
-  it
-  ja
-  ko
-  lt
-  lv
-  ms
-  nl
-  no
-  pl
-  pt
-  ptbr
-  ptpt
-  ro
-  ru
-  sk
-  sl
-  sr
-  sv
-  th
-  tl
-  tr
-  uk
-  vi
-  zh
-  zhcn
-  zhtw
+  ar @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  bg @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ca @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  cs @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  da @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  de @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  el @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  en @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  engb @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  enus @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  es @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  esar @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  et @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  fi @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  fr @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  he @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  hr @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  hu @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  id @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  is @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  it @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ja @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ko @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  lt @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  lv @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ms @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  nl @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  no @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  pl @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  pt @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ptbr @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ptpt @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ro @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ru @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  sk @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  sl @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  sr @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  sv @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  th @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  tl @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  tr @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  uk @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  vi @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  zh @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  zhcn @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  zhtw @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
 }
 
 """
@@ -934,76 +988,83 @@ type Leg {
   duration: Int
   flightNumber: Int
   recheckRequired: Boolean
+
+  """Determines whether Leg is related to return flight."""
+  isReturn: Boolean
 }
 
-"""Language tag in the format of the RFC 5646."""
+"""
+DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
+"""
 enum Locale {
-  bg_BG
-  ca_ES
-  cs_CZ
-  da_DK
-  de_DE
-  de_AT
-  de_CH
-  el_GR
-  en_GB
-  en_AU
-  en_CA
-  en_EE
-  en_HK
-  en_IN
-  en_IE
-  en_MY
-  en_NZ
-  en_SG
-  en_ZA
-  en_PH
-  en_US
-  es_ES
-  es_AR
-  es_CL
-  es_CO
-  es_EC
-  es_PE
-  es_MX
-  fr_FR
-  fr_BE
-  fr_CA
-  hr_HR
-  id_ID
-  is_IS
-  it_IT
-  ja_JP
-  lt_LT
-  he_IL
-  hu_HU
-  nl_NL
-  no_NO
-  pl_PL
-  pt_PT
-  pt_BR
-  ro_RO
-  ru_RU
-  ru_BY
-  ru_KZ
-  sk_SK
-  sr_RS
-  fi_FI
-  sv_SE
-  th_TH
-  tr_TR
-  vi_VN
-  uk_UA
-  ar_SA
-  ar_BH
-  ar_JO
-  ar_KW
-  ar_OM
-  ar_QA
-  ar_AE
-  ko_KR
-  zh_CN
-  zh_TW
+  bg_BG @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ca_ES @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  cs_CZ @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  da_DK @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  de_DE @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  de_AT @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  de_CH @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  el_GR @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  en_GB @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  en_AU @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  en_CA @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  en_EE @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  en_HK @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  en_IN @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  en_IE @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  en_MY @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  en_NZ @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  en_SG @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  en_ZA @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  en_PH @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  en_US @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  es_ES @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  es_AR @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  es_CL @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  es_CO @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  es_EC @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  es_PE @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  es_MX @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  fr_FR @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  fr_BE @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  fr_CA @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  hr_HR @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  id_ID @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  is_IS @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  it_IT @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ja_JP @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  lt_LT @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  he_IL @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  hu_HU @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  nl_NL @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  no_NO @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  nb_NO @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  nn_NO @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  pl_PL @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  pt_PT @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  pt_BR @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ro_RO @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ru_RU @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ru_BY @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ru_KZ @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  sk_SK @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  sr_RS @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  fi_FI @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  sv_SE @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  th_TH @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  tr_TR @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  vi_VN @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  uk_UA @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ar_SA @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ar_BH @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ar_JO @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ar_KW @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ar_OM @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ar_QA @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ar_AE @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ko_KR @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  zh_CN @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  zh_TW @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
 }
 
 type Location {
@@ -1056,6 +1117,16 @@ input LocationInput {
   radius: RadiusInput
 }
 
+input LocationsOptionsInput {
+  """
+  DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
+  """
+  locale: Locale
+
+  """Desired location type the response should only include."""
+  locationType: LocationType
+}
+
 """Type of location"""
 enum LocationType {
   airport
@@ -1066,12 +1137,10 @@ enum LocationType {
   subdivision
 }
 
-input LocationsOptionsInput {
-  """Language tag in the format of the RFC 5646."""
-  locale: Locale
-
-  """Desired location type the response should only include."""
-  locationType: LocationType
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
 }
 
 """Information about pagination in a connection."""
@@ -1127,11 +1196,26 @@ type RootMutation {
 
 """Root Query"""
 type RootQuery {
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+
   """Search for your flight bookings."""
   allBookings(after: String, first: Int, before: String, last: Int): BookingConnection
 
   """Search for scheduled flights."""
   allFlights(search: FlightsSearchInput!, options: FlightsOptionsInput, filters: FlightsFiltersInput, after: String, first: Int, before: String, last: Int): FlightConnection
+
+  """Detail of a currency as used on Kiwi.com frontend"""
+  currency(
+    """The currency code used on Kiwi.com frontend"""
+    code: String!
+  ): CurrencyDetail
+
+  """Currencies used on Kiwi.com frontend"""
+  currencies(after: String, first: Int, before: String, last: Int): CurrencyDetailConnection
 
   """Geography info by an IP address"""
   geoIP(ip: IP!): GeoIP
@@ -1173,7 +1257,14 @@ type RootQuery {
   ): LocationConnection
 
   """Single location by ID."""
-  location(id: String!, locale: Locale): Location
+  location(
+    id: String!
+
+    """
+    DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
+    """
+    locale: Locale
+  ): Location
 
   """All locations in certain location. For example all airports in London"""
   allSubLocations(
@@ -1186,8 +1277,11 @@ type RootQuery {
     last: Int
   ): LocationConnection
 
-  """Flight booking by ID."""
-  booking(id: ID!): Booking
+  """Find booking by its id or databaseId."""
+  booking(
+    """Both Booking id & databaseId can be used as ID."""
+    id: ID!
+  ): Booking
 
   """Current user information."""
   currentUser: Identity

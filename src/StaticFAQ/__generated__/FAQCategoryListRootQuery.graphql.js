@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c6d6bd3c9a88baa05d618ca09b692c26
+ * @relayHash 5d0619882972ba2036d0bf3973922e84
  */
 
 /* eslint-disable */
@@ -44,6 +44,7 @@ query FAQCategoryListRootQuery(
 fragment FAQCategory_category on FAQCategory {
   id
   title
+  perex
 }
 */
 
@@ -76,7 +77,7 @@ return {
   "operationKind": "query",
   "name": "FAQCategoryListRootQuery",
   "id": null,
-  "text": "query FAQCategoryListRootQuery(\n  $language: Language\n) {\n  allFAQCategories(language: $language) {\n    edges {\n      node {\n        id\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n}\n",
+  "text": "query FAQCategoryListRootQuery(\n  $language: Language\n) {\n  allFAQCategories(language: $language) {\n    edges {\n      node {\n        id\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -163,6 +164,13 @@ return {
                     "kind": "ScalarField",
                     "alias": null,
                     "name": "title",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "perex",
                     "args": null,
                     "storageKey": null
                   }

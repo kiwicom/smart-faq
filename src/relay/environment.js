@@ -14,7 +14,7 @@ const uri = 'https://graphql.kiwi.com';
 const cache = new QueryResponseCache({ size: 200, ttl: 30 * 60 * 1000 });
 
 const buildFetchQuery = (token: string = '') => {
-  return function fetchQuery(operation, variables, cacheConfig) {
+  return async function fetchQuery(operation, variables, cacheConfig) {
     const forceFetch = cacheConfig.force;
     const isQuery = operation.operationKind === 'query';
     if (!forceFetch && isQuery) {
@@ -23,7 +23,7 @@ const buildFetchQuery = (token: string = '') => {
         return cachedData;
       }
     }
-    return fetch(process.env.GRAPHQL_URI || uri, {
+    const response = await fetch(process.env.GRAPHQL_URI || uri, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -33,12 +33,14 @@ const buildFetchQuery = (token: string = '') => {
         query: operation.text, // GraphQL text from input
         variables,
       }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        !forceFetch && isQuery && cache.set(operation.text, variables, data);
-        return data;
-      });
+    });
+    const json = await response.json();
+
+    if (!forceFetch && isQuery) {
+      cache.set(operation.text, variables, json);
+    }
+
+    return json;
   };
 };
 

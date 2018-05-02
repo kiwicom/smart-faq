@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { OpenInNew } from '@kiwicom/orbit-components/lib/icons';
 import { Typography } from '@kiwicom/orbit-components';
 
 import image from '../../static/woman-with-laptop@2x.jpg';
@@ -10,6 +9,7 @@ import routeDefinitions from '../routeDefinitions';
 import CloseButton from './../common/CloseButton';
 import { withUser } from '../context/User';
 import type { User } from '../types';
+import FullFAQLink from '../common/FullFAQLink';
 
 const style = css`
   .Intro {
@@ -62,14 +62,9 @@ const style = css`
     border: 0;
     border-top: 1px solid #e8edf1;
   }
-  div.faq-link {
+  .faq-link {
     margin-left: 182px;
     line-height: 1.4;
-  }
-  div.open-icon {
-    display: inline-block;
-    vertical-align: -3px;
-    margin-left: 4px;
   }
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     .Intro {
@@ -93,7 +88,7 @@ const style = css`
     button {
       width: 100%;
     }
-    div.faq-link {
+    .faq-link {
       text-align: center;
       margin: 0;
     }
@@ -145,19 +140,7 @@ class Intro extends React.Component<Props> {
         </div>
         <hr className="hr-line" />
         <div className="faq-link">
-          <Typography type="attention" variant="bold">
-            Full FAQ site
-          </Typography>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.kiwi.com/helpcenter/"
-            className="inline-icon"
-          >
-            <div className="open-icon">
-              <OpenInNew fill="#171b1e" height="16" />
-            </div>
-          </a>
+          <FullFAQLink />
         </div>
         <style jsx>{style}</style>
       </div>

@@ -5,15 +5,16 @@ import { QueryRenderer, graphql } from 'react-relay';
 import idx from 'idx';
 
 import FAQArticle from './FAQArticle';
+import NoSearchResults from './NoSearchResults';
 import createEnvironment from '../relay/environment';
 import { Loader, ScrollableBox } from '../common';
 import type { SearchAllFAQsQuery } from './__generated__/SearchAllFAQsQuery.graphql';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
 
-type AllFAQsQueryRendererParams = {|
-  props: SearchAllFAQsQuery,
-  error: Error,
-|};
+type AllFAQsQueryRendererParams = {
+  props: ?SearchAllFAQsQuery,
+  error: ?Error,
+};
 
 type Props = {|
   search: string,
@@ -47,11 +48,14 @@ class SearchAllFAQs extends React.Component<Props> {
     return <Loader />;
   };
 
-  renderFAQs = (faqs: FAQArticle_article[]) => (
-    <ScrollableBox>
-      {faqs.map(faq => <FAQArticle key={faq.id} article={faq} />)}
-    </ScrollableBox>
-  );
+  renderFAQs = (faqs: FAQArticle_article[]) => {
+    if (!faqs.length) return <NoSearchResults />;
+    return (
+      <ScrollableBox>
+        {faqs.map(faq => <FAQArticle key={faq.id} article={faq} />)}
+      </ScrollableBox>
+    );
+  };
 
   render() {
     const { search, language } = this.props;
