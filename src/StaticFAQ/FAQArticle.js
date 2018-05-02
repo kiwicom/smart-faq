@@ -12,12 +12,14 @@ import type { FAQCategory_category } from './__generated__/FAQCategory_category.
 
 type Props = {|
   article: FAQArticle_article,
-  category: FAQCategory_category
+  category: FAQCategory_category,
 |};
 
 const FAQArticle = (props: Props) => (
   <Link
-    to={`${routeDefinitions.FAQ_ARTICLE}/${props.category.id}/${props.article.id}`}
+    to={`${routeDefinitions.FAQ_ARTICLE}/${props.category.id}/${
+      props.article.id
+    }`}
     style={{ textDecoration: 'none' }}
   >
     <Card>
