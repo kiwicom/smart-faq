@@ -1,20 +1,20 @@
 // @flow
 
-import * as React from 'react';
-import idx from 'idx';
-import { Link } from 'react-router-dom';
-import { graphql, QueryRenderer } from 'react-relay';
+import * as React from "react";
+import idx from "idx";
+import { Link } from "react-router-dom";
+import { graphql, QueryRenderer } from "react-relay";
 
-import { Loader, ScrollableBox } from '../common';
-import FAQArticle from './FAQArticle';
-import FAQCategory from './FAQCategory';
-import Breadcrumbs from './Breadcrumbs';
-import createEnvironment from '../relay/environment';
-import routeDefinitions from './../routeDefinitions';
-import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
-import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
-import type { FAQCategoryListRootQueryResponse } from './__generated__/FAQCategoryListRootQuery.graphql';
-import type { FAQCategoryListSubcategoryQueryResponse } from './__generated__/FAQCategoryListSubcategoryQuery.graphql';
+import { Loader, ScrollableBox } from "../common";
+import FAQArticle from "./FAQArticle";
+import FAQCategory from "./FAQCategory";
+import Breadcrumbs from "./Breadcrumbs";
+import createEnvironment from "../relay/environment";
+import routeDefinitions from "./../routeDefinitions";
+import type { FAQArticle_article } from "./__generated__/FAQArticle_article.graphql";
+import type { FAQCategory_category } from "./__generated__/FAQCategory_category.graphql";
+import type { FAQCategoryListRootQueryResponse } from "./__generated__/FAQCategoryListRootQuery.graphql";
+import type { FAQCategoryListSubcategoryQueryResponse } from "./__generated__/FAQCategoryListSubcategoryQuery.graphql";
 
 type Props = {|
   categoryId: string | null,
@@ -80,7 +80,7 @@ class FAQCategoryList extends React.Component<Props> {
               <Link
                 key={category.id}
                 to={`${routeDefinitions.STATIC_FAQ}/${category.id}`}
-                style={{ textDecoration: 'none' }}
+                style={{ textDecoration: "none" }}
               >
                 <FAQCategory category={category} />
               </Link>
@@ -99,8 +99,7 @@ class FAQCategoryList extends React.Component<Props> {
     }
 
     if (rendererProps.props) {
-      const edges =
-        idx(rendererProps.props, _ => _.allFAQCategories.edges) || [];
+      const edges = idx(rendererProps.props, _ => _.allFAQCategories.edges) || [];
       const categories = edges.map(edge => edge.node);
       return this.renderCategories(categories);
     }
@@ -114,23 +113,15 @@ class FAQCategoryList extends React.Component<Props> {
     }
 
     if (rendererProps.props) {
-      const categories =
-        idx(rendererProps.props, _ => _.FAQCategory.subcategories) || [];
-      const ancestors =
-        idx(rendererProps.props, _ => _.FAQCategory.ancestors) || [];
-      const currentCategory = idx(
-        rendererProps.props,
-        _ => _.FAQCategory.title,
-      );
+      const categories = idx(rendererProps.props, _ => _.FAQCategory.subcategories) || [];
+      const ancestors = idx(rendererProps.props, _ => _.FAQCategory.ancestors) || [];
+      const currentCategory = idx(rendererProps.props, _ => _.FAQCategory.title);
       const faqs = idx(rendererProps.props, _ => _.FAQCategory.FAQs) || [];
       const category = idx(rendererProps.props, _ => _.FAQCategory) || [];
 
       return (
         <React.Fragment>
-          <Breadcrumbs
-            breadcrumbs={ancestors}
-            currentCategory={currentCategory}
-          />
+          <Breadcrumbs breadcrumbs={ancestors} currentCategory={currentCategory} />
           <ScrollableBox>
             {this.renderCategories(categories)}
             {this.renderFAQArticlePerexes(faqs, category)}
