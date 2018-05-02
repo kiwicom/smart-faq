@@ -15,11 +15,6 @@ const style = css`
     min-width: 480px;
     height: 100vh;
   }
-  div.ContentPage .Header {
-    display: flex;
-    align-items: center;
-    height: 64px;
-  }
   div.ContentPage .Body {
     display: flex;
     height: calc(100% - (64px));
@@ -62,9 +57,7 @@ const FAQRoutes = (
 const ContentPage = () => {
   return (
     <div className="ContentPage">
-      <div className="Header">
-        <ContentHeader />
-      </div>
+      <ContentHeader />
       <div className="Body">
         <div className="BookingInfo">{BookingRoutes}</div>
         <div className="FAQ">{FAQRoutes}</div>

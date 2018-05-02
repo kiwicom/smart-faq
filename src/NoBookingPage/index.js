@@ -4,7 +4,6 @@ import { Route, Switch, MemoryRouter } from 'react-router-dom';
 import * as React from 'react';
 import css from 'styled-jsx/css';
 
-import ContentHeader from '../ContentHeader';
 import StaticFAQ from '../StaticFAQ';
 import FAQArticleDetail from '../StaticFAQ/FAQArticleDetail';
 import routeDefinitions from '../routeDefinitions';
@@ -13,11 +12,6 @@ const style = css`
   div.NoBookingPage {
     min-width: 480px;
     height: 100vh;
-  }
-  div.NoBookingPage .Header {
-    display: flex;
-    align-items: center;
-    height: 64px;
   }
   div.NoBookingPage .Body {
     display: flex;
@@ -44,18 +38,13 @@ const FAQRoutes = (
     </Switch>
   </MemoryRouter>
 );
-const NoBookingPage = () => {
-  return (
-    <div className="NoBookingPage">
-      <div className="Header">
-        <ContentHeader />
-      </div>
-      <div className="Body">{FAQRoutes}</div>
-      <style jsx global>
-        {style}
-      </style>
-    </div>
-  );
-};
+const NoBookingPage = () => (
+  <div className="NoBookingPage">
+    <div className="Body">{FAQRoutes}</div>
+    <style jsx global>
+      {style}
+    </style>
+  </div>
+);
 
 export default NoBookingPage;

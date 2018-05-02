@@ -211,7 +211,7 @@ class SignIn extends React.Component<Props, State> {
     return (
       <div className="SignIn">
         <CloseButton />
-        <BackButton text="Back" link={routeDefinitions.HOME} />
+        <BackButton text="Back" />
         <div className="picture">
           <img alt="Help" src={image} />
         </div>
