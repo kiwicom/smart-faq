@@ -18,7 +18,7 @@ const queryFAQArticleDetail = graphql`
     $category_id: ID!
   ) {
     FAQArticle(id: $id, language: $language) {
-      title,
+      title
       ...FAQArticleDetailContent_article
     }
     FAQCategory(id: $category_id) {
@@ -55,9 +55,7 @@ class FAQArticleDetail extends React.Component<Props> {
             breadcrumbs={params.props.FAQCategory.ancestors}
             currentCategory={params.props.FAQArticle.title}
           />
-          <FAQArticleDetailContent
-            article={params.props.FAQArticle}
-          />
+          <FAQArticleDetailContent article={params.props.FAQArticle} />
         </React.Fragment>
       );
     }
