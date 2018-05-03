@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 091688bca5be57a55ce9325f36e7153f
+ * @relayHash 564e71c03447e34385df440b78b444dd
  */
 
 /* eslint-disable */
@@ -12,10 +12,8 @@ import type { ConcreteRequest } from 'relay-runtime';
 type Breadcrumbs_breadcrumbs$ref = any;
 type FAQArticle_article$ref = any;
 type FAQCategory_category$ref = any;
-export type Language = ('ar' | 'bg' | 'ca' | 'cs' | 'da' | 'de' | 'el' | 'en' | 'engb' | 'enus' | 'es' | 'esar' | 'et' | 'fi' | 'fr' | 'he' | 'hr' | 'hu' | 'id' | 'is' | 'it' | 'ja' | 'ko' | 'lt' | 'lv' | 'ms' | 'nl' | 'no' | 'pl' | 'pt' | 'ptbr' | 'ptpt' | 'ro' | 'ru' | 'sk' | 'sl' | 'sr' | 'sv' | 'th' | 'tl' | 'tr' | 'uk' | 'vi' | 'zh' | 'zhcn' | 'zhtw' | '%future added value');
 export type FAQCategoryListSubcategoryQueryVariables = {|
   id: string,
-  language?: ?Language,
 |};
 export type FAQCategoryListSubcategoryQueryResponse = {|
   +FAQCategory: ?{|
@@ -40,9 +38,8 @@ export type FAQCategoryListSubcategoryQueryResponse = {|
 /*
 query FAQCategoryListSubcategoryQuery(
   $id: ID!
-  $language: Language
 ) {
-  FAQCategory(id: $id, language: $language) {
+  FAQCategory(id: $id) {
     title
     subcategories {
       id
@@ -85,12 +82,6 @@ var v0 = [
     "name": "id",
     "type": "ID!",
     "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
-    "name": "language",
-    "type": "Language",
-    "defaultValue": null
   }
 ],
 v1 = [
@@ -99,12 +90,6 @@ v1 = [
     "name": "id",
     "variableName": "id",
     "type": "ID!"
-  },
-  {
-    "kind": "Variable",
-    "name": "language",
-    "variableName": "language",
-    "type": "Language"
   }
 ],
 v2 = {
@@ -137,7 +122,7 @@ return {
   "operationKind": "query",
   "name": "FAQCategoryListSubcategoryQuery",
   "id": null,
-  "text": "query FAQCategoryListSubcategoryQuery(\n  $id: ID!\n  $language: Language\n) {\n  FAQCategory(id: $id, language: $language) {\n    title\n    subcategories {\n      id\n      ...FAQCategory_category\n    }\n    ancestors {\n      id\n      ...Breadcrumbs_breadcrumbs\n    }\n    FAQs {\n      id\n      ...FAQArticle_article\n    }\n    id\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n",
+  "text": "query FAQCategoryListSubcategoryQuery(\n  $id: ID!\n) {\n  FAQCategory(id: $id) {\n    title\n    subcategories {\n      id\n      ...FAQCategory_category\n    }\n    ancestors {\n      id\n      ...Breadcrumbs_breadcrumbs\n    }\n    FAQs {\n      id\n      ...FAQArticle_article\n    }\n    id\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -266,5 +251,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '40dc6d97b2fd0e41e432db8672cdb91c';
+(node/*: any*/).hash = '1b77964ac02bb4d1b9e4f6448a1c3cb9';
 module.exports = node;

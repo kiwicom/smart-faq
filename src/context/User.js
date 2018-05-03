@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import type { User, onLogin, onLogout } from '../types';
 
-type UserContextType = {
+export type UserContextType = {
   user: User,
   loginToken: ?string,
   onLogin: onLogin,
