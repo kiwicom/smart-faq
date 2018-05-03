@@ -6,7 +6,7 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 
 import Markdown from '../common/Markdown';
-import FAQArticleFeedback from './FAQArticleFeedback';
+import FAQArticleFeedback from './ArticleFeedback/FAQArticleFeedback';
 import type { FAQArticleDetailContent_article } from './__generated__/FAQArticleDetailContent_article.graphql';
 
 type Props = {
