@@ -9,11 +9,11 @@ import css from 'styled-jsx/css';
 import Card from './../common/Card';
 import routeDefinitions from '../routeDefinitions';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
-import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
 
 type Props = {|
   article: FAQArticle_article,
-  category: FAQCategory_category,
+  categoryId: ?string,
+  isSearchResult: ?boolean
 |};
 
 const style = css`
@@ -26,12 +26,19 @@ const style = css`
 `;
 
 const FAQArticle = (props: Props) => (
-  <Link
-    to={`${routeDefinitions.FAQ_ARTICLE}/${props.category.id}/${
-      props.article.id
-    }`}
-    style={{ textDecoration: 'none' }}
-  >
+    <Link
+      to={
+        props.isSearchResult ?
+        `${routeDefinitions.FAQ_ARTICLE}/search/${
+          props.article.id
+        }`
+        :
+        `${routeDefinitions.FAQ_ARTICLE}/${props.categoryId || ''}/${
+          props.article.id
+        }`
+      }
+      style={{ textDecoration: 'none' }}
+    >
     <Card>
       <div className="ellipsis">
         <Typography type="attention" size="large">
