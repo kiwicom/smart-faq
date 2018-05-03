@@ -32,7 +32,10 @@ const Breadcrumb = ({ breadcrumb, isCurrent }: Props) => {
       {isCurrent ? (
         title
       ) : (
-        <Link to={url} style={{ textDecoration: 'none' }}>
+        <Link
+          to={{ pathname: url, state: { slideRight: true } }}
+          style={{ textDecoration: 'none' }}
+        >
           {title}
         </Link>
       )}
