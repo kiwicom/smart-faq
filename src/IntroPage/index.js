@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { Redirect } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
 
@@ -116,6 +117,7 @@ class Intro extends React.Component<Props> {
   render() {
     return (
       <div className="Intro">
+        {this.props.user ? <Redirect to={routeDefinitions.CONTENT} /> : null}
         <CloseButton />
         <div className="picture">
           <img alt="Help" src={image} />
