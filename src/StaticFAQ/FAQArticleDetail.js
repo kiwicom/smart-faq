@@ -9,7 +9,9 @@ import FAQArticleDetailContent from './FAQArticleDetailContent';
 import createEnvironment from '../relay/environment';
 import { LanguageContext } from '../context/Language';
 import type { FAQArticleDetailQuery } from './__generated__/FAQArticleDetailQuery.graphql';
+import type { FAQArticleDetailSearchResultQuery } from './__generated__/FAQArticleDetailSearchResultQuery.graphql';
 import Breadcrumbs from './Breadcrumbs';
+import Breadcrumb from './Breadcrumb';
 
 const queryFAQArticleDetail = graphql`
   query FAQArticleDetailQuery(
@@ -29,8 +31,17 @@ const queryFAQArticleDetail = graphql`
   }
 `;
 
+const queryFAQArticleDetailSearchResult = graphql`
+  query FAQArticleDetailSearchResultQuery($id: ID!, $language: Language) {
+    FAQArticle(id: $id, language: $language) {
+      title
+      ...FAQArticleDetailContent_article
+    }
+  }
+`;
+
 type FAQArticleDetailParams = {
-  props: FAQArticleDetailQuery,
+  props: FAQArticleDetailQuery | FAQArticleDetailSearchResultQuery,
   error: Error,
 };
 
@@ -55,10 +66,20 @@ class FAQArticleDetail extends React.Component<Props> {
     if (params.props) {
       return (
         <React.Fragment>
-          <Breadcrumbs
-            breadcrumbs={params.props.FAQCategory.ancestors}
-            currentCategory={params.props.FAQArticle.title}
-          />
+          {false ? (
+            <Breadcrumbs
+              breadcrumbs={params.props.FAQCategory.ancestors}
+              currentCategory={params.props.FAQArticle.title}
+            />
+          ) : (
+            <React.Fragment>
+              <Breadcrumb breadcrumb={{ title: 'Search' }} />
+              <Breadcrumb
+                breadcrumb={{ title: params.props.FAQArticle.title }}
+                isCurrent
+              />
+            </React.Fragment>
+          )}
           <FAQArticleDetailContent article={params.props.FAQArticle} />
         </React.Fragment>
       );
@@ -77,7 +98,11 @@ class FAQArticleDetail extends React.Component<Props> {
           {(language: string) => (
             <QueryRenderer
               environment={createEnvironment()}
-              query={queryFAQArticleDetail}
+              query={
+                categoryId === 'search'
+                  ? queryFAQArticleDetailSearchResult
+                  : queryFAQArticleDetail
+              }
               variables={{ language, id: articleId, category_id: categoryId }}
               render={this.renderDetailContent}
             />

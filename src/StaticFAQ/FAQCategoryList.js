@@ -79,7 +79,9 @@ class FAQCategoryList extends React.Component<Props> {
       <div>
         {faqs
           .filter(Boolean)
-          .map(faq => <FAQArticle key={faq.id} article={faq} categoryId={categoryId} />)}
+          .map(faq => (
+            <FAQArticle key={faq.id} article={faq} categoryId={categoryId} />
+          ))}
       </div>
     );
   };
@@ -137,7 +139,6 @@ class FAQCategoryList extends React.Component<Props> {
       );
       const faqs = idx(rendererProps.props, _ => _.FAQCategory.FAQs) || [];
       const categoryId = idx(rendererProps.props, _ => _.FAQCategory.id) || '';
-      console.log(categoryId)
 
       return (
         <React.Fragment>
