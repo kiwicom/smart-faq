@@ -8,7 +8,7 @@ import { ChevronRight } from '@kiwicom/orbit-components/lib/icons';
 import routeDefinitions from '../routeDefinitions';
 
 type BreadcrumbType = {|
-  id?: string,
+  id?: ?string,
   title: string,
 |};
 

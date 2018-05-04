@@ -7,7 +7,7 @@ import { ChevronLeft } from '@kiwicom/orbit-components/lib/icons';
 import routeDefinitions from '../routeDefinitions';
 
 type Props = {|
-  id: string,
+  id: ?string,
 |};
 
 const BackArrow = ({ id }: Props) => {

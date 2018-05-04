@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 
 import Breadcrumb from './Breadcrumb';
@@ -31,12 +30,14 @@ const CustomBreadcrumbs = ({ breadcrumbs, loginToken }: Props) => {
     <div className="breadcrumbs">
       {loginToken && <BackArrow id={id} />}
       <Breadcrumb breadcrumb={{ title: firstCategory.title }} />
-      {breadcrumbs.slice(1, breadcrumbs.length - 1).map(breadcrumb => (
-        <Breadcrumb
-          key={breadcrumb.id}
-          breadcrumb={{ id: breadcrumb.id, title: breadcrumb.title }}
-        />
-      ))}
+      {breadcrumbs
+        .slice(1, breadcrumbs.length - 1)
+        .map(breadcrumb => (
+          <Breadcrumb
+            key={breadcrumb.id}
+            breadcrumb={{ id: breadcrumb.id, title: breadcrumb.title }}
+          />
+        ))}
       <Breadcrumb breadcrumb={{ title: lastCategory.title }} isCurrent />
       <style jsx>{style}</style>
     </div>

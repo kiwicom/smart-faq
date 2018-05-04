@@ -2,10 +2,8 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
-import css from 'styled-jsx/css';
 
 import CustomBreadcrumbs from './CustomBreadcrumbs';
-import BackArrow from './BackArrow';
 import type { Breadcrumbs_breadcrumbs } from './__generated__/Breadcrumbs_breadcrumbs.graphql';
 
 type Props = {|
@@ -13,10 +11,14 @@ type Props = {|
   currentCategory: string,
 |};
 
-const Breadcrumbs = ({ breadcrumbs, currentCategory, loginToken }: Props) => {
-  return (<CustomBreadcrumbs breadcrumbs={
-    [{title: 'Home'}].concat(breadcrumbs).concat([{title: currentCategory}])
-  } />)
+const Breadcrumbs = ({ breadcrumbs, currentCategory }: Props) => {
+  return (
+    <CustomBreadcrumbs
+      breadcrumbs={[{ title: 'Home' }]
+        .concat(breadcrumbs)
+        .concat([{ title: currentCategory }])}
+    />
+  );
 };
 
 export default createFragmentContainer(
