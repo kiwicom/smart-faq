@@ -24,8 +24,11 @@ const queryFAQArticleDetail = graphql`
       ...FAQArticleDetailContent_article
     }
     FAQCategory(id: $category_id) {
+      title
+      id
       ancestors {
-        ...Breadcrumbs_breadcrumbs
+        id
+        title
       }
     }
   }
@@ -67,10 +70,24 @@ class FAQArticleDetail extends React.Component<Props> {
       return (
         <React.Fragment>
           {params.props.FAQCategory ? (
-            <Breadcrumbs
-              breadcrumbs={params.props.FAQCategory.ancestors}
-              currentCategory={params.props.FAQArticle.title}
-            />
+            <React.Fragment>
+              <Breadcrumb breadcrumb={{ title: 'Home' }} />
+              {
+                params.props.FAQCategory.ancestors.map(item => (
+                  <Breadcrumb
+                    key={item.id}
+                    breadcrumb={{ id: item.id, title: item.title }}
+                  />
+                ))
+              }
+              <Breadcrumb
+                breadcrumb={{ id: params.props.FAQCategory.id, title: params.props.FAQCategory.title }}
+              />
+              <Breadcrumb
+                breadcrumb={{ title: params.props.FAQArticle.title }}
+                isCurrent
+              />
+            </React.Fragment>
           ) : (
             <React.Fragment>
               <Breadcrumb breadcrumb={{ title: 'Search' }} />

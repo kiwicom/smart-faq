@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 95628aa0c684784974079521d55facea
+ * @relayHash 7a12e7174bd6e7c933345292510c4975
  */
 
 /* eslint-disable */
@@ -9,7 +9,6 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type Breadcrumbs_breadcrumbs$ref = any;
 type FAQArticleDetailContent_article$ref = any;
 export type Language = ('ar' | 'bg' | 'ca' | 'cs' | 'da' | 'de' | 'el' | 'en' | 'engb' | 'enus' | 'es' | 'esar' | 'et' | 'fi' | 'fr' | 'he' | 'hr' | 'hu' | 'id' | 'is' | 'it' | 'ja' | 'ko' | 'lt' | 'lv' | 'ms' | 'nl' | 'no' | 'pl' | 'pt' | 'ptbr' | 'ptpt' | 'ro' | 'ru' | 'sk' | 'sl' | 'sr' | 'sv' | 'th' | 'tl' | 'tr' | 'uk' | 'vi' | 'zh' | 'zhcn' | 'zhtw' | '%future added value');
 export type FAQArticleDetailQueryVariables = {|
@@ -23,8 +22,11 @@ export type FAQArticleDetailQueryResponse = {|
     +$fragmentRefs: FAQArticleDetailContent_article$ref,
   |},
   +FAQCategory: ?{|
+    +title: ?string,
+    +id: string,
     +ancestors: ?$ReadOnlyArray<?{|
-      +$fragmentRefs: Breadcrumbs_breadcrumbs$ref,
+      +id: string,
+      +title: ?string,
     |}>,
   |},
 |};
@@ -43,11 +45,12 @@ query FAQArticleDetailQuery(
     id
   }
   FAQCategory(id: $category_id) {
-    ancestors {
-      ...Breadcrumbs_breadcrumbs
-      id
-    }
+    title
     id
+    ancestors {
+      id
+      title
+    }
   }
 }
 
@@ -55,11 +58,6 @@ fragment FAQArticleDetailContent_article on FAQArticle {
   title
   perex
   content
-}
-
-fragment Breadcrumbs_breadcrumbs on FAQCategory {
-  id
-  title
 }
 */
 
@@ -105,27 +103,52 @@ v2 = {
   "args": null,
   "storageKey": null
 },
-v3 = [
-  {
-    "kind": "Variable",
-    "name": "id",
-    "variableName": "category_id",
-    "type": "ID!"
-  }
-],
-v4 = {
+v3 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
+},
+v4 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "FAQCategory",
+  "storageKey": null,
+  "args": [
+    {
+      "kind": "Variable",
+      "name": "id",
+      "variableName": "category_id",
+      "type": "ID!"
+    }
+  ],
+  "concreteType": "FAQCategory",
+  "plural": false,
+  "selections": [
+    v2,
+    v3,
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "ancestors",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "FAQCategory",
+      "plural": true,
+      "selections": [
+        v3,
+        v2
+      ]
+    }
+  ]
 };
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "FAQArticleDetailQuery",
   "id": null,
-  "text": "query FAQArticleDetailQuery(\n  $id: ID!\n  $language: Language\n  $category_id: ID!\n) {\n  FAQArticle(id: $id, language: $language) {\n    title\n    ...FAQArticleDetailContent_article\n    id\n  }\n  FAQCategory(id: $category_id) {\n    ancestors {\n      ...Breadcrumbs_breadcrumbs\n      id\n    }\n    id\n  }\n}\n\nfragment FAQArticleDetailContent_article on FAQArticle {\n  title\n  perex\n  content\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n",
+  "text": "query FAQArticleDetailQuery(\n  $id: ID!\n  $language: Language\n  $category_id: ID!\n) {\n  FAQArticle(id: $id, language: $language) {\n    title\n    ...FAQArticleDetailContent_article\n    id\n  }\n  FAQCategory(id: $category_id) {\n    title\n    id\n    ancestors {\n      id\n      title\n    }\n  }\n}\n\nfragment FAQArticleDetailContent_article on FAQArticle {\n  title\n  perex\n  content\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -151,33 +174,7 @@ return {
           }
         ]
       },
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "FAQCategory",
-        "storageKey": null,
-        "args": v3,
-        "concreteType": "FAQCategory",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "ancestors",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "FAQCategory",
-            "plural": true,
-            "selections": [
-              {
-                "kind": "FragmentSpread",
-                "name": "Breadcrumbs_breadcrumbs",
-                "args": null
-              }
-            ]
-          }
-        ]
-      }
+      v4
     ]
   },
   "operation": {
@@ -209,37 +206,13 @@ return {
             "args": null,
             "storageKey": null
           },
-          v4
+          v3
         ]
       },
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "FAQCategory",
-        "storageKey": null,
-        "args": v3,
-        "concreteType": "FAQCategory",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "ancestors",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "FAQCategory",
-            "plural": true,
-            "selections": [
-              v4,
-              v2
-            ]
-          },
-          v4
-        ]
-      }
+      v4
     ]
   }
 };
 })();
-(node/*: any*/).hash = '97a6d072b79c2159b247c5a9032fa07a';
+(node/*: any*/).hash = 'b601c9a8efb9f8862253ab803de086d6';
 module.exports = node;
