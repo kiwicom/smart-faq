@@ -66,7 +66,7 @@ class FAQArticleDetail extends React.Component<Props> {
     if (params.props) {
       return (
         <React.Fragment>
-          {false ? (
+          {params.props.FAQCategory ? (
             <Breadcrumbs
               breadcrumbs={params.props.FAQCategory.ancestors}
               currentCategory={params.props.FAQArticle.title}
