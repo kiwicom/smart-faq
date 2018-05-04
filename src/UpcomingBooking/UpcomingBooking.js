@@ -36,6 +36,7 @@ const style = css`
   div.Screen-title-group {
     display: flex;
     justify-content: space-between;
+    margin-top: 6px;
   }
   div.notification {
     margin-bottom: 8px;
@@ -60,7 +61,7 @@ const style = css`
     margin-right: 8px;
   }
   div.title {
-    margin-bottom: 2px;
+    margin: 4px 0;
   }
 `;
 
@@ -305,7 +306,7 @@ class UpcomingBooking extends React.Component<Props, State> {
             <div className="booking-id">
               {booking.databaseId && (
                 <Typography type="secondary">
-                  Upcoming booking # {formatBookingId(booking.databaseId)}
+                  Upcoming trip # {formatBookingId(booking.databaseId)}
                 </Typography>
               )}
             </div>

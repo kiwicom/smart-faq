@@ -13,7 +13,7 @@ const formatStatus = (status_string: ?string) => {
     case 'INFO':
       return { text: 'Info', color: '#ffc345' };
     case 'CONFIRMED':
-      return { text: 'Confirmed', color: '#52cf26' };
+      return { text: 'Confirmed', color: '#127f22' };
     case 'CANCELLED':
       return { text: 'Cancelled', color: '#171b1e' };
     case 'DELETED':
