@@ -10,8 +10,7 @@ import createEnvironment from '../relay/environment';
 import { LanguageContext } from '../context/Language';
 import type { FAQArticleDetailQuery } from './__generated__/FAQArticleDetailQuery.graphql';
 import type { FAQArticleDetailSearchResultQuery } from './__generated__/FAQArticleDetailSearchResultQuery.graphql';
-import Breadcrumbs from './Breadcrumbs';
-import Breadcrumb from './Breadcrumb';
+import CustomBreadcrumbs from './CustomBreadcrumbs';
 
 const queryFAQArticleDetail = graphql`
   query FAQArticleDetailQuery(
@@ -69,34 +68,15 @@ class FAQArticleDetail extends React.Component<Props> {
     if (params.props) {
       return (
         <React.Fragment>
-          {params.props.FAQCategory ? (
-            <React.Fragment>
-              <Breadcrumb breadcrumb={{ title: 'Home' }} />
-              {
-                params.props.FAQCategory.ancestors.map(item => (
-                  <Breadcrumb
-                    key={item.id}
-                    breadcrumb={{ id: item.id, title: item.title }}
-                  />
-                ))
-              }
-              <Breadcrumb
-                breadcrumb={{ id: params.props.FAQCategory.id, title: params.props.FAQCategory.title }}
-              />
-              <Breadcrumb
-                breadcrumb={{ title: params.props.FAQArticle.title }}
-                isCurrent
-              />
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <Breadcrumb breadcrumb={{ title: 'Search' }} />
-              <Breadcrumb
-                breadcrumb={{ title: params.props.FAQArticle.title }}
-                isCurrent
-              />
-            </React.Fragment>
-          )}
+          <CustomBreadcrumbs breadcrumbs={
+            params.props.FAQCategory
+              ? [{ title: 'Home' }]
+                  .concat(params.props.FAQCategory.ancestors)
+                  .concat(params.props.FAQCategory)
+                  .concat([{ title: params.props.FAQArticle.title }])
+              : [{ title: 'Search' }]
+                  .concat([{ title: params.props.FAQArticle.title }])
+          }/>
           <FAQArticleDetailContent article={params.props.FAQArticle} />
         </React.Fragment>
       );
