@@ -322,7 +322,12 @@ class UpcomingBooking extends React.Component<Props, State> {
               </Typography>
             </span>
           </div>
-          <div style={{color: formatStatus(booking.status).color, fontSize: '14px'}}>
+          <div
+            style={{
+              color: formatStatus(booking.status).color,
+              fontSize: '14px',
+            }}
+          >
             {formatStatus(booking.status).text}
           </div>
         </div>
