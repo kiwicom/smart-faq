@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notification should render 1`] = `
+<div
+  className="jsx-96008846 notification"
+>
+  <SystemMessage
+    type="warning"
+  >
+    <div
+      className="jsx-96008846 system-message"
+    >
+      <div
+        className="jsx-96008846 icon"
+      >
+        <Alert
+          fill="#f9971e"
+        />
+      </div>
+      <div
+        className="jsx-96008846 text"
+      >
+        You depart in 25h. 
+  Don't hesitate to call us if you have an urgent problem.
+      </div>
+    </div>
+  </SystemMessage>
+  <JSXStyle
+    css=".notification.jsx-96008846{margin-bottom:24px;}.system-message.jsx-96008846{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.system-message.jsx-96008846 .icon.jsx-96008846{margin-right:14px;}"
+    styleId="96008846"
+  />
+</div>
+`;

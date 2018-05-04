@@ -1,5 +1,5 @@
-# source: https://graphql.kiwi.com/
-# timestamp: Fri May 04 2018 14:27:50 GMT+0200 (CEST)
+# source: https://graphql.kiwi.com/graphql
+# timestamp: Wed May 09 2018 13:11:09 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
@@ -77,26 +77,42 @@ type Baggage {
   note: String
 }
 
+"""
+You can fetch here almost every information related to the booking itself.
+However when you want to fetch legs you have to use "oneWay", "return" and
+"multicity" fields because they highly depend on the booking type.
+"""
 type Booking {
-  """The ID of an object"""
-  id: ID! @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
-
-  """Unique number identifying the booking in communication with support."""
-  databaseId: Int @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
-  allowedBaggage: AllowedBaggage @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
   arrival: RouteStop @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
-
-  """Static assets related to this booking."""
-  assets: BookingAssets @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
   departure: RouteStop @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
 
   """Flight segments, e.g. stopover, change of aircraft, etc."""
   legs: [Leg] @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
-  status: BookingStatus @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
   type: BookingType
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
+  destinationImageUrl(dimensions: BookingDestinationImageDimensions): String
+
+  """The ID of an object"""
+  id: ID!
+
+  """Unique number identifying the booking in communication with support."""
+  databaseId: Int
+  status: BookingStatus
+
+  """Total price of the whole booking."""
+  price: Price
+  allowedBaggage: AllowedBaggage
+
+  """Static assets related to this booking."""
+  assets: BookingAssets
+  passengerCount: Int
+
+  """
+  You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
+  """
+  directAccessURL(deeplinkTo: DirectAccessURLValues): String
 }
 
 type BookingAssets {
@@ -116,6 +132,18 @@ type BookingConnection {
 
   """A list of edges."""
   edges: [BookingEdge]
+}
+
+enum BookingDestinationImageDimensions {
+  _1200x628
+  _1280x720
+  _220x165
+  _275x250
+  _300x165
+  _375x165
+  _600x330
+  _600x600
+  _610x251
 }
 
 """An edge in a connection."""
@@ -141,6 +169,12 @@ interface BookingInterface {
 
   """Static assets related to this booking."""
   assets: BookingAssets
+  passengerCount: Int
+
+  """
+  You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
+  """
+  directAccessURL(deeplinkTo: DirectAccessURLValues): String
 }
 
 type BookingMulticity implements BookingInterface {
@@ -157,6 +191,12 @@ type BookingMulticity implements BookingInterface {
 
   """Static assets related to this booking."""
   assets: BookingAssets
+  passengerCount: Int
+
+  """
+  You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
+  """
+  directAccessURL(deeplinkTo: DirectAccessURLValues): String
 
   """Initial origin."""
   start: RouteStop
@@ -185,6 +225,12 @@ type BookingOneWay implements BookingInterface {
 
   """Static assets related to this booking."""
   assets: BookingAssets
+  passengerCount: Int
+
+  """
+  You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
+  """
+  directAccessURL(deeplinkTo: DirectAccessURLValues): String
   trip: Trip
 }
 
@@ -203,6 +249,12 @@ type BookingReturn implements BookingInterface {
 
   """Static assets related to this booking."""
   assets: BookingAssets
+  passengerCount: Int
+
+  """
+  You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
+  """
+  directAccessURL(deeplinkTo: DirectAccessURLValues): String
 
   """Trip from origin to destination."""
   outbound: Trip
@@ -496,6 +548,26 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
 8601 standard for representation of dates and times using the Gregorian calendar.
 """
 scalar DateTime
+
+enum DirectAccessURLValues {
+  CHANGE_TRIP
+  INSURANCE
+  SEATING
+  PETS
+  ASSISTANCE
+  SPORT_EQUIPMENT
+  MUSICAL_EQUIPMENT
+  HOTELS
+  CAR_RENTS
+  REFUND
+  BAGS
+  EDIT_PASSENGERS
+  CANCEL
+  PENDING_SERVICES
+  VALIDATE_PAYMENT
+  TRAVEL_DOCUMENTS
+  PAYMENT
+}
 
 input DurationInput {
   stopovers: StopoversInput
@@ -1007,6 +1079,8 @@ input HotelsSearchInput {
   roomsConfiguration: [RoomsConfiguration!]!
 }
 
+scalar IP
+
 type Identity {
   """The ID of an object"""
   id: ID!
@@ -1028,8 +1102,6 @@ type Identity {
   """Use this in API calls. It is email but normalized."""
   login: String
 }
-
-scalar IP
 
 """Use "Accept-Language" HTTP header to specify locale."""
 enum Language {
@@ -1224,16 +1296,6 @@ input LocationInput {
   radius: RadiusInput
 }
 
-input LocationsOptionsInput {
-  """
-  DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
-  """
-  locale: Locale
-
-  """Desired location type the response should only include."""
-  locationType: LocationType
-}
-
 """Type of location"""
 enum LocationType {
   airport
@@ -1242,6 +1304,16 @@ enum LocationType {
   country
   station
   subdivision
+}
+
+input LocationsOptionsInput {
+  """
+  DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
+  """
+  locale: Locale
+
+  """Desired location type the response should only include."""
+  locationType: LocationType
 }
 
 """An object with an ID"""

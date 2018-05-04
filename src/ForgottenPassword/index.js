@@ -5,8 +5,8 @@ import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
 
 import { Requester } from '../helpers/Requests';
-import BackButton from '../common/BackButton';
-import CloseButton from '../common/CloseButton';
+import BackButton from '../common/buttons/BackButton';
+import CloseButton from '../common/buttons/CloseButton';
 import Input from '../common/Input';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import routeDefinitions from '../routeDefinitions';

@@ -9,7 +9,7 @@ export default {
   FAQ_ARTICLE: '/static-faq/article',
   KIWI_LOGIN: '/kiwi-login',
   FORGOTTEN_PASSWORD: '/forgotten-password',
-  UPCOMING_BOOKING: '/upcoming-booking',
+  NEAREST_BOOKING: '/nearest-booking',
   NO_BOOKING: '/no-booking',
   CONTENT: '/content',
 };

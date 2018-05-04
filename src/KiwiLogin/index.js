@@ -6,8 +6,8 @@ import css from 'styled-jsx/css';
 import { Typography, SystemMessage } from '@kiwicom/orbit-components';
 import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
 
-import CloseButton from './../common/CloseButton';
-import BackButton from '../common/BackButton';
+import CloseButton from './../common/buttons/CloseButton';
+import BackButton from '../common/buttons/BackButton';
 import Input from '../common/Input';
 import { withLogin } from '../context/User';
 import image from '../../static/woman-with-laptop@2x.jpg';

@@ -6,7 +6,7 @@ import { Typography } from '@kiwicom/orbit-components';
 
 import image from '../../static/woman-with-laptop@2x.jpg';
 import routeDefinitions from '../routeDefinitions';
-import CloseButton from './../common/CloseButton';
+import CloseButton from './../common/buttons/CloseButton';
 import { withUser } from '../context/User';
 import type { User } from '../types';
 import FullFAQLink from '../common/FullFAQLink';
