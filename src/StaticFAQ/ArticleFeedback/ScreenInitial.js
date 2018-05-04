@@ -7,7 +7,7 @@ import screensList from './screensList';
 import Box from '../../common/Box';
 
 type Props = {|
-  changeScreen: () => void,
+  changeScreen: (nextScreen: string) => void,
 |};
 
 const style = css`

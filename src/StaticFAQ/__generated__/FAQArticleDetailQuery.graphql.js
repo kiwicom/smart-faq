@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7e429d493027b4f94f2a179964a2bde9
+ * @relayHash dc85034f588a194bf970ceddc27527a5
  */
 
 /* eslint-disable */
@@ -52,6 +52,7 @@ query FAQArticleDetailQuery(
 }
 
 fragment FAQArticleDetailContent_article on FAQArticle {
+  id
   title
   perex
   content
@@ -176,7 +177,20 @@ return {
         "concreteType": "FAQArticle",
         "plural": false,
         "selections": [
-          v2,
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "title",
+            "args": null,
+            "storageKey": null
+          },
           {
             "kind": "ScalarField",
             "alias": null,
@@ -190,8 +204,7 @@ return {
             "name": "content",
             "args": null,
             "storageKey": null
-          },
-          v3
+          }
         ]
       },
       v4

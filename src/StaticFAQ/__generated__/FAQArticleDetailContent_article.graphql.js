@@ -11,6 +11,7 @@ import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type FAQArticleDetailContent_article$ref: FragmentReference;
 export type FAQArticleDetailContent_article = {|
+  +id: string,
   +title: ?string,
   +perex: ?string,
   +content: ?string,
@@ -26,6 +27,13 @@ const node/*: ConcreteFragment*/ = {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "ScalarField",
       "alias": null,
@@ -49,5 +57,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = 'adaa839f1d7df302cc4181506fe4be72';
+(node/*: any*/).hash = 'e7476ce482415a9ef5a8390f3d9d88cc';
 module.exports = node;

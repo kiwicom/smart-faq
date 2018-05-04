@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import { OpenInNew } from '@kiwicom/orbit-components/lib/icons';
 
 const ContactPageLink = () => (
@@ -8,7 +8,7 @@ const ContactPageLink = () => (
     <a
       target="_blank"
       rel="noopener noreferrer"
-      href="https://www.kiwi.com/helpcenter/"
+      href="https://www.kiwi.com/en/content/feedback"
     >
       Go to contact page
       <span className="inline-icon">

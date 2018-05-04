@@ -54,7 +54,7 @@ const Detail = ({ article }: Props) => (
       </Typography>
     </div>
     <hr className="faq-article-delimiter" />
-    <FAQArticleFeedback />
+    <FAQArticleFeedback articleId={article.id} />
     <style jsx>{style}</style>
     <style jsx global>
       {globalStyle}
@@ -66,6 +66,7 @@ export default createFragmentContainer(
   Detail,
   graphql`
     fragment FAQArticleDetailContent_article on FAQArticle {
+      id
       title
       perex
       content

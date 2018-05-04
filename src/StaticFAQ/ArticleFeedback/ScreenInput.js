@@ -5,9 +5,15 @@ import css from 'styled-jsx/css';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
 
 import { Box, ContactPageLink } from '../../common';
+import createComment from '../../mutations/CreateCommentMutation';
+import screensList from './screensList';
 
 type Props = {|
-  submitComment: () => void,
+  changeScreen: (nextScreen: string) => void,
+  articleId: string,
+|};
+type State = {|
+  comment: string,
 |};
 
 const style = css`
@@ -37,6 +43,7 @@ const style = css`
     border: none;
     background-color: #00a991;
     color: #ffffff;
+    cursor: pointer;
   }
   div.button {
     display: flex;
@@ -48,30 +55,53 @@ const style = css`
     top: 8px;
     right: 8px;
   }
+  div.input-area textarea {
+    padding: 12px 16px;
+  }
 `;
-const ScreenInput = (props: Props) => (
-  <Box
-    border="none"
-    padding="40px 24px 24px 24px"
-    borderRadius="4px"
-    backgroundColor="#f5f7f9"
-  >
-    <div className="close-icon">
-      <Close fill="#bac7d5" height="12" />
-    </div>
-    <div className="title">Your feedback helps us improve.</div>
-    <div className="question">What problem were you trying to solve?</div>
-    <div className="input-area">
-      <textarea />
-    </div>
-    <div className="button">
-      <ContactPageLink />
-      <button onClick={props.submitComment}>
-        <span>Submit</span>
-      </button>
-    </div>
-    <style jsx>{style}</style>
-  </Box>
-);
+
+class ScreenInput extends React.Component<Props, State> {
+  state = {
+    comment: '',
+  };
+  handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
+    this.setState({ comment: e.target.value });
+  };
+  handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+    const { changeScreen, articleId } = this.props;
+    e.preventDefault();
+    createComment(articleId, this.state.comment, () =>
+      changeScreen(screensList.THANK_YOU),
+    );
+  };
+  render() {
+    return (
+      <Box
+        border="none"
+        padding="40px 24px 24px 24px"
+        borderRadius="4px"
+        backgroundColor="#f5f7f9"
+      >
+        <form onSubmit={this.handleSubmit}>
+          <div className="close-icon">
+            <Close fill="#bac7d5" height="12" />
+          </div>
+          <div className="title">Your feedback helps us improve.</div>
+          <div className="question">What problem were you trying to solve?</div>
+          <div className="input-area">
+            <textarea />
+          </div>
+          <div className="button">
+            <ContactPageLink />
+            <button type="submit">
+              <span>Submit</span>
+            </button>
+          </div>
+        </form>
+        <style jsx>{style}</style>
+      </Box>
+    );
+  }
+}
 
 export default ScreenInput;
