@@ -15,10 +15,7 @@ import type { FAQArticleDetailSearchResultQuery } from './__generated__/FAQArtic
 import CustomBreadcrumbs from './CustomBreadcrumbs';
 
 const queryFAQArticleDetail = graphql`
-  query FAQArticleDetailQuery(
-    $id: ID!
-    $category_id: ID!
-  ) {
+  query FAQArticleDetailQuery($id: ID!, $category_id: ID!) {
     FAQArticle(id: $id) {
       title
       ...FAQArticleDetailContent_article
@@ -44,7 +41,7 @@ const queryFAQArticleDetailSearchResult = graphql`
 `;
 
 type FAQArticleDetailParams = {
-  props: ?FAQArticleDetailQuery | ?FAQArticleDetailSearchResultQuery,
+  props: FAQArticleDetailQuery | FAQArticleDetailSearchResultQuery,
   error: ?Error,
 };
 

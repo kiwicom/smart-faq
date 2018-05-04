@@ -1,4 +1,6 @@
 /**
+ * @flow
+ * @relayHash 7e429d493027b4f94f2a179964a2bde9
  */
 
 /* eslint-disable */
@@ -10,6 +12,7 @@ import type { ConcreteRequest } from 'relay-runtime';
 type FAQArticleDetailContent_article$ref = any;
 export type FAQArticleDetailQueryVariables = {|
   id: string,
+  category_id: string,
 |};
 export type FAQArticleDetailQueryResponse = {|
   +FAQArticle: ?{|
@@ -31,7 +34,10 @@ export type FAQArticleDetailQueryResponse = {|
 /*
 query FAQArticleDetailQuery(
   $id: ID!
-
+  $category_id: ID!
+) {
+  FAQArticle(id: $id) {
+    title
     ...FAQArticleDetailContent_article
     id
   }
@@ -58,6 +64,13 @@ var v0 = [
     "kind": "LocalArgument",
     "name": "id",
     "type": "ID!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "category_id",
+    "type": "ID!",
+    "defaultValue": null
   }
 ],
 v1 = [
@@ -120,6 +133,7 @@ return {
   "operationKind": "query",
   "name": "FAQArticleDetailQuery",
   "id": null,
+  "text": "query FAQArticleDetailQuery(\n  $id: ID!\n  $category_id: ID!\n) {\n  FAQArticle(id: $id) {\n    title\n    ...FAQArticleDetailContent_article\n    id\n  }\n  FAQCategory(id: $category_id) {\n    title\n    id\n    ancestors {\n      id\n      title\n    }\n  }\n}\n\nfragment FAQArticleDetailContent_article on FAQArticle {\n  title\n  perex\n  content\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -185,4 +199,5 @@ return {
   }
 };
 })();
+(node/*: any*/).hash = 'e4275c0309c118b5291e7a3ff9853c06';
 module.exports = node;

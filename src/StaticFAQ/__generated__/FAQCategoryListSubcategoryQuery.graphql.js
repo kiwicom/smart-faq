@@ -1,5 +1,6 @@
 /**
  * @flow
+ * @relayHash bdf81bcca628130f10f98dae8e92e3c9
  */
 
 /* eslint-disable */
@@ -39,6 +40,8 @@ export type FAQCategoryListSubcategoryQueryResponse = {|
 query FAQCategoryListSubcategoryQuery(
   $id: ID!
 ) {
+  FAQCategory(id: $id) {
+    id
     title
     subcategories {
       id
@@ -120,6 +123,7 @@ return {
   "operationKind": "query",
   "name": "FAQCategoryListSubcategoryQuery",
   "id": null,
+  "text": "query FAQCategoryListSubcategoryQuery(\n  $id: ID!\n) {\n  FAQCategory(id: $id) {\n    id\n    title\n    subcategories {\n      id\n      ...FAQCategory_category\n    }\n    ancestors {\n      id\n      ...Breadcrumbs_breadcrumbs\n    }\n    FAQs {\n      id\n      ...FAQArticle_article\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -249,4 +253,5 @@ return {
   }
 };
 })();
+(node/*: any*/).hash = '84ed0e4cc5c6419575118fb251005206';
 module.exports = node;

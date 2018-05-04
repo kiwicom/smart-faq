@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0482968e2d55e0951bede84dce22c5dc
+ * @relayHash e128ba4aec857eb6ed982d95622bb8ec
  */
 
 /* eslint-disable */
@@ -10,10 +10,8 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type FAQArticleDetailContent_article$ref = any;
-export type Language = ('ar' | 'bg' | 'ca' | 'cs' | 'da' | 'de' | 'el' | 'en' | 'engb' | 'enus' | 'es' | 'esar' | 'et' | 'fi' | 'fr' | 'he' | 'hr' | 'hu' | 'id' | 'is' | 'it' | 'ja' | 'ko' | 'lt' | 'lv' | 'ms' | 'nl' | 'no' | 'pl' | 'pt' | 'ptbr' | 'ptpt' | 'ro' | 'ru' | 'sk' | 'sl' | 'sr' | 'sv' | 'th' | 'tl' | 'tr' | 'uk' | 'vi' | 'zh' | 'zhcn' | 'zhtw' | '%future added value');
 export type FAQArticleDetailSearchResultQueryVariables = {|
   id: string,
-  language?: ?Language,
 |};
 export type FAQArticleDetailSearchResultQueryResponse = {|
   +FAQArticle: ?{|
@@ -27,9 +25,8 @@ export type FAQArticleDetailSearchResultQueryResponse = {|
 /*
 query FAQArticleDetailSearchResultQuery(
   $id: ID!
-  $language: Language
 ) {
-  FAQArticle(id: $id, language: $language) {
+  FAQArticle(id: $id) {
     title
     ...FAQArticleDetailContent_article
     id
@@ -50,12 +47,6 @@ var v0 = [
     "name": "id",
     "type": "ID!",
     "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
-    "name": "language",
-    "type": "Language",
-    "defaultValue": null
   }
 ],
 v1 = [
@@ -64,12 +55,6 @@ v1 = [
     "name": "id",
     "variableName": "id",
     "type": "ID!"
-  },
-  {
-    "kind": "Variable",
-    "name": "language",
-    "variableName": "language",
-    "type": "Language"
   }
 ],
 v2 = {
@@ -84,7 +69,7 @@ return {
   "operationKind": "query",
   "name": "FAQArticleDetailSearchResultQuery",
   "id": null,
-  "text": "query FAQArticleDetailSearchResultQuery(\n  $id: ID!\n  $language: Language\n) {\n  FAQArticle(id: $id, language: $language) {\n    title\n    ...FAQArticleDetailContent_article\n    id\n  }\n}\n\nfragment FAQArticleDetailContent_article on FAQArticle {\n  title\n  perex\n  content\n}\n",
+  "text": "query FAQArticleDetailSearchResultQuery(\n  $id: ID!\n) {\n  FAQArticle(id: $id) {\n    title\n    ...FAQArticleDetailContent_article\n    id\n  }\n}\n\nfragment FAQArticleDetailContent_article on FAQArticle {\n  title\n  perex\n  content\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -154,5 +139,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = 'f9149f0126b06b227425ba630493e8cc';
+(node/*: any*/).hash = 'ce0ab3e092e49671f7d877806de6893a';
 module.exports = node;
