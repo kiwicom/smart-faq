@@ -5,8 +5,7 @@ exports[`SignIn should match snapshot 1`] = `
   className="jsx-3069972566 SignIn"
 >
   <CloseButton />
-  <BackButton
-    link="/"
+  <withRouter(BackButton)
     text="Back"
   />
   <div

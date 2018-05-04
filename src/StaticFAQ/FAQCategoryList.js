@@ -3,13 +3,13 @@
 import * as React from 'react';
 import idx from 'idx';
 import { Link } from 'react-router-dom';
-import { graphql, QueryRenderer } from 'react-relay';
+import { graphql } from 'react-relay';
 
 import { Loader, ScrollableBox } from '../common';
+import QueryRenderer from '../relay/QueryRenderer';
 import FAQArticle from './FAQArticle';
 import FAQCategory from './FAQCategory';
 import Breadcrumbs from './Breadcrumbs';
-import createEnvironment from '../relay/environment';
 import routeDefinitions from './../routeDefinitions';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
 import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
@@ -18,7 +18,6 @@ import type { FAQCategoryListSubcategoryQueryResponse } from './__generated__/FA
 
 type Props = {|
   categoryId: string | null,
-  language: string,
 |};
 
 type RootQueryRendererParams = {
@@ -38,8 +37,8 @@ type FAQArticlePerexFragment = {|
 |};
 
 const queryRoot = graphql`
-  query FAQCategoryListRootQuery($language: Language) {
-    allFAQCategories(language: $language) {
+  query FAQCategoryListRootQuery {
+    allFAQCategories {
       edges {
         node {
           id
@@ -50,8 +49,8 @@ const queryRoot = graphql`
   }
 `;
 const querySubcategory = graphql`
-  query FAQCategoryListSubcategoryQuery($id: ID!, $language: Language) {
-    FAQCategory(id: $id, language: $language) {
+  query FAQCategoryListSubcategoryQuery($id: ID!) {
+    FAQCategory(id: $id) {
       id
       title
       subcategories {
@@ -158,25 +157,23 @@ class FAQCategoryList extends React.Component<Props> {
   };
 
   render() {
-    const { categoryId, language } = this.props;
+    const { categoryId } = this.props;
 
     if (categoryId) {
       return (
         <QueryRenderer
-          environment={createEnvironment()}
           query={querySubcategory}
           render={this.renderSubcategory}
-          variables={{ id: categoryId, language }}
+          variables={{ id: categoryId }}
         />
       );
     }
 
     return (
       <QueryRenderer
-        environment={createEnvironment()}
         query={queryRoot}
         render={this.renderRootCategory}
-        variables={{ language }}
+        variables={{}}
       />
     );
   }

@@ -13,7 +13,7 @@ require('isomorphic-fetch');
 const uri = 'https://graphql.kiwi.com';
 const cache = new QueryResponseCache({ size: 200, ttl: 30 * 60 * 1000 });
 
-const buildFetchQuery = (token: string = '') => {
+const buildFetchQuery = (token: string = '', locale: string = 'en_US') => {
   return async function fetchQuery(operation, variables, cacheConfig) {
     const forceFetch = cacheConfig.force;
     const isQuery = operation.operationKind === 'query';
@@ -26,7 +26,8 @@ const buildFetchQuery = (token: string = '') => {
     const response = await fetch(process.env.GRAPHQL_URI || uri, {
       method: 'POST',
       headers: {
-        'content-type': 'application/json',
+        'Content-Type': 'application/json',
+        'Accept-Language': locale,
         Authorization: token,
       },
       body: JSON.stringify({
@@ -44,9 +45,9 @@ const buildFetchQuery = (token: string = '') => {
   };
 };
 
-const createEnvironment = (token?: string) => {
+const createEnvironment = (token: ?string, locale: ?string) => {
   return new Environment({
-    network: Network.create(buildFetchQuery(token)),
+    network: Network.create(buildFetchQuery(token, locale)),
     store: new Store(new RecordSource()),
   });
 };

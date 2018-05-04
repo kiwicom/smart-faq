@@ -2,12 +2,14 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { QueryRenderer, graphql } from 'react-relay';
+import { graphql } from 'react-relay';
 
+import QueryRenderer from '../relay/QueryRenderer';
 import Loader from '../common/Loader';
+import ContentHeader from '../ContentHeader';
 import FAQArticleDetailContent from './FAQArticleDetailContent';
-import createEnvironment from '../relay/environment';
-import { LanguageContext } from '../context/Language';
+import { withUser } from '../context/User';
+import type { User } from '../types';
 import type { FAQArticleDetailQuery } from './__generated__/FAQArticleDetailQuery.graphql';
 import type { FAQArticleDetailSearchResultQuery } from './__generated__/FAQArticleDetailSearchResultQuery.graphql';
 import CustomBreadcrumbs from './CustomBreadcrumbs';
@@ -15,10 +17,9 @@ import CustomBreadcrumbs from './CustomBreadcrumbs';
 const queryFAQArticleDetail = graphql`
   query FAQArticleDetailQuery(
     $id: ID!
-    $language: Language
     $category_id: ID!
   ) {
-    FAQArticle(id: $id, language: $language) {
+    FAQArticle(id: $id) {
       title
       ...FAQArticleDetailContent_article
     }
@@ -34,8 +35,8 @@ const queryFAQArticleDetail = graphql`
 `;
 
 const queryFAQArticleDetailSearchResult = graphql`
-  query FAQArticleDetailSearchResultQuery($id: ID!, $language: Language) {
-    FAQArticle(id: $id, language: $language) {
+  query FAQArticleDetailSearchResultQuery($id: ID!) {
+    FAQArticle(id: $id) {
       title
       ...FAQArticleDetailContent_article
     }
@@ -43,11 +44,12 @@ const queryFAQArticleDetailSearchResult = graphql`
 `;
 
 type FAQArticleDetailParams = {
-  props: FAQArticleDetailQuery | FAQArticleDetailSearchResultQuery,
-  error: Error,
+  props: ?FAQArticleDetailQuery | ?FAQArticleDetailSearchResultQuery,
+  error: ?Error,
 };
 
 type Props = {
+  user: User,
   match: {
     params: {
       articleId: string,
@@ -94,20 +96,16 @@ class FAQArticleDetail extends React.Component<Props> {
 
     return (
       <div className="faq-article-detail">
-        <LanguageContext.Consumer>
-          {(language: string) => (
-            <QueryRenderer
-              environment={createEnvironment()}
-              query={
-                categoryId === 'search'
-                  ? queryFAQArticleDetailSearchResult
-                  : queryFAQArticleDetail
-              }
-              variables={{ language, id: articleId, category_id: categoryId }}
-              render={this.renderDetailContent}
-            />
-          )}
-        </LanguageContext.Consumer>
+        {!this.props.user && <ContentHeader />}
+        <QueryRenderer
+          query={
+            categoryId === 'search'
+              ? queryFAQArticleDetailSearchResult
+              : queryFAQArticleDetail
+          }
+          variables={{ id: articleId }}
+          render={this.renderDetailContent}
+        />
         <style jsx>
           {`
             .faq-article-detail {
@@ -120,4 +118,4 @@ class FAQArticleDetail extends React.Component<Props> {
   }
 }
 
-export default FAQArticleDetail;
+export default withUser(FAQArticleDetail);

@@ -6,7 +6,6 @@ import idx from 'idx';
 import { withRouter } from 'react-router-dom';
 
 import FAQCategoryList from './FAQCategoryList';
-import { LanguageContext } from '../context/Language';
 
 const styles = css`
   p.title {
@@ -49,30 +48,24 @@ type Props = {
 const NoSearchResults = (props: Props) => {
   const categoryId = idx(props.match, _ => _.params.categoryId) || null;
   return (
-    <LanguageContext.Consumer>
-      {language => (
-        <React.Fragment>
-          {!categoryId && (
-            <div>
-              <p className="title">
-                Your search didn&apos;t match any of our articles.
-              </p>
-              <ul>
-                <li>Try alternative spellings</li>
-                <li>Try fewer words (e.g. infant)</li>
-                <li>Try different keywords</li>
-                <li>Try a more general search</li>
-              </ul>
-              <p className="subtitle">
-                Maybe, consider one of the topics below?
-              </p>
-            </div>
-          )}
-          <FAQCategoryList categoryId={categoryId} language={language} />
-          <style jsx>{styles}</style>
-        </React.Fragment>
+    <React.Fragment>
+      {!categoryId && (
+        <div>
+          <p className="title">
+            Your search didn&apos;t match any of our articles.
+          </p>
+          <ul>
+            <li>Try alternative spellings</li>
+            <li>Try fewer words (e.g. infant)</li>
+            <li>Try different keywords</li>
+            <li>Try a more general search</li>
+          </ul>
+          <p className="subtitle">Maybe, consider one of the topics below?</p>
+        </div>
       )}
-    </LanguageContext.Consumer>
+      <FAQCategoryList categoryId={categoryId} />
+      <style jsx>{styles}</style>
+    </React.Fragment>
   );
 };
 

@@ -7,9 +7,11 @@ import { Magnify } from '@kiwicom/orbit-components/lib/icons';
 import { withRouter } from 'react-router-dom';
 
 import Input from './../common/Input';
-import { LanguageContext } from '../context/Language';
+import { withUser } from '../context/User';
 import FAQCategoryList from './FAQCategoryList';
 import SearchAllFAQs from './SearchAllFAQs';
+import ContentHeader from '../ContentHeader';
+import type { User } from '../types';
 
 const style = css`
   .static-faq {
@@ -21,6 +23,7 @@ const style = css`
 `;
 
 type Props = {|
+  user: User,
   match: {
     params: {
       categoryId: ?string,
@@ -61,23 +64,20 @@ class StaticFAQ extends React.Component<Props, State> {
     const isSearching = value.length;
 
     return (
-      <LanguageContext.Consumer>
-        {language => (
-          <div className="static-faq">
-            <div className="static-faq-body">
-              {!categoryId && this.renderInput(isSearching)}
-              {isSearching ? (
-                <SearchAllFAQs search={value} language={language} />
-              ) : (
-                <FAQCategoryList categoryId={categoryId} language={language} />
-              )}
-            </div>
-            <style jsx>{style}</style>
-          </div>
-        )}
-      </LanguageContext.Consumer>
+      <div className="static-faq">
+        {!this.props.user && <ContentHeader />}
+        <div className="static-faq-body">
+          {!categoryId && this.renderInput(isSearching)}
+          {isSearching ? (
+            <SearchAllFAQs search={value} />
+          ) : (
+            <FAQCategoryList categoryId={categoryId} />
+          )}
+        </div>
+        <style jsx>{style}</style>
+      </div>
     );
   }
 }
 
-export default withRouter(StaticFAQ);
+export default withRouter(withUser(StaticFAQ));

@@ -1,12 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { QueryRenderer, graphql } from 'react-relay';
+import { graphql } from 'react-relay';
 import idx from 'idx';
 
+import QueryRenderer from '../relay/QueryRenderer';
 import FAQArticle from './FAQArticle';
 import NoSearchResults from './NoSearchResults';
-import createEnvironment from '../relay/environment';
 import { Loader, ScrollableBox } from '../common';
 import type { SearchAllFAQsQuery } from './__generated__/SearchAllFAQsQuery.graphql';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
@@ -18,12 +18,11 @@ type AllFAQsQueryRendererParams = {
 
 type Props = {|
   search: string,
-  language: string,
 |};
 
 const queryAllFAQs = graphql`
-  query SearchAllFAQsQuery($search: String, $language: Language) {
-    allFAQs(search: $search, language: $language) {
+  query SearchAllFAQsQuery($search: String) {
+    allFAQs(search: $search) {
       edges {
         node {
           id
@@ -60,12 +59,11 @@ class SearchAllFAQs extends React.Component<Props> {
   };
 
   render() {
-    const { search, language } = this.props;
+    const { search } = this.props;
     return (
       <QueryRenderer
-        environment={createEnvironment()}
         query={queryAllFAQs}
-        variables={{ search, language }}
+        variables={{ search }}
         render={this.renderSearchFAQs}
       />
     );
