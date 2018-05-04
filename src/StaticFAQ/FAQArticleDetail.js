@@ -6,8 +6,11 @@ import { graphql } from 'react-relay';
 
 import QueryRenderer from '../relay/QueryRenderer';
 import Loader from '../common/Loader';
+import ContentHeader from '../ContentHeader';
 import FAQArticleDetailContent from './FAQArticleDetailContent';
+import { withUser } from '../context/User';
 import type { FAQArticleDetailQuery } from './__generated__/FAQArticleDetailQuery.graphql';
+import type { User } from '../types';
 
 const queryFAQArticleDetail = graphql`
   query FAQArticleDetailQuery($id: ID!) {
@@ -23,6 +26,7 @@ type FAQArticleDetailParams = {
 };
 
 type Props = {
+  user: User,
   match: {
     params: {
       articleId: string,
@@ -51,6 +55,7 @@ class FAQArticleDetail extends React.Component<Props> {
 
     return (
       <div className="faq-article-detail">
+        {!this.props.user && <ContentHeader />}
         <QueryRenderer
           query={queryFAQArticleDetail}
           variables={{ id: articleId }}
@@ -68,4 +73,4 @@ class FAQArticleDetail extends React.Component<Props> {
   }
 }
 
-export default FAQArticleDetail;
+export default withUser(FAQArticleDetail);

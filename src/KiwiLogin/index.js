@@ -148,7 +148,7 @@ class KiwiLogin extends React.Component<Props, State> {
     return (
       <div className="KiwiLogin">
         <CloseButton />
-        <BackButton text="Back" link={routeDefinitions.SIGN_IN} />
+        <BackButton text="Back" />
         <div className="picture">
           <img alt="Help" src={image} />
         </div>

@@ -147,7 +147,7 @@ class ForgottenPasword extends React.Component<Props, State> {
     return (
       <div className="ForgottenPassword">
         <CloseButton />
-        <BackButton text="Back" link={routeDefinitions.KIWI_LOGIN} />
+        <BackButton text="Back" />
         <div className="picture">
           <img alt="Help" src={image} />
         </div>

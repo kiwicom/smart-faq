@@ -4,7 +4,11 @@ import { Route, Switch, MemoryRouter } from 'react-router-dom';
 import * as React from 'react';
 import css from 'styled-jsx/css';
 
-import ContentHeader from '../ContentHeader';
+import Intro from '../IntroPage';
+import SignIn from '../SignInPage';
+import KiwiLogin from '../KiwiLogin';
+import ForgottenPassword from '../ForgottenPassword';
+import { CheckRecoveryLink, CheckMagicLink } from '../EmailPage';
 import StaticFAQ from '../StaticFAQ';
 import FAQArticleDetail from '../StaticFAQ/FAQArticleDetail';
 import routeDefinitions from '../routeDefinitions';
@@ -13,11 +17,6 @@ const style = css`
   div.NoBookingPage {
     min-width: 480px;
     height: 100vh;
-  }
-  div.NoBookingPage .Header {
-    display: flex;
-    align-items: center;
-    height: 64px;
   }
   div.NoBookingPage .Body {
     display: flex;
@@ -31,6 +30,24 @@ const style = css`
 const FAQRoutes = (
   <MemoryRouter initialEntries={[routeDefinitions.STATIC_FAQ]} initialIndex={0}>
     <Switch>
+      <Route exact path={routeDefinitions.HOME} component={Intro} />
+      <Route exact path={routeDefinitions.SIGN_IN} component={SignIn} />
+      <Route exact path={routeDefinitions.KIWI_LOGIN} component={KiwiLogin} />
+      <Route
+        exact
+        path={routeDefinitions.CHECK_MAGIC_LINK}
+        component={CheckMagicLink}
+      />
+      <Route
+        exact
+        path={routeDefinitions.CHECK_RECOVERY_LINK}
+        component={CheckRecoveryLink}
+      />
+      <Route
+        exact
+        path={routeDefinitions.FORGOTTEN_PASSWORD}
+        component={ForgottenPassword}
+      />
       <Route
         exact
         path={`${routeDefinitions.STATIC_FAQ}/:categoryId?`}
@@ -44,18 +61,13 @@ const FAQRoutes = (
     </Switch>
   </MemoryRouter>
 );
-const NoBookingPage = () => {
-  return (
-    <div className="NoBookingPage">
-      <div className="Header">
-        <ContentHeader />
-      </div>
-      <div className="Body">{FAQRoutes}</div>
-      <style jsx global>
-        {style}
-      </style>
-    </div>
-  );
-};
+const NoBookingPage = () => (
+  <div className="NoBookingPage">
+    <div className="Body">{FAQRoutes}</div>
+    <style jsx global>
+      {style}
+    </style>
+  </div>
+);
 
 export default NoBookingPage;
