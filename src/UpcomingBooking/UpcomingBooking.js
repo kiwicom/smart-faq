@@ -21,19 +21,7 @@ import {
 import Box from '../common/Box';
 import Accordion from './Accordion';
 import type { UpcomingBooking_booking as BookingType } from './__generated__/UpcomingBooking_booking.graphql';
-
-const statusMap = {
-  NEW: { text: 'New', color: '#171b1e' },
-  REFUNDED: { text: 'Refunded', color: '#171b1e' },
-  PENDING: { text: 'Pending', color: '#ffc345' },
-  OPEN: { text: 'Open', color: '#ffc345' },
-  INFO: { text: 'Info', color: '#ffc345' },
-  CONFIRMED: { text: 'Confirmed', color: '#52cf26' },
-  CANCELLED: { text: 'Cancelled', color: '#171b1e' },
-  DELETED: { text: 'Deleted', color: '#171b1e' },
-  CLOSED: { text: 'Closed', color: '#ffc345' },
-  EXPIRED: { text: 'Expired', color: '#171b1e' },
-};
+import { formatStatus } from '../common/formatStatus';
 
 const style = css`
   .UpcomingBooking {
@@ -334,8 +322,8 @@ class UpcomingBooking extends React.Component<Props, State> {
               </Typography>
             </span>
           </div>
-          <div style={{color: statusMap[booking.status].color, fontSize: '14px'}}>
-            {statusMap[booking.status].text}
+          <div style={{color: formatStatus(booking.status).color, fontSize: '14px'}}>
+            {formatStatus(booking.status).text}
           </div>
         </div>
         <div className="notification">{this.renderNotification(booking)}</div>
