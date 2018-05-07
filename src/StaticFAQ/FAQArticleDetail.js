@@ -87,25 +87,46 @@ class FAQArticleDetail extends React.Component<Props> {
     return <Loader />;
   };
 
-  render() {
-    const articleId = idx(this.props.match, _ => _.params.articleId);
-    const categoryId = idx(this.props.match, _ => _.params.categoryId);
+  isSearchResult() {
+    return this.getCategoryId() === 'search';
+  }
 
+  getCategoryId() {
+    return idx(this.props.match, _ => _.params.categoryId);
+  }
+
+  getQueryRenderer() {
+    if (this.isSearchResult()) {
+      return (
+        <QueryRenderer
+          query={queryFAQArticleDetailSearchResult}
+          variables={{ id: this.getArticleId() }}
+          render={this.renderDetailContent}
+        />
+      );
+    }
+
+    return (
+      <QueryRenderer
+        query={queryFAQArticleDetail}
+        variables={{
+          id: this.getArticleId(),
+          category_id: this.getCategoryId(),
+        }}
+        render={this.renderDetailContent}
+      />
+    );
+  }
+
+  getArticleId() {
+    return idx(this.props.match, _ => _.params.articleId);
+  }
+
+  render() {
     return (
       <div className="faq-article-detail">
         {!this.props.user && <ContentHeader />}
-        <QueryRenderer
-          query={
-            categoryId === 'search'
-              ? queryFAQArticleDetailSearchResult
-              : queryFAQArticleDetail
-          }
-          variables={{
-            id: articleId,
-            ...(categoryId === 'search' ? {} : { category_id: categoryId }),
-          }}
-          render={this.renderDetailContent}
-        />
+        {this.getQueryRenderer()}
         <style jsx>
           {`
             .faq-article-detail {
