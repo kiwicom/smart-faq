@@ -100,7 +100,9 @@ class FAQArticleDetail extends React.Component<Props> {
               ? queryFAQArticleDetailSearchResult
               : queryFAQArticleDetail
           }
-          variables={{ id: articleId }}
+          variables={{ id: articleId, ...(
+            categoryId === 'search' ? {} : { category_id: categoryId }
+          ) }}
           render={this.renderDetailContent}
         />
         <style jsx>
