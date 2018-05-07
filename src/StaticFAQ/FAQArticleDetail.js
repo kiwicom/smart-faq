@@ -67,18 +67,26 @@ class FAQArticleDetail extends React.Component<Props> {
     if (params.props) {
       return (
         <React.Fragment>
-          <CustomBreadcrumbs
-            breadcrumbs={
-              params.props.FAQCategory
-                ? [{ title: 'Home' }]
-                    .concat(params.props.FAQCategory.ancestors)
-                    .concat(params.props.FAQCategory)
-                    .concat([{ title: params.props.FAQArticle.title }])
-                : [{ title: 'Search' }].concat([
-                    { title: params.props.FAQArticle.title },
-                  ])
-            }
-          />
+          <div
+            style={{
+              margin: '24px 40px',
+              marginBottom: '-2px',
+            }}
+          >
+            <CustomBreadcrumbs
+              breadcrumbs={
+                params.props.FAQCategory
+                  ? [{ title: 'Home' }]
+                      .concat(params.props.FAQCategory.ancestors)
+                      .concat(params.props.FAQCategory)
+                      .concat([{ title: params.props.FAQArticle.title }])
+                  : [{ title: 'Search' }].concat([
+                      { title: params.props.FAQArticle.title },
+                    ])
+              }
+            />
+          </div>
+
           <FAQArticleDetailContent article={params.props.FAQArticle} />
         </React.Fragment>
       );
