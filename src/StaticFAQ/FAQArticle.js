@@ -12,6 +12,8 @@ import type { FAQArticle_article } from './__generated__/FAQArticle_article.grap
 
 type Props = {|
   article: FAQArticle_article,
+  categoryId: ?string,
+  isSearchResult: ?boolean,
 |};
 
 const style = css`
@@ -25,7 +27,13 @@ const style = css`
 
 const FAQArticle = (props: Props) => (
   <Link
-    to={`${routeDefinitions.FAQ_ARTICLE}/${props.article.id}`}
+    to={
+      props.isSearchResult
+        ? `${routeDefinitions.FAQ_ARTICLE}/search/${props.article.id}`
+        : `${routeDefinitions.FAQ_ARTICLE}/${props.categoryId || ''}/${
+            props.article.id
+          }`
+    }
     style={{ textDecoration: 'none' }}
   >
     <Card>

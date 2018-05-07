@@ -55,7 +55,7 @@ const FAQRoutes = (
       />
       <Route
         exact
-        path={`${routeDefinitions.FAQ_ARTICLE}/:articleId`}
+        path={`${routeDefinitions.FAQ_ARTICLE}/:categoryId/:articleId`}
         component={FAQArticleDetail}
       />
     </Switch>

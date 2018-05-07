@@ -51,6 +51,7 @@ const queryRoot = graphql`
 const querySubcategory = graphql`
   query FAQCategoryListSubcategoryQuery($id: ID!) {
     FAQCategory(id: $id) {
+      id
       title
       subcategories {
         id
@@ -71,12 +72,15 @@ const querySubcategory = graphql`
 class FAQCategoryList extends React.Component<Props> {
   renderFAQArticlePerexes = (
     faqs: $ReadOnlyArray<?FAQArticlePerexFragment>,
+    categoryId: string,
   ) => {
     return (
       <div>
         {faqs
           .filter(Boolean)
-          .map(faq => <FAQArticle key={faq.id} article={faq} />)}
+          .map(faq => (
+            <FAQArticle key={faq.id} article={faq} categoryId={categoryId} />
+          ))}
       </div>
     );
   };
@@ -133,6 +137,7 @@ class FAQCategoryList extends React.Component<Props> {
         _ => _.FAQCategory.title,
       );
       const faqs = idx(rendererProps.props, _ => _.FAQCategory.FAQs) || [];
+      const categoryId = idx(rendererProps.props, _ => _.FAQCategory.id) || '';
 
       return (
         <React.Fragment>
@@ -142,7 +147,7 @@ class FAQCategoryList extends React.Component<Props> {
           />
           <ScrollableBox>
             {this.renderCategories(categories.filter(Boolean))}
-            {this.renderFAQArticlePerexes(faqs)}
+            {this.renderFAQArticlePerexes(faqs, categoryId)}
           </ScrollableBox>
         </React.Fragment>
       );

@@ -51,7 +51,9 @@ class SearchAllFAQs extends React.Component<Props> {
     if (!faqs.length) return <NoSearchResults />;
     return (
       <ScrollableBox>
-        {faqs.map(faq => <FAQArticle key={faq.id} article={faq} />)}
+        {faqs.map(faq => (
+          <FAQArticle key={faq.id} article={faq} isSearchResult />
+        ))}
       </ScrollableBox>
     );
   };
