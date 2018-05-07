@@ -8,10 +8,12 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+export type BookingStatus = ('CANCELLED' | 'CLOSED' | 'CONFIRMED' | 'DELETED' | 'EXPIRED' | 'NEW' | 'PENDING' | 'REFUNDED' | '%future added value');
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type UpcomingBooking_booking$ref: FragmentReference;
 export type UpcomingBooking_booking = {|
   +databaseId: ?number,
+  +status: ?BookingStatus,
   +legs: ?$ReadOnlyArray<?{|
     +airline: ?{|
       +name: ?string,
@@ -113,6 +115,13 @@ return {
       "storageKey": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "status",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "legs",
@@ -172,5 +181,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '10e11e28f7a8a459e40668d947e28b0e';
+(node/*: any*/).hash = '2b9d0872121398b1903bb5d11a4f2f2f';
 module.exports = node;

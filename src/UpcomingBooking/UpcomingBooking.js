@@ -21,6 +21,7 @@ import {
 import Box from '../common/Box';
 import Accordion from './Accordion';
 import type { UpcomingBooking_booking as BookingType } from './__generated__/UpcomingBooking_booking.graphql';
+import { formatStatus } from '../common/formatStatus';
 
 const style = css`
   .UpcomingBooking {
@@ -31,6 +32,11 @@ const style = css`
   }
   div.Screen-title {
     margin-bottom: 12px;
+  }
+  div.Screen-title-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
   }
   div.notification {
     margin-bottom: 8px;
@@ -55,7 +61,7 @@ const style = css`
     margin-right: 8px;
   }
   div.title {
-    margin-bottom: 2px;
+    margin: 4px 0;
   }
 `;
 
@@ -296,24 +302,34 @@ class UpcomingBooking extends React.Component<Props, State> {
     return (
       <div className="UpcomingBooking">
         <div className="Screen-title">
+          <div className="Screen-title-group">
+            <div className="booking-id">
+              {booking.databaseId && (
+                <Typography type="secondary">
+                  Upcoming trip # {formatBookingId(booking.databaseId)}
+                </Typography>
+              )}
+            </div>
+            <div className="second-title">
+              <Typography size="small" type="active">
+                select other booking
+              </Typography>
+            </div>
+          </div>
           <div className="title">
             <span className="main-title">
               <Typography size="header" type="attention">
                 Upcoming booking
               </Typography>
             </span>
-            <span className="second-title">
-              <Typography size="small" type="active">
-                select other booking
-              </Typography>
-            </span>
           </div>
-          <div className="booking-id">
-            {booking.databaseId && (
-              <Typography type="secondary">
-                # {formatBookingId(booking.databaseId)}
-              </Typography>
-            )}
+          <div
+            style={{
+              color: formatStatus(booking.status).color,
+              fontSize: '14px',
+            }}
+          >
+            {formatStatus(booking.status).text}
           </div>
         </div>
         <div className="notification">{this.renderNotification(booking)}</div>
@@ -334,6 +350,7 @@ export default createFragmentContainer(
   graphql`
     fragment UpcomingBooking_booking on Booking {
       databaseId
+      status
       legs {
         airline {
           name
