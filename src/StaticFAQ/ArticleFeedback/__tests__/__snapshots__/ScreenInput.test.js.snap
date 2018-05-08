@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignIn should match snapshot 1`] = `
+<Box
+  backgroundColor="#f5f7f9"
+  border="none"
+  borderRadius="4px"
+  padding="40px 24px 24px 24px"
+>
+  <form
+    className="jsx-2596769780"
+    onSubmit={[Function]}
+  >
+    <div
+      className="jsx-2596769780 close-icon"
+    >
+      <Close
+        fill="#bac7d5"
+        height="12"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="jsx-2596769780 title"
+    >
+      Your feedback helps us improve.
+    </div>
+    <div
+      className="jsx-2596769780 question"
+    >
+      What problem were you trying to solve?
+    </div>
+    <div
+      className="jsx-2596769780 input-area"
+    >
+      <textarea
+        className="jsx-2596769780"
+      />
+    </div>
+    <div
+      className="jsx-2596769780 button"
+    >
+      <ContactPageLink />
+      <button
+        className="jsx-2596769780"
+        type="submit"
+      >
+        <span
+          className="jsx-2596769780"
+        >
+          Submit
+        </span>
+      </button>
+    </div>
+  </form>
+  <JSXStyle
+    css="div.title.jsx-2596769780{color:#171b1e;font-size:16px;margin-bottom:8px;}div.question.jsx-2596769780{font-size:14px;color:#46515e;margin-bottom:4px;}div.input-area.jsx-2596769780 textarea.jsx-2596769780{width:352px;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;}div.button.jsx-2596769780 button.jsx-2596769780{font-weight:bold;font-size:14px;width:100px;height:44px;border-radius:3px;border:none;background-color:#00a991;color:#ffffff;cursor:pointer;}div.button.jsx-2596769780{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;margin-top:19px;}div.close-icon.jsx-2596769780{position:absolute;top:8px;right:8px;cursor:pointer;}div.input-area.jsx-2596769780 textarea.jsx-2596769780{padding:12px 16px;font-size:14px;}"
+    styleId="2596769780"
+  />
+</Box>
+`;

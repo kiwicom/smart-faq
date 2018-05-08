@@ -5,6 +5,9 @@ import * as React from 'react';
 type Props = {|
   children: React.Node,
   padding?: string,
+  backgroundColor?: string,
+  borderRadius?: string,
+  border?: string,
 |};
 
 const Box = (props: Props) => (
@@ -16,9 +19,9 @@ const Box = (props: Props) => (
           padding: ${props.padding || '0'};
           position: relative;
           width: 100%;
-          border-radius: 3px;
-          border: solid 1px #e8edf1;
-          background-color: #ffffff;
+          border-radius: ${props.borderRadius || '3px'};
+          border: ${props.border || 'solid 1px #e8edf1'};
+          background-color: ${props.backgroundColor || '#ffffff'};
         }
       `}
     </style>
