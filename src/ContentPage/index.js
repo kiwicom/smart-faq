@@ -7,6 +7,7 @@ import css from 'styled-jsx/css';
 import ContentHeader from '../ContentHeader';
 import StaticFAQ from '../StaticFAQ';
 import FAQArticleDetail from '../StaticFAQ/FAQArticleDetail';
+import AllBookings from '../AllBookings';
 import routeDefinitions from '../routeDefinitions';
 import SingleBookingPage from '../SingleBookingPage';
 
@@ -34,6 +35,11 @@ const BookingRoutes = (
         exact
         path={routeDefinitions.NEAREST_BOOKING}
         component={SingleBookingPage}
+      />
+      <Route
+        exact
+        path={routeDefinitions.ALL_BOOKINGS}
+        component={AllBookings}
       />
     </Switch>
   </MemoryRouter>

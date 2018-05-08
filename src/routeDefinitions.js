@@ -12,4 +12,5 @@ export default {
   NEAREST_BOOKING: '/nearest-booking',
   NO_BOOKING: '/no-booking',
   CONTENT: '/content',
+  ALL_BOOKINGS: '/all-bookings',
 };

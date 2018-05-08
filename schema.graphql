@@ -95,7 +95,7 @@ type Booking {
   destinationImageUrl(dimensions: BookingDestinationImageDimensions): String
 
   """The ID of an object"""
-  id: ID!
+  id: ID! @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
