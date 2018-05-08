@@ -54,9 +54,11 @@ const style = css`
     position: absolute;
     top: 8px;
     right: 8px;
+    cursor: pointer;
   }
   div.input-area textarea {
     padding: 12px 16px;
+    font-size: 14px;
   }
 `;
 
@@ -74,6 +76,9 @@ class ScreenInput extends React.Component<Props, State> {
       changeScreen(screensList.THANK_YOU),
     );
   };
+  closeScreen = () => {
+    this.props.changeScreen(screensList.INITIAL);
+  };
   render() {
     return (
       <Box
@@ -84,7 +89,7 @@ class ScreenInput extends React.Component<Props, State> {
       >
         <form onSubmit={this.handleSubmit}>
           <div className="close-icon">
-            <Close fill="#bac7d5" height="12" />
+            <Close fill="#bac7d5" height="12" onClick={this.closeScreen} />
           </div>
           <div className="title">Your feedback helps us improve.</div>
           <div className="question">What problem were you trying to solve?</div>

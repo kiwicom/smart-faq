@@ -42,7 +42,7 @@ class FAQArticleFeedback extends React.Component<Props, State> {
           />
         );
       case screensList.THANK_YOU:
-        return <ScreenThankyou />;
+        return <ScreenThankyou changeScreen={this.changeScreen} />;
     }
     return <ScreenInitial changeScreen={this.changeScreen} />;
   }

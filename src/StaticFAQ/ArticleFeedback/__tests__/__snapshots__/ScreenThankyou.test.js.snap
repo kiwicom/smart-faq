@@ -7,30 +7,31 @@ exports[`SignIn should match snapshot 1`] = `
   borderRadius="4px"
 >
   <div
-    className="jsx-2118853324 thank-you"
+    className="jsx-3533318075 thank-you"
   >
     <div
-      className="jsx-2118853324 close-icon"
+      className="jsx-3533318075 close-icon"
     >
       <Close
         fill="#bac7d5"
         height="12"
+        onClick={[Function]}
       />
     </div>
     <div
-      className="jsx-2118853324 message-1"
+      className="jsx-3533318075 message-1"
     >
       Thanks again.
     </div>
     <div
-      className="jsx-2118853324 message-2"
+      className="jsx-3533318075 message-2"
     >
       We appreciate your insight.
     </div>
     <ContactPageLink />
     <JSXStyle
-      css="div.thank-you.jsx-2118853324{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:251px;}div.close-icon.jsx-2118853324{position:absolute;top:8px;right:8px;}div.message-1.jsx-2118853324,div.message-2.jsx-2118853324{color:#171b1e;font-size:16px;}div.message-2.jsx-2118853324{margin-bottom:16.6px;}"
-      styleId="2118853324"
+      css="div.thank-you.jsx-3533318075{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:251px;}div.close-icon.jsx-3533318075{position:absolute;top:8px;right:8px;cursor:pointer;}div.message-1.jsx-3533318075,div.message-2.jsx-3533318075{color:#171b1e;font-size:16px;}div.message-2.jsx-3533318075{margin-bottom:16.6px;}"
+      styleId="3533318075"
     />
   </div>
 </Box>
