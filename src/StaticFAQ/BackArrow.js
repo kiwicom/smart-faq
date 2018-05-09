@@ -34,7 +34,7 @@ const BackArrow = ({ id }: Props) => {
             }
             .chevron {
               position: relative;
-              top: 20%;
+              top: 3px;
             }
           `}
         </style>

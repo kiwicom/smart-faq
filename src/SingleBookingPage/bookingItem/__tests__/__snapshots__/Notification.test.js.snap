@@ -14,13 +14,13 @@ exports[`Notification should render 1`] = `
         className="jsx-96008846 icon"
       >
         <Alert
-          fill="#f9971e"
+          customColor="#f9971e"
         />
       </div>
       <div
         className="jsx-96008846 text"
       >
-        You depart in 25h. 
+        You depart in 25h.
   Don't hesitate to call us if you have an urgent problem.
       </div>
     </div>

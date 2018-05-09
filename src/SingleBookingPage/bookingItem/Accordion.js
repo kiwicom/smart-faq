@@ -88,7 +88,7 @@ const Accordion = ({ trip }: Props) => {
               </div>
             </div>
             <div className="toggle">
-              <ChevronDown />
+              <ChevronDown customColor="#bac7d5" />
             </div>
           </div>
         </div>

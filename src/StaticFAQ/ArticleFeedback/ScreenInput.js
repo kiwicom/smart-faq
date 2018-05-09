@@ -91,7 +91,7 @@ class ScreenInput extends React.Component<Props, State> {
           <div
             className="close-icon"
             onClick={this.closeScreen}
-            onKeyUp={this.closeScreen}
+            onKeyUp={null}
             tabIndex="-1"
             role="button"
           >

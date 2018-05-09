@@ -40,7 +40,7 @@ const ScreenThankyou = (props: Props) => {
         <div
           className="close-icon"
           onClick={() => props.changeScreen(screensList.INITIAL)}
-          onKeyUp={() => props.changeScreen(screensList.INITIAL)}
+          onKeyUp={null}
           tabIndex="-1"
           role="button"
         >

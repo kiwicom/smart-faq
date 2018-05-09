@@ -13,11 +13,14 @@ exports[`SignIn should match snapshot 1`] = `
   >
     <div
       className="jsx-2596769780 close-icon"
+      onClick={[Function]}
+      onKeyUp={null}
+      role="button"
+      tabIndex="-1"
     >
       <Close
-        fill="#bac7d5"
-        height="12"
-        onClick={[Function]}
+        customColor="#bac7d5"
+        size="small"
       />
     </div>
     <div

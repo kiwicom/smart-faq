@@ -22,7 +22,7 @@ const CloseIcon = ({ onClick }: Props) => (
       {`
         div.close-icon {
           position: absolute;
-          top: 10px;
+          top: 12px;
           right: 12px;
           padding: 8px;
           cursor: pointer;

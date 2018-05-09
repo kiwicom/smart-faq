@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { SystemMessage } from '@kiwicom/orbit-components';
-import { Alert } from '@kiwicom/orbit-components/lib/icons';
+import { Alert, InformationCircle } from '@kiwicom/orbit-components/lib/icons';
 
 import { formatCountDown } from '../../helpers/dateUtils';
 
@@ -12,11 +12,15 @@ type Props = {|
 |};
 
 const Notification = ({ isUrgent, hoursLeft }: Props) => {
-  const urgentMessage = `You depart in ${formatCountDown(hoursLeft)}. 
+  const urgentMessage = `You depart in ${formatCountDown(hoursLeft)}.
   Don't hesitate to call us if you have an urgent problem.`;
-  const normalMessage = `You depart in ${formatCountDown(hoursLeft)}. 
+  const normalMessage = `You depart in ${formatCountDown(hoursLeft)}.
   There is still time to add some nice extras or even change your booking.`;
-  const alert = isUrgent ? <Alert fill="#f9971e" /> : <Alert fill="#10709f" />;
+  const alert = isUrgent ? (
+    <Alert customColor="#f9971e" />
+  ) : (
+    <InformationCircle customColor="#10709f" />
+  );
   const type = isUrgent ? 'warning' : 'info';
 
   return (

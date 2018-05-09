@@ -8,7 +8,7 @@ import css from 'styled-jsx/css';
 const style = css`
   div.open-icon {
     display: inline-block;
-    vertical-align: -3px;
+    vertical-align: 1px;
     margin-left: 4px;
   }
 
