@@ -21,7 +21,7 @@ const BackButton = (props: Props) => (
     tabIndex="-1"
   >
     <div className="chevron">
-      <ChevronLeft width="10" height="12" fill="#8291a6" />
+      <ChevronLeft size="small" customColor="#8291a6" />
     </div>
     <Typography type="secondary" variant="bold">
       {props.text}
@@ -35,9 +35,7 @@ const BackButton = (props: Props) => (
           cursor: pointer;
         }
         div.chevron {
-          vertical-align: middle;
           display: inline-block;
-          object-fit: contain;
           margin-right: 4px;
         }
         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {

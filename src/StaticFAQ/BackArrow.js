@@ -18,7 +18,7 @@ const BackArrow = ({ id }: Props) => {
     <Link to={url}>
       <div className="circle">
         <span className="chevron">
-          <ChevronLeft width="12" height="16" fill="#171b1e" />
+          <ChevronLeft size="small" customColor="#171b1e" />
         </span>
         <style jsx>
           {`

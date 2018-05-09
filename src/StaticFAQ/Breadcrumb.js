@@ -38,7 +38,7 @@ const Breadcrumb = ({ breadcrumb, isCurrent }: Props) => {
       )}
       {!isCurrent && (
         <div className="breadcrumb-icon">
-          <ChevronRight width={9} height={9} />
+          <ChevronRight size="small" customColor="#bac7d5" />
         </div>
       )}
       <style jsx>

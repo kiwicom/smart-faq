@@ -3,7 +3,7 @@
 import * as React from 'react';
 import idx from 'idx';
 import css from 'styled-jsx/css';
-import { Magnify } from '@kiwicom/orbit-components/lib/icons';
+import { Search } from '@kiwicom/orbit-components/lib/icons';
 import { withRouter } from 'react-router-dom';
 
 import Input from './../common/Input';
@@ -53,7 +53,7 @@ class StaticFAQ extends React.Component<Props, State> {
       value={this.state.value}
       onChange={this.handleSearchChange}
       placeholder="What can we help you with?"
-      icon={<Magnify />}
+      icon={<Search customColor="#bac7d5" />}
       onReset={isSearching ? this.handleCancelSearch : undefined}
     />
   );

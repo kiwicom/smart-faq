@@ -39,7 +39,7 @@ const FAQCategory = (props: Props) => (
       </Typography>
     </div>
     <div className="faq-item-chevron">
-      <ChevronRight height="12" />
+      <ChevronRight size="small" customColor="#bac7d5" />
     </div>
     <style jsx>{styles}</style>
   </Card>

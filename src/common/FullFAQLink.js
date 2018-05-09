@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Typography } from '@kiwicom/orbit-components';
-import { OpenInNew } from '@kiwicom/orbit-components/lib/icons';
+import { NewWindow } from '@kiwicom/orbit-components/lib/icons';
 import css from 'styled-jsx/css';
 
 const style = css`
@@ -38,9 +38,11 @@ const FullFAQLink = (props: Props) => (
         Full FAQ site
         <span className="inline-icon">
           <div className="open-icon">
-            <OpenInNew
-              fill={props.className === 'primary' ? '#00a991' : '#171b1e'}
-              height="16"
+            <NewWindow
+              customColor={
+                props.className === 'primary' ? '#00a991' : '#171b1e'
+              }
+              size="small"
             />
           </div>
         </span>

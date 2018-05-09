@@ -17,12 +17,12 @@ const CloseIcon = ({ onClick }: Props) => (
     role="button"
     tabIndex="-1"
   >
-    <Close fill="#7f91a8" size="32" />
+    <Close customColor="#7f91a8" size="medium" />
     <style jsx>
       {`
         div.close-icon {
           position: absolute;
-          top: 12px;
+          top: 10px;
           right: 12px;
           padding: 8px;
           cursor: pointer;

@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { OpenInNew } from '@kiwicom/orbit-components/lib/icons';
+import { NewWindow } from '@kiwicom/orbit-components/lib/icons';
 
 const ContactPageLink = () => (
   <React.Fragment>
@@ -13,7 +13,7 @@ const ContactPageLink = () => (
       Go to contact page
       <span className="inline-icon">
         <div className="open-icon">
-          <OpenInNew fill="#00a991" height="16" />
+          <NewWindow customColor="#00a991" size="small" />
         </div>
       </span>
     </a>

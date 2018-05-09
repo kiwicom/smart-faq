@@ -88,8 +88,14 @@ class ScreenInput extends React.Component<Props, State> {
         backgroundColor="#f5f7f9"
       >
         <form onSubmit={this.handleSubmit}>
-          <div className="close-icon">
-            <Close fill="#bac7d5" height="12" onClick={this.closeScreen} />
+          <div
+            className="close-icon"
+            onClick={this.closeScreen}
+            onKeyUp={this.closeScreen}
+            tabIndex="-1"
+            role="button"
+          >
+            <Close customColor="#bac7d5" size="small" />
           </div>
           <div className="title">Your feedback helps us improve.</div>
           <div className="question">What problem were you trying to solve?</div>

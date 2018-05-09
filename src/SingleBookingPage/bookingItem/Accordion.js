@@ -5,10 +5,7 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 import idx from 'idx';
 import { Typography } from '@kiwicom/orbit-components';
-import {
-  AirplaneRight,
-  ChevronDown,
-} from '@kiwicom/orbit-components/lib/icons';
+import { FlightDirect, ChevronDown } from '@kiwicom/orbit-components/lib/icons';
 
 import { formatDate } from '../../helpers/dateUtils';
 import { Box } from '../../common';
@@ -80,7 +77,7 @@ const Accordion = ({ trip }: Props) => {
                 </span>
                 <span className="arrow">
                   <span className="inline-icon">
-                    <AirplaneRight />
+                    <FlightDirect customColor="#bac7d5" />
                   </span>
                 </span>
                 <span className="location">
