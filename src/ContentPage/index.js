@@ -33,6 +33,7 @@ const style = css`
 
     div.ContentPage {
       min-width: 320px;
+      width: 100vw;
     }
 
     div.FAQ {

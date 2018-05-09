@@ -26,7 +26,6 @@ const styles = css`
       top: 16px;
     }
   }
-
 `;
 
 type Props = {|

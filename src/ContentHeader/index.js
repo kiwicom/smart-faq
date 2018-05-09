@@ -55,6 +55,18 @@ const loggedInStyle = css`
   a.open-icon {
     margin-left: 12px;
   }
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .desktop-only {
+      display: none !important;
+    }
+    div.logged-in {
+      padding: 15px;
+    }
+    div.help-header {
+      width: 100%;
+      text-align: center;
+    }
+  }
 `;
 
 const loggedOutStyle = css`
@@ -98,10 +110,12 @@ const renderLoggedIn = () => {
     <div className="logged-in">
       <div className="help-header">Help</div>
       <div className="links">
-        <div className="faq-link">
+        <div className="faq-link desktop-only">
           <FullFAQLink className="primary" />
         </div>
-        <SignOutButton />
+        <div className="desktop-only">
+          <SignOutButton />
+        </div>
       </div>
       <style jsx>{loggedInStyle}</style>
     </div>
