@@ -8,8 +8,7 @@ import { graphql, createFragmentContainer } from 'react-relay';
 import { Typography } from '@kiwicom/orbit-components';
 import { ChevronRight } from '@kiwicom/orbit-components/lib/icons';
 
-import { formatStatus } from '../common/formatStatus';
-import { formatBookingId } from '../helpers/utils';
+import bookingStatus from '../common/booking/bookingStatuses';
 import type { BookingCard_booking } from './__generated__/BookingCard_booking.graphql';
 
 const styles = css`
@@ -55,15 +54,10 @@ type Props = {|
 
 const BookingCard = (props: Props) => {
   const booking = props.booking;
-  const { passengerCount, type } = booking;
+  const { passengerCount, type, databaseId } = booking;
+  const status = booking.status && bookingStatus[booking.status];
 
-  let departureDate,
-    origin,
-    destination,
-    IATAOrigin,
-    IATADestination,
-    status,
-    databaseId;
+  let departureDate, origin, destination, IATAOrigin, IATADestination;
 
   switch (type) {
     case 'ONE_WAY':
@@ -78,8 +72,6 @@ const BookingCard = (props: Props) => {
         booking.oneWay,
         _ => _.trip.arrival.airport.locationId,
       );
-      status = idx(booking.oneWay, _ => _.status);
-      databaseId = idx(booking.oneWay, _ => _.databaseId);
       break;
     case 'RETURN':
       departureDate = idx(booking.return, _ => _.outbound.departure.time);
@@ -96,8 +88,6 @@ const BookingCard = (props: Props) => {
         booking.return,
         _ => _.outbound.arrival.airport.locationId,
       );
-      status = idx(booking.return, _ => _.status);
-      databaseId = idx(booking.return, _ => _.databaseId);
       break;
     case 'MULTICITY':
       departureDate = idx(booking.multicity, _ => _.start.time);
@@ -105,8 +95,6 @@ const BookingCard = (props: Props) => {
       IATAOrigin = idx(booking.multicity, _ => _.start.airport.locationId);
       destination = idx(booking.multicity, _ => _.end.airport.city.name);
       IATADestination = idx(booking.multicity, _ => _.end.airport.locationId);
-      status = idx(booking.multicity, _ => _.status);
-      databaseId = idx(booking.multicity, _ => _.databaseId);
       break;
   }
 
@@ -114,7 +102,7 @@ const BookingCard = (props: Props) => {
   return (
     <div className="card">
       <Typography type="secondary" size="small">
-        # {databaseId && formatBookingId(databaseId)}
+        # {databaseId}
       </Typography>
       {origin &&
         IATAOrigin &&
@@ -144,7 +132,7 @@ const BookingCard = (props: Props) => {
               Booking date
             </Typography>
           </div>
-          <Typography>12/12/2018</Typography>
+          <Typography>Not Available</Typography>
         </div>
         <div className="section">
           <div className="label">
@@ -160,9 +148,11 @@ const BookingCard = (props: Props) => {
               Status
             </Typography>
           </div>
-          <div style={{ color: formatStatus(status).color, fontSize: '14px' }}>
-            {formatStatus(status).text}
-          </div>
+          {status && (
+            <div style={{ color: status.color, fontSize: '14px' }}>
+              {status.text}
+            </div>
+          )}
         </div>
       </div>
       <style>{styles}</style>
@@ -176,9 +166,9 @@ export default createFragmentContainer(
     fragment BookingCard_booking on Booking {
       type
       passengerCount
+      status
+      databaseId
       oneWay {
-        status
-        databaseId
         trip {
           departure {
             time
@@ -200,8 +190,6 @@ export default createFragmentContainer(
         }
       }
       return {
-        status
-        databaseId
         outbound {
           departure {
             time
@@ -223,8 +211,6 @@ export default createFragmentContainer(
         }
       }
       multicity {
-        status
-        databaseId
         start {
           time
           airport {
