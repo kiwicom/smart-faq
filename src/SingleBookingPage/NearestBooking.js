@@ -122,7 +122,13 @@ class NearestBooking extends React.Component<Props> {
           <Notification isUrgent={isUrgent} hoursLeft={deltaInHours} />
           {this.renderByType(nearestBooking.booking)}
           <div className="buttons">
-            <button className="manage-booking">Manage my booking</button>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={nearestBooking.booking.directAccessURL}
+            >
+              <button className="manage-booking">Manage my booking</button>
+            </a>
           </div>
           {isUrgent && <Contact />}
           <style jsx>
@@ -193,6 +199,7 @@ export default createFragmentContainer(
           ...Multicity_booking
           ...Header_booking
         }
+        directAccessURL
       }
     }
   `,

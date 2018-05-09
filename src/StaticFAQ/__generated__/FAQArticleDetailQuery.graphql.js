@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash dc85034f588a194bf970ceddc27527a5
+ * @relayHash 66b077143dcbe8f3077d650f95c6abbd
  */
 
 /* eslint-disable */
@@ -134,7 +134,7 @@ return {
   "operationKind": "query",
   "name": "FAQArticleDetailQuery",
   "id": null,
-  "text": "query FAQArticleDetailQuery(\n  $id: ID!\n  $category_id: ID!\n) {\n  FAQArticle(id: $id) {\n    title\n    ...FAQArticleDetailContent_article\n    id\n  }\n  FAQCategory(id: $category_id) {\n    title\n    id\n    ancestors {\n      id\n      title\n    }\n  }\n}\n\nfragment FAQArticleDetailContent_article on FAQArticle {\n  title\n  perex\n  content\n}\n",
+  "text": "query FAQArticleDetailQuery(\n  $id: ID!\n  $category_id: ID!\n) {\n  FAQArticle(id: $id) {\n    title\n    ...FAQArticleDetailContent_article\n    id\n  }\n  FAQCategory(id: $category_id) {\n    title\n    id\n    ancestors {\n      id\n      title\n    }\n  }\n}\n\nfragment FAQArticleDetailContent_article on FAQArticle {\n  id\n  title\n  perex\n  content\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -177,20 +177,8 @@ return {
         "concreteType": "FAQArticle",
         "plural": false,
         "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "title",
-            "args": null,
-            "storageKey": null
-          },
+          v2,
+          v3,
           {
             "kind": "ScalarField",
             "alias": null,

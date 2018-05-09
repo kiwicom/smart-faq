@@ -43,6 +43,7 @@ export type NearestBooking_bookingEdges = $ReadOnlyArray<{|
       |},
       +$fragmentRefs: (Multicity_booking$ref & Header_booking$ref),
     |},
+    +directAccessURL: ?string,
   |},
   +$refType: NearestBooking_bookingEdges$ref,
 |}>;
@@ -191,11 +192,18 @@ return {
             },
             v3
           ]
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "directAccessURL",
+          "args": null,
+          "storageKey": null
         }
       ]
     }
   ]
 };
 })();
-(node/*: any*/).hash = 'e96a3891dd011e32b65b97ebab86f453';
+(node/*: any*/).hash = '57588a683a4955922679580e86fa2bd3';
 module.exports = node;
