@@ -20,6 +20,15 @@ const style = css`
   .static-faq-body {
     padding: 24px 40px;
   }
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .static-faq {
+      width: unset;
+    }
+    .static-faq-body {
+      padding: 16px;
+    }
+  }
 `;
 
 type Props = {|

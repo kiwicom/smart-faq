@@ -25,6 +25,20 @@ const style = css`
   div.BookingInfo {
     width: 548px;
   }
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .BookingInfo {
+      display: none;
+    }
+
+    div.ContentPage {
+      min-width: 320px;
+    }
+
+    div.FAQ {
+      width: 100%;
+    }
+  }
 `;
 
 const BookingRoutes = (

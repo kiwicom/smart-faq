@@ -20,6 +20,13 @@ const styles = css`
     right: 16px;
     top: 38px;
   }
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .faq-item-chevron {
+      top: 16px;
+    }
+  }
+
 `;
 
 type Props = {|
