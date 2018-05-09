@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
 
-import { CloseContext } from '../context/Close';
+import { CloseContext } from '../../context/Close';
 
 type Props = {
   onClick: () => void,

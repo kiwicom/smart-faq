@@ -5,7 +5,7 @@ import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
 
 import image from '../../static/mailbox@3x.png';
-import CloseButton from './../common/CloseButton';
+import CloseButton from './../common/buttons/CloseButton';
 
 const style = css`
   div.mobile-header {

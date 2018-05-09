@@ -7,8 +7,8 @@ import css from 'styled-jsx/css';
 import ContentHeader from '../ContentHeader';
 import StaticFAQ from '../StaticFAQ';
 import FAQArticleDetail from '../StaticFAQ/FAQArticleDetail';
-import UpcomingBooking from '../UpcomingBooking';
 import routeDefinitions from '../routeDefinitions';
+import SingleBookingPage from '../SingleBookingPage';
 
 const style = css`
   div.ContentPage {
@@ -26,14 +26,14 @@ const style = css`
 
 const BookingRoutes = (
   <MemoryRouter
-    initialEntries={[routeDefinitions.UPCOMING_BOOKING]}
+    initialEntries={[routeDefinitions.NEAREST_BOOKING]}
     initialIndex={0}
   >
     <Switch>
       <Route
         exact
-        path={routeDefinitions.UPCOMING_BOOKING}
-        component={UpcomingBooking}
+        path={routeDefinitions.NEAREST_BOOKING}
+        component={SingleBookingPage}
       />
     </Switch>
   </MemoryRouter>

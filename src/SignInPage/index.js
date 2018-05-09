@@ -11,8 +11,8 @@ import chevronRight from '../../static/chevron-right.png';
 import facebookLogo from '../../static/facebook-icon.png';
 import googleLogo from '../../static/google-logo.png';
 import routeDefinitions from '../routeDefinitions';
-import BackButton from '../common/BackButton';
-import CloseButton from '../common/CloseButton';
+import BackButton from '../common/buttons/BackButton';
+import CloseButton from '../common/buttons/CloseButton';
 import Input from '../common/Input';
 
 const style = css`
