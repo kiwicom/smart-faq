@@ -154,6 +154,7 @@ class NearestBooking extends React.Component<Props> {
                 background-color: #e8edf1;
                 border: none;
                 color: #46515e;
+                cursor: pointer;
               }
             `}
           </style>
