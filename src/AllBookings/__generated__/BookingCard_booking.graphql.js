@@ -15,9 +15,9 @@ declare export opaque type BookingCard_booking$ref: FragmentReference;
 export type BookingCard_booking = {|
   +type: ?BookingType,
   +passengerCount: ?number,
+  +status: ?BookingStatus,
+  +databaseId: ?number,
   +oneWay: ?{|
-    +status: ?BookingStatus,
-    +databaseId: ?number,
     +trip: ?{|
       +departure: ?{|
         +time: ?any,
@@ -39,8 +39,6 @@ export type BookingCard_booking = {|
     |},
   |},
   +return: ?{|
-    +status: ?BookingStatus,
-    +databaseId: ?number,
     +outbound: ?{|
       +departure: ?{|
         +time: ?any,
@@ -62,8 +60,6 @@ export type BookingCard_booking = {|
     |},
   |},
   +multicity: ?{|
-    +status: ?BookingStatus,
-    +databaseId: ?number,
     +start: ?{|
       +time: ?any,
       +airport: ?{|
@@ -89,20 +85,6 @@ export type BookingCard_booking = {|
 
 const node/*: ConcreteFragment*/ = (function(){
 var v0 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "status",
-  "args": null,
-  "storageKey": null
-},
-v1 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "databaseId",
-  "args": null,
-  "storageKey": null
-},
-v2 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "airport",
@@ -138,7 +120,7 @@ v2 = {
     }
   ]
 },
-v3 = [
+v1 = [
   {
     "kind": "ScalarField",
     "alias": null,
@@ -146,12 +128,12 @@ v3 = [
     "args": null,
     "storageKey": null
   },
-  v2
+  v0
 ],
-v4 = [
-  v2
+v2 = [
+  v0
 ],
-v5 = [
+v3 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -160,7 +142,7 @@ v5 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v3
+    "selections": v1
   },
   {
     "kind": "LinkedField",
@@ -170,7 +152,7 @@ v5 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v4
+    "selections": v2
   }
 ];
 return {
@@ -195,6 +177,20 @@ return {
       "storageKey": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "status",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "databaseId",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "oneWay",
@@ -203,8 +199,6 @@ return {
       "concreteType": "BookingOneWay",
       "plural": false,
       "selections": [
-        v0,
-        v1,
         {
           "kind": "LinkedField",
           "alias": null,
@@ -213,7 +207,7 @@ return {
           "args": null,
           "concreteType": "Trip",
           "plural": false,
-          "selections": v5
+          "selections": v3
         }
       ]
     },
@@ -226,8 +220,6 @@ return {
       "concreteType": "BookingReturn",
       "plural": false,
       "selections": [
-        v0,
-        v1,
         {
           "kind": "LinkedField",
           "alias": null,
@@ -236,7 +228,7 @@ return {
           "args": null,
           "concreteType": "Trip",
           "plural": false,
-          "selections": v5
+          "selections": v3
         }
       ]
     },
@@ -249,8 +241,6 @@ return {
       "concreteType": "BookingMulticity",
       "plural": false,
       "selections": [
-        v0,
-        v1,
         {
           "kind": "LinkedField",
           "alias": null,
@@ -259,7 +249,7 @@ return {
           "args": null,
           "concreteType": "RouteStop",
           "plural": false,
-          "selections": v3
+          "selections": v1
         },
         {
           "kind": "LinkedField",
@@ -269,12 +259,12 @@ return {
           "args": null,
           "concreteType": "RouteStop",
           "plural": false,
-          "selections": v4
+          "selections": v2
         }
       ]
     }
   ]
 };
 })();
-(node/*: any*/).hash = '3578e1a018916d54ef44547c764c0dc9';
+(node/*: any*/).hash = '30ced781564b7078a9381f507ceccb18';
 module.exports = node;

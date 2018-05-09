@@ -8,7 +8,7 @@ import { Typography } from '@kiwicom/orbit-components';
 
 import QueryRenderer from '../relay/QueryRenderer';
 import { Loader } from '../common';
-import BookingError from '../UpcomingBooking/BookingError';
+import BookingError from '../SingleBookingPage/BookingError';
 import BookingCard from './BookingCard';
 import type { AllBookingsQuery } from './__generated__/AllBookingsQuery.graphql';
 import type { BookingCard_booking } from './__generated__/BookingCard_booking.graphql';
@@ -43,7 +43,6 @@ const allBookingsQuery = graphql`
     allBookings(only: $only) {
       edges {
         node {
-          id
           ...BookingCard_booking
         }
       }
