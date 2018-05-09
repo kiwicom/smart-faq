@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e128ba4aec857eb6ed982d95622bb8ec
+ * @relayHash 317bf318a02ceea4025f155d4106200e
  */
 
 /* eslint-disable */
@@ -34,6 +34,7 @@ query FAQArticleDetailSearchResultQuery(
 }
 
 fragment FAQArticleDetailContent_article on FAQArticle {
+  id
   title
   perex
   content
@@ -69,7 +70,7 @@ return {
   "operationKind": "query",
   "name": "FAQArticleDetailSearchResultQuery",
   "id": null,
-  "text": "query FAQArticleDetailSearchResultQuery(\n  $id: ID!\n) {\n  FAQArticle(id: $id) {\n    title\n    ...FAQArticleDetailContent_article\n    id\n  }\n}\n\nfragment FAQArticleDetailContent_article on FAQArticle {\n  title\n  perex\n  content\n}\n",
+  "text": "query FAQArticleDetailSearchResultQuery(\n  $id: ID!\n) {\n  FAQArticle(id: $id) {\n    title\n    ...FAQArticleDetailContent_article\n    id\n  }\n}\n\nfragment FAQArticleDetailContent_article on FAQArticle {\n  id\n  title\n  perex\n  content\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -115,6 +116,13 @@ return {
           {
             "kind": "ScalarField",
             "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
             "name": "perex",
             "args": null,
             "storageKey": null
@@ -123,13 +131,6 @@ return {
             "kind": "ScalarField",
             "alias": null,
             "name": "content",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
             "args": null,
             "storageKey": null
           }
