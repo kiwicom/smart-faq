@@ -37,12 +37,14 @@ const ScreenThankyou = (props: Props) => {
   return (
     <Box border="none" borderRadius="4px" backgroundColor="#f5f7f9">
       <div className="thank-you">
-        <div className="close-icon">
-          <Close
-            fill="#bac7d5"
-            height="12"
-            onClick={() => props.changeScreen(screensList.INITIAL)}
-          />
+        <div
+          className="close-icon"
+          onClick={() => props.changeScreen(screensList.INITIAL)}
+          onKeyUp={null}
+          tabIndex="-1"
+          role="button"
+        >
+          <Close customColor="#bac7d5" size="small" />
         </div>
         <div className="message-1">Thanks again.</div>
         <div className="message-2">We appreciate your insight.</div>

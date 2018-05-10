@@ -2,11 +2,7 @@
 
 import * as React from 'react';
 import { Typography } from '@kiwicom/orbit-components';
-import {
-  Loading,
-  ChevronDown,
-  Phone,
-} from '@kiwicom/orbit-components/lib/icons';
+import { Chat, ChevronDown, Phone } from '@kiwicom/orbit-components/lib/icons';
 
 const Contact = () => (
   <div className="contact">
@@ -19,18 +15,18 @@ const Contact = () => (
     <div className="contact-options">
       <div className="phone">
         <div className="phone-icon inline-icon">
-          <Phone fill="#00a991" height="18" />
+          <Phone customColor="#00a991" />
         </div>
         <Typography size="normal" type="active">
           +42 987 876 567 CZ
         </Typography>
         <div className="chevron-icon inline-icon">
-          <ChevronDown height="8" fill="#00a991" />
+          <ChevronDown size="small" customColor="#00a991" />
         </div>
       </div>
       <div className="chat">
         <div className="chat-icon inline-icon">
-          <Loading fill="#00a991" height="18" />
+          <Chat customColor="#00a991" />
         </div>
         <Typography size="normal" type="active">
           Write us a message
