@@ -25,9 +25,9 @@ const styles = css`
     margin-bottom: 12px;
   }
   div.scroll {
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
-    max-height: 280px;
+    max-height: 305px;
   }
 `;
 

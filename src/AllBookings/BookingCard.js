@@ -2,13 +2,20 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import moment from 'moment';
 import css from 'styled-jsx/css';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { Typography } from '@kiwicom/orbit-components';
-import { ChevronRight } from '@kiwicom/orbit-components/lib/icons';
+import {
+  ChevronRight,
+  Passengers,
+  FlightReturn,
+  FlightDirect,
+} from '@kiwicom/orbit-components/lib/icons';
 
+import { formatDepartureDate } from '../helpers/dateUtils';
+import bookingTypes from '../common/booking/bookingTypes';
 import bookingStatus from '../common/booking/bookingStatuses';
+import CarrierLogoWrapper from '../SingleBookingPage/bookingItem/CarrierLogoWrapper';
 import type { BookingCard_booking } from './__generated__/BookingCard_booking.graphql';
 
 const styles = css`
@@ -25,6 +32,11 @@ const styles = css`
   div.fields {
     display: flex;
     justify-content: space-between;
+  }
+  div.logoCarriers {
+    position: absolute;
+    top: 23px;
+    left: 6px;
   }
   div.chevron {
     position: absolute;
@@ -45,6 +57,14 @@ const styles = css`
     line-height: 1.4;
     color: #46515e;
     margin-bottom: 12px;
+    margin-left: 2px;
+    display: inline-block;
+  }
+  div.arrowIcon {
+    display: inline-block;
+    margin-left: 8px;
+    margin-right: 8px;
+    vertical-align: top;
   }
 `;
 
@@ -57,10 +77,11 @@ const BookingCard = (props: Props) => {
   const { passengerCount, type, databaseId } = booking;
   const status = booking.status && bookingStatus[booking.status];
 
-  let departureDate, origin, destination, IATAOrigin, IATADestination;
+  let departureDate, origin, destination, IATAOrigin, IATADestination, trip;
 
   switch (type) {
-    case 'ONE_WAY':
+    case bookingTypes.ONE_WAY:
+      trip = idx(booking.oneWay, _ => _.trip);
       departureDate = idx(booking.oneWay, _ => _.trip.departure.time);
       origin = idx(booking.oneWay, _ => _.trip.departure.airport.city.name);
       IATAOrigin = idx(
@@ -73,7 +94,8 @@ const BookingCard = (props: Props) => {
         _ => _.trip.arrival.airport.locationId,
       );
       break;
-    case 'RETURN':
+    case bookingTypes.RETURN:
+      trip = idx(booking.return, _ => _.outbound);
       departureDate = idx(booking.return, _ => _.outbound.departure.time);
       origin = idx(booking.return, _ => _.outbound.departure.airport.city.name);
       IATAOrigin = idx(
@@ -89,7 +111,8 @@ const BookingCard = (props: Props) => {
         _ => _.outbound.arrival.airport.locationId,
       );
       break;
-    case 'MULTICITY':
+    case bookingTypes.MULTICITY:
+      trip = idx(booking.multicity, _ => _.trips[0]);
       departureDate = idx(booking.multicity, _ => _.start.time);
       origin = idx(booking.multicity, _ => _.start.airport.city.name);
       IATAOrigin = idx(booking.multicity, _ => _.start.airport.locationId);
@@ -98,20 +121,33 @@ const BookingCard = (props: Props) => {
       break;
   }
 
-  // T.O.D.O. - add Passenger, FlightDirect and FlightReturn icons with new Orbit Realese
   return (
     <div className="card">
       <Typography type="secondary" size="small">
         # {databaseId}
       </Typography>
-      {origin &&
-        IATAOrigin &&
-        destination &&
-        IATADestination && (
-          <p className="flight">{`${origin} ${IATAOrigin} → ${destination} ${IATADestination}`}</p>
-        )}
+      {trip && (
+        <div className="logoCarriers">
+          <CarrierLogoWrapper legs={trip.legs} />
+        </div>
+      )}
+      <div>
+        {origin &&
+          IATAOrigin && <p className="flight">{`${origin} ${IATAOrigin}`}</p>}
+        <div className="arrowIcon">
+          {type === bookingTypes.ONE_WAY ? (
+            <FlightDirect size="medium" customColor="#bac7d5" />
+          ) : (
+            <FlightReturn size="medium" customColor="#bac7d5" />
+          )}
+        </div>
+        {destination &&
+          IATADestination && (
+            <p className="flight">{`${destination} ${IATADestination}`}</p>
+          )}
+      </div>
       <div className="chevron">
-        <ChevronRight width="18" height="18" fill="#bac7d5" />
+        <ChevronRight size="medium" customColor="#bac7d5" />
       </div>
       <div className="fields">
         <div className="section">
@@ -121,9 +157,7 @@ const BookingCard = (props: Props) => {
             </Typography>
           </div>
           {departureDate && (
-            <Typography>
-              {moment(departureDate).format('DD/MM/YYYY')}
-            </Typography>
+            <Typography>{formatDepartureDate(departureDate)}</Typography>
           )}
         </div>
         <div className="section">
@@ -140,7 +174,9 @@ const BookingCard = (props: Props) => {
               Includes
             </Typography>
           </div>
-          <Typography>Icon {passengerCount}</Typography>
+          <Typography>
+            <Passengers size="small" customColor="#bac7d5" /> {passengerCount}
+          </Typography>
         </div>
         <div className="section">
           <div className="label">
@@ -187,6 +223,9 @@ export default createFragmentContainer(
               }
             }
           }
+          legs {
+            ...CarrierLogoWrapper_legs
+          }
         }
       }
       return {
@@ -208,6 +247,9 @@ export default createFragmentContainer(
               }
             }
           }
+          legs {
+            ...CarrierLogoWrapper_legs
+          }
         }
       }
       multicity {
@@ -226,6 +268,11 @@ export default createFragmentContainer(
             city {
               name
             }
+          }
+        }
+        trips {
+          legs {
+            ...CarrierLogoWrapper_legs
           }
         }
       }

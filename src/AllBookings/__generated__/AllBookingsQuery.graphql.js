@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a6a4c8c5363413800194e3e3aba69aa6
+ * @relayHash c73b9729c56ab77299e09ffc66509178
  */
 
 /* eslint-disable */
@@ -18,7 +18,6 @@ export type AllBookingsQueryResponse = {|
   +allBookings: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
-        +id: string,
         +$fragmentRefs: BookingCard_booking$ref,
       |},
     |}>,
@@ -34,8 +33,8 @@ query AllBookingsQuery(
   allBookings(only: $only) {
     edges {
       node {
-        id
         ...BookingCard_booking
+        id
       }
     }
   }
@@ -65,6 +64,10 @@ fragment BookingCard_booking on Booking {
           }
         }
       }
+      legs {
+        ...CarrierLogoWrapper_legs
+        id
+      }
     }
     id
   }
@@ -87,6 +90,10 @@ fragment BookingCard_booking on Booking {
           }
         }
       }
+      legs {
+        ...CarrierLogoWrapper_legs
+        id
+      }
     }
     id
   }
@@ -108,7 +115,20 @@ fragment BookingCard_booking on Booking {
         }
       }
     }
+    trips {
+      legs {
+        ...CarrierLogoWrapper_legs
+        id
+      }
+    }
     id
+  }
+}
+
+fragment CarrierLogoWrapper_legs on Leg {
+  airline {
+    name
+    code
   }
 }
 */
@@ -133,7 +153,7 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
@@ -162,13 +182,7 @@ v3 = {
       "concreteType": "LocationArea",
       "plural": false,
       "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "name",
-          "args": null,
-          "storageKey": null
-        }
+        v2
       ]
     }
   ]
@@ -186,7 +200,45 @@ v4 = [
 v5 = [
   v3
 ],
-v6 = [
+v6 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v7 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "legs",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "Leg",
+  "plural": true,
+  "selections": [
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "airline",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Airline",
+      "plural": false,
+      "selections": [
+        v2,
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "code",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    v6
+  ]
+},
+v8 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -206,14 +258,15 @@ v6 = [
     "concreteType": "RouteStop",
     "plural": false,
     "selections": v5
-  }
+  },
+  v7
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "AllBookingsQuery",
   "id": null,
-  "text": "query AllBookingsQuery(\n  $only: AllBookingsOnlyEnum\n) {\n  allBookings(only: $only) {\n    edges {\n      node {\n        id\n        ...BookingCard_booking\n      }\n    }\n  }\n}\n\nfragment BookingCard_booking on Booking {\n  type\n  passengerCount\n  status\n  databaseId\n  oneWay {\n    trip {\n      departure {\n        time\n        airport {\n          locationId\n          city {\n            name\n          }\n        }\n      }\n      arrival {\n        airport {\n          locationId\n          city {\n            name\n          }\n        }\n      }\n    }\n    id\n  }\n  return {\n    outbound {\n      departure {\n        time\n        airport {\n          locationId\n          city {\n            name\n          }\n        }\n      }\n      arrival {\n        airport {\n          locationId\n          city {\n            name\n          }\n        }\n      }\n    }\n    id\n  }\n  multicity {\n    start {\n      time\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    end {\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    id\n  }\n}\n",
+  "text": "query AllBookingsQuery(\n  $only: AllBookingsOnlyEnum\n) {\n  allBookings(only: $only) {\n    edges {\n      node {\n        ...BookingCard_booking\n        id\n      }\n    }\n  }\n}\n\nfragment BookingCard_booking on Booking {\n  type\n  passengerCount\n  status\n  databaseId\n  oneWay {\n    trip {\n      departure {\n        time\n        airport {\n          locationId\n          city {\n            name\n          }\n        }\n      }\n      arrival {\n        airport {\n          locationId\n          city {\n            name\n          }\n        }\n      }\n      legs {\n        ...CarrierLogoWrapper_legs\n        id\n      }\n    }\n    id\n  }\n  return {\n    outbound {\n      departure {\n        time\n        airport {\n          locationId\n          city {\n            name\n          }\n        }\n      }\n      arrival {\n        airport {\n          locationId\n          city {\n            name\n          }\n        }\n      }\n      legs {\n        ...CarrierLogoWrapper_legs\n        id\n      }\n    }\n    id\n  }\n  multicity {\n    start {\n      time\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    end {\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    trips {\n      legs {\n        ...CarrierLogoWrapper_legs\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment CarrierLogoWrapper_legs on Leg {\n  airline {\n    name\n    code\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -249,7 +302,6 @@ return {
                 "concreteType": "Booking",
                 "plural": false,
                 "selections": [
-                  v2,
                   {
                     "kind": "FragmentSpread",
                     "name": "BookingCard_booking",
@@ -295,7 +347,6 @@ return {
                 "concreteType": "Booking",
                 "plural": false,
                 "selections": [
-                  v2,
                   {
                     "kind": "ScalarField",
                     "alias": null,
@@ -341,9 +392,9 @@ return {
                         "args": null,
                         "concreteType": "Trip",
                         "plural": false,
-                        "selections": v6
+                        "selections": v8
                       },
-                      v2
+                      v6
                     ]
                   },
                   {
@@ -363,9 +414,9 @@ return {
                         "args": null,
                         "concreteType": "Trip",
                         "plural": false,
-                        "selections": v6
+                        "selections": v8
                       },
-                      v2
+                      v6
                     ]
                   },
                   {
@@ -397,9 +448,22 @@ return {
                         "plural": false,
                         "selections": v5
                       },
-                      v2
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "trips",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "Trip",
+                        "plural": true,
+                        "selections": [
+                          v7
+                        ]
+                      },
+                      v6
                     ]
-                  }
+                  },
+                  v6
                 ]
               }
             ]
@@ -410,5 +474,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '558f2d51ee6a211d3bcb0f37f5d73532';
+(node/*: any*/).hash = 'fb68f3f6675aa1d54f3281cbdb3b1a6f';
 module.exports = node;
