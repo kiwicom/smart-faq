@@ -79,7 +79,9 @@ class StaticFAQ extends React.Component<Props, State> {
       <div className="static-faq">
         {!this.props.user && <ContentHeader />}
         <div className="static-faq-body">
-          <div className="static-faq-search">{!categoryId && this.renderInput(isSearching)}</div>
+          <div className="static-faq-search">
+            {!categoryId && this.renderInput(isSearching)}
+          </div>
           {isSearching ? (
             <SearchAllFAQs search={value} />
           ) : (

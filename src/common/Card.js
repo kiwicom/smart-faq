@@ -15,7 +15,7 @@ const styles = css`
   }
 
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-   .card {
+    .card {
       padding: 14px 22px;
       position: relative;
       margin-top: 24px;

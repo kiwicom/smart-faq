@@ -3,8 +3,8 @@
 import * as React from 'react';
 import idx from 'idx';
 import { graphql } from 'react-relay';
-
 import css from 'styled-jsx/css';
+
 import QueryRenderer from '../relay/QueryRenderer';
 import Loader from '../common/Loader';
 import ContentHeader from '../ContentHeader';
@@ -96,7 +96,7 @@ class FAQArticleDetail extends React.Component<Props> {
           </div>
 
           <FAQArticleDetailContent article={params.props.FAQArticle} />
-        <style jsx>{style}</style>
+          <style jsx>{style}</style>
         </React.Fragment>
       );
     }
