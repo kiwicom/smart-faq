@@ -28,6 +28,11 @@ const ScrollableBox = (props: Props) => (
           margin: 0 auto;
           padding: 4px;
         }
+        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+          div.scrollable-box {
+            padding: 0;
+          }
+        }
       `}
     </style>
   </div>

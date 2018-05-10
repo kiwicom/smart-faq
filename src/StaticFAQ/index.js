@@ -22,11 +22,14 @@ const style = css`
   }
 
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  .static-faq {
+    .static-faq {
       width: unset;
     }
     .static-faq-body {
-      padding: 16px;
+      padding: 0;
+    }
+    .static-faq-search {
+      margin: 16px;
     }
   }
 `;
@@ -76,7 +79,7 @@ class StaticFAQ extends React.Component<Props, State> {
       <div className="static-faq">
         {!this.props.user && <ContentHeader />}
         <div className="static-faq-body">
-          {!categoryId && this.renderInput(isSearching)}
+          <div className="static-faq-search">{!categoryId && this.renderInput(isSearching)}</div>
           {isSearching ? (
             <SearchAllFAQs search={value} />
           ) : (

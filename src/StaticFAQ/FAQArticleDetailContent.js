@@ -29,6 +29,11 @@ const style = css`
     padding: 24px 0;
     line-height: 20px;
   }
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .faq-article-content {
+      padding: 16px;
+    }
+  }
 `;
 const globalStyle = css`
   .faq-article-text ul,
