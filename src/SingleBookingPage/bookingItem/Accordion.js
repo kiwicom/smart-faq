@@ -10,6 +10,8 @@ import {
   ChevronDown,
 } from '@kiwicom/orbit-components/lib/icons';
 
+import { LanguageContext } from '../../context/Language';
+import frontendLanguageToLocale from '../../helpers/frontendLanguageToLocale';
 import { formatDate } from '../../helpers/dateUtils';
 import { Box } from '../../common';
 import CarrierLogoWrapper from './CarrierLogoWrapper';
@@ -61,43 +63,51 @@ const Accordion = ({ trip }: Props) => {
   const arrivalCode = idx(trip, _ => _.arrival.airport.locationId);
 
   return (
-    <div className="AccordionWrapper">
-      <Box padding="12px 16px 16px 12px">
-        <div className="Accordion">
-          <div className="header">
-            <div className="logo">
-              <CarrierLogoWrapper legs={trip.legs} />
-            </div>
-            <div className="info">
-              <Typography type="secondary" size="small">
-                {departureDate && formatDate(departureDate)}
-              </Typography>
-              <div className="itinerary">
-                <span className="location">
-                  <Typography variant="bold" type="primary">
-                    {departureCity}&nbsp;({departureCode})
-                  </Typography>
-                </span>
-                <span className="arrow">
-                  <span className="inline-icon">
-                    <AirplaneRight />
-                  </span>
-                </span>
-                <span className="location">
-                  <Typography variant="bold" type="primary">
-                    {arrivalCity}&nbsp;({arrivalCode})
-                  </Typography>
-                </span>
+    <LanguageContext.Consumer>
+      {language => {
+        const locale = frontendLanguageToLocale[language];
+
+        return (
+          <div className="AccordionWrapper">
+            <Box padding="12px 16px 16px 12px">
+              <div className="Accordion">
+                <div className="header">
+                  <div className="logo">
+                    <CarrierLogoWrapper legs={trip.legs} />
+                  </div>
+                  <div className="info">
+                    <Typography type="secondary" size="small">
+                      {departureDate && formatDate(departureDate, locale)}
+                    </Typography>
+                    <div className="itinerary">
+                      <span className="location">
+                        <Typography variant="bold" type="primary">
+                          {departureCity}&nbsp;({departureCode})
+                        </Typography>
+                      </span>
+                      <span className="arrow">
+                        <span className="inline-icon">
+                          <AirplaneRight />
+                        </span>
+                      </span>
+                      <span className="location">
+                        <Typography variant="bold" type="primary">
+                          {arrivalCity}&nbsp;({arrivalCode})
+                        </Typography>
+                      </span>
+                    </div>
+                  </div>
+                  <div className="toggle">
+                    <ChevronDown />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="toggle">
-              <ChevronDown />
-            </div>
+            </Box>
+            <style jsx>{styles}</style>
           </div>
-        </div>
-      </Box>
-      <style jsx>{styles}</style>
-    </div>
+        );
+      }}
+    </LanguageContext.Consumer>
   );
 };
 
