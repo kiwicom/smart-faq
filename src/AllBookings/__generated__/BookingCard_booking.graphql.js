@@ -8,6 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type CarrierLogoWrapper_legs$ref = any;
 export type BookingStatus = ('CANCELLED' | 'CLOSED' | 'CONFIRMED' | 'DELETED' | 'EXPIRED' | 'NEW' | 'PENDING' | 'REFUNDED' | '%future added value');
 export type BookingType = ('MULTICITY' | 'ONE_WAY' | 'RETURN' | '%future added value');
 import type { FragmentReference } from 'relay-runtime';
@@ -36,6 +37,9 @@ export type BookingCard_booking = {|
           |},
         |},
       |},
+      +legs: ?$ReadOnlyArray<?{|
+        +$fragmentRefs: CarrierLogoWrapper_legs$ref,
+      |}>,
     |},
   |},
   +return: ?{|
@@ -57,6 +61,9 @@ export type BookingCard_booking = {|
           |},
         |},
       |},
+      +legs: ?$ReadOnlyArray<?{|
+        +$fragmentRefs: CarrierLogoWrapper_legs$ref,
+      |}>,
     |},
   |},
   +multicity: ?{|
@@ -77,6 +84,11 @@ export type BookingCard_booking = {|
         |},
       |},
     |},
+    +trips: ?$ReadOnlyArray<?{|
+      +legs: ?$ReadOnlyArray<?{|
+        +$fragmentRefs: CarrierLogoWrapper_legs$ref,
+      |}>,
+    |}>,
   |},
   +$refType: BookingCard_booking$ref,
 |};
@@ -133,7 +145,23 @@ v1 = [
 v2 = [
   v0
 ],
-v3 = [
+v3 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "legs",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "Leg",
+  "plural": true,
+  "selections": [
+    {
+      "kind": "FragmentSpread",
+      "name": "CarrierLogoWrapper_legs",
+      "args": null
+    }
+  ]
+},
+v4 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -153,7 +181,8 @@ v3 = [
     "concreteType": "RouteStop",
     "plural": false,
     "selections": v2
-  }
+  },
+  v3
 ];
 return {
   "kind": "Fragment",
@@ -207,7 +236,7 @@ return {
           "args": null,
           "concreteType": "Trip",
           "plural": false,
-          "selections": v3
+          "selections": v4
         }
       ]
     },
@@ -228,7 +257,7 @@ return {
           "args": null,
           "concreteType": "Trip",
           "plural": false,
-          "selections": v3
+          "selections": v4
         }
       ]
     },
@@ -260,11 +289,23 @@ return {
           "concreteType": "RouteStop",
           "plural": false,
           "selections": v2
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "trips",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "Trip",
+          "plural": true,
+          "selections": [
+            v3
+          ]
         }
       ]
     }
   ]
 };
 })();
-(node/*: any*/).hash = '30ced781564b7078a9381f507ceccb18';
+(node/*: any*/).hash = '6bec4f61dfd334948b03ef1ffd80eaac';
 module.exports = node;

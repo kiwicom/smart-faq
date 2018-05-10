@@ -44,19 +44,18 @@ const CarrierLogo = (props: Props) => {
 
   return (
     <div>
-      {carriers
-        .slice(0, 4)
-        .map(carrierImage => (
-          <img
-            key={carrierImage.code}
-            src={`${baseURL}/airlines/${sourceSize}/${carrierImage.code}.png`}
-            srcSet={`${baseURL}/airlines/${srcSetSize}/${
-              carrierImage.code
-            }.png 2x`}
-            alt={carrierImage.name}
-            title={carrierImage.name}
-          />
-        ))}
+      {carriers.slice(0, 4).map((carrierImage, i) => (
+        <img
+          // eslint-disable-next-line react/no-array-index-key
+          key={`${i}-${carrierImage.code}`}
+          src={`${baseURL}/airlines/${sourceSize}/${carrierImage.code}.png`}
+          srcSet={`${baseURL}/airlines/${srcSetSize}/${
+            carrierImage.code
+          }.png 2x`}
+          alt={carrierImage.name}
+          title={carrierImage.name}
+        />
+      ))}
       <style jsx>
         {`
           div {
