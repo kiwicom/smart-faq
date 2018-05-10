@@ -6,6 +6,7 @@ type Props = {|
   children: React.Node,
   padding?: string,
   backgroundColor?: string,
+  mobileBackgroundColor?: string,
   borderRadius?: string,
   border?: string,
 |};
@@ -22,6 +23,12 @@ const Box = (props: Props) => (
           border-radius: ${props.borderRadius || '3px'};
           border: ${props.border || 'solid 1px #e8edf1'};
           background-color: ${props.backgroundColor || '#ffffff'};
+        }
+
+        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+          .box {
+            background-color: ${props.mobileBackgroundColor || '#ffffff'};
+          }
         }
       `}
     </style>
