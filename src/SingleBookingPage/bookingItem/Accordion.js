@@ -7,7 +7,7 @@ import idx from 'idx';
 import { Typography } from '@kiwicom/orbit-components';
 import { FlightDirect, ChevronDown } from '@kiwicom/orbit-components/lib/icons';
 
-import { formatDate } from '../../helpers/dateUtils';
+import { FormatDate } from '../../helpers/dateUtils';
 import { Box } from '../../common';
 import CarrierLogoWrapper from './CarrierLogoWrapper';
 import type { AccordionTripSummary_trip } from './__generated__/AccordionTripSummary_trip.graphql';
@@ -67,7 +67,7 @@ const Accordion = ({ trip }: Props) => {
             </div>
             <div className="info">
               <Typography type="secondary" size="small">
-                {departureDate && formatDate(departureDate)}
+                {departureDate && <FormatDate dateString={departureDate} />}
               </Typography>
               <div className="itinerary">
                 <span className="location">
