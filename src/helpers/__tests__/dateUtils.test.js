@@ -1,5 +1,8 @@
 // @flow
 
+import * as React from 'react';
+import { render } from 'enzyme';
+
 import * as dateUtils from '../dateUtils';
 
 describe('date utils', () => {
@@ -19,9 +22,11 @@ describe('date utils', () => {
 
   describe('formatDate', () => {
     it('should format datestring', () => {
-      expect(dateUtils.formatDate('2018-05-04T15:02:02.511Z')).toBe(
-        'Fri, May 4',
+      const wrapper = render(
+        <dateUtils.FormatDate dateString="2018-05-04T15:02:02.511Z" />,
       );
+
+      expect(wrapper.text()).toContain('Fri, May 4');
     });
   });
 });
