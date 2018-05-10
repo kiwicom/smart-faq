@@ -2,9 +2,14 @@
 
 export const URGENCY_THRESHOLD = 48;
 
-export const formatDate = (dateString: string) => {
+export const formatDate = (
+  dateString: string,
+  localeUnderscore: string = 'en-EN',
+) => {
+  const locale = localeUnderscore.replace('_', '-');
   const options = { weekday: 'short', month: 'short', day: 'numeric' };
-  return new Date(dateString).toLocaleDateString('en-US', options);
+
+  return new Date(dateString).toLocaleDateString(locale, options);
 };
 
 export const formatCountDown = (hoursLeft: number) => {
