@@ -25,6 +25,16 @@ const style = css`
   div.FAQ {
     width: 480px;
   }
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    div.NoBookingPage {
+      min-width: 320px;
+      width: 100vw;
+    }
+
+    div.FAQ {
+      width: 100%;
+    }
+  }
 `;
 
 const FAQRoutes = (
