@@ -5,6 +5,7 @@ import { graphql, createFragmentContainer } from 'react-relay';
 import { Typography } from '@kiwicom/orbit-components';
 
 import bookingStatus from '../../common/booking/bookingStatuses';
+import formatBookingId from '../../helpers/formatBookingId';
 import type { Header_booking } from './__generated__/Header_booking.graphql';
 
 type Props = {|
@@ -20,7 +21,7 @@ const Header = ({ booking }: Props) => {
         <div>
           {booking.databaseId && (
             <Typography type="secondary">
-              Upcoming trip # {booking.databaseId}
+              Upcoming trip # {formatBookingId(booking.databaseId)}
             </Typography>
           )}
         </div>
