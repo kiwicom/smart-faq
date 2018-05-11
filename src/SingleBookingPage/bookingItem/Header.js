@@ -11,6 +11,11 @@ type Props = {|
   booking: Header_booking,
 |};
 
+const formatBookingId = (databaseId: number): string => {
+  const splitBookingId: string[] = String(databaseId).match(/.{1,3}/g) || [];
+  return splitBookingId.join(' ');
+};
+
 const Header = ({ booking }: Props) => {
   const status = booking.status && bookingStatus[booking.status];
 
@@ -20,7 +25,7 @@ const Header = ({ booking }: Props) => {
         <div>
           {booking.databaseId && (
             <Typography type="secondary">
-              Upcoming trip # {booking.databaseId}
+              Upcoming trip # {formatBookingId(booking.databaseId)}
             </Typography>
           )}
         </div>
