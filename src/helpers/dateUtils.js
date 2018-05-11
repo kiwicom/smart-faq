@@ -1,10 +1,29 @@
 // @flow
 
+import * as React from 'react';
+
+import { LanguageContext } from '../context/Language';
+import frontendLanguageToLocale from './frontendLanguageToLocale';
+
 export const URGENCY_THRESHOLD = 48;
 
-export const formatDate = (dateString: string) => {
+type Props = {|
+  dateString: string,
+|};
+
+export const FormatDate = ({ dateString }: Props) => {
   const options = { weekday: 'short', month: 'short', day: 'numeric' };
-  return new Date(dateString).toLocaleDateString('en-US', options);
+  return (
+    <LanguageContext.Consumer>
+      {language => {
+        const locale = frontendLanguageToLocale[language].replace('_', '-');
+
+        return (
+          <p>{new Date(dateString).toLocaleDateString(locale, options)}</p>
+        );
+      }}
+    </LanguageContext.Consumer>
+  );
 };
 
 export const formatCountDown = (hoursLeft: number) => {
