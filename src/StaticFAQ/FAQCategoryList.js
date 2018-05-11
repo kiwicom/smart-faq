@@ -10,6 +10,7 @@ import QueryRenderer from '../relay/QueryRenderer';
 import FAQArticle from './FAQArticle';
 import FAQCategory from './FAQCategory';
 import Breadcrumbs from './Breadcrumbs';
+import StaticFAQError from './StaticFAQError';
 import routeDefinitions from './../routeDefinitions';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
 import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
@@ -109,7 +110,7 @@ class FAQCategoryList extends React.Component<Props> {
 
   renderRootCategory = (rendererProps: RootQueryRendererParams) => {
     if (rendererProps.error) {
-      return <div>Error</div>;
+      return <StaticFAQError />;
     }
 
     if (rendererProps.props) {
@@ -124,7 +125,7 @@ class FAQCategoryList extends React.Component<Props> {
 
   renderSubcategory = (rendererProps: SubcategoryQueryRendererParams) => {
     if (rendererProps.error) {
-      return <div>Error</div>;
+      return <StaticFAQError />;
     }
 
     if (rendererProps.props) {

@@ -7,6 +7,7 @@ import idx from 'idx';
 import QueryRenderer from '../relay/QueryRenderer';
 import FAQArticle from './FAQArticle';
 import NoSearchResults from './NoSearchResults';
+import StaticFAQError from './StaticFAQError';
 import { Loader, ScrollableBox } from '../common';
 import type { SearchAllFAQsQuery } from './__generated__/SearchAllFAQsQuery.graphql';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
@@ -37,7 +38,7 @@ class SearchAllFAQs extends React.Component<Props> {
   renderSearchFAQs = (rendererProps: AllFAQsQueryRendererParams) => {
     const { props, error } = rendererProps;
     if (error) {
-      return <div>{error.message}</div>;
+      return <StaticFAQError />;
     }
     if (props) {
       const edges = idx(props, _ => _.allFAQs.edges) || [];
