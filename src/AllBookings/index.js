@@ -8,10 +8,12 @@ import { Typography } from '@kiwicom/orbit-components';
 
 import QueryRenderer from '../relay/QueryRenderer';
 import { Loader } from '../common';
+import bookingTypes from '../common/booking/bookingTypes';
 import BookingError from '../SingleBookingPage/BookingError';
-import BookingCard from './BookingCard';
+import OneWayBooking from './BookingTypes/OneWayBooking';
+import ReturnBooking from './BookingTypes/ReturnBooking';
+import MulticityBooking from './BookingTypes/MulticityBooking';
 import type { AllBookingsQuery } from './__generated__/AllBookingsQuery.graphql';
-import type { BookingCard_booking } from './__generated__/BookingCard_booking.graphql';
 
 const styles = css`
   .allBookings {
@@ -43,7 +45,17 @@ const allBookingsQuery = graphql`
     allBookings(only: $only) {
       edges {
         node {
-          ...BookingCard_booking
+          id
+          type
+          oneWay {
+            ...OneWayBooking_booking
+          }
+          return {
+            ...ReturnBooking_booking
+          }
+          multicity {
+            ...MulticityBooking_booking
+          }
         }
       }
     }
@@ -61,7 +73,7 @@ class AllBooking extends React.Component<Props> {
     const edges = idx(props, _ => _.allBookings.edges) || [];
     const bookings = edges.map(edge => edge.node);
 
-    return props ? this.renderCards(bookings) : <Loader />;
+    return bookings.length ? this.renderCardsByType(bookings) : <Loader />;
   };
 
   renderAllBookings = (only: string) => (
@@ -73,11 +85,19 @@ class AllBooking extends React.Component<Props> {
     />
   );
 
-  renderCards = (bookings: BookingCard_booking[]) => (
+  renderCardsByType = (bookings: AllBookingsQuery[]) => (
     <div className="scroll">
-      {bookings.map((booking, i) => {
-        // eslint-disable-next-line react/no-array-index-key
-        return <BookingCard key={i} booking={booking} />;
+      {bookings.map(booking => {
+        const { type, id } = booking;
+        switch (type) {
+          case bookingTypes.ONE_WAY:
+            return <OneWayBooking key={id} booking={booking.oneWay} />;
+          case bookingTypes.RETURN:
+            return <ReturnBooking key={id} booking={booking.return} />;
+          case bookingTypes.MULTICITY:
+            return <MulticityBooking key={id} booking={booking.multicity} />;
+        }
+        return null;
       })}
     </div>
   );

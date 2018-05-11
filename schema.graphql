@@ -1,5 +1,5 @@
-# source: https://graphql.kiwi.com/graphql
-# timestamp: Fri May 04 2018 18:30:40 GMT+0200 (CEST)
+# source: https://graphql.kiwi.com/
+# timestamp: Thu May 10 2018 18:57:15 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
