@@ -12,6 +12,7 @@ import {
 } from '@kiwicom/orbit-components/lib/icons';
 
 import { formatDepartureDate } from '../helpers/dateUtils';
+import formatBookingId from '../helpers/formatBookingId';
 import bookingTypes from '../common/booking/bookingTypes';
 import CarrierLogoWrapper from '../SingleBookingPage/bookingItem/CarrierLogoWrapper';
 
@@ -107,7 +108,7 @@ const BookingCard = ({
 }: Props) => (
   <div className="card">
     <Typography type="secondary" size="small">
-      # {databaseId}
+      # {formatBookingId(databaseId)}
     </Typography>
     {trip && (
       <div className="logoCarriers">
