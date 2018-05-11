@@ -5,16 +5,12 @@ import { graphql, createFragmentContainer } from 'react-relay';
 import { Typography } from '@kiwicom/orbit-components';
 
 import bookingStatus from '../../common/booking/bookingStatuses';
+import formatBookingId from '../../helpers/formatBookingId';
 import type { Header_booking } from './__generated__/Header_booking.graphql';
 
 type Props = {|
   booking: Header_booking,
 |};
-
-const formatBookingId = (databaseId: number): string => {
-  const splitBookingId: string[] = String(databaseId).match(/.{1,3}/g) || [];
-  return splitBookingId.join(' ');
-};
 
 const Header = ({ booking }: Props) => {
   const status = booking.status && bookingStatus[booking.status];
