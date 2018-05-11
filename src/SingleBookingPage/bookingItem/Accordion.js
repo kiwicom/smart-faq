@@ -5,7 +5,11 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 import idx from 'idx';
 import { Typography } from '@kiwicom/orbit-components';
-import { FlightDirect, ChevronDown } from '@kiwicom/orbit-components/lib/icons';
+import {
+  FlightDirect,
+  ChevronDown,
+  ChevronUp,
+} from '@kiwicom/orbit-components/lib/icons';
 
 import { FormatDate } from '../../helpers/dateUtils';
 import { Box } from '../../common';
@@ -59,9 +63,10 @@ type State = {|
 type HeaderProps = {|
   trip: AccordionTripSummary_trip,
   toggle: () => void,
+  isToggled: boolean,
 |};
 
-const AccordionHeader = ({ trip, toggle }: HeaderProps) => {
+const AccordionHeader = ({ trip, toggle, isToggled }: HeaderProps) => {
   const departureDate = idx(trip, _ => _.departure.localTime);
   const departureCode = idx(trip, _ => _.departure.airport.locationId);
   const departureCity = idx(trip, _ => _.departure.airport.city.name);
@@ -101,7 +106,11 @@ const AccordionHeader = ({ trip, toggle }: HeaderProps) => {
         tabIndex="0"
         role="button"
       >
-        <ChevronDown />
+        {isToggled ? (
+          <ChevronUp customColor="#bac7d5" />
+        ) : (
+          <ChevronDown customColor="#bac7d5" />
+        )}
       </div>
       <style jsx>{headerStyles}</style>
     </div>
@@ -121,7 +130,11 @@ class Accordion extends React.Component<Props, State> {
       <div className="AccordionWrapper">
         <Box padding="12px 16px 16px 12px">
           <div className="Accordion">
-            <AccordionHeader trip={trip} toggle={this.toggleBody} />
+            <AccordionHeader
+              isToggled={this.state.isToggled}
+              trip={trip}
+              toggle={this.toggleBody}
+            />
             {this.state.isToggled && <AccordionBody legs={trip.legs} />}
           </div>
         </Box>

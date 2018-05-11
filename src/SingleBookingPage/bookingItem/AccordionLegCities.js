@@ -113,7 +113,7 @@ const LegCities = (props: LegProps) => {
         <CarrierLogo size="large" carriers={[carrier]} />
       </div>
       <div className="showMore-icon">
-        <ShowMore customColor="#adb9c5" size="12" />
+        <ShowMore customColor="#94a2b0" size="12" />
       </div>
       <span className="flight-length">
         {formatTimeDuration(leg.duration || 0)}
