@@ -36,7 +36,11 @@ const CustomBreadcrumbs = ({ breadcrumbs, loginToken }: Props) => {
 
   return (
     <div className="breadcrumbs">
-      {loginToken && <span className="desktop-only"><BackArrow id={id} /></span>}
+      {loginToken && (
+        <span className="desktop-only">
+          <BackArrow id={id} />
+        </span>
+      )}
       <Breadcrumb breadcrumb={{ title: firstCategory.title }} />
       {breadcrumbs
         .slice(1, breadcrumbs.length - 1)
