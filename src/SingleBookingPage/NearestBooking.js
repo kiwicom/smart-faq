@@ -134,7 +134,7 @@ class NearestBooking extends React.Component<Props> {
           <style jsx>
             {`
               .nearestBooking {
-                width: 480px;
+                width: 100%;
                 padding: 40px;
                 background-color: #f5f7f9;
                 height: 100%;

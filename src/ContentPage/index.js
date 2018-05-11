@@ -22,6 +22,9 @@ const style = css`
   div.FAQ {
     width: 480px;
   }
+  div.BookingInfo {
+    width: 548px;
+  }
 `;
 
 const BookingRoutes = (

@@ -35,3 +35,14 @@ export const formatCountDown = (hoursLeft: number) => {
   }
   return `${ndays} days`;
 };
+
+export const formatTimeDuration = (mins: number) => {
+  const nhours = Math.floor(mins / 60);
+  const nmins = mins - nhours * 60;
+  return nhours ? `${nhours}h ${nmins}min` : `${nmins}min`;
+};
+
+export const formatHour = (date: string, is12Hour: boolean = true) => {
+  const options = { hour: 'numeric', h12: is12Hour, minutes: 'numeric' };
+  return new Date(date).toLocaleString('en-US', options);
+};
