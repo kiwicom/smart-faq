@@ -1,7 +1,7 @@
 // @flow
 
-import * as React from 'react';
 import idx from 'idx';
+import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 
 import BookingCard from '../BookingCard';
@@ -18,29 +18,36 @@ const ReturnBooking = (props: Props) => {
   const { passengerCount, databaseId } = booking;
   const status = booking.status && bookingStatus[booking.status];
 
-  const trip = idx(booking, _ => _.outbound);
-  const departureDate = idx(booking, _ => _.outbound.departure.time);
-  const origin = idx(booking, _ => _.outbound.departure.airport.city.name);
-  const IATAOrigin = idx(booking, _ => _.outbound.departure.airport.locationId);
-  const destination = idx(booking, _ => _.outbound.arrival.airport.city.name);
-  const IATADestination = idx(
-    booking,
-    _ => _.outbound.arrival.airport.locationId,
-  );
+  const trip = idx(booking, _ => _.outbound) || [];
+  const departureDate = idx(booking, _ => _.outbound.departure.time) || '';
+  const origin =
+    idx(booking, _ => _.outbound.departure.airport.city.name) || '';
+  const IATAOrigin =
+    idx(booking, _ => _.outbound.departure.airport.locationId) || '';
+  const destination =
+    idx(booking, _ => _.outbound.arrival.airport.city.name) || '';
+  const IATADestination =
+    idx(booking, _ => _.outbound.arrival.airport.locationId) || '';
 
   return (
-    <BookingCard
-      trip={trip}
-      status={status}
-      passengerCount={passengerCount}
-      type={bookingTypes.RETURN}
-      databaseId={databaseId}
-      departureDate={departureDate}
-      origin={origin}
-      IATAOrigin={IATAOrigin}
-      destination={destination}
-      IATADestination={IATADestination}
-    />
+    <React.Fragment>
+      {status &&
+        passengerCount &&
+        databaseId && (
+          <BookingCard
+            trip={trip}
+            status={status}
+            passengerCount={passengerCount}
+            type={bookingTypes.RETURN}
+            databaseId={databaseId}
+            departureDate={departureDate}
+            origin={origin}
+            IATAOrigin={IATAOrigin}
+            destination={destination}
+            IATADestination={IATADestination}
+          />
+        )}
+    </React.Fragment>
   );
 };
 

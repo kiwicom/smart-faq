@@ -1,8 +1,8 @@
 // @flow
 
+import idx from 'idx';
 import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
-import idx from 'idx';
 
 import BookingCard from '../BookingCard';
 import bookingTypes from '../../common/booking/bookingTypes';
@@ -18,12 +18,12 @@ const MulticityBooking = (props: Props) => {
   const { databaseId, passengerCount } = booking;
   const status = booking.status && bookingStatus[booking.status];
 
-  const trip = idx(booking, _ => _.trips[0]);
-  const departureDate = idx(booking, _ => _.start.time);
-  const origin = idx(booking, _ => _.start.airport.city.name);
-  const IATAOrigin = idx(booking, _ => _.start.airport.locationId);
-  const destination = idx(booking, _ => _.end.airport.city.name);
-  const IATADestination = idx(booking, _ => _.end.airport.locationId);
+  const trip = idx(booking, _ => _.trips[0]) || [];
+  const departureDate = idx(booking, _ => _.start.time) || '';
+  const origin = idx(booking, _ => _.start.airport.city.name) || '';
+  const IATAOrigin = idx(booking, _ => _.start.airport.locationId) || '';
+  const destination = idx(booking, _ => _.end.airport.city.name) || '';
+  const IATADestination = idx(booking, _ => _.end.airport.locationId) || '';
 
   return (
     <BookingCard

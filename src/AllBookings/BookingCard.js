@@ -8,6 +8,7 @@ import {
   Passengers,
   FlightReturn,
   FlightDirect,
+  FlightMulticity,
 } from '@kiwicom/orbit-components/lib/icons';
 
 import { formatDepartureDate } from '../helpers/dateUtils';
@@ -80,6 +81,18 @@ type Props = {|
   IATADestination: string,
 |};
 
+function renderFlightIcon(type: string) {
+  switch (type) {
+    case bookingTypes.ONE_WAY:
+      return <FlightDirect size="medium" customColor="#bac7d5" />;
+    case bookingTypes.RETURN:
+      return <FlightReturn size="medium" customColor="#bac7d5" />;
+    case bookingTypes.MULTICITY:
+      return <FlightMulticity size="medium" customColor="#bac7d5" />;
+  }
+  return null;
+}
+
 const BookingCard = ({
   trip,
   status,
@@ -104,13 +117,7 @@ const BookingCard = ({
     <div>
       {origin &&
         IATAOrigin && <p className="flight">{`${origin} ${IATAOrigin}`}</p>}
-      <div className="arrowIcon">
-        {type === bookingTypes.ONE_WAY ? (
-          <FlightDirect size="medium" customColor="#bac7d5" />
-        ) : (
-          <FlightReturn size="medium" customColor="#bac7d5" />
-        )}
-      </div>
+      <div className="arrowIcon">{renderFlightIcon(type)}</div>
       {destination &&
         IATADestination && (
           <p className="flight">{`${destination} ${IATADestination}`}</p>
