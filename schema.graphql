@@ -1,5 +1,5 @@
-# source: https://graphql.kiwi.com/
-# timestamp: Tue May 15 2018 11:49:29 GMT+0200 (CEST)
+# source: http://localhost:3000/graphql
+# timestamp: Wed May 16 2018 18:32:22 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
@@ -106,6 +106,7 @@ enum BookedServiceStatus {
   CONFIRMED
   CLOSED
   PENDING
+  OPEN
 }
 
 """
@@ -125,6 +126,7 @@ type Booking {
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
+  type: BookingType
   status: BookingStatus
 
   """Total price of the whole booking."""
@@ -133,15 +135,18 @@ type Booking {
 
   """Static assets related to this booking."""
   assets: BookingAssets
+  passengers: [Passenger]
   passengerCount: Int
   destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
+
+  """List of carriers involved in the booking."""
+  carriers: [Carrier]
 
   """
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
-  type: BookingType
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
@@ -193,6 +198,7 @@ interface BookingInterface {
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
+  type: BookingType
   status: BookingStatus
 
   """Total price of the whole booking."""
@@ -201,8 +207,12 @@ interface BookingInterface {
 
   """Static assets related to this booking."""
   assets: BookingAssets
+  passengers: [Passenger]
   passengerCount: Int
   destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
+
+  """List of carriers involved in the booking."""
+  carriers: [Carrier]
 
   """
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
@@ -217,6 +227,7 @@ type BookingMulticity implements BookingInterface {
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
+  type: BookingType
   status: BookingStatus
 
   """Total price of the whole booking."""
@@ -225,8 +236,12 @@ type BookingMulticity implements BookingInterface {
 
   """Static assets related to this booking."""
   assets: BookingAssets
+  passengers: [Passenger]
   passengerCount: Int
   destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
+
+  """List of carriers involved in the booking."""
+  carriers: [Carrier]
 
   """
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
@@ -253,6 +268,7 @@ type BookingOneWay implements BookingInterface {
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
+  type: BookingType
   status: BookingStatus
 
   """Total price of the whole booking."""
@@ -261,8 +277,12 @@ type BookingOneWay implements BookingInterface {
 
   """Static assets related to this booking."""
   assets: BookingAssets
+  passengers: [Passenger]
   passengerCount: Int
   destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
+
+  """List of carriers involved in the booking."""
+  carriers: [Carrier]
 
   """
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
@@ -279,6 +299,7 @@ type BookingReturn implements BookingInterface {
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
+  type: BookingType
   status: BookingStatus
 
   """Total price of the whole booking."""
@@ -287,8 +308,12 @@ type BookingReturn implements BookingInterface {
 
   """Static assets related to this booking."""
   assets: BookingAssets
+  passengers: [Passenger]
   passengerCount: Int
   destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
+
+  """List of carriers involved in the booking."""
+  carriers: [Carrier]
 
   """
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
@@ -318,6 +343,18 @@ enum BookingType {
   ONE_WAY
   RETURN
   MULTICITY
+}
+
+type Carrier {
+  """The ID of an object"""
+  id: ID!
+  name: String
+
+  """Unique code of the carrier, IATA code for airlines."""
+  code: String
+
+  """Indicates whether it is low cost carrier."""
+  isLowCost: Boolean
 }
 
 type Coordinates {
@@ -1119,6 +1156,8 @@ input HotelsSearchInput {
   roomsConfiguration: [RoomsConfiguration!]!
 }
 
+scalar IP
+
 type Identity {
   """The ID of an object"""
   id: ID!
@@ -1141,7 +1180,12 @@ type Identity {
   login: String
 }
 
-scalar IP
+"""The possible insurance type values"""
+enum InsuranceType {
+  NONE
+  TRAVEL_BASIC
+  TRAVEL_PLUS
+}
 
 """Use "Accept-Language" HTTP header to specify locale."""
 enum Language {
@@ -1336,16 +1380,6 @@ input LocationInput {
   radius: RadiusInput
 }
 
-input LocationsOptionsInput {
-  """
-  DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
-  """
-  locale: Locale
-
-  """Desired location type the response should only include."""
-  locationType: LocationType
-}
-
 """Type of location"""
 enum LocationType {
   airport
@@ -1354,6 +1388,16 @@ enum LocationType {
   country
   station
   subdivision
+}
+
+input LocationsOptionsInput {
+  """
+  DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
+  """
+  locale: Locale
+
+  """Desired location type the response should only include."""
+  locationType: LocationType
 }
 
 """An object with an ID"""
@@ -1375,6 +1419,18 @@ type PageInfo {
 
   """When paginating forwards, the cursor to continue."""
   endCursor: String
+}
+
+"""The passengers associated with the booking"""
+type Passenger {
+  databaseId: Int
+  firstname: String
+  lastname: String
+  insuranceType: InsuranceType
+  title: String
+  birthday: DateTime
+  nationality: String
+  travelDocument: TravelDocument
 }
 
 input PassengersInput {
@@ -1443,6 +1499,13 @@ type RootQuery {
     before: String
     last: Int
   ): BookingConnection
+
+  """
+  Find most relevant booking relative to current time. That is a booking with
+  the smallest difference between current time and arrival time of one of its
+  Legs. If no future booking is found, then the nearest past booking is returned.
+  """
+  nearestBooking: BookingInterface
 
   """Search for scheduled flights."""
   allFlights(search: FlightsSearchInput!, options: FlightsOptionsInput, filters: FlightsFiltersInput, after: String, first: Int, before: String, last: Int): FlightConnection
@@ -1607,6 +1670,12 @@ input StopoversInput {
 
   """Maximum number of hours of stopover duration."""
   to: Int
+}
+
+"""Travel document info"""
+type TravelDocument {
+  idNumber: String
+  expiration: DateTime
 }
 
 """Single travel from origin to destination, with possible stopovers."""

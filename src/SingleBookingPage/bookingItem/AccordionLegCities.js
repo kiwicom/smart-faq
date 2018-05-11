@@ -3,11 +3,11 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import idx from 'idx';
+import { CarrierLogo } from '@kiwicom/orbit-components';
 import { ShowMore } from '@kiwicom/orbit-components/lib/icons';
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import { formatHour, formatTimeDuration } from '../../helpers/dateUtils';
-import CarrierLogo from '../../common/booking/CarrierLogo';
 import type { AccordionLegCities_leg } from './__generated__/AccordionLegCities_leg.graphql';
 
 const citiesStyle = css`

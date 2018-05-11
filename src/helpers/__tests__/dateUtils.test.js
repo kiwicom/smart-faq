@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { render } from 'enzyme';
 
+import { LanguageContext } from '../../context/Language';
 import * as dateUtils from '../dateUtils';
 
 describe('date utils', () => {
@@ -23,7 +24,9 @@ describe('date utils', () => {
   describe('formatDate', () => {
     it('should format datestring', () => {
       const wrapper = render(
-        <dateUtils.FormatDate dateString="2018-05-04T15:02:02.511Z" />,
+        <LanguageContext.Provider value="us">
+          <dateUtils.FormatDate dateString="2018-05-04T15:02:02.511Z" />
+        </LanguageContext.Provider>,
       );
 
       expect(wrapper.text()).toContain('Fri, May 4');

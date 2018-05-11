@@ -2,12 +2,12 @@
 
 import * as React from 'react';
 import { graphql } from 'react-relay';
-import idx from 'idx';
 
+import Loader from '../common/Loader';
 import QueryRenderer from '../relay/QueryRenderer';
 import BookingError from './BookingError';
 import NearestBooking from './NearestBooking';
-import Loader from '../common/Loader';
+import BookingNotFound from './BookingNotFound';
 import type { SingleBookingPageQueryResponse as QueryResponseType } from './__generated__/SingleBookingPageQuery.graphql';
 
 type Props = {||};
@@ -19,10 +19,8 @@ type RenderState = {
 
 const query = graphql`
   query SingleBookingPageQuery {
-    allBookings {
-      edges {
-        ...NearestBooking_bookingEdges
-      }
+    nearestBooking {
+      ...NearestBooking_booking
     }
   }
 `;
@@ -37,9 +35,13 @@ class SingleBookingPage extends React.Component<Props> {
       return <Loader />;
     }
 
-    const edges = idx(renderState.props, _ => _.allBookings.edges);
+    const booking = renderState.props.nearestBooking;
 
-    return <NearestBooking bookingEdges={edges} />;
+    if (!booking) {
+      return <BookingNotFound />;
+    }
+
+    return <NearestBooking booking={booking} />;
   };
 
   render() {
