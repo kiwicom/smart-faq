@@ -14,6 +14,11 @@ import type { User } from '../types';
 import FullFAQLink from '../common/FullFAQLink';
 
 const style = css`
+  div.logged-out {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 122px 15px 40px;
+  }
   div.header {
     display: flex;
     align-items: center;
@@ -105,9 +110,16 @@ type Props = {
   },
 };
 
-const renderLoggedIn = () => {
+const renderLoggedIn = (
+  hasCategory: string | null,
+  isArticle: boolean,
+  comesFromSearch: boolean,
+) => {
   return (
     <div className="logged-in">
+      <div className="signout-or-back">
+        <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
+      </div>
       <div className="help-header">Help</div>
       <div className="links">
         <div className="faq-link desktop-only">
@@ -165,7 +177,7 @@ const ContentHeader = (props: Props) => {
       <div className="ContentHeader">
         <CloseButton height="24" />
         {props.user
-          ? renderLoggedIn()
+          ? renderLoggedIn(hasCategory, isArticle, comesFromSearch)
           : renderLoggedOut(hasCategory, isArticle, comesFromSearch)}
         <style jsx>{style}</style>
       </div>

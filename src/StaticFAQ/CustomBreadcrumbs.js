@@ -13,6 +13,14 @@ const style = css`
     white-space: nowrap;
     overflow: hidden;
   }
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .desktop-only {
+      display: none !important;
+    }
+    .breadcrumbs {
+      margin: 0 16px;
+    }
+  }
 `;
 
 type Props = {|
@@ -28,7 +36,7 @@ const CustomBreadcrumbs = ({ breadcrumbs, loginToken }: Props) => {
 
   return (
     <div className="breadcrumbs">
-      {loginToken && <BackArrow id={id} />}
+      {loginToken && <span className="desktop-only"><BackArrow id={id} /></span>}
       <Breadcrumb breadcrumb={{ title: firstCategory.title }} />
       {breadcrumbs
         .slice(1, breadcrumbs.length - 1)
