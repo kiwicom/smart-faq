@@ -1,9 +1,11 @@
 // @flow
 
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { Typography } from '@kiwicom/orbit-components';
 
+import routeDefinitions from '../../routeDefinitions';
 import bookingStatus from '../../common/booking/bookingStatuses';
 import type { Header_booking } from './__generated__/Header_booking.graphql';
 
@@ -24,11 +26,14 @@ const Header = ({ booking }: Props) => {
             </Typography>
           )}
         </div>
-        <div>
+        <Link
+          to={routeDefinitions.ALL_BOOKINGS}
+          style={{ textDecoration: 'none' }}
+        >
           <Typography size="small" type="active">
             select other booking
           </Typography>
-        </div>
+        </Link>
       </div>
       <div className="headerTitle">
         <Typography size="header" type="attention">
