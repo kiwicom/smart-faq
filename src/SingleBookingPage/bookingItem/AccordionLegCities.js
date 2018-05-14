@@ -26,13 +26,13 @@ const citiesStyle = css`
   div.city {
     color: #7c8b99;
   }
-  div.showMore-icon {
+  div.showMoreIcon {
     position: absolute;
     right: -7px;
     top: 13px;
     background: #fff;
   }
-  span.flight-length {
+  span.flightLength {
     font-size: 11px;
     position: absolute;
     bottom: -8px;
@@ -73,7 +73,7 @@ const citiesStyle = css`
   }
   div.departure div.time,
   div.arrival div.time {
-    width: 3em;
+    width: 5em;
     margin-right: 12px;
   }
 `;
@@ -112,10 +112,10 @@ const LegCities = (props: LegProps) => {
       <div className="carrier">
         <CarrierLogo size="large" carriers={[carrier]} />
       </div>
-      <div className="showMore-icon">
+      <div className="showMoreIcon">
         <ShowMore customColor="#94a2b0" size="12" />
       </div>
-      <span className="flight-length">
+      <span className="flightLength">
         {formatTimeDuration(leg.duration || 0)}
       </span>
       <div className="citiesArrow">

@@ -18,7 +18,7 @@ const lastLegStyle = css`
     position: relative;
     margin-top: 5px;
   }
-  div.calendar-icon {
+  div.calendarIcon {
     position: absolute;
     top: -5px;
     left: -13px;
@@ -28,7 +28,7 @@ const lastLegStyle = css`
   div.date {
     margin-bottom: 6px;
   }
-  div.airplane-icon {
+  div.airplaneIcon {
     position: absolute;
     left: -13px;
     top: 40px;
@@ -46,14 +46,14 @@ const RawAccordionLastLeg = (props: LastLegProps) => {
   return (
     <React.Fragment>
       <div className="lastLeg">
-        <div className="calendar-icon">
+        <div className="calendarIcon">
           <Calendar customColor="#2f363c" height="20" />
         </div>
         <div className="date">
           {FormatDate({ dateString: initialDeparture })}
         </div>
         <AccordionLegCities leg={leg} />
-        <div className="airplane-icon">
+        <div className="airplaneIcon">
           <AirplaneDown customColor="#adb9c5" height="12" />
         </div>
       </div>

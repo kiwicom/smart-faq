@@ -14,22 +14,14 @@ type Props = {|
 class AccordionBody extends React.Component<Props> {
   renderLegs = () => {
     const { legs } = this.props;
-    const lastLeg = legs.slice(-1)[0];
-    if (legs.length > 1) {
-      return legs
-        .slice(0, -1)
-        .map((l, li) => (
-          <AccordionBodyLeg
-            key={l.flightNumber}
-            leg={l}
-            nextLeg={legs[li + 1]}
-          />
-        ))
-        .concat(
-          <AccordionBodyLastLeg key={lastLeg.flightNumber} leg={lastLeg} />,
-        );
-    }
-    return <AccordionBodyLastLeg key={lastLeg.flightNumber} leg={lastLeg} />;
+    return legs.map((l, li) => {
+      if (li === legs.length - 1) {
+        return <AccordionBodyLastLeg key={l.flightNumber} leg={l} />;
+      }
+      return (
+        <AccordionBodyLeg key={l.flightNumber} leg={l} nextLeg={legs[li + 1]} />
+      );
+    });
   };
   render() {
     return (

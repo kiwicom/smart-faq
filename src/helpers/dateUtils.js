@@ -42,7 +42,7 @@ export const formatTimeDuration = (mins: number) => {
   return nhours ? `${nhours}h ${nmins}min` : `${nmins}min`;
 };
 
-export const formatHour = (date: string, is12Hour: boolean = true) => {
-  const options = { hour: 'numeric', h12: is12Hour, minutes: 'numeric' };
+export const formatHour = (date: string) => {
+  const options = { hour: 'numeric', timeZone: 'UTC', minute: 'numeric' };
   return new Date(date).toLocaleString('en-US', options);
 };

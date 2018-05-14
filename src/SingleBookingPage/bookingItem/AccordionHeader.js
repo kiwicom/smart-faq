@@ -18,6 +18,7 @@ const headerStyles = css`
   .header {
     display: flex;
     width: 100%;
+    cursor: pointer;
   }
   span.arrow {
     margin: 0px 4px;
@@ -34,7 +35,6 @@ const headerStyles = css`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    cursor: pointer;
   }
   .itinerary .location {
     margin-right: 4px;
@@ -42,10 +42,9 @@ const headerStyles = css`
 `;
 type Props = {|
   trip: AccordionTripSummary_trip,
-  toggle: () => void,
   isToggled: boolean,
 |};
-const AccordionHeader = ({ trip, toggle, isToggled }: Props) => {
+const AccordionHeader = ({ trip, isToggled }: Props) => {
   const departureDate = idx(trip, _ => _.departure.localTime);
   const departureCode = idx(trip, _ => _.departure.airport.locationId);
   const departureCity = idx(trip, _ => _.departure.airport.city.name);
@@ -78,13 +77,7 @@ const AccordionHeader = ({ trip, toggle, isToggled }: Props) => {
           </span>
         </div>
       </div>
-      <div
-        className="toggle"
-        onKeyUp={null}
-        onClick={toggle}
-        tabIndex="0"
-        role="button"
-      >
+      <div className="toggle">
         {isToggled ? (
           <ChevronUp customColor="#bac7d5" />
         ) : (

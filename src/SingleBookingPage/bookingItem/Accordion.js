@@ -40,11 +40,14 @@ class Accordion extends React.Component<Props, State> {
       <div className="AccordionWrapper">
         <Box padding="12px 16px 16px 12px">
           <div className="Accordion">
-            <AccordionHeader
-              isToggled={this.state.isToggled}
-              trip={trip}
-              toggle={this.toggleBody}
-            />
+            <div
+              onClick={this.toggleBody}
+              onKeyUp={null}
+              tabIndex="0"
+              role="button"
+            >
+              <AccordionHeader isToggled={this.state.isToggled} trip={trip} />
+            </div>
             {this.state.isToggled && <AccordionBody legs={trip.legs} />}
           </div>
         </Box>
