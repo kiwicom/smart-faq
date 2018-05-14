@@ -3,7 +3,9 @@
 import * as React from 'react';
 
 import { LanguageContext } from '../context/Language';
-import frontendLanguageToLocale from './frontendLanguageToLocale';
+import frontendLanguageToLocale, {
+  DEFAULT_LOCALE,
+} from './frontendLanguageToLocale';
 
 export const URGENCY_THRESHOLD = 48;
 
@@ -16,7 +18,9 @@ export const FormatDate = ({ dateString }: Props) => {
   return (
     <LanguageContext.Consumer>
       {language => {
-        const locale = frontendLanguageToLocale[language].replace('_', '-');
+        const locale = (
+          frontendLanguageToLocale[language] || DEFAULT_LOCALE
+        ).replace('_', '-');
 
         return (
           <p>{new Date(dateString).toLocaleDateString(locale, options)}</p>

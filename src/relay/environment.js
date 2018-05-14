@@ -8,12 +8,17 @@ import {
   QueryResponseCache,
 } from 'relay-runtime';
 
+import { DEFAULT_LOCALE } from '../helpers/frontendLanguageToLocale';
+
 require('isomorphic-fetch');
 // used when smart FAQ installed as dependency
 const uri = 'https://graphql.kiwi.com';
 const cache = new QueryResponseCache({ size: 200, ttl: 30 * 60 * 1000 });
 
-const buildFetchQuery = (token: string = '', locale: string = 'en_US') => {
+const buildFetchQuery = (
+  token: string = '',
+  locale: string = DEFAULT_LOCALE,
+) => {
   return async function fetchQuery(operation, variables, cacheConfig) {
     const forceFetch = cacheConfig.force;
     const isQuery = operation.operationKind === 'query';
