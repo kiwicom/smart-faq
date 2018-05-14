@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash aaf0af1bdd7064d1d8f0c604a0e4f48a
+ * @relayHash fe2cebf448e2d81c03b0950c1c25ff1f
  */
 
 /* eslint-disable */
@@ -54,26 +54,13 @@ fragment BookingCardsList_booking on BookingConnection {
 }
 
 fragment OneWayBooking_booking on BookingOneWay {
-  status
-  databaseId
-  passengerCount
+  ...BookingCard_booking
   trip {
     departure {
-      time
-      airport {
-        locationId
-        city {
-          name
-        }
-      }
+      ...BookingCard_departure
     }
     arrival {
-      airport {
-        locationId
-        city {
-          name
-        }
-      }
+      ...BookingCard_arrival
     }
     legs {
       ...CarrierLogoWrapper_legs
@@ -83,26 +70,13 @@ fragment OneWayBooking_booking on BookingOneWay {
 }
 
 fragment ReturnBooking_booking on BookingReturn {
-  status
-  databaseId
-  passengerCount
+  ...BookingCard_booking
   outbound {
     departure {
-      time
-      airport {
-        locationId
-        city {
-          name
-        }
-      }
+      ...BookingCard_departure
     }
     arrival {
-      airport {
-        locationId
-        city {
-          name
-        }
-      }
+      ...BookingCard_arrival
     }
     legs {
       ...CarrierLogoWrapper_legs
@@ -112,25 +86,12 @@ fragment ReturnBooking_booking on BookingReturn {
 }
 
 fragment MulticityBooking_booking on BookingMulticity {
-  status
-  databaseId
-  passengerCount
+  ...BookingCard_booking
   start {
-    time
-    airport {
-      locationId
-      city {
-        name
-      }
-    }
+    ...BookingCard_departure
   }
   end {
-    airport {
-      locationId
-      city {
-        name
-      }
-    }
+    ...BookingCard_arrival
   }
   trips {
     legs {
@@ -140,11 +101,48 @@ fragment MulticityBooking_booking on BookingMulticity {
   }
 }
 
+fragment BookingCard_booking on BookingInterface {
+  status
+  databaseId
+  passengerCount
+}
+
+fragment BookingCard_departure on RouteStop {
+  ...FromToRow_departure
+  ...DateAndPassenger_departure
+}
+
+fragment BookingCard_arrival on RouteStop {
+  ...FromToRow_arrival
+}
+
 fragment CarrierLogoWrapper_legs on Leg {
   airline {
     name
     code
   }
+}
+
+fragment FromToRow_arrival on RouteStop {
+  airport {
+    locationId
+    city {
+      name
+    }
+  }
+}
+
+fragment FromToRow_departure on RouteStop {
+  airport {
+    locationId
+    city {
+      name
+    }
+  }
+}
+
+fragment DateAndPassenger_departure on RouteStop {
+  time
 }
 */
 
@@ -238,14 +236,14 @@ v8 = {
   ]
 },
 v9 = [
+  v8,
   {
     "kind": "ScalarField",
     "alias": null,
     "name": "time",
     "args": null,
     "storageKey": null
-  },
-  v8
+  }
 ],
 v10 = [
   v8
@@ -438,7 +436,7 @@ return {
   "operationKind": "query",
   "name": "AllBookingsQuery",
   "id": null,
-  "text": "query AllBookingsQuery {\n  future: allBookings(only: FUTURE) {\n    ...BookingCardsList_booking\n  }\n  past: allBookings(only: PAST) {\n    ...BookingCardsList_booking\n  }\n}\n\nfragment BookingCardsList_booking on BookingConnection {\n  edges {\n    node {\n      id\n      type\n      oneWay {\n        ...OneWayBooking_booking\n        id\n      }\n      return {\n        ...ReturnBooking_booking\n        id\n      }\n      multicity {\n        ...MulticityBooking_booking\n        id\n      }\n    }\n  }\n}\n\nfragment OneWayBooking_booking on BookingOneWay {\n  status\n  databaseId\n  passengerCount\n  trip {\n    departure {\n      time\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    arrival {\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    legs {\n      ...CarrierLogoWrapper_legs\n      id\n    }\n  }\n}\n\nfragment ReturnBooking_booking on BookingReturn {\n  status\n  databaseId\n  passengerCount\n  outbound {\n    departure {\n      time\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    arrival {\n      airport {\n        locationId\n        city {\n          name\n        }\n      }\n    }\n    legs {\n      ...CarrierLogoWrapper_legs\n      id\n    }\n  }\n}\n\nfragment MulticityBooking_booking on BookingMulticity {\n  status\n  databaseId\n  passengerCount\n  start {\n    time\n    airport {\n      locationId\n      city {\n        name\n      }\n    }\n  }\n  end {\n    airport {\n      locationId\n      city {\n        name\n      }\n    }\n  }\n  trips {\n    legs {\n      ...CarrierLogoWrapper_legs\n      id\n    }\n  }\n}\n\nfragment CarrierLogoWrapper_legs on Leg {\n  airline {\n    name\n    code\n  }\n}\n",
+  "text": "query AllBookingsQuery {\n  future: allBookings(only: FUTURE) {\n    ...BookingCardsList_booking\n  }\n  past: allBookings(only: PAST) {\n    ...BookingCardsList_booking\n  }\n}\n\nfragment BookingCardsList_booking on BookingConnection {\n  edges {\n    node {\n      id\n      type\n      oneWay {\n        ...OneWayBooking_booking\n        id\n      }\n      return {\n        ...ReturnBooking_booking\n        id\n      }\n      multicity {\n        ...MulticityBooking_booking\n        id\n      }\n    }\n  }\n}\n\nfragment OneWayBooking_booking on BookingOneWay {\n  ...BookingCard_booking\n  trip {\n    departure {\n      ...BookingCard_departure\n    }\n    arrival {\n      ...BookingCard_arrival\n    }\n    legs {\n      ...CarrierLogoWrapper_legs\n      id\n    }\n  }\n}\n\nfragment ReturnBooking_booking on BookingReturn {\n  ...BookingCard_booking\n  outbound {\n    departure {\n      ...BookingCard_departure\n    }\n    arrival {\n      ...BookingCard_arrival\n    }\n    legs {\n      ...CarrierLogoWrapper_legs\n      id\n    }\n  }\n}\n\nfragment MulticityBooking_booking on BookingMulticity {\n  ...BookingCard_booking\n  start {\n    ...BookingCard_departure\n  }\n  end {\n    ...BookingCard_arrival\n  }\n  trips {\n    legs {\n      ...CarrierLogoWrapper_legs\n      id\n    }\n  }\n}\n\nfragment BookingCard_booking on BookingInterface {\n  status\n  databaseId\n  passengerCount\n}\n\nfragment BookingCard_departure on RouteStop {\n  ...FromToRow_departure\n  ...DateAndPassenger_departure\n}\n\nfragment BookingCard_arrival on RouteStop {\n  ...FromToRow_arrival\n}\n\nfragment CarrierLogoWrapper_legs on Leg {\n  airline {\n    name\n    code\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    locationId\n    city {\n      name\n    }\n  }\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    locationId\n    city {\n      name\n    }\n  }\n}\n\nfragment DateAndPassenger_departure on RouteStop {\n  time\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",

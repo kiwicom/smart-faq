@@ -8,79 +8,31 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type BookingCard_arrival$ref = any;
+type BookingCard_booking$ref = any;
+type BookingCard_departure$ref = any;
 type CarrierLogoWrapper_legs$ref = any;
-export type BookingStatus = ('CANCELLED' | 'CLOSED' | 'CONFIRMED' | 'DELETED' | 'EXPIRED' | 'NEW' | 'PENDING' | 'REFUNDED' | '%future added value');
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type MulticityBooking_booking$ref: FragmentReference;
 export type MulticityBooking_booking = {|
-  +status: ?BookingStatus,
-  +databaseId: ?number,
-  +passengerCount: ?number,
   +start: ?{|
-    +time: ?any,
-    +airport: ?{|
-      +locationId: ?string,
-      +city: ?{|
-        +name: ?string,
-      |},
-    |},
+    +$fragmentRefs: BookingCard_departure$ref,
   |},
   +end: ?{|
-    +airport: ?{|
-      +locationId: ?string,
-      +city: ?{|
-        +name: ?string,
-      |},
-    |},
+    +$fragmentRefs: BookingCard_arrival$ref,
   |},
   +trips: ?$ReadOnlyArray<?{|
     +legs: ?$ReadOnlyArray<?{|
       +$fragmentRefs: CarrierLogoWrapper_legs$ref,
     |}>,
   |}>,
+  +$fragmentRefs: BookingCard_booking$ref,
   +$refType: MulticityBooking_booking$ref,
 |};
 */
 
 
-const node/*: ConcreteFragment*/ = (function(){
-var v0 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "airport",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "Location",
-  "plural": false,
-  "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "locationId",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "city",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "LocationArea",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "name",
-          "args": null,
-          "storageKey": null
-        }
-      ]
-    }
-  ]
-};
-return {
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "MulticityBooking_booking",
   "type": "BookingMulticity",
@@ -88,25 +40,9 @@ return {
   "argumentDefinitions": [],
   "selections": [
     {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "status",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "databaseId",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "passengerCount",
-      "args": null,
-      "storageKey": null
+      "kind": "FragmentSpread",
+      "name": "BookingCard_booking",
+      "args": null
     },
     {
       "kind": "LinkedField",
@@ -118,13 +54,10 @@ return {
       "plural": false,
       "selections": [
         {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "time",
-          "args": null,
-          "storageKey": null
-        },
-        v0
+          "kind": "FragmentSpread",
+          "name": "BookingCard_departure",
+          "args": null
+        }
       ]
     },
     {
@@ -136,7 +69,11 @@ return {
       "concreteType": "RouteStop",
       "plural": false,
       "selections": [
-        v0
+        {
+          "kind": "FragmentSpread",
+          "name": "BookingCard_arrival",
+          "args": null
+        }
       ]
     },
     {
@@ -168,6 +105,5 @@ return {
     }
   ]
 };
-})();
-(node/*: any*/).hash = '9855b7fa811cfe88cba433a5b2499e27';
+(node/*: any*/).hash = '62188f8a5a632355dd3060cfd1a0d02d';
 module.exports = node;

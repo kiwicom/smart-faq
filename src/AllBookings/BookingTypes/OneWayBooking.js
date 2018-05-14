@@ -4,9 +4,8 @@ import idx from 'idx';
 import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 
-import BookingCard from '../BookingCard';
+import BookingCard from '../BookingCard/BookingCard';
 import bookingTypes from '../../common/booking/bookingTypes';
-import bookingStatus from '../../common/booking/bookingStatuses';
 import type { OneWayBooking_booking } from './__generated__/OneWayBooking_booking.graphql';
 
 type Props = {
@@ -14,38 +13,17 @@ type Props = {
 };
 
 const OneWayBooking = (props: Props) => {
-  const booking = props.booking;
-  const { passengerCount, databaseId } = booking;
-  const status = booking.status && bookingStatus[booking.status];
-
-  const trip = idx(booking, _ => _.trip) || [];
-  const departureDate = idx(booking, _ => _.trip.departure.time) || '';
-  const origin = idx(booking, _ => _.trip.departure.airport.city.name) || '';
-  const IATAOrigin =
-    idx(booking, _ => _.trip.departure.airport.locationId) || '';
-  const destination = idx(booking, _ => _.trip.arrival.airport.city.name) || '';
-  const IATADestination =
-    idx(booking, _ => _.trip.arrival.airport.locationId) || '';
-
+  const arrival = idx(props.booking, _ => _.trip.arrival);
+  const departure = idx(props.booking, _ => _.trip.departure);
+  const legs = idx(props.booking, _ => _.trip);
   return (
-    <React.Fragment>
-      {status &&
-        passengerCount &&
-        databaseId && (
-          <BookingCard
-            trip={trip}
-            status={status}
-            passengerCount={passengerCount}
-            type={bookingTypes.ONE_WAY}
-            databaseId={databaseId}
-            departureDate={departureDate}
-            origin={origin}
-            IATAOrigin={IATAOrigin}
-            destination={destination}
-            IATADestination={IATADestination}
-          />
-        )}
-    </React.Fragment>
+    <BookingCard
+      trip={legs}
+      arrival={arrival}
+      departure={departure}
+      booking={props.booking}
+      type={bookingTypes.ONE_WAY}
+    />
   );
 };
 
@@ -53,26 +31,13 @@ export default createFragmentContainer(
   OneWayBooking,
   graphql`
     fragment OneWayBooking_booking on BookingOneWay {
-      status
-      databaseId
-      passengerCount
+      ...BookingCard_booking
       trip {
         departure {
-          time
-          airport {
-            locationId
-            city {
-              name
-            }
-          }
+          ...BookingCard_departure
         }
         arrival {
-          airport {
-            locationId
-            city {
-              name
-            }
-          }
+          ...BookingCard_arrival
         }
         legs {
           ...CarrierLogoWrapper_legs

@@ -4,9 +4,8 @@ import idx from 'idx';
 import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 
-import BookingCard from '../BookingCard';
+import BookingCard from '../BookingCard/BookingCard';
 import bookingTypes from '../../common/booking/bookingTypes';
-import bookingStatus from '../../common/booking/bookingStatuses';
 import type { ReturnBooking_booking } from './__generated__/ReturnBooking_booking.graphql';
 
 type Props = {
@@ -14,40 +13,17 @@ type Props = {
 };
 
 const ReturnBooking = (props: Props) => {
-  const booking = props.booking;
-  const { passengerCount, databaseId } = booking;
-  const status = booking.status && bookingStatus[booking.status];
-
-  const trip = idx(booking, _ => _.outbound) || [];
-  const departureDate = idx(booking, _ => _.outbound.departure.time) || '';
-  const origin =
-    idx(booking, _ => _.outbound.departure.airport.city.name) || '';
-  const IATAOrigin =
-    idx(booking, _ => _.outbound.departure.airport.locationId) || '';
-  const destination =
-    idx(booking, _ => _.outbound.arrival.airport.city.name) || '';
-  const IATADestination =
-    idx(booking, _ => _.outbound.arrival.airport.locationId) || '';
-
+  const arrival = idx(props.booking, _ => _.outbound.arrival);
+  const departure = idx(props.booking, _ => _.outbound.departure);
+  const legs = idx(props.booking, _ => _.outbound);
   return (
-    <React.Fragment>
-      {status &&
-        passengerCount &&
-        databaseId && (
-          <BookingCard
-            trip={trip}
-            status={status}
-            passengerCount={passengerCount}
-            type={bookingTypes.RETURN}
-            databaseId={databaseId}
-            departureDate={departureDate}
-            origin={origin}
-            IATAOrigin={IATAOrigin}
-            destination={destination}
-            IATADestination={IATADestination}
-          />
-        )}
-    </React.Fragment>
+    <BookingCard
+      trip={legs}
+      arrival={arrival}
+      departure={departure}
+      booking={props.booking}
+      type={bookingTypes.RETURN}
+    />
   );
 };
 
@@ -55,26 +31,13 @@ export default createFragmentContainer(
   ReturnBooking,
   graphql`
     fragment ReturnBooking_booking on BookingReturn {
-      status
-      databaseId
-      passengerCount
+      ...BookingCard_booking
       outbound {
         departure {
-          time
-          airport {
-            locationId
-            city {
-              name
-            }
-          }
+          ...BookingCard_departure
         }
         arrival {
-          airport {
-            locationId
-            city {
-              name
-            }
-          }
+          ...BookingCard_arrival
         }
         legs {
           ...CarrierLogoWrapper_legs
