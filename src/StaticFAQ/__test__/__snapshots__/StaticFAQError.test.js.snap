@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StaticFAQError should match snapshot 1`] = `
+<StaticFAQError>
+  <div
+    className="jsx-4052566621 staticFAQError"
+  >
+    <h1
+      className="jsx-4052566621 title"
+    >
+      Something's not quite right.
+    </h1>
+    <Typography
+      size="large"
+      type="secondary"
+    >
+      <span
+        className="jsx-1855423850"
+      >
+        Please, try refreshing the page. If the problem persists, don't hesitate to contact us.
+        <JSXStyle
+          css="span.__jsx-style-dynamic-selector{font-family:Roboto,-apple-system,sans-serif;font-size:16px;color:#7f91a8;;}"
+          dynamic={
+            Array [
+              "16px",
+              "#7f91a8",
+              "",
+            ]
+          }
+          styleId="1112443529"
+        />
+      </span>
+    </Typography>
+    <div
+      className="jsx-4052566621 contactLink"
+    >
+      <ContactPageLink>
+        <a
+          className="jsx-1156574796"
+          href="https://www.kiwi.com/en/content/feedback"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Go to contact page
+          <span
+            className="jsx-1156574796 inline-icon"
+          >
+            <div
+              className="jsx-1156574796 open-icon"
+            >
+              <NewWindow
+                customColor="#00a991"
+                size="small"
+              >
+                <OrbitIcon
+                  color="primary"
+                  customColor="#00a991"
+                  size="small"
+                  viewBox="0 0 24 24"
+                >
+                  <IconBase
+                    color="#00a991"
+                    size="16px"
+                    viewBox="0 0 24 24"
+                  >
+                    <svg
+                      fill="currentColor"
+                      height="16px"
+                      preserveAspectRatio="xMidYMid meet"
+                      style={
+                        Object {
+                          "color": "#00a991",
+                          "verticalAlign": "middle",
+                        }
+                      }
+                      viewBox="0 0 24 24"
+                      width="16px"
+                    >
+                      <path
+                        d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+                      />
+                    </svg>
+                  </IconBase>
+                </OrbitIcon>
+              </NewWindow>
+            </div>
+          </span>
+        </a>
+        <JSXStyle
+          css="a.jsx-1156574796{-webkit-text-decoration:none;text-decoration:none;color:#00a991;font-size:14px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}a.jsx-1156574796 .open-icon.jsx-1156574796{margin-left:6px;}"
+          styleId="1156574796"
+        />
+      </ContactPageLink>
+    </div>
+    <JSXStyle
+      css=".staticFAQError.jsx-4052566621{height:78vh;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}h1.title.jsx-4052566621{font-family:Roboto;font-size:28px;font-weight:bold;line-height:1.2;color:#171b1e;margin-bottom:8.4px;}div.contactLink.jsx-4052566621{margin-top:16.8px;}"
+      styleId="4052566621"
+    />
+  </div>
+</StaticFAQError>
+`;
