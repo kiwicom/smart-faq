@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-
-import cancel from '../../static/cancelx32.png';
+import { CloseCircle } from '@kiwicom/orbit-components/lib/icons';
 
 type Props = {
   value: string,
@@ -29,7 +28,7 @@ const InputText = (props: Props) => (
     {props.icon && <div className="inputIcon">{props.icon}</div>}
     {props.onReset && (
       <button onClick={props.onReset}>
-        <img className="cancelInput" src={cancel} alt="Cancel" />
+        <CloseCircle size="small" customColor="#bac7d5" />
       </button>
     )}
     <style jsx>
@@ -41,10 +40,6 @@ const InputText = (props: Props) => (
           position: absolute;
           top: 13px;
           left: 15px;
-        }
-        .cancelInput {
-          width: 18px;
-          height: 18px;
         }
         button {
           border: none;
