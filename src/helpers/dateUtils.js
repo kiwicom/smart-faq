@@ -12,7 +12,13 @@ type Props = {|
 |};
 
 export const FormatDate = ({ dateString }: Props) => {
-  const options = { weekday: 'short', month: 'short', day: 'numeric' };
+  const options = {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'UTC',
+  };
+
   return (
     <LanguageContext.Consumer>
       {language => {
