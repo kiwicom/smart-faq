@@ -78,6 +78,8 @@
     "now": "^11.0.2",
     "now-cli": "^0.0.0",
     "prettier-eslint": "^8.8.1",
+    "react": "16.3.2",
+    "react-dom": "16.3.2",
     "relay-compiler": "1.5.0",
     "request": "2.83.0",
     "request-promise-native": "1.0.5",
@@ -94,13 +96,15 @@
     "idx": "2.2.0",
     "isomorphic-fetch": "2.2.1",
     "markdown-it": "^8.4.1",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
     "react-i18next": "7.4.0",
     "react-relay": "1.5.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "relay-runtime": "1.5.0",
     "styled-jsx": "^2.2.5"
+  },
+  "peerDependencies": {
+    "react": "16.3.2",
+    "react-dom": "16.3.2"
   }
 }
