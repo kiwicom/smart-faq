@@ -7,8 +7,8 @@ import { graphql, createFragmentContainer } from 'react-relay';
 import { Typography } from '@kiwicom/orbit-components';
 import { ChevronRight } from '@kiwicom/orbit-components/lib/icons';
 
-import FromToRow from './FromToRow';
-import DateAndPassenger from './DateAndPassenger';
+import FromToRowFragment from './FromToRow';
+import DateAndPassengerFragment from './DateAndPassenger';
 import formatBookingId from '../../helpers/formatBookingId';
 import bookingStatus from '../../common/booking/bookingStatuses';
 import CarrierLogoWrapper from '../../SingleBookingPage/bookingItem/CarrierLogoWrapper';
@@ -89,7 +89,7 @@ const BookingCard = (props: Props) => {
       <div className="logoCarriers">
         <CarrierLogoWrapper legs={props.trip.legs} />
       </div>
-      <FromToRow
+      <FromToRowFragment
         type={props.type}
         arrival={props.arrival}
         departure={props.departure}
@@ -97,7 +97,7 @@ const BookingCard = (props: Props) => {
       <div className="chevron">
         <ChevronRight size="medium" customColor="#bac7d5" />
       </div>
-      <DateAndPassenger
+      <DateAndPassengerFragment
         status={status}
         departure={props.departure}
         passengerCount={passengerCount}

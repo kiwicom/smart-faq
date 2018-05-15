@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FromToRow should render correctly 1`] = `
+<div>
+  <p
+    className="flight"
+  >
+    Barcelona BCN
+  </p>
+  <div
+    className="arrowIcon"
+  >
+    <FlightMulticity
+      customColor="#bac7d5"
+      size="medium"
+    />
+  </div>
+  <p
+    className="flight"
+  >
+    Prague PRG
+  </p>
+</div>
+`;

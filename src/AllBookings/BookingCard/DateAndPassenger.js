@@ -18,7 +18,7 @@ type Props = {
   },
 };
 
-const DateAndPassenger = (props: Props) => {
+export const DateAndPassenger = (props: Props) => {
   const departureDate = idx(props.departure, _ => _.time) || '';
   return (
     <div className="fields">

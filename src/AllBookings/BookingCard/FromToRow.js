@@ -31,7 +31,7 @@ function renderFlightIcon(type: string) {
   return null;
 }
 
-const FromToRow = (props: Props) => {
+export const FromToRow = (props: Props) => {
   const origin = idx(props.arrival, _ => _.airport.city.name) || '';
   const destination = idx(props.departure, _ => _.airport.city.name) || '';
   const IATAOrigin = idx(props.arrival, _ => _.airport.locationId) || '';

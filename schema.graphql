@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com/
-# timestamp: Mon May 14 2018 11:24:48 GMT+0200 (CEST)
+# timestamp: Tue May 15 2018 11:49:29 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
@@ -77,6 +77,37 @@ type Baggage {
   note: String
 }
 
+type BookedService {
+  """Type of booked service"""
+  category: BookedServiceCategory
+
+  """Status of booked service"""
+  status: BookedServiceStatus
+}
+
+enum BookedServiceCategory {
+  ALLOCATED_SEATING
+  SPECIAL_ASSISTANCE
+  SPORTS_EQUIPMENT
+  TRAVELLING_WITH_PETS
+  MUSICAL_EQUIPMENT
+  MEALS_ON_BOARD
+  BAGS
+  EXTRAS_BAGS
+  EXTRAS_OTHER
+  EXTRAS_CHANGE_FLIGHT
+  EXTRAS_PASSENGER_DETAILS_CHANGE
+  UPDATE_INSURANCES
+  PRICE_CHANGE
+  FLIGHTS
+}
+
+enum BookedServiceStatus {
+  CONFIRMED
+  CLOSED
+  PENDING
+}
+
 """
 You can fetch here almost every information related to the booking itself.
 However when you want to fetch legs you have to use "oneWay", "return" and
@@ -109,6 +140,7 @@ type Booking {
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
+  bookedServices: [BookedService]
   type: BookingType
   oneWay: BookingOneWay
   return: BookingReturn
@@ -176,6 +208,7 @@ interface BookingInterface {
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
+  bookedServices: [BookedService]
 }
 
 type BookingMulticity implements BookingInterface {
@@ -199,6 +232,7 @@ type BookingMulticity implements BookingInterface {
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
+  bookedServices: [BookedService]
 
   """Initial origin."""
   start: RouteStop
@@ -234,6 +268,7 @@ type BookingOneWay implements BookingInterface {
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
+  bookedServices: [BookedService]
   trip: Trip
 }
 
@@ -259,6 +294,7 @@ type BookingReturn implements BookingInterface {
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
+  bookedServices: [BookedService]
 
   """Trip from origin to destination."""
   outbound: Trip

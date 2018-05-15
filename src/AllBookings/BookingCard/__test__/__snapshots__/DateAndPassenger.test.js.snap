@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DateAndPassenger should render correctly 1`] = `
+<div
+  className="fields"
+>
+  <div
+    className="section"
+  >
+    <div
+      className="label"
+    >
+      <Typography
+        size="small"
+        type="secondary"
+      >
+        Departure date
+      </Typography>
+    </div>
+    <Typography>
+      23/11/2017
+    </Typography>
+  </div>
+  <div
+    className="section"
+  >
+    <div
+      className="label"
+    >
+      <Typography
+        size="small"
+        type="secondary"
+      >
+        Booking date
+      </Typography>
+    </div>
+    <Typography>
+      Not Available
+    </Typography>
+  </div>
+  <div
+    className="section"
+  >
+    <div
+      className="label"
+    >
+      <Typography
+        size="small"
+        type="secondary"
+      >
+        Includes
+      </Typography>
+    </div>
+    <Typography>
+      <Passengers
+        customColor="#bac7d5"
+        size="small"
+      />
+      3
+    </Typography>
+  </div>
+  <div
+    className="section"
+  >
+    <div
+      className="label"
+    >
+      <Typography
+        size="small"
+        type="secondary"
+      >
+        Status
+      </Typography>
+    </div>
+    <div
+      style={
+        Object {
+          "color": "#127f22",
+          "fontSize": "14px",
+        }
+      }
+    >
+      Confirmed
+    </div>
+  </div>
+</div>
+`;
