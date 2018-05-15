@@ -14,7 +14,7 @@ import type { User } from '../types';
 import FullFAQLink from '../common/FullFAQLink';
 
 const style = css`
-  div.logged-out {
+  div.loggedOut {
     display: flex;
     justify-content: space-between;
     padding: 15px 122px 15px 40px;
@@ -32,19 +32,19 @@ const style = css`
   div.FAQ {
     width: 480px;
   }
-  div.faq-link {
+  div.faqLink {
     margin-left: 182px;
     line-height: 1.4;
   }
 `;
 
 const loggedInStyle = css`
-  div.help-header {
+  div.helpHeader {
     font-size: 28px;
     font-weight: bold;
     color: #171b1e;
   }
-  div.logged-in {
+  div.loggedIn {
     display: flex;
     justify-content: space-between;
     padding: 15px 122px 15px 40px;
@@ -53,7 +53,7 @@ const loggedInStyle = css`
     display: flex;
     align-items: center;
   }
-  div.faq-link {
+  div.faqLink {
     display: flex;
     margin-right: 58px;
   }
@@ -61,13 +61,13 @@ const loggedInStyle = css`
     margin-left: 12px;
   }
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    .desktop-only {
+    .desktopOnly {
       display: none !important;
     }
-    div.logged-in {
+    div.loggedIn {
       padding: 15px;
     }
-    div.help-header {
+    div.helpHeader {
       width: 100%;
       text-align: center;
     }
@@ -75,22 +75,22 @@ const loggedInStyle = css`
 `;
 
 const loggedOutStyle = css`
-  div.help-header {
+  div.helpHeader {
     font-size: 28px;
     font-weight: bold;
     color: #171b1e;
   }
-  div.logged-out {
+  div.loggedOut {
     display: flex;
     padding: 16px;
     align-items: center;
   }
-  div.signin-or-back {
+  div.signInOrBack {
     margin-right: 149px;
     width: 43px;
     height: 20px;
   }
-  span.back-button {
+  span.backButton {
     line-height: 2;
   }
 `;
@@ -116,16 +116,16 @@ const renderLoggedIn = (
   comesFromSearch: boolean,
 ) => {
   return (
-    <div className="logged-in">
+    <div className="loggedIn">
       <div className="signout-or-back">
         <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
       </div>
-      <div className="help-header">Help</div>
+      <div className="helpHeader">Help</div>
       <div className="links">
-        <div className="faq-link desktop-only">
+        <div className="faqLink desktopOnly">
           <FullFAQLink className="primary" />
         </div>
-        <div className="desktop-only">
+        <div className="desktopOnly">
           <SignOutButton />
         </div>
       </div>
@@ -140,10 +140,10 @@ const renderLoggedOut = (
   comesFromSearch: boolean,
 ) => {
   return (
-    <div className="logged-out">
-      <div className="signin-or-back">
+    <div className="loggedOut">
+      <div className="signInOrBack">
         {hasCategory || isArticle ? (
-          <span className="back-button">
+          <span className="backButton">
             <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
           </span>
         ) : (
@@ -157,7 +157,7 @@ const renderLoggedOut = (
           </Link>
         )}
       </div>
-      <div className="help-header">Help</div>
+      <div className="helpHeader">Help</div>
       <style jsx>{loggedOutStyle}</style>
     </div>
   );
