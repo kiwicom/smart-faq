@@ -8,6 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type AccordionBody_legs$ref = any;
 type CarrierLogoWrapper_legs$ref = any;
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type AccordionTripSummary_trip$ref: FragmentReference;
@@ -30,7 +31,12 @@ export type AccordionTripSummary_trip = {|
     |},
   |},
   +legs: ?$ReadOnlyArray<?{|
-    +$fragmentRefs: CarrierLogoWrapper_legs$ref,
+    +airline: ?{|
+      +name: ?string,
+      +code: ?string,
+      +logoUrl: ?string,
+    |},
+    +$fragmentRefs: (CarrierLogoWrapper_legs$ref & AccordionBody_legs$ref),
   |}>,
   +$refType: AccordionTripSummary_trip$ref,
 |};
@@ -39,6 +45,13 @@ export type AccordionTripSummary_trip = {|
 
 const node/*: ConcreteFragment*/ = (function(){
 var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v1 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "airport",
@@ -63,13 +76,7 @@ var v0 = {
       "concreteType": "LocationArea",
       "plural": false,
       "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "name",
-          "args": null,
-          "storageKey": null
-        }
+        v0
       ]
     }
   ]
@@ -97,7 +104,7 @@ return {
           "args": null,
           "storageKey": null
         },
-        v0
+        v1
       ]
     },
     {
@@ -109,7 +116,7 @@ return {
       "concreteType": "RouteStop",
       "plural": false,
       "selections": [
-        v0
+        v1
       ]
     },
     {
@@ -122,8 +129,39 @@ return {
       "plural": true,
       "selections": [
         {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "airline",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "Airline",
+          "plural": false,
+          "selections": [
+            v0,
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "code",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "logoUrl",
+              "args": null,
+              "storageKey": null
+            }
+          ]
+        },
+        {
           "kind": "FragmentSpread",
           "name": "CarrierLogoWrapper_legs",
+          "args": null
+        },
+        {
+          "kind": "FragmentSpread",
+          "name": "AccordionBody_legs",
           "args": null
         }
       ]
@@ -131,5 +169,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '5cee3d84477737c48462d0da5a58a568';
+(node/*: any*/).hash = 'c76ee4e3782fb9b248fd460f2be9953b';
 module.exports = node;

@@ -45,3 +45,14 @@ export const formatCountDown = (hoursLeft: number) => {
   }
   return `${ndays} days`;
 };
+
+export const formatTimeDuration = (mins: number) => {
+  const nhours = Math.floor(mins / 60);
+  const nmins = mins - nhours * 60;
+  return nhours ? `${nhours}h ${nmins}min` : `${nmins}min`;
+};
+
+export const formatHour = (date: string) => {
+  const options = { hour: 'numeric', timeZone: 'UTC', minute: 'numeric' };
+  return new Date(date).toLocaleString('en-US', options);
+};

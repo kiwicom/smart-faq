@@ -29,4 +29,18 @@ describe('date utils', () => {
       expect(wrapper.text()).toContain('Fri, May 4');
     });
   });
+
+  describe('formatTimeDuration', () => {
+    it('should format duration', () => {
+      expect(dateUtils.formatTimeDuration(90)).toBe('1h 30min');
+      expect(dateUtils.formatTimeDuration(32)).toBe('32min');
+      expect(dateUtils.formatTimeDuration(191)).toBe('3h 11min');
+    });
+  });
+  describe('formatHour', () => {
+    it('should format duration', () => {
+      const myDate = '2018-05-14T15:31:27.464Z';
+      expect(dateUtils.formatHour(myDate)).toBe('3:31 PM');
+    });
+  });
 });
