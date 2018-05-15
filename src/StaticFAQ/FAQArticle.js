@@ -21,7 +21,7 @@ const style = css`
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    color: #171b1e; // needed because the ... takes the color from the <div>
+    color: #7f91a8;
   }
 `;
 
@@ -37,12 +37,12 @@ const FAQArticle = (props: Props) => (
     style={{ textDecoration: 'none' }}
   >
     <Card>
-      <div className="ellipsis">
+      <div>
         <Typography type="attention" size="large">
           {props.article.title}
         </Typography>
       </div>
-      <div>
+      <div className="ellipsis">
         <Typography type="secondary" size="small">
           {props.article.perex}
         </Typography>
