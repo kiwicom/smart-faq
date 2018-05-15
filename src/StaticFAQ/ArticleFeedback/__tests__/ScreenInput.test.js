@@ -7,7 +7,7 @@ import ScreenInput from '../ScreenInput';
 
 const ch = (sc: string) => {}; //eslint-disable-line
 
-describe('SignIn', () => {
+describe('ScreenInput', () => {
   const component = shallow(
     <ScreenInput changeScreen={ch} articleId="WE4rT" />,
   );

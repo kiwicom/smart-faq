@@ -7,7 +7,7 @@ import ScreenInitial from '../ScreenInitial';
 
 const ch = (sc: string) => {}; //eslint-disable-line
 
-describe('SignIn', () => {
+describe('ScreenInitial', () => {
   const component = shallow(<ScreenInitial changeScreen={ch} />);
   it('should match snapshot', () => {
     expect(component).toMatchSnapshot();

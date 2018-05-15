@@ -18,7 +18,12 @@ const mutation = graphql`
   }
 `;
 
-export default (articleId: string, comment: string, callback: () => void) => {
+export default (
+  articleId: string,
+  comment: string,
+  callback: () => void,
+  errorCallback: () => void,
+) => {
   const variables = {
     articleId,
     type: commentType,
@@ -31,9 +36,9 @@ export default (articleId: string, comment: string, callback: () => void) => {
       if (!errors) {
         callback();
       } else {
-        console.error('Error response received from server.', errors); //eslint-disable-line
+        errorCallback();
       }
     },
-    onError: err => console.error(err), //eslint-disable-line
+    onError: () => errorCallback(),
   });
 };
