@@ -12,6 +12,7 @@ import routeDefinitions from '../routeDefinitions';
 import { withUser } from '../context/User';
 import type { User } from '../types';
 import FullFAQLink from '../common/FullFAQLink';
+import responsiveStyleHelperClasses from '../common/responsiveStyleHelperClasses';
 
 const style = css`
   div.loggedOut {
@@ -61,9 +62,6 @@ const loggedInStyle = css`
     margin-left: 12px;
   }
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    .desktopOnly {
-      display: none !important;
-    }
     div.loggedIn {
       padding: 15px;
     }
@@ -180,6 +178,7 @@ const ContentHeader = (props: Props) => {
           ? renderLoggedIn(hasCategory, isArticle, comesFromSearch)
           : renderLoggedOut(hasCategory, isArticle, comesFromSearch)}
         <style jsx>{style}</style>
+        <style jsx>{responsiveStyleHelperClasses}</style>
       </div>
     </div>
   );
