@@ -7,7 +7,7 @@ import ScreenThankyou from '../ScreenThankyou';
 
 const ch = (sc: string) => {}; //eslint-disable-line
 
-describe('SignIn', () => {
+describe('ScreenThankyou', () => {
   const component = shallow(<ScreenThankyou changeScreen={ch} />);
   it('should match snapshot', () => {
     expect(component).toMatchSnapshot();

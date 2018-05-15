@@ -72,8 +72,11 @@ class ScreenInput extends React.Component<Props, State> {
   handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     const { changeScreen, articleId } = this.props;
     e.preventDefault();
-    createComment(articleId, this.state.comment, () =>
-      changeScreen(screensList.THANK_YOU),
+    createComment(
+      articleId,
+      this.state.comment,
+      () => changeScreen(screensList.THANK_YOU),
+      () => changeScreen(screensList.ERROR),
     );
   };
   closeScreen = () => {

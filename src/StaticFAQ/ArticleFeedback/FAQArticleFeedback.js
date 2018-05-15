@@ -6,6 +6,7 @@ import css from 'styled-jsx/css';
 import ScreenInitial from './ScreenInitial';
 import ScreenInput from './ScreenInput';
 import ScreenThankyou from './ScreenThankyou';
+import ScreenError from './ScreenError';
 import screensList from './screensList';
 
 type Props = {
@@ -43,6 +44,8 @@ class FAQArticleFeedback extends React.Component<Props, State> {
         );
       case screensList.THANK_YOU:
         return <ScreenThankyou changeScreen={this.changeScreen} />;
+      case screensList.ERROR:
+        return <ScreenError changeScreen={this.changeScreen} />;
     }
     return <ScreenInitial changeScreen={this.changeScreen} />;
   }
