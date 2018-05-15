@@ -82,6 +82,7 @@ const loggedOutStyle = css`
     display: flex;
     padding: 16px;
     align-items: center;
+    height: 66px;
   }
   div.signInOrBack {
     margin-right: 149px;
@@ -90,6 +91,14 @@ const loggedOutStyle = css`
   }
   span.backButton {
     line-height: 2;
+  }
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .helpHeader {
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
   }
 `;
 
