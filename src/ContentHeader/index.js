@@ -128,6 +128,7 @@ const renderLoggedIn = (
         </div>
       </div>
       <style jsx>{loggedInStyle}</style>
+      <style jsx>{responsiveStyleHelperClasses}</style>
     </div>
   );
 };
@@ -178,7 +179,6 @@ const ContentHeader = (props: Props) => {
           ? renderLoggedIn(hasCategory, isArticle, comesFromSearch)
           : renderLoggedOut(hasCategory, isArticle, comesFromSearch)}
         <style jsx>{style}</style>
-        <style jsx>{responsiveStyleHelperClasses}</style>
       </div>
     </div>
   );
