@@ -38,8 +38,8 @@ const InputText = (props: Props) => (
         }
         .inputIcon {
           position: absolute;
-          top: 13px;
-          left: 15px;
+          top: 10px;
+          left: 12px;
         }
         button {
           border: none;
@@ -52,6 +52,7 @@ const InputText = (props: Props) => (
         input {
           box-sizing: border-box;
           width: 100%;
+          height: 44px;
           border-radius: 3px;
           color: #46515e;
           background-color: white;
