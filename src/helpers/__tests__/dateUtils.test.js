@@ -30,6 +30,13 @@ describe('date utils', () => {
     });
   });
 
+  describe('formatDepartureDate', () => {
+    it('should format UTC string to DD/MM/YYYY', () => {
+      const departureDate = '2017-11-23T20:40:00.000Z';
+      expect(dateUtils.formatDepartureDate(departureDate)).toBe('23/11/2017');
+    });
+  });
+
   describe('formatTimeDuration', () => {
     it('should format duration', () => {
       expect(dateUtils.formatTimeDuration(90)).toBe('1h 30min');

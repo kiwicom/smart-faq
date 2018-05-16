@@ -36,6 +36,14 @@ export const FormatDate = ({ dateString }: Props) => {
   );
 };
 
+export const formatDepartureDate = (dateString: string) => {
+  const dateUTC = new Date(dateString);
+  const month = dateUTC.getUTCMonth() + 1;
+  const day = dateUTC.getUTCDate();
+  const year = dateUTC.getUTCFullYear();
+  return `${day}/${month}/${year}`;
+};
+
 export const formatCountDown = (hoursLeft: number) => {
   const nhours = Math.floor(hoursLeft);
   const nmins = Math.floor((hoursLeft - nhours) * 60);
