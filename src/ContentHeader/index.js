@@ -159,13 +159,16 @@ const renderLoggedOut = (
             to={routeDefinitions.SIGN_IN}
             style={{ textDecoration: 'none' }}
           >
-            <Typography type="attention" variant="normal">
-              Sign In
-            </Typography>
+            <div className="desktopOnly">
+              <Typography type="attention" variant="normal">
+                Sign In
+              </Typography>
+            </div>
           </Link>
         )}
       </div>
       <div className="helpHeader">Help</div>
+      <style jsx>{responsiveStyleHelperClasses}</style>
       <style jsx>{loggedOutStyle}</style>
     </div>
   );
