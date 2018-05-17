@@ -18,6 +18,9 @@ const styles = css`
     width: 100%;
     border-radius: 3px;
   }
+  .Accordion > div:focus {
+    outline: 0;
+  }
 `;
 
 type Props = {|
