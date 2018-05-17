@@ -37,6 +37,7 @@ class SignOutButton extends React.Component<Props> {
           {`
             .signOut {
               cursor: pointer;
+              font-weight: bold;
             }
           `}
         </style>

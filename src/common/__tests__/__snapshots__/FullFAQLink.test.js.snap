@@ -7,9 +7,10 @@ exports[`FullFAQLink should match snapshot 1`] = `
   >
     <Typography
       type="attention"
+      variant="bold"
     >
       <span
-        className="jsx-410270121"
+        className="jsx-1328033587"
       >
         <a
           className="jsx-3768482590 "
@@ -63,12 +64,12 @@ exports[`FullFAQLink should match snapshot 1`] = `
           </span>
         </a>
         <JSXStyle
-          css="span.__jsx-style-dynamic-selector{font-family:Roboto,-apple-system,sans-serif;font-size:14px;color:#171b1e;;}"
+          css="span.__jsx-style-dynamic-selector{font-family:Roboto,-apple-system,sans-serif;font-size:14px;color:#171b1e;font-weight: bold;;}"
           dynamic={
             Array [
               "14px",
               "#171b1e",
-              "",
+              "font-weight: bold;",
             ]
           }
           styleId="1112443529"

@@ -17,7 +17,7 @@ const CloseIcon = ({ onClick }: Props) => (
     role="button"
     tabIndex="-1"
   >
-    <Close customColor="#7f91a8" size="medium" />
+    <Close customColor="#46515e" size="medium" />
     <style jsx>
       {`
         div.close-icon {
