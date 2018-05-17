@@ -18,7 +18,7 @@ const styles = css`
     .card {
       padding: 14px 22px;
       position: relative;
-      margin-top: 24px;
+      margin-top: 0;
       height: 100px;
       border-radius: none;
       box-shadow: none;

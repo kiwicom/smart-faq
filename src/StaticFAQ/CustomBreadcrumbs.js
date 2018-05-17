@@ -16,7 +16,7 @@ const style = css`
   }
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     .breadcrumbs {
-      margin: 0 16px;
+      margin: 30px 16px;
     }
   }
 `;

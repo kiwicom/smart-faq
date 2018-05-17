@@ -32,6 +32,7 @@ const style = css`
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     .faq-article-content {
       padding: 16px;
+      padding-top: 0;
     }
   }
 `;
