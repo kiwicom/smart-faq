@@ -44,6 +44,7 @@ const loggedInStyle = css`
     font-size: 28px;
     font-weight: bold;
     color: #171b1e;
+    pointer-events: none;
   }
   div.loggedIn {
     display: flex;
@@ -77,6 +78,7 @@ const loggedOutStyle = css`
     font-size: 28px;
     font-weight: bold;
     color: #171b1e;
+    pointer-events: none;
   }
   div.loggedOut {
     display: flex;
@@ -151,9 +153,9 @@ const renderLoggedOut = (
     <div className="loggedOut">
       <div className="signInOrBack">
         {hasCategory || isArticle ? (
-          <span className="backButton">
+          <div className="backButton">
             <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
-          </span>
+          </div>
         ) : (
           <Link
             to={routeDefinitions.SIGN_IN}
