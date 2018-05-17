@@ -28,7 +28,7 @@ type Props = {
 
 const FullFAQLink = (props: Props) => (
   <div>
-    <Typography type="attention">
+    <Typography type="attention" variant="bold">
       <a
         target="_blank"
         rel="noopener noreferrer"
