@@ -9,7 +9,7 @@ const isDev = env !== 'production';
 const initTranslation = (language: string, translation: {}) => {
   i18next.use(reactI18nextModule).init({
     lng: language,
-    fallbackLng: isDev ? 'dev' : language, // no fallback on production
+    fallbackLng: language,
     load: 'currentOnly', // strictly load only current language
     debug: isDev,
     resources: {
@@ -21,7 +21,9 @@ const initTranslation = (language: string, translation: {}) => {
       escapeValue: false, // not needed for react!!
     },
     initImmediate: false,
+    keySeparator: '.',
   });
+
   return i18next;
 };
 

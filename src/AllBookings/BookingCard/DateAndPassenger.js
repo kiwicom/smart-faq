@@ -2,11 +2,12 @@
 
 import idx from 'idx';
 import * as React from 'react';
+import { translate } from 'react-i18next';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { Typography } from '@kiwicom/orbit-components';
 import { Passengers } from '@kiwicom/orbit-components/lib/icons';
 
-import bookingStatus from '../../common/booking/bookingStatuses';
+import bookingStatuses from '../../common/booking/bookingStatuses';
 import { formatDepartureDate } from '../../helpers/dateUtils';
 import type { DateAndPassenger_departure } from './__generated__/DateAndPassenger_departure.graphql';
 import type { DateAndPassenger_booking } from './__generated__/DateAndPassenger_booking.graphql';
@@ -14,6 +15,7 @@ import type { DateAndPassenger_booking } from './__generated__/DateAndPassenger_
 type Props = {
   departure: DateAndPassenger_departure,
   booking: DateAndPassenger_booking,
+  t: string => string,
 };
 
 export const DateAndPassenger = (props: Props) => {
@@ -21,7 +23,8 @@ export const DateAndPassenger = (props: Props) => {
   const bookingDate = idx(props.booking, _ => _.bookingDate) || '';
   const passengerCount = idx(props.booking, _ => _.passengerCount) || 0;
   const status =
-    (props.booking.status && bookingStatus[props.booking.status]) || {};
+    (props.booking.status && bookingStatuses(props.t)[props.booking.status]) ||
+    {};
 
   return (
     <div className="fields">
@@ -67,7 +70,7 @@ export const DateAndPassenger = (props: Props) => {
 };
 
 export default createFragmentContainer(
-  DateAndPassenger,
+  translate()(DateAndPassenger),
   graphql`
     fragment DateAndPassenger_booking on BookingInterface {
       status

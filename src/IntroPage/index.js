@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
+import { Trans } from 'react-i18next';
 import { Typography } from '@kiwicom/orbit-components';
 
 import image from '../../static/woman-with-laptop@2x.jpg';
@@ -121,20 +122,28 @@ export class PureIntro extends React.Component<Props> {
           <img alt="Help" src={image} />
         </div>
         <div className="text">
-          <p className="title">Need help?</p>
+          <p className="title">
+            <Trans i18nKey="IntroPage.header">Need help?</Trans>
+          </p>
           <Typography type="secondary">
-            {"We're here for you. First, let's narrow down your request."}
+            <Trans i18nKey="IntroPage.subheader">
+              {"We're here for you. First, let's narrow down your request."}
+            </Trans>
           </Typography>
         </div>
         <div className="buttons">
           <div className="primary">
             <button onClick={this.goToExistingBooking}>
-              I have an existing booking
+              <Trans i18nKey="IntroPage.existingBooking">
+                I have an existing booking
+              </Trans>
             </button>
           </div>
           <div className="secondary">
             <button onClick={this.goToNoBooking}>
-              I don&apos;t have a booking
+              <Trans i18nKey="IntroPage.noBooking">
+                I don&apos;t have a booking
+              </Trans>
             </button>
           </div>
         </div>

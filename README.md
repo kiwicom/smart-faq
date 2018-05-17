@@ -33,16 +33,36 @@ Webpack and particularly `dotenv-webpack` package will take care of importing th
 
 - be declarative & use `Trans` component whenever it's possible: 
 ```
-<Trans i18nKey="translation_key">
-    Hello <strong title={t('nameTitle')}>{{name}}</strong>, you have {{count}} unread message. <Link to="/msgs">Go to messages</Link>.
+<Trans i18nKey="translationKey">
+  Hello <strong>{{name}}</strong>, you have {{count}} unread message.
 </Trans>
 ```
-- use `i18n.t` function only when `Trans` can't be used
 
-#### Before you are done
+- Children of the `Trans` component will be used as default translation when executing `yarn translations:collect` & during development when the key is missing (collect command haven't been executed yet).
+- When executing `yarn translations:collect`, such translation key will be saved like this:
 
-- run `yarn translations:collect` to recollect all translations for all supported languages
-- provide translations for all keys with `__STRING_NOT_TRANSLATED__` as value
+```json
+{
+  "translationKey": "Hello <1><0>{{name}}</0></1>, you have <3>{{count}}</3> unread message."
+}
+
+```
+
+- on places where it's not possible, use function named `__t`:
+
+```
+<div title={__t('translationKey')}></div>
+```
+
+- such key is saved with the value `__STRING_NOT_TRANSLATED__` - you need to provide translation manually.
+
+### Typical flow with translations
+
+1. *(In future)* Download latest translations from PhraseApp via `yarn trasnlations:download`.
+2. Before you push your changes and create PR, collect your translations via `yarn translations:collect`.
+3. Translate all `__STRING_NOT_TRANSLATED__` fields.
+4. *(In future)* Upload collected translations to be translated by professionals into all Kiwi.com languages via `yarn translations:upload`.
+5. *(In future)* When the new version is published to npm, translations are uploaded on CDN.
 
 ## Build process
 

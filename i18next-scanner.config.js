@@ -1,17 +1,16 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 // @noflow
 
-// copy pasted from https://github.com/i18next/i18next-scanner/blob/master/examples/i18next-scanner.config.js
-const fs = require('fs');
-const chalk = require('chalk');
+// see from https://github.com/i18next/i18next-scanner/
 
 const languages = require('./i18n/languages');
 
 module.exports = {
   options: {
-    debug: true,
+    debug: false,
+    removeUnusedKeys: true,
     func: {
-      list: ['i18next.t', 'i18n.t'],
+      list: ['i18next.t', 'i18n.t', '__t'],
       extensions: ['.js', '.jsx'],
     },
     trans: {
@@ -22,6 +21,7 @@ module.exports = {
     },
     lngs: languages,
     ns: ['translation'],
+    defaultLng: 'en',
     defaultNs: 'translation',
     defaultValue: '__STRING_NOT_TRANSLATED__',
     resource: {
@@ -29,40 +29,10 @@ module.exports = {
       savePath: 'i18n/{{lng}}/{{ns}}.json',
     },
     nsSeparator: false, // namespace separator
-    keySeparator: false, // key separator
+    keySeparator: '.',
     interpolation: {
       prefix: '{{',
       suffix: '}}',
     },
-  },
-  transform: function customTransform(file, enc, done) {
-    const parser = this.parser;
-    const content = fs.readFileSync(file.path, enc);
-    let count = 0;
-
-    parser.parseFuncFromString(
-      content,
-      { list: ['i18next._', 'i18next.__'] },
-      (key, options) => {
-        parser.set(
-          key,
-          Object.assign({}, options, {
-            nsSeparator: false,
-            keySeparator: false,
-          }),
-        );
-        ++count;
-      },
-    );
-
-    if (count > 0) {
-      console.log(
-        `i18next-scanner: count=${chalk.cyan(count)}, file=${chalk.yellow(
-          JSON.stringify(file.relative),
-        )}`,
-      );
-    }
-
-    done();
   },
 };
