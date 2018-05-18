@@ -9,7 +9,8 @@ import StaticFAQ from '../StaticFAQ';
 import FAQArticleDetail from '../StaticFAQ/FAQArticleDetail';
 import AllBookings from '../AllBookings';
 import routeDefinitions from '../routeDefinitions';
-import SingleBookingPage from '../SingleBookingPage';
+import NearestBooking from '../SingleBookingPage/NearestBooking';
+import SelectedBooking from '../SingleBookingPage/SelectedBooking';
 
 const style = css`
   div.ContentPage {
@@ -37,7 +38,12 @@ const BookingRoutes = (
       <Route
         exact
         path={routeDefinitions.NEAREST_BOOKING}
-        component={SingleBookingPage}
+        component={NearestBooking}
+      />
+      <Route
+        exact
+        path={`${routeDefinitions.SELECTED_BOOKING}/:bookingId`}
+        component={SelectedBooking}
       />
       <Route
         exact

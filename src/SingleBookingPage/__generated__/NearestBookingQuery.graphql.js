@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8b3c9d98e1ce6d7a3c5ef099a4d467bd
+ * @relayHash 96b5c6d7588a4d55211927bd1da27783
  */
 
 /* eslint-disable */
@@ -9,26 +9,26 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type NearestBooking_booking$ref = any;
-export type SingleBookingPageQueryVariables = {| |};
-export type SingleBookingPageQueryResponse = {|
+type BookingDetail_booking$ref = any;
+export type NearestBookingQueryVariables = {| |};
+export type NearestBookingQueryResponse = {|
   +nearestBooking: ?{|
-    +$fragmentRefs: NearestBooking_booking$ref,
+    +$fragmentRefs: BookingDetail_booking$ref,
   |},
 |};
 */
 
 
 /*
-query SingleBookingPageQuery {
+query NearestBookingQuery {
   nearestBooking {
     __typename
-    ...NearestBooking_booking
+    ...BookingDetail_booking
     id
   }
 }
 
-fragment NearestBooking_booking on BookingInterface {
+fragment BookingDetail_booking on BookingInterface {
   type
   directAccessURL
   ...Header_booking
@@ -381,13 +381,13 @@ v11 = [
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "SingleBookingPageQuery",
+  "name": "NearestBookingQuery",
   "id": null,
-  "text": "query SingleBookingPageQuery {\n  nearestBooking {\n    __typename\n    ...NearestBooking_booking\n    id\n  }\n}\n\nfragment NearestBooking_booking on BookingInterface {\n  type\n  directAccessURL\n  ...Header_booking\n  ... on BookingOneWay {\n    ...OneWay_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...Return_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...Multicity_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment Header_booking on BookingInterface {\n  databaseId\n  status\n}\n\nfragment OneWay_booking on BookingOneWay {\n  trip {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment Return_booking on BookingReturn {\n  outbound {\n    ...AccordionTripSummary_trip\n  }\n  inbound {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment Multicity_booking on BookingMulticity {\n  trips {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment AccordionTripSummary_trip on Trip {\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n    }\n  }\n  arrival {\n    airport {\n      locationId\n      city {\n        name\n      }\n    }\n  }\n  legs {\n    airline {\n      name\n      code\n      logoUrl\n    }\n    ...CarrierLogoWrapper_legs\n    ...AccordionBody_legs\n    id\n  }\n}\n\nfragment CarrierLogoWrapper_legs on Leg {\n  airline {\n    name\n    code\n  }\n}\n\nfragment AccordionBody_legs on Leg {\n  flightNumber\n  ...AccordionBodyLeg_leg\n  ...AccordionBodyLeg_nextLeg\n  ...AccordionBodyLastLeg_leg\n}\n\nfragment AccordionBodyLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  arrival {\n    time\n    localTime\n  }\n  departure {\n    time\n    localTime\n  }\n}\n\nfragment AccordionBodyLeg_nextLeg on Leg {\n  departure {\n    time\n  }\n}\n\nfragment AccordionBodyLastLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  departure {\n    localTime\n  }\n}\n\nfragment AccordionLegCities_leg on Leg {\n  duration\n  airline {\n    code\n    name\n  }\n  arrival {\n    localTime\n    airport {\n      locationId\n      name\n      city {\n        name\n      }\n    }\n  }\n  departure {\n    localTime\n    airport {\n      locationId\n      name\n      city {\n        name\n      }\n    }\n  }\n}\n",
+  "text": "query NearestBookingQuery {\n  nearestBooking {\n    __typename\n    ...BookingDetail_booking\n    id\n  }\n}\n\nfragment BookingDetail_booking on BookingInterface {\n  type\n  directAccessURL\n  ...Header_booking\n  ... on BookingOneWay {\n    ...OneWay_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...Return_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...Multicity_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment Header_booking on BookingInterface {\n  databaseId\n  status\n}\n\nfragment OneWay_booking on BookingOneWay {\n  trip {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment Return_booking on BookingReturn {\n  outbound {\n    ...AccordionTripSummary_trip\n  }\n  inbound {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment Multicity_booking on BookingMulticity {\n  trips {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment AccordionTripSummary_trip on Trip {\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n    }\n  }\n  arrival {\n    airport {\n      locationId\n      city {\n        name\n      }\n    }\n  }\n  legs {\n    airline {\n      name\n      code\n      logoUrl\n    }\n    ...CarrierLogoWrapper_legs\n    ...AccordionBody_legs\n    id\n  }\n}\n\nfragment CarrierLogoWrapper_legs on Leg {\n  airline {\n    name\n    code\n  }\n}\n\nfragment AccordionBody_legs on Leg {\n  flightNumber\n  ...AccordionBodyLeg_leg\n  ...AccordionBodyLeg_nextLeg\n  ...AccordionBodyLastLeg_leg\n}\n\nfragment AccordionBodyLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  arrival {\n    time\n    localTime\n  }\n  departure {\n    time\n    localTime\n  }\n}\n\nfragment AccordionBodyLeg_nextLeg on Leg {\n  departure {\n    time\n  }\n}\n\nfragment AccordionBodyLastLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  departure {\n    localTime\n  }\n}\n\nfragment AccordionLegCities_leg on Leg {\n  duration\n  airline {\n    code\n    name\n  }\n  arrival {\n    localTime\n    airport {\n      locationId\n      name\n      city {\n        name\n      }\n    }\n  }\n  departure {\n    localTime\n    airport {\n      locationId\n      name\n      city {\n        name\n      }\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "SingleBookingPageQuery",
+    "name": "NearestBookingQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": [],
@@ -403,7 +403,7 @@ return {
         "selections": [
           {
             "kind": "FragmentSpread",
-            "name": "NearestBooking_booking",
+            "name": "BookingDetail_booking",
             "args": null
           }
         ]
@@ -412,7 +412,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "SingleBookingPageQuery",
+    "name": "NearestBookingQuery",
     "argumentDefinitions": [],
     "selections": [
       {
@@ -536,5 +536,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = 'c910c9f1ed9b7e8a5ea7d02059b85918';
+(node/*: any*/).hash = '818cb45a0d988156c0352db67749a632';
 module.exports = node;

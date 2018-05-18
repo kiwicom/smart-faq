@@ -10,6 +10,7 @@ export default {
   KIWI_LOGIN: '/kiwi-login',
   FORGOTTEN_PASSWORD: '/forgotten-password',
   NEAREST_BOOKING: '/nearest-booking',
+  SELECTED_BOOKING: '/booking',
   NO_BOOKING: '/no-booking',
   CONTENT: '/content',
   ALL_BOOKINGS: '/all-bookings',
