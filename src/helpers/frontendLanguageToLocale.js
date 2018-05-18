@@ -1,6 +1,6 @@
 // @flow
 
-export const DEFAULT_LOCALE = 'en_US';
+export const DEFAULT_LOCALE = 'en_GB';
 
 export default {
   en: 'en_GB',

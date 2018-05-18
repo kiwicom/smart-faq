@@ -3,8 +3,8 @@
 import * as React from 'react';
 import idx from 'idx';
 import { graphql, createFragmentContainer } from 'react-relay';
+import { CarrierLogo } from '@kiwicom/orbit-components';
 
-import CarrierLogo from '../../common/booking/CarrierLogo';
 import type { CarrierLogoWrapper_legs } from './__generated__/CarrierLogoWrapper_legs.graphql';
 
 type Props = {

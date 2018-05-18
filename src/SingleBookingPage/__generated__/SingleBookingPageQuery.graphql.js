@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c315e952d5cb3df19559a56696502982
+ * @relayHash 8b3c9d98e1ce6d7a3c5ef099a4d467bd
  */
 
 /* eslint-disable */
@@ -9,13 +9,11 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type NearestBooking_bookingEdges$ref = any;
+type NearestBooking_booking$ref = any;
 export type SingleBookingPageQueryVariables = {| |};
 export type SingleBookingPageQueryResponse = {|
-  +allBookings: ?{|
-    +edges: ?$ReadOnlyArray<?{|
-      +$fragmentRefs: NearestBooking_bookingEdges$ref,
-    |}>,
+  +nearestBooking: ?{|
+    +$fragmentRefs: NearestBooking_booking$ref,
   |},
 |};
 */
@@ -23,61 +21,50 @@ export type SingleBookingPageQueryResponse = {|
 
 /*
 query SingleBookingPageQuery {
-  allBookings {
-    edges {
-      ...NearestBooking_bookingEdges
-    }
-  }
-}
-
-fragment NearestBooking_bookingEdges on BookingEdge {
-  node {
-    type
-    oneWay {
-      databaseId
-      trip {
-        arrival {
-          time
-        }
-      }
-      ...OneWay_booking
-      ...Header_booking
-      id
-    }
-    return {
-      databaseId
-      inbound {
-        arrival {
-          time
-        }
-      }
-      ...Return_booking
-      ...Header_booking
-      id
-    }
-    multicity {
-      databaseId
-      end {
-        time
-      }
-      ...Multicity_booking
-      ...Header_booking
-      id
-    }
-    directAccessURL
+  nearestBooking {
+    __typename
+    ...NearestBooking_booking
     id
   }
 }
 
-fragment OneWay_booking on BookingOneWay {
-  trip {
-    ...AccordionTripSummary_trip
+fragment NearestBooking_booking on BookingInterface {
+  type
+  directAccessURL
+  ...Header_booking
+  ... on BookingOneWay {
+    ...OneWay_booking
+    trip {
+      departure {
+        time
+      }
+    }
+  }
+  ... on BookingReturn {
+    ...Return_booking
+    outbound {
+      departure {
+        time
+      }
+    }
+  }
+  ... on BookingMulticity {
+    ...Multicity_booking
+    start {
+      time
+    }
   }
 }
 
 fragment Header_booking on BookingInterface {
   databaseId
   status
+}
+
+fragment OneWay_booking on BookingOneWay {
+  trip {
+    ...AccordionTripSummary_trip
+  }
 }
 
 fragment Return_booking on BookingReturn {
@@ -197,14 +184,14 @@ const node/*: ConcreteRequest*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "databaseId",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v1 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "time",
+  "name": "localTime",
   "args": null,
   "storageKey": null
 },
@@ -248,27 +235,26 @@ v5 = {
   ]
 },
 v6 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "localTime",
-  "args": null,
-  "storageKey": null
-},
-v7 = {
   "kind": "LinkedField",
   "alias": null,
-  "name": "departure",
+  "name": "arrival",
   "storageKey": null,
   "args": null,
   "concreteType": "RouteStop",
   "plural": false,
   "selections": [
-    v6,
     v5
   ]
 },
+v7 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "time",
+  "args": null,
+  "storageKey": null
+},
 v8 = [
-  v6,
+  v1,
   {
     "kind": "LinkedField",
     "alias": null,
@@ -283,16 +269,9 @@ v8 = [
       v4
     ]
   },
-  v1
+  v7
 ],
 v9 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
-v10 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "legs",
@@ -361,14 +340,14 @@ v10 = {
       "plural": false,
       "selections": v8
     },
-    v9
+    v0
   ]
 },
-v11 = [
+v10 = [
   {
     "kind": "LinkedField",
     "alias": null,
-    "name": "arrival",
+    "name": "departure",
     "storageKey": null,
     "args": null,
     "concreteType": "RouteStop",
@@ -378,38 +357,33 @@ v11 = [
       v5
     ]
   },
-  v7,
-  v10
+  v6,
+  v9
 ],
-v12 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "status",
-  "args": null,
-  "storageKey": null
-},
-v13 = [
-  v7,
+v11 = [
   {
     "kind": "LinkedField",
     "alias": null,
-    "name": "arrival",
+    "name": "departure",
     "storageKey": null,
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
     "selections": [
-      v5
+      v1,
+      v5,
+      v7
     ]
   },
-  v10
+  v6,
+  v9
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "SingleBookingPageQuery",
   "id": null,
-  "text": "query SingleBookingPageQuery {\n  allBookings {\n    edges {\n      ...NearestBooking_bookingEdges\n    }\n  }\n}\n\nfragment NearestBooking_bookingEdges on BookingEdge {\n  node {\n    type\n    oneWay {\n      databaseId\n      trip {\n        arrival {\n          time\n        }\n      }\n      ...OneWay_booking\n      ...Header_booking\n      id\n    }\n    return {\n      databaseId\n      inbound {\n        arrival {\n          time\n        }\n      }\n      ...Return_booking\n      ...Header_booking\n      id\n    }\n    multicity {\n      databaseId\n      end {\n        time\n      }\n      ...Multicity_booking\n      ...Header_booking\n      id\n    }\n    directAccessURL\n    id\n  }\n}\n\nfragment OneWay_booking on BookingOneWay {\n  trip {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment Header_booking on BookingInterface {\n  databaseId\n  status\n}\n\nfragment Return_booking on BookingReturn {\n  outbound {\n    ...AccordionTripSummary_trip\n  }\n  inbound {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment Multicity_booking on BookingMulticity {\n  trips {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment AccordionTripSummary_trip on Trip {\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n    }\n  }\n  arrival {\n    airport {\n      locationId\n      city {\n        name\n      }\n    }\n  }\n  legs {\n    airline {\n      name\n      code\n      logoUrl\n    }\n    ...CarrierLogoWrapper_legs\n    ...AccordionBody_legs\n    id\n  }\n}\n\nfragment CarrierLogoWrapper_legs on Leg {\n  airline {\n    name\n    code\n  }\n}\n\nfragment AccordionBody_legs on Leg {\n  flightNumber\n  ...AccordionBodyLeg_leg\n  ...AccordionBodyLeg_nextLeg\n  ...AccordionBodyLastLeg_leg\n}\n\nfragment AccordionBodyLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  arrival {\n    time\n    localTime\n  }\n  departure {\n    time\n    localTime\n  }\n}\n\nfragment AccordionBodyLeg_nextLeg on Leg {\n  departure {\n    time\n  }\n}\n\nfragment AccordionBodyLastLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  departure {\n    localTime\n  }\n}\n\nfragment AccordionLegCities_leg on Leg {\n  duration\n  airline {\n    code\n    name\n  }\n  arrival {\n    localTime\n    airport {\n      locationId\n      name\n      city {\n        name\n      }\n    }\n  }\n  departure {\n    localTime\n    airport {\n      locationId\n      name\n      city {\n        name\n      }\n    }\n  }\n}\n",
+  "text": "query SingleBookingPageQuery {\n  nearestBooking {\n    __typename\n    ...NearestBooking_booking\n    id\n  }\n}\n\nfragment NearestBooking_booking on BookingInterface {\n  type\n  directAccessURL\n  ...Header_booking\n  ... on BookingOneWay {\n    ...OneWay_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...Return_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...Multicity_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment Header_booking on BookingInterface {\n  databaseId\n  status\n}\n\nfragment OneWay_booking on BookingOneWay {\n  trip {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment Return_booking on BookingReturn {\n  outbound {\n    ...AccordionTripSummary_trip\n  }\n  inbound {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment Multicity_booking on BookingMulticity {\n  trips {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment AccordionTripSummary_trip on Trip {\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n    }\n  }\n  arrival {\n    airport {\n      locationId\n      city {\n        name\n      }\n    }\n  }\n  legs {\n    airline {\n      name\n      code\n      logoUrl\n    }\n    ...CarrierLogoWrapper_legs\n    ...AccordionBody_legs\n    id\n  }\n}\n\nfragment CarrierLogoWrapper_legs on Leg {\n  airline {\n    name\n    code\n  }\n}\n\nfragment AccordionBody_legs on Leg {\n  flightNumber\n  ...AccordionBodyLeg_leg\n  ...AccordionBodyLeg_nextLeg\n  ...AccordionBodyLastLeg_leg\n}\n\nfragment AccordionBodyLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  arrival {\n    time\n    localTime\n  }\n  departure {\n    time\n    localTime\n  }\n}\n\nfragment AccordionBodyLeg_nextLeg on Leg {\n  departure {\n    time\n  }\n}\n\nfragment AccordionBodyLastLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  departure {\n    localTime\n  }\n}\n\nfragment AccordionLegCities_leg on Leg {\n  duration\n  airline {\n    code\n    name\n  }\n  arrival {\n    localTime\n    airport {\n      locationId\n      name\n      city {\n        name\n      }\n    }\n  }\n  departure {\n    localTime\n    airport {\n      locationId\n      name\n      city {\n        name\n      }\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -421,27 +395,16 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "allBookings",
+        "name": "nearestBooking",
         "storageKey": null,
         "args": null,
-        "concreteType": "BookingConnection",
+        "concreteType": null,
         "plural": false,
         "selections": [
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "edges",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "BookingEdge",
-            "plural": true,
-            "selections": [
-              {
-                "kind": "FragmentSpread",
-                "name": "NearestBooking_bookingEdges",
-                "args": null
-              }
-            ]
+            "kind": "FragmentSpread",
+            "name": "NearestBooking_booking",
+            "args": null
           }
         ]
       }
@@ -455,140 +418,115 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "allBookings",
+        "name": "nearestBooking",
         "storageKey": null,
         "args": null,
-        "concreteType": "BookingConnection",
+        "concreteType": null,
         "plural": false,
         "selections": [
           {
-            "kind": "LinkedField",
+            "kind": "ScalarField",
             "alias": null,
-            "name": "edges",
-            "storageKey": null,
+            "name": "__typename",
             "args": null,
-            "concreteType": "BookingEdge",
-            "plural": true,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "type",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "directAccessURL",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "databaseId",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "status",
+            "args": null,
+            "storageKey": null
+          },
+          v0,
+          {
+            "kind": "InlineFragment",
+            "type": "BookingMulticity",
             "selections": [
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "node",
+                "name": "trips",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "Booking",
+                "concreteType": "Trip",
+                "plural": true,
+                "selections": v10
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "start",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "RouteStop",
                 "plural": false,
                 "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "type",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "oneWay",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "BookingOneWay",
-                    "plural": false,
-                    "selections": [
-                      v0,
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "trip",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "Trip",
-                        "plural": false,
-                        "selections": v11
-                      },
-                      v12,
-                      v9
-                    ]
-                  },
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "return",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "BookingReturn",
-                    "plural": false,
-                    "selections": [
-                      v0,
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "inbound",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "Trip",
-                        "plural": false,
-                        "selections": v11
-                      },
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "outbound",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "Trip",
-                        "plural": false,
-                        "selections": v13
-                      },
-                      v12,
-                      v9
-                    ]
-                  },
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "multicity",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "BookingMulticity",
-                    "plural": false,
-                    "selections": [
-                      v0,
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "end",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "RouteStop",
-                        "plural": false,
-                        "selections": [
-                          v1
-                        ]
-                      },
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "trips",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "Trip",
-                        "plural": true,
-                        "selections": v13
-                      },
-                      v12,
-                      v9
-                    ]
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "directAccessURL",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  v9
+                  v7
                 ]
+              }
+            ]
+          },
+          {
+            "kind": "InlineFragment",
+            "type": "BookingReturn",
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "outbound",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Trip",
+                "plural": false,
+                "selections": v11
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "inbound",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Trip",
+                "plural": false,
+                "selections": v10
+              }
+            ]
+          },
+          {
+            "kind": "InlineFragment",
+            "type": "BookingOneWay",
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "trip",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Trip",
+                "plural": false,
+                "selections": v11
               }
             ]
           }
@@ -598,5 +536,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '6ae713c49d657e3dbe2d743e702c46d5';
+(node/*: any*/).hash = 'c910c9f1ed9b7e8a5ea7d02059b85918';
 module.exports = node;
