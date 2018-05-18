@@ -4,7 +4,7 @@ import idx from 'idx';
 import * as React from 'react';
 import { graphql } from 'react-relay';
 import css from 'styled-jsx/css';
-import { Typography } from '@kiwicom/orbit-components';
+import { Heading } from '@kiwicom/orbit-components';
 
 import QueryRenderer from '../relay/QueryRenderer';
 import BookingError from '../SingleBookingPage/BookingError';
@@ -64,16 +64,16 @@ class AllBooking extends React.Component<Props> {
 
     return (
       <div className="allBookings">
-        <Typography size="header" type="attention">
+        <Heading weight="medium" size="medium">
           Bookings
-        </Typography>
+        </Heading>
         {!future && !past && <Loader />}
         {future && (
           <React.Fragment>
             <div className="subtitle">
-              <Typography size="large" type="attention" variant="bold">
+              <Heading weight="medium" size="small">
                 Upcoming
-              </Typography>
+              </Heading>
             </div>
             <BookingCardList booking={future} />
           </React.Fragment>
@@ -81,9 +81,9 @@ class AllBooking extends React.Component<Props> {
         {past && (
           <React.Fragment>
             <div className="subtitle">
-              <Typography size="large" type="primary" variant="bold">
+              <Heading weight="medium" size="small">
                 Past
-              </Typography>
+              </Heading>
             </div>
             <BookingCardList booking={past} />
           </React.Fragment>
