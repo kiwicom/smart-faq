@@ -18,6 +18,9 @@ const styles = css`
     padding: 40px 30px 40px 30px;
     background-color: #f5f7f9;
     height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100%;
   }
   div.subtitle {
     margin-top: 14px;
@@ -64,29 +67,26 @@ class AllBooking extends React.Component<Props> {
         <Typography size="header" type="attention">
           Bookings
         </Typography>
-        <div className="subtitle">
-          <Typography size="large" type="attention" variant="bold">
-            Upcoming
-          </Typography>
-        </div>
-        {future ? (
-          <div className="scroll">
+        {!future && !past && <Loader />}
+        {future && (
+          <React.Fragment>
+            <div className="subtitle">
+              <Typography size="large" type="attention" variant="bold">
+                Upcoming
+              </Typography>
+            </div>
             <BookingCardList booking={future} />
-          </div>
-        ) : (
-          <Loader />
+          </React.Fragment>
         )}
-        <div className="subtitle">
-          <Typography size="large" type="primary" variant="bold">
-            Past
-          </Typography>
-        </div>
-        {past ? (
-          <div className="scroll">
+        {past && (
+          <React.Fragment>
+            <div className="subtitle">
+              <Typography size="large" type="primary" variant="bold">
+                Past
+              </Typography>
+            </div>
             <BookingCardList booking={past} />
-          </div>
-        ) : (
-          <Loader />
+          </React.Fragment>
         )}
         <style>{styles}</style>
       </div>
