@@ -1,0 +1,125 @@
+// @flow
+
+import * as React from 'react';
+import { createFragmentContainer, graphql } from 'react-relay';
+
+import Multicity from './Multicity';
+import type { MulticityOverlay_booking } from './__generated__/MulticityOverlay_booking.graphql';
+
+type Props = {|
+  booking: MulticityOverlay_booking,
+|};
+
+type State = {|
+  overlapping: boolean,
+|};
+
+class MulticityOverlay extends React.Component<Props, State> {
+  state = {
+    overlapping: true,
+  };
+
+  toggleOverlapping = () => {
+    this.setState({ overlapping: !this.state.overlapping });
+  };
+
+  render() {
+    const { booking } = this.props;
+    const { trips } = booking;
+
+    return trips && trips.length > 2 ? (
+      <div>
+        <div
+          className={
+            this.state.overlapping
+              ? 'multicityWrapper'
+              : 'multicityWrapper multicityWrapperIsActive'
+          }
+        >
+          <Multicity booking={booking} />
+          <div
+            className={
+              this.state.overlapping
+                ? 'multicityOverlay'
+                : 'multicityOverlay multicityOverlayIsActive'
+            }
+          />
+        </div>
+        <button className="multicityButton" onClick={this.toggleOverlapping}>
+          {this.state.overlapping ? 'Show more trips' : 'Show less trips'}
+        </button>
+        <style jsx>
+          {`
+            .multicityWrapper {
+              position: relative;
+              height: 215px;
+              max-height: 215px;
+              overflow: hidden;
+              transition: all 1s ease-in-out;
+            }
+            .multicityWrapperIsActive {
+              height: auto;
+              max-height: 10000px; /* workaround for transition with height: auto */
+              overflow-y: scroll;
+              transition: all 1s ease-in-out;
+            }
+            .multicityOverlay {
+              display: flex;
+              justify-content: center;
+              align-items: flex-end;
+              position: absolute;
+              top: 0;
+              width: 100%;
+              height: inherit;
+              background: linear-gradient(
+                to bottom,
+                rgba(225, 0, 0, 0),
+                rgba(225, 0, 0, 0),
+                rgba(245, 247, 249, 0.59),
+                rgb(245, 247, 249)
+              );
+            }
+            .multicityOverlayIsActive {
+              animation: overlay 1s ease-in-out forwards;
+            }
+            .multicityButton {
+              width: 100%;
+              background: transparent;
+              border: none;
+              font-weight: bold;
+              text-decoration: underline;
+              font-size: 0.9rem;
+              cursor: pointer;
+            }
+            .multicityButton:focus {
+              outline: 0;
+            }
+            @keyframes overlay {
+              0% {
+                opacity: 1;
+              }
+              100% {
+                opacity: 0;
+                z-index: -1;
+              }
+            }
+          `}
+        </style>
+      </div>
+    ) : (
+      <Multicity booking={booking} />
+    );
+  }
+}
+
+export default createFragmentContainer(
+  MulticityOverlay,
+  graphql`
+    fragment MulticityOverlay_booking on BookingMulticity {
+      trips {
+        duration
+      }
+      ...Multicity_booking
+    }
+  `,
+);

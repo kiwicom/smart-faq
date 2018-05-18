@@ -7,7 +7,7 @@ import idx from 'idx';
 
 import OneWay from './bookingTypes/OneWay';
 import Return from './bookingTypes/Return';
-import Multicity from './bookingTypes/Multicity';
+import MulticityOverlay from './bookingTypes/MulticityOverlay';
 import Contact from './bookingItem/Contact';
 import Notification from './bookingItem/Notification';
 import Header from './bookingItem/Header';
@@ -30,7 +30,7 @@ class BookingDetail extends React.Component<Props> {
     }
 
     if (booking.type === bookingTypes.MULTICITY) {
-      return <Multicity booking={booking} />;
+      return <MulticityOverlay booking={booking} />;
     }
 
     return null;
@@ -142,7 +142,7 @@ export default createFragmentContainer(
         }
       }
       ... on BookingMulticity {
-        ...Multicity_booking
+        ...MulticityOverlay_booking
         start {
           time
         }
