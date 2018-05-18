@@ -89,6 +89,9 @@ class NearestBooking extends React.Component<Props> {
               padding: 40px;
               background-color: #f5f7f9;
               height: 100%;
+              overflow-y: auto;
+              overflow-x: hidden;
+              max-height: 100%;
             }
             .buttons {
               display: flex;

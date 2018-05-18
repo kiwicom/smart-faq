@@ -10,15 +10,15 @@ import AccordionHeader from './AccordionHeader';
 import type { AccordionTripSummary_trip } from './__generated__/AccordionTripSummary_trip.graphql';
 
 const styles = css`
-  .AccordionWrapper {
+  .accordionWrapper {
     margin-bottom: 16px;
   }
-  .Accordion {
+  .bookingAccordion {
     position: relative;
     width: 100%;
     border-radius: 3px;
   }
-  .Accordion > div:focus {
+  .bookingAccordion > div:focus {
     outline: 0;
   }
 `;
@@ -40,9 +40,9 @@ class Accordion extends React.Component<Props, State> {
   render() {
     const { trip } = this.props;
     return (
-      <div className="AccordionWrapper">
+      <div className="accordionWrapper">
         <Box padding="12px 16px 16px 12px">
-          <div className="Accordion">
+          <div className="bookingAccordion">
             <div
               onClick={this.toggleBody}
               onKeyUp={null}
