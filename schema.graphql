@@ -1,5 +1,5 @@
-# source: http://localhost:3000/graphql
-# timestamp: Wed May 16 2018 18:32:22 GMT+0200 (CEST)
+# source: https://graphql.kiwi.com/
+# timestamp: Tue May 22 2018 12:11:28 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
@@ -131,6 +131,9 @@ type Booking {
 
   """Total price of the whole booking."""
   price: Price
+
+  """Date of the booking creation"""
+  bookingDate: Date
   allowedBaggage: AllowedBaggage
 
   """Static assets related to this booking."""
@@ -147,6 +150,7 @@ type Booking {
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
+  contactDetails: BookingContactDetails
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
@@ -169,6 +173,12 @@ type BookingConnection {
 
   """A list of edges."""
   edges: [BookingEdge]
+}
+
+"""Contact details related to the booking"""
+type BookingContactDetails {
+  phone: String
+  email: String
 }
 
 enum BookingDestinationImageDimensions {
@@ -203,6 +213,9 @@ interface BookingInterface {
 
   """Total price of the whole booking."""
   price: Price
+
+  """Date of the booking creation"""
+  bookingDate: Date
   allowedBaggage: AllowedBaggage
 
   """Static assets related to this booking."""
@@ -219,6 +232,7 @@ interface BookingInterface {
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
+  contactDetails: BookingContactDetails
 }
 
 type BookingMulticity implements BookingInterface {
@@ -232,6 +246,9 @@ type BookingMulticity implements BookingInterface {
 
   """Total price of the whole booking."""
   price: Price
+
+  """Date of the booking creation"""
+  bookingDate: Date
   allowedBaggage: AllowedBaggage
 
   """Static assets related to this booking."""
@@ -248,6 +265,7 @@ type BookingMulticity implements BookingInterface {
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
+  contactDetails: BookingContactDetails
 
   """Initial origin."""
   start: RouteStop
@@ -273,6 +291,9 @@ type BookingOneWay implements BookingInterface {
 
   """Total price of the whole booking."""
   price: Price
+
+  """Date of the booking creation"""
+  bookingDate: Date
   allowedBaggage: AllowedBaggage
 
   """Static assets related to this booking."""
@@ -289,6 +310,7 @@ type BookingOneWay implements BookingInterface {
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
+  contactDetails: BookingContactDetails
   trip: Trip
 }
 
@@ -304,6 +326,9 @@ type BookingReturn implements BookingInterface {
 
   """Total price of the whole booking."""
   price: Price
+
+  """Date of the booking creation"""
+  bookingDate: Date
   allowedBaggage: AllowedBaggage
 
   """Static assets related to this booking."""
@@ -320,6 +345,7 @@ type BookingReturn implements BookingInterface {
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
+  contactDetails: BookingContactDetails
 
   """Trip from origin to destination."""
   outbound: Trip
@@ -1156,8 +1182,6 @@ input HotelsSearchInput {
   roomsConfiguration: [RoomsConfiguration!]!
 }
 
-scalar IP
-
 type Identity {
   """The ID of an object"""
   id: ID!
@@ -1186,6 +1210,8 @@ enum InsuranceType {
   TRAVEL_BASIC
   TRAVEL_PLUS
 }
+
+scalar IP
 
 """Use "Accept-Language" HTTP header to specify locale."""
 enum Language {
@@ -1380,16 +1406,6 @@ input LocationInput {
   radius: RadiusInput
 }
 
-"""Type of location"""
-enum LocationType {
-  airport
-  autonomous_territory
-  city
-  country
-  station
-  subdivision
-}
-
 input LocationsOptionsInput {
   """
   DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
@@ -1398,6 +1414,16 @@ input LocationsOptionsInput {
 
   """Desired location type the response should only include."""
   locationType: LocationType
+}
+
+"""Type of location"""
+enum LocationType {
+  airport
+  autonomous_territory
+  city
+  country
+  station
+  subdivision
 }
 
 """An object with an ID"""
@@ -1426,6 +1452,7 @@ type Passenger {
   databaseId: Int
   firstname: String
   lastname: String
+  fullName: String
   insuranceType: InsuranceType
   title: String
   birthday: DateTime
@@ -1682,6 +1709,9 @@ type TravelDocument {
 type Trip {
   departure: RouteStop
   arrival: RouteStop
+
+  """Trip duration in minutes."""
+  duration: Int
   legs: [Leg]
 }
 
