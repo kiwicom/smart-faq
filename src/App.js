@@ -26,7 +26,7 @@ const style = css`
     margin: 0;
     font-family: 'Roboto', sans-serif;
   }
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
     .smartFAQ {
       min-width: 100%;
     }

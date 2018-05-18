@@ -14,7 +14,7 @@ const style = css`
     white-space: nowrap;
     overflow: hidden;
   }
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
     .breadcrumbs {
       margin: 30px 16px;
     }

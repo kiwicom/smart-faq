@@ -123,7 +123,7 @@ const style = css`
     margin-top: 26px;
     margin-bottom: 24px;
   }
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
     .SignIn {
       width: 100%;
       padding-top: 22px;

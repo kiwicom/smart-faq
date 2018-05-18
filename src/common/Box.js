@@ -25,7 +25,7 @@ const Box = (props: Props) => (
           background-color: ${props.backgroundColor || '#ffffff'};
         }
 
-        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+        @media only screen and (min-width: 320px) and (max-width: 480px) {
           .box {
             background-color: ${props.mobileBackgroundColor || '#ffffff'};
           }

@@ -14,7 +14,7 @@ const styles = css`
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12);
   }
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
     .card {
       padding: 14px 22px;
       position: relative;
