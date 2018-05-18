@@ -4,7 +4,7 @@ import idx from 'idx';
 import * as React from 'react';
 import { graphql } from 'react-relay';
 import css from 'styled-jsx/css';
-import { Typography } from '@kiwicom/orbit-components';
+import { Heading } from '@kiwicom/orbit-components';
 
 import QueryRenderer from '../relay/QueryRenderer';
 import BookingError from '../SingleBookingPage/BookingError';
@@ -18,6 +18,9 @@ const styles = css`
     padding: 40px 30px 40px 30px;
     background-color: #f5f7f9;
     height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100%;
   }
   div.subtitle {
     margin-top: 14px;
@@ -61,32 +64,29 @@ class AllBooking extends React.Component<Props> {
 
     return (
       <div className="allBookings">
-        <Typography size="header" type="attention">
+        <Heading weight="medium" size="medium">
           Bookings
-        </Typography>
-        <div className="subtitle">
-          <Typography size="large" type="attention" variant="bold">
-            Upcoming
-          </Typography>
-        </div>
-        {future ? (
-          <div className="scroll">
+        </Heading>
+        {!future && !past && <Loader />}
+        {future && (
+          <React.Fragment>
+            <div className="subtitle">
+              <Heading weight="medium" size="small">
+                Upcoming
+              </Heading>
+            </div>
             <BookingCardList booking={future} />
-          </div>
-        ) : (
-          <Loader />
+          </React.Fragment>
         )}
-        <div className="subtitle">
-          <Typography size="large" type="primary" variant="bold">
-            Past
-          </Typography>
-        </div>
-        {past ? (
-          <div className="scroll">
+        {past && (
+          <React.Fragment>
+            <div className="subtitle">
+              <Heading weight="medium" size="small">
+                Past
+              </Heading>
+            </div>
             <BookingCardList booking={past} />
-          </div>
-        ) : (
-          <Loader />
+          </React.Fragment>
         )}
         <style>{styles}</style>
       </div>
