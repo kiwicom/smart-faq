@@ -14,8 +14,8 @@ type OneWay_booking$ref = any;
 type Return_booking$ref = any;
 export type BookingType = ('MULTICITY' | 'ONE_WAY' | 'RETURN' | '%future added value');
 import type { FragmentReference } from 'relay-runtime';
-declare export opaque type NearestBooking_booking$ref: FragmentReference;
-export type NearestBooking_booking = {|
+declare export opaque type BookingDetail_booking$ref: FragmentReference;
+export type BookingDetail_booking = {|
   +type: ?BookingType,
   +directAccessURL: ?string,
   +trip?: ?{|
@@ -32,7 +32,7 @@ export type NearestBooking_booking = {|
     +time: ?any,
   |},
   +$fragmentRefs: (Header_booking$ref & OneWay_booking$ref & Return_booking$ref & Multicity_booking$ref),
-  +$refType: NearestBooking_booking$ref,
+  +$refType: BookingDetail_booking$ref,
 |};
 */
 
@@ -61,7 +61,7 @@ v1 = [
 ];
 return {
   "kind": "Fragment",
-  "name": "NearestBooking_booking",
+  "name": "BookingDetail_booking",
   "type": "BookingInterface",
   "metadata": null,
   "argumentDefinitions": [],
@@ -151,5 +151,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '4f2ca62de113d6e636ca0d56e5b6a37b';
+(node/*: any*/).hash = '8412895e723866279489f76cc226e4d4';
 module.exports = node;

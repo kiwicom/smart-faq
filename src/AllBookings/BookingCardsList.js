@@ -2,8 +2,10 @@
 
 import idx from 'idx';
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { graphql, createFragmentContainer } from 'react-relay';
 
+import routeDefinitions from '../routeDefinitions';
 import bookingTypes from '../common/booking/bookingTypes';
 import OneWayBooking from './BookingTypes/OneWayBooking';
 import ReturnBooking from './BookingTypes/ReturnBooking';
@@ -24,24 +26,40 @@ const BookingCardsList = (props: Props) => {
       {bookings.map(booking => {
         const type = idx(booking, _ => _.type);
         const id = idx(booking, _ => _.id);
+        let bookingComponent = null;
 
         switch (type) {
           case bookingTypes.ONE_WAY:
-            return (
-              <OneWayBooking key={id} booking={idx(booking, _ => _.oneWay)} />
+            bookingComponent = (
+              <OneWayBooking booking={idx(booking, _ => _.oneWay)} />
             );
+            break;
           case bookingTypes.RETURN:
-            return (
-              <ReturnBooking key={id} booking={idx(booking, _ => _.return)} />
+            bookingComponent = (
+              <ReturnBooking booking={idx(booking, _ => _.return)} />
             );
+            break;
           case bookingTypes.MULTICITY:
-            return (
-              <MulticityBooking
-                key={id}
-                booking={idx(booking, _ => _.multicity)}
-              />
+            bookingComponent = (
+              <MulticityBooking booking={idx(booking, _ => _.multicity)} />
             );
+            break;
         }
+
+        if (bookingComponent) {
+          if (!id) {
+            return bookingComponent;
+          }
+
+          const url = `${routeDefinitions.SELECTED_BOOKING}/${id}`;
+
+          return (
+            <Link key={id} to={url} style={{ textDecoration: 'none' }}>
+              {bookingComponent}
+            </Link>
+          );
+        }
+
         return null;
       })}
     </React.Fragment>
