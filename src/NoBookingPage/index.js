@@ -15,6 +15,7 @@ import routeDefinitions from '../routeDefinitions';
 
 const style = css`
   div.NoBookingPage {
+    max-width: 480px;
     min-width: 480px;
     height: 100vh;
   }
@@ -24,6 +25,16 @@ const style = css`
   }
   div.FAQ {
     width: 480px;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    div.NoBookingPage {
+      min-width: 320px;
+      width: 100vw;
+    }
+
+    div.FAQ {
+      width: 100%;
+    }
   }
 `;
 

@@ -15,10 +15,19 @@ import type { User } from '../types';
 
 const style = css`
   .static-faq {
-    width: 480px;
+    width: 100%;
   }
   .static-faq-body {
     padding: 24px 40px;
+  }
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    .static-faq-body {
+      padding: 0;
+    }
+    .static-faq-search {
+      margin: 16px;
+    }
   }
 `;
 
@@ -67,7 +76,9 @@ class StaticFAQ extends React.Component<Props, State> {
       <div className="static-faq">
         {!this.props.user && <ContentHeader />}
         <div className="static-faq-body">
-          {!categoryId && this.renderInput(isSearching)}
+          <div className="static-faq-search">
+            {!categoryId && this.renderInput(isSearching)}
+          </div>
           {isSearching ? (
             <SearchAllFAQs search={value} />
           ) : (

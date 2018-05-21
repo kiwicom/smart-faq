@@ -13,6 +13,18 @@ const styles = css`
     border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12);
   }
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    .card {
+      padding: 14px 22px;
+      position: relative;
+      margin-top: 0;
+      height: 100px;
+      border-radius: none;
+      box-shadow: none;
+      border-top: 2px solid #e8edf1;
+    }
+  }
 `;
 
 type Props = {|

@@ -67,7 +67,7 @@ const style = css`
     margin-left: 182px;
     line-height: 1.4;
   }
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
     .Intro {
       width: 100%;
       padding-top: 75px;

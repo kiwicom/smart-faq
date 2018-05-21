@@ -6,12 +6,18 @@ import css from 'styled-jsx/css';
 import Breadcrumb from './Breadcrumb';
 import BackArrow from './BackArrow';
 import { withLoginToken } from '../context/User';
+import responsiveStyleHelperClasses from '../common/responsiveStyleHelperClasses';
 
 const style = css`
   .breadcrumbs {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    .breadcrumbs {
+      margin: 30px 16px;
+    }
   }
 `;
 
@@ -28,7 +34,11 @@ const CustomBreadcrumbs = ({ breadcrumbs, loginToken }: Props) => {
 
   return (
     <div className="breadcrumbs">
-      {loginToken && <BackArrow id={id} />}
+      {loginToken && (
+        <span className="desktopOnly">
+          <BackArrow id={id} />
+        </span>
+      )}
       <Breadcrumb breadcrumb={{ title: firstCategory.title }} />
       {breadcrumbs
         .slice(1, breadcrumbs.length - 1)
@@ -40,6 +50,7 @@ const CustomBreadcrumbs = ({ breadcrumbs, loginToken }: Props) => {
         ))}
       <Breadcrumb breadcrumb={{ title: lastCategory.title }} isCurrent />
       <style jsx>{style}</style>
+      <style jsx>{responsiveStyleHelperClasses}</style>
     </div>
   );
 };

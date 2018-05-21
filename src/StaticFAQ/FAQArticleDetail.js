@@ -3,6 +3,7 @@
 import * as React from 'react';
 import idx from 'idx';
 import { graphql } from 'react-relay';
+import css from 'styled-jsx/css';
 
 import QueryRenderer from '../relay/QueryRenderer';
 import Loader from '../common/Loader';
@@ -59,6 +60,18 @@ type Props = {
   },
 };
 
+const style = css`
+  .breadcrumbs {
+    margin: 24px 40px;
+    margin-bottom: -2px;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    .breadcrumbs {
+      margin: 24px 0;
+    }
+  }
+`;
+
 class FAQArticleDetail extends React.Component<Props> {
   renderDetailContent = (params: FAQArticleDetailParams) => {
     if (params.error) {
@@ -67,12 +80,7 @@ class FAQArticleDetail extends React.Component<Props> {
     if (params.props) {
       return (
         <React.Fragment>
-          <div
-            style={{
-              margin: '24px 40px',
-              marginBottom: '-2px',
-            }}
-          >
+          <div className="breadcrumbs">
             <CustomBreadcrumbs
               breadcrumbs={
                 params.props.FAQCategory
@@ -88,6 +96,7 @@ class FAQArticleDetail extends React.Component<Props> {
           </div>
 
           <FAQArticleDetailContent article={params.props.FAQArticle} />
+          <style jsx>{style}</style>
         </React.Fragment>
       );
     }
@@ -139,6 +148,11 @@ class FAQArticleDetail extends React.Component<Props> {
           {`
             .faq-article-detail {
               width: 480px;
+            }
+            @media only screen and (min-width: 320px) and (max-width: 480px) {
+              .faq-article-detail {
+                width: 100%;
+              }
             }
           `}
         </style>

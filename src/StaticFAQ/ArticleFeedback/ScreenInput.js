@@ -27,7 +27,7 @@ const style = css`
     color: #46515e;
     margin-bottom: 4px;
   }
-  div.input-area textarea {
+  div.inputArea textarea {
     width: 352px;
     height: 72px;
     border-radius: 3px;
@@ -56,9 +56,14 @@ const style = css`
     right: 8px;
     cursor: pointer;
   }
-  div.input-area textarea {
+  div.inputArea textarea {
     padding: 12px 16px;
     font-size: 14px;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    div.inputArea textarea {
+      width: 100%;
+    }
   }
 `;
 
@@ -102,7 +107,7 @@ class ScreenInput extends React.Component<Props, State> {
           </div>
           <div className="title">Your feedback helps us improve.</div>
           <div className="question">What problem were you trying to solve?</div>
-          <div className="input-area">
+          <div className="inputArea">
             <textarea />
           </div>
           <div className="button">

@@ -5,6 +5,7 @@ exports[`ScreenInitial should match snapshot 1`] = `
   backgroundColor="#f5f7f9"
   border="none"
   borderRadius="4px"
+  mobileBackgroundColor="transparent"
   padding="16px 24px"
 >
   <div

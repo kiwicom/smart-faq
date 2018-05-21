@@ -41,6 +41,7 @@ const ScreenInitial = (props: Props) => (
     padding="16px 24px"
     borderRadius="4px"
     backgroundColor="#f5f7f9"
+    mobileBackgroundColor="transparent"
   >
     <div className="question">
       Didn&apos;t find the answer you were looking for?

@@ -74,7 +74,7 @@ const style = css`
   div.errorMessage {
     margin-bottom: 15px;
   }
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
     .KiwiLogin {
       width: 100%;
       padding-top: 64px;
