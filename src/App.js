@@ -40,6 +40,7 @@ type Props = {|
   loginToken: ?string,
   onClose: () => void,
   onLogin: onLogin,
+  onSocialLogin: onLogin,
   onLogout: onLogout,
 |};
 
@@ -71,6 +72,7 @@ class App extends React.Component<Props> {
                 value={{
                   user: this.props.user,
                   onLogin: this.props.onLogin,
+                  onSocialLogin: this.props.onSocialLogin,
                   onLogout: this.props.onLogout,
                   loginToken: this.props.loginToken,
                 }}

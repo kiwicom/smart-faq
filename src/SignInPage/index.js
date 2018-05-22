@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
 
-import { socialLogin } from '../helpers/Auth';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import chevronRight from '../../static/chevron-right.png';
 import facebookLogo from '../../static/facebook-icon.png';
@@ -202,10 +201,6 @@ class SignIn extends React.Component<Props, State> {
     });
   };
 
-  handleSocialLogin = async (provider: string) => {
-    const authUrl = await socialLogin(provider);
-    window.location = authUrl;
-  };
 
   render() {
     return (
@@ -242,7 +237,7 @@ class SignIn extends React.Component<Props, State> {
         <div className="buttons">
           <button
             className="google"
-            onClick={() => this.handleSocialLogin('google')}
+            onClick={() => null}
           >
             <img
               className="google-icon"
@@ -253,7 +248,7 @@ class SignIn extends React.Component<Props, State> {
           </button>
           <button
             className="facebook"
-            onClick={() => this.handleSocialLogin('facebook')}
+            onClick={() => null}
           >
             <img
               className="facebook-icon"
