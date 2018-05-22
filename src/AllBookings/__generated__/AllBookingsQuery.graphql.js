@@ -505,11 +505,11 @@ return {
         "args": v2,
         "concreteType": "BookingConnection",
         "plural": false,
+<<<<<<< master
         "selections": v14
+=======
+        "selections": v15
       }
-    ]
-  }
-};
 })();
 (node/*: any*/).hash = '196432e7c79da019c13676d031825122';
 module.exports = node;

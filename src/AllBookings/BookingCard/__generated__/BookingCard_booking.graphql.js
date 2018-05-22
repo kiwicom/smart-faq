@@ -34,11 +34,38 @@ const node/*: ConcreteFragment*/ = {
       "storageKey": null
     },
     {
-      "kind": "FragmentSpread",
-      "name": "DateAndPassenger_booking",
-      "args": null
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "passengerCount",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "carriers",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Carrier",
+      "plural": true,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "name",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "code",
+          "args": null,
+          "storageKey": null
+        }
+      ]
     }
   ]
 };
-(node/*: any*/).hash = 'fde47630550ba61b9aa2ac865a1c027c';
+(node/*: any*/).hash = 'b3693a7f42178744bc5970a1783bc077';
 module.exports = node;

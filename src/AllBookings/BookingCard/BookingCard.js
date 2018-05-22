@@ -4,13 +4,12 @@ import idx from 'idx';
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { graphql, createFragmentContainer } from 'react-relay';
-import { Typography } from '@kiwicom/orbit-components';
+import { Typography, CarrierLogo } from '@kiwicom/orbit-components';
 import { ChevronRight } from '@kiwicom/orbit-components/lib/icons';
 
 import FromToRowFragment from './FromToRow';
 import DateAndPassengerFragment from './DateAndPassenger';
 import formatBookingId from '../../helpers/formatBookingId';
-import CarrierLogoWrapper from '../../SingleBookingPage/bookingItem/CarrierLogoWrapper';
 import type { BookingCard_arrival } from './__generated__/BookingCard_arrival.graphql';
 import type { BookingCard_departure } from './__generated__/BookingCard_departure.graphql';
 import type { BookingCard_booking } from './__generated__/BookingCard_booking.graphql';
@@ -66,7 +65,6 @@ const styles = css`
 `;
 
 type Props = {|
-  trip: any,
   type: string,
   booking: BookingCard_booking,
   departure: BookingCard_departure,
@@ -75,6 +73,7 @@ type Props = {|
 
 const BookingCard = (props: Props) => {
   const databaseId = idx(props.booking, _ => _.databaseId);
+  const carriers = idx(props.booking, _ => _.carriers) || [];
 
   return (
     <div className="card">
@@ -84,7 +83,7 @@ const BookingCard = (props: Props) => {
         </Typography>
       )}
       <div className="logoCarriers">
-        <CarrierLogoWrapper legs={props.trip.legs} />
+        <CarrierLogo carriers={carriers} />
       </div>
       <FromToRowFragment
         type={props.type}
@@ -107,8 +106,12 @@ export default createFragmentContainer(
   BookingCard,
   graphql`
     fragment BookingCard_booking on BookingInterface {
-      databaseId
       ...DateAndPassenger_booking
+      databaseId
+      carriers {
+        name
+        code
+      }
     }
 
     fragment BookingCard_arrival on RouteStop {
