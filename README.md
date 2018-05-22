@@ -4,6 +4,25 @@ Smart FAQ
 App demo: [https://kiwicom.github.io/smart-faq/](https://kiwicom.github.io/smart-faq/)  
 Frontend staging: [https://introduce-smart-faq.fe.staging.kiwi.com/](https://introduce-smart-faq.fe.staging.kiwi.com/)
 
+## Instalation
+
+Clone the repo `git clone git@github.com:kiwicom/smart-faq.git`
+
+Install all the dependencies with `yarn`
+
+
+In order to be able to login one requires an `.env` file at the root of the codebase, with the following contents:
+```javascript
+GRAPHQL_URI=XXXXXXXX
+KIWILOGIN_USER=XXXXXXXX
+```
+`KIWILOGIN_USER` is only needed for this standalone app to work
+
+Where the value of `GRAPHQL_URI` and `KIWILOGIN_USER` will be provided privately.
+
+Webpack and particularly `dotenv-webpack` package will take care of importing the variables from `.env` to your resulting build app or dev-server.
+
+
 ## Translations
 
 - Check out [react-i18next](https://react.i18next.com/) and [i18next](https://www.i18next.com/) docs for more info.
@@ -24,16 +43,6 @@ Frontend staging: [https://introduce-smart-faq.fe.staging.kiwi.com/](https://int
 
 - run `yarn translations:collect` to recollect all translations for all supported languages
 - provide translations for all keys with `__STRING_NOT_TRANSLATED__` as value
-
-## Dev process
-In order to be able to login one requires an `.env` file at the root of the codebase, with the following contents:
-```javascript
-KIWILOGIN_USER=XXXXXXXX
-```
-Where the value of `KIWILOGIN_USER` will be provided privately.
-
-Webpack and particularly `dotenv-webpack` package will take care of importing the variables from `.env` to your resulting build app or dev-server.
-
 
 ## Build process
 
