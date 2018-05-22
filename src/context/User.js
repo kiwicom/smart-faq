@@ -1,8 +1,8 @@
 // @flow
 
-import * as React from 'react';
+import * as React from "react";
 
-import type { User, onLogin, onLogout } from '../types';
+import type { User, onLogin, onLogout } from "../types";
 
 export type UserContextType = {
   user: User,
@@ -22,35 +22,38 @@ export const UserContext = React.createContext(
   }: UserContextType),
 );
 
-export const withLogin = <Props>(
-  Component: React.ComponentType<{ onLogin: onLogin, onSocialLogin: onLogin } & Props>,
+export const withLogin = <Props>(Component: React.ComponentType<{ onLogin: onLogin } & Props>) =>
+  function withLoginHOC(props: Props) {
+    return (
+      <UserContext.Consumer>
+        {({ onLogin }: UserContextType) => <Component {...props} onLogin={onLogin} />}
+      </UserContext.Consumer>
+    );
+  };
+
+export const withSocialLogin = <Props>(
+  Component: React.ComponentType<{ onSocialLogin: onLogin } & Props>,
 ) =>
   function withLoginHOC(props: Props) {
     return (
       <UserContext.Consumer>
-        {({ onLogin, onSocialLogin }: UserContextType) => (
-          <Component {...props} onLogin={onLogin} onSocialLogin={onSocialLogin} />
+        {({ onSocialLogin }: UserContextType) => (
+          <Component {...props} onSocialLogin={onSocialLogin} />
         )}
       </UserContext.Consumer>
     );
   };
 
-export const withLogout = <Props>(
-  Component: React.ComponentType<{ onLogout: onLogout } & Props>,
-) =>
+export const withLogout = <Props>(Component: React.ComponentType<{ onLogout: onLogout } & Props>) =>
   function withLogoutHOC(props: Props) {
     return (
       <UserContext.Consumer>
-        {({ onLogout }: UserContextType) => (
-          <Component {...props} onLogout={onLogout} />
-        )}
+        {({ onLogout }: UserContextType) => <Component {...props} onLogout={onLogout} />}
       </UserContext.Consumer>
     );
   };
 
-export const withUser = <Props>(
-  Component: React.ComponentType<{ user: User } & Props>,
-) =>
+export const withUser = <Props>(Component: React.ComponentType<{ user: User } & Props>) =>
   function withUserHOC(props: Props) {
     return (
       <UserContext.Consumer>
@@ -65,9 +68,7 @@ export const withLoginToken = <Props>(
   function withLoginTokenHOC(props: Props) {
     return (
       <UserContext.Consumer>
-        {({ loginToken }: UserContextType) => (
-          <Component {...props} loginToken={loginToken} />
-        )}
+        {({ loginToken }: UserContextType) => <Component {...props} loginToken={loginToken} />}
       </UserContext.Consumer>
     );
   };

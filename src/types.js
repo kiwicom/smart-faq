@@ -8,5 +8,6 @@ export type User = {
 } | null;
 
 export type onLogin = (string, string) => Promise<*>;
+export type onSocialLogin = (string) => Promise<*>;
 
 export type onLogout = () => Promise<*>;

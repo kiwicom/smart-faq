@@ -13,6 +13,8 @@ import routeDefinitions from '../routeDefinitions';
 import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
 import Input from '../common/Input';
+import { withSocialLogin } from '../context/User';
+import type { onSocialLogin } from '../types.js'
 
 const style = css`
   .SignIn {
@@ -178,6 +180,7 @@ type Props = {
   history: {
     push: (string | { pathname: string, state: { email: string } }) => void,
   },
+  onSocialLogin: onSocialLogin
 };
 
 type State = {|
@@ -200,7 +203,6 @@ class SignIn extends React.Component<Props, State> {
       state: { email: this.state.email },
     });
   };
-
 
   render() {
     return (
@@ -235,10 +237,8 @@ class SignIn extends React.Component<Props, State> {
         </form>
         <p className="or"> or </p>
         <div className="buttons">
-          <button
-            className="google"
-            onClick={() => null}
-          >
+          <button className="google" onClick={
+            () => this.props.onSocialLogin('google')}>
             <img
               className="google-icon"
               src={googleLogo}
@@ -246,10 +246,8 @@ class SignIn extends React.Component<Props, State> {
             />
             <span className="label">Continue with Google </span>
           </button>
-          <button
-            className="facebook"
-            onClick={() => null}
-          >
+          <button className="facebook" onClick={
+            () => this.props.onSocialLogin('facebook')}>
             <img
               className="facebook-icon"
               src={facebookLogo}
