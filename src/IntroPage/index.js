@@ -103,7 +103,7 @@ type Props = {
   },
 };
 
-class Intro extends React.Component<Props> {
+export class PureIntro extends React.Component<Props> {
   goToExistingBooking = () => {
     this.props.user
       ? this.props.history.push(routeDefinitions.CONTENT)
@@ -149,4 +149,4 @@ class Intro extends React.Component<Props> {
   }
 }
 
-export default withUser(redirectsLoggedIn(Intro));
+export default withUser(redirectsLoggedIn(PureIntro));
