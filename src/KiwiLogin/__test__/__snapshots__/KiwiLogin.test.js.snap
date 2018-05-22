@@ -1,3 +1,113 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`KiwiLogin should match snapshot 1`] = `[Function]`;
+exports[`KiwiLogin should change state 1`] = `
+Object {
+  "email": "email@kiwi.com",
+  "password": "myRealPassword",
+  "showError": false,
+}
+`;
+
+exports[`KiwiLogin should match snapshot 1`] = `
+<div
+  className="jsx-1370805427 KiwiLogin"
+>
+  <CloseButton />
+  <withRouter(BackButton)
+    text="Back"
+  />
+  <div
+    className="jsx-1370805427 picture"
+  >
+    <img
+      alt="Help"
+      className="jsx-1370805427"
+      src="https://images.kiwi.com/smart-faq/woman-with-laptop@2x.jpg"
+    />
+  </div>
+  <div
+    className="jsx-1370805427 main"
+  >
+    <p
+      className="jsx-1370805427 title"
+    >
+      Kiwi.com account
+    </p>
+    <Typography
+      type="secondary"
+    >
+      If you have an account with us, just use your credentials to sign in.
+    </Typography>
+    <form
+      className="jsx-1370805427"
+      onSubmit={[Function]}
+    >
+      <label
+        className="jsx-1370805427"
+        htmlFor="email"
+      >
+        Email:
+        <div
+          className="jsx-1370805427 input"
+        >
+          <InputText
+            name="email"
+            onChange={[Function]}
+            placeholder="e.g. your@email.com"
+            type="email"
+            value=""
+          />
+        </div>
+      </label>
+      <label
+        className="jsx-1370805427"
+        htmlFor="password"
+      >
+        Password:
+        <div
+          className="jsx-1370805427 input"
+        >
+          <InputText
+            name="password"
+            onChange={[Function]}
+            type="password"
+            value=""
+          />
+        </div>
+      </label>
+      <Link
+        replace={false}
+        style={
+          Object {
+            "textDecoration": "none",
+          }
+        }
+        to="/forgotten-password"
+      >
+        <div
+          className="jsx-1370805427 forgot-password"
+        >
+          <Typography
+            type="active"
+          >
+            Forgot your password?
+          </Typography>
+        </div>
+      </Link>
+      <span
+        className="jsx-1370805427 singIn"
+      >
+        <button
+          className="jsx-1370805427"
+        >
+          Sign In
+        </button>
+      </span>
+    </form>
+  </div>
+  <JSXStyle
+    css=".KiwiLogin.jsx-1370805427{width:480px;padding-top:128px;padding-left:40px;padding-right:40px;}div.picture.jsx-1370805427 img.jsx-1370805427{width:203px;height:156px;}div.picture.jsx-1370805427{text-align:center;margin-bottom:68px;}p.title.jsx-1370805427{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:8px;line-height:1.2;}.forgot-password.jsx-1370805427{margin-top:12px;display:inline-block;}.singIn.jsx-1370805427{float:right;}.singIn.jsx-1370805427 button.jsx-1370805427{width:100px;height:44px;border-radius:3px;background-color:#00a991;font-size:14px;font-weight:bold;color:#ffffff;border:none;}form.jsx-1370805427{margin-top:32.8px;}div.input.jsx-1370805427{width:400px;height:44px;margin-bottom:34px;margin-top:4px;}label.jsx-1370805427{width:352px;height:20px;font-size:14px;line-height:1.43;text-align:left;color:#46515e;display:inline-table;}div.errorMessage.jsx-1370805427{margin-bottom:15px;}@media only screen and (min-width:320px) and (max-width:480px){.KiwiLogin.jsx-1370805427{width:100%;padding-top:64px;padding-left:0px;padding-right:0px;}div.picture.jsx-1370805427{display:none;}div.input.jsx-1370805427{width:100%;margin-bottom:26px;}div.main.jsx-1370805427{margin-left:16px;margin-right:16px;}div.forgot-password.jsx-1370805427{text-align:center;display:block;margin-bottom:20px;margin-top:0px;}.singIn.jsx-1370805427 button.jsx-1370805427{width:100%;}.singIn.jsx-1370805427{float:none;width:100%;}label.jsx-1370805427{width:100%;}}"
+    styleId="1370805427"
+  />
+</div>
+`;

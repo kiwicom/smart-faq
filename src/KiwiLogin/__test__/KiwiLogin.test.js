@@ -1,23 +1,74 @@
 // @flow
-
 import * as React from 'react';
+import { shallow } from 'enzyme';
+
+import { PureKiwiLogin } from '../index';
 
 describe('KiwiLogin', () => {
-  /*
-  enzyme broken until new release https://github.com/airbnb/enzyme/pull/1513
+  const props = {
+    onLogin: () =>
+      new Promise(resolve => {
+        process.nextTick(() => resolve());
+      }),
+    history: {
+      push: jest.fn(),
+    },
+  };
+  const e = {
+    preventDefault: jest.fn(),
+  };
 
-  const mockStore = configureStore();
-  const store = mockStore({});
+  const wrapper = shallow(<PureKiwiLogin {...props} />);
+  it('should change state', () => {
+    const Login = wrapper.instance();
+    const state = Login.state;
+    expect(state).toEqual({ email: '', password: '', showError: false });
 
-  const component = mount(
-    <CloseContext.Provider value={() => {}}>
-      <MemoryRouter initialEntries={[{ key: 'testKey' }]}>
-        <KiwiLogin store={store} />
-      </MemoryRouter>
-    </CloseContext.Provider>
-  );
-  */
+    Login.handleChange({
+      target: {
+        name: 'email',
+        value: 'email@kiwi.com',
+      },
+    });
+    Login.handleChange({
+      target: {
+        name: 'password',
+        value: 'myRealPassword',
+      },
+    });
+
+    expect(Login.state).toMatchSnapshot();
+  });
+
+  it('should handle sign in', async () => {
+    const Login = wrapper.instance();
+    await Login.handleSignIn(e);
+    expect(e.preventDefault.mock.calls).toHaveLength(1);
+    expect(Login.props.history.push.mock.calls[0][0]).toBe('/content');
+  });
+
+  it('should handle error in sign in', async () => {
+    const errorProps = {
+      history: {
+        push: jest.fn(),
+      },
+      onLogin: () =>
+        new Promise((resolve, reject) => {
+          process.nextTick(() => reject());
+        }),
+    };
+
+    const LoginWrapper = shallow(<PureKiwiLogin {...errorProps} />);
+    const Login = LoginWrapper.instance();
+    expect(Login.state.showError).toBe(false);
+
+    await Login.handleSignIn(e);
+
+    expect(Login.props.history.push.mock.calls).toHaveLength(0);
+    expect(Login.state.showError).toBe(true);
+  });
+
   it('should match snapshot', () => {
-    expect(() => <div />).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 });
