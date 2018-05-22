@@ -66,7 +66,7 @@ class BookingDetail extends React.Component<Props> {
 
     return (
       <div className="nearestBooking">
-        <Header booking={booking} />
+        <Header booking={booking} isFuture={showNotification} />
         {showNotification &&
           timeDelta && (
             <Notification hoursLeft={timeDelta} isUrgent={isUrgent} />
