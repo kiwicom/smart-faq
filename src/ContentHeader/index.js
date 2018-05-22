@@ -183,7 +183,8 @@ const ContentHeader = (props: Props) => {
 
   const isArticle = currentpath.includes('article');
   const lastEntry = isArticle && entries[entries.length - 2];
-  const comesFromSearch = lastEntry && lastEntry.pathname === '/static-faq';
+  const comesFromSearch =
+    lastEntry && lastEntry.pathname === routeDefinitions.STATIC_FAQ;
 
   return (
     <div className="header">
