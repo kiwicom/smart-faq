@@ -12,11 +12,19 @@ type Props = {
 };
 
 const CarrierLogoWrapper = (props: Props) => {
+  const addedCarriers = {};
   const carriers = (props.legs || [])
-    .map(leg => {
+    .filter(leg => {
       const code = idx(leg, _ => _.airline.code);
+      if (code && !addedCarriers[code]) {
+        addedCarriers[code] = true;
+        return true;
+      }
+      return false;
+    })
+    .map(leg => {
       const name = idx(leg, _ => _.airline.name);
-
+      const code = idx(leg, _ => _.airline.code);
       if (code && name) {
         return { code, name };
       }
