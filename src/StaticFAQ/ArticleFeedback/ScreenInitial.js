@@ -18,7 +18,8 @@ const style = css`
     margin-bottom: 16px;
   }
   .button {
-    text-align: center;
+    display: flex;
+    justify-content: center;
   }
   .button button {
     padding: 12px 18px;

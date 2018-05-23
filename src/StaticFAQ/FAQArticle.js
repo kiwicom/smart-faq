@@ -17,11 +17,13 @@ type Props = {|
 |};
 
 const style = css`
-  .ellipsis {
+  .perex {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     color: #7f91a8;
+    line-height: 1.4;
+    margin-top: 5px;
   }
 `;
 
@@ -42,7 +44,7 @@ const FAQArticle = (props: Props) => (
           {props.article.title}
         </Typography>
       </div>
-      <div className="ellipsis">
+      <div className="perex">
         <Typography type="secondary" size="small">
           {props.article.perex}
         </Typography>
