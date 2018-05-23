@@ -124,7 +124,7 @@ type State = {|
   email: string,
 |};
 
-class ForgottenPasword extends React.Component<Props, State> {
+class ForgottenPassword extends React.Component<Props, State> {
   state = {
     email: '',
   };
@@ -177,4 +177,4 @@ class ForgottenPasword extends React.Component<Props, State> {
     );
   }
 }
-export default ForgottenPasword;
+export default ForgottenPassword;
