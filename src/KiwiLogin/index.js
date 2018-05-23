@@ -123,7 +123,7 @@ type State = {|
   showError: boolean,
 |};
 
-export class PureKiwiLogin extends React.Component<Props, State> {
+class KiwiLogin extends React.Component<Props, State> {
   state = {
     email: '',
     password: '',
@@ -209,4 +209,6 @@ export class PureKiwiLogin extends React.Component<Props, State> {
   }
 }
 
-export default withLogin(PureKiwiLogin);
+export const RawKiwiLogin = KiwiLogin;
+
+export default withLogin(KiwiLogin);

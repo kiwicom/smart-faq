@@ -2,14 +2,11 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import { PureKiwiLogin } from '../index';
+import { RawKiwiLogin } from '../index';
 
 describe('KiwiLogin', () => {
   const props = {
-    onLogin: () =>
-      new Promise(resolve => {
-        process.nextTick(() => resolve());
-      }),
+    onLogin: async () => {},
     history: {
       push: jest.fn(),
     },
@@ -18,7 +15,7 @@ describe('KiwiLogin', () => {
     preventDefault: jest.fn(),
   };
 
-  const wrapper = shallow(<PureKiwiLogin {...props} />);
+  const wrapper = shallow(<RawKiwiLogin {...props} />);
   it('should change state', () => {
     const Login = wrapper.instance();
     const state = Login.state;
@@ -46,13 +43,10 @@ describe('KiwiLogin', () => {
       history: {
         push: jest.fn(),
       },
-      onLogin: () =>
-        new Promise((resolve, reject) => {
-          process.nextTick(() => reject());
-        }),
+      onLogin: () => new Promise((resolve, reject) => reject()),
     };
 
-    const LoginWrapper = shallow(<PureKiwiLogin {...errorProps} />);
+    const LoginWrapper = shallow(<RawKiwiLogin {...errorProps} />);
     const Login = LoginWrapper.instance();
     expect(Login.state.showError).toBe(false);
 
