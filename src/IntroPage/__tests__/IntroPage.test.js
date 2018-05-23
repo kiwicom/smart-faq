@@ -3,7 +3,13 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 
 import { PureIntro } from '../index';
-import { user } from '../../helpers/defaultTestProps';
+
+const user = {
+  id: '3',
+  email: 'email@kiwi.com',
+  firstname: 'MyName',
+  lastname: 'This is my name',
+};
 
 describe('IntroPage', () => {
   const props = {
