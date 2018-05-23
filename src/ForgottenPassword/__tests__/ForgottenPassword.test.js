@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 
 import ForgottenPasword from '../index';
 
-describe('ForgottenPasword', () => {
+describe('ForgottenPassword', () => {
   const props = {
     history: {
       push: jest.fn(),
@@ -16,25 +16,25 @@ describe('ForgottenPasword', () => {
 
   const wrapper = shallow(<ForgottenPasword {...props} />);
   it('should change state', () => {
-    const ForgottPassword = wrapper.instance();
-    const state = ForgottPassword.state;
+    const ForgottenPasswordIns = wrapper.instance();
+    const state = ForgottenPasswordIns.state;
     expect(state).toEqual({ email: '' });
 
-    ForgottPassword.handleChangeEmail({
+    ForgottenPasswordIns.handleChangeEmail({
       target: {
         value: 'email@kiwi.com',
       },
     });
 
-    expect(ForgottPassword.state).toEqual({ email: 'email@kiwi.com' });
+    expect(ForgottenPasswordIns.state).toEqual({ email: 'email@kiwi.com' });
   });
 
   it('should handle email submission', async () => {
-    const ForgottPassword = wrapper.instance();
-    await ForgottPassword.handleSubmitEmail(e);
+    const ForgottenPasswordIns = wrapper.instance();
+    await ForgottenPasswordIns.handleSubmitEmail(e);
 
     expect(e.preventDefault.mock.calls).toHaveLength(1);
-    expect(ForgottPassword.props.history.push.mock.calls[0][0]).toEqual({
+    expect(ForgottenPasswordIns.props.history.push.mock.calls[0][0]).toEqual({
       pathname: '/check-recovery-link',
       state: { email: 'email@kiwi.com' },
     });
