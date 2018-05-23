@@ -10,6 +10,7 @@ import { formatDepartureDate } from '../../helpers/dateUtils';
 import type { DateAndPassenger_departure } from './__generated__/DateAndPassenger_departure.graphql';
 
 type Props = {
+  bookingDate: string,
   departure: DateAndPassenger_departure,
   passengerCount: number,
   status: {
@@ -36,7 +37,7 @@ export const DateAndPassenger = (props: Props) => {
             Booking date
           </Typography>
         </div>
-        <Typography>Not Available</Typography>
+        <Typography>{formatDepartureDate(props.bookingDate)}</Typography>
       </div>
       <div className="section">
         <div className="label">

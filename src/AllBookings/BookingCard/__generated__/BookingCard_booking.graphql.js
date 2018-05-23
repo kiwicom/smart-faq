@@ -15,6 +15,7 @@ export type BookingCard_booking = {|
   +status: ?BookingStatus,
   +databaseId: ?number,
   +passengerCount: ?number,
+  +bookingDate: ?any,
   +$refType: BookingCard_booking$ref,
 |};
 */
@@ -47,8 +48,15 @@ const node/*: ConcreteFragment*/ = {
       "name": "passengerCount",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "bookingDate",
+      "args": null,
+      "storageKey": null
     }
   ]
 };
-(node/*: any*/).hash = '04ce94194f665bd706fc87630bfc1d2e';
+(node/*: any*/).hash = '07c25335c7467fe1d654379f910354b6';
 module.exports = node;
