@@ -71,6 +71,7 @@ type Props = {|
   arrival: BookingCard_arrival,
 |};
 
+
 const BookingCard = (props: Props) => {
   const databaseId = idx(props.booking, _ => _.databaseId);
   const carriers = idx(props.booking, _ => _.carriers) || [];
