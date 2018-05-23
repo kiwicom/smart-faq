@@ -55,7 +55,7 @@ exports[`KiwiLogin should match snapshot 1`] = `
             onChange={[Function]}
             placeholder="e.g. your@email.com"
             type="email"
-            value=""
+            value="email@kiwi.com"
           />
         </div>
       </label>
@@ -71,7 +71,7 @@ exports[`KiwiLogin should match snapshot 1`] = `
             name="password"
             onChange={[Function]}
             type="password"
-            value=""
+            value="myRealPassword"
           />
         </div>
       </label>

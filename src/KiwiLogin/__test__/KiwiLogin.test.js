@@ -24,17 +24,11 @@ describe('KiwiLogin', () => {
     const state = Login.state;
     expect(state).toEqual({ email: '', password: '', showError: false });
 
-    Login.handleChange({
-      target: {
-        name: 'email',
-        value: 'email@kiwi.com',
-      },
+    wrapper.find(`[type="email"]`).simulate('change', {
+      target: { name: 'email', value: 'email@kiwi.com' },
     });
-    Login.handleChange({
-      target: {
-        name: 'password',
-        value: 'myRealPassword',
-      },
+    wrapper.find(`[type="password"]`).simulate('change', {
+      target: { name: 'password', value: 'myRealPassword' },
     });
 
     expect(Login.state).toMatchSnapshot();
