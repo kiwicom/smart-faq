@@ -4,17 +4,11 @@ import React from 'react';
 import { render } from 'enzyme';
 import { MemoryRouter as Router } from 'react-router-dom';
 
-import { RawContentHeader } from '../index';
+import { RawContentHeader } from '../Header';
 
 describe('ContentHeader', () => {
-  const user = {
-    id: '3',
-    email: 'email@kiwi.com',
-    firstname: 'MyName',
-    lastname: 'This is my name',
-  };
   const props = {
-    user,
+    isLoggedIn: true,
     history: {
       entries: [],
     },
@@ -40,7 +34,7 @@ describe('ContentHeader', () => {
   it('should render loggedOut user header', () => {
     const propsWithoutUser = {
       ...props,
-      user: null,
+      isLoggedIn: false,
     };
     const wrapper = render(
       <Router>

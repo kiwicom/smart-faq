@@ -4,6 +4,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Cookies from 'js-cookie';
+import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 import enLocale from '../i18n/en/translation.json';
@@ -53,17 +54,21 @@ class Root extends React.Component<Props, State> {
   };
 
   render() {
+    const language = 'en';
+
     return (
       <div className="root">
-        <App
-          onClose={() => {}}
-          onLogin={this.onLogin}
-          onLogout={this.onLogout}
-          language="en"
-          locale={enLocale}
-          user={this.state.user}
-          loginToken={this.state.loginToken}
-        />
+        <BrowserRouter>
+          <App
+            onClose={() => {}}
+            onLogin={this.onLogin}
+            onLogout={this.onLogout}
+            language={language}
+            locale={enLocale}
+            user={this.state.user}
+            loginToken={this.state.loginToken}
+          />
+        </BrowserRouter>
         <style jsx global>
           {`
             .root {

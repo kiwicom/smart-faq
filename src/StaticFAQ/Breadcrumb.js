@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import { Typography } from '@kiwicom/orbit-components';
 import { ChevronRight } from '@kiwicom/orbit-components/lib/icons';
 
-import routeDefinitions from '../routeDefinitions';
-
 type BreadcrumbType = {|
   id?: ?string,
   title: string,
@@ -18,9 +16,7 @@ type Props = {
 };
 
 const Breadcrumb = ({ breadcrumb, isCurrent }: Props) => {
-  const url = breadcrumb.id
-    ? `${routeDefinitions.STATIC_FAQ}/${breadcrumb.id}`
-    : routeDefinitions.STATIC_FAQ;
+  const url = breadcrumb.id ? `/faq/${breadcrumb.id}` : '/faq/';
   const title = (
     <Typography type="secondary" size="small">
       {breadcrumb.title}

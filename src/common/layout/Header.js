@@ -6,56 +6,54 @@ import idx from 'idx';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
 
-import { CloseButton, BackButton } from '../common';
+import FullFAQLink from '../FullFAQLink';
+import CloseButton from '../buttons/CloseButton';
+import BackButton from '../buttons/BackButton';
 import SignOutButton from './SignOutButton';
-import routeDefinitions from '../routeDefinitions';
-import { withUser } from '../context/User';
-import type { User } from '../types';
-import FullFAQLink from '../common/FullFAQLink';
-import responsiveStyleHelperClasses from '../common/responsiveStyleHelperClasses';
+import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
 
 const style = css`
-  div.loggedOut {
+  .loggedOut {
     display: flex;
     justify-content: space-between;
     padding: 15px 122px 15px 40px;
   }
-  div.header {
+  .header {
     display: flex;
     align-items: center;
     height: 64px;
   }
-  div.ContentHeader {
+  .Header {
     width: 100%;
     border-bottom: 1px solid #e8edf1;
     background-color: #ffffff;
   }
-  div.FAQ {
+  .FAQ {
     width: 480px;
   }
-  div.faqLink {
+  .faqLink {
     margin-left: 182px;
     line-height: 1.4;
   }
 `;
 
 const loggedInStyle = css`
-  div.helpHeader {
+  .helpHeader {
     font-size: 28px;
     font-weight: bold;
     color: #171b1e;
     pointer-events: none;
   }
-  div.loggedIn {
+  .loggedIn {
     display: flex;
     justify-content: space-between;
     padding: 15px 122px 15px 40px;
   }
-  div.links {
+  .links {
     display: flex;
     align-items: center;
   }
-  div.faqLink {
+  .faqLink {
     display: flex;
     margin-right: 58px;
   }
@@ -63,10 +61,10 @@ const loggedInStyle = css`
     margin-left: 12px;
   }
   @media only screen and (min-width: 320px) and (max-width: 480px) {
-    div.loggedIn {
+    .loggedIn {
       padding: 15px;
     }
-    div.helpHeader {
+    .helpHeader {
       width: 100%;
       text-align: center;
     }
@@ -74,24 +72,24 @@ const loggedInStyle = css`
 `;
 
 const loggedOutStyle = css`
-  div.helpHeader {
+  .helpHeader {
     font-size: 28px;
     font-weight: bold;
     color: #171b1e;
     pointer-events: none;
   }
-  div.loggedOut {
+  .loggedOut {
     display: flex;
     padding: 16px;
     align-items: center;
     height: 66px;
   }
-  div.signInOrBack {
+  .signInOrBack {
     margin-right: 149px;
     width: 43px;
     height: 20px;
   }
-  span.backButton {
+  .backButton {
     line-height: 2;
   }
   @media only screen and (min-width: 320px) and (max-width: 480px) {
@@ -105,28 +103,21 @@ const loggedOutStyle = css`
 `;
 
 type Props = {
-  user?: User,
+  isLoggedIn: boolean,
   match: {
     params: {
       categoryId: ?string,
     },
-  },
-  history: {
-    entries: [],
   },
   location: {
     pathname: string,
   },
 };
 
-const renderLoggedIn = (
-  hasCategory: string | null,
-  isArticle: boolean,
-  comesFromSearch: boolean,
-) => {
+const renderLoggedIn = (comesFromSearch: boolean) => {
   return (
     <div className="loggedIn">
-      <div className="signout-or-back">
+      <div className="mobileOnly">
         <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
       </div>
       <div className="helpHeader">Help</div>
@@ -157,10 +148,7 @@ const renderLoggedOut = (
             <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
           </div>
         ) : (
-          <Link
-            to={routeDefinitions.SIGN_IN}
-            style={{ textDecoration: 'none' }}
-          >
+          <Link to="/sign-in" style={{ textDecoration: 'none' }}>
             <div className="desktopOnly">
               <Typography type="attention" variant="normal">
                 Sign In
@@ -176,22 +164,19 @@ const renderLoggedOut = (
   );
 };
 
-const ContentHeader = (props: Props) => {
+const Header = (props: Props) => {
   const hasCategory = idx(props.match, _ => _.params.categoryId) || null;
-  const entries = props.history && props.history.entries;
   const currentpath = props.location && props.location.pathname;
 
-  const isArticle = currentpath.includes('article');
-  const lastEntry = isArticle && entries[entries.length - 2];
-  const comesFromSearch =
-    lastEntry && lastEntry.pathname === routeDefinitions.STATIC_FAQ;
+  const isArticle = currentpath.includes('article/');
+  const comesFromSearch = currentpath.includes('faq/search/');
 
   return (
     <div className="header">
-      <div className="ContentHeader">
+      <div className="Header">
         <CloseButton height="24" />
-        {props.user
-          ? renderLoggedIn(hasCategory, isArticle, comesFromSearch)
+        {props.isLoggedIn
+          ? renderLoggedIn(comesFromSearch)
           : renderLoggedOut(hasCategory, isArticle, comesFromSearch)}
         <style jsx>{style}</style>
       </div>
@@ -199,6 +184,6 @@ const ContentHeader = (props: Props) => {
   );
 };
 
-export const RawContentHeader = ContentHeader;
+export const RawContentHeader = Header;
 
-export default withRouter(withUser(ContentHeader));
+export default withRouter(Header);

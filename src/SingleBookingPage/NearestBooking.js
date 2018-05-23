@@ -10,9 +10,7 @@ import BookingDetail from './BookingDetail';
 import BookingNotFound from './BookingNotFound';
 import type { NearestBookingQueryResponse as QueryResponseType } from './__generated__/NearestBookingQuery.graphql';
 
-type Props = {
-  returnToLogin: () => void,
-};
+type Props = {||};
 
 type RenderState = {
   props: ?QueryResponseType,
@@ -48,12 +46,7 @@ class NearestBooking extends React.Component<Props> {
 
   render() {
     return (
-      <QueryRenderer
-        logoutCallback={this.props.returnToLogin}
-        query={query}
-        variables={{}}
-        render={this.renderBooking}
-      />
+      <QueryRenderer query={query} variables={{}} render={this.renderBooking} />
     );
   }
 }

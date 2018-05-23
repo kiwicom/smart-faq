@@ -7,7 +7,6 @@ import { Typography } from '@kiwicom/orbit-components';
 import css from 'styled-jsx/css';
 
 import Card from './../common/Card';
-import routeDefinitions from '../routeDefinitions';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
 
 type Props = {|
@@ -31,10 +30,8 @@ const FAQArticle = (props: Props) => (
   <Link
     to={
       props.isSearchResult
-        ? `${routeDefinitions.FAQ_ARTICLE}/search/${props.article.id}`
-        : `${routeDefinitions.FAQ_ARTICLE}/${props.categoryId || ''}/${
-            props.article.id
-          }`
+        ? `/faq/search/article/${props.article.id}`
+        : `/faq/${props.categoryId || ''}/article/${props.article.id}`
     }
     style={{ textDecoration: 'none' }}
   >
