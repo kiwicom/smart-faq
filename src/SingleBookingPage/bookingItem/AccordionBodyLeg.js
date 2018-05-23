@@ -4,13 +4,9 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 import idx from 'idx';
-import {
-  AirplaneDown,
-  Clock,
-  Check,
-  Calendar,
-} from '@kiwicom/orbit-components/lib/icons';
+import { Clock, Check, Calendar } from '@kiwicom/orbit-components/lib/icons';
 
+import LegTypeIcon from './AccordionLegTypeIcon';
 import { FormatDate, formatTimeDuration } from '../../helpers/dateUtils';
 import AccordionLegCities from './AccordionLegCities';
 import type { AccordionBodyLeg_leg } from './__generated__/AccordionBodyLeg_leg.graphql';
@@ -64,6 +60,7 @@ type LegProps = {|
 
 const AccordionBodyLeg = (props: LegProps) => {
   const { leg, nextLeg } = props;
+  const type = leg.type || '';
   const initialDeparture = idx(leg.departure, _ => _.localTime) || '';
   const arrivalTime = idx(leg.arrival, _ => _.time) || '';
   const nextDepartureTime = idx(nextLeg.departure, _ => _.time) || '';
@@ -91,9 +88,7 @@ const AccordionBodyLeg = (props: LegProps) => {
             Transfer protected by the <b>Kiwi.com Guarantee</b>
           </span>
         </div>
-        <div className="airplaneIcon">
-          <AirplaneDown customColor="#adb9c5" height="12" />
-        </div>
+        <LegTypeIcon type={type} />
       </div>
       <style jsx>{legStyle}</style>
     </React.Fragment>
@@ -112,6 +107,7 @@ export default createFragmentContainer(AccordionBodyLeg, {
         time
         localTime
       }
+      type
     }
   `,
   nextLeg: graphql`
