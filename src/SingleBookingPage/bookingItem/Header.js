@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
-import { Typography } from '@kiwicom/orbit-components';
+import { Typography, TextLink } from '@kiwicom/orbit-components';
 
 import OneWayBookingHeader from './BookingHeaders/OneWay';
 import ReturnBookingHeader from './BookingHeaders/Return';
@@ -48,17 +48,12 @@ const Header = (props: Props) => {
         </div>
         <ClickAllBooking.Consumer>
           {onClick => (
-            <div
-              role="button"
-              tabIndex={0}
-              className="selectOtherBooking"
+            <TextLink
+              url=""
               onClick={onClick}
-              onKeyPress={onClick}
-            >
-              <Typography size="small" type="active">
-                Select other booking
-              </Typography>
-            </div>
+              size="small"
+              title="Select other booking"
+            />
           )}
         </ClickAllBooking.Consumer>
       </div>
