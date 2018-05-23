@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import css from 'styled-jsx/css';
 import { AirplaneDown, Train, Bus } from '@kiwicom/orbit-components/lib/icons';
 
@@ -43,10 +43,14 @@ const LegTypeIcon = (props: IconProps) => {
       icon = null;
   }
   return (
-    <div className="legTypeIcon">
-      {icon}
-      <style jsx>{IconStyle}</style>
-    </div>
+    <React.Fragment>
+      {icon ? (
+        <div className="legTypeIcon">
+          {icon}
+          <style jsx>{IconStyle}</style>
+        </div>
+      ) : null}
+    </React.Fragment>
   );
 };
 
