@@ -209,4 +209,6 @@ class KiwiLogin extends React.Component<Props, State> {
   }
 }
 
+export const RawKiwiLogin = KiwiLogin;
+
 export default withLogin(KiwiLogin);
