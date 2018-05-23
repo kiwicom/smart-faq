@@ -7,7 +7,7 @@ import AllBooking from '../../AllBookings';
 import NearestBooking from '../../SingleBookingPage/NearestBooking';
 import SelectedBooking from '../../SingleBookingPage/SelectedBooking';
 import { UserContext, type UserContextType } from '../../context/User';
-import { ClickAllBooking } from '../../context/BookingPage';
+import { ClickAllBooking, ClickSelectBooking } from '../../context/BookingPage';
 
 type State = {|
   bookingPage: 'SINGLE_BOOKING' | 'ALL_BOOKINGS',
@@ -48,7 +48,11 @@ const ContentPageHOC = <Props>(Component: React.ComponentType<Props>) =>
         );
       }
 
-      return <AllBooking />;
+      return (
+        <ClickSelectBooking.Provider value={this.onClickSelect}>
+          <AllBooking />
+        </ClickSelectBooking.Provider>
+      );
     };
 
     renderPage = (isLoggedIn: boolean) => (

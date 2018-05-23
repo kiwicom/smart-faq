@@ -2,15 +2,14 @@
 
 import idx from 'idx';
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import { graphql, createFragmentContainer } from 'react-relay';
 
-import routeDefinitions from '../routeDefinitions';
 import bookingTypes from '../common/booking/bookingTypes';
 import OneWayBooking from './BookingTypes/OneWayBooking';
 import ReturnBooking from './BookingTypes/ReturnBooking';
 import MulticityBooking from './BookingTypes/MulticityBooking';
 import type { BookingCardsList_booking } from './__generated__/BookingCardsList_booking.graphql';
+import { ClickSelectBooking } from '../context/BookingPage';
 
 type Props = {
   booking: BookingCardsList_booking,
@@ -51,17 +50,33 @@ const BookingCardsList = (props: Props) => {
             return bookingComponent;
           }
 
-          const url = `${routeDefinitions.SELECTED_BOOKING}/${id}`;
-
           return (
-            <Link key={id} to={url} style={{ textDecoration: 'none' }}>
-              {bookingComponent}
-            </Link>
+            <ClickSelectBooking.Consumer>
+              {(onClick: string => void) => (
+                <div
+                  key={id}
+                  onClick={() => onClick(id)}
+                  className="bookingCard"
+                  role="button"
+                  onKeyUp={() => onClick(id)}
+                  tabIndex={0}
+                >
+                  {bookingComponent}
+                </div>
+              )}
+            </ClickSelectBooking.Consumer>
           );
         }
 
         return null;
       })}
+      <style jsx>
+        {`
+          .bookingCard {
+            cursor: pointer;
+          }
+        `}
+      </style>
     </React.Fragment>
   );
 };
