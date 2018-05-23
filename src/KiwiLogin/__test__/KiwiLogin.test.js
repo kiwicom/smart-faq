@@ -3,6 +3,7 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 
 import { RawKiwiLogin } from '../index';
+import routeDefinitions from '../../routeDefinitions';
 
 describe('KiwiLogin', () => {
   const props = {
@@ -35,7 +36,9 @@ describe('KiwiLogin', () => {
     const Login = wrapper.instance();
     await Login.handleSignIn(e);
     expect(e.preventDefault.mock.calls).toHaveLength(1);
-    expect(Login.props.history.push.mock.calls[0][0]).toBe('/content');
+    expect(Login.props.history.push.mock.calls[0][0]).toBe(
+      routeDefinitions.CONTENT,
+    );
   });
 
   it('should handle error in sign in', async () => {
