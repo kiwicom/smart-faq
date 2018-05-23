@@ -60,7 +60,8 @@ class BookingDetail extends React.Component<Props> {
     const timeDelta = departure
       ? DateTime.fromJSDate(departure, { zone: 'utc' }).diffNow('hours').hours
       : null;
-    const isUrgent = timeDelta !== null && URGENCY_THRESHOLD > timeDelta;
+    const isUrgent =
+      timeDelta !== null && URGENCY_THRESHOLD > timeDelta && timeDelta >= 0;
     // show notification only when the whole trip doesn't started yet
     const showNotification = timeDelta !== null && timeDelta > 0;
 
