@@ -21,6 +21,11 @@ const styles = css`
     top: 38px;
   }
 
+  .perex {
+    line-height: 1.4;
+    margin-top: 5px;
+  }
+
   @media only screen and (min-width: 320px) and (max-width: 480px) {
     .faq-item-chevron {
       top: 16px;
@@ -39,7 +44,7 @@ const FAQCategory = (props: Props) => (
         {props.category.title}
       </Typography>
     </div>
-    <div>
+    <div className="perex">
       <Typography type="secondary" size="small">
         {props.category.perex}
       </Typography>
