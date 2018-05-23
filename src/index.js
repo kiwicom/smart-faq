@@ -4,8 +4,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Cookies from 'js-cookie';
+import { I18nextProvider } from 'react-i18next';
 
 import App from './App';
+import initTranslation from './initTranslation';
+import { CloseContext } from './context/Close';
+import { LanguageContext } from './context/Language';
+import { UserContext } from './context/User';
 import enLocale from '../i18n/en/translation.json';
 import { Requester } from './helpers/Requests';
 import type { User } from './types';
@@ -24,13 +29,16 @@ const user = {
   lastname: 'Doe',
 };
 
+const language = 'en';
+
 class Root extends React.Component<Props, State> {
   cookieKey: string;
-
+  i18n: {};
   constructor(props) {
     super(props);
 
     this.cookieKey = 'mockedLogin';
+    this.i18n = initTranslation(language, enLocale);
 
     const loginToken = Cookies.get(this.cookieKey);
     this.state = {
@@ -39,7 +47,9 @@ class Root extends React.Component<Props, State> {
     };
   }
 
-  onLogin = async (email, password) => {
+  onClose = () => {};
+
+  onLogin = async (email: string, password: string): Promise<*> => {
     const loginToken = await Requester.login(email, password);
     this.setState({ user, loginToken });
     Cookies.set(this.cookieKey, loginToken);
@@ -55,15 +65,23 @@ class Root extends React.Component<Props, State> {
   render() {
     return (
       <div className="root">
-        <App
-          onClose={() => {}}
-          onLogin={this.onLogin}
-          onLogout={this.onLogout}
-          language="en"
-          locale={enLocale}
-          user={this.state.user}
-          loginToken={this.state.loginToken}
-        />
+        <I18nextProvider i18n={this.i18n}>
+          <LanguageContext.Provider value={language}>
+            <CloseContext.Provider value={this.onClose}>
+              <UserContext.Provider
+                value={{
+                  user: this.state.user,
+                  onLogin: this.onLogin,
+                  onLogout: this.onLogout,
+                  loginToken: this.state.loginToken,
+                }}
+              >
+                <App />
+              </UserContext.Provider>
+            </CloseContext.Provider>
+          </LanguageContext.Provider>
+        </I18nextProvider>
+
         <style jsx global>
           {`
             .root {
