@@ -48,7 +48,13 @@ const Header = (props: Props) => {
         </div>
         <ClickAllBooking.Consumer>
           {onClick => (
-            <div onClick={onClick}>
+            <div
+              role="button"
+              tabIndex={0}
+              className="selectOtherBooking"
+              onClick={onClick}
+              onKeyPress={onClick}
+            >
               <Typography size="small" type="active">
                 Select other booking
               </Typography>
@@ -80,6 +86,9 @@ const Header = (props: Props) => {
           }
           .headerBelow {
             margin-bottom: 16px;
+          }
+          .selectOtherBooking {
+            cursor: pointer;
           }
         `}
       </style>
