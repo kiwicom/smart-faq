@@ -16,6 +16,20 @@ const legs = [
   },
   {
     airline: {
+      code: 'PC',
+      name: 'Pegasus',
+    },
+    $refType: mockRefType,
+  },
+  {
+    airline: {
+      code: 'FR',
+      name: 'Ryanair',
+    },
+    $refType: mockRefType,
+  },
+  {
+    airline: {
       code: 'FR',
       name: 'Ryanair',
     },

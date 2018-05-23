@@ -12,20 +12,18 @@ type Props = {
 };
 
 const CarrierLogoWrapper = (props: Props) => {
-  const carriers = (props.legs || [])
-    .map(leg => {
-      const code = idx(leg, _ => _.airline.code);
-      const name = idx(leg, _ => _.airline.name);
+  const carriers = {};
+  const finalCarriers = [];
+  (props.legs || []).forEach(leg => {
+    const code = idx(leg, _ => _.airline.code);
+    const name = idx(leg, _ => _.airline.name);
+    if (code && name && !carriers[code]) {
+      carriers[code] = true;
+      finalCarriers.push({ code, name });
+    }
+  });
 
-      if (code && name) {
-        return { code, name };
-      }
-
-      return null;
-    })
-    .filter(Boolean);
-
-  return <CarrierLogo size="large" carriers={carriers} />;
+  return <CarrierLogo size="large" carriers={finalCarriers} />;
 };
 
 export const RawCarrierLogoWrapper = CarrierLogoWrapper;
