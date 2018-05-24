@@ -68,7 +68,6 @@ const style = css`
     }
   }
 `;
-/* eslint-disable */
 type Props = {
   text: string,
   location: {
@@ -77,10 +76,10 @@ type Props = {
     },
   },
 };
-/* eslint-enable */
 
 const CheckEmail = (props: Props) => {
-  const email = idx(props, _ => _.location.state.email) || 'example@gmail.com';
+  const { location } = props;
+  const email = idx(location, _ => _.state.email) || 'example@gmail.com';
   return (
     <React.Fragment>
       <div className="mobile-header">
