@@ -6,16 +6,16 @@ import { TextLink, Typography } from '@kiwicom/orbit-components';
 import { Chat, ChevronDown, Phone } from '@kiwicom/orbit-components/lib/icons';
 import { createFragmentContainer, graphql } from 'react-relay';
 
-import type { Contact_booking } from './__generated__/Contact_booking.graphql';
+import type { Contact_info } from './__generated__/Contact_info.graphql';
 
 type Props = {
-  booking: Contact_booking,
+  info: Contact_info,
 };
 
 const Contact = (props: Props) => {
-  const { booking } = props;
-  const phone = idx(booking, _ => _.contactDetails.phone) || '';
-  const email = idx(booking, _ => _.contactDetails.email) || '';
+  const { info } = props;
+  const phone = idx(info, _ => _.contactDetails.phone) || '';
+  const email = idx(info, _ => _.contactDetails.email) || '';
   return (
     <div className="contact">
       <hr />
@@ -120,7 +120,7 @@ export const RawContact = Contact;
 export default createFragmentContainer(
   Contact,
   graphql`
-    fragment Contact_booking on BookingInterface {
+    fragment Contact_info on BookingInterface {
       contactDetails {
         phone
         email

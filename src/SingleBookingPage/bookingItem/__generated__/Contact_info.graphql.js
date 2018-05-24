@@ -9,20 +9,20 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from 'relay-runtime';
-declare export opaque type Contact_booking$ref: FragmentReference;
-export type Contact_booking = {|
+declare export opaque type Contact_info$ref: FragmentReference;
+export type Contact_info = {|
   +contactDetails: ?{|
     +phone: ?string,
     +email: ?string,
   |},
-  +$refType: Contact_booking$ref,
+  +$refType: Contact_info$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "Contact_booking",
+  "name": "Contact_info",
   "type": "BookingInterface",
   "metadata": null,
   "argumentDefinitions": [],
@@ -54,5 +54,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = 'dbb7512ce3b687a0306c1bb364322057';
+(node/*: any*/).hash = '9d9aef7dbe2ee56a273207f91368ea40';
 module.exports = node;

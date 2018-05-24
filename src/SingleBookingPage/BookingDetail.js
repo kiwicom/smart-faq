@@ -82,7 +82,7 @@ class BookingDetail extends React.Component<Props> {
             <button className="manage-booking">Manage my booking</button>
           </a>
         </div>
-        {isUrgent && <Contact booking={booking} />}
+        {isUrgent && <Contact info={booking} />}
         <style jsx>
           {`
             .nearestBooking {
@@ -124,7 +124,7 @@ export default createFragmentContainer(
     fragment BookingDetail_booking on BookingInterface {
       type
       directAccessURL
-      ...Contact_booking
+      ...Contact_info
       ...Header_booking
       ... on BookingOneWay {
         ...OneWay_booking

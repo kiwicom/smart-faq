@@ -8,7 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type Contact_booking$ref = any;
+type Contact_info$ref = any;
 type Header_booking$ref = any;
 type MulticityOverlay_booking$ref = any;
 type OneWay_booking$ref = any;
@@ -32,7 +32,11 @@ export type BookingDetail_booking = {|
   +start?: ?{|
     +time: ?any,
   |},
+<<<<<<< HEAD
   +$fragmentRefs: (Contact_booking$ref & Header_booking$ref & OneWay_booking$ref & Return_booking$ref & MulticityOverlay_booking$ref),
+=======
+  +$fragmentRefs: (Contact_info$ref & Header_booking$ref & OneWay_booking$ref & Return_booking$ref & Multicity_booking$ref),
+>>>>>>> renamed Contact prop to info
   +$refType: BookingDetail_booking$ref,
 |};
 */
@@ -83,7 +87,7 @@ return {
     },
     {
       "kind": "FragmentSpread",
-      "name": "Contact_booking",
+      "name": "Contact_info",
       "args": null
     },
     {
@@ -157,5 +161,9 @@ return {
   ]
 };
 })();
+<<<<<<< HEAD
 (node/*: any*/).hash = '6cebaeae14aff9dcd7803af0e47bf418';
+=======
+(node/*: any*/).hash = '3026248356a788a3c270c8adf126ece9';
+>>>>>>> renamed Contact prop to info
 module.exports = node;
