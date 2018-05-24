@@ -2,23 +2,33 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import LegTypeIcon from '../AccordionLegTypeIcon';
+import { PureLegTypeIcon } from '../AccordionLegTypeIcon';
 
 describe('LegTypeIcon', () => {
+  const mockRefType: any = null;
+
   it('should render aircraft icon', () => {
-    const wrapper = shallow(<LegTypeIcon type="AIRCRAFT" />);
+    const leg = {
+      type: 'AIRCRAFT',
+      $refType: mockRefType,
+    };
+    const wrapper = shallow(<PureLegTypeIcon leg={leg} />);
     expect(wrapper).toMatchSnapshot();
   });
   it('should render bus icon', () => {
-    const wrapper = shallow(<LegTypeIcon type="BUS" />);
+    const leg = {
+      type: 'BUS',
+      $refType: mockRefType,
+    };
+    const wrapper = shallow(<PureLegTypeIcon leg={leg} />);
     expect(wrapper).toMatchSnapshot();
   });
   it('should render train icon', () => {
-    const wrapper = shallow(<LegTypeIcon type="TRAIN" />);
-    expect(wrapper).toMatchSnapshot();
-  });
-  it('should not render icon', () => {
-    const wrapper = shallow(<LegTypeIcon type="" />);
+    const leg = {
+      type: 'TRAIN',
+      $refType: mockRefType,
+    };
+    const wrapper = shallow(<PureLegTypeIcon leg={leg} />);
     expect(wrapper).toMatchSnapshot();
   });
 });

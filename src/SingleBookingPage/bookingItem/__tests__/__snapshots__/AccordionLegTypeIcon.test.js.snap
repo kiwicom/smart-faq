@@ -1,57 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LegTypeIcon should not render icon 1`] = `
-<div
-  className="jsx-885109022 legTypeIcon"
->
-  <JSXStyle
-    css="div.legTypeIcon.jsx-885109022{position:absolute;left:-13px;top:40px;background:#fff;}"
-    styleId="885109022"
-  />
-</div>
-`;
-
 exports[`LegTypeIcon should render aircraft icon 1`] = `
-<div
-  className="jsx-885109022 legTypeIcon"
->
-  <AirplaneDown
-    customColor="#adb9c5"
-    height="12"
-  />
-  <JSXStyle
-    css="div.legTypeIcon.jsx-885109022{position:absolute;left:-13px;top:40px;background:#fff;}"
-    styleId="885109022"
-  />
-</div>
+<React.Fragment>
+  <div
+    className="jsx-885109022 legTypeIcon"
+  >
+    <AirplaneDown
+      customColor="#adb9c5"
+      height="12"
+    />
+    <JSXStyle
+      css="div.legTypeIcon.jsx-885109022{position:absolute;left:-13px;top:40px;background:#fff;}"
+      styleId="885109022"
+    />
+  </div>
+</React.Fragment>
 `;
 
 exports[`LegTypeIcon should render bus icon 1`] = `
-<div
-  className="jsx-885109022 legTypeIcon"
->
-  <Bus
-    customColor="#adb9c5"
-    height="12"
-  />
-  <JSXStyle
-    css="div.legTypeIcon.jsx-885109022{position:absolute;left:-13px;top:40px;background:#fff;}"
-    styleId="885109022"
-  />
-</div>
+<React.Fragment>
+  <div
+    className="jsx-885109022 legTypeIcon"
+  >
+    <Bus
+      customColor="#adb9c5"
+      height="12"
+    />
+    <JSXStyle
+      css="div.legTypeIcon.jsx-885109022{position:absolute;left:-13px;top:40px;background:#fff;}"
+      styleId="885109022"
+    />
+  </div>
+</React.Fragment>
 `;
 
 exports[`LegTypeIcon should render train icon 1`] = `
-<div
-  className="jsx-885109022 legTypeIcon"
->
-  <Train
-    customColor="#adb9c5"
-    height="12"
-  />
-  <JSXStyle
-    css="div.legTypeIcon.jsx-885109022{position:absolute;left:-13px;top:40px;background:#fff;}"
-    styleId="885109022"
-  />
-</div>
+<React.Fragment>
+  <div
+    className="jsx-885109022 legTypeIcon"
+  >
+    <Train
+      customColor="#adb9c5"
+      height="12"
+    />
+    <JSXStyle
+      css="div.legTypeIcon.jsx-885109022{position:absolute;left:-13px;top:40px;background:#fff;}"
+      styleId="885109022"
+    />
+  </div>
+</React.Fragment>
 `;
