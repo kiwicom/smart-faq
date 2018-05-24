@@ -43,7 +43,6 @@ type LastLegProps = {|
 
 const AccordionLastLeg = (props: LastLegProps) => {
   const { leg } = props;
-  const type = leg.type || '';
   const initialDeparture = idx(leg.departure, _ => _.localTime) || '';
   return (
     <React.Fragment>
@@ -55,7 +54,7 @@ const AccordionLastLeg = (props: LastLegProps) => {
           {FormatDate({ dateString: initialDeparture })}
         </div>
         <AccordionLegCities leg={leg} />
-        <LegTypeIcon type={type} />
+        <LegTypeIcon leg={leg} />
       </div>
       <style jsx>{lastLegStyle}</style>
     </React.Fragment>
@@ -69,10 +68,10 @@ export default createFragmentContainer(
   graphql`
     fragment AccordionBodyLastLeg_leg on Leg {
       ...AccordionLegCities_leg
+      ...AccordionLegTypeIcon_leg
       departure {
         localTime
       }
-      type
     }
   `,
 );

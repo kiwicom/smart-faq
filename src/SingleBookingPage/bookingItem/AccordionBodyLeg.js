@@ -60,7 +60,6 @@ type LegProps = {|
 
 const AccordionBodyLeg = (props: LegProps) => {
   const { leg, nextLeg } = props;
-  const type = leg.type || '';
   const initialDeparture = idx(leg.departure, _ => _.localTime) || '';
   const arrivalTime = idx(leg.arrival, _ => _.time) || '';
   const nextDepartureTime = idx(nextLeg.departure, _ => _.time) || '';
@@ -88,7 +87,7 @@ const AccordionBodyLeg = (props: LegProps) => {
             Transfer protected by the <b>Kiwi.com Guarantee</b>
           </span>
         </div>
-        <LegTypeIcon type={type} />
+        <LegTypeIcon leg={leg} />
       </div>
       <style jsx>{legStyle}</style>
     </React.Fragment>
@@ -99,6 +98,7 @@ export default createFragmentContainer(AccordionBodyLeg, {
   leg: graphql`
     fragment AccordionBodyLeg_leg on Leg {
       ...AccordionLegCities_leg
+      ...AccordionLegTypeIcon_leg
       arrival {
         time
         localTime
@@ -107,7 +107,6 @@ export default createFragmentContainer(AccordionBodyLeg, {
         time
         localTime
       }
-      type
     }
   `,
   nextLeg: graphql`
