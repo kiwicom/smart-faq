@@ -49,8 +49,11 @@ const Header = (props: Props) => {
         <ClickAllBooking.Consumer>
           {onClick => (
             <TextLink
-              url={null}
-              onClick={onClick}
+              url=""
+              onClick={e => {
+                e.preventDefault();
+                onClick();
+              }}
               size="small"
               title="Select other booking"
             />
