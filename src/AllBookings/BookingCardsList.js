@@ -9,7 +9,7 @@ import OneWayBooking from './BookingTypes/OneWayBooking';
 import ReturnBooking from './BookingTypes/ReturnBooking';
 import MulticityBooking from './BookingTypes/MulticityBooking';
 import type { BookingCardsList_booking } from './__generated__/BookingCardsList_booking.graphql';
-import { ClickSelectBooking } from '../context/BookingPage';
+import { ClickSelectBooking } from '../context/BookingState';
 
 type Props = {
   booking: BookingCardsList_booking,

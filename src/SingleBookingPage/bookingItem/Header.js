@@ -8,7 +8,7 @@ import OneWayBookingHeader from './BookingHeaders/OneWay';
 import ReturnBookingHeader from './BookingHeaders/Return';
 import MulticityBookingHeader from './BookingHeaders/Multicity';
 import formatBookingId from '../../helpers/formatBookingId';
-import { ClickAllBooking } from '../../context/BookingPage';
+import { ClickAllBooking } from '../../context/BookingState';
 import bookingTypes from '../../common/booking/bookingTypes';
 import bookingStatus from '../../common/booking/bookingStatuses';
 import type { Header_booking } from './__generated__/Header_booking.graphql';

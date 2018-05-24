@@ -9,6 +9,7 @@ import Routes from './Routes';
 import { CloseContext } from './context/Close';
 import { LanguageContext } from './context/Language';
 import { UserContext } from './context/User';
+import BookingStateProvider from './context/BookingState';
 import type { onLogin, onLogout, User } from './types';
 
 const style = css`
@@ -75,7 +76,9 @@ class App extends React.Component<Props> {
                   loginToken: this.props.loginToken,
                 }}
               >
-                <Routes />
+                <BookingStateProvider>
+                  <Routes />
+                </BookingStateProvider>
               </UserContext.Provider>
             </CloseContext.Provider>
           </LanguageContext.Provider>
