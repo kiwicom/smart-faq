@@ -1,18 +1,18 @@
 // @flow
 
-import { Link, withRouter } from 'react-router-dom';
-import * as React from 'react';
-import idx from 'idx';
-import css from 'styled-jsx/css';
-import { Typography } from '@kiwicom/orbit-components';
+import { Link, withRouter } from "react-router-dom";
+import * as React from "react";
+import idx from "idx";
+import css from "styled-jsx/css";
+import { Typography } from "@kiwicom/orbit-components";
 
-import { CloseButton, BackButton } from '../common';
-import SignOutButton from './SignOutButton';
-import routeDefinitions from '../routeDefinitions';
-import { withUser } from '../context/User';
-import type { User } from '../types';
-import FullFAQLink from '../common/FullFAQLink';
-import responsiveStyleHelperClasses from '../common/responsiveStyleHelperClasses';
+import { CloseButton, BackButton } from "../common";
+import SignOutButton from "./SignOutButton";
+import routeDefinitions from "../routeDefinitions";
+import { withUser } from "../context/User";
+import type { User } from "../types";
+import FullFAQLink from "../common/FullFAQLink";
+import responsiveStyleHelperClasses from "../common/responsiveStyleHelperClasses";
 
 const style = css`
   div.loggedOut {
@@ -109,7 +109,7 @@ const renderLoggedIn = (
   return (
     <div className="loggedIn">
       <div>
-        <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
+        <BackButton text={comesFromSearch ? "Search" : "Back"} />
       </div>
       <div className="helpHeader">Help</div>
       <div className="links desktopOnly">
@@ -133,28 +133,23 @@ const renderLoggedOut = (
 ) => {
   const backButton = (
     <div className="backButton">
-      <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
+      <BackButton text={comesFromSearch ? "Search" : "Back"} />
     </div>
-  )
+  );
 
   const signInButton = (
-    <Link
-      to={routeDefinitions.SIGN_IN}
-      style={{ textDecoration: 'none' }}
-    >
+    <Link to={routeDefinitions.SIGN_IN} style={{ textDecoration: "none" }}>
       <div className="desktopOnly">
         <Typography type="attention" variant="normal">
           Sign In
         </Typography>
       </div>
     </Link>
-  )
+  );
 
   return (
     <div className="loggedOut">
-      <div className="signInOrBack">
-        {hasCategory || isArticle ? backButton : signInButton}
-      </div>
+      <div className="signInOrBack">{hasCategory || isArticle ? backButton : signInButton}</div>
       <div className="helpHeader">Help</div>
       <style jsx>{responsiveStyleHelperClasses}</style>
       <style jsx>{headerStyle}</style>
@@ -167,10 +162,9 @@ const ContentHeader = (props: Props) => {
   const entries = props.history && props.history.entries;
   const currentpath = props.location && props.location.pathname;
 
-  const isArticle = currentpath.includes('article');
+  const isArticle = currentpath.includes("article");
   const lastEntry = isArticle && entries[entries.length - 2];
-  const comesFromSearch =
-    lastEntry && lastEntry.pathname === routeDefinitions.STATIC_FAQ;
+  const comesFromSearch = lastEntry && lastEntry.pathname === routeDefinitions.STATIC_FAQ;
 
   return (
     <div className="header">
