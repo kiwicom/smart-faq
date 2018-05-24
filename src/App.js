@@ -54,7 +54,7 @@ class App extends React.Component<Props> {
 
   render() {
     return (
-      <div className="smartFAQ">
+      <div className="smartFAQ" data-test="SmartFAQHelp">
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1 shrink-to-fit=no"
