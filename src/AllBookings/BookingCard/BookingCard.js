@@ -10,7 +10,6 @@ import { ChevronRight } from '@kiwicom/orbit-components/lib/icons';
 import FromToRowFragment from './FromToRow';
 import DateAndPassengerFragment from './DateAndPassenger';
 import formatBookingId from '../../helpers/formatBookingId';
-import bookingStatus from '../../common/booking/bookingStatuses';
 import CarrierLogoWrapper from '../../SingleBookingPage/bookingItem/CarrierLogoWrapper';
 import type { BookingCard_arrival } from './__generated__/BookingCard_arrival.graphql';
 import type { BookingCard_departure } from './__generated__/BookingCard_departure.graphql';
@@ -76,8 +75,6 @@ type Props = {|
 
 const BookingCard = (props: Props) => {
   const databaseId = idx(props.booking, _ => _.databaseId);
-  const passengerCount = idx(props.booking, _ => _.passengerCount);
-  const status = props.booking.status && bookingStatus[props.booking.status];
 
   return (
     <div className="card">
@@ -98,9 +95,8 @@ const BookingCard = (props: Props) => {
         <ChevronRight size="medium" customColor="#bac7d5" />
       </div>
       <DateAndPassengerFragment
-        status={status}
         departure={props.departure}
-        passengerCount={passengerCount}
+        booking={props.booking}
       />
       <style>{styles}</style>
     </div>
@@ -111,9 +107,8 @@ export default createFragmentContainer(
   BookingCard,
   graphql`
     fragment BookingCard_booking on BookingInterface {
-      status
       databaseId
-      passengerCount
+      ...DateAndPassenger_booking
     }
 
     fragment BookingCard_arrival on RouteStop {
