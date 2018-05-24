@@ -56,6 +56,7 @@ class BookingDetail extends React.Component<Props> {
 
   render() {
     const { booking } = this.props;
+    const { contactDetails } = booking;
     const departure = this.getDepartureByType(booking);
     const timeDelta = departure
       ? DateTime.fromJSDate(departure, { zone: 'utc' }).diffNow('hours').hours
@@ -82,7 +83,7 @@ class BookingDetail extends React.Component<Props> {
             <button className="manage-booking">Manage my booking</button>
           </a>
         </div>
-        {isUrgent && <Contact />}
+        {isUrgent && <Contact contactDetails={contactDetails} />}
         <style jsx>
           {`
             .nearestBooking {
@@ -124,6 +125,10 @@ export default createFragmentContainer(
     fragment BookingDetail_booking on BookingInterface {
       type
       directAccessURL
+      contactDetails {
+        phone
+        email
+      }
       ...Header_booking
       ... on BookingOneWay {
         ...OneWay_booking

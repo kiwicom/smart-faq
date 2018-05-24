@@ -18,6 +18,10 @@ declare export opaque type BookingDetail_booking$ref: FragmentReference;
 export type BookingDetail_booking = {|
   +type: ?BookingType,
   +directAccessURL: ?string,
+  +contactDetails: ?{|
+    +phone: ?string,
+    +email: ?string,
+  |},
   +trip?: ?{|
     +departure: ?{|
       +time: ?any,
@@ -79,6 +83,31 @@ return {
       "name": "directAccessURL",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "contactDetails",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "BookingContactDetails",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "phone",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "email",
+          "args": null,
+          "storageKey": null
+        }
+      ]
     },
     {
       "kind": "FragmentSpread",
@@ -151,5 +180,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '61a1cdbc5796aaae1182d5639e237867';
+(node/*: any*/).hash = '89c14de54d3f2b3dc457e601e5065724';
 module.exports = node;
