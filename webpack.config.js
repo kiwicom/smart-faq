@@ -17,7 +17,16 @@ module.exports = {
     filename: `smart-faq.${language}.js`,
   },
   module: {
-    rules: [{ test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }],
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          plugins: [['styled-jsx/babel', { optimizeForSpeed: false }]],
+        },
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
