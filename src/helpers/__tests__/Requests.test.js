@@ -1,12 +1,12 @@
 // @flow
 
-import { Requester } from './Requests';
+import { Requester } from '../Requests';
 import {
   goodEmail,
   goodPassword,
   defaultToken,
   goodPayload,
-} from '../../__mocks__/constants';
+} from '../../../__mocks__/constants';
 
 jest.mock('isomorphic-fetch');
 
