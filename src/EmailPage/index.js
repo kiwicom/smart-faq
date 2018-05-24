@@ -3,6 +3,7 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
+import idx from 'idx';
 
 import image from '../../static/mailbox@3x.png';
 import CloseButton from './../common/buttons/CloseButton';
@@ -67,9 +68,8 @@ const style = css`
     }
   }
 `;
-
+/* eslint-disable */
 type Props = {
-  email: string,
   text: string,
   location: {
     state: {
@@ -77,9 +77,10 @@ type Props = {
     },
   },
 };
+/* eslint-enable */
 
 const CheckEmail = (props: Props) => {
-  const email = props.location.state.email || 'example@gmail.com';
+  const email = idx(props, _ => _.location.state.email) || 'example@gmail.com';
   return (
     <React.Fragment>
       <div className="mobile-header">
@@ -105,10 +106,10 @@ const CheckEmail = (props: Props) => {
 
 export const CheckRecoveryLink = (props: Props) => {
   const text = 'We sent a recovery link to';
-  return <CheckEmail text={text} {...props} />;
+  return <CheckEmail {...props} text={text} />;
 };
 
 export const CheckMagicLink = (props: Props) => {
   const text = 'To sign in, just click the link in the email we sent to';
-  return <CheckEmail text={text} {...props} />;
+  return <CheckEmail {...props} text={text} />;
 };

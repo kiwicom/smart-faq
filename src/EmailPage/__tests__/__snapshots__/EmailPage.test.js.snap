@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ForgottenPassword should render magic link 1`] = `
+Array [
+  <div
+    class="jsx-1026323034 mobile-header"
+  >
+    <div
+      class="jsx-1026323034 help-title"
+    >
+      Help
+    </div>
+  </div>,
+  <div
+    class="jsx-1026323034 Email"
+  >
+    <div
+      class="jsx-776539956 close-icon"
+      role="button"
+      tabindex="-1"
+    >
+      <svg
+        fill="currentColor"
+        height="24px"
+        preserveAspectRatio="xMidYMid meet"
+        style="vertical-align:middle;color:#46515e"
+        viewBox="0 0 24 24"
+        width="24px"
+      >
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+        />
+      </svg>
+    </div>
+    <div
+      class="jsx-1026323034 picture"
+    >
+      <img
+        alt="Email"
+        class="jsx-1026323034"
+        src="https://images.kiwi.com/smart-faq/mailbox@3x.png"
+      />
+    </div>
+    <div
+      class="jsx-1026323034 text"
+    >
+      <p
+        class="jsx-1026323034 title"
+      >
+        Check your e-mail inbox
+      </p>
+      <span
+        class="jsx-1855423850"
+      >
+        To sign in, just click the link in the email we sent to
+        <span
+          class="jsx-1026323034 email-text"
+        >
+           kiwi@email.com
+        </span>
+        .
+      </span>
+    </div>
+  </div>,
+]
+`;
+
+exports[`ForgottenPassword should render recovery link 1`] = `
+Array [
+  <div
+    class="jsx-1026323034 mobile-header"
+  >
+    <div
+      class="jsx-1026323034 help-title"
+    >
+      Help
+    </div>
+  </div>,
+  <div
+    class="jsx-1026323034 Email"
+  >
+    <div
+      class="jsx-776539956 close-icon"
+      role="button"
+      tabindex="-1"
+    >
+      <svg
+        fill="currentColor"
+        height="24px"
+        preserveAspectRatio="xMidYMid meet"
+        style="vertical-align:middle;color:#46515e"
+        viewBox="0 0 24 24"
+        width="24px"
+      >
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+        />
+      </svg>
+    </div>
+    <div
+      class="jsx-1026323034 picture"
+    >
+      <img
+        alt="Email"
+        class="jsx-1026323034"
+        src="https://images.kiwi.com/smart-faq/mailbox@3x.png"
+      />
+    </div>
+    <div
+      class="jsx-1026323034 text"
+    >
+      <p
+        class="jsx-1026323034 title"
+      >
+        Check your e-mail inbox
+      </p>
+      <span
+        class="jsx-1855423850"
+      >
+        We sent a recovery link to
+        <span
+          class="jsx-1026323034 email-text"
+        >
+           kiwi@email.com
+        </span>
+        .
+      </span>
+    </div>
+  </div>,
+]
+`;
