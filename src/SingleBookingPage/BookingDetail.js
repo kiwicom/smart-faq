@@ -82,7 +82,7 @@ class BookingDetail extends React.Component<Props> {
             <button className="manage-booking">Manage my booking</button>
           </a>
         </div>
-        {<Contact booking={booking} />}
+        {isUrgent && <Contact booking={booking} />}
         <style jsx>
           {`
             .nearestBooking {
