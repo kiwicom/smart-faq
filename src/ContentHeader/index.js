@@ -108,15 +108,15 @@ const renderLoggedIn = (
 ) => {
   return (
     <div className="loggedIn">
-      <div className="signout-or-back">
+      <div>
         <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
       </div>
       <div className="helpHeader">Help</div>
-      <div className="links">
-        <div className="loggedInFaqLink desktopOnly">
+      <div className="links desktopOnly">
+        <div className="loggedInFaqLink">
           <FullFAQLink className="primary" />
         </div>
-        <div className="desktopOnly">
+        <div>
           <SignOutButton />
         </div>
       </div>
