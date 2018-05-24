@@ -4,17 +4,18 @@ import * as React from 'react';
 import idx from 'idx';
 import { TextLink, Typography } from '@kiwicom/orbit-components';
 import { Chat, ChevronDown, Phone } from '@kiwicom/orbit-components/lib/icons';
+import { createFragmentContainer, graphql } from 'react-relay';
 
-type Props = {|
-  contactDetails: {|
-    phone: string,
-    email: string,
-  |},
-|};
+import type { Contact_booking } from './__generated__/Contact_booking.graphql';
+
+type Props = {
+  booking: Contact_booking,
+};
 
 const Contact = (props: Props) => {
-  const phone = idx(props.contactDetails, _ => _.phone) || '';
-  const email = idx(props.contactDetails, _ => _.email) || '';
+  const { booking } = props;
+  const phone = idx(booking, _ => _.contactDetails.phone) || '';
+  const email = idx(booking, _ => _.contactDetails.email) || '';
   return (
     <div className="contact">
       <hr />
@@ -43,7 +44,7 @@ const Contact = (props: Props) => {
               <Chat customColor="#00a991" />
             </div>
             <TextLink
-              onClick={e => {}}
+              onClick={() => {}}
               url={`mailto:${email}`}
               title="Write us a message"
             >
@@ -114,4 +115,14 @@ const Contact = (props: Props) => {
   );
 };
 
-export default Contact;
+export default createFragmentContainer(
+  Contact,
+  graphql`
+    fragment Contact_booking on BookingInterface {
+      contactDetails {
+        phone
+        email
+      }
+    }
+  `,
+);

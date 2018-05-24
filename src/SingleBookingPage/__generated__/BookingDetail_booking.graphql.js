@@ -8,6 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type Contact_booking$ref = any;
 type Header_booking$ref = any;
 type MulticityOverlay_booking$ref = any;
 type OneWay_booking$ref = any;
@@ -18,10 +19,6 @@ declare export opaque type BookingDetail_booking$ref: FragmentReference;
 export type BookingDetail_booking = {|
   +type: ?BookingType,
   +directAccessURL: ?string,
-  +contactDetails: ?{|
-    +phone: ?string,
-    +email: ?string,
-  |},
   +trip?: ?{|
     +departure: ?{|
       +time: ?any,
@@ -35,7 +32,7 @@ export type BookingDetail_booking = {|
   +start?: ?{|
     +time: ?any,
   |},
-  +$fragmentRefs: (Header_booking$ref & OneWay_booking$ref & Return_booking$ref & MulticityOverlay_booking$ref),
+  +$fragmentRefs: (Contact_booking$ref & Header_booking$ref & OneWay_booking$ref & Return_booking$ref & MulticityOverlay_booking$ref),
   +$refType: BookingDetail_booking$ref,
 |};
 */
@@ -85,29 +82,9 @@ return {
       "storageKey": null
     },
     {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "contactDetails",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "BookingContactDetails",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "phone",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "email",
-          "args": null,
-          "storageKey": null
-        }
-      ]
+      "kind": "FragmentSpread",
+      "name": "Contact_booking",
+      "args": null
     },
     {
       "kind": "FragmentSpread",
@@ -180,5 +157,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '89c14de54d3f2b3dc457e601e5065724';
+(node/*: any*/).hash = '6cebaeae14aff9dcd7803af0e47bf418';
 module.exports = node;
