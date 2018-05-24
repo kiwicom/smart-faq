@@ -71,10 +71,14 @@ type Props = {|
   arrival: BookingCard_arrival,
 |};
 
-
 const BookingCard = (props: Props) => {
   const databaseId = idx(props.booking, _ => _.databaseId);
   const carriers = idx(props.booking, _ => _.carriers) || [];
+
+  const allCarriers = carriers.map(c => ({
+    code: (c && c.code) || '',
+    name: (c && c.name) || '',
+  }));
 
   return (
     <div className="card">
@@ -84,7 +88,7 @@ const BookingCard = (props: Props) => {
         </Typography>
       )}
       <div className="logoCarriers">
-        <CarrierLogo carriers={carriers} />
+        <CarrierLogo carriers={allCarriers} />
       </div>
       <FromToRowFragment
         type={props.type}

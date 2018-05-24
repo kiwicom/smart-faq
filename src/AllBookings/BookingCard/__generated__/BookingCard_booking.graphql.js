@@ -13,6 +13,10 @@ import type { FragmentReference } from 'relay-runtime';
 declare export opaque type BookingCard_booking$ref: FragmentReference;
 export type BookingCard_booking = {|
   +databaseId: ?number,
+  +carriers: ?$ReadOnlyArray<?{|
+    +name: ?string,
+    +code: ?string,
+  |}>,
   +$fragmentRefs: DateAndPassenger_booking$ref,
   +$refType: BookingCard_booking$ref,
 |};
@@ -27,16 +31,14 @@ const node/*: ConcreteFragment*/ = {
   "argumentDefinitions": [],
   "selections": [
     {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "databaseId",
-      "args": null,
-      "storageKey": null
+      "kind": "FragmentSpread",
+      "name": "DateAndPassenger_booking",
+      "args": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "passengerCount",
+      "name": "databaseId",
       "args": null,
       "storageKey": null
     },
@@ -67,5 +69,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = 'b3693a7f42178744bc5970a1783bc077';
+(node/*: any*/).hash = 'a3618136a13ff4dededcac49e03e9a1a';
 module.exports = node;
