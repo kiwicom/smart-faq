@@ -5,7 +5,6 @@ import { shallow, render } from 'enzyme';
 
 import { DateAndPassenger } from '../DateAndPassenger';
 import { formatDepartureDate } from '../../../helpers/dateUtils';
-import bookingStatus from '../../../common/booking/bookingStatuses';
 
 const mockRefType: any = null;
 
@@ -14,10 +13,15 @@ const departure = {
   $refType: mockRefType,
 };
 
-const status = bookingStatus['CONFIRMED'];
+const booking = {
+  status: 'CLOSED',
+  passengerCount: 1,
+  bookingDate: '2018-05-14',
+  $refType: mockRefType,
+};
 
 const dateAndPassengerComponent = (
-  <DateAndPassenger departure={departure} status={status} passengerCount={3} />
+  <DateAndPassenger departure={departure} booking={booking} />
 );
 
 describe('DateAndPassenger', () => {
