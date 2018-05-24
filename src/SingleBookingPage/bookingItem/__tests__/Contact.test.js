@@ -16,7 +16,7 @@ describe('Contact', () => {
     $refType: mockRefType,
   };
   it('should render with email and phone', () => {
-    expect(render(<RawContact booking={booking} />)).toMatchSnapshot();
+    expect(render(<RawContact info={booking} />)).toMatchSnapshot();
   });
 
   it('should render only email', () => {
@@ -27,7 +27,7 @@ describe('Contact', () => {
       },
       $refType: mockRefType,
     };
-    expect(shallow(<RawContact booking={booking} />)).toMatchSnapshot();
+    expect(shallow(<RawContact info={booking} />)).toMatchSnapshot();
   });
   it('should not render email and phone', () => {
     const booking = {
@@ -37,6 +37,6 @@ describe('Contact', () => {
       },
       $refType: mockRefType,
     };
-    expect(shallow(<RawContact booking={booking} />)).toMatchSnapshot();
+    expect(shallow(<RawContact info={booking} />)).toMatchSnapshot();
   });
 });

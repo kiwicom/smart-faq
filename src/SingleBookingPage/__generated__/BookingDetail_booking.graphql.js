@@ -32,11 +32,7 @@ export type BookingDetail_booking = {|
   +start?: ?{|
     +time: ?any,
   |},
-<<<<<<< HEAD
-  +$fragmentRefs: (Contact_booking$ref & Header_booking$ref & OneWay_booking$ref & Return_booking$ref & MulticityOverlay_booking$ref),
-=======
-  +$fragmentRefs: (Contact_info$ref & Header_booking$ref & OneWay_booking$ref & Return_booking$ref & Multicity_booking$ref),
->>>>>>> renamed Contact prop to info
+  +$fragmentRefs: (Contact_info$ref & Header_booking$ref & OneWay_booking$ref & Return_booking$ref & MulticityOverlay_booking$ref),
   +$refType: BookingDetail_booking$ref,
 |};
 */
@@ -161,9 +157,5 @@ return {
   ]
 };
 })();
-<<<<<<< HEAD
-(node/*: any*/).hash = '6cebaeae14aff9dcd7803af0e47bf418';
-=======
-(node/*: any*/).hash = '3026248356a788a3c270c8adf126ece9';
->>>>>>> renamed Contact prop to info
+(node/*: any*/).hash = '8ea0f284beebcef6cd94ae3f990e7d21';
 module.exports = node;
