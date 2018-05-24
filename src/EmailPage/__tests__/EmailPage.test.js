@@ -4,7 +4,7 @@ import { render } from 'enzyme';
 
 import { CheckRecoveryLink, CheckMagicLink } from '../index';
 
-describe('ForgottenPassword', () => {
+describe('EmailPage', () => {
   const props = {
     text: 'link',
     location: {
