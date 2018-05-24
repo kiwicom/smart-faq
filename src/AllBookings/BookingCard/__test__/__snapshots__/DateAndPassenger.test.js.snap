@@ -35,7 +35,7 @@ exports[`DateAndPassenger should render correctly 1`] = `
       </Typography>
     </div>
     <Typography>
-      Not Available
+      23/11/2017
     </Typography>
   </div>
   <div

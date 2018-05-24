@@ -78,6 +78,7 @@ const BookingCard = (props: Props) => {
   const databaseId = idx(props.booking, _ => _.databaseId);
   const passengerCount = idx(props.booking, _ => _.passengerCount);
   const status = props.booking.status && bookingStatus[props.booking.status];
+  const bookingDate = idx(props.booking, _ => _.bookingDate);
 
   return (
     <div className="card">
@@ -101,6 +102,7 @@ const BookingCard = (props: Props) => {
         status={status}
         departure={props.departure}
         passengerCount={passengerCount}
+        bookingDate={bookingDate}
       />
       <style>{styles}</style>
     </div>
@@ -114,6 +116,7 @@ export default createFragmentContainer(
       status
       databaseId
       passengerCount
+      bookingDate
     }
 
     fragment BookingCard_arrival on RouteStop {

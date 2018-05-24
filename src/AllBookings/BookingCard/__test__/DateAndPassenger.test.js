@@ -14,10 +14,13 @@ const departure = {
   $refType: mockRefType,
 };
 
-const status = bookingStatus['CONFIRMED'];
-
 const dateAndPassengerComponent = (
-  <DateAndPassenger departure={departure} status={status} passengerCount={3} />
+  <DateAndPassenger
+    departure={departure}
+    status={bookingStatus['CONFIRMED']}
+    passengerCount={3}
+    bookingDate="2017-11-23T20:40:00.000Z"
+  />
 );
 
 describe('DateAndPassenger', () => {
