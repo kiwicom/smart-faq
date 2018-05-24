@@ -115,6 +115,8 @@ const Contact = (props: Props) => {
   );
 };
 
+export const RawContact = Contact;
+
 export default createFragmentContainer(
   Contact,
   graphql`
