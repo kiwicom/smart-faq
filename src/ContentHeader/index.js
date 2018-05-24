@@ -131,25 +131,29 @@ const renderLoggedOut = (
   isArticle: boolean,
   comesFromSearch: boolean,
 ) => {
+  const backButton = (
+    <div className="backButton">
+      <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
+    </div>
+  )
+
+  const signInButton = (
+    <Link
+      to={routeDefinitions.SIGN_IN}
+      style={{ textDecoration: 'none' }}
+    >
+      <div className="desktopOnly">
+        <Typography type="attention" variant="normal">
+          Sign In
+        </Typography>
+      </div>
+    </Link>
+  )
+
   return (
     <div className="loggedOut">
       <div className="signInOrBack">
-        {hasCategory || isArticle ? (
-          <div className="backButton">
-            <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
-          </div>
-        ) : (
-          <Link
-            to={routeDefinitions.SIGN_IN}
-            style={{ textDecoration: 'none' }}
-          >
-            <div className="desktopOnly">
-              <Typography type="attention" variant="normal">
-                Sign In
-              </Typography>
-            </div>
-          </Link>
-        )}
+        {hasCategory || isArticle ? backButton : signInButton}
       </div>
       <div className="helpHeader">Help</div>
       <style jsx>{responsiveStyleHelperClasses}</style>
