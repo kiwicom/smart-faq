@@ -5,12 +5,15 @@ import { shallow, render } from 'enzyme';
 
 import { RawContact } from '../Contact';
 
+const mockRefType: any = null;
+
 describe('Contact', () => {
   const booking = {
     contactDetails: {
       phone: '12345678',
       email: 'kiwi@email.com',
     },
+    $refType: mockRefType,
   };
   it('should render with email and phone', () => {
     expect(render(<RawContact booking={booking} />)).toMatchSnapshot();
@@ -22,6 +25,7 @@ describe('Contact', () => {
         phone: '',
         email: 'kiwi@email.com',
       },
+      $refType: mockRefType,
     };
     expect(shallow(<RawContact booking={booking} />)).toMatchSnapshot();
   });
@@ -31,6 +35,7 @@ describe('Contact', () => {
         phone: '',
         email: '',
       },
+      $refType: mockRefType,
     };
     expect(shallow(<RawContact booking={booking} />)).toMatchSnapshot();
   });
