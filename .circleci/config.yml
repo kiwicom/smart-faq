@@ -78,15 +78,20 @@ jobs:
 
 workflows:
   version: 2
-  build-and-deploy:
+  # publish app to Github pages after merge into master
+  build-and-gh-pages-deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: master
       - deploy:
           requires:
             - build
           filters:
             branches:
               only: master
+  # publish npm package when new release tag is added on master
   build-and-publish:
     jobs:
       - build:
@@ -103,9 +108,16 @@ workflows:
             branches:
               ignore: /.*/
 
+  # Execute build & deploy to now.sh for PR branches
   build-and-now-deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              ignore: master
       - now-deploy:
           requires:
             - build
+          filters:
+            branches:
+              ignore: master
