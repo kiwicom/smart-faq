@@ -105,7 +105,7 @@ const loggedOutStyle = css`
 `;
 
 type Props = {
-  user: User,
+  user?: User,
   match: {
     params: {
       categoryId: ?string,
@@ -198,5 +198,7 @@ const ContentHeader = (props: Props) => {
     </div>
   );
 };
+
+export const RawContentHeader = ContentHeader;
 
 export default withRouter(withUser(ContentHeader));

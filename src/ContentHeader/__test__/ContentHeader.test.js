@@ -1,27 +1,54 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
+import { render } from 'enzyme';
 import { MemoryRouter as Router } from 'react-router-dom';
-import { mount } from 'enzyme';
 
-import ContentHeader from '../';
+import { RawContentHeader } from '../index';
 
-describe.skip('ContentHeader', () => {
-  // To be run when this is merged https://github.com/airbnb/enzyme/issues/1620
-  it('when session exists should match snapshot', () => {
-    const component = mount(
+describe('ContentHeader', () => {
+  const user = {
+    id: '3',
+    email: 'email@kiwi.com',
+    firstname: 'MyName',
+    lastname: 'This is my name',
+  };
+  const props = {
+    user,
+    history: {
+      entries: [],
+    },
+    location: {
+      pathname: '/content',
+    },
+    match: {
+      params: {
+        categoryId: '21',
+      },
+    },
+  };
+  it('should render loggedIn user header', () => {
+    const wrapper = render(
       <Router>
-        <ContentHeader token="hola" />
+        <RawContentHeader {...props} />
       </Router>,
     );
-    expect(component).toMatchSnapshot();
+    expect(wrapper.find('.loggedIn')).toHaveLength(1);
+    expect(wrapper.find('.signOut').text()).toEqual('Sign out');
+    expect(wrapper).toMatchSnapshot();
   });
-  it('when no session should match snapshot', () => {
-    const component = mount(
+  it('should render loggedOut user header', () => {
+    const propsWithoutUser = {
+      ...props,
+      user: null,
+    };
+    const wrapper = render(
       <Router>
-        <ContentHeader />
+        <RawContentHeader {...propsWithoutUser} />
       </Router>,
     );
-    expect(component).toMatchSnapshot();
+    expect(wrapper.find('.backButton').text()).toEqual('Back');
+    expect(wrapper.find('.loggedOut')).toHaveLength(1);
+    expect(wrapper).toMatchSnapshot();
   });
 });
