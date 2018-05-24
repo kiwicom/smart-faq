@@ -41,7 +41,7 @@ jobs:
           - v1-dependencies-
       - run: yarn && yarn build:bundle && yarn build:pages
 
-  now-deploy:
+  surge-deploy:
     <<: *defaults
     steps:
       - checkout
@@ -51,7 +51,8 @@ jobs:
           - v1-dependencies-{{ checksum "yarn.lock" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-      - run: yarn && yarn deploy:now-ci -- -e KIWILOGIN_USER=$KIWILOGIN_USER  -e GRAPHQL_URI=$GRAPHQL_URI -t $NOW_TOKEN && yarn deploy:updateURL ${CIRCLE_BRANCH}
+      - run:
+          command: yarn && yarn build:bundle && yarn deploy:surge && yarn deploy:updateURL ${CIRCLE_BRANCH} https://smartfaq-$(git rev-parse --abbrev-ref HEAD).surge.sh
 
   publish:
     <<: *defaults
@@ -108,14 +109,10 @@ workflows:
             branches:
               ignore: /.*/
 
-  # Execute build & deploy to now.sh for PR branches
-  build-and-now-deploy:
+  build-and-surge-deploy:
     jobs:
-      - build:
-          filters:
-            branches:
-              ignore: master
-      - now-deploy:
+      - build
+      - surge-deploy:
           requires:
             - build
           filters:

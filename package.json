@@ -20,8 +20,8 @@
     "flow:stop": "flow stop",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
-    "deploy:now": "now --dotenv --public",
-    "deploy:now-ci": "now --public",
+    "deploy:getURL": "echo \"https://smartfaq-$(git rev-parse --abbrev-ref HEAD).surge.sh\"",
+    "deploy:surge": "yarn surge $PWD/dist/ https://smartfaq-$(git rev-parse --abbrev-ref HEAD).surge.sh",
     "deploy:updateURL": "yarn babel-node scripts/deploymentUtils.js updateLiveURL",
     "translations:collect": "i18next-scanner 'src/**/*.{js,jsx}'",
     "translations:check": "node scripts/checkTranslations.js",
@@ -86,6 +86,7 @@
     "request-promise-native": "1.0.5",
     "rimraf": "^2.6.2",
     "storybook-router": "^0.3.3",
+    "surge": "^0.20.1",
     "webpack": "4.1.0",
     "webpack-cli": "2.0.10",
     "webpack-dev-server": "3.1.0"
