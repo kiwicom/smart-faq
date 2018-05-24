@@ -46,21 +46,14 @@ const headerStyle = css`
     color: #171b1e;
     pointer-events: none;
   }
-`
-
-const loggedInStyle = css`
-  div.loggedIn {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 122px 15px 40px;
-  }
   div.links {
     display: flex;
     align-items: center;
   }
-  div.faqLink {
+  div.loggedIn {
     display: flex;
-    margin-right: 58px;
+    justify-content: space-between;
+    padding: 15px 122px 15px 40px;
   }
   a.open-icon {
     margin-left: 12px;
@@ -74,32 +67,33 @@ const loggedInStyle = css`
       text-align: center;
     }
   }
-`;
-
-const loggedOutStyle = css`
-  div.loggedOut {
-    display: flex;
-    padding: 16px;
-    align-items: center;
-    height: 66px;
+  span.backButton {
+    line-height: 2;
   }
   div.signInOrBack {
     margin-right: 149px;
     width: 43px;
     height: 20px;
   }
-  span.backButton {
-    line-height: 2;
+  div.loggedOut {
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    height: 66px;
+  }
+  div.loggedInFaqLink {
+    display: flex;
+    margin-right: 58px;
   }
   @media only screen and (min-width: 320px) and (max-width: 480px) {
-    .helpHeader {
+    .loggedOut .helpHeader {
       position: absolute;
       left: 0;
       right: 0;
       text-align: center;
     }
   }
-`;
+`
 
 type Props = {
   user: User,
@@ -128,14 +122,13 @@ const renderLoggedIn = (
       </div>
       <div className="helpHeader">Help</div>
       <div className="links">
-        <div className="faqLink desktopOnly">
+        <div className="loggedInFaqLink desktopOnly">
           <FullFAQLink className="primary" />
         </div>
         <div className="desktopOnly">
           <SignOutButton />
         </div>
       </div>
-      <style jsx>{loggedInStyle}</style>
       <style jsx>{responsiveStyleHelperClasses}</style>
       <style jsx>{headerStyle}</style>
     </div>
@@ -169,7 +162,6 @@ const renderLoggedOut = (
       </div>
       <div className="helpHeader">Help</div>
       <style jsx>{responsiveStyleHelperClasses}</style>
-      <style jsx>{loggedOutStyle}</style>
       <style jsx>{headerStyle}</style>
     </div>
   );
