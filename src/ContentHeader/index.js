@@ -39,13 +39,16 @@ const style = css`
   }
 `;
 
-const loggedInStyle = css`
+const headerStyle = css`
   div.helpHeader {
     font-size: 28px;
     font-weight: bold;
     color: #171b1e;
     pointer-events: none;
   }
+`
+
+const loggedInStyle = css`
   div.loggedIn {
     display: flex;
     justify-content: space-between;
@@ -74,12 +77,6 @@ const loggedInStyle = css`
 `;
 
 const loggedOutStyle = css`
-  div.helpHeader {
-    font-size: 28px;
-    font-weight: bold;
-    color: #171b1e;
-    pointer-events: none;
-  }
   div.loggedOut {
     display: flex;
     padding: 16px;
@@ -140,6 +137,7 @@ const renderLoggedIn = (
       </div>
       <style jsx>{loggedInStyle}</style>
       <style jsx>{responsiveStyleHelperClasses}</style>
+      <style jsx>{headerStyle}</style>
     </div>
   );
 };
@@ -172,6 +170,7 @@ const renderLoggedOut = (
       <div className="helpHeader">Help</div>
       <style jsx>{responsiveStyleHelperClasses}</style>
       <style jsx>{loggedOutStyle}</style>
+      <style jsx>{headerStyle}</style>
     </div>
   );
 };
