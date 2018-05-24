@@ -51,15 +51,6 @@ const headerStyle = css`
   a.open-icon {
     margin-left: 12px;
   }
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
-    div.loggedIn {
-      padding: 15px;
-    }
-    div.helpHeader {
-      width: 100%;
-      text-align: center;
-    }
-  }
   span.backButton {
     line-height: 2;
   }
@@ -79,6 +70,13 @@ const headerStyle = css`
     margin-right: 58px;
   }
   @media only screen and (min-width: 320px) and (max-width: 480px) {
+    div.loggedIn {
+      padding: 15px;
+    }
+    div.helpHeader {
+      width: 100%;
+      text-align: center;
+    }
     .loggedOut .helpHeader {
       position: absolute;
       left: 0;
