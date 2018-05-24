@@ -33,10 +33,6 @@ const style = css`
   div.FAQ {
     width: 480px;
   }
-  div.faqLink {
-    margin-left: 182px;
-    line-height: 1.4;
-  }
 `;
 
 const headerStyle = css`
@@ -93,7 +89,7 @@ const headerStyle = css`
       text-align: center;
     }
   }
-`
+`;
 
 type Props = {
   user: User,
