@@ -6,6 +6,7 @@ import css from 'styled-jsx/css';
 import { AirplaneDown, Train, Bus } from '@kiwicom/orbit-components/lib/icons';
 
 import type { AccordionLegTypeIcon_leg } from './__generated__/AccordionLegTypeIcon_leg.graphql';
+import bookingLegTypes from '../../common/booking/bookingLegTypes';
 
 const IconStyle = css`
   div.legTypeIcon {
@@ -19,23 +20,20 @@ const IconStyle = css`
 type IconProps = {
   leg: AccordionLegTypeIcon_leg,
 };
-const AIRCRAFT = 'AIRCRAFT';
-const TRAIN = 'TRAIN';
-const BUS = 'BUS';
 
 const LegTypeIcon = (props: IconProps) => {
   const type = props.leg.type;
   let icon;
   switch (type) {
-    case AIRCRAFT:
+    case bookingLegTypes.AIRCRAFT:
       icon = <AirplaneDown customColor="#adb9c5" height="12" />;
       break;
 
-    case TRAIN:
+    case bookingLegTypes.TRAIN:
       icon = <Train customColor="#adb9c5" height="12" />;
       break;
 
-    case BUS:
+    case bookingLegTypes.BUS:
       icon = <Bus customColor="#adb9c5" height="12" />;
       break;
 
