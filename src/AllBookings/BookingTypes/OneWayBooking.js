@@ -15,10 +15,9 @@ type Props = {
 const OneWayBooking = (props: Props) => {
   const arrival = idx(props.booking, _ => _.trip.arrival);
   const departure = idx(props.booking, _ => _.trip.departure);
-  const legs = idx(props.booking, _ => _.trip);
+
   return (
     <BookingCard
-      trip={legs}
       arrival={arrival}
       departure={departure}
       booking={props.booking}

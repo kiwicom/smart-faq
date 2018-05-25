@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 667cfc3299a57a2b57931494ef164fac
+ * @relayHash a51622ae7370ec42adf67bbc82e6e980
  */
 
 /* eslint-disable */
@@ -102,8 +102,13 @@ fragment MulticityBooking_booking on BookingMulticity {
 }
 
 fragment BookingCard_booking on BookingInterface {
-  databaseId
   ...DateAndPassenger_booking
+  databaseId
+  carriers {
+    name
+    code
+    id
+  }
 }
 
 fragment BookingCard_departure on RouteStop {
@@ -185,28 +190,28 @@ v3 = {
 v4 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "databaseId",
+  "name": "status",
   "args": null,
   "storageKey": null
 },
 v5 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "status",
+  "name": "passengerCount",
   "args": null,
   "storageKey": null
 },
 v6 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "passengerCount",
+  "name": "bookingDate",
   "args": null,
   "storageKey": null
 },
 v7 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "bookingDate",
+  "name": "databaseId",
   "args": null,
   "storageKey": null
 },
@@ -218,6 +223,27 @@ v8 = {
   "storageKey": null
 },
 v9 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "code",
+  "args": null,
+  "storageKey": null
+},
+v10 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "carriers",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "Carrier",
+  "plural": true,
+  "selections": [
+    v8,
+    v9,
+    v3
+  ]
+},
+v11 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "airport",
@@ -247,8 +273,8 @@ v9 = {
     }
   ]
 },
-v10 = [
-  v9,
+v12 = [
+  v11,
   {
     "kind": "ScalarField",
     "alias": null,
@@ -257,10 +283,10 @@ v10 = [
     "storageKey": null
   }
 ],
-v11 = [
-  v9
+v13 = [
+  v11
 ],
-v12 = {
+v14 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "legs",
@@ -279,19 +305,13 @@ v12 = {
       "plural": false,
       "selections": [
         v8,
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "code",
-          "args": null,
-          "storageKey": null
-        }
+        v9
       ]
     },
     v3
   ]
 },
-v13 = [
+v15 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -300,7 +320,7 @@ v13 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v10
+    "selections": v12
   },
   {
     "kind": "LinkedField",
@@ -310,11 +330,11 @@ v13 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v11
+    "selections": v13
   },
-  v12
+  v14
 ],
-v14 = [
+v16 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -354,6 +374,7 @@ v14 = [
               v5,
               v6,
               v7,
+              v10,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -362,7 +383,7 @@ v14 = [
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v13
+                "selections": v15
               },
               v3
             ]
@@ -380,6 +401,7 @@ v14 = [
               v5,
               v6,
               v7,
+              v10,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -388,7 +410,7 @@ v14 = [
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v13
+                "selections": v15
               },
               v3
             ]
@@ -406,6 +428,7 @@ v14 = [
               v5,
               v6,
               v7,
+              v10,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -414,7 +437,7 @@ v14 = [
                 "args": null,
                 "concreteType": "RouteStop",
                 "plural": false,
-                "selections": v10
+                "selections": v12
               },
               {
                 "kind": "LinkedField",
@@ -424,7 +447,7 @@ v14 = [
                 "args": null,
                 "concreteType": "RouteStop",
                 "plural": false,
-                "selections": v11
+                "selections": v13
               },
               {
                 "kind": "LinkedField",
@@ -435,7 +458,7 @@ v14 = [
                 "concreteType": "Trip",
                 "plural": true,
                 "selections": [
-                  v12
+                  v14
                 ]
               },
               v3
@@ -451,7 +474,7 @@ return {
   "operationKind": "query",
   "name": "AllBookingsQuery",
   "id": null,
-  "text": "query AllBookingsQuery {\n  future: allBookings(only: FUTURE) {\n    ...BookingCardsList_booking\n  }\n  past: allBookings(only: PAST) {\n    ...BookingCardsList_booking\n  }\n}\n\nfragment BookingCardsList_booking on BookingConnection {\n  edges {\n    node {\n      id\n      type\n      oneWay {\n        ...OneWayBooking_booking\n        id\n      }\n      return {\n        ...ReturnBooking_booking\n        id\n      }\n      multicity {\n        ...MulticityBooking_booking\n        id\n      }\n    }\n  }\n}\n\nfragment OneWayBooking_booking on BookingOneWay {\n  ...BookingCard_booking\n  trip {\n    departure {\n      ...BookingCard_departure\n    }\n    arrival {\n      ...BookingCard_arrival\n    }\n    legs {\n      ...CarrierLogoWrapper_legs\n      id\n    }\n  }\n}\n\nfragment ReturnBooking_booking on BookingReturn {\n  ...BookingCard_booking\n  outbound {\n    departure {\n      ...BookingCard_departure\n    }\n    arrival {\n      ...BookingCard_arrival\n    }\n    legs {\n      ...CarrierLogoWrapper_legs\n      id\n    }\n  }\n}\n\nfragment MulticityBooking_booking on BookingMulticity {\n  ...BookingCard_booking\n  start {\n    ...BookingCard_departure\n  }\n  end {\n    ...BookingCard_arrival\n  }\n  trips {\n    legs {\n      ...CarrierLogoWrapper_legs\n      id\n    }\n  }\n}\n\nfragment BookingCard_booking on BookingInterface {\n  databaseId\n  ...DateAndPassenger_booking\n}\n\nfragment BookingCard_departure on RouteStop {\n  ...FromToRow_departure\n  ...DateAndPassenger_departure\n}\n\nfragment BookingCard_arrival on RouteStop {\n  ...FromToRow_arrival\n}\n\nfragment CarrierLogoWrapper_legs on Leg {\n  airline {\n    name\n    code\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    locationId\n    city {\n      name\n    }\n  }\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    locationId\n    city {\n      name\n    }\n  }\n}\n\nfragment DateAndPassenger_departure on RouteStop {\n  time\n}\n\nfragment DateAndPassenger_booking on BookingInterface {\n  status\n  passengerCount\n  bookingDate\n}\n",
+  "text": "query AllBookingsQuery {\n  future: allBookings(only: FUTURE) {\n    ...BookingCardsList_booking\n  }\n  past: allBookings(only: PAST) {\n    ...BookingCardsList_booking\n  }\n}\n\nfragment BookingCardsList_booking on BookingConnection {\n  edges {\n    node {\n      id\n      type\n      oneWay {\n        ...OneWayBooking_booking\n        id\n      }\n      return {\n        ...ReturnBooking_booking\n        id\n      }\n      multicity {\n        ...MulticityBooking_booking\n        id\n      }\n    }\n  }\n}\n\nfragment OneWayBooking_booking on BookingOneWay {\n  ...BookingCard_booking\n  trip {\n    departure {\n      ...BookingCard_departure\n    }\n    arrival {\n      ...BookingCard_arrival\n    }\n    legs {\n      ...CarrierLogoWrapper_legs\n      id\n    }\n  }\n}\n\nfragment ReturnBooking_booking on BookingReturn {\n  ...BookingCard_booking\n  outbound {\n    departure {\n      ...BookingCard_departure\n    }\n    arrival {\n      ...BookingCard_arrival\n    }\n    legs {\n      ...CarrierLogoWrapper_legs\n      id\n    }\n  }\n}\n\nfragment MulticityBooking_booking on BookingMulticity {\n  ...BookingCard_booking\n  start {\n    ...BookingCard_departure\n  }\n  end {\n    ...BookingCard_arrival\n  }\n  trips {\n    legs {\n      ...CarrierLogoWrapper_legs\n      id\n    }\n  }\n}\n\nfragment BookingCard_booking on BookingInterface {\n  ...DateAndPassenger_booking\n  databaseId\n  carriers {\n    name\n    code\n    id\n  }\n}\n\nfragment BookingCard_departure on RouteStop {\n  ...FromToRow_departure\n  ...DateAndPassenger_departure\n}\n\nfragment BookingCard_arrival on RouteStop {\n  ...FromToRow_arrival\n}\n\nfragment CarrierLogoWrapper_legs on Leg {\n  airline {\n    name\n    code\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    locationId\n    city {\n      name\n    }\n  }\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    locationId\n    city {\n      name\n    }\n  }\n}\n\nfragment DateAndPassenger_departure on RouteStop {\n  time\n}\n\nfragment DateAndPassenger_booking on BookingInterface {\n  status\n  passengerCount\n  bookingDate\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -495,7 +518,7 @@ return {
         "args": v0,
         "concreteType": "BookingConnection",
         "plural": false,
-        "selections": v14
+        "selections": v16
       },
       {
         "kind": "LinkedField",
@@ -505,7 +528,7 @@ return {
         "args": v2,
         "concreteType": "BookingConnection",
         "plural": false,
-        "selections": v14
+        "selections": v16
       }
     ]
   }
