@@ -36,9 +36,10 @@ class QueryRenderer extends React.Component<ContextTypes & Props<RenderProps>> {
   renderContainer = (renderState: RenderState<RenderProps>) => {
     if (renderState.error) {
       if (renderState.error.message === ERROR_FORBIDDEN) {
-        this.props.onLogout().then(() => {
+        (async () => {
+          await this.props.onLogout();
           this.props.logoutCallback && this.props.logoutCallback();
-        });
+        })().catch(console.error);//eslint-disable-line
         return this.props.render({ error: null, props: null });
       }
     }
