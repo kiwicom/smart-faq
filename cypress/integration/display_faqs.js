@@ -46,6 +46,43 @@ describe('Display Static FAQ', () => {
       .should('have.length', 4);
   });
 
+  it('FAQ Article should have all the necessary data', () => {
+    cy
+      .get('.faq-article-perex')
+      .children()
+      .should('exist');
+
+    cy.get('.faq-article-text').should('exist');
+
+    cy.get('.FAQArticleFeedback').should('exist');
+  });
+
+  it('User can submit some feedback on a FAQ article', () => {
+    const faqFeedback = 'This is my feedback!';
+    cy
+      .get('.FAQArticleFeedback')
+      .find('button')
+      .click();
+
+    cy.get('[data-cy=faq-article-form]').should('exist');
+
+    cy
+      .get('[data-cy=faq-article-form]')
+      .find('textarea')
+      .type(faqFeedback)
+      .should('have.value', faqFeedback);
+
+    cy
+      .get('[data-cy=faq-article-form]')
+      .find('.button button')
+      .click();
+
+    cy
+      .get('[data-cy=faq-article-form]')
+      .find('.thank-you')
+      .should('exist');
+  });
+
   it('User can navigate with breadcrumbs', () => {
     cy.get('[data-cy=faq-breadcrumbs]').as('faq-breadcrumbs');
 
