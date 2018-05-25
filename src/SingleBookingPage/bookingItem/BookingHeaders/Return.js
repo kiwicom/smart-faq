@@ -11,11 +11,13 @@ type Props = {|
 
 const ReturnBookingHeader = ({ bookingHeader }: Props) => {
   const origin =
-    idx(bookingHeader.outbound, _ => _.arrival.airport.city.name) || '';
-  const destination =
     idx(bookingHeader.outbound, _ => _.departure.airport.city.name) || '';
+  const destination =
+    idx(bookingHeader.outbound, _ => _.arrival.airport.city.name) || '';
   return `${origin} to ${destination} and back`;
 };
+
+export const RawReturnBookingHeader = ReturnBookingHeader;
 
 export default createFragmentContainer(
   ReturnBookingHeader,

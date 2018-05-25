@@ -20,7 +20,7 @@ type Props = {|
 |};
 
 class BookingDetail extends React.Component<Props> {
-  renderByType = booking => {
+  renderByType = (booking: NearestBooking_booking) => {
     if (booking.type === bookingTypes.ONE_WAY) {
       return <OneWay booking={booking} />;
     }
@@ -36,7 +36,7 @@ class BookingDetail extends React.Component<Props> {
     return null;
   };
 
-  getDepartureByType = booking => {
+  getDepartureByType = (booking: NearestBooking_booking) => {
     let date = null;
 
     if (booking.type === bookingTypes.ONE_WAY) {
@@ -54,21 +54,49 @@ class BookingDetail extends React.Component<Props> {
     return date ? new Date(date) : null;
   };
 
-  render() {
-    const { booking } = this.props;
-    const departure = this.getDepartureByType(booking);
-    const timeDelta = departure
-      ? DateTime.fromJSDate(departure, { zone: 'utc' }).diffNow('hours').hours
+  getArrivalByType = (booking: NearestBooking_booking) => {
+    let date = null;
+
+    if (booking.type === bookingTypes.ONE_WAY) {
+      date = idx(booking, _ => _.trip.arrival.time);
+    }
+
+    if (booking.type === bookingTypes.RETURN) {
+      date = idx(booking, _ => _.inbound.arrival.time);
+    }
+
+    if (booking.type === bookingTypes.MULTICITY) {
+      date = idx(booking, _ => _.end.time);
+    }
+
+    return date ? new Date(date) : null;
+  };
+
+  decideIfIsFutureAndUrgent = (time: ?Date) => {
+    const timeDelta = time
+      ? DateTime.fromJSDate(time, { zone: 'utc' }).diffNow('hours').hours
       : null;
     const isUrgent =
       timeDelta !== null && URGENCY_THRESHOLD > timeDelta && timeDelta >= 0;
-    // show notification only when the whole trip doesn't started yet
-    const showNotification = timeDelta !== null && timeDelta > 0;
+    return {
+      timeDelta,
+      isFuture: timeDelta !== null && timeDelta > 0,
+      isUrgent,
+    };
+  };
+
+  render() {
+    const { booking } = this.props;
+    const departureTime = this.getDepartureByType(booking);
+    const arrivalTime = this.getArrivalByType(booking);
+    const departureTimeDelta = this.decideIfIsFutureAndUrgent(departureTime);
+    const arrivalTimeDelta = this.decideIfIsFutureAndUrgent(arrivalTime);
+    const { isFuture, isUrgent, timeDelta } = departureTimeDelta;
 
     return (
       <div className="nearestBooking">
-        <Header booking={booking} isFuture={showNotification} />
-        {showNotification &&
+        <Header booking={booking} isFuture={arrivalTimeDelta.isFuture} />
+        {isFuture &&
           timeDelta && (
             <Notification hoursLeft={timeDelta} isUrgent={isUrgent} />
           )}
@@ -118,6 +146,8 @@ class BookingDetail extends React.Component<Props> {
   }
 }
 
+export const RawBookingDetail = BookingDetail;
+
 export default createFragmentContainer(
   BookingDetail,
   graphql`
@@ -132,6 +162,9 @@ export default createFragmentContainer(
           departure {
             time
           }
+          arrival {
+            time
+          }
         }
       }
       ... on BookingReturn {
@@ -140,11 +173,22 @@ export default createFragmentContainer(
           departure {
             time
           }
+          arrival {
+            time
+          }
+        }
+        inbound {
+          arrival {
+            time
+          }
         }
       }
       ... on BookingMulticity {
         ...MulticityOverlay_booking
         start {
+          time
+        }
+        end {
           time
         }
       }

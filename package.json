@@ -86,7 +86,8 @@
     "surge": "^0.20.1",
     "webpack": "4.1.0",
     "webpack-cli": "2.0.10",
-    "webpack-dev-server": "3.1.0"
+    "webpack-dev-server": "3.1.0",
+    "mockdate": "^2.0.2"
   },
   "dependencies": {
     "@kiwicom/orbit-components": "^0.0.0-rc6",
