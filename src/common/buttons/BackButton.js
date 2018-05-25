@@ -14,6 +14,7 @@ type Props = {|
 
 const BackButton = (props: Props) => (
   <div
+    data-cy="back-button"
     className="back"
     onClick={props.history.goBack}
     onKeyUp={props.history.goBack}

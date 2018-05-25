@@ -29,6 +29,7 @@ const style = css`
 
 const FAQArticle = (props: Props) => (
   <Link
+    className="faq-link"
     to={
       props.isSearchResult
         ? `${routeDefinitions.FAQ_ARTICLE}/search/${props.article.id}`

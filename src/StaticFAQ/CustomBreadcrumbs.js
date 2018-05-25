@@ -33,7 +33,7 @@ const CustomBreadcrumbs = ({ breadcrumbs, loginToken }: Props) => {
   const id = previousCategory && previousCategory.id;
 
   return (
-    <div className="breadcrumbs">
+    <div className="breadcrumbs" data-cy="faq-breadcrumbs">
       {loginToken && (
         <span className="desktopOnly">
           <BackArrow id={id} />
