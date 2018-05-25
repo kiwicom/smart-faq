@@ -1,18 +1,7 @@
 // @flow
-const childProcess = require('child_process');
 const resolve = require('path').resolve;
 const octokit = require('@octokit/rest')();
 require('dotenv').config({ path: resolve('.env') });
-
-const lastUrl = 'https://'.concat(
-  childProcess
-    .execSync(
-      'now ls -t ' +
-        (process.env.NOW_TOKEN || '') +
-        "| grep -o -e '[a-zA-Z0-9.-]*.now.sh' | head -1",
-    )
-    .toString(),
-);
 
 export const getPr = async (branchName: string) => {
   const res = await octokit.pullRequests.getAll({
@@ -23,7 +12,7 @@ export const getPr = async (branchName: string) => {
   return res.data[0];
 };
 
-export const updateLiveURL = async (branchName: string) => {
+export const updateLiveURL = async (branchName: string, lastUrl: string) => {
   const pr = await getPr(branchName);
   octokit.authenticate({
     type: 'integration',
