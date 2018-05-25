@@ -1,6 +1,7 @@
 [ignore]
 build/*
 __mocks__/*
+.*/node_modules/cypress
 
 [include]
 
