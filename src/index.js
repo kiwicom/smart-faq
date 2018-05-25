@@ -9,6 +9,7 @@ import App from './App';
 import enLocale from '../i18n/en/translation.json';
 import { Requester } from './helpers/Requests';
 import type { User } from './types';
+import { socialLogin } from './helpers/Auth';
 
 type Props = {||};
 
@@ -24,6 +25,7 @@ const user = {
   lastname: 'Doe',
 };
 
+
 class Root extends React.Component<Props, State> {
   cookieKey: string;
 
@@ -38,6 +40,11 @@ class Root extends React.Component<Props, State> {
       loginToken,
     };
   }
+
+  handleSocialLogin = async (provider: string) => {
+    const authUrl = await socialLogin(provider);
+    window.location = authUrl;
+  };
 
   onLogin = async (email, password) => {
     const loginToken = await Requester.login(email, password);
@@ -58,6 +65,7 @@ class Root extends React.Component<Props, State> {
         <App
           onClose={() => {}}
           onLogin={this.onLogin}
+          onSocialLogin={this.handleSocialLogin}
           onLogout={this.onLogout}
           language="en"
           locale={enLocale}

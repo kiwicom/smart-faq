@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
 
-import { socialLogin } from '../helpers/Auth';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import chevronRight from '../../static/chevron-right.png';
 import facebookLogo from '../../static/facebook-icon.png';
@@ -14,6 +13,8 @@ import routeDefinitions from '../routeDefinitions';
 import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
 import Input from '../common/Input';
+import { withSocialLogin } from '../context/User';
+import type { onSocialLogin } from '../types.js'
 
 const style = css`
   .SignIn {
@@ -179,6 +180,7 @@ type Props = {
   history: {
     push: (string | { pathname: string, state: { email: string } }) => void,
   },
+  onSocialLogin: onSocialLogin
 };
 
 type State = {|
@@ -200,11 +202,6 @@ class SignIn extends React.Component<Props, State> {
       pathname: routeDefinitions.CHECK_MAGIC_LINK,
       state: { email: this.state.email },
     });
-  };
-
-  handleSocialLogin = async (provider: string) => {
-    const authUrl = await socialLogin(provider);
-    window.location = authUrl;
   };
 
   render() {
@@ -240,10 +237,8 @@ class SignIn extends React.Component<Props, State> {
         </form>
         <p className="or"> or </p>
         <div className="buttons">
-          <button
-            className="google"
-            onClick={() => this.handleSocialLogin('google')}
-          >
+          <button className="google" onClick={
+            () => this.props.onSocialLogin('google')}>
             <img
               className="google-icon"
               src={googleLogo}
@@ -251,10 +246,8 @@ class SignIn extends React.Component<Props, State> {
             />
             <span className="label">Continue with Google </span>
           </button>
-          <button
-            className="facebook"
-            onClick={() => this.handleSocialLogin('facebook')}
-          >
+          <button className="facebook" onClick={
+            () => this.props.onSocialLogin('facebook')}>
             <img
               className="facebook-icon"
               src={facebookLogo}

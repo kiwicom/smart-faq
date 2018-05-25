@@ -112,6 +112,7 @@ const style = css`
 `;
 type Props = {
   onLogin: onLogin,
+  onSocialLogin: onLogin,
   history: {
     push: string => void,
   },
