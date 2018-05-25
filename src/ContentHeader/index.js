@@ -1,18 +1,18 @@
 // @flow
 
-import { Link, withRouter } from 'react-router-dom';
-import * as React from 'react';
-import idx from 'idx';
-import css from 'styled-jsx/css';
-import { Typography } from '@kiwicom/orbit-components';
+import { Link, withRouter } from "react-router-dom";
+import * as React from "react";
+import idx from "idx";
+import css from "styled-jsx/css";
+import { Typography } from "@kiwicom/orbit-components";
 
-import { CloseButton, BackButton } from '../common';
-import SignOutButton from './SignOutButton';
-import routeDefinitions from '../routeDefinitions';
-import { withUser } from '../context/User';
-import type { User } from '../types';
-import FullFAQLink from '../common/FullFAQLink';
-import responsiveStyleHelperClasses from '../common/responsiveStyleHelperClasses';
+import { CloseButton, BackButton } from "../common";
+import SignOutButton from "./SignOutButton";
+import routeDefinitions from "../routeDefinitions";
+import { withUser } from "../context/User";
+import type { User } from "../types";
+import FullFAQLink from "../common/FullFAQLink";
+import responsiveStyleHelperClasses from "../common/responsiveStyleHelperClasses";
 
 const style = css`
   div.loggedOut {
@@ -30,37 +30,44 @@ const style = css`
     border-bottom: 1px solid #e8edf1;
     background-color: #ffffff;
   }
-  div.FAQ {
-    width: 480px;
-  }
-  div.faqLink {
-    margin-left: 182px;
-    line-height: 1.4;
-  }
 `;
 
-const loggedInStyle = css`
+const headerStyle = css`
   div.helpHeader {
     font-size: 28px;
     font-weight: bold;
     color: #171b1e;
     pointer-events: none;
   }
+  div.links {
+    display: flex;
+    align-items: center;
+  }
   div.loggedIn {
     display: flex;
     justify-content: space-between;
     padding: 15px 122px 15px 40px;
   }
-  div.links {
-    display: flex;
-    align-items: center;
-  }
-  div.faqLink {
-    display: flex;
-    margin-right: 58px;
-  }
   a.open-icon {
     margin-left: 12px;
+  }
+  span.backButton {
+    line-height: 2;
+  }
+  div.signInOrBack {
+    margin-right: 149px;
+    width: 43px;
+    height: 20px;
+  }
+  div.loggedOut {
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    height: 66px;
+  }
+  div.loggedInFaqLink {
+    display: flex;
+    margin-right: 58px;
   }
   @media only screen and (min-width: 320px) and (max-width: 480px) {
     div.loggedIn {
@@ -70,32 +77,7 @@ const loggedInStyle = css`
       width: 100%;
       text-align: center;
     }
-  }
-`;
-
-const loggedOutStyle = css`
-  div.helpHeader {
-    font-size: 28px;
-    font-weight: bold;
-    color: #171b1e;
-    pointer-events: none;
-  }
-  div.loggedOut {
-    display: flex;
-    padding: 16px;
-    align-items: center;
-    height: 66px;
-  }
-  div.signInOrBack {
-    margin-right: 149px;
-    width: 43px;
-    height: 20px;
-  }
-  span.backButton {
-    line-height: 2;
-  }
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
-    .helpHeader {
+    .loggedOut .helpHeader {
       position: absolute;
       left: 0;
       right: 0;
@@ -126,20 +108,20 @@ const renderLoggedIn = (
 ) => {
   return (
     <div className="loggedIn">
-      <div className="signout-or-back">
-        <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
+      <div>
+        <BackButton text={comesFromSearch ? "Search" : "Back"} />
       </div>
       <div className="helpHeader">Help</div>
-      <div className="links">
-        <div className="faqLink desktopOnly">
+      <div className="links desktopOnly">
+        <div className="loggedInFaqLink">
           <FullFAQLink className="primary" />
         </div>
-        <div className="desktopOnly">
+        <div>
           <SignOutButton />
         </div>
       </div>
-      <style jsx>{loggedInStyle}</style>
       <style jsx>{responsiveStyleHelperClasses}</style>
+      <style jsx>{headerStyle}</style>
     </div>
   );
 };
@@ -149,29 +131,28 @@ const renderLoggedOut = (
   isArticle: boolean,
   comesFromSearch: boolean,
 ) => {
+  const backButton = (
+    <div className="backButton">
+      <BackButton text={comesFromSearch ? "Search" : "Back"} />
+    </div>
+  );
+
+  const signInButton = (
+    <Link to={routeDefinitions.SIGN_IN} style={{ textDecoration: "none" }}>
+      <div className="desktopOnly">
+        <Typography type="attention" variant="normal">
+          Sign In
+        </Typography>
+      </div>
+    </Link>
+  );
+
   return (
     <div className="loggedOut">
-      <div className="signInOrBack">
-        {hasCategory || isArticle ? (
-          <div className="backButton">
-            <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
-          </div>
-        ) : (
-          <Link
-            to={routeDefinitions.SIGN_IN}
-            style={{ textDecoration: 'none' }}
-          >
-            <div className="desktopOnly">
-              <Typography type="attention" variant="normal">
-                Sign In
-              </Typography>
-            </div>
-          </Link>
-        )}
-      </div>
+      <div className="signInOrBack">{hasCategory || isArticle ? backButton : signInButton}</div>
       <div className="helpHeader">Help</div>
       <style jsx>{responsiveStyleHelperClasses}</style>
-      <style jsx>{loggedOutStyle}</style>
+      <style jsx>{headerStyle}</style>
     </div>
   );
 };
@@ -181,10 +162,9 @@ const ContentHeader = (props: Props) => {
   const entries = props.history && props.history.entries;
   const currentpath = props.location && props.location.pathname;
 
-  const isArticle = currentpath.includes('article');
+  const isArticle = currentpath.includes("article");
   const lastEntry = isArticle && entries[entries.length - 2];
-  const comesFromSearch =
-    lastEntry && lastEntry.pathname === routeDefinitions.STATIC_FAQ;
+  const comesFromSearch = lastEntry && lastEntry.pathname === routeDefinitions.STATIC_FAQ;
 
   return (
     <div className="header">
