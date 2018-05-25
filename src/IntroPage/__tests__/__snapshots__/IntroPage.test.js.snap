@@ -36,6 +36,7 @@ exports[`IntroPage should match snapshot: <IntroPage /> 1`] = `
     >
       <button
         className="jsx-3543786168"
+        data-cy="btn-existing-booking"
         onClick={[Function]}
       >
         I have an existing booking
@@ -46,6 +47,7 @@ exports[`IntroPage should match snapshot: <IntroPage /> 1`] = `
     >
       <button
         className="jsx-3543786168"
+        data-cy="btn-nonexistent-booking"
         onClick={[Function]}
       >
         I don't have a booking

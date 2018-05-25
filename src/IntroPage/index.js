@@ -129,12 +129,18 @@ export class PureIntro extends React.Component<Props> {
         </div>
         <div className="buttons">
           <div className="primary">
-            <button onClick={this.goToExistingBooking}>
+            <button
+              onClick={this.goToExistingBooking}
+              data-cy="btn-existing-booking"
+            >
               I have an existing booking
             </button>
           </div>
           <div className="secondary">
-            <button onClick={this.goToNoBooking}>
+            <button
+              onClick={this.goToNoBooking}
+              data-cy="btn-nonexistent-booking"
+            >
               I don&apos;t have a booking
             </button>
           </div>
