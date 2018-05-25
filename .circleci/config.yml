@@ -111,7 +111,10 @@ workflows:
 
   build-and-surge-deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              ignore: master
       - surge-deploy:
           requires:
             - build
