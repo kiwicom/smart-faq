@@ -7,7 +7,7 @@ type Props = {|
 |};
 
 const ScrollableBox = (props: Props) => (
-  <div className="scrollable-box">
+  <div className="scrollable-box" data-cy="scrollable-box">
     {props.children}
     <style jsx>
       {`

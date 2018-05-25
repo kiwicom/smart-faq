@@ -24,10 +24,11 @@ const InputText = (props: Props) => (
       placeholder={props.placeholder}
       onChange={props.onChange}
       required={props.required}
+      data-cy="input-text"
     />
     {props.icon && <div className="inputIcon">{props.icon}</div>}
     {props.onReset && (
-      <button onClick={props.onReset}>
+      <button onClick={props.onReset} data-cy="btn-reset-input">
         <CloseCircle size="small" customColor="#bac7d5" />
       </button>
     )}
