@@ -24,7 +24,12 @@ class ContentPage extends React.Component<Props> {
         {isLoggedIn && (
           <div className="BookingInfo">
             <BookingState.Consumer>
-              {bookingState => <BookingPage {...bookingState} />}
+              {({ bookingPage, selectedBooking }) => (
+                <BookingPage
+                  bookingPage={bookingPage}
+                  selectedBooking={selectedBooking}
+                />
+              )}
             </BookingState.Consumer>
           </div>
         )}

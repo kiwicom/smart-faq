@@ -5,9 +5,9 @@ import * as React from 'react';
 import AllBooking from '../../AllBookings';
 import NearestBooking from '../../SingleBookingPage/NearestBooking';
 import SelectedBooking from '../../SingleBookingPage/SelectedBooking';
-import { type BookingStateType } from '../../context/BookingState';
+import { type BookingStateProps } from '../../context/BookingState';
 
-type Props = BookingStateType;
+type Props = BookingStateProps;
 
 class BookingPage extends React.PureComponent<Props> {
   render() {

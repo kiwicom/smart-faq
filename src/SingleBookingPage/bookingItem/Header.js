@@ -8,7 +8,10 @@ import OneWayBookingHeader from './BookingHeaders/OneWay';
 import ReturnBookingHeader from './BookingHeaders/Return';
 import MulticityBookingHeader from './BookingHeaders/Multicity';
 import formatBookingId from '../../helpers/formatBookingId';
-import { ClickAllBooking } from '../../context/BookingState';
+import {
+  BookingState,
+  type BookingStateType,
+} from '../../context/BookingState';
 import bookingTypes from '../../common/booking/bookingTypes';
 import bookingStatus from '../../common/booking/bookingStatuses';
 import type { Header_booking } from './__generated__/Header_booking.graphql';
@@ -46,19 +49,19 @@ const Header = (props: Props) => {
             </Typography>
           )}
         </div>
-        <ClickAllBooking.Consumer>
-          {onClick => (
+        <BookingState.Consumer>
+          {({ onDisplayAll }: BookingStateType) => (
             <TextLink
               url=""
               onClick={e => {
                 e.preventDefault();
-                onClick();
+                onDisplayAll();
               }}
               size="small"
               title="Select other booking"
             />
           )}
-        </ClickAllBooking.Consumer>
+        </BookingState.Consumer>
       </div>
       <div className="headerTitle">
         <Typography size="header" type="attention" variant="bold">
