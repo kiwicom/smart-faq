@@ -3,10 +3,14 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 
 import { RawKiwiLogin } from '../index';
+import { defaultToken, defaultUserId } from '../../../__mocks__/constants';
 
 describe('KiwiLogin', () => {
   const props = {
-    onLogin: async () => {},
+    onLogin: async () => ({
+      user_id: defaultUserId,
+      token: defaultToken,
+    }),
     history: {
       push: jest.fn(),
     },
