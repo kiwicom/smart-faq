@@ -47,6 +47,7 @@ const loggedInStyle = css`
   .loggedIn {
     display: flex;
     justify-content: space-between;
+    flex: 1;
     padding: 15px 122px 15px 40px;
   }
   .links {
