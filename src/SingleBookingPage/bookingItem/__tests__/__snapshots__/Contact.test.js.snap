@@ -1,0 +1,257 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Contact should not render email and phone 1`] = `
+<div
+  className="jsx-2410063808 contact"
+>
+  <hr
+    className="jsx-2410063808"
+  />
+  <div
+    className="jsx-2410063808 title"
+  >
+    <Typography
+      size="large"
+      type="attention"
+    >
+      Contacts
+    </Typography>
+  </div>
+  <div
+    className="jsx-2410063808 contact-options"
+  />
+  <div
+    className="jsx-2410063808 instructions"
+  >
+    <ol
+      className="jsx-2410063808"
+    >
+      <li
+        className="jsx-2410063808"
+      >
+        When contacting us we will ask the 
+        <b
+          className="jsx-2410063808"
+        >
+          full name
+        </b>
+         of at least one of the passengers.
+      </li>
+      <li
+        className="jsx-2410063808"
+      >
+        The full 
+        <b
+          className="jsx-2410063808"
+        >
+          email address
+        </b>
+         provided during the booking.
+      </li>
+    </ol>
+  </div>
+  <JSXStyle
+    css=".contact.jsx-2410063808{margin-top:32px;}.contact.jsx-2410063808 .title.jsx-2410063808{margin-bottom:18px;}.contact-options.jsx-2410063808,.phone.jsx-2410063808,.chat.jsx-2410063808,.inline-icon.jsx-2410063808{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.phone.jsx-2410063808{margin-right:40px;}hr.jsx-2410063808{margin-bottom:16px;border:none;border-bottom:1px solid #e8edf1;}.phone-icon.jsx-2410063808{margin-right:7px;}.chevron-icon.jsx-2410063808{margin-left:5px;}.chat-icon.jsx-2410063808{margin-right:14px;}.instructions.jsx-2410063808{margin-left:20px;margin-top:34px;font-size:14px;color:#46515e;}.instructions.jsx-2410063808 ol.jsx-2410063808{list-style-type:decimal;}li.jsx-2410063808{margin-bottom:7px;padding-left:10px;}"
+    styleId="2410063808"
+  />
+</div>
+`;
+
+exports[`Contact should render only email 1`] = `
+<div
+  className="jsx-2410063808 contact"
+>
+  <hr
+    className="jsx-2410063808"
+  />
+  <div
+    className="jsx-2410063808 title"
+  >
+    <Typography
+      size="large"
+      type="attention"
+    >
+      Contacts
+    </Typography>
+  </div>
+  <div
+    className="jsx-2410063808 contact-options"
+  >
+    <div
+      className="jsx-2410063808 chat"
+    >
+      <div
+        className="jsx-2410063808 chat-icon inline-icon"
+      >
+        <Chat
+          customColor="#00a991"
+        />
+      </div>
+      <TextLink
+        newTab={false}
+        onClick={[Function]}
+        size="normal"
+        title="Write us a message"
+        type="primary"
+        url="mailto:kiwi@email.com"
+      >
+        Write us a message
+      </TextLink>
+    </div>
+  </div>
+  <div
+    className="jsx-2410063808 instructions"
+  >
+    <ol
+      className="jsx-2410063808"
+    >
+      <li
+        className="jsx-2410063808"
+      >
+        When contacting us we will ask the 
+        <b
+          className="jsx-2410063808"
+        >
+          full name
+        </b>
+         of at least one of the passengers.
+      </li>
+      <li
+        className="jsx-2410063808"
+      >
+        The full 
+        <b
+          className="jsx-2410063808"
+        >
+          email address
+        </b>
+         provided during the booking.
+      </li>
+    </ol>
+  </div>
+  <JSXStyle
+    css=".contact.jsx-2410063808{margin-top:32px;}.contact.jsx-2410063808 .title.jsx-2410063808{margin-bottom:18px;}.contact-options.jsx-2410063808,.phone.jsx-2410063808,.chat.jsx-2410063808,.inline-icon.jsx-2410063808{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.phone.jsx-2410063808{margin-right:40px;}hr.jsx-2410063808{margin-bottom:16px;border:none;border-bottom:1px solid #e8edf1;}.phone-icon.jsx-2410063808{margin-right:7px;}.chevron-icon.jsx-2410063808{margin-left:5px;}.chat-icon.jsx-2410063808{margin-right:14px;}.instructions.jsx-2410063808{margin-left:20px;margin-top:34px;font-size:14px;color:#46515e;}.instructions.jsx-2410063808 ol.jsx-2410063808{list-style-type:decimal;}li.jsx-2410063808{margin-bottom:7px;padding-left:10px;}"
+    styleId="2410063808"
+  />
+</div>
+`;
+
+exports[`Contact should render with email and phone 1`] = `
+<div
+  class="jsx-2410063808 contact"
+>
+  <hr
+    class="jsx-2410063808"
+  />
+  <div
+    class="jsx-2410063808 title"
+  >
+    <span
+      class="jsx-398534955"
+    >
+      Contacts
+    </span>
+  </div>
+  <div
+    class="jsx-2410063808 contact-options"
+  >
+    <div
+      class="jsx-2410063808 phone"
+    >
+      <div
+        class="jsx-2410063808 phone-icon inline-icon"
+      >
+        <svg
+          fill="currentColor"
+          height="24px"
+          preserveAspectRatio="xMidYMid meet"
+          style="vertical-align:middle;color:#00a991"
+          viewBox="0 0 24 24"
+          width="24px"
+        >
+          <path
+            d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+          />
+        </svg>
+      </div>
+      <span
+        class="jsx-4212733848"
+      >
+        12345678
+      </span>
+      <div
+        class="jsx-2410063808 chevron-icon inline-icon"
+      >
+        <svg
+          fill="currentColor"
+          height="16px"
+          preserveAspectRatio="xMidYMid meet"
+          style="vertical-align:middle;color:#00a991"
+          viewBox="0 0 24 24"
+          width="16px"
+        >
+          <path
+            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      class="jsx-2410063808 chat"
+    >
+      <div
+        class="jsx-2410063808 chat-icon inline-icon"
+      >
+        <svg
+          fill="currentColor"
+          height="24px"
+          preserveAspectRatio="xMidYMid meet"
+          style="vertical-align:middle;color:#00a991"
+          viewBox="0 0 24 24"
+          width="24px"
+        >
+          <path
+            d="M20 2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h1v4l4-4h10.999a2 2 0 0 0 2-2V4C22 2.895 21.105 2 20 2zm-7 13H6v-2h7v2zm5-4H6V9h12v2zm0-4H6V5h12v2z"
+          />
+        </svg>
+      </div>
+      <a
+        class="jsx-4115119518"
+        href="mailto:kiwi@email.com"
+      >
+        Write us a message
+      </a>
+    </div>
+  </div>
+  <div
+    class="jsx-2410063808 instructions"
+  >
+    <ol
+      class="jsx-2410063808"
+    >
+      <li
+        class="jsx-2410063808"
+      >
+        When contacting us we will ask the 
+        <b
+          class="jsx-2410063808"
+        >
+          full name
+        </b>
+         of at least one of the passengers.
+      </li>
+      <li
+        class="jsx-2410063808"
+      >
+        The full 
+        <b
+          class="jsx-2410063808"
+        >
+          email address
+        </b>
+         provided during the booking.
+      </li>
+    </ol>
+  </div>
+</div>
+`;

@@ -8,6 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type Contact_info$ref = any;
 type Header_booking$ref = any;
 type MulticityOverlay_booking$ref = any;
 type OneWay_booking$ref = any;
@@ -31,7 +32,7 @@ export type BookingDetail_booking = {|
   +start?: ?{|
     +time: ?any,
   |},
-  +$fragmentRefs: (Header_booking$ref & OneWay_booking$ref & Return_booking$ref & MulticityOverlay_booking$ref),
+  +$fragmentRefs: (Contact_info$ref & Header_booking$ref & OneWay_booking$ref & Return_booking$ref & MulticityOverlay_booking$ref),
   +$refType: BookingDetail_booking$ref,
 |};
 */
@@ -79,6 +80,11 @@ return {
       "name": "directAccessURL",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "Contact_info",
+      "args": null
     },
     {
       "kind": "FragmentSpread",
@@ -151,5 +157,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '61a1cdbc5796aaae1182d5639e237867';
+(node/*: any*/).hash = '8ea0f284beebcef6cd94ae3f990e7d21';
 module.exports = node;
