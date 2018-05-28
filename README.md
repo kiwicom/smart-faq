@@ -46,26 +46,22 @@ Webpack and particularly `dotenv-webpack` package will take care of importing th
 
 ## Build process
 
-### Github Pages
+Test script `test-ci` is run on each push
 
+### Surge Deploy
+- after each push a circleci `test-ci-and-surge-deploy` script is run
+- it generates a live preview link on surge  ie. `https://smartfaq-branch-name.surge.sh`
+
+### Github Pages
 - After every merge into master, standalone version of this project is published using Github Pages 
 - Inspired by repository [Circle CI and Github Pages](https://github.com/Villanuevand/deployment-circleci-gh-pages) and further described on [Github](https://github.com/DevProgress/onboarding/wiki/Using-Circle-CI-with-Github-Pages-for-Continuous-Delivery)
-- Deployed on [https://github.com/kiwicom/smart-faq/](https://github.com/kiwicom/smart-faq/)
+- Deployed on [https://kiwicom.github.io/smart-faq/](https://kiwicom.github.io/smart-faq/)
 
-## Release
+### Release
 
-Done automatically when you add new release on [Github](https://github.com/kiwicom/smart-faq/releases/new)
+Done automatically when you add a new release tag on [Github](https://github.com/kiwicom/smart-faq/releases/new)
 
-- automatically updates package.json with correct version and publish changes into npm
+- automatically updates package.json with correct version
+- publish changes onto npm
 
-## Release per branch
-Everytime one sends a Pull Request the app is deployed to a different URL endpoint. This URL is then automatically added to the PR description.
-
-Relevant `package.json` scripts:
-- `deploy:now`: used to deploy to a new URL from localhost. Useful to debug production code. Requires you to have an `.env` file with `NOW_TOKEN` var.
-- `deploy:now-cli`: deployment script used by our CI. No configuration necessary.
-- `deploy:updateURL`: Updates the PR description with the latest URL deployed from the machine it was called from. Requires you to pass the branchname as argument.
-
-## TO RE-FACTOR (when Orbit is ready)
-- `Need help?` needs to be re-factor to use the `Text` component from Orbit(currenty it's hardcoded CSS)
 
