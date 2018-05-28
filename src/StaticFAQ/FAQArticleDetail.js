@@ -7,10 +7,7 @@ import css from 'styled-jsx/css';
 
 import QueryRenderer from '../relay/QueryRenderer';
 import Loader from '../common/Loader';
-import ContentHeader from '../ContentHeader';
 import FAQArticleDetailContent from './FAQArticleDetailContent';
-import { withUser } from '../context/User';
-import type { User } from '../types';
 import type { FAQArticleDetailQuery } from './__generated__/FAQArticleDetailQuery.graphql';
 import type { FAQArticleDetailSearchResultQuery } from './__generated__/FAQArticleDetailSearchResultQuery.graphql';
 import CustomBreadcrumbs from './CustomBreadcrumbs';
@@ -47,7 +44,6 @@ type FAQArticleDetailParams = {
 };
 
 type Props = {
-  user: User,
   match: {
     params: {
       articleId: string,
@@ -142,7 +138,6 @@ class FAQArticleDetail extends React.Component<Props> {
   render() {
     return (
       <div className="faq-article-detail">
-        {!this.props.user && <ContentHeader />}
         {this.getQueryRenderer()}
         <style jsx>
           {`
@@ -161,4 +156,4 @@ class FAQArticleDetail extends React.Component<Props> {
   }
 }
 
-export default withUser(FAQArticleDetail);
+export default FAQArticleDetail;

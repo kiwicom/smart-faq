@@ -13,7 +13,6 @@ import image from '../../static/woman-with-laptop@2x.jpg';
 import chevronRight from '../../static/chevron-right.png';
 import facebookLogo from '../../static/facebook-icon.png';
 import googleLogo from '../../static/google-logo.png';
-import routeDefinitions from '../routeDefinitions';
 import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
 import Input from '../common/Input';
@@ -201,7 +200,7 @@ class SignIn extends React.Component<Props, State> {
   handleSubmitEmail = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     this.props.history.push({
-      pathname: routeDefinitions.CHECK_MAGIC_LINK,
+      pathname: '/check-magic-link',
       state: { email: this.state.email },
     });
   };
@@ -289,10 +288,7 @@ class SignIn extends React.Component<Props, State> {
           </button>
         </div>
         <div className="kiwi-account">
-          <Link
-            to={routeDefinitions.KIWI_LOGIN}
-            style={{ textDecoration: 'none' }}
-          >
+          <Link to="/kiwi-login" style={{ textDecoration: 'none' }}>
             <Typography type="active">
               I want to use my Kiwi.com account
             </Typography>

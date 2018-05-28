@@ -33,9 +33,7 @@ const styles = css`
   }
 `;
 
-type Props = {|
-  returnToLogin: () => void,
-|};
+type Props = {||};
 
 type AllBookingsQueryProps = {
   props: ?AllBookingsQuery,
@@ -102,7 +100,6 @@ class AllBooking extends React.Component<Props> {
         render={this.renderBookings}
         cacheConfig={{ force: true }}
         variables={{}}
-        logoutCallback={this.props.returnToLogin}
       />
     );
   }

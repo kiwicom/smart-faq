@@ -11,7 +11,6 @@ import FAQArticle from './FAQArticle';
 import FAQCategory from './FAQCategory';
 import Breadcrumbs from './Breadcrumbs';
 import StaticFAQError from './StaticFAQError';
-import routeDefinitions from './../routeDefinitions';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
 import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
 import type { FAQCategoryListRootQueryResponse } from './__generated__/FAQCategoryListRootQuery.graphql';
@@ -94,7 +93,7 @@ class FAQCategoryList extends React.Component<Props> {
             return (
               <Link
                 key={category.id}
-                to={`${routeDefinitions.STATIC_FAQ}/${category.id}`}
+                to={`/faq/${category.id}`}
                 style={{ textDecoration: 'none' }}
               >
                 <FAQCategory category={category} />

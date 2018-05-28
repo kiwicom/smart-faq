@@ -53,13 +53,15 @@ class Root extends React.Component<Props, State> {
   };
 
   render() {
+    const language = 'en';
+
     return (
       <div className="root">
         <App
           onClose={() => {}}
           onLogin={this.onLogin}
           onLogout={this.onLogout}
-          language="en"
+          language={language}
           locale={enLocale}
           user={this.state.user}
           loginToken={this.state.loginToken}

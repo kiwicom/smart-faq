@@ -13,12 +13,7 @@ import bookingTypes from '../common/booking/bookingTypes';
 import type { SelectedBookingQueryResponse as QueryResponseType } from './__generated__/SelectedBookingQuery.graphql';
 
 type Props = {|
-  match: {
-    params: {
-      bookingId: ?string,
-    },
-  },
-  returnToLogin: () => void,
+  bookingId: string,
 |};
 
 type RenderState = {
@@ -76,20 +71,15 @@ class SelectedBooking extends React.Component<Props> {
   };
 
   render() {
-    const bookingId = idx(this.props.match, _ => _.params.bookingId) || null;
+    const { bookingId } = this.props;
 
-    if (bookingId) {
-      return (
-        <QueryRenderer
-          query={selectedBookingQuery}
-          variables={{ id: bookingId }}
-          render={this.renderSelectedBooking}
-          logoutCallback={this.props.returnToLogin}
-        />
-      );
-    }
-
-    return <BookingNotFound />;
+    return (
+      <QueryRenderer
+        query={selectedBookingQuery}
+        variables={{ id: bookingId }}
+        render={this.renderSelectedBooking}
+      />
+    );
   }
 }
 

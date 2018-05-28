@@ -6,15 +6,13 @@ const defaultLanguage = 'en';
 
 export const LanguageContext = React.createContext(defaultLanguage);
 
-export const withDefaultLanguage = <Props>(
-  Component: React.ComponentType<{ defaultLanguage: string } & Props>,
+export const withLanguage = <Props>(
+  Component: React.ComponentType<{ language: string } & Props>,
 ) =>
   function withLanguageHOC(props: Props) {
     return (
       <LanguageContext.Consumer>
-        {(defaultLanguage: string) => (
-          <Component {...props} defaultLanguage={defaultLanguage} />
-        )}
+        {(language: string) => <Component {...props} language={language} />}
       </LanguageContext.Consumer>
     );
   };

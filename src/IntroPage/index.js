@@ -5,7 +5,6 @@ import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
 
 import image from '../../static/woman-with-laptop@2x.jpg';
-import routeDefinitions from '../routeDefinitions';
 import CloseButton from './../common/buttons/CloseButton';
 import { withUser } from '../context/User';
 import type { User } from '../types';
@@ -106,12 +105,12 @@ type Props = {
 export class PureIntro extends React.Component<Props> {
   goToExistingBooking = () => {
     this.props.user
-      ? this.props.history.push(routeDefinitions.CONTENT)
-      : this.props.history.push(routeDefinitions.SIGN_IN);
+      ? this.props.history.push('/faq/')
+      : this.props.history.push('/sign-in');
   };
 
   goToNoBooking = () => {
-    this.props.history.push(routeDefinitions.NO_BOOKING);
+    this.props.history.push('/faq/');
   };
 
   render() {

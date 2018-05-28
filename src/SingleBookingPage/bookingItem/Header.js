@@ -1,15 +1,17 @@
 // @flow
 
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import { graphql, createFragmentContainer } from 'react-relay';
-import { Typography } from '@kiwicom/orbit-components';
+import { Typography, TextLink } from '@kiwicom/orbit-components';
 
-import routeDefinitions from '../../routeDefinitions';
 import OneWayBookingHeader from './BookingHeaders/OneWay';
 import ReturnBookingHeader from './BookingHeaders/Return';
 import MulticityBookingHeader from './BookingHeaders/Multicity';
 import formatBookingId from '../../helpers/formatBookingId';
+import {
+  BookingState,
+  type BookingStateType,
+} from '../../context/BookingState';
 import bookingTypes from '../../common/booking/bookingTypes';
 import bookingStatus from '../../common/booking/bookingStatuses';
 import type { Header_booking } from './__generated__/Header_booking.graphql';
@@ -47,14 +49,19 @@ const Header = (props: Props) => {
             </Typography>
           )}
         </div>
-        <Link
-          to={routeDefinitions.ALL_BOOKINGS}
-          style={{ textDecoration: 'none' }}
-        >
-          <Typography size="small" type="active">
-            Select other booking
-          </Typography>
-        </Link>
+        <BookingState.Consumer>
+          {({ onDisplayAll }: BookingStateType) => (
+            <TextLink
+              url=""
+              onClick={e => {
+                e.preventDefault();
+                onDisplayAll();
+              }}
+              size="small"
+              title="Select other booking"
+            />
+          )}
+        </BookingState.Consumer>
       </div>
       <div className="headerTitle">
         <Typography size="header" type="attention" variant="bold">
@@ -80,6 +87,9 @@ const Header = (props: Props) => {
           }
           .headerBelow {
             margin-bottom: 16px;
+          }
+          .selectOtherBooking {
+            cursor: pointer;
           }
         `}
       </style>

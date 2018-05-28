@@ -9,7 +9,6 @@ import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
 import Input from '../common/Input';
 import image from '../../static/woman-with-laptop@2x.jpg';
-import routeDefinitions from '../routeDefinitions';
 
 const style = css`
   .ForgottenPassword {
@@ -138,7 +137,7 @@ class ForgottenPassword extends React.Component<Props, State> {
     const { email } = this.state;
     Requester.resetPassword(email);
     this.props.history.push({
-      pathname: routeDefinitions.CHECK_RECOVERY_LINK,
+      pathname: '/check-recovery-link',
       state: { email },
     });
   };
