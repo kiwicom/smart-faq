@@ -109,7 +109,7 @@ workflows:
             branches:
               ignore: /.*/
 
-  build-and-surge-deploy:
+  test-ci-and-surge-deploy:
     jobs:
       - test-ci:
           filters:
