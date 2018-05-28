@@ -79,6 +79,19 @@ jobs:
 
 workflows:
   version: 2
+  # on each push publish the app to Surge
+  test-ci-and-surge-deploy:
+    jobs:
+      - test-ci:
+          filters:
+            branches:
+              ignore: master
+      - surge-deploy:
+          requires:
+            - test-ci
+          filters:
+            branches:
+              ignore: master
   # publish app to Github pages after merge into master
   test-ci-and-gh-pages-deploy:
     jobs:
@@ -108,16 +121,3 @@ workflows:
               only: /^v.*/ # only valid version tags, e.g. v0.0.1, v12.3.5
             branches:
               ignore: /.*/
-
-  test-ci-and-surge-deploy:
-    jobs:
-      - test-ci:
-          filters:
-            branches:
-              ignore: master
-      - surge-deploy:
-          requires:
-            - test-ci
-          filters:
-            branches:
-              ignore: master
