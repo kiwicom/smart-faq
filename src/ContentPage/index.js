@@ -1,8 +1,9 @@
 // @flow
 
-import { Route, Switch, MemoryRouter } from 'react-router-dom';
+import { withRouter, Route, Switch, MemoryRouter } from 'react-router-dom';
 import * as React from 'react';
 import css from 'styled-jsx/css';
+import type { RouterHistory } from 'react-router-dom';
 
 import ContentHeader from '../ContentHeader';
 import StaticFAQ from '../StaticFAQ';
@@ -44,7 +45,7 @@ const style = css`
   }
 `;
 
-const BookingRoutes = (
+const BookingRoutes = (returnToLogin: () => void) => (
   <MemoryRouter
     initialEntries={[routeDefinitions.NEAREST_BOOKING]}
     initialIndex={0}
@@ -53,17 +54,23 @@ const BookingRoutes = (
       <Route
         exact
         path={routeDefinitions.NEAREST_BOOKING}
-        component={NearestBooking}
+        component={props => (
+          <NearestBooking {...props} returnToLogin={returnToLogin} />
+        )}
       />
       <Route
         exact
         path={`${routeDefinitions.SELECTED_BOOKING}/:bookingId`}
-        component={SelectedBooking}
+        component={props => (
+          <SelectedBooking {...props} returnToLogin={returnToLogin} />
+        )}
       />
       <Route
         exact
         path={routeDefinitions.ALL_BOOKINGS}
-        component={AllBookings}
+        component={props => (
+          <AllBookings {...props} returnToLogin={returnToLogin} />
+        )}
       />
     </Switch>
   </MemoryRouter>
@@ -84,12 +91,21 @@ const FAQRoutes = (
     </Switch>
   </MemoryRouter>
 );
-const ContentPage = () => {
+
+type Props = {
+  history: RouterHistory,
+};
+const ContentPage = (props: Props) => {
+  const returnToLogin = () =>
+    props.history.push({
+      pathname: routeDefinitions.SIGN_IN,
+      state: { sessionExpired: true },
+    });
   return (
     <div className="ContentPage">
       <ContentHeader />
       <div className="Body">
-        <div className="BookingInfo">{BookingRoutes}</div>
+        <div className="BookingInfo">{BookingRoutes(returnToLogin)}</div>
         <div className="FAQ">{FAQRoutes}</div>
       </div>
       <style jsx global>
@@ -99,4 +115,4 @@ const ContentPage = () => {
   );
 };
 
-export default ContentPage;
+export default withRouter(ContentPage);

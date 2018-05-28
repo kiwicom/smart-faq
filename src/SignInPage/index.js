@@ -1,9 +1,12 @@
 // @flow
 
 import * as React from 'react';
+import idx from 'idx';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
-import { Typography } from '@kiwicom/orbit-components';
+import { Typography, SystemMessage } from '@kiwicom/orbit-components';
+import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
+import type { Location } from 'react-router-dom';
 
 import { socialLogin } from '../helpers/Auth';
 import image from '../../static/woman-with-laptop@2x.jpg';
@@ -179,6 +182,7 @@ type Props = {
   history: {
     push: (string | { pathname: string, state: { email: string } }) => void,
   },
+  location?: Location,
 };
 
 type State = {|
@@ -207,7 +211,27 @@ class SignIn extends React.Component<Props, State> {
     window.location = authUrl;
   };
 
+  renderExpiredSession() {
+    return (
+      <div className="infoMessage">
+        <SystemMessage type="info" Icon={AlertCircle}>
+          Your last session has expired. Please sign in again.
+        </SystemMessage>
+        <style jsx>
+          {`
+            div.infoMessage {
+              margin-bottom: 15px;
+            }
+          `}
+        </style>
+      </div>
+    );
+  }
   render() {
+    const sessionExpired = idx(
+      this.props.location,
+      _ => _.state.sessionExpired,
+    );
     return (
       <div className="SignIn">
         <CloseButton />
@@ -224,6 +248,7 @@ class SignIn extends React.Component<Props, State> {
           </Typography>
         </div>
         <form onSubmit={this.handleSubmitEmail}>
+          {sessionExpired && this.renderExpiredSession()}
           <label htmlFor="email">
             Email used for your booking:
             <div className="input">

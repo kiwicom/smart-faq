@@ -18,6 +18,7 @@ type Props = {|
       bookingId: ?string,
     },
   },
+  returnToLogin: () => void,
 |};
 
 type RenderState = {
@@ -83,6 +84,7 @@ class SelectedBooking extends React.Component<Props> {
           query={selectedBookingQuery}
           variables={{ id: bookingId }}
           render={this.renderSelectedBooking}
+          logoutCallback={this.props.returnToLogin}
         />
       );
     }
