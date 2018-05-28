@@ -23,7 +23,7 @@ const style = css`
     align-items: center;
     height: 64px;
   }
-  .Header {
+  .HeaderFAQ {
     width: 100%;
     border-bottom: 1px solid #e8edf1;
     background-color: #ffffff;
@@ -47,6 +47,7 @@ const loggedInStyle = css`
   .loggedIn {
     display: flex;
     justify-content: space-between;
+    flex: 1;
     padding: 15px 122px 15px 40px;
   }
   .links {
@@ -173,7 +174,7 @@ const Header = (props: Props) => {
 
   return (
     <div className="header">
-      <div className="Header">
+      <div className="HeaderFAQ">
         <CloseButton height="24" />
         {props.isLoggedIn
           ? renderLoggedIn(comesFromSearch)
