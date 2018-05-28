@@ -93,7 +93,7 @@ workflows:
             branches:
               only: master
   # publish npm package when new release tag is added on master
-  build-and-publish:
+  test-ci-and-publish:
     jobs:
       - test-ci:
           filters:
