@@ -1,7 +1,10 @@
-import * as React from "react";
-import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons";
-import responsiveStyleHelperClasses from "../responsiveStyleHelperClasses";
-import css from "styled-jsx/css";
+// @flow
+
+import * as React from 'react';
+import { ChevronDown, ChevronUp } from '@kiwicom/orbit-components/lib/icons';
+import css from 'styled-jsx/css';
+
+import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
 
 const MobileBookingSummaryStyle = css`
   .TripId {
@@ -21,8 +24,12 @@ const MobileBookingSummaryStyle = css`
   }
 `;
 
-const MobileBookingSummary = ({ style }) => (
-  <div style={style}>
+type Props = {
+  style: {},
+};
+
+const MobileBookingSummary = (props: Props) => (
+  <div style={props.style}>
     <div className="TripId">Upcoming trip #23432 324</div>
     <div className="TripDescription">Prague to Vancouver and back</div>
     <style jsx>{MobileBookingSummaryStyle}</style>
@@ -97,7 +104,13 @@ class MobileBookingHeader extends React.Component {
         <div className="mobileOnly MobileBookingHeader">
           <div className="topRow">
             <MobileBookingSummary style={{ flexGrow: 1 }} />
-            <div className="Chevron" onClick={e => this.toggle()} role="button">
+            <div
+              className="Chevron"
+              onClick={() => this.toggle()}
+              onKeyDown={() => this.toggle()}
+              role="button"
+              tabIndex="0"
+            >
               {this.state.expanded ? (
                 <ChevronUp customColor="#bac7d5" />
               ) : (

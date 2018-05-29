@@ -149,6 +149,7 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
         <div
           class="jsx-1542149023 jsx-3202484560 Chevron"
           role="button"
+          tabindex="0"
         >
           <svg
             fill="currentColor"
