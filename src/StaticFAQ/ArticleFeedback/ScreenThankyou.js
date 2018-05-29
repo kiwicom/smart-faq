@@ -28,6 +28,7 @@ const style = css`
   div.message-2 {
     color: #171b1e;
     font-size: 16px;
+    font-weight: bold;
   }
   div.message-2 {
     margin-bottom: 16.6px;
