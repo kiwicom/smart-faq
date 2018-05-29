@@ -124,6 +124,30 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
         </div>
       </div>
     </div>
+    <div
+      class="jsx-1542149023 jsx-1828137371 mobileOnly MobileBookingHeader"
+    >
+      <div
+        class="jsx-3483548722"
+        style="flex-grow:1"
+      >
+        <div
+          class="jsx-3483548722 TripId"
+        >
+          Upcoming trip #23432 324
+        </div>
+        <div
+          class="jsx-3483548722 TripDescription"
+        >
+          Prague to Vancouver and back
+        </div>
+      </div>
+      <div
+        class="jsx-1542149023 jsx-1828137371"
+      >
+        X
+      </div>
+    </div>
   </div>
 </div>
 `;

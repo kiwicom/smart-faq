@@ -11,6 +11,7 @@ import CloseButton from '../buttons/CloseButton';
 import BackButton from '../buttons/BackButton';
 import SignOutButton from './SignOutButton';
 import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
+import { ChevronDown } from '@kiwicom/orbit-components/lib/icons';
 
 const style = css`
   .loggedOut {
@@ -114,8 +115,61 @@ type Props = {
   },
 };
 
+const MobileBookingDetailStyle = css`
+  .TripId {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #7f91a8;
+    margin-top: 6px;
+  }
+
+  .TripDescription {
+    margin-top: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #171b1e;
+  }
+`;
+
+const MobileBookingDetail = ({style}) => (
+  <div style={style}>
+    <div className="TripId">Upcoming trip #23432 324</div>
+    <div className="TripDescription">Prague to Vancouver and back</div>
+    <style jsx>{MobileBookingDetailStyle}</style>
+  </div>
+);
+
+const MobileBookingHeaderStyle = css`
+  .MobileBookingHeader {
+    display: flex;
+    height: 62px;
+    background-color: #f5f7f9;
+    box-shadow: inset 0 1px 0 0 #e8edf1;
+    padding: 0 16px;
+  }
+
+  .Chevron {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+`;
+
+const MobileBookingHeader = () => (
+  <React.Fragment>
+    <div className="mobileOnly MobileBookingHeader">
+      <MobileBookingDetail style={{flexGrow: 1}} />
+      <div className="Chevron"><ChevronDown customColor="#bac7d5" /></div>
+    </div>
+    <style jsx>{responsiveStyleHelperClasses}</style>
+    <style jsx>{MobileBookingHeaderStyle}</style>
+  </React.Fragment>
+)
+
 const renderLoggedIn = (comesFromSearch: boolean) => {
   return (
+  <React.Fragment>
     <div className="loggedIn">
       <div className="mobileOnly">
         <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
@@ -132,7 +186,8 @@ const renderLoggedIn = (comesFromSearch: boolean) => {
       <style jsx>{loggedInStyle}</style>
       <style jsx>{responsiveStyleHelperClasses}</style>
     </div>
-  );
+    <MobileBookingHeader />
+  </React.Fragment>);
 };
 
 const renderLoggedOut = (
