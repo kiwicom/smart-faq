@@ -1,9 +1,10 @@
 // @flow
 
-import * as React from "react";
-import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons";
-import responsiveStyleHelperClasses from "../responsiveStyleHelperClasses";
-import css from "styled-jsx/css";
+import * as React from 'react';
+import { ChevronDown, ChevronUp } from '@kiwicom/orbit-components/lib/icons';
+import css from 'styled-jsx/css';
+
+import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
 
 const MobileBookingSummaryStyle = css`
   .TripId {
@@ -90,7 +91,7 @@ const MobileBookingHeaderStyle = css`
 
 type Props = {};
 type State = {
-  expanded: boolean
+  expanded: boolean,
 };
 
 class MobileBookingHeader extends React.Component<Props, State> {
