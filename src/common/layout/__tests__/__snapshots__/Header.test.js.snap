@@ -126,27 +126,43 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
       </div>
     </div>
     <div
-      class="jsx-1542149023 jsx-1828137371 mobileOnly MobileBookingHeader"
+      class="jsx-1542149023 jsx-3202484560 mobileOnly MobileBookingHeader"
     >
       <div
-        class="jsx-3483548722"
-        style="flex-grow:1"
+        class="jsx-1542149023 jsx-3202484560 topRow"
       >
         <div
-          class="jsx-3483548722 TripId"
+          class="jsx-1270079441"
+          style="flex-grow:1"
         >
-          Upcoming trip #23432 324
+          <div
+            class="jsx-1270079441 TripId"
+          >
+            Upcoming trip #23432 324
+          </div>
+          <div
+            class="jsx-1270079441 TripDescription"
+          >
+            Prague to Vancouver and back
+          </div>
         </div>
         <div
-          class="jsx-3483548722 TripDescription"
+          class="jsx-1542149023 jsx-3202484560 Chevron"
+          role="button"
         >
-          Prague to Vancouver and back
+          <svg
+            fill="currentColor"
+            height="24px"
+            preserveAspectRatio="xMidYMid meet"
+            style="vertical-align:middle;color:#bac7d5"
+            viewBox="0 0 24 24"
+            width="24px"
+          >
+            <path
+              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+            />
+          </svg>
         </div>
-      </div>
-      <div
-        class="jsx-1542149023 jsx-1828137371"
-      >
-        X
       </div>
     </div>
   </div>
