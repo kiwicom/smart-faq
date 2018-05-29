@@ -1,15 +1,15 @@
 // @flow
 
-export default {
-  NEW: { text: 'New', color: '#171b1e' },
-  REFUNDED: { text: 'Refunded', color: '#171b1e' },
-  PENDING: { text: 'Pending', color: '#ffc345' },
-  OPEN: { text: 'Open', color: '#ffc345' },
-  INFO: { text: 'Info', color: '#ffc345' },
-  CONFIRMED: { text: 'Confirmed', color: '#127f22' },
-  CANCELLED: { text: 'Cancelled', color: '#171b1e' },
-  DELETED: { text: 'Deleted', color: '#171b1e' },
-  CLOSED: { text: 'Closed', color: '#ffc345' },
-  EXPIRED: { text: 'Expired', color: '#171b1e' },
+export default (__t: string => string): Object => ({
+  NEW: { text: __t('Status.New'), color: '#171b1e' },
+  REFUNDED: { text: __t('Status.Refunded'), color: '#171b1e' },
+  PENDING: { text: __t('Status.Pending'), color: '#ffc345' },
+  OPEN: { text: __t('Status.Open'), color: '#ffc345' },
+  INFO: { text: __t('Status.Info'), color: '#ffc345' },
+  CONFIRMED: { text: __t('Status.Confirmed'), color: '#127f22' },
+  CANCELLED: { text: __t('Status.Cancelled'), color: '#171b1e' },
+  DELETED: { text: __t('Status.Deleted'), color: '#171b1e' },
+  CLOSED: { text: __t('Status.Closed'), color: '#ffc345' },
+  EXPIRED: { text: __t('Status.Expired'), color: '#171b1e' },
   '%future added value': null,
-};
+});

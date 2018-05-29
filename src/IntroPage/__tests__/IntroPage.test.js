@@ -20,6 +20,6 @@ describe('IntroPage', () => {
   };
   it('should match snapshot', () => {
     const wrapper = shallow(<PureIntro {...props} />);
-    expect(wrapper).toMatchSnapshot('<IntroPage />');
+    expect(wrapper).toMatchSnapshot();
   });
 });

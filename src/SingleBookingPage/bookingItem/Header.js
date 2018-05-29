@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { translate } from 'react-i18next';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { Typography, TextLink } from '@kiwicom/orbit-components';
 
@@ -13,12 +14,13 @@ import {
   type BookingStateType,
 } from '../../context/BookingState';
 import bookingTypes from '../../common/booking/bookingTypes';
-import bookingStatus from '../../common/booking/bookingStatuses';
+import bookingStatuses from '../../common/booking/bookingStatuses';
 import type { Header_booking } from './__generated__/Header_booking.graphql';
 
 type Props = {|
   booking: Header_booking,
   isFuture: boolean,
+  t: string => string,
 |};
 
 function renderHeaderTitleByType(type: string, booking: Header_booking) {
@@ -36,7 +38,7 @@ function renderHeaderTitleByType(type: string, booking: Header_booking) {
 const Header = (props: Props) => {
   const { booking, isFuture } = props;
   const { type } = booking;
-  const status = booking.status && bookingStatus[booking.status];
+  const status = booking.status && bookingStatuses(props.t)[booking.status];
 
   return (
     <div>
@@ -98,7 +100,7 @@ const Header = (props: Props) => {
 };
 
 export default createFragmentContainer(
-  Header,
+  translate()(Header),
   graphql`
     fragment Header_booking on BookingInterface {
       type

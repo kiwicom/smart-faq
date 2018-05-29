@@ -7,21 +7,20 @@ import { DateAndPassenger } from '../DateAndPassenger';
 import { formatDepartureDate } from '../../../helpers/dateUtils';
 
 const mockRefType: any = null;
-
 const departure = {
   time: '2017-11-23T20:40:00.000Z',
   $refType: mockRefType,
 };
-
 const booking = {
   status: 'CLOSED',
   passengerCount: 1,
   bookingDate: '2018-05-14',
   $refType: mockRefType,
 };
+const translate = () => 'Closed';
 
 const dateAndPassengerComponent = (
-  <DateAndPassenger departure={departure} booking={booking} />
+  <DateAndPassenger departure={departure} t={translate} booking={booking} />
 );
 
 describe('DateAndPassenger', () => {

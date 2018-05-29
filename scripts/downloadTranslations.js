@@ -24,7 +24,7 @@ const prepareRequest = language => {
   return request(options);
 };
 
-const uploadTranslations = () => {
+const downloadTranslations = () => {
   const result = languages.map(language => {
     return prepareRequest(language).then(translation =>
       fs.outputJson(`i18n/${language}/translation.json`, translation, {
@@ -35,7 +35,7 @@ const uploadTranslations = () => {
   return Promise.all(result);
 };
 
-uploadTranslations().then(
+downloadTranslations().then(
   () => console.log('Success'),
   error => {
     console.log(error);

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IntroPage should match snapshot: <IntroPage /> 1`] = `
+exports[`IntroPage should match snapshot 1`] = `
 <div
   className="jsx-3543786168 Intro"
 >
@@ -20,12 +20,20 @@ exports[`IntroPage should match snapshot: <IntroPage /> 1`] = `
     <p
       className="jsx-3543786168 title"
     >
-      Need help?
+      <Trans
+        i18nKey="IntroPage.header"
+      >
+        Need help?
+      </Trans>
     </p>
     <Typography
       type="secondary"
     >
-      We're here for you. First, let's narrow down your request.
+      <Trans
+        i18nKey="IntroPage.subheader"
+      >
+        We're here for you. First, let's narrow down your request.
+      </Trans>
     </Typography>
   </div>
   <div
@@ -38,7 +46,11 @@ exports[`IntroPage should match snapshot: <IntroPage /> 1`] = `
         className="jsx-3543786168"
         onClick={[Function]}
       >
-        I have an existing booking
+        <Trans
+          i18nKey="IntroPage.existingBooking"
+        >
+          I have an existing booking
+        </Trans>
       </button>
     </div>
     <div
@@ -48,7 +60,11 @@ exports[`IntroPage should match snapshot: <IntroPage /> 1`] = `
         className="jsx-3543786168"
         onClick={[Function]}
       >
-        I don't have a booking
+        <Trans
+          i18nKey="IntroPage.noBooking"
+        >
+          I don't have a booking
+        </Trans>
       </button>
     </div>
   </div>
