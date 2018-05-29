@@ -23,13 +23,27 @@ export type BookingDetail_booking = {|
     +departure: ?{|
       +time: ?any,
     |},
+    +arrival: ?{|
+      +time: ?any,
+    |},
   |},
   +outbound?: ?{|
     +departure: ?{|
       +time: ?any,
     |},
+    +arrival: ?{|
+      +time: ?any,
+    |},
+  |},
+  +inbound?: ?{|
+    +arrival: ?{|
+      +time: ?any,
+    |},
   |},
   +start?: ?{|
+    +time: ?any,
+  |},
+  +end?: ?{|
     +time: ?any,
   |},
   +$fragmentRefs: (Contact_info$ref & Header_booking$ref & OneWay_booking$ref & Return_booking$ref & MulticityOverlay_booking$ref),
@@ -48,7 +62,17 @@ var v0 = [
     "storageKey": null
   }
 ],
-v1 = [
+v1 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "arrival",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": v0
+},
+v2 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -58,7 +82,8 @@ v1 = [
     "concreteType": "RouteStop",
     "plural": false,
     "selections": v0
-  }
+  },
+  v1
 ];
 return {
   "kind": "Fragment",
@@ -109,6 +134,16 @@ return {
           "concreteType": "RouteStop",
           "plural": false,
           "selections": v0
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "end",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "RouteStop",
+          "plural": false,
+          "selections": v0
         }
       ]
     },
@@ -129,7 +164,19 @@ return {
           "args": null,
           "concreteType": "Trip",
           "plural": false,
-          "selections": v1
+          "selections": v2
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "inbound",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "Trip",
+          "plural": false,
+          "selections": [
+            v1
+          ]
         }
       ]
     },
@@ -150,12 +197,12 @@ return {
           "args": null,
           "concreteType": "Trip",
           "plural": false,
-          "selections": v1
+          "selections": v2
         }
       ]
     }
   ]
 };
 })();
-(node/*: any*/).hash = '8ea0f284beebcef6cd94ae3f990e7d21';
+(node/*: any*/).hash = 'b67b2ebd5178ded72f4e34af6d0dccca';
 module.exports = node;
