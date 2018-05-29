@@ -15,7 +15,6 @@ import facebookLogo from '../../static/facebook-icon.png';
 import googleLogo from '../../static/google-logo.png';
 import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
-import Input from '../common/Input';
 
 const style = css`
   .SignIn {
@@ -38,6 +37,7 @@ const style = css`
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 8px;
+    text-align: center;
   }
   label {
     font-size: 14px;
@@ -68,12 +68,13 @@ const style = css`
   .buttons {
     margin-right: 134px;
     margin-left: 134px;
+    margin-top: 65px;
   }
   button {
     width: 212px;
     height: 44px;
     border-radius: 3px;
-    margin-bottom: 16px;
+    margin-bottom: 26px;
     border: none;
     cursor: pointer;
     display: inline-block;
@@ -178,33 +179,12 @@ const style = css`
 `;
 
 type Props = {
-  history: {
-    push: (string | { pathname: string, state: { email: string } }) => void,
-  },
   location?: Location,
 };
 
-type State = {|
-  email: string,
-|};
+type State = {||};
 
 class SignIn extends React.Component<Props, State> {
-  state = {
-    email: '',
-  };
-
-  handleChangeEmail = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({ email: e.target.value });
-  };
-
-  handleSubmitEmail = (e: SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    this.props.history.push({
-      pathname: '/check-magic-link',
-      state: { email: this.state.email },
-    });
-  };
-
   handleSocialLogin = async (provider: string) => {
     const authUrl = await socialLogin(provider);
     window.location = authUrl;
@@ -240,29 +220,8 @@ class SignIn extends React.Component<Props, State> {
         </div>
         <div className="text">
           <p className="title">Sign in</p>
-          <Typography type="secondary">
-            {
-              "We need your email address to send you a magic link for signing in. Then you'll be able to receive personalised help about your particular situation."
-            }
-          </Typography>
         </div>
-        <form onSubmit={this.handleSubmitEmail}>
-          {sessionExpired && this.renderExpiredSession()}
-          <label htmlFor="email">
-            Email used for your booking:
-            <div className="input">
-              <Input
-                type="email"
-                value={this.state.email}
-                onChange={this.handleChangeEmail}
-                placeholder="your@email.com"
-                required
-              />
-            </div>
-          </label>
-          <button className="get-help">Get Help</button>
-        </form>
-        <p className="or"> or </p>
+        {sessionExpired && this.renderExpiredSession()}
         <div className="buttons">
           <button
             className="google"
