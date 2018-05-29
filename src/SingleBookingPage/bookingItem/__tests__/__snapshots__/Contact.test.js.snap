@@ -10,12 +10,17 @@ exports[`Contact should not render email and phone 1`] = `
   <div
     className="jsx-2410063808 title"
   >
-    <Typography
+    <Text
+      align="left"
+      element="p"
+      italic={false}
       size="large"
       type="attention"
+      uppercase={false}
+      weight="regular"
     >
       Contacts
-    </Typography>
+    </Text>
   </div>
   <div
     className="jsx-2410063808 contact-options"
@@ -67,12 +72,17 @@ exports[`Contact should render only email 1`] = `
   <div
     className="jsx-2410063808 title"
   >
-    <Typography
+    <Text
+      align="left"
+      element="p"
+      italic={false}
       size="large"
       type="attention"
+      uppercase={false}
+      weight="regular"
     >
       Contacts
-    </Typography>
+    </Text>
   </div>
   <div
     className="jsx-2410063808 contact-options"
@@ -146,11 +156,11 @@ exports[`Contact should render with email and phone 1`] = `
   <div
     class="jsx-2410063808 title"
   >
-    <span
-      class="jsx-398534955"
+    <p
+      class="jsx-2599729084 "
     >
       Contacts
-    </span>
+    </p>
   </div>
   <div
     class="jsx-2410063808 contact-options"

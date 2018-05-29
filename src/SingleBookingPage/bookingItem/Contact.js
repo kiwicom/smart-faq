@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { TextLink, Typography } from '@kiwicom/orbit-components';
+import { TextLink, Typography, Text } from '@kiwicom/orbit-components';
 import { Chat, ChevronDown, Phone } from '@kiwicom/orbit-components/lib/icons';
 import { createFragmentContainer, graphql } from 'react-relay';
 
@@ -20,9 +20,9 @@ const Contact = (props: Props) => {
     <div className="contact">
       <hr />
       <div className="title">
-        <Typography size="large" type="attention">
+        <Text size="large" type="attention">
           Contacts
-        </Typography>
+        </Text>
       </div>
       <div className="contact-options">
         {phone ? (

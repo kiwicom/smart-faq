@@ -4,7 +4,7 @@ import idx from 'idx';
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { graphql, createFragmentContainer } from 'react-relay';
-import { Typography, CarrierLogo } from '@kiwicom/orbit-components';
+import { Text, CarrierLogo } from '@kiwicom/orbit-components';
 import { ChevronRight } from '@kiwicom/orbit-components/lib/icons';
 
 import FromToRowFragment from './FromToRow';
@@ -83,9 +83,9 @@ const BookingCard = (props: Props) => {
   return (
     <div className="card">
       {databaseId && (
-        <Typography type="secondary" size="small">
+        <Text type="secondary" size="small">
           # {formatBookingId(databaseId)}
-        </Typography>
+        </Text>
       )}
       <div className="logoCarriers">
         <CarrierLogo carriers={allCarriers} />

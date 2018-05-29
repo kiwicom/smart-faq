@@ -10,16 +10,29 @@ exports[`DateAndPassenger should render correctly 1`] = `
     <div
       className="label"
     >
-      <Typography
+      <Text
+        align="left"
+        element="p"
+        italic={false}
         size="small"
         type="secondary"
+        uppercase={false}
+        weight="regular"
       >
         Departure date
-      </Typography>
+      </Text>
     </div>
-    <Typography>
+    <Text
+      align="left"
+      element="p"
+      italic={false}
+      size="normal"
+      type="primary"
+      uppercase={false}
+      weight="regular"
+    >
       23/11/2017
-    </Typography>
+    </Text>
   </div>
   <div
     className="section"
@@ -27,16 +40,29 @@ exports[`DateAndPassenger should render correctly 1`] = `
     <div
       className="label"
     >
-      <Typography
+      <Text
+        align="left"
+        element="p"
+        italic={false}
         size="small"
         type="secondary"
+        uppercase={false}
+        weight="regular"
       >
         Booking date
-      </Typography>
+      </Text>
     </div>
-    <Typography>
+    <Text
+      align="left"
+      element="p"
+      italic={false}
+      size="normal"
+      type="primary"
+      uppercase={false}
+      weight="regular"
+    >
       14/5/2018
-    </Typography>
+    </Text>
   </div>
   <div
     className="section"
@@ -44,20 +70,33 @@ exports[`DateAndPassenger should render correctly 1`] = `
     <div
       className="label"
     >
-      <Typography
+      <Text
+        align="left"
+        element="p"
+        italic={false}
         size="small"
         type="secondary"
+        uppercase={false}
+        weight="regular"
       >
         Includes
-      </Typography>
+      </Text>
     </div>
-    <Typography>
+    <Text
+      align="left"
+      element="p"
+      italic={false}
+      size="normal"
+      type="primary"
+      uppercase={false}
+      weight="regular"
+    >
       <Passengers
         customColor="#bac7d5"
         size="small"
       />
       1
-    </Typography>
+    </Text>
   </div>
   <div
     className="section"
@@ -65,12 +104,17 @@ exports[`DateAndPassenger should render correctly 1`] = `
     <div
       className="label"
     >
-      <Typography
+      <Text
+        align="left"
+        element="p"
+        italic={false}
         size="small"
         type="secondary"
+        uppercase={false}
+        weight="regular"
       >
         Status
-      </Typography>
+      </Text>
     </div>
     <div
       style={

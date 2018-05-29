@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Typography } from '@kiwicom/orbit-components';
+import { Text } from '@kiwicom/orbit-components';
 
 const style = css`
   .UpcomingBooking {
@@ -21,9 +21,9 @@ const style = css`
 const BookingNotFound = () => (
   <div className="UpcomingBooking">
     <div className="feedback">
-      <Typography type="secondary" size="large">
+      <Text type="secondary" size="large">
         No Bookings found
-      </Typography>
+      </Text>
     </div>
     <style jsx>{style}</style>
   </div>
