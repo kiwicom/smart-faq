@@ -10,3 +10,7 @@ export type User = {
 export type onLogin = (string, string) => Promise<*>;
 
 export type onLogout = () => Promise<*>;
+
+type Provider = 'facebook' | 'google';
+
+export type onSocialLogin = Provider => Promise<*>;

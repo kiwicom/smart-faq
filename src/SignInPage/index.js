@@ -8,13 +8,14 @@ import { Typography, SystemMessage } from '@kiwicom/orbit-components';
 import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
 import type { Location } from 'react-router-dom';
 
-import { socialLogin } from '../helpers/Auth';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import chevronRight from '../../static/chevron-right.png';
 import facebookLogo from '../../static/facebook-icon.png';
 import googleLogo from '../../static/google-logo.png';
 import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
+import { withSocialLogin } from '../context/User';
+import type { onSocialLogin } from '../types';
 
 const style = css`
   .SignIn {
@@ -180,16 +181,10 @@ const style = css`
 
 type Props = {
   location?: Location,
+  onSocialLogin: onSocialLogin,
 };
 
-type State = {||};
-
-class SignIn extends React.Component<Props, State> {
-  handleSocialLogin = async (provider: string) => {
-    const authUrl = await socialLogin(provider);
-    window.location = authUrl;
-  };
-
+class SignIn extends React.Component<Props> {
   renderExpiredSession() {
     return (
       <div className="infoMessage">
@@ -207,6 +202,7 @@ class SignIn extends React.Component<Props, State> {
     );
   }
   render() {
+    const { onSocialLogin } = this.props;
     const sessionExpired = idx(
       this.props.location,
       _ => _.state.sessionExpired,
@@ -223,10 +219,7 @@ class SignIn extends React.Component<Props, State> {
         </div>
         {sessionExpired && this.renderExpiredSession()}
         <div className="buttons">
-          <button
-            className="google"
-            onClick={() => this.handleSocialLogin('google')}
-          >
+          <button className="google" onClick={() => onSocialLogin('google')}>
             <img
               className="google-icon"
               src={googleLogo}
@@ -236,7 +229,7 @@ class SignIn extends React.Component<Props, State> {
           </button>
           <button
             className="facebook"
-            onClick={() => this.handleSocialLogin('facebook')}
+            onClick={() => onSocialLogin('facebook')}
           >
             <img
               className="facebook-icon"
@@ -260,4 +253,5 @@ class SignIn extends React.Component<Props, State> {
   }
 }
 
-export default SignIn;
+export const RawSignIn = SignIn;
+export default withSocialLogin(SignIn);

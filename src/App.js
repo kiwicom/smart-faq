@@ -10,7 +10,7 @@ import { CloseContext } from './context/Close';
 import { LanguageContext } from './context/Language';
 import { UserContext } from './context/User';
 import BookingStateProvider from './context/BookingState';
-import type { onLogin, onLogout, User } from './types';
+import type { onLogin, onLogout, onSocialLogin, User } from './types';
 
 const style = css`
   .smartFAQ {
@@ -41,6 +41,7 @@ type Props = {|
   loginToken: ?string,
   onClose: () => void,
   onLogin: onLogin,
+  onSocialLogin: onSocialLogin,
   onLogout: onLogout,
 |};
 
@@ -72,6 +73,7 @@ class App extends React.Component<Props> {
                 value={{
                   user: this.props.user,
                   onLogin: this.props.onLogin,
+                  onSocialLogin: this.props.onSocialLogin,
                   onLogout: this.props.onLogout,
                   loginToken: this.props.loginToken,
                 }}
