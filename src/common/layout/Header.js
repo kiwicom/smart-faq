@@ -121,7 +121,7 @@ const MobileBookingSummaryStyle = css`
     font-size: 14px;
     line-height: 1.4;
     color: #7f91a8;
-    margin-top: 6px;
+    margin-top: 8px;
   }
 
   .TripDescription {
