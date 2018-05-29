@@ -1,16 +1,16 @@
 // @flow
 
-import { Link, withRouter } from "react-router-dom";
-import * as React from "react";
-import idx from "idx";
-import css from "styled-jsx/css";
-import { Typography } from "@kiwicom/orbit-components";
+import { Link, withRouter } from 'react-router-dom';
+import * as React from 'react';
+import idx from 'idx';
+import css from 'styled-jsx/css';
+import { Typography } from '@kiwicom/orbit-components';
 
-import FullFAQLink from "../FullFAQLink";
-import CloseButton from "../buttons/CloseButton";
-import BackButton from "../buttons/BackButton";
-import SignOutButton from "./SignOutButton";
-import responsiveStyleHelperClasses from "../responsiveStyleHelperClasses";
+import FullFAQLink from '../FullFAQLink';
+import CloseButton from '../buttons/CloseButton';
+import BackButton from '../buttons/BackButton';
+import SignOutButton from './SignOutButton';
+import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
 import MobileBookingHeader from './MobileBookingHeader';
 
 const style = css`
@@ -120,7 +120,7 @@ const renderLoggedIn = (comesFromSearch: boolean) => {
     <React.Fragment>
       <div className="loggedIn">
         <div className="mobileOnly">
-          <BackButton text={comesFromSearch ? "Search" : "Back"} />
+          <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
         </div>
         <div className="helpHeader">Help</div>
         <div className="links">
@@ -149,10 +149,10 @@ const renderLoggedOut = (
       <div className="signInOrBack">
         {hasCategory || isArticle ? (
           <div className="backButton">
-            <BackButton text={comesFromSearch ? "Search" : "Back"} />
+            <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
           </div>
         ) : (
-          <Link to="/sign-in" style={{ textDecoration: "none" }}>
+          <Link to="/sign-in" style={{ textDecoration: 'none' }}>
             <div className="desktopOnly">
               <Typography type="attention" variant="normal">
                 Sign In
@@ -172,8 +172,8 @@ const Header = (props: Props) => {
   const hasCategory = idx(props.match, _ => _.params.categoryId) || null;
   const currentpath = props.location && props.location.pathname;
 
-  const isArticle = currentpath.includes("article/");
-  const comesFromSearch = currentpath.includes("faq/search/");
+  const isArticle = currentpath.includes('article/');
+  const comesFromSearch = currentpath.includes('faq/search/');
 
   return (
     <div className="header">
