@@ -1,10 +1,9 @@
 // @flow
 
-import * as React from 'react';
-import { ChevronDown, ChevronUp } from '@kiwicom/orbit-components/lib/icons';
-import css from 'styled-jsx/css';
-
-import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
+import * as React from "react";
+import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons";
+import responsiveStyleHelperClasses from "../responsiveStyleHelperClasses";
+import css from "styled-jsx/css";
 
 const MobileBookingSummaryStyle = css`
   .TripId {
@@ -24,11 +23,11 @@ const MobileBookingSummaryStyle = css`
   }
 `;
 
-type Props = {
+type MobileBookingSummaryProps = {
   style: {},
 };
 
-const MobileBookingSummary = (props: Props) => (
+const MobileBookingSummary = (props: MobileBookingSummaryProps) => (
   <div style={props.style}>
     <div className="TripId">Upcoming trip #23432 324</div>
     <div className="TripDescription">Prague to Vancouver and back</div>
@@ -89,7 +88,12 @@ const MobileBookingHeaderStyle = css`
   }
 `;
 
-class MobileBookingHeader extends React.Component {
+type Props = {};
+type State = {
+  expanded: boolean
+};
+
+class MobileBookingHeader extends React.Component<Props, State> {
   state = {
     expanded: false,
   };
