@@ -12,7 +12,7 @@
     "clean": "rimraf lib es dist",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "test": "jest --config=jest.json",
-    "test-ci": "yarn start & yarn flow:check && yarn eslint && yarn test && yarn translations:check && cypress run && kill -INT 0",
+    "test-ci": "yarn flow:check && yarn eslint && yarn test && yarn translations:check",
     "cypress:open": "cypress open",
     "flow": "flow --color always --show-all-errors --no-auto-start",
     "flow:check": "flow check",

@@ -140,7 +140,10 @@ export class PureIntro extends React.Component<Props> {
             </button>
           </div>
           <div className="secondary">
-            <button onClick={this.goToNoBooking}>
+            <button
+              onClick={this.goToNoBooking}
+              data-cy="btn-nonexistent-booking"
+            >
               <Trans i18nKey="IntroPage.noBooking">
                 I don&apos;t have a booking
               </Trans>
