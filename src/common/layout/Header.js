@@ -1,17 +1,17 @@
 // @flow
 
-import { Link, withRouter } from 'react-router-dom';
-import * as React from 'react';
-import idx from 'idx';
-import css from 'styled-jsx/css';
-import { Typography } from '@kiwicom/orbit-components';
+import { Link, withRouter } from "react-router-dom";
+import * as React from "react";
+import idx from "idx";
+import css from "styled-jsx/css";
+import { Typography } from "@kiwicom/orbit-components";
 
-import FullFAQLink from '../FullFAQLink';
-import CloseButton from '../buttons/CloseButton';
-import BackButton from '../buttons/BackButton';
-import SignOutButton from './SignOutButton';
-import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
-import { ChevronDown } from '@kiwicom/orbit-components/lib/icons';
+import FullFAQLink from "../FullFAQLink";
+import CloseButton from "../buttons/CloseButton";
+import BackButton from "../buttons/BackButton";
+import SignOutButton from "./SignOutButton";
+import responsiveStyleHelperClasses from "../responsiveStyleHelperClasses";
+import { ChevronDown } from "@kiwicom/orbit-components/lib/icons";
 
 const style = css`
   .loggedOut {
@@ -132,7 +132,7 @@ const MobileBookingDetailStyle = css`
   }
 `;
 
-const MobileBookingDetail = ({style}) => (
+const MobileBookingDetail = ({ style }) => (
   <div style={style}>
     <div className="TripId">Upcoming trip #23432 324</div>
     <div className="TripDescription">Prague to Vancouver and back</div>
@@ -159,35 +159,38 @@ const MobileBookingHeaderStyle = css`
 const MobileBookingHeader = () => (
   <React.Fragment>
     <div className="mobileOnly MobileBookingHeader">
-      <MobileBookingDetail style={{flexGrow: 1}} />
-      <div className="Chevron"><ChevronDown customColor="#bac7d5" /></div>
+      <MobileBookingDetail style={{ flexGrow: 1 }} />
+      <div className="Chevron">
+        <ChevronDown customColor="#bac7d5" />
+      </div>
     </div>
     <style jsx>{responsiveStyleHelperClasses}</style>
     <style jsx>{MobileBookingHeaderStyle}</style>
   </React.Fragment>
-)
+);
 
 const renderLoggedIn = (comesFromSearch: boolean) => {
   return (
-  <React.Fragment>
-    <div className="loggedIn">
-      <div className="mobileOnly">
-        <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
-      </div>
-      <div className="helpHeader">Help</div>
-      <div className="links">
-        <div className="faqLink desktopOnly">
-          <FullFAQLink className="primary" />
+    <React.Fragment>
+      <div className="loggedIn">
+        <div className="mobileOnly">
+          <BackButton text={comesFromSearch ? "Search" : "Back"} />
         </div>
-        <div className="desktopOnly">
-          <SignOutButton />
+        <div className="helpHeader">Help</div>
+        <div className="links">
+          <div className="faqLink desktopOnly">
+            <FullFAQLink className="primary" />
+          </div>
+          <div className="desktopOnly">
+            <SignOutButton />
+          </div>
         </div>
+        <style jsx>{loggedInStyle}</style>
+        <style jsx>{responsiveStyleHelperClasses}</style>
       </div>
-      <style jsx>{loggedInStyle}</style>
-      <style jsx>{responsiveStyleHelperClasses}</style>
-    </div>
-    <MobileBookingHeader />
-  </React.Fragment>);
+      <MobileBookingHeader />
+    </React.Fragment>
+  );
 };
 
 const renderLoggedOut = (
@@ -200,10 +203,10 @@ const renderLoggedOut = (
       <div className="signInOrBack">
         {hasCategory || isArticle ? (
           <div className="backButton">
-            <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
+            <BackButton text={comesFromSearch ? "Search" : "Back"} />
           </div>
         ) : (
-          <Link to="/sign-in" style={{ textDecoration: 'none' }}>
+          <Link to="/sign-in" style={{ textDecoration: "none" }}>
             <div className="desktopOnly">
               <Typography type="attention" variant="normal">
                 Sign In
@@ -223,8 +226,8 @@ const Header = (props: Props) => {
   const hasCategory = idx(props.match, _ => _.params.categoryId) || null;
   const currentpath = props.location && props.location.pathname;
 
-  const isArticle = currentpath.includes('article/');
-  const comesFromSearch = currentpath.includes('faq/search/');
+  const isArticle = currentpath.includes("article/");
+  const comesFromSearch = currentpath.includes("faq/search/");
 
   return (
     <div className="header">
