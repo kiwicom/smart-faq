@@ -63,7 +63,7 @@ const AccordionHeader = ({ trip, isToggled }: Props) => {
         <div className="itinerary">
           <span className="location">
             <Text variant="bold" type="primary">
-              {departureCity}&nbsp;({departureCode})
+              {departureCity}&nbsp;{departureCode}
             </Text>
           </span>
           <span className="arrow">
@@ -73,7 +73,7 @@ const AccordionHeader = ({ trip, isToggled }: Props) => {
           </span>
           <span className="location">
             <Text variant="bold" type="primary">
-              {arrivalCity}&nbsp;({arrivalCode})
+              {arrivalCity}&nbsp;{arrivalCode}
             </Text>
           </span>
         </div>

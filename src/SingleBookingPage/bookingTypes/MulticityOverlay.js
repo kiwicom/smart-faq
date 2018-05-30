@@ -60,7 +60,6 @@ class MulticityOverlay extends React.Component<Props, State> {
             .multicityWrapperIsActive {
               height: auto;
               max-height: 10000px; /* workaround for transition with height: auto */
-              overflow-y: scroll;
               transition: all 1s ease-in-out;
             }
             .multicityOverlay {
