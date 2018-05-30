@@ -64,6 +64,16 @@ Webpack and particularly `dotenv-webpack` package will take care of importing th
 4. *(In future)* Upload collected translations to be translated by professionals into all Kiwi.com languages via `yarn translations:upload`.
 5. *(In future)* When the new version is published to npm, translations are uploaded on CDN.
 
+## Cypress test
+
+Steps to run Cypress tests:
+1. Start smart-faq via `yarn start` if you still don't have it running.
+2. Start up cypress app with `yarn cypress:open`
+3. Run tests with `yarn cypress:run`
+
+*Note*: If you need to change the baseUrl, you can either change it on `cypress.json` or 
+set the `CYPRESS_baseUrl` variable before running tests eg. `CYPRESS_baseUrl=http://mybaseUrl:myPort  yarn cypress:run` . [More info](https://docs.cypress.io/guides/guides/environment-variables.html)
+
 ## Build process
 
 Test script `test-ci` is run on each push
