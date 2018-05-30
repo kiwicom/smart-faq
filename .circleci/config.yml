@@ -56,19 +56,20 @@ jobs:
 
   cypress-tests:
     <<: *defaults
+    docker:
+      - image: cypress/base:6
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
     steps:
       - checkout
-      # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "yarn.lock" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-      - run:
-          command: yarn start
-          background: true
-      - run:
-          command: yarn && yarn cypress:run-ci
+      - run: yarn
+      - run: yarn cypress:run-ci
 
   publish:
     <<: *defaults
@@ -102,15 +103,11 @@ workflows:
       #    filters:
       #      branches:
       #        ignore: master
-      #- surge-deploy:
-      #    requires:
-      #      - test-ci
-      #    filters:
-      #      branches:
-      #        ignore: master
+      - surge-deploy:
+          filters:
+            branches:
+              ignore: master
       - cypress-tests:
-          #requires:
-          #  - surge-deploy
           filters:
             branches:
               ignore: master
