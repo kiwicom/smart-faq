@@ -28,6 +28,7 @@ const style = css`
 
 const FAQArticle = (props: Props) => (
   <Link
+    data-cy="faq-link"
     to={
       props.isSearchResult
         ? `/faq/search/article/${props.article.id}`

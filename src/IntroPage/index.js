@@ -133,7 +133,10 @@ export class PureIntro extends React.Component<Props> {
         </div>
         <div className="buttons">
           <div className="primary">
-            <button onClick={this.goToExistingBooking}>
+            <button
+              onClick={this.goToExistingBooking}
+              data-cy="btn-existing-booking"
+            >
               <Trans i18nKey="IntroPage.existingBooking">
                 I have an existing booking
               </Trans>

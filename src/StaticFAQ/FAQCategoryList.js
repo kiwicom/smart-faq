@@ -87,7 +87,7 @@ class FAQCategoryList extends React.Component<Props> {
 
   renderCategories = (categories: $ReadOnlyArray<CategoryFragment>) => {
     return (
-      <div>
+      <div data-cy="faq-categories">
         {categories.map(category => {
           if (category) {
             return (
