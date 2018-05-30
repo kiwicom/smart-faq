@@ -25,7 +25,7 @@ const style = css`
     height: 156px;
   }
   div.picture {
-    text-align: center;
+    margin-left: 110px;
     margin-bottom: 68px;
   }
   p.title {

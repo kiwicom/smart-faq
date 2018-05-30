@@ -74,6 +74,7 @@ const BookingCardsList = (props: Props) => {
         {`
           .bookingCard {
             cursor: pointer;
+            outline: none;
           }
         `}
       </style>
