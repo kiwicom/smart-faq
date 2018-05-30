@@ -65,6 +65,9 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run:
+          command: yarn start
+          background: true
+      - run:
           command: yarn && yarn cypress:run-ci
 
   publish:
@@ -95,19 +98,19 @@ workflows:
   # on each push publish the app to Surge and run integration tests
   test-ci-and-surge-deploy:
     jobs:
-      - test-ci:
-          filters:
-            branches:
-              ignore: master
-      - surge-deploy:
-          requires:
-            - test-ci
-          filters:
-            branches:
-              ignore: master
+      #- test-ci:
+      #    filters:
+      #      branches:
+      #        ignore: master
+      #- surge-deploy:
+      #    requires:
+      #      - test-ci
+      #    filters:
+      #      branches:
+      #        ignore: master
       - cypress-tests:
-          requires:
-            - surge-deploy
+          #requires:
+          #  - surge-deploy
           filters:
             branches:
               ignore: master
