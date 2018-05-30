@@ -39,7 +39,7 @@ jobs:
           - v1-dependencies-{{ checksum "yarn.lock" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-      - run: yarn && yarn build:bundle && yarn build:pages
+      - run: yarn && yarn build:pages
 
   surge-deploy:
     <<: *defaults
