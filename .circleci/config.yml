@@ -103,10 +103,10 @@ workflows:
       #    filters:
       #      branches:
       #        ignore: master
-      - surge-deploy:
-          filters:
-            branches:
-              ignore: master
+      #- surge-deploy:
+      #    filters:
+      #      branches:
+      #        ignore: master
       - cypress-tests:
           filters:
             branches:
