@@ -66,28 +66,18 @@ const style = css`
   @media only screen and (min-width: 320px) and (max-width: 480px) {
     .SignIn {
       width: 100%;
-      padding-top: 22px;
+      padding-top: 0px;
     }
-    div.picture img {
-      display: none;
+    div.picture {
+      text-align: center;
+      margin: 75px 0px 20px 0px;
     }
     div.text {
-      margin: 64px 16px 33px 16px;
+      margin: 0px 16px 33px 16px;
     }
     .buttons {
-      margin-right: 16px;
-      margin-left: 16px;
-    }
-
-    button {
-      width: 100%;
-      margin-bottom: 20px;
-    }
-
-    @media only screen and (width: 320px) {
-      .SignIn {
-        padding-top: 0px;
-      }
+      display: table;
+      margin: 0 auto;
     }
   }
 `;
