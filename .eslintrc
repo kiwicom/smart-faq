@@ -3,7 +3,8 @@
     "node": true,
     "jest": true,
     "browser": true,
-    "es6": true
+    "es6": true,
+    "cypress/globals": true
   },
   "parser": "babel-eslint",
   "extends": [
@@ -19,7 +20,8 @@
     "jest",
     "prettier",
     "flowtype",
-    "react"
+    "react",
+    "cypress"
   ],
   "rules": {
     "no-use-before-define": "off",

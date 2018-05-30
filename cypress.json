@@ -2,7 +2,9 @@
   "baseUrl": "http://localhost:8080",
   "env": {
     "TEST_USER_EMAIL": "test@kiwi.com",
-    "TEST_USER_PASSWORD": "kiwitest"
+    "TEST_USER_PASSWORD": "kiwitest",
+    "waitTime": 8000
+
   },
   "projectId": "6sobt4"
 }
