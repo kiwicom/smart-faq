@@ -15,8 +15,10 @@ describe('User not logged', () => {
       .get('@input-staticFAQ')
       .type(wordToSearch)
       .should('have.value', wordToSearch);
+    cy.wait(Cypress.env('waitTime'));
     cy.get('[data-cy=scrollable-box]').should('be.visible');
     cy.get('[data-cy=btn-reset-input]').trigger('click');
+    cy.wait(Cypress.env('waitTime'));
     cy.get('@input-staticFAQ').should('have.value', '');
   });
 });
