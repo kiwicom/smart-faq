@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Typography } from '@kiwicom/orbit-components';
+import { Text } from '@kiwicom/orbit-components';
 
 type Props = {|
   title: string,
@@ -9,9 +9,9 @@ type Props = {|
 
 const AccordionTitle = (props: Props) => (
   <div className="title">
-    <Typography size="large" type="attention" variant="medium">
+    <Text size="large" type="attention" variant="medium">
       {props.title}
-    </Typography>
+    </Text>
     <style jsx>
       {`
     .title {

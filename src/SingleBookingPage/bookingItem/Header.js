@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { translate } from 'react-i18next';
 import { graphql, createFragmentContainer } from 'react-relay';
-import { Typography, TextLink } from '@kiwicom/orbit-components';
+import { Typography, TextLink, Text } from '@kiwicom/orbit-components';
 
 import OneWayBookingHeader from './BookingHeaders/OneWay';
 import ReturnBookingHeader from './BookingHeaders/Return';
@@ -45,10 +45,10 @@ const Header = (props: Props) => {
       <div className="headerAbove">
         <div>
           {booking.databaseId && (
-            <Typography type="secondary">
+            <Text type="secondary">
               {isFuture ? 'Upcoming' : 'Last'} trip #
               {formatBookingId(booking.databaseId)}
-            </Typography>
+            </Text>
           )}
         </div>
         <BookingState.Consumer>
@@ -72,9 +72,9 @@ const Header = (props: Props) => {
       </div>
       <div className="headerBelow">
         {status && (
-          <Typography>
+          <Text>
             <span style={{ color: status.color }}>{status.text}</span>
-          </Typography>
+          </Text>
         )}
       </div>
       <style jsx>

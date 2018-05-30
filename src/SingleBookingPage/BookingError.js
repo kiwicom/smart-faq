@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Typography } from '@kiwicom/orbit-components';
+import { Text } from '@kiwicom/orbit-components';
 
 const style = css`
   .BookingError {
@@ -27,10 +27,10 @@ const style = css`
 const BookingError = () => (
   <div className="BookingError">
     <h1 className="title">Something&apos;s not right</h1>
-    <Typography type="secondary" size="large">
+    <Text type="secondary" size="large">
       We weren&apos;t able to find your booking. Please, check your credentials
       and try again.
-    </Typography>
+    </Text>
     <style jsx>{style}</style>
   </div>
 );

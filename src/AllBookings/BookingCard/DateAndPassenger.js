@@ -4,7 +4,7 @@ import idx from 'idx';
 import * as React from 'react';
 import { translate } from 'react-i18next';
 import { graphql, createFragmentContainer } from 'react-relay';
-import { Typography } from '@kiwicom/orbit-components';
+import { Text } from '@kiwicom/orbit-components';
 import { Passengers } from '@kiwicom/orbit-components/lib/icons';
 
 import bookingStatuses from '../../common/booking/bookingStatuses';
@@ -30,36 +30,36 @@ export const DateAndPassenger = (props: Props) => {
     <div className="fields">
       <div className="section">
         <div className="label">
-          <Typography type="secondary" size="small">
+          <Text type="secondary" size="small">
             Departure date
-          </Typography>
+          </Text>
         </div>
-        <Typography>{formatDepartureDate(departureDate)}</Typography>
+        <Text>{formatDepartureDate(departureDate)}</Text>
       </div>
       <div className="section">
         <div className="label">
-          <Typography type="secondary" size="small">
+          <Text type="secondary" size="small">
             Booking date
-          </Typography>
+          </Text>
         </div>
-        <Typography>{formatDepartureDate(bookingDate)}</Typography>
+        <Text>{formatDepartureDate(bookingDate)}</Text>
       </div>
       <div className="section">
         <div className="label">
-          <Typography type="secondary" size="small">
+          <Text type="secondary" size="small">
             Includes
-          </Typography>
+          </Text>
         </div>
-        <Typography>
+        <Text>
           <Passengers size="small" customColor="#bac7d5" />
           {passengerCount}
-        </Typography>
+        </Text>
       </div>
       <div className="section">
         <div className="label">
-          <Typography type="secondary" size="small">
+          <Text type="secondary" size="small">
             Status
-          </Typography>
+          </Text>
         </div>
         <div style={{ color: status.color, fontSize: '14px' }}>
           {status.text}
