@@ -4,16 +4,13 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft } from '@kiwicom/orbit-components/lib/icons';
 
-import routeDefinitions from '../routeDefinitions';
-
 type Props = {|
   id: ?string,
 |};
 
 const BackArrow = ({ id }: Props) => {
-  const url = id
-    ? `${routeDefinitions.STATIC_FAQ}/${id}`
-    : routeDefinitions.STATIC_FAQ;
+  const url = id ? `/faq/${id}` : '/faq/';
+
   return (
     <Link to={url}>
       <div className="circle">

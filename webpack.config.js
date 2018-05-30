@@ -15,6 +15,7 @@ module.exports = {
   output: {
     path: destination,
     filename: `smart-faq.${language}.js`,
+    publicPath: '/',
   },
   module: {
     rules: [

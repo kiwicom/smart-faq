@@ -2,11 +2,12 @@
 
 import idx from 'idx';
 import * as React from 'react';
+import { translate } from 'react-i18next';
 import { graphql, createFragmentContainer } from 'react-relay';
-import { Typography } from '@kiwicom/orbit-components';
+import { Text } from '@kiwicom/orbit-components';
 import { Passengers } from '@kiwicom/orbit-components/lib/icons';
 
-import bookingStatus from '../../common/booking/bookingStatuses';
+import bookingStatuses from '../../common/booking/bookingStatuses';
 import { formatDepartureDate } from '../../helpers/dateUtils';
 import type { DateAndPassenger_departure } from './__generated__/DateAndPassenger_departure.graphql';
 import type { DateAndPassenger_booking } from './__generated__/DateAndPassenger_booking.graphql';
@@ -14,6 +15,7 @@ import type { DateAndPassenger_booking } from './__generated__/DateAndPassenger_
 type Props = {
   departure: DateAndPassenger_departure,
   booking: DateAndPassenger_booking,
+  t: string => string,
 };
 
 export const DateAndPassenger = (props: Props) => {
@@ -21,42 +23,43 @@ export const DateAndPassenger = (props: Props) => {
   const bookingDate = idx(props.booking, _ => _.bookingDate) || '';
   const passengerCount = idx(props.booking, _ => _.passengerCount) || 0;
   const status =
-    (props.booking.status && bookingStatus[props.booking.status]) || {};
+    (props.booking.status && bookingStatuses(props.t)[props.booking.status]) ||
+    {};
 
   return (
     <div className="fields">
       <div className="section">
         <div className="label">
-          <Typography type="secondary" size="small">
+          <Text type="secondary" size="small">
             Departure date
-          </Typography>
+          </Text>
         </div>
-        <Typography>{formatDepartureDate(departureDate)}</Typography>
+        <Text>{formatDepartureDate(departureDate)}</Text>
       </div>
       <div className="section">
         <div className="label">
-          <Typography type="secondary" size="small">
+          <Text type="secondary" size="small">
             Booking date
-          </Typography>
+          </Text>
         </div>
-        <Typography>{formatDepartureDate(bookingDate)}</Typography>
+        <Text>{formatDepartureDate(bookingDate)}</Text>
       </div>
       <div className="section">
         <div className="label">
-          <Typography type="secondary" size="small">
+          <Text type="secondary" size="small">
             Includes
-          </Typography>
+          </Text>
         </div>
-        <Typography>
+        <Text>
           <Passengers size="small" customColor="#bac7d5" />
           {passengerCount}
-        </Typography>
+        </Text>
       </div>
       <div className="section">
         <div className="label">
-          <Typography type="secondary" size="small">
+          <Text type="secondary" size="small">
             Status
-          </Typography>
+          </Text>
         </div>
         <div style={{ color: status.color, fontSize: '14px' }}>
           {status.text}
@@ -67,7 +70,7 @@ export const DateAndPassenger = (props: Props) => {
 };
 
 export default createFragmentContainer(
-  DateAndPassenger,
+  translate()(DateAndPassenger),
   graphql`
     fragment DateAndPassenger_booking on BookingInterface {
       status

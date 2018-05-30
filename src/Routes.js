@@ -4,41 +4,26 @@ import { Route, Switch, MemoryRouter } from 'react-router-dom';
 import * as React from 'react';
 
 import Intro from './IntroPage';
-import ContentPage from './ContentPage';
-import NoBookingPage from './NoBookingPage';
 import SignIn from './SignInPage';
 import KiwiLogin from './KiwiLogin';
 import ForgottenPassword from './ForgottenPassword';
 import { CheckRecoveryLink, CheckMagicLink } from './EmailPage';
-import routeDefinitions from './routeDefinitions';
+import ContentPage from './common/layout/ContentPage';
 
 const Routes = () => {
   return (
     <MemoryRouter>
       <Switch>
-        <Route exact path={routeDefinitions.HOME} component={Intro} />
-        <Route exact path={routeDefinitions.SIGN_IN} component={SignIn} />
-        <Route exact path={routeDefinitions.KIWI_LOGIN} component={KiwiLogin} />
+        <Route exact path="/" component={Intro} />
+        <Route path="/sign-in" component={SignIn} />
+        <Route path="/kiwi-login" component={KiwiLogin} />
+        <Route path="/check-magic-link" component={CheckMagicLink} />
+        <Route path="/check-recovery-link" component={CheckRecoveryLink} />
+        <Route path="/forgotten-password" component={ForgottenPassword} />
+        <Route exact path="/faq/:categoryId?" component={ContentPage} />
         <Route
-          exact
-          path={routeDefinitions.CHECK_MAGIC_LINK}
-          component={CheckMagicLink}
-        />
-        <Route
-          exact
-          path={routeDefinitions.CHECK_RECOVERY_LINK}
-          component={CheckRecoveryLink}
-        />
-        <Route
-          exact
-          path={routeDefinitions.FORGOTTEN_PASSWORD}
-          component={ForgottenPassword}
-        />
-        <Route exact path={routeDefinitions.CONTENT} component={ContentPage} />
-        <Route
-          exact
-          path={routeDefinitions.NO_BOOKING}
-          component={NoBookingPage}
+          path="/faq/:categoryId/article/:articleId"
+          component={ContentPage}
         />
       </Switch>
     </MemoryRouter>

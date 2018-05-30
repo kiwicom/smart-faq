@@ -1,22 +1,26 @@
 // @flow
 
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { translate } from 'react-i18next';
 import { graphql, createFragmentContainer } from 'react-relay';
-import { Typography } from '@kiwicom/orbit-components';
+import { Typography, TextLink, Text } from '@kiwicom/orbit-components';
 
-import routeDefinitions from '../../routeDefinitions';
 import OneWayBookingHeader from './BookingHeaders/OneWay';
 import ReturnBookingHeader from './BookingHeaders/Return';
 import MulticityBookingHeader from './BookingHeaders/Multicity';
 import formatBookingId from '../../helpers/formatBookingId';
+import {
+  BookingState,
+  type BookingStateType,
+} from '../../context/BookingState';
 import bookingTypes from '../../common/booking/bookingTypes';
-import bookingStatus from '../../common/booking/bookingStatuses';
+import bookingStatuses from '../../common/booking/bookingStatuses';
 import type { Header_booking } from './__generated__/Header_booking.graphql';
 
 type Props = {|
   booking: Header_booking,
   isFuture: boolean,
+  t: string => string,
 |};
 
 function renderHeaderTitleByType(type: string, booking: Header_booking) {
@@ -34,27 +38,32 @@ function renderHeaderTitleByType(type: string, booking: Header_booking) {
 const Header = (props: Props) => {
   const { booking, isFuture } = props;
   const { type } = booking;
-  const status = booking.status && bookingStatus[booking.status];
+  const status = booking.status && bookingStatuses(props.t)[booking.status];
 
   return (
     <div>
       <div className="headerAbove">
         <div>
           {booking.databaseId && (
-            <Typography type="secondary">
+            <Text type="secondary">
               {isFuture ? 'Upcoming' : 'Last'} trip #
               {formatBookingId(booking.databaseId)}
-            </Typography>
+            </Text>
           )}
         </div>
-        <Link
-          to={routeDefinitions.ALL_BOOKINGS}
-          style={{ textDecoration: 'none' }}
-        >
-          <Typography size="small" type="active">
-            Select other booking
-          </Typography>
-        </Link>
+        <BookingState.Consumer>
+          {({ onDisplayAll }: BookingStateType) => (
+            <TextLink
+              url=""
+              onClick={e => {
+                e.preventDefault();
+                onDisplayAll();
+              }}
+              size="small"
+              title="Select other booking"
+            />
+          )}
+        </BookingState.Consumer>
       </div>
       <div className="headerTitle">
         <Typography size="header" type="attention" variant="bold">
@@ -63,9 +72,9 @@ const Header = (props: Props) => {
       </div>
       <div className="headerBelow">
         {status && (
-          <Typography>
+          <Text>
             <span style={{ color: status.color }}>{status.text}</span>
-          </Typography>
+          </Text>
         )}
       </div>
       <style jsx>
@@ -81,6 +90,9 @@ const Header = (props: Props) => {
           .headerBelow {
             margin-bottom: 16px;
           }
+          .selectOtherBooking {
+            cursor: pointer;
+          }
         `}
       </style>
     </div>
@@ -88,7 +100,7 @@ const Header = (props: Props) => {
 };
 
 export default createFragmentContainer(
-  Header,
+  translate()(Header),
   graphql`
     fragment Header_booking on BookingInterface {
       type

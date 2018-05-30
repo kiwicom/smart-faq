@@ -4,8 +4,9 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 import idx from 'idx';
-import { AirplaneDown, Calendar } from '@kiwicom/orbit-components/lib/icons';
+import { Calendar } from '@kiwicom/orbit-components/lib/icons';
 
+import LegTypeIcon from './AccordionLegTypeIcon';
 import { FormatDate } from '../../helpers/dateUtils';
 import AccordionLegCities from './AccordionLegCities';
 import type { AccordionBodyLastLeg_leg } from './__generated__/AccordionBodyLastLeg_leg.graphql';
@@ -27,6 +28,8 @@ const lastLegStyle = css`
   }
   div.date {
     margin-bottom: 6px;
+    color: #2f363c;
+    font-weight: 500;
   }
   div.airplaneIcon {
     position: absolute;
@@ -40,7 +43,7 @@ type LastLegProps = {|
   leg: AccordionBodyLastLeg_leg,
 |};
 
-const RawAccordionLastLeg = (props: LastLegProps) => {
+const AccordionLastLeg = (props: LastLegProps) => {
   const { leg } = props;
   const initialDeparture = idx(leg.departure, _ => _.localTime) || '';
   return (
@@ -53,20 +56,21 @@ const RawAccordionLastLeg = (props: LastLegProps) => {
           {FormatDate({ dateString: initialDeparture })}
         </div>
         <AccordionLegCities leg={leg} />
-        <div className="airplaneIcon">
-          <AirplaneDown customColor="#adb9c5" height="12" />
-        </div>
+        <LegTypeIcon leg={leg} />
       </div>
       <style jsx>{lastLegStyle}</style>
     </React.Fragment>
   );
 };
 
+export const RawAccordionLastLeg = AccordionLastLeg;
+
 export default createFragmentContainer(
-  RawAccordionLastLeg,
+  AccordionLastLeg,
   graphql`
     fragment AccordionBodyLastLeg_leg on Leg {
       ...AccordionLegCities_leg
+      ...AccordionLegTypeIcon_leg
       departure {
         localTime
       }

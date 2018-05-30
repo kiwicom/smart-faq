@@ -15,6 +15,8 @@ require('isomorphic-fetch');
 const uri = 'https://graphql.kiwi.com';
 const cache = new QueryResponseCache({ size: 200, ttl: 30 * 60 * 1000 });
 
+export const ERROR_FORBIDDEN = 'Forbidden 403';
+
 const buildFetchQuery = (
   token: string = '',
   locale: string = DEFAULT_LOCALE,
@@ -41,6 +43,13 @@ const buildFetchQuery = (
       }),
     });
     const json = await response.json();
+    if (
+      json.errors &&
+      json.errors.length > 0 &&
+      json.errors.some(e => e._proxy.statusCode === 403)
+    ) {
+      throw new Error(ERROR_FORBIDDEN);
+    }
 
     if (!forceFetch && isQuery) {
       cache.set(operation.text, variables, json);

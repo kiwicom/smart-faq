@@ -7,11 +7,8 @@ import { Search } from '@kiwicom/orbit-components/lib/icons';
 import { withRouter } from 'react-router-dom';
 
 import Input from './../common/Input';
-import { withUser } from '../context/User';
 import FAQCategoryList from './FAQCategoryList';
 import SearchAllFAQs from './SearchAllFAQs';
-import ContentHeader from '../ContentHeader';
-import type { User } from '../types';
 
 const style = css`
   .static-faq {
@@ -32,7 +29,6 @@ const style = css`
 `;
 
 type Props = {|
-  user: User,
   match: {
     params: {
       categoryId: ?string,
@@ -74,7 +70,6 @@ class StaticFAQ extends React.Component<Props, State> {
 
     return (
       <div className="static-faq">
-        {!this.props.user && <ContentHeader />}
         <div className="static-faq-body">
           <div className="static-faq-search">
             {!categoryId && this.renderInput(isSearching)}
@@ -91,4 +86,4 @@ class StaticFAQ extends React.Component<Props, State> {
   }
 }
 
-export default withRouter(withUser(StaticFAQ));
+export default withRouter(StaticFAQ);

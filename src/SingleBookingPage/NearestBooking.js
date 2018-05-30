@@ -27,7 +27,7 @@ const query = graphql`
 
 class NearestBooking extends React.Component<Props> {
   renderBooking = (renderState: RenderState) => {
-    if (renderState.error) {
+    if (renderState && renderState.error) {
       return <BookingError />;
     }
 

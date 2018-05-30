@@ -33,39 +33,65 @@ Webpack and particularly `dotenv-webpack` package will take care of importing th
 
 - be declarative & use `Trans` component whenever it's possible: 
 ```
-<Trans i18nKey="translation_key">
-    Hello <strong title={t('nameTitle')}>{{name}}</strong>, you have {{count}} unread message. <Link to="/msgs">Go to messages</Link>.
+<Trans i18nKey="translationKey">
+  Hello <strong>{{name}}</strong>, you have {{count}} unread message.
 </Trans>
 ```
-- use `i18n.t` function only when `Trans` can't be used
 
-#### Before you are done
+- Children of the `Trans` component will be used as default translation when executing `yarn translations:collect` & during development when the key is missing (collect command haven't been executed yet).
+- When executing `yarn translations:collect`, such translation key will be saved like this:
 
-- run `yarn translations:collect` to recollect all translations for all supported languages
-- provide translations for all keys with `__STRING_NOT_TRANSLATED__` as value
+```json
+{
+  "translationKey": "Hello <1><0>{{name}}</0></1>, you have <3>{{count}}</3> unread message."
+}
+
+```
+
+- on places where it's not possible, use function named `__t`:
+
+```
+<div title={__t('translationKey')}></div>
+```
+
+- such key is saved with the value `__STRING_NOT_TRANSLATED__` - you need to provide translation manually.
+
+### Typical flow with translations
+
+1. *(In future)* Download latest translations from PhraseApp via `yarn trasnlations:download`.
+2. Before you push your changes and create PR, collect your translations via `yarn translations:collect`.
+3. Translate all `__STRING_NOT_TRANSLATED__` fields.
+4. *(In future)* Upload collected translations to be translated by professionals into all Kiwi.com languages via `yarn translations:upload`.
+5. *(In future)* When the new version is published to npm, translations are uploaded on CDN.
+
+## Cypress test
+
+Steps to run Cypress tests:
+1. Start smart-faq via `yarn start` if you still don't have it running.
+2. Start up cypress app with `yarn cypress:open`
+3. Run tests with `yarn cypress:run`
+
+*Note*: If you need to change the baseUrl, you can either change it on `cypress.json` or 
+set the `CYPRESS_baseUrl` variable before running tests eg. `CYPRESS_baseUrl=http://mybaseUrl:myPort  yarn cypress:run` . [More info](https://docs.cypress.io/guides/guides/environment-variables.html)
 
 ## Build process
 
-### Github Pages
+Test script `test-ci` is run on each push
 
+### Surge Deploy
+- after each push a circleci `test-ci-and-surge-deploy` script is run
+- it generates a live preview link on surge  ie. `https://smartfaq-branch-name.surge.sh`
+
+### Github Pages
 - After every merge into master, standalone version of this project is published using Github Pages 
 - Inspired by repository [Circle CI and Github Pages](https://github.com/Villanuevand/deployment-circleci-gh-pages) and further described on [Github](https://github.com/DevProgress/onboarding/wiki/Using-Circle-CI-with-Github-Pages-for-Continuous-Delivery)
-- Deployed on [https://github.com/kiwicom/smart-faq/](https://github.com/kiwicom/smart-faq/)
+- Deployed on [https://kiwicom.github.io/smart-faq/](https://kiwicom.github.io/smart-faq/)
 
-## Release
+### Release
 
-Done automatically when you add new release on [Github](https://github.com/kiwicom/smart-faq/releases/new)
+Done automatically when you add a new release tag on [Github](https://github.com/kiwicom/smart-faq/releases/new)
 
-- automatically updates package.json with correct version and publish changes into npm
+- automatically updates package.json with correct version
+- publish changes onto npm
 
-## Release per branch
-Everytime one sends a Pull Request the app is deployed to a different URL endpoint. This URL is then automatically added to the PR description.
-
-Relevant `package.json` scripts:
-- `deploy:now`: used to deploy to a new URL from localhost. Useful to debug production code. Requires you to have an `.env` file with `NOW_TOKEN` var.
-- `deploy:now-cli`: deployment script used by our CI. No configuration necessary.
-- `deploy:updateURL`: Updates the PR description with the latest URL deployed from the machine it was called from. Requires you to pass the branchname as argument.
-
-## TO RE-FACTOR (when Orbit is ready)
-- `Need help?` needs to be re-factor to use the `Text` component from Orbit(currenty it's hardcoded CSS)
 

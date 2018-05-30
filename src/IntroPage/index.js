@@ -2,10 +2,10 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
+import { Trans } from 'react-i18next';
 import { Typography } from '@kiwicom/orbit-components';
 
 import image from '../../static/woman-with-laptop@2x.jpg';
-import routeDefinitions from '../routeDefinitions';
 import CloseButton from './../common/buttons/CloseButton';
 import { withUser } from '../context/User';
 import type { User } from '../types';
@@ -106,12 +106,12 @@ type Props = {
 export class PureIntro extends React.Component<Props> {
   goToExistingBooking = () => {
     this.props.user
-      ? this.props.history.push(routeDefinitions.CONTENT)
-      : this.props.history.push(routeDefinitions.SIGN_IN);
+      ? this.props.history.push('/faq/')
+      : this.props.history.push('/sign-in');
   };
 
   goToNoBooking = () => {
-    this.props.history.push(routeDefinitions.NO_BOOKING);
+    this.props.history.push('/faq/');
   };
 
   render() {
@@ -122,9 +122,13 @@ export class PureIntro extends React.Component<Props> {
           <img alt="Help" src={image} />
         </div>
         <div className="text">
-          <p className="title">Need help?</p>
+          <p className="title">
+            <Trans i18nKey="IntroPage.header">Need help?</Trans>
+          </p>
           <Typography type="secondary">
-            {"We're here for you. First, let's narrow down your request."}
+            <Trans i18nKey="IntroPage.subheader">
+              {"We're here for you. First, let's narrow down your request."}
+            </Trans>
           </Typography>
         </div>
         <div className="buttons">
@@ -133,7 +137,9 @@ export class PureIntro extends React.Component<Props> {
               onClick={this.goToExistingBooking}
               data-cy="btn-existing-booking"
             >
-              I have an existing booking
+              <Trans i18nKey="IntroPage.existingBooking">
+                I have an existing booking
+              </Trans>
             </button>
           </div>
           <div className="secondary">
@@ -141,7 +147,9 @@ export class PureIntro extends React.Component<Props> {
               onClick={this.goToNoBooking}
               data-cy="btn-nonexistent-booking"
             >
-              I don&apos;t have a booking
+              <Trans i18nKey="IntroPage.noBooking">
+                I don&apos;t have a booking
+              </Trans>
             </button>
           </div>
         </div>

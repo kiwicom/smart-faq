@@ -3,11 +3,14 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 
 import { RawKiwiLogin } from '../index';
-import routeDefinitions from '../../routeDefinitions';
+import { defaultToken, defaultUserId } from '../../../__mocks__/constants';
 
 describe('KiwiLogin', () => {
   const props = {
-    onLogin: async () => {},
+    onLogin: async () => ({
+      user_id: defaultUserId,
+      token: defaultToken,
+    }),
     history: {
       push: jest.fn(),
     },
@@ -36,9 +39,7 @@ describe('KiwiLogin', () => {
     const Login = wrapper.instance();
     await Login.handleSignIn(e);
     expect(e.preventDefault.mock.calls).toHaveLength(1);
-    expect(Login.props.history.push.mock.calls[0][0]).toBe(
-      routeDefinitions.CONTENT,
-    );
+    expect(Login.props.history.push.mock.calls[0][0]).toBe('/faq/');
   });
 
   it('should handle error in sign in', async () => {

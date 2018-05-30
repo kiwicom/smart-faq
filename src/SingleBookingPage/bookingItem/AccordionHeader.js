@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { Typography } from '@kiwicom/orbit-components';
+import { Typography, Text } from '@kiwicom/orbit-components';
 import {
   FlightDirect,
   ChevronDown,
@@ -37,6 +37,7 @@ const headerStyles = css`
     justify-content: center;
   }
   .itinerary .location {
+    display: inline-block;
     margin-right: 4px;
   }
 `;
@@ -61,19 +62,19 @@ const AccordionHeader = ({ trip, isToggled }: Props) => {
         </Typography>
         <div className="itinerary">
           <span className="location">
-            <Typography variant="bold" type="primary">
+            <Text variant="bold" type="primary">
               {departureCity}&nbsp;({departureCode})
-            </Typography>
+            </Text>
           </span>
           <span className="arrow">
             <span className="inline-icon">
-              <FlightDirect />
+              <FlightDirect customColor="#bac7d5" />
             </span>
           </span>
           <span className="location">
-            <Typography variant="bold" type="primary">
+            <Text variant="bold" type="primary">
               {arrivalCity}&nbsp;({arrivalCode})
-            </Typography>
+            </Text>
           </span>
         </div>
       </div>

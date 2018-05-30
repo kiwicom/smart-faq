@@ -57,7 +57,7 @@ export const formatCountDown = (hoursLeft: number) => {
 export const formatTimeDuration = (mins: number) => {
   const nhours = Math.floor(mins / 60);
   const nmins = mins - nhours * 60;
-  return nhours ? `${nhours}h ${nmins}min` : `${nmins}min`;
+  return nhours ? `${nhours}h ${nmins}m` : `${nmins}m`;
 };
 
 export const formatHour = (date: string) => {

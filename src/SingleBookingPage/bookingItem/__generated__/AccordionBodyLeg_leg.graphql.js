@@ -9,6 +9,7 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 type AccordionLegCities_leg$ref = any;
+type AccordionLegTypeIcon_leg$ref = any;
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type AccordionBodyLeg_leg$ref: FragmentReference;
 export type AccordionBodyLeg_leg = {|
@@ -20,7 +21,7 @@ export type AccordionBodyLeg_leg = {|
     +time: ?any,
     +localTime: ?any,
   |},
-  +$fragmentRefs: AccordionLegCities_leg$ref,
+  +$fragmentRefs: (AccordionLegCities_leg$ref & AccordionLegTypeIcon_leg$ref),
   +$refType: AccordionBodyLeg_leg$ref,
 |};
 */
@@ -56,6 +57,11 @@ return {
       "args": null
     },
     {
+      "kind": "FragmentSpread",
+      "name": "AccordionLegTypeIcon_leg",
+      "args": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "arrival",
@@ -78,5 +84,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '2ce30f4b9931a6d705a962878a97dea1';
+(node/*: any*/).hash = 'a3b718d067ea9fab60c81ed75f070ce4';
 module.exports = node;

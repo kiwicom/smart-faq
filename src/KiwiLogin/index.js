@@ -11,7 +11,6 @@ import BackButton from '../common/buttons/BackButton';
 import Input from '../common/Input';
 import { withLogin } from '../context/User';
 import image from '../../static/woman-with-laptop@2x.jpg';
-import routeDefinitions from '../routeDefinitions';
 import type { onLogin } from '../types';
 
 const style = css`
@@ -137,8 +136,16 @@ class KiwiLogin extends React.Component<Props, State> {
   handleSignIn = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await this.props.onLogin(this.state.email, this.state.password);
-      this.props.history.push(routeDefinitions.CONTENT);
+      const response = await this.props.onLogin(
+        this.state.email,
+        this.state.password,
+      );
+
+      if (!response) {
+        throw new Error('Login failed.');
+      }
+
+      this.props.history.push('/faq/');
     } catch (e) {
       this.setState({ showError: true });
     }
@@ -190,10 +197,7 @@ class KiwiLogin extends React.Component<Props, State> {
                 </SystemMessage>
               </div>
             )}
-            <Link
-              to={routeDefinitions.FORGOTTEN_PASSWORD}
-              style={{ textDecoration: 'none' }}
-            >
+            <Link to="/forgotten-password" style={{ textDecoration: 'none' }}>
               <div className="forgot-password">
                 <Typography type="active">Forgot your password?</Typography>
               </div>

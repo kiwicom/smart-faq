@@ -21,6 +21,7 @@ const style = css`
     color: #171b1e;
     font-size: 16px;
     margin-bottom: 8px;
+    font-weight: bold;
   }
   div.question {
     font-size: 14px;

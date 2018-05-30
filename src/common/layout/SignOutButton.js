@@ -4,9 +4,8 @@ import * as React from 'react';
 import { Typography } from '@kiwicom/orbit-components';
 import { withRouter } from 'react-router-dom';
 
-import { withLogout } from '../context/User';
-import type { onLogout } from '../types';
-import routeDefinitions from '../routeDefinitions';
+import { withLogout } from '../../context/User';
+import type { onLogout } from '../../types';
 
 type Props = {|
   onLogout: onLogout,
@@ -18,7 +17,7 @@ type Props = {|
 class SignOutButton extends React.Component<Props> {
   onSignOut = async () => {
     await this.props.onLogout();
-    this.props.history.push(routeDefinitions.HOME);
+    this.props.history.push('/');
   };
 
   render() {

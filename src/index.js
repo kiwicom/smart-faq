@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 
 import App from './App';
 import enLocale from '../i18n/en/translation.json';
+import { socialLogin } from './helpers/Auth';
 import { Requester } from './helpers/Requests';
 import type { User } from './types';
 
@@ -47,19 +48,32 @@ class Root extends React.Component<Props, State> {
     return Promise.resolve(user);
   };
 
+  onSocialLogin = async provider => {
+    const authUrl = await socialLogin(provider);
+
+    if (!authUrl) {
+      return;
+    }
+
+    window.location = authUrl;
+  };
+
   onLogout = async () => {
     this.setState({ user: null, loginToken: null });
     Cookies.remove(this.cookieKey);
   };
 
   render() {
+    const language = 'en';
+
     return (
       <div className="root">
         <App
           onClose={() => {}}
           onLogin={this.onLogin}
+          onSocialLogin={this.onSocialLogin}
           onLogout={this.onLogout}
-          language="en"
+          language={language}
           locale={enLocale}
           user={this.state.user}
           loginToken={this.state.loginToken}
