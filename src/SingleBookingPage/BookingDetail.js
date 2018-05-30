@@ -89,14 +89,15 @@ class BookingDetail extends React.Component<Props> {
     const { booking } = this.props;
     const departureTime = this.getDepartureByType(booking);
     const arrivalTime = this.getArrivalByType(booking);
-    const departureTimeDelta = this.decideIfIsFutureAndUrgent(departureTime);
-    const arrivalTimeDelta = this.decideIfIsFutureAndUrgent(arrivalTime);
-    const { isFuture, isUrgent, timeDelta } = departureTimeDelta;
+    const departureInfo = this.decideIfIsFutureAndUrgent(departureTime);
+    const arrivalInfo = this.decideIfIsFutureAndUrgent(arrivalTime);
+    const { isUrgent, timeDelta } = departureInfo;
+    const showContactInfo = departureInfo.isUrgent || arrivalInfo.isUrgent;
 
     return (
       <div className="nearestBooking">
-        <Header booking={booking} isFuture={arrivalTimeDelta.isFuture} />
-        {isFuture &&
+        <Header booking={booking} isFuture={arrivalInfo.isFuture} />
+        {departureInfo.isFuture &&
           timeDelta && (
             <Notification hoursLeft={timeDelta} isUrgent={isUrgent} />
           )}
@@ -110,7 +111,7 @@ class BookingDetail extends React.Component<Props> {
             <button className="manage-booking">Manage my booking</button>
           </a>
         </div>
-        {isUrgent && <Contact info={booking} />}
+        {showContactInfo && <Contact info={booking} />}
         <style jsx>
           {`
             .nearestBooking {
