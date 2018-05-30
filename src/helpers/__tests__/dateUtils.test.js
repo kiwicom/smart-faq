@@ -42,9 +42,9 @@ describe('date utils', () => {
 
   describe('formatTimeDuration', () => {
     it('should format duration', () => {
-      expect(dateUtils.formatTimeDuration(90)).toBe('1h 30min');
-      expect(dateUtils.formatTimeDuration(32)).toBe('32min');
-      expect(dateUtils.formatTimeDuration(191)).toBe('3h 11min');
+      expect(dateUtils.formatTimeDuration(90)).toBe('1h 30m');
+      expect(dateUtils.formatTimeDuration(32)).toBe('32m');
+      expect(dateUtils.formatTimeDuration(191)).toBe('3h 11m');
     });
   });
   describe('formatHour', () => {

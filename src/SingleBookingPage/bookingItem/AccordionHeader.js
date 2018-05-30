@@ -67,7 +67,7 @@ const AccordionHeader = ({ trip, isToggled }: Props) => {
           </span>
           <span className="arrow">
             <span className="inline-icon">
-              <FlightDirect />
+              <FlightDirect customColor="#bac7d5" />
             </span>
           </span>
           <span className="location">
