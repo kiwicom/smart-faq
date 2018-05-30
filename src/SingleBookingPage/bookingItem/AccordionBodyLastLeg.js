@@ -28,6 +28,8 @@ const lastLegStyle = css`
   }
   div.date {
     margin-bottom: 6px;
+    color: #2f363c;
+    font-weight: 500;
   }
   div.airplaneIcon {
     position: absolute;

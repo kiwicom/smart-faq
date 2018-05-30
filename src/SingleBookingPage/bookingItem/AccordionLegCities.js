@@ -38,7 +38,7 @@ const citiesStyle = css`
     bottom: -8px;
     padding-left: 1em;
     padding-right: 6px;
-    right: 11px;
+    right: 8px;
     background: #fff;
     color: #7c8b99;
   }
