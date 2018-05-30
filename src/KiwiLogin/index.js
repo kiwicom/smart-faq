@@ -176,6 +176,7 @@ class KiwiLogin extends React.Component<Props, State> {
                   value={this.state.email}
                   onChange={this.handleChange}
                   placeholder="e.g. your@email.com"
+                  dataCy="input-email"
                 />
               </div>
             </label>
@@ -187,6 +188,7 @@ class KiwiLogin extends React.Component<Props, State> {
                   name="password"
                   value={this.state.password}
                   onChange={this.handleChange}
+                  dataCy="input-password"
                 />
               </div>
             </label>
@@ -197,13 +199,17 @@ class KiwiLogin extends React.Component<Props, State> {
                 </SystemMessage>
               </div>
             )}
-            <Link to="/forgotten-password" style={{ textDecoration: 'none' }}>
+            <Link
+              to="/forgotten-password"
+              style={{ textDecoration: 'none', display: 'block' }}
+              data-cy="link-forgotten-password"
+            >
               <div className="forgot-password">
                 <Typography type="active">Forgot your password?</Typography>
               </div>
             </Link>
             <span className="singIn">
-              <button>Sign In</button>
+              <button data-cy="btn-sign-in">Sign In</button>
             </span>
           </form>
         </div>

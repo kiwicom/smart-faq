@@ -153,7 +153,11 @@ class SignIn extends React.Component<Props> {
           />
         </div>
         <div className="kiwi-account">
-          <Link to="/kiwi-login" style={{ textDecoration: 'none' }}>
+          <Link
+            to="/kiwi-login"
+            style={{ textDecoration: 'none' }}
+            data-cy="link-kiwi-login"
+          >
             <Typography type="active">
               I want to use my Kiwi.com account
             </Typography>
