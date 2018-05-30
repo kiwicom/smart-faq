@@ -36,7 +36,7 @@ describe('Display Static FAQ', () => {
 
     cy
       .get('@faq-box')
-      .find('.faq-link')
+      .find('[data-cy=faq-link]')
       .first()
       .click({ force: true });
 
@@ -72,15 +72,15 @@ describe('Display Static FAQ', () => {
       .type(faqFeedback)
       .should('have.value', faqFeedback);
 
-    cy
-      .get('[data-cy=faq-article-form]')
-      .find('.button button')
-      .click();
+    // cy
+    //   .get('[data-cy=faq-article-form]')
+    //   .find('.button button')
+    //   .click();
 
-    cy
-      .get('[data-cy=faq-article-form]')
-      .find('.thank-you')
-      .should('exist');
+    // cy
+    //   .get('[data-cy=faq-article-form]')
+    //   .find('.thank-you')
+    //   .should('exist');
   });
 
   it('User can navigate with breadcrumbs', () => {
