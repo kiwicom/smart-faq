@@ -2,66 +2,86 @@
 
 exports[`SignIn should match snapshot 1`] = `
 <div
-  className="jsx-724175408 SignIn"
+  className="jsx-665481332 SignIn"
 >
   <CloseButton />
   <withRouter(BackButton)
     text="Back"
   />
   <div
-    className="jsx-724175408 picture"
+    className="jsx-665481332 picture"
   >
     <img
       alt="Help"
-      className="jsx-724175408"
+      className="jsx-665481332"
       src="https://images.kiwi.com/smart-faq/woman-with-laptop@2x.jpg"
     />
   </div>
   <div
-    className="jsx-724175408 text"
+    className="jsx-665481332 text"
   >
-    <p
-      className="jsx-724175408 title"
+    <div
+      className="jsx-665481332 title"
     >
-      Sign in
-    </p>
+      <Heading
+        element="h1"
+        size="large"
+        weight="bold"
+      >
+        Sign in
+      </Heading>
+    </div>
+    <Text
+      align="left"
+      element="p"
+      italic={false}
+      size="normal"
+      type="secondary"
+      uppercase={false}
+      weight="regular"
+    >
+      We need you to sign in to provide you with more personalised help.
+    </Text>
   </div>
   <div
-    className="jsx-724175408 buttons"
+    className="jsx-665481332 buttons"
   >
-    <button
-      className="jsx-724175408 google"
-      onClick={[Function]}
+    <div
+      className="jsx-665481332 googleButton"
     >
-      <img
-        alt="Login with google"
-        className="jsx-724175408 google-icon"
-        src="https://images.kiwi.com/smart-faq/google-logo.png"
+      <Button
+        Facebook={true}
+        Icon={[Function]}
+        block={false}
+        disabled={false}
+        loading={false}
+        onClick={[Function]}
+        onlyIcon={false}
+        size="normal"
+        title="Continue with Google"
+        type="google"
+        variation="bordered"
+        width={212}
       />
-      <span
-        className="jsx-724175408 label"
-      >
-        Continue with Google 
-      </span>
-    </button>
-    <button
-      className="jsx-724175408 facebook"
+    </div>
+    <Button
+      Facebook={true}
+      Icon={[Function]}
+      block={false}
+      className="facebook"
+      disabled={false}
+      loading={false}
       onClick={[Function]}
-    >
-      <img
-        alt="Login with facebook"
-        className="jsx-724175408 facebook-icon"
-        src="https://images.kiwi.com/smart-faq/facebook-icon.png"
-      />
-      <span
-        className="jsx-724175408 label"
-      >
-        Continue with Facebook 
-      </span>
-    </button>
+      onlyIcon={false}
+      size="normal"
+      title="Continue with Facebook"
+      type="facebook"
+      variation="filled"
+      width={212}
+    />
   </div>
   <div
-    className="jsx-724175408 kiwi-account"
+    className="jsx-665481332 kiwi-account"
   >
     <Link
       replace={false}
@@ -79,43 +99,60 @@ exports[`SignIn should match snapshot 1`] = `
       </Typography>
       <img
         alt="kiwi login"
-        className="jsx-724175408 chevron"
+        className="jsx-665481332 chevron"
         src="https://images.kiwi.com/smart-faq/chevron-right.png"
       />
     </Link>
   </div>
   <JSXStyle
-    css=".SignIn.jsx-724175408{width:480px;padding-top:128px;padding-bottom:50px;}div.picture.jsx-724175408 img.jsx-724175408{width:203px;height:156px;}div.picture.jsx-724175408{margin:0px 127px 0px 150px;}div.text.jsx-724175408{margin:52px 40px 32.2px 40px;}p.title.jsx-724175408{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:8px;text-align:center;}label.jsx-724175408{font-size:14px;line-height:1.43;color:#46515e;display:inline-block;width:309px;height:44px;}form.jsx-724175408{margin:0px 40px 0px 40px;}div.input.jsx-724175408{display:inline-block;width:100%;height:44px;margin-top:4px;}form.jsx-724175408 button.jsx-724175408{width:83px;height:44px;border-radius:3px;background-color:#00a991;font-size:14px;font-weight:bold;color:#ffffff;}.buttons.jsx-724175408{margin-right:134px;margin-left:134px;margin-top:65px;}button.jsx-724175408{width:212px;height:44px;border-radius:3px;margin-bottom:26px;border:none;cursor:pointer;display:inline-block;}button.get-help.jsx-724175408{width:83px;background-color:#00a991;border:0;margin-left:8px;}button.google.jsx-724175408{background-color:#d24318;}button.facebook.jsx-724175408{background-color:#4465ad;}div.kiwi-account.jsx-724175408{margin-top:8px;text-align:center;}img.chevron.jsx-724175408{width:8px;height:8px;margin-left:5px;object-fit:contain;}span.label.jsx-724175408{font-size:14px;font-weight:bold;line-height:1.43;color:#ffffff;display:block;text-align:left;}.facebook-icon.jsx-724175408,.google-icon.jsx-724175408{width:16px;height:16px;float:left;margin-left:13px;margin-right:13px;}p.or.jsx-724175408{width:15px;height:23px;font-size:16px;line-height:1.4;color:#46515e;margin:0 auto;margin-top:26px;margin-bottom:24px;}@media only screen and (min-width:320px) and (max-width:480px){.SignIn.jsx-724175408{width:100%;padding-top:22px;}div.picture.jsx-724175408 img.jsx-724175408{display:none;}div.text.jsx-724175408{margin:64px 16px 33px 16px;}form.jsx-724175408{margin:0px 16px;}label.jsx-724175408{margin-bottom:33px;width:100%;}div.input.jsx-724175408{width:100%;margin-right:0px;margin-bottom:8px;}form.jsx-724175408 button.jsx-724175408{width:100%;}.buttons.jsx-724175408{margin-right:16px;margin-left:16px;}p.or.jsx-724175408{margin:0 auto;margin-bottom:20px;}button.jsx-724175408{width:100%;margin-bottom:20px;}button.get-help.jsx-724175408{width:83px;background-color:#00a991;border:0;margin-left:0px;}@media only screen and (width:320px){.SignIn.jsx-724175408{padding-top:0px;}}}"
-    styleId="724175408"
+    css=".SignIn.jsx-665481332{width:480px;padding-top:128px;padding-bottom:50px;}div.picture.jsx-665481332 img.jsx-665481332{width:203px;height:156px;}div.picture.jsx-665481332{margin:0px 127px 0px 150px;}div.text.jsx-665481332{margin:68px 40px 32.8px 40px;}.title.jsx-665481332{margin-bottom:8px;}.googleButton.jsx-665481332{margin-bottom:16px;}.buttons.jsx-665481332{margin-right:134px;margin-left:134px;margin-bottom:24px;}div.kiwi-account.jsx-665481332{margin-top:8px;text-align:center;}img.chevron.jsx-665481332{width:8px;height:8px;margin-left:5px;object-fit:contain;}@media only screen and (min-width:320px) and (max-width:480px){.SignIn.jsx-665481332{width:100%;padding-top:22px;}div.picture.jsx-665481332 img.jsx-665481332{display:none;}div.text.jsx-665481332{margin:64px 16px 33px 16px;}.buttons.jsx-665481332{margin-right:16px;margin-left:16px;}button.jsx-665481332{width:100%;margin-bottom:20px;}@media only screen and (width:320px){.SignIn.jsx-665481332{padding-top:0px;}}}"
+    styleId="665481332"
   />
 </div>
 `;
 
 exports[`SignIn should match snapshot with expired message 1`] = `
 <div
-  className="jsx-724175408 SignIn"
+  className="jsx-665481332 SignIn"
 >
   <CloseButton />
   <withRouter(BackButton)
     text="Back"
   />
   <div
-    className="jsx-724175408 picture"
+    className="jsx-665481332 picture"
   >
     <img
       alt="Help"
-      className="jsx-724175408"
+      className="jsx-665481332"
       src="https://images.kiwi.com/smart-faq/woman-with-laptop@2x.jpg"
     />
   </div>
   <div
-    className="jsx-724175408 text"
+    className="jsx-665481332 text"
   >
-    <p
-      className="jsx-724175408 title"
+    <div
+      className="jsx-665481332 title"
     >
-      Sign in
-    </p>
+      <Heading
+        element="h1"
+        size="large"
+        weight="bold"
+      >
+        Sign in
+      </Heading>
+    </div>
+    <Text
+      align="left"
+      element="p"
+      italic={false}
+      size="normal"
+      type="secondary"
+      uppercase={false}
+      weight="regular"
+    >
+      We need you to sign in to provide you with more personalised help.
+    </Text>
   </div>
   <div
     className="jsx-1781336386 infoMessage"
@@ -132,41 +169,44 @@ exports[`SignIn should match snapshot with expired message 1`] = `
     />
   </div>
   <div
-    className="jsx-724175408 buttons"
+    className="jsx-665481332 buttons"
   >
-    <button
-      className="jsx-724175408 google"
-      onClick={[Function]}
+    <div
+      className="jsx-665481332 googleButton"
     >
-      <img
-        alt="Login with google"
-        className="jsx-724175408 google-icon"
-        src="https://images.kiwi.com/smart-faq/google-logo.png"
+      <Button
+        Facebook={true}
+        Icon={[Function]}
+        block={false}
+        disabled={false}
+        loading={false}
+        onClick={[Function]}
+        onlyIcon={false}
+        size="normal"
+        title="Continue with Google"
+        type="google"
+        variation="bordered"
+        width={212}
       />
-      <span
-        className="jsx-724175408 label"
-      >
-        Continue with Google 
-      </span>
-    </button>
-    <button
-      className="jsx-724175408 facebook"
+    </div>
+    <Button
+      Facebook={true}
+      Icon={[Function]}
+      block={false}
+      className="facebook"
+      disabled={false}
+      loading={false}
       onClick={[Function]}
-    >
-      <img
-        alt="Login with facebook"
-        className="jsx-724175408 facebook-icon"
-        src="https://images.kiwi.com/smart-faq/facebook-icon.png"
-      />
-      <span
-        className="jsx-724175408 label"
-      >
-        Continue with Facebook 
-      </span>
-    </button>
+      onlyIcon={false}
+      size="normal"
+      title="Continue with Facebook"
+      type="facebook"
+      variation="filled"
+      width={212}
+    />
   </div>
   <div
-    className="jsx-724175408 kiwi-account"
+    className="jsx-665481332 kiwi-account"
   >
     <Link
       replace={false}
@@ -184,14 +224,14 @@ exports[`SignIn should match snapshot with expired message 1`] = `
       </Typography>
       <img
         alt="kiwi login"
-        className="jsx-724175408 chevron"
+        className="jsx-665481332 chevron"
         src="https://images.kiwi.com/smart-faq/chevron-right.png"
       />
     </Link>
   </div>
   <JSXStyle
-    css=".SignIn.jsx-724175408{width:480px;padding-top:128px;padding-bottom:50px;}div.picture.jsx-724175408 img.jsx-724175408{width:203px;height:156px;}div.picture.jsx-724175408{margin:0px 127px 0px 150px;}div.text.jsx-724175408{margin:52px 40px 32.2px 40px;}p.title.jsx-724175408{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:8px;text-align:center;}label.jsx-724175408{font-size:14px;line-height:1.43;color:#46515e;display:inline-block;width:309px;height:44px;}form.jsx-724175408{margin:0px 40px 0px 40px;}div.input.jsx-724175408{display:inline-block;width:100%;height:44px;margin-top:4px;}form.jsx-724175408 button.jsx-724175408{width:83px;height:44px;border-radius:3px;background-color:#00a991;font-size:14px;font-weight:bold;color:#ffffff;}.buttons.jsx-724175408{margin-right:134px;margin-left:134px;margin-top:65px;}button.jsx-724175408{width:212px;height:44px;border-radius:3px;margin-bottom:26px;border:none;cursor:pointer;display:inline-block;}button.get-help.jsx-724175408{width:83px;background-color:#00a991;border:0;margin-left:8px;}button.google.jsx-724175408{background-color:#d24318;}button.facebook.jsx-724175408{background-color:#4465ad;}div.kiwi-account.jsx-724175408{margin-top:8px;text-align:center;}img.chevron.jsx-724175408{width:8px;height:8px;margin-left:5px;object-fit:contain;}span.label.jsx-724175408{font-size:14px;font-weight:bold;line-height:1.43;color:#ffffff;display:block;text-align:left;}.facebook-icon.jsx-724175408,.google-icon.jsx-724175408{width:16px;height:16px;float:left;margin-left:13px;margin-right:13px;}p.or.jsx-724175408{width:15px;height:23px;font-size:16px;line-height:1.4;color:#46515e;margin:0 auto;margin-top:26px;margin-bottom:24px;}@media only screen and (min-width:320px) and (max-width:480px){.SignIn.jsx-724175408{width:100%;padding-top:22px;}div.picture.jsx-724175408 img.jsx-724175408{display:none;}div.text.jsx-724175408{margin:64px 16px 33px 16px;}form.jsx-724175408{margin:0px 16px;}label.jsx-724175408{margin-bottom:33px;width:100%;}div.input.jsx-724175408{width:100%;margin-right:0px;margin-bottom:8px;}form.jsx-724175408 button.jsx-724175408{width:100%;}.buttons.jsx-724175408{margin-right:16px;margin-left:16px;}p.or.jsx-724175408{margin:0 auto;margin-bottom:20px;}button.jsx-724175408{width:100%;margin-bottom:20px;}button.get-help.jsx-724175408{width:83px;background-color:#00a991;border:0;margin-left:0px;}@media only screen and (width:320px){.SignIn.jsx-724175408{padding-top:0px;}}}"
-    styleId="724175408"
+    css=".SignIn.jsx-665481332{width:480px;padding-top:128px;padding-bottom:50px;}div.picture.jsx-665481332 img.jsx-665481332{width:203px;height:156px;}div.picture.jsx-665481332{margin:0px 127px 0px 150px;}div.text.jsx-665481332{margin:68px 40px 32.8px 40px;}.title.jsx-665481332{margin-bottom:8px;}.googleButton.jsx-665481332{margin-bottom:16px;}.buttons.jsx-665481332{margin-right:134px;margin-left:134px;margin-bottom:24px;}div.kiwi-account.jsx-665481332{margin-top:8px;text-align:center;}img.chevron.jsx-665481332{width:8px;height:8px;margin-left:5px;object-fit:contain;}@media only screen and (min-width:320px) and (max-width:480px){.SignIn.jsx-665481332{width:100%;padding-top:22px;}div.picture.jsx-665481332 img.jsx-665481332{display:none;}div.text.jsx-665481332{margin:64px 16px 33px 16px;}.buttons.jsx-665481332{margin-right:16px;margin-left:16px;}button.jsx-665481332{width:100%;margin-bottom:20px;}@media only screen and (width:320px){.SignIn.jsx-665481332{padding-top:0px;}}}"
+    styleId="665481332"
   />
 </div>
 `;
