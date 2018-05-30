@@ -13,6 +13,7 @@ type Props = {
   icon?: React.Node,
   onReset?: (SyntheticEvent<HTMLButtonElement>) => any,
   error?: string,
+  dataCy?: string,
 };
 
 const InputText = (props: Props) => (
@@ -24,7 +25,7 @@ const InputText = (props: Props) => (
       placeholder={props.placeholder}
       onChange={props.onChange}
       required={props.required}
-      data-cy="input-text"
+      data-cy={props.dataCy}
     />
     {props.icon && <div className="inputIcon">{props.icon}</div>}
     {props.onReset && (
