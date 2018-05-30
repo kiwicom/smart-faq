@@ -54,6 +54,19 @@ jobs:
       - run:
           command: yarn && yarn build:bundle && yarn deploy:surge && yarn deploy:updateURL ${CIRCLE_BRANCH} https://smartfaq-$(git rev-parse --abbrev-ref HEAD).surge.sh
 
+  cypress-tests:
+    <<: *defaults
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+      - run:
+          command: yarn && yarn cypress:run-ci
+
   publish:
     <<: *defaults
     steps:
@@ -79,7 +92,7 @@ jobs:
 
 workflows:
   version: 2
-  # on each push publish the app to Surge
+  # on each push publish the app to Surge and run integration tests
   test-ci-and-surge-deploy:
     jobs:
       - test-ci:
@@ -89,6 +102,12 @@ workflows:
       - surge-deploy:
           requires:
             - test-ci
+          filters:
+            branches:
+              ignore: master
+      - cypress-tests:
+          requires:
+            - surge-deploy
           filters:
             branches:
               ignore: master
