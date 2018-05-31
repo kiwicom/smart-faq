@@ -10,6 +10,7 @@ import { URGENCY_THRESHOLD } from "../helpers/dateUtils";
 import type { MobileBookingDetail_booking } from "./__generated__/MobileBookingDetail_booking.graphql";
 import OneWayTrip from "./OneWayTrip";
 import ReturnTrip from "./ReturnTrip";
+import MultiCityTrip from "./MultiCityTrip";
 import css from "styled-jsx/css";
 import formatBookingId from "../helpers/formatBookingId";
 
@@ -37,8 +38,7 @@ class MobileBookingDetail extends React.Component<Props> {
     }
 
     if (booking.type === bookingTypes.MULTICITY) {
-      return <OneWayTrip booking={booking} />;
-      //return <MulticityOverlay booking={booking} />;
+      return <MultiCityTrip booking={booking} />;
     }
 
     return null;
@@ -100,7 +100,7 @@ export default createFragmentContainer(
         }
       }
       ... on BookingMulticity {
-        ...MulticityOverlay_booking
+        ...MultiCityTrip_booking
         start {
           time
         }
