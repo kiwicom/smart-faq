@@ -22,7 +22,7 @@ const style = css`
     margin-bottom: 68px;
   }
   div.text {
-    margin-left: 64px;
+    margin-left: 40px;
   }
   div.picture img {
     width: 203px;
@@ -54,7 +54,7 @@ const style = css`
     color: #46515e;
   }
   div.buttons {
-    margin-left: 64px;
+    margin-left: 40px;
     margin-top: 52.4px;
   }
   hr.hr-line {
