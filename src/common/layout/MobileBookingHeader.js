@@ -1,38 +1,149 @@
 // @flow
 
-import * as React from 'react';
-import { ChevronDown, ChevronUp } from '@kiwicom/orbit-components/lib/icons';
-import css from 'styled-jsx/css';
+import * as React from "react";
+import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons";
+import css from "styled-jsx/css";
 
-import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
+import responsiveStyleHelperClasses from "../responsiveStyleHelperClasses";
+import { UserContext, type UserContextType } from "../../context/User";
+import { BookingState } from "../../context/BookingState";
+import QueryRenderer from '../../relay/QueryRenderer';
+import MobileBookingDetail from '../../MobileBookingHeader/MobileBookingDetail';
+import bookingTypes from '../../common/booking/bookingTypes';
+import idx from 'idx';
+import { graphql } from 'react-relay';
 
-const MobileBookingSummaryStyle = css`
-  .TripId {
-    font-size: 14px;
-    line-height: 1.4;
-    color: #7f91a8;
-    margin-top: 8px;
-  }
-
-  .TripDescription {
-    margin-top: 4px;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.2;
-    color: #171b1e;
-    margin-bottom: 9px;
+const MobileBookingHeaderNearestBookingQuery = graphql`
+  query MobileBookingHeaderNearestBookingQuery {
+    nearestBooking {
+      ...MobileBookingDetail_booking
+    }
   }
 `;
 
-type MobileBookingSummaryProps = {
-  style: {},
+type RenderState = {
+  props: any,
+  error: ?Error,
 };
 
+
+class NearestBooking extends React.Component<Props> {
+  renderBooking = (renderState: RenderState) => {
+    if (renderState && renderState.error) {
+      return <div>Error</div>;
+    }
+
+    if (!renderState.props) {
+      return <div>Loading</div>;
+    }
+
+    const booking = renderState.props.nearestBooking;
+
+    if (!booking) {
+      return <div>Not found</div>;
+    }
+
+    //return <div/>
+    return <MobileBookingDetail booking={booking} />;
+  };
+
+  render() {
+    return (
+      <QueryRenderer query={MobileBookingHeaderNearestBookingQuery} variables={{}} render={this.renderBooking} />
+    );
+  }
+}
+
+const selectedBookingQuery = graphql`
+  query MobileBookingHeaderSelectedBookingQuery($id: ID!) {
+    booking(id: $id) {
+      type
+      oneWay {
+        ...MobileBookingDetail_booking
+      }
+      return {
+        ...MobileBookingDetail_booking
+      }
+      multicity {
+        ...MobileBookingDetail_booking
+      }
+    }
+  }
+`;
+
+type SelectedBookingProps = {
+  bookingId: string
+};
+
+class SelectedBooking extends React.Component<SelectedBookingProps> {
+  renderSelectedBooking = (renderState: RenderState) => {
+    if (renderState.error) {
+      return <div>Error</div>;
+    }
+
+    if (!renderState.props) {
+      return <div>Loading</div>;
+    }
+
+    const bookingType = idx(renderState.props, _ => _.booking.type);
+    let booking = null;
+
+    switch (bookingType) {
+      case bookingTypes.ONE_WAY:
+        booking = idx(renderState.props, _ => _.booking.oneWay);
+        break;
+      case bookingTypes.RETURN:
+        booking = idx(renderState.props, _ => _.booking.return);
+        break;
+      case bookingTypes.MULTICITY:
+        booking = idx(renderState.props, _ => _.booking.multicity);
+        break;
+    }
+
+    if (!booking) {
+      return <div>Not found</div>;
+    }
+
+    return <MobileBookingDetail booking={booking} />;
+  };
+
+  render() {
+    const { bookingId } = this.props;
+
+    return (
+      <QueryRenderer
+        query={selectedBookingQuery}
+        variables={{ id: bookingId }}
+        render={this.renderSelectedBooking}
+      />
+    );
+  }
+}
+
+const AllBooking = NearestBooking;
+
+const MobileBookingPage = ({ bookingPage, selectedBooking }) => {
+  if (bookingPage === "SINGLE_BOOKING") {
+    if (selectedBooking) {
+      return <SelectedBooking bookingId={selectedBooking} />;
+    }
+
+    return <NearestBooking />;
+  }
+
+  return <AllBooking />;
+};
+
+type MobileBookingSummaryProps = {
+  style: any
+};
 const MobileBookingSummary = (props: MobileBookingSummaryProps) => (
   <div style={props.style}>
-    <div className="TripId">Upcoming trip #23432 324</div>
-    <div className="TripDescription">Prague to Vancouver and back</div>
-    <style jsx>{MobileBookingSummaryStyle}</style>
+    <BookingState.Consumer>
+      {({ bookingPage, selectedBooking }) => (
+        <MobileBookingPage bookingPage={bookingPage} selectedBooking={selectedBooking} />
+      )}
+    </BookingState.Consumer>
   </div>
 );
 
@@ -103,7 +214,7 @@ class MobileBookingHeader extends React.Component<Props, State> {
     this.setState({ expanded: !this.state.expanded });
   }
 
-  render() {
+  renderHeader(isLoggedIn: boolean) {
     return (
       <React.Fragment>
         <div className="mobileOnly MobileBookingHeader">
@@ -132,6 +243,14 @@ class MobileBookingHeader extends React.Component<Props, State> {
         <style jsx>{responsiveStyleHelperClasses}</style>
         <style jsx>{MobileBookingHeaderStyle}</style>
       </React.Fragment>
+    );
+  }
+
+  render() {
+    return (
+      <UserContext.Consumer>
+        {({ user }: UserContextType) => this.renderHeader(Boolean(user))}
+      </UserContext.Consumer>
     );
   }
 }
