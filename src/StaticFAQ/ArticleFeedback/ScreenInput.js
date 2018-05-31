@@ -100,7 +100,7 @@ class ScreenInput extends React.Component<Props, State> {
           </div>
           <div className="button">
             <ContactPageLink />
-            <Button title="Submit" onClick={() => {}} />
+            <Button title="Submit" onClick={() => {}} width={100} />
           </div>
         </form>
         <style jsx>{style}</style>

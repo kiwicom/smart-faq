@@ -66,7 +66,7 @@ exports[`ScreenInput should match snapshot 1`] = `
         title="Submit"
         type="primary"
         variation="filled"
-        width={0}
+        width={100}
       />
     </div>
   </form>

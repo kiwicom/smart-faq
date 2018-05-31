@@ -36,7 +36,7 @@ exports[`ScreenInitial should match snapshot 1`] = `
       title="Ask us"
       type="secondary"
       variation="filled"
-      width={0}
+      width={115}
     />
   </div>
   <JSXStyle

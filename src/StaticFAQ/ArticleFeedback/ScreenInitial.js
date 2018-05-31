@@ -27,6 +27,7 @@ const ScreenInitial = (props: Props) => (
       <Button
         type="secondary"
         title="Ask us"
+        width={115}
         onClick={() => props.changeScreen(screensList.INPUT)}
       />
     </div>
