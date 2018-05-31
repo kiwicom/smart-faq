@@ -132,18 +132,10 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
         class="jsx-1542149023 jsx-3202484560 topRow"
       >
         <div
-          class="jsx-1001276190"
           style="flex-grow:1"
         >
-          <div
-            class="jsx-1001276190 TripId"
-          >
-            Upcoming trip #23432 324
-          </div>
-          <div
-            class="jsx-1001276190 TripDescription"
-          >
-            Prague to Vancouver and back
+          <div>
+            Loading
           </div>
         </div>
         <div
