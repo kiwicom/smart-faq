@@ -94,7 +94,7 @@ class FAQCategoryList extends React.Component<Props> {
               <Link
                 key={category.id}
                 to={`/faq/${category.id}`}
-                style={{ textDecoration: 'none' }}
+                style={{ textDecoration: 'none', display: 'block' }}
               >
                 <FAQCategory category={category} />
               </Link>

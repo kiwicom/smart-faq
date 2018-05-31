@@ -34,7 +34,7 @@ const FAQArticle = (props: Props) => (
         ? `/faq/search/article/${props.article.id}`
         : `/faq/${props.categoryId || ''}/article/${props.article.id}`
     }
-    style={{ textDecoration: 'none' }}
+    style={{ textDecoration: 'none', display: 'block' }}
   >
     <Card>
       <div>
