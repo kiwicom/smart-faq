@@ -58,6 +58,10 @@ describe('Display Static FAQ', () => {
   });
 
   it('User can submit some feedback on a FAQ article', () => {
+    cy.server();
+    cy.fixture('contact_response.json').as('contactResponse');
+    cy.route('POST', 'https://graphql.kiwi.com/', '@contactResponse');
+
     const faqFeedback = 'This is my feedback!';
     cy
       .get('.FAQArticleFeedback')
@@ -72,15 +76,15 @@ describe('Display Static FAQ', () => {
       .type(faqFeedback)
       .should('have.value', faqFeedback);
 
-    // cy
-    //   .get('[data-cy=faq-article-form]')
-    //   .find('.button button')
-    //   .click();
+    cy
+      .get('[data-cy=faq-article-form]')
+      .find('.button button')
+      .click();
 
-    // cy
-    //   .get('[data-cy=faq-article-form]')
-    //   .find('.thank-you')
-    //   .should('exist');
+    cy
+      .get('[data-cy=faq-article-form]')
+      .find('.thank-you')
+      .should('exist');
   });
 
   it('User can navigate with breadcrumbs', () => {
