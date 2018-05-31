@@ -7,11 +7,11 @@ import css from "styled-jsx/css";
 import responsiveStyleHelperClasses from "../responsiveStyleHelperClasses";
 import { UserContext, type UserContextType } from "../../context/User";
 import { BookingState } from "../../context/BookingState";
-import QueryRenderer from '../../relay/QueryRenderer';
-import MobileBookingDetail from '../../MobileBookingHeader/MobileBookingDetail';
-import bookingTypes from '../../common/booking/bookingTypes';
-import idx from 'idx';
-import { graphql } from 'react-relay';
+import QueryRenderer from "../../relay/QueryRenderer";
+import MobileBookingDetail from "../../MobileBookingHeader/MobileBookingDetail";
+import bookingTypes from "../../common/booking/bookingTypes";
+import idx from "idx";
+import { graphql } from "react-relay";
 
 const MobileBookingHeaderNearestBookingQuery = graphql`
   query MobileBookingHeaderNearestBookingQuery {
@@ -25,7 +25,6 @@ type RenderState = {
   props: any,
   error: ?Error,
 };
-
 
 class NearestBooking extends React.Component<Props> {
   renderBooking = (renderState: RenderState) => {
@@ -49,7 +48,11 @@ class NearestBooking extends React.Component<Props> {
 
   render() {
     return (
-      <QueryRenderer query={MobileBookingHeaderNearestBookingQuery} variables={{}} render={this.renderBooking} />
+      <QueryRenderer
+        query={MobileBookingHeaderNearestBookingQuery}
+        variables={{}}
+        render={this.renderBooking}
+      />
     );
   }
 }
@@ -72,7 +75,7 @@ const selectedBookingQuery = graphql`
 `;
 
 type SelectedBookingProps = {
-  bookingId: string
+  bookingId: string,
 };
 
 class SelectedBooking extends React.Component<SelectedBookingProps> {
@@ -135,7 +138,7 @@ const MobileBookingPage = ({ bookingPage, selectedBooking }) => {
 };
 
 type MobileBookingSummaryProps = {
-  style: any
+  style: any,
 };
 const MobileBookingSummary = (props: MobileBookingSummaryProps) => (
   <div style={props.style}>
