@@ -4,12 +4,12 @@ import * as React from "react";
 import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons";
 import css from "styled-jsx/css";
 
-import responsiveStyleHelperClasses from "../responsiveStyleHelperClasses";
-import { UserContext, type UserContextType } from "../../context/User";
-import { BookingState } from "../../context/BookingState";
-import QueryRenderer from "../../relay/QueryRenderer";
-import MobileBookingDetail from "../../MobileBookingHeader/MobileBookingDetail";
-import bookingTypes from "../../common/booking/bookingTypes";
+import responsiveStyleHelperClasses from "../common/responsiveStyleHelperClasses";
+import { UserContext, type UserContextType } from "../context/User";
+import { BookingState } from "../context/BookingState";
+import QueryRenderer from "../relay/QueryRenderer";
+import MobileBookingDetail from "./MobileBookingDetail";
+import bookingTypes from "../common/booking/bookingTypes";
 import idx from "idx";
 import { graphql } from "react-relay";
 

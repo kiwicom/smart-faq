@@ -11,7 +11,7 @@ import CloseButton from '../buttons/CloseButton';
 import BackButton from '../buttons/BackButton';
 import SignOutButton from './SignOutButton';
 import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
-import MobileBookingHeader from './MobileBookingHeader';
+import MobileBookingHeader from '../../MobileBookingHeader/MobileBookingHeader';
 
 const style = css`
   .loggedOut {
