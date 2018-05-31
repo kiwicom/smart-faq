@@ -11,7 +11,7 @@ describe('Display Static FAQ', () => {
       .get('[data-cy=faq-categories]')
       .find('a')
       .first()
-      .click({ force: true });
+      .click();
 
     cy.get('.signInOrBack span').contains('Back');
 
@@ -38,7 +38,7 @@ describe('Display Static FAQ', () => {
       .get('@faq-box')
       .find('[data-cy=faq-link]')
       .first()
-      .click({ force: true });
+      .click();
 
     cy
       .get('@faq-breadcrumbs')
