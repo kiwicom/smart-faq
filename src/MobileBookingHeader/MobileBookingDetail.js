@@ -10,8 +10,8 @@ import { URGENCY_THRESHOLD } from "../helpers/dateUtils";
 import type { MobileBookingDetail_booking } from "./__generated__/MobileBookingDetail_booking.graphql";
 import OneWayTrip from "./OneWayTrip";
 import ReturnTrip from "./ReturnTrip";
-import css from 'styled-jsx/css';
-import formatBookingId from '../helpers/formatBookingId'
+import css from "styled-jsx/css";
+import formatBookingId from "../helpers/formatBookingId";
 
 type Props = {|
   booking: MobileBookingDetail_booking,
@@ -25,18 +25,6 @@ const MobileBookingSummaryStyle = css`
     margin-top: 8px;
   }
 `;
-
-//type MobileBookingSummaryProps = {
-//style: {},
-//};
-
-//const MobileBookingDetail = () => (
-//<React.Fragment>
-//<div className="TripId">Upcoming trip #23432 324</div>
-//<div className="TripDescription">Prague to Vancouver and back</div>
-//<style jsx>{MobileBookingSummaryStyle}</style>
-//</React.Fragment>
-//);
 
 class MobileBookingDetail extends React.Component<Props> {
   renderByType = booking => {
