@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Typography } from '@kiwicom/orbit-components';
+import { Heading, Text } from '@kiwicom/orbit-components';
 import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 
@@ -44,20 +44,18 @@ const globalStyle = css`
 `;
 const Detail = ({ article }: Props) => (
   <div className="faq-article-content">
-    <Typography size="header" type="attention">
-      {article.title}
-    </Typography>
+    <Heading size="medium">{article.title}</Heading>
     <div className="faq-article-perex">
-      <Typography type="attention" variant="bold">
+      <Text colorText="attention" weight="bold" element="span">
         Summary:
-      </Typography>
-      <Typography type="attention"> {article.perex}</Typography>
+      </Text>
+      <Text element="span"> {article.perex}</Text>
     </div>
     <hr className="faq-article-delimiter" />
     <div className="faq-article-text">
-      <Typography>
+      <Text>
         <Markdown>{article.content}</Markdown>
-      </Typography>
+      </Text>
     </div>
     <hr className="faq-article-delimiter" />
     <FAQArticleFeedback articleId={article.id} />

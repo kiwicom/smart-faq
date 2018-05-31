@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
+import { Heading, Text, Button } from '@kiwicom/orbit-components';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
 
 import { Box, ContactPageLink } from '../../common';
@@ -17,16 +18,9 @@ type State = {|
 |};
 
 const style = css`
-  div.title {
-    color: #171b1e;
-    font-size: 16px;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
   div.question {
-    font-size: 14px;
-    color: #46515e;
     margin-bottom: 4px;
+    margin-top: 8px;
   }
   div.inputArea textarea {
     width: 352px;
@@ -34,17 +28,6 @@ const style = css`
     border-radius: 3px;
     background-color: #ffffff;
     border: solid 1px #bac7d5;
-  }
-  div.button button {
-    font-weight: bold;
-    font-size: 14px;
-    width: 100px;
-    height: 44px;
-    border-radius: 3px;
-    border: none;
-    background-color: #00a991;
-    color: #ffffff;
-    cursor: pointer;
   }
   div.button {
     display: flex;
@@ -106,16 +89,18 @@ class ScreenInput extends React.Component<Props, State> {
           >
             <Close customColor="#bac7d5" size="small" />
           </div>
-          <div className="title">Your feedback helps us improve.</div>
-          <div className="question">What problem were you trying to solve?</div>
+          <Heading weight="bold" size="small">
+            Your feedback helps us improve.
+          </Heading>
+          <div className="question">
+            <Text>What problem were you trying to solve?</Text>
+          </div>
           <div className="inputArea">
             <textarea />
           </div>
           <div className="button">
             <ContactPageLink />
-            <button type="submit">
-              <span>Submit</span>
-            </button>
+            <Button title="Submit" onClick={() => {}} width={100} />
           </div>
         </form>
         <style jsx>{style}</style>

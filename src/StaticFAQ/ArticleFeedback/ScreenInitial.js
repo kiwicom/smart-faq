@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import css from 'styled-jsx/css';
+import { Text, Button } from '@kiwicom/orbit-components';
 
 import screensList from './screensList';
 import Box from '../../common/Box';
@@ -10,32 +10,6 @@ type Props = {|
   changeScreen: (nextScreen: string) => void,
 |};
 
-const style = css`
-  div.question {
-    color: #7f91a8;
-    font-size: 14px;
-    text-align: center;
-    margin-bottom: 16px;
-  }
-  .button {
-    display: flex;
-    justify-content: center;
-  }
-  .button button {
-    padding: 12px 18px;
-    border: none;
-    boder-radius: 2px;
-    background-color: #e8edf1;
-    width: 115px;
-    height: 44px;
-    cursor: pointer;
-  }
-  .button button span {
-    font-weight: bold;
-    color: #46515e;
-    font-size: 14px;
-  }
-`;
 const ScreenInitial = (props: Props) => (
   <Box
     border="none"
@@ -45,14 +19,32 @@ const ScreenInitial = (props: Props) => (
     mobileBackgroundColor="transparent"
   >
     <div className="question">
-      Didn&apos;t find the answer you were looking for?
+      <Text type="secondary">
+        Didn&apos;t find the answer you were looking for?
+      </Text>
     </div>
     <div className="button">
-      <button onClick={() => props.changeScreen(screensList.INPUT)}>
-        <span>Ask us</span>
-      </button>
+      <Button
+        type="secondary"
+        title="Ask us"
+        width={115}
+        onClick={() => props.changeScreen(screensList.INPUT)}
+      />
     </div>
-    <style jsx>{style}</style>
+    <style jsx>
+      {`
+        div.question {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 16px;
+        }
+        .button {
+          display: flex;
+          justify-content: center;
+        }
+      `}
+    </style>
   </Box>
 );
 

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { graphql, createFragmentContainer } from 'react-relay';
-import { Typography } from '@kiwicom/orbit-components';
+import { Text, Heading } from '@kiwicom/orbit-components';
 import { ChevronRight } from '@kiwicom/orbit-components/lib/icons';
 
 import Card from './../common/Card';
@@ -40,14 +40,14 @@ type Props = {|
 const FAQCategory = (props: Props) => (
   <Card>
     <div className="faq-category">
-      <Typography type="attention" size="large">
+      <Heading weight="medium" size="small">
         {props.category.title}
-      </Typography>
+      </Heading>
     </div>
     <div className="perex">
-      <Typography type="secondary" size="small">
+      <Text type="secondary" size="small">
         {props.category.perex}
-      </Typography>
+      </Text>
     </div>
     <div className="faq-item-chevron">
       <ChevronRight size="small" customColor="#bac7d5" />

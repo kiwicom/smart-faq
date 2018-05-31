@@ -8,11 +8,11 @@ exports[`ScreenInput should match snapshot 1`] = `
   padding="40px 24px 24px 24px"
 >
   <form
-    className="jsx-3137804215"
+    className="jsx-1646602615"
     onSubmit={[Function]}
   >
     <div
-      className="jsx-3137804215 close-icon"
+      className="jsx-1646602615 close-icon"
       onClick={[Function]}
       onKeyUp={null}
       role="button"
@@ -23,42 +23,56 @@ exports[`ScreenInput should match snapshot 1`] = `
         size="small"
       />
     </div>
-    <div
-      className="jsx-3137804215 title"
+    <Heading
+      element="h1"
+      size="small"
+      weight="bold"
     >
       Your feedback helps us improve.
-    </div>
+    </Heading>
     <div
-      className="jsx-3137804215 question"
+      className="jsx-1646602615 question"
     >
-      What problem were you trying to solve?
+      <Text
+        align="left"
+        element="p"
+        italic={false}
+        size="normal"
+        type="primary"
+        uppercase={false}
+        weight="regular"
+      >
+        What problem were you trying to solve?
+      </Text>
     </div>
     <div
-      className="jsx-3137804215 inputArea"
+      className="jsx-1646602615 inputArea"
     >
       <textarea
-        className="jsx-3137804215"
+        className="jsx-1646602615"
       />
     </div>
     <div
-      className="jsx-3137804215 button"
+      className="jsx-1646602615 button"
     >
       <ContactPageLink />
-      <button
-        className="jsx-3137804215"
-        type="submit"
-      >
-        <span
-          className="jsx-3137804215"
-        >
-          Submit
-        </span>
-      </button>
+      <Button
+        block={false}
+        disabled={false}
+        loading={false}
+        onClick={[Function]}
+        onlyIcon={false}
+        size="normal"
+        title="Submit"
+        type="primary"
+        variation="filled"
+        width={100}
+      />
     </div>
   </form>
   <JSXStyle
-    css="div.title.jsx-3137804215{color:#171b1e;font-size:16px;margin-bottom:8px;font-weight:bold;}div.question.jsx-3137804215{font-size:14px;color:#46515e;margin-bottom:4px;}div.inputArea.jsx-3137804215 textarea.jsx-3137804215{width:352px;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;}div.button.jsx-3137804215 button.jsx-3137804215{font-weight:bold;font-size:14px;width:100px;height:44px;border-radius:3px;border:none;background-color:#00a991;color:#ffffff;cursor:pointer;}div.button.jsx-3137804215{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;margin-top:19px;}div.close-icon.jsx-3137804215{position:absolute;top:8px;right:8px;cursor:pointer;}div.inputArea.jsx-3137804215 textarea.jsx-3137804215{padding:12px 16px;font-size:14px;}@media only screen and (min-width:320px) and (max-width:480px){div.inputArea.jsx-3137804215 textarea.jsx-3137804215{width:100%;}}"
-    styleId="3137804215"
+    css="div.question.jsx-1646602615{margin-bottom:4px;margin-top:8px;}div.inputArea.jsx-1646602615 textarea.jsx-1646602615{width:352px;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;}div.button.jsx-1646602615{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;margin-top:19px;}div.close-icon.jsx-1646602615{position:absolute;top:8px;right:8px;cursor:pointer;}div.inputArea.jsx-1646602615 textarea.jsx-1646602615{padding:12px 16px;font-size:14px;}@media only screen and (min-width:320px) and (max-width:480px){div.inputArea.jsx-1646602615 textarea.jsx-1646602615{width:100%;}}"
+    styleId="1646602615"
   />
 </Box>
 `;

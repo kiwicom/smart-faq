@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { Typography } from '@kiwicom/orbit-components';
+import { Text } from '@kiwicom/orbit-components';
 import { ChevronRight } from '@kiwicom/orbit-components/lib/icons';
 
 type BreadcrumbType = {|
@@ -18,9 +18,9 @@ type Props = {
 const Breadcrumb = ({ breadcrumb, isCurrent }: Props) => {
   const url = breadcrumb.id ? `/faq/${breadcrumb.id}` : '/faq/';
   const title = (
-    <Typography type="secondary" size="small">
+    <Text type="secondary" size="small" element="span">
       {breadcrumb.title}
-    </Typography>
+    </Text>
   );
 
   return (
@@ -42,6 +42,7 @@ const Breadcrumb = ({ breadcrumb, isCurrent }: Props) => {
           .breadcrumb,
           .breadcrumb-icon {
             display: inline-block;
+            color: #7f91a8;
           }
 
           .breadcrumb-icon {

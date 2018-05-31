@@ -3,36 +3,69 @@
 exports[`StaticFAQError should match snapshot 1`] = `
 <StaticFAQError>
   <div
-    className="jsx-4052566621 staticFAQError"
+    className="jsx-2228354116 staticFAQError"
   >
-    <h1
-      className="jsx-4052566621 title"
+    <div
+      className="jsx-2228354116 title"
     >
-      Something's not quite right.
-    </h1>
-    <Typography
-      size="large"
-      type="secondary"
-    >
-      <span
-        className="jsx-1855423850"
+      <Heading
+        element="h1"
+        size="large"
+        weight="bold"
       >
-        Please, try refreshing the page. If the problem persists, don't hesitate to contact us.
+        <h1
+          className="jsx-2957264124 "
+        >
+          Something's not quite right.
+        </h1>
         <JSXStyle
-          css="span.__jsx-style-dynamic-selector{font-family:Roboto,-apple-system,sans-serif;font-size:16px;color:#7f91a8;;}"
+          css=".__jsx-style-dynamic-selector{font-family:\\"Roboto\\", -apple-system, \\".SFNSText-Regular\\", \\"San Francisco\\", \\"Segoe UI\\", \\"Helvetica Neue\\", \\"Lucida Grande\\", sans-serif;font-size:28px;font-weight:700;color:#171b1e;line-height:1.2;}"
           dynamic={
             Array [
-              "16px",
-              "#7f91a8",
-              "",
+              "\\"Roboto\\", -apple-system, \\".SFNSText-Regular\\", \\"San Francisco\\", \\"Segoe UI\\", \\"Helvetica Neue\\", \\"Lucida Grande\\", sans-serif",
+              "28px",
+              "700",
+              "#171b1e",
+              "1.2",
             ]
           }
-          styleId="1112443529"
+          styleId="3067881581"
         />
-      </span>
-    </Typography>
+      </Heading>
+    </div>
+    <Text
+      align="left"
+      element="p"
+      italic={false}
+      size="large"
+      type="secondary"
+      uppercase={false}
+      weight="regular"
+    >
+      <p
+        className="jsx-1323762365 "
+      >
+        Please, try refreshing the page. If the problem persists, don't hesitate to contact us.
+      </p>
+      <JSXStyle
+        css=".__jsx-style-dynamic-selector{font-family:\\"Roboto\\", -apple-system, \\".SFNSText-Regular\\", \\"San Francisco\\", \\"Segoe UI\\", \\"Helvetica Neue\\", \\"Lucida Grande\\", sans-serif;font-size:16px;font-weight:400;color:#7f91a8;line-height:1.4;text-align:left;;;}"
+        dynamic={
+          Array [
+            "\\"Roboto\\", -apple-system, \\".SFNSText-Regular\\", \\"San Francisco\\", \\"Segoe UI\\", \\"Helvetica Neue\\", \\"Lucida Grande\\", sans-serif",
+            "16px",
+            "400",
+            "#7f91a8",
+            "1.4",
+            "left",
+            "",
+            "",
+          ]
+        }
+        styleId="143391915"
+      />
+    </Text>
     <div
-      className="jsx-4052566621 contactLink"
+      className="jsx-2228354116 contactLink"
     >
       <ContactPageLink>
         <a
@@ -93,8 +126,8 @@ exports[`StaticFAQError should match snapshot 1`] = `
       </ContactPageLink>
     </div>
     <JSXStyle
-      css=".staticFAQError.jsx-4052566621{height:78vh;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}h1.title.jsx-4052566621{font-family:Roboto;font-size:28px;font-weight:bold;line-height:1.2;color:#171b1e;margin-bottom:8.4px;}div.contactLink.jsx-4052566621{margin-top:16.8px;}"
-      styleId="4052566621"
+      css=".staticFAQError.jsx-2228354116{height:78vh;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}.title.jsx-2228354116{margin-bottom:8.4px;}div.contactLink.jsx-2228354116{margin-top:16.8px;}"
+      styleId="2228354116"
     />
   </div>
 </StaticFAQError>
