@@ -42,6 +42,7 @@ const Breadcrumb = ({ breadcrumb, isCurrent }: Props) => {
           .breadcrumb,
           .breadcrumb-icon {
             display: inline-block;
+            color: #7f91a8;
           }
 
           .breadcrumb-icon {
