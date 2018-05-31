@@ -4,32 +4,32 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import idx from 'idx';
 import { withRouter } from 'react-router-dom';
+import { Text, Heading } from '@kiwicom/orbit-components';
 
 import FAQCategoryList from './FAQCategoryList';
 
 const styles = css`
-  p.title {
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 1.2;
-    color: #171b1e;
+  div.title {
     margin-top: 52px;
     margin-bottom: 16px;
   }
-  ul li {
-    font-size: 14px;
-    line-height: 1.4;
-    text-align: left;
-    color: #46515e;
-    padding-left: 15px;
+  ul {
     margin-left: 15px;
   }
-  p.subtitle {
+  ul li {
+    padding-left: 10px;
+    margin-left: 10px;
+  }
+  div.subtitle {
     margin-top: 70px;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 1.4;
-    color: #46515e;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    div.content {
+      padding-left: 30px;
+    }
+    div.subtitle {
+      margin-bottom: 10px;
+    }
   }
 `;
 
@@ -50,17 +50,31 @@ const NoSearchResults = (props: Props) => {
   return (
     <React.Fragment>
       {!categoryId && (
-        <div>
-          <p className="title">
-            Your search didn&apos;t match any of our articles.
-          </p>
+        <div className="content">
+          <div className="title">
+            <Heading weight="bold" size="small">
+              Your search didn&apos;t match any of our articles.
+            </Heading>
+          </div>
           <ul>
-            <li>Try alternative spellings</li>
-            <li>Try fewer words (e.g. infant)</li>
-            <li>Try different keywords</li>
-            <li>Try a more general search</li>
+            <li>
+              <Text>Try alternative spellings</Text>
+            </li>
+            <li>
+              <Text>Try fewer words (e.g. infant)</Text>
+            </li>
+            <li>
+              <Text>Try different keywords</Text>
+            </li>
+            <li>
+              <Text>Try a more general search</Text>
+            </li>
           </ul>
-          <p className="subtitle">Maybe, consider one of the topics below?</p>
+          <div className="subtitle">
+            <Text size="normal" weight="bold">
+              Maybe, consider one of the topics below?
+            </Text>
+          </div>
         </div>
       )}
       <FAQCategoryList categoryId={categoryId} />

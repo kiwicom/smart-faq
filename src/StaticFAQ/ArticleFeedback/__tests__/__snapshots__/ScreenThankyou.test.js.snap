@@ -7,10 +7,10 @@ exports[`ScreenThankyou should match snapshot 1`] = `
   borderRadius="4px"
 >
   <div
-    className="jsx-2130846864 thank-you"
+    className="jsx-3762548811 thank-you"
   >
     <div
-      className="jsx-2130846864 close-icon"
+      className="jsx-3762548811 close-icon"
       onClick={[Function]}
       onKeyUp={null}
       role="button"
@@ -21,20 +21,28 @@ exports[`ScreenThankyou should match snapshot 1`] = `
         size="small"
       />
     </div>
-    <div
-      className="jsx-2130846864 message-1"
+    <Heading
+      element="h1"
+      size="small"
+      weight="bold"
     >
       Thanks again.
-    </div>
+    </Heading>
     <div
-      className="jsx-2130846864 message-2"
+      className="jsx-3762548811 message-2"
     >
-      We appreciate your insight.
+      <Heading
+        element="h1"
+        size="small"
+        weight="bold"
+      >
+        We appreciate your insight.
+      </Heading>
     </div>
     <ContactPageLink />
     <JSXStyle
-      css="div.thank-you.jsx-2130846864{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:251px;}div.close-icon.jsx-2130846864{position:absolute;top:8px;right:8px;cursor:pointer;}div.message-1.jsx-2130846864,div.message-2.jsx-2130846864{color:#171b1e;font-size:16px;font-weight:bold;}div.message-2.jsx-2130846864{margin-bottom:16.6px;}"
-      styleId="2130846864"
+      css="div.thank-you.jsx-3762548811{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:251px;}div.close-icon.jsx-3762548811{position:absolute;top:8px;right:8px;cursor:pointer;}div.message-2.jsx-3762548811{margin-bottom:16.6px;}"
+      styleId="3762548811"
     />
   </div>
 </Box>

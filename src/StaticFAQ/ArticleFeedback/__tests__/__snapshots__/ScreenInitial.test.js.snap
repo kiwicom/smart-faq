@@ -9,27 +9,39 @@ exports[`ScreenInitial should match snapshot 1`] = `
   padding="16px 24px"
 >
   <div
-    className="jsx-2052750354 question"
+    className="jsx-3628750341 question"
   >
-    Didn't find the answer you were looking for?
+    <Text
+      align="left"
+      element="p"
+      italic={false}
+      size="normal"
+      type="secondary"
+      uppercase={false}
+      weight="regular"
+    >
+      Didn't find the answer you were looking for?
+    </Text>
   </div>
   <div
-    className="jsx-2052750354 button"
+    className="jsx-3628750341 button"
   >
-    <button
-      className="jsx-2052750354"
+    <Button
+      block={false}
+      disabled={false}
+      loading={false}
       onClick={[Function]}
-    >
-      <span
-        className="jsx-2052750354"
-      >
-        Ask us
-      </span>
-    </button>
+      onlyIcon={false}
+      size="normal"
+      title="Ask us"
+      type="secondary"
+      variation="filled"
+      width={0}
+    />
   </div>
   <JSXStyle
-    css="div.question.jsx-2052750354{color:#7f91a8;font-size:14px;text-align:center;margin-bottom:16px;}.button.jsx-2052750354{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}.button.jsx-2052750354 button.jsx-2052750354{padding:12px 18px;border:none;boder-radius:2px;background-color:#e8edf1;width:115px;height:44px;cursor:pointer;}.button.jsx-2052750354 button.jsx-2052750354 span.jsx-2052750354{font-weight:bold;color:#46515e;font-size:14px;}"
-    styleId="2052750354"
+    css="div.question.jsx-3628750341{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-bottom:16px;}.button.jsx-3628750341{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}"
+    styleId="3628750341"
   />
 </Box>
 `;

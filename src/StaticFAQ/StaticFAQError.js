@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Typography } from '@kiwicom/orbit-components';
+import { Text, Heading } from '@kiwicom/orbit-components';
 
 import { ContactPageLink } from '../common';
 
@@ -13,12 +13,7 @@ const style = css`
     justify-content: center;
     flex-direction: column;
   }
-  h1.title {
-    font-family: Roboto;
-    font-size: 28px;
-    font-weight: bold;
-    line-height: 1.2;
-    color: #171b1e;
+  .title {
     margin-bottom: 8.4px;
   }
   div.contactLink {
@@ -28,11 +23,13 @@ const style = css`
 
 const StaticFAQError = () => (
   <div className="staticFAQError">
-    <h1 className="title">Something&apos;s not quite right.</h1>
-    <Typography type="secondary" size="large">
+    <div className="title">
+      <Heading>Something&apos;s not quite right.</Heading>
+    </div>
+    <Text type="secondary" size="large">
       Please, try refreshing the page. If the problem persists, don&apos;t
       hesitate to contact us.
-    </Typography>
+    </Text>
     <div className="contactLink">
       <ContactPageLink />
     </div>

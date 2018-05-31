@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { graphql, createFragmentContainer } from 'react-relay';
-import { Typography } from '@kiwicom/orbit-components';
+import { Text, Heading } from '@kiwicom/orbit-components';
 import css from 'styled-jsx/css';
 
 import Card from './../common/Card';
@@ -38,14 +38,14 @@ const FAQArticle = (props: Props) => (
   >
     <Card>
       <div>
-        <Typography type="attention" size="large">
+        <Heading weight="medium" size="small">
           {props.article.title}
-        </Typography>
+        </Heading>
       </div>
       <div className="perex">
-        <Typography type="secondary" size="small">
+        <Text type="secondary" size="small" element="span">
           {props.article.perex}
-        </Typography>
+        </Text>
       </div>
     </Card>
     <style jsx>{style}</style>

@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
+import { Heading } from '@kiwicom/orbit-components';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
 
 import screensList from './screensList';
@@ -24,12 +25,6 @@ const style = css`
     right: 8px;
     cursor: pointer;
   }
-  div.message-1,
-  div.message-2 {
-    color: #171b1e;
-    font-size: 16px;
-    font-weight: bold;
-  }
   div.message-2 {
     margin-bottom: 16.6px;
   }
@@ -47,8 +42,14 @@ const ScreenThankyou = (props: Props) => {
         >
           <Close customColor="#bac7d5" size="small" />
         </div>
-        <div className="message-1">Thanks again.</div>
-        <div className="message-2">We appreciate your insight.</div>
+        <Heading weight="bold" size="small">
+          Thanks again.
+        </Heading>
+        <div className="message-2">
+          <Heading weight="bold" size="small">
+            We appreciate your insight.
+          </Heading>
+        </div>
         <ContactPageLink />
         <style jsx>{style}</style>
       </div>
