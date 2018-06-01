@@ -1,13 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { DateTime } from 'luxon';
 import { graphql, createFragmentContainer } from 'react-relay';
 import idx from 'idx';
 import css from 'styled-jsx/css';
 
 import bookingTypes from '../common/booking/bookingTypes';
-import { URGENCY_THRESHOLD } from '../helpers/dateUtils';
 import type { MobileBookingDetail_booking } from './__generated__/MobileBookingDetail_booking.graphql';
 import OneWayTrip from './OneWayTrip';
 import ReturnTrip from './ReturnTrip';

@@ -216,7 +216,7 @@ class MobileBookingHeader extends React.Component<Props, State> {
     this.setState({ expanded: !this.state.expanded });
   }
 
-  renderHeader(isLoggedIn: boolean) {
+  renderHeader() {
     return (
       <React.Fragment>
         <div className="mobileOnly MobileBookingHeader">
