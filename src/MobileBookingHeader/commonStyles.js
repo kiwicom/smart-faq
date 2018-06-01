@@ -12,4 +12,4 @@ const TripDescriptionStyle = css`
   }
 `;
 
-export {TripDescriptionStyle};
+export { TripDescriptionStyle };
