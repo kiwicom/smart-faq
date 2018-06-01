@@ -27,7 +27,6 @@ const style = css`
   }
   .faq-article-text {
     padding: 24px 0;
-    line-height: 20px;
   }
   @media only screen and (min-width: 320px) and (max-width: 480px) {
     .faq-article-content {
@@ -37,9 +36,39 @@ const style = css`
   }
 `;
 const globalStyle = css`
+  .faq-article-text ul {
+    padding-left: 43px;
+    list-style: none;
+  }
   .faq-article-text ul,
   .faq-article-text ol {
     margin-left: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+  }
+  .faq-article-text li:before {
+    content: '';
+    display: inline-block;
+    margin-right: 19px;
+    background-color: #d5dee7;
+    width: 6px;
+    height: 6px;
+    margin-bottom: 2px;
+  }
+  .faq-article-text a {
+    color: #00ad98;
+    text-decoration: none;
+  }
+  .faq-article-text li {
+    display: list-item;
+    padding-top: 10px;
+    text-indent: -25px;
+  }
+  .faq-article-text li,
+  .faq-article-text div {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
   }
 `;
 const Detail = ({ article }: Props) => (
