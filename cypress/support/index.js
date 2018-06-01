@@ -1,3 +1,3 @@
 // @noflow
 
-import './commands';
+import './commands/';
