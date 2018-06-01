@@ -216,7 +216,7 @@ class MobileBookingHeader extends React.Component<Props, State> {
     this.setState({ expanded: !this.state.expanded });
   }
 
-  renderHeader() {
+  render() {
     return (
       <React.Fragment>
         <div className="mobileOnly MobileBookingHeader">
@@ -245,14 +245,6 @@ class MobileBookingHeader extends React.Component<Props, State> {
         <style jsx>{responsiveStyleHelperClasses}</style>
         <style jsx>{MobileBookingHeaderStyle}</style>
       </React.Fragment>
-    );
-  }
-
-  render() {
-    return (
-      <UserContext.Consumer>
-        {({ user }: UserContextType) => this.renderHeader(Boolean(user))}
-      </UserContext.Consumer>
     );
   }
 }
