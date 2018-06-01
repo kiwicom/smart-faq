@@ -12,7 +12,7 @@ const responseStub = response => {
   };
 };
 
-Cypress.Commands.add('mockRequest', mocks => {
+Cypress.Commands.add('mockRequest', mockedData => {
   cy.visit('/', {
     onBeforeLoad: win => {
       const originalFunction = win.fetch;
@@ -22,7 +22,7 @@ Cypress.Commands.add('mockRequest', mocks => {
 
         if (path.includes('graphql')) {
           const body = JSON.parse(request.body);
-          const query = Object.keys(mocks).find(key => {
+          const query = Object.keys(mockedData).find(key => {
             const operationName = body.query.substr(
               body.query.indexOf(key),
               key.length,
@@ -31,9 +31,9 @@ Cypress.Commands.add('mockRequest', mocks => {
             return key === operationName;
           });
 
-          response = mocks[query];
+          response = mockedData[query];
         } else {
-          response = mocks[path];
+          response = mockedData[path];
         }
 
         return response
