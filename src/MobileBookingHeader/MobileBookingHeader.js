@@ -7,55 +7,17 @@ import idx from 'idx';
 import { graphql } from 'react-relay';
 
 import responsiveStyleHelperClasses from '../common/responsiveStyleHelperClasses';
-import { UserContext, type UserContextType } from '../context/User';
 import { BookingState } from '../context/BookingState';
 import QueryRenderer from '../relay/QueryRenderer';
 import MobileBookingDetail from './MobileBookingDetail';
 import bookingTypes from '../common/booking/bookingTypes';
-import type { MobileBookingHeaderNearestBookingQuery as QueryResponseType } from './__generated__/MobileBookingHeaderNearestBookingQuery.graphql';
-
-const MobileBookingHeaderNearestBookingQuery = graphql`
-  query MobileBookingHeaderNearestBookingQuery {
-    nearestBooking {
-      ...MobileBookingDetail_booking
-    }
-  }
-`;
+import MobileNearestBooking from './MobileNearestBooking';
+import type { MobileNearestBookingQuery as QueryResponseType } from './__generated__/MobileNearestBookingQuery.graphql';
 
 type RenderState = {
   props: ?QueryResponseType,
   error: ?Error,
 };
-
-class NearestBooking extends React.Component<Props> {
-  renderBooking = (renderState: RenderState) => {
-    if (renderState && renderState.error) {
-      return <div>Error</div>;
-    }
-
-    if (!renderState.props) {
-      return <div>Loading</div>;
-    }
-
-    const booking = renderState.props.nearestBooking;
-
-    if (!booking) {
-      return <div>Not found</div>;
-    }
-
-    return <MobileBookingDetail booking={booking} />;
-  };
-
-  render() {
-    return (
-      <QueryRenderer
-        query={MobileBookingHeaderNearestBookingQuery}
-        variables={{}}
-        render={this.renderBooking}
-      />
-    );
-  }
-}
 
 const selectedBookingQuery = graphql`
   query MobileBookingHeaderSelectedBookingQuery($id: ID!) {
@@ -129,7 +91,7 @@ const MobileBookingPage = ({ bookingPage, selectedBooking }) => {
       return <SelectedBooking bookingId={selectedBooking} />;
     }
 
-    return <NearestBooking />;
+    return <MobileNearestBooking />;
   }
 };
 
