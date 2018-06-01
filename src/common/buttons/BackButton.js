@@ -38,7 +38,7 @@ const BackButton = (props: Props) => (
           display: inline-block;
           margin-right: 4px;
         }
-        @media only screen and (min-width: 320px) and (max-width: 480px) {
+        @media only screen and (min-width: 320px) and (max-width: 812px) {
           div.back {
             top: 22px;
             left: 21px;

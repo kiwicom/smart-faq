@@ -60,7 +60,7 @@ class ContentPage extends React.Component<Props> {
             width: 548px;
           }
 
-          @media only screen and (min-width: 320px) and (max-width: 480px) {
+          @media only screen and (min-width: 320px) and (max-width: 812px) {
             .BookingInfo {
               display: none;
             }

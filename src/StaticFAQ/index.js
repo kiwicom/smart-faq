@@ -18,7 +18,7 @@ const style = css`
     padding: 24px 40px;
   }
 
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
+  @media only screen and (min-width: 320px) and (max-width: 812px) {
     .static-faq-body {
       padding: 0;
     }

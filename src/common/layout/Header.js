@@ -61,7 +61,7 @@ const loggedInStyle = css`
   a.open-icon {
     margin-left: 12px;
   }
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
+  @media only screen and (min-width: 320px) and (max-width: 812px) {
     .loggedIn {
       padding: 15px;
     }
@@ -93,7 +93,7 @@ const loggedOutStyle = css`
   .backButton {
     line-height: 2;
   }
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
+  @media only screen and (min-width: 320px) and (max-width: 812px) {
     .helpHeader {
       position: absolute;
       left: 0;
