@@ -54,6 +54,10 @@ const globalStyle = css`
     height: 6px;
     margin-bottom: 2px;
   }
+  .faq-article-text a {
+    color: #00ad98;
+    text-decoration: none;
+  }
   .faq-article-text li {
     display: list-item;
     padding-top: 10px;
