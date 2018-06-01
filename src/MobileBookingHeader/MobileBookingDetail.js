@@ -1,16 +1,16 @@
 // @flow
 
-import * as React from "react";
-import { graphql, createFragmentContainer } from "react-relay";
-import idx from "idx";
-import css from "styled-jsx/css";
+import * as React from 'react';
+import { graphql, createFragmentContainer } from 'react-relay';
+import idx from 'idx';
+import css from 'styled-jsx/css';
 
-import bookingTypes from "../common/booking/bookingTypes";
-import type { MobileBookingDetail_booking } from "./__generated__/MobileBookingDetail_booking.graphql";
-import OneWayTrip from "./OneWayTrip";
-import ReturnTrip from "./ReturnTrip";
-import MultiCityTrip from "./MultiCityTrip";
-import formatBookingId from "../helpers/formatBookingId";
+import bookingTypes from '../common/booking/bookingTypes';
+import type { MobileBookingDetail_booking } from './__generated__/MobileBookingDetail_booking.graphql';
+import OneWayTrip from './OneWayTrip';
+import ReturnTrip from './ReturnTrip';
+import MultiCityTrip from './MultiCityTrip';
+import formatBookingId from '../helpers/formatBookingId';
 
 type Props = {|
   booking: MobileBookingDetail_booking,
@@ -110,7 +110,9 @@ class MobileBookingDetail extends React.Component<Props> {
     const { booking, expanded } = this.props;
     return (
       <React.Fragment>
-        <div className="TripId">{`Upcoming trip #${formatBookingId(booking.databaseId)}`}</div>
+        <div className="TripId">
+          {`Upcoming trip #${formatBookingId(booking.databaseId)}`}
+        </div>
         {this.renderByType(booking)}
         {expanded ? (
           <div className="bottomRow">

@@ -1,13 +1,13 @@
 // @flow
 
-import * as React from "react";
-import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons";
-import css from "styled-jsx/css";
+import * as React from 'react';
+import { ChevronDown, ChevronUp } from '@kiwicom/orbit-components/lib/icons';
+import css from 'styled-jsx/css';
 
-import responsiveStyleHelperClasses from "../common/responsiveStyleHelperClasses";
-import { BookingState } from "../context/BookingState";
-import MobileNearestBooking from "./MobileNearestBooking";
-import MobileSelectedBooking from "./MobileSelectedBooking";
+import responsiveStyleHelperClasses from '../common/responsiveStyleHelperClasses';
+import { BookingState } from '../context/BookingState';
+import MobileNearestBooking from './MobileNearestBooking';
+import MobileSelectedBooking from './MobileSelectedBooking';
 
 type MobileBookingPageProps = {|
   bookingPage: string,
@@ -17,9 +17,14 @@ type MobileBookingPageProps = {|
 
 const MobileBookingPage = (props: MobileBookingPageProps) => {
   const { bookingPage, selectedBooking, expanded } = props;
-  if (bookingPage === "SINGLE_BOOKING") {
+  if (bookingPage === 'SINGLE_BOOKING') {
     if (selectedBooking) {
-      return <MobileSelectedBooking bookingId={selectedBooking} expanded={expanded} />;
+      return (
+        <MobileSelectedBooking
+          bookingId={selectedBooking}
+          expanded={expanded}
+        />
+      );
     }
 
     return <MobileNearestBooking expanded={expanded} />;
@@ -86,7 +91,10 @@ class MobileBookingHeader extends React.Component<Props, State> {
       <React.Fragment>
         <div className="mobileOnly MobileBookingHeader">
           <div className="topRow">
-            <MobileBookingSummary style={{ flexGrow: 1 }} expanded={this.state.expanded} />
+            <MobileBookingSummary
+              style={{ flexGrow: 1 }}
+              expanded={this.state.expanded}
+            />
             <div
               className="Chevron"
               onClick={() => this.toggle()}

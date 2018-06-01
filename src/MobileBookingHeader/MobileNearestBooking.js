@@ -21,7 +21,7 @@ type RenderState = {
 };
 
 type Props = {|
-  expanded: boolean
+  expanded: boolean,
 |};
 
 class MobileNearestBooking extends React.Component<Props> {
@@ -40,7 +40,9 @@ class MobileNearestBooking extends React.Component<Props> {
       return <div>Not found</div>;
     }
 
-    return <MobileBookingDetail expanded={this.props.expanded} booking={booking} />;
+    return (
+      <MobileBookingDetail expanded={this.props.expanded} booking={booking} />
+    );
   };
 
   render() {
