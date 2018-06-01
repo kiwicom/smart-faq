@@ -60,6 +60,7 @@ class StaticFAQ extends React.Component<Props, State> {
       placeholder="What can we help you with?"
       icon={<Search customColor="#bac7d5" />}
       onReset={isSearching ? this.handleCancelSearch : undefined}
+      dataCy="input-staticFAQ"
     />
   );
 

@@ -1,3 +1,7 @@
 {
-  "baseUrl": "http://localhost:8080"
+  "baseUrl": "http://localhost:8080",
+  "env": {
+    "TEST_USER_EMAIL": "test@kiwi.com",
+    "TEST_USER_PASSWORD": "kiwitest"
+  }
 }
