@@ -4,6 +4,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Cookies from 'js-cookie';
+import Raven from 'raven-js';
 
 import App from './App';
 import enLocale from '../i18n/en/translation.json';
@@ -38,8 +39,17 @@ class Root extends React.Component<Props, State> {
       user: loginToken ? user : null,
       loginToken,
     };
+    this.setupLogs();
   }
-
+  setupLogs = () => {
+    if (
+      process.env.NODE_ENV === 'production' &&
+      process.env.SENTRY_URL_STAGING
+    ) {
+      window.Raven = Raven;
+      Raven.config(process.env.SENTRY_URL_STAGING).install();
+    }
+  };
   onLogin = async (email, password) => {
     const loginToken = await Requester.login(email, password);
     this.setState({ user, loginToken });
