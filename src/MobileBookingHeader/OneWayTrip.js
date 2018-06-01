@@ -5,21 +5,11 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 
 import OneWayTrip_booking from './__generated__/OneWayTrip_booking.graphql';
+import {TripDescriptionStyle} from './commonStyles.js';
 
 type Props = {|
   booking: OneWayTrip_booking,
 |};
-
-const MobileBookingSummaryStyle = css`
-  .TripDescription {
-    margin-top: 4px;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.2;
-    color: #171b1e;
-    margin-bottom: 9px;
-  }
-`;
 
 const OneWayTrip = ({ booking }: Props) => {
   const origion = booking.trip.departure.airport.city.name;
@@ -27,7 +17,7 @@ const OneWayTrip = ({ booking }: Props) => {
   return (
     <React.Fragment>
       <div className="TripDescription">{`${origion} to ${destination}`}</div>
-      <style jsx>{MobileBookingSummaryStyle}</style>
+      <style jsx>{TripDescriptionStyle}</style>
     </React.Fragment>
   );
 };
