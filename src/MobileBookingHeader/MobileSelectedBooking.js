@@ -1,13 +1,13 @@
 // @flow
 
-import * as React from 'react';
-import { graphql } from 'react-relay';
-import idx from 'idx';
+import * as React from "react";
+import { graphql } from "react-relay";
+import idx from "idx";
 
-import QueryRenderer from '../relay/QueryRenderer';
-import type { MobileSelectedBookingQuery as QueryResponseType } from './__generated__/MobileSelectedBookingQuery.graphql';
-import MobileBookingDetail from './MobileBookingDetail';
-import bookingTypes from '../common/booking/bookingTypes';
+import QueryRenderer from "../relay/QueryRenderer";
+import type { MobileSelectedBookingQuery as QueryResponseType } from "./__generated__/MobileSelectedBookingQuery.graphql";
+import MobileBookingDetail from "./MobileBookingDetail";
+import bookingTypes from "../common/booking/bookingTypes";
 
 type RenderState = {
   props: ?QueryResponseType,
@@ -33,6 +33,7 @@ const selectedBookingQuery = graphql`
 
 type Props = {
   bookingId: string,
+  expanded: boolean,
 };
 
 class MobileSelectedBooking extends React.Component<Props> {
@@ -64,7 +65,7 @@ class MobileSelectedBooking extends React.Component<Props> {
       return <div>Not found</div>;
     }
 
-    return <MobileBookingDetail booking={booking} />;
+    return <MobileBookingDetail expanded={this.props.expanded} booking={booking} />;
   };
 
   render() {

@@ -1,20 +1,66 @@
 // @flow
 
-import * as React from 'react';
-import { graphql, createFragmentContainer } from 'react-relay';
-import idx from 'idx';
-import css from 'styled-jsx/css';
+import * as React from "react";
+import { graphql, createFragmentContainer } from "react-relay";
+import idx from "idx";
+import css from "styled-jsx/css";
 
-import bookingTypes from '../common/booking/bookingTypes';
-import type { MobileBookingDetail_booking } from './__generated__/MobileBookingDetail_booking.graphql';
-import OneWayTrip from './OneWayTrip';
-import ReturnTrip from './ReturnTrip';
-import MultiCityTrip from './MultiCityTrip';
-import formatBookingId from '../helpers/formatBookingId';
+import bookingTypes from "../common/booking/bookingTypes";
+import type { MobileBookingDetail_booking } from "./__generated__/MobileBookingDetail_booking.graphql";
+import OneWayTrip from "./OneWayTrip";
+import ReturnTrip from "./ReturnTrip";
+import MultiCityTrip from "./MultiCityTrip";
+import formatBookingId from "../helpers/formatBookingId";
 
 type Props = {|
   booking: MobileBookingDetail_booking,
+  expanded: boolean,
 |};
+
+const MobileBookingControlsStyle = css`
+  .manageBookingButton {
+    height: 32px;
+    line-height: 32px;
+    border-radius: 3px;
+    background-color: #e8edf1;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    color: #46515e;
+    margin: 4px 0;
+    display: block;
+    text-decoration: none;
+  }
+
+  .selectBookingButton {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-align: center;
+    color: #00a991;
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+`;
+
+type MobileBookingControlsProps = {|
+  manageBookingURL: ?string,
+|};
+
+const MobileBookingControls = (props: MobileBookingControlsProps) => (
+  <React.Fragment>
+    <a
+      rel="noopener noreferrer"
+      target="_blank"
+      href={props.manageBookingURL}
+      className="manageBookingButton"
+    >
+      Manage My Booking
+    </a>
+    <div className="selectBookingButton">select another booking</div>
+    <style jsx>{MobileBookingControlsStyle}</style>
+  </React.Fragment>
+);
 
 const MobileBookingSummaryStyle = css`
   .TripId {
@@ -61,13 +107,16 @@ class MobileBookingDetail extends React.Component<Props> {
   };
 
   render() {
-    const { booking } = this.props;
+    const { booking, expanded } = this.props;
     return (
       <React.Fragment>
-        <div className="TripId">
-          {`Upcoming trip #${formatBookingId(booking.databaseId)}`}
-        </div>
+        <div className="TripId">{`Upcoming trip #${formatBookingId(booking.databaseId)}`}</div>
         {this.renderByType(booking)}
+        {expanded ? (
+          <div className="bottomRow">
+            <MobileBookingControls manageBookingURL={booking.directAccessURL} />
+          </div>
+        ) : null}
         <style jsx>{MobileBookingSummaryStyle}</style>
       </React.Fragment>
     );

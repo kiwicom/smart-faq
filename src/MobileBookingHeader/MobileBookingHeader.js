@@ -1,27 +1,28 @@
 // @flow
 
-import * as React from 'react';
-import { ChevronDown, ChevronUp } from '@kiwicom/orbit-components/lib/icons';
-import css from 'styled-jsx/css';
+import * as React from "react";
+import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons";
+import css from "styled-jsx/css";
 
-import responsiveStyleHelperClasses from '../common/responsiveStyleHelperClasses';
-import { BookingState } from '../context/BookingState';
-import MobileNearestBooking from './MobileNearestBooking';
-import MobileSelectedBooking from './MobileSelectedBooking';
+import responsiveStyleHelperClasses from "../common/responsiveStyleHelperClasses";
+import { BookingState } from "../context/BookingState";
+import MobileNearestBooking from "./MobileNearestBooking";
+import MobileSelectedBooking from "./MobileSelectedBooking";
 
 type MobileBookingPageProps = {|
   bookingPage: string,
   selectedBooking: ?string,
+  expanded: boolean,
 |};
 
 const MobileBookingPage = (props: MobileBookingPageProps) => {
-  const { bookingPage, selectedBooking } = props;
-  if (bookingPage === 'SINGLE_BOOKING') {
+  const { bookingPage, selectedBooking, expanded } = props;
+  if (bookingPage === "SINGLE_BOOKING") {
     if (selectedBooking) {
-      return <MobileSelectedBooking bookingId={selectedBooking} />;
+      return <MobileSelectedBooking bookingId={selectedBooking} expanded={expanded} />;
     }
 
-    return <MobileNearestBooking />;
+    return <MobileNearestBooking expanded={expanded} />;
   }
 
   return null;
@@ -29,6 +30,7 @@ const MobileBookingPage = (props: MobileBookingPageProps) => {
 
 type MobileBookingSummaryProps = {
   style: any,
+  expanded: boolean,
 };
 const MobileBookingSummary = (props: MobileBookingSummaryProps) => (
   <div style={props.style}>
@@ -37,42 +39,11 @@ const MobileBookingSummary = (props: MobileBookingSummaryProps) => (
         <MobileBookingPage
           bookingPage={bookingPage}
           selectedBooking={selectedBooking}
+          expanded={props.expanded}
         />
       )}
     </BookingState.Consumer>
   </div>
-);
-
-const MobileBookingControlsStyle = css`
-  .manageBookingButton {
-    height: 32px;
-    line-height: 32px;
-    border-radius: 3px;
-    background-color: #e8edf1;
-    font-size: 12px;
-    font-weight: bold;
-    text-align: center;
-    color: #46515e;
-    margin: 4px 0;
-  }
-
-  .selectBookingButton {
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.4;
-    text-align: center;
-    color: #00a991;
-    margin-top: 12px;
-    margin-bottom: 8px;
-  }
-`;
-
-const MobileBookingControls = () => (
-  <React.Fragment>
-    <div className="manageBookingButton">Manage My Booking</div>
-    <div className="selectBookingButton">select another booking</div>
-    <style jsx>{MobileBookingControlsStyle}</style>
-  </React.Fragment>
 );
 
 const MobileBookingHeaderStyle = css`
@@ -115,7 +86,7 @@ class MobileBookingHeader extends React.Component<Props, State> {
       <React.Fragment>
         <div className="mobileOnly MobileBookingHeader">
           <div className="topRow">
-            <MobileBookingSummary style={{ flexGrow: 1 }} />
+            <MobileBookingSummary style={{ flexGrow: 1 }} expanded={this.state.expanded} />
             <div
               className="Chevron"
               onClick={() => this.toggle()}
@@ -130,11 +101,6 @@ class MobileBookingHeader extends React.Component<Props, State> {
               )}
             </div>
           </div>
-          {this.state.expanded && (
-            <div className="bottomRow">
-              <MobileBookingControls />
-            </div>
-          )}
         </div>
         <style jsx>{responsiveStyleHelperClasses}</style>
         <style jsx>{MobileBookingHeaderStyle}</style>
