@@ -53,7 +53,6 @@ class ContentPage extends React.Component<Props> {
             display: flex;
             // 67 is the height of header
             height: calc(100% - (67px));
-            overflow-y: scroll;
           }
           .FAQ {
             width: 480px;
