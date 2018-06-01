@@ -2,10 +2,9 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
-import css from 'styled-jsx/css';
 
 import ReturnTrip_booking from './__generated__/ReturnTrip_booking.graphql';
-import {TripDescriptionStyle} from './commonStyles.js';
+import { TripDescriptionStyle } from './commonStyles';
 
 type Props = {|
   booking: ReturnTrip_booking,

@@ -3,19 +3,19 @@
 import * as React from 'react';
 import { ChevronDown, ChevronUp } from '@kiwicom/orbit-components/lib/icons';
 import css from 'styled-jsx/css';
-import idx from 'idx';
-import { graphql } from 'react-relay';
 
 import responsiveStyleHelperClasses from '../common/responsiveStyleHelperClasses';
 import { BookingState } from '../context/BookingState';
-import QueryRenderer from '../relay/QueryRenderer';
-import MobileBookingDetail from './MobileBookingDetail';
-import bookingTypes from '../common/booking/bookingTypes';
 import MobileNearestBooking from './MobileNearestBooking';
 import MobileSelectedBooking from './MobileSelectedBooking';
-import type { MobileNearestBookingQuery as QueryResponseType } from './__generated__/MobileNearestBookingQuery.graphql';
 
-const MobileBookingPage = ({ bookingPage, selectedBooking }) => {
+type MobileBookingPageProps = {|
+  bookingPage: string,
+  selectedBooking: ?string
+|};
+
+const MobileBookingPage = (props: MobileBookingPageProps) => {
+  const { bookingPage, selectedBooking } = props;
   if (bookingPage === 'SINGLE_BOOKING') {
     if (selectedBooking) {
       return <MobileSelectedBooking bookingId={selectedBooking} />;
