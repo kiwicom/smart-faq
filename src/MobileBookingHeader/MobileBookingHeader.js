@@ -11,7 +11,7 @@ import MobileSelectedBooking from './MobileSelectedBooking';
 
 type MobileBookingPageProps = {|
   bookingPage: string,
-  selectedBooking: ?string
+  selectedBooking: ?string,
 |};
 
 const MobileBookingPage = (props: MobileBookingPageProps) => {
