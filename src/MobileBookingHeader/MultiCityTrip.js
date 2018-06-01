@@ -6,21 +6,11 @@ import idx from 'idx';
 import css from 'styled-jsx/css';
 
 import MultiCityTrip_booking from './__generated__/MultiCityTrip_booking.graphql';
+import {TripDescriptionStyle} from './commonStyles.js';
 
 type Props = {|
   booking: MultiCityTrip_booking,
 |};
-
-const MobileBookingSummaryStyle = css`
-  .TripDescription {
-    margin-top: 4px;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.2;
-    color: #171b1e;
-    margin-bottom: 9px;
-  }
-`;
 
 const MultiCityTrip = ({ booking }: Props) => {
   const trips = idx(booking, _ => _.trips) || [];
@@ -35,7 +25,7 @@ const MultiCityTrip = ({ booking }: Props) => {
           return (acc += `${city} → `);
         }, '') + destination}
       </div>
-      <style jsx>{MobileBookingSummaryStyle}</style>
+      <style jsx>{TripDescriptionStyle}</style>
     </React.Fragment>
   );
 };
