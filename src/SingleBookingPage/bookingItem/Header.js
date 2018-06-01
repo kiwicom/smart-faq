@@ -46,7 +46,7 @@ const Header = (props: Props) => {
         <div>
           {booking.databaseId && (
             <Text type="secondary">
-              {isFuture ? 'Upcoming' : 'Last'} trip #
+              {isFuture ? 'Upcoming' : 'Last'} trip #&nbsp;
               {formatBookingId(booking.databaseId)}
             </Text>
           )}
