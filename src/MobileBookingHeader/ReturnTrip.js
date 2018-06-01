@@ -1,10 +1,11 @@
 // @flow
 
-import * as React from "react";
-import { createFragmentContainer, graphql } from "react-relay";
-import idx from "idx";
+import * as React from 'react';
+import { createFragmentContainer, graphql } from 'react-relay';
+import idx from 'idx';
 import css from 'styled-jsx/css';
-import ReturnTrip_booking from './__generated__/ReturnTrip_booking.graphql'
+
+import ReturnTrip_booking from './__generated__/ReturnTrip_booking.graphql';
 
 type Props = {|
   booking: ReturnTrip_booking,
@@ -19,7 +20,7 @@ const MobileBookingSummaryStyle = css`
     color: #171b1e;
     margin-bottom: 9px;
   }
-`
+`;
 
 const ReturnTrip = ({ booking }: Props) => {
   const origion = booking.outbound.departure.airport.city.name;
