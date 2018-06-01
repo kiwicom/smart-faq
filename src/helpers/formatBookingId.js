@@ -1,6 +1,6 @@
 // @flow
 
-const formatBookingId = (bookingDatabaseId: number): string => {
+const formatBookingId = (bookingDatabaseId: ?number): string => {
   const splitBookingId: string[] =
     String(bookingDatabaseId)
       .split('')
