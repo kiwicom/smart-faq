@@ -1,17 +1,18 @@
 // @flow
 
-import * as React from "react";
-import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons";
-import css from "styled-jsx/css";
+import * as React from 'react';
+import { ChevronDown, ChevronUp } from '@kiwicom/orbit-components/lib/icons';
+import css from 'styled-jsx/css';
+import idx from 'idx';
+import { graphql } from 'react-relay';
 
-import responsiveStyleHelperClasses from "../common/responsiveStyleHelperClasses";
-import { UserContext, type UserContextType } from "../context/User";
-import { BookingState } from "../context/BookingState";
-import QueryRenderer from "../relay/QueryRenderer";
-import MobileBookingDetail from "./MobileBookingDetail";
-import bookingTypes from "../common/booking/bookingTypes";
-import idx from "idx";
-import { graphql } from "react-relay";
+import responsiveStyleHelperClasses from '../common/responsiveStyleHelperClasses';
+import { UserContext, type UserContextType } from '../context/User';
+import { BookingState } from '../context/BookingState';
+import QueryRenderer from '../relay/QueryRenderer';
+import MobileBookingDetail from './MobileBookingDetail';
+import bookingTypes from '../common/booking/bookingTypes';
+import type { MobileBookingHeaderNearestBookingQuery as QueryResponseType } from './__generated__/MobileBookingHeaderNearestBookingQuery.graphql';
 
 const MobileBookingHeaderNearestBookingQuery = graphql`
   query MobileBookingHeaderNearestBookingQuery {
@@ -22,7 +23,7 @@ const MobileBookingHeaderNearestBookingQuery = graphql`
 `;
 
 type RenderState = {
-  props: any,
+  props: ?QueryResponseType,
   error: ?Error,
 };
 
@@ -42,7 +43,6 @@ class NearestBooking extends React.Component<Props> {
       return <div>Not found</div>;
     }
 
-    //return <div/>
     return <MobileBookingDetail booking={booking} />;
   };
 
@@ -123,18 +123,14 @@ class SelectedBooking extends React.Component<SelectedBookingProps> {
   }
 }
 
-const AllBooking = NearestBooking;
-
 const MobileBookingPage = ({ bookingPage, selectedBooking }) => {
-  if (bookingPage === "SINGLE_BOOKING") {
+  if (bookingPage === 'SINGLE_BOOKING') {
     if (selectedBooking) {
       return <SelectedBooking bookingId={selectedBooking} />;
     }
 
     return <NearestBooking />;
   }
-
-  return <AllBooking />;
 };
 
 type MobileBookingSummaryProps = {
@@ -144,7 +140,10 @@ const MobileBookingSummary = (props: MobileBookingSummaryProps) => (
   <div style={props.style}>
     <BookingState.Consumer>
       {({ bookingPage, selectedBooking }) => (
-        <MobileBookingPage bookingPage={bookingPage} selectedBooking={selectedBooking} />
+        <MobileBookingPage
+          bookingPage={bookingPage}
+          selectedBooking={selectedBooking}
+        />
       )}
     </BookingState.Consumer>
   </div>

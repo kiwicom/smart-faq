@@ -1,10 +1,11 @@
 // @flow
 
-import * as React from "react";
-import { createFragmentContainer, graphql } from "react-relay";
-import idx from "idx";
-import css from "styled-jsx/css";
-import MultiCityTrip_booking from './__generated__/MultiCityTrip_booking.graphql'
+import * as React from 'react';
+import { createFragmentContainer, graphql } from 'react-relay';
+import idx from 'idx';
+import css from 'styled-jsx/css';
+
+import MultiCityTrip_booking from './__generated__/MultiCityTrip_booking.graphql';
 
 type Props = {|
   booking: MultiCityTrip_booking,
@@ -23,16 +24,16 @@ const MobileBookingSummaryStyle = css`
 
 const MultiCityTrip = ({ booking }: Props) => {
   const trips = idx(booking, _ => _.trips) || [];
-  const destination = idx(booking.end, _ => _.airport.city.name) || "";
+  const destination = idx(booking.end, _ => _.airport.city.name) || '';
 
   return (
     <React.Fragment>
       <div className="TripDescription">
         {trips.reduce((acc, trip) => {
-          const city = idx(trip, _ => _.departure.airport.city.name) || "";
+          const city = idx(trip, _ => _.departure.airport.city.name) || '';
           //F.I.X.M.E: new Orbit release should publish new leftArrow icon
           return (acc += `${city} → `);
-        }, "") + destination}
+        }, '') + destination}
       </div>
       <style jsx>{MobileBookingSummaryStyle}</style>
     </React.Fragment>
