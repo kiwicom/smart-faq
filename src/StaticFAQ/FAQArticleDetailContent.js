@@ -37,6 +37,7 @@ const style = css`
 `;
 const globalStyle = css`
   .faq-article-text ul {
+    padding-left: 43px;
     list-style: none;
   }
   .faq-article-text ul,
