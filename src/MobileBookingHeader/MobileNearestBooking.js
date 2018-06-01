@@ -20,6 +20,8 @@ type RenderState = {
   error: ?Error,
 };
 
+type Props = {};
+
 class MobileNearestBooking extends React.Component<Props> {
   renderBooking = (renderState: RenderState) => {
     if (renderState && renderState.error) {

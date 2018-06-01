@@ -12,87 +12,19 @@ import QueryRenderer from '../relay/QueryRenderer';
 import MobileBookingDetail from './MobileBookingDetail';
 import bookingTypes from '../common/booking/bookingTypes';
 import MobileNearestBooking from './MobileNearestBooking';
+import MobileSelectedBooking from './MobileSelectedBooking';
 import type { MobileNearestBookingQuery as QueryResponseType } from './__generated__/MobileNearestBookingQuery.graphql';
-
-type RenderState = {
-  props: ?QueryResponseType,
-  error: ?Error,
-};
-
-const selectedBookingQuery = graphql`
-  query MobileBookingHeaderSelectedBookingQuery($id: ID!) {
-    booking(id: $id) {
-      type
-      oneWay {
-        ...MobileBookingDetail_booking
-      }
-      return {
-        ...MobileBookingDetail_booking
-      }
-      multicity {
-        ...MobileBookingDetail_booking
-      }
-    }
-  }
-`;
-
-type SelectedBookingProps = {
-  bookingId: string,
-};
-
-class SelectedBooking extends React.Component<SelectedBookingProps> {
-  renderSelectedBooking = (renderState: RenderState) => {
-    if (renderState.error) {
-      return <div>Error</div>;
-    }
-
-    if (!renderState.props) {
-      return <div>Loading</div>;
-    }
-
-    const bookingType = idx(renderState.props, _ => _.booking.type);
-    let booking = null;
-
-    switch (bookingType) {
-      case bookingTypes.ONE_WAY:
-        booking = idx(renderState.props, _ => _.booking.oneWay);
-        break;
-      case bookingTypes.RETURN:
-        booking = idx(renderState.props, _ => _.booking.return);
-        break;
-      case bookingTypes.MULTICITY:
-        booking = idx(renderState.props, _ => _.booking.multicity);
-        break;
-    }
-
-    if (!booking) {
-      return <div>Not found</div>;
-    }
-
-    return <MobileBookingDetail booking={booking} />;
-  };
-
-  render() {
-    const { bookingId } = this.props;
-
-    return (
-      <QueryRenderer
-        query={selectedBookingQuery}
-        variables={{ id: bookingId }}
-        render={this.renderSelectedBooking}
-      />
-    );
-  }
-}
 
 const MobileBookingPage = ({ bookingPage, selectedBooking }) => {
   if (bookingPage === 'SINGLE_BOOKING') {
     if (selectedBooking) {
-      return <SelectedBooking bookingId={selectedBooking} />;
+      return <MobileSelectedBooking bookingId={selectedBooking} />;
     }
 
     return <MobileNearestBooking />;
   }
+
+  return null;
 };
 
 type MobileBookingSummaryProps = {
