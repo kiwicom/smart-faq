@@ -4,9 +4,10 @@ import * as React from "react";
 import { createFragmentContainer, graphql } from "react-relay";
 import idx from "idx";
 import css from "styled-jsx/css";
+import MultiCityTrip_booking from './__generated__/MultiCityTrip_booking.graphql'
 
 type Props = {|
-  booking: any,
+  booking: MultiCityTrip_booking,
 |};
 
 const MobileBookingSummaryStyle = css`
