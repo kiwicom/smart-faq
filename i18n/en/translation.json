@@ -16,5 +16,12 @@
     "Deleted": "Deleted",
     "Closed": "Closed",
     "Expired": "Expired"
+  },
+  "TimeUnits": {
+    "Days": "days",
+    "Abbr": {
+      "Minutes": "min",
+      "Hours": "h"
+    }
   }
 }
