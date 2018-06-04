@@ -68,31 +68,30 @@ exports[`StaticFAQError should match snapshot 1`] = `
       className="jsx-2228354116 contactLink"
     >
       <ContactPageLink>
-        <a
-          className="jsx-1156574796"
-          href="https://www.kiwi.com/en/content/feedback"
-          rel="noopener noreferrer"
-          target="_blank"
+        <div
+          className="jsx-1577358927 contactUs"
         >
-          Go to contact page
-          <span
-            className="jsx-1156574796 inline-icon"
+          <a
+            className="jsx-1577358927"
+            href="https://www.kiwi.com/en/content/feedback"
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            <div
-              className="jsx-1156574796 open-icon"
+            Having trouble? Contact us.
+            <span
+              className="jsx-1577358927 open-icon"
             >
               <NewWindow
-                customColor="#00a991"
+                color="attention"
                 size="small"
               >
                 <OrbitIcon
-                  color="primary"
-                  customColor="#00a991"
+                  color="attention"
                   size="small"
                   viewBox="0 0 24 24"
                 >
                   <IconBase
-                    color="#00a991"
+                    color="#171b1e"
                     size="16px"
                     viewBox="0 0 24 24"
                   >
@@ -102,7 +101,7 @@ exports[`StaticFAQError should match snapshot 1`] = `
                       preserveAspectRatio="xMidYMid meet"
                       style={
                         Object {
-                          "color": "#00a991",
+                          "color": "#171b1e",
                           "verticalAlign": "middle",
                         }
                       }
@@ -116,13 +115,13 @@ exports[`StaticFAQError should match snapshot 1`] = `
                   </IconBase>
                 </OrbitIcon>
               </NewWindow>
-            </div>
-          </span>
-        </a>
-        <JSXStyle
-          css="a.jsx-1156574796{-webkit-text-decoration:none;text-decoration:none;color:#00a991;font-size:14px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}a.jsx-1156574796 .open-icon.jsx-1156574796{margin-left:6px;}"
-          styleId="1156574796"
-        />
+            </span>
+          </a>
+          <JSXStyle
+            css=".contactUs.jsx-1577358927{text-align:center;margin-top:25px;}a.jsx-1577358927{color:#171b1e;font-size:14px;-webkit-text-decoration:none;text-decoration:none;font-weight:500;}a.jsx-1577358927 .open-icon.jsx-1577358927{margin-left:6px;}"
+            styleId="1577358927"
+          />
+        </div>
       </ContactPageLink>
     </div>
     <JSXStyle
