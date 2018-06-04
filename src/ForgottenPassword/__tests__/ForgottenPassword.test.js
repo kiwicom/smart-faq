@@ -4,6 +4,8 @@ import { shallow } from 'enzyme';
 
 import ForgottenPasword from '../index';
 
+jest.mock('../../mutations/ResetPassword');
+
 describe('ForgottenPassword', () => {
   const props = {
     history: {
