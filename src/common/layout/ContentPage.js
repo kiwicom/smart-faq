@@ -56,6 +56,7 @@ class ContentPage extends React.Component<Props> {
           }
           .FAQ {
             width: 480px;
+            overflow-y: auto;
           }
           .BookingInfo {
             width: 548px;

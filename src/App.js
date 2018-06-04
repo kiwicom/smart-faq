@@ -17,7 +17,6 @@ const style = css`
     position: relative;
     min-width: 480px;
     height: 100vh;
-    overflow-y: auto;
     background-color: #fff;
     font-family: 'Roboto', sans-serif;
   }
