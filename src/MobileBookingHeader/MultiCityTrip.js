@@ -8,7 +8,7 @@ import type MultiCityTrip_booking from './__generated__/MultiCityTrip_booking.gr
 import { TripDescriptionStyle } from './commonStyles';
 
 type Props = {|
-  booking: MultiCityTrip_booking,
+  +booking: MultiCityTrip_booking,
 |};
 
 const MultiCityTrip = ({ booking }: Props) => {

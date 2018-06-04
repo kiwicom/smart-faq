@@ -8,7 +8,7 @@ import type ReturnTrip_booking from './__generated__/ReturnTrip_booking.graphql'
 import { TripDescriptionStyle } from './commonStyles';
 
 type Props = {|
-  booking: ReturnTrip_booking,
+  +booking: ReturnTrip_booking,
 |};
 
 const ReturnTrip = ({ booking }: Props) => {

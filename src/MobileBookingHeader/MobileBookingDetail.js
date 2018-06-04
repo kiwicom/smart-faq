@@ -13,8 +13,8 @@ import MultiCityTrip from './MultiCityTrip';
 import formatBookingId from '../helpers/formatBookingId';
 
 type Props = {|
-  booking: MobileBookingDetail_booking,
-  expanded: boolean,
+  +booking: MobileBookingDetail_booking,
+  +expanded: boolean,
 |};
 
 const MobileBookingControlsStyle = css`
@@ -44,7 +44,7 @@ const MobileBookingControlsStyle = css`
 `;
 
 type MobileBookingControlsProps = {|
-  manageBookingURL: ?string,
+  +manageBookingURL: ?string,
 |};
 
 const MobileBookingControls = (props: MobileBookingControlsProps) => (

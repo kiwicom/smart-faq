@@ -10,9 +10,9 @@ import MobileNearestBooking from './MobileNearestBooking';
 import MobileSelectedBooking from './MobileSelectedBooking';
 
 type MobileBookingPageProps = {|
-  bookingPage: string,
-  selectedBooking: ?string,
-  expanded: boolean,
+  +bookingPage: string,
+  +selectedBooking: ?string,
+  +expanded: boolean,
 |};
 
 const MobileBookingPage = (props: MobileBookingPageProps) => {
@@ -34,8 +34,8 @@ const MobileBookingPage = (props: MobileBookingPageProps) => {
 };
 
 type MobileBookingSummaryProps = {
-  style: any,
-  expanded: boolean,
+  +style: any,
+  +expanded: boolean,
 };
 const MobileBookingSummary = (props: MobileBookingSummaryProps) => (
   <div style={props.style}>
