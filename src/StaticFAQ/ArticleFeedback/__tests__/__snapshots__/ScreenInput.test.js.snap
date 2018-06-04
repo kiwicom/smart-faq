@@ -50,6 +50,7 @@ exports[`ScreenInput should match snapshot 1`] = `
     >
       <textarea
         className="jsx-1310403397"
+        data-gramm_editor="false"
       />
     </div>
     <div
