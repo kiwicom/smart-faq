@@ -1,13 +1,13 @@
 // @flow
 
-import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
-import css from 'styled-jsx/css';
+import * as React from "react";
+import { createFragmentContainer, graphql } from "react-relay";
+import css from "styled-jsx/css";
 
-import { Box } from '../../common';
-import AccordionBody from './AccordionBody';
-import AccordionHeader from './AccordionHeader';
-import type { AccordionTripSummary_trip } from './__generated__/AccordionTripSummary_trip.graphql';
+import { Box } from "../../common";
+import AccordionBody from "./AccordionBody";
+import AccordionHeader from "./AccordionHeader";
+import type { AccordionTripSummary_trip } from "./__generated__/AccordionTripSummary_trip.graphql";
 
 const styles = css`
   .accordionWrapper {
@@ -43,12 +43,7 @@ class Accordion extends React.Component<Props, State> {
       <div className="accordionWrapper">
         <Box padding="12px 16px 16px 12px">
           <div className="bookingAccordion">
-            <div
-              onClick={this.toggleBody}
-              onKeyUp={null}
-              tabIndex="0"
-              role="button"
-            >
+            <div onClick={this.toggleBody} onKeyUp={null} tabIndex="0" role="button">
               <AccordionHeader isToggled={this.state.isToggled} trip={trip} />
             </div>
             {this.state.isToggled && <AccordionBody legs={trip.legs} />}
