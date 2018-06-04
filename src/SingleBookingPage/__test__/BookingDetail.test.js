@@ -6,6 +6,7 @@ import { shallow } from 'enzyme';
 
 import { RawBookingDetail } from '../BookingDetail';
 import Header from '../bookingItem/Header';
+import Notification from '../bookingItem/Notification';
 import Contact from '../bookingItem/Contact';
 
 beforeEach(() => MockDate.set('06/01/2018'));
@@ -41,20 +42,20 @@ describe('BookingDetail >', () => {
       const booking = createBookingStub('06/12/2018', '06/19/2018');
       // $FlowExpectedError: We don't need all props for tests
       const wrapper = shallow(<RawBookingDetail booking={booking} />);
-      expect(wrapper.find('Notification').exists()).toBeTruthy();
+      expect(wrapper.find(Notification).exists()).toBeTruthy();
     });
 
     it('is not displayed after the departure', () => {
       const booking = createBookingStub('05/01/2017', '05/19/2017');
       // $FlowExpectedError: We don't need all props for tests
       const wrapper = shallow(<RawBookingDetail booking={booking} />);
-      expect(wrapper.find('Notification').exists()).toBeFalsy();
+      expect(wrapper.find(Notification).exists()).toBeFalsy();
     });
 
     it('has prop isUrgent true when there is less than 48 before departure', () => {
       // $FlowExpectedError: We don't need all props for tests
       const wrapper = shallow(<RawBookingDetail booking={booking48HoursAgo} />);
-      expect(wrapper.find('Notification').props().isUrgent).toBeTruthy();
+      expect(wrapper.find(Notification).props().isUrgent).toBeTruthy();
     });
 
     it('has prop isFuture true when inbound flight is in future and outbound flight date already passed', () => {

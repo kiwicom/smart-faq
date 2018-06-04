@@ -44,7 +44,7 @@ exports[`IntroPage should match snapshot 1`] = `
     >
       <button
         className="jsx-2348043769"
-        data-cy="btn-existing-booking"
+        data-cy="btn-existent-booking"
         onClick={[Function]}
       >
         <Trans

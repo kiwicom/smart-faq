@@ -6,9 +6,13 @@
 
 describe('User can log into SmartFAQ', () => {
   beforeEach(() => {
-    cy.visit('/');
-    cy.get('[data-cy=btn-existing-booking]').click();
-    cy.get('[data-cy=link-kiwi-login]').click();
+    cy
+      .fixture('UserCanLogIntoSmartFAQ_Mock.json')
+      .then(UserCanLogIntoSmartFAQ_Mock => {
+        cy.mockRequest(UserCanLogIntoSmartFAQ_Mock);
+        cy.get('[data-cy=btn-existent-booking]').click();
+        cy.get('[data-cy=link-kiwi-login]').click();
+      });
   });
 
   it(`The user should be able to log into SmartFAQ with the correct credentials.`, () => {
