@@ -25,7 +25,7 @@ const ContactPageLink = () => (
           color: #171b1e;
           font-size: 14px;
           text-decoration: none;
-          font-weight: 500;
+          font-weight: bold;
         }
         a .open-icon {
           margin-left: 6px;
