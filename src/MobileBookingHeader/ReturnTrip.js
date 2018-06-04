@@ -11,11 +11,11 @@ type Props = {|
 |};
 
 const ReturnTrip = ({ booking }: Props) => {
-  const origion = booking.outbound.departure.airport.city.name;
+  const origin = booking.outbound.departure.airport.city.name;
   const destination = booking.inbound.departure.airport.city.name;
   return (
     <React.Fragment>
-      <div className="TripDescription">{`${origion} to ${destination} and back`}</div>
+      <div className="TripDescription">{`${origin} to ${destination} and back`}</div>
       <style jsx>{TripDescriptionStyle}</style>
     </React.Fragment>
   );
