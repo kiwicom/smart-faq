@@ -6,6 +6,7 @@ import { Switch, Route } from 'react-router-dom';
 import Header from './Header';
 import StaticFAQ from '../../StaticFAQ';
 import FAQArticleDetail from '../../StaticFAQ/FAQArticleDetail';
+import { ScrollableContent } from '../../common';
 import { UserContext, type UserContextType } from '../../context/User';
 import { BookingState } from '../../context/BookingState';
 import BookingPage from './BookingPage';
@@ -33,15 +34,17 @@ class ContentPage extends React.Component<Props> {
             </BookingState.Consumer>
           </div>
         )}
-        <div className="FAQ">
-          <Switch location={this.props.history.location}>
-            <Route exact path="/faq/:categoryId?" component={StaticFAQ} />
-            <Route
-              path="/faq/:categoryId/article/:articleId"
-              component={FAQArticleDetail}
-            />
-          </Switch>
-        </div>
+        <ScrollableContent styles="width:480px;">
+          <div className="FAQ">
+            <Switch location={this.props.history.location}>
+              <Route exact path="/faq/:categoryId?" component={StaticFAQ} />
+              <Route
+                path="/faq/:categoryId/article/:articleId"
+                component={FAQArticleDetail}
+              />
+            </Switch>
+          </div>
+        </ScrollableContent>
       </div>
       <style jsx>
         {`
@@ -53,10 +56,6 @@ class ContentPage extends React.Component<Props> {
             display: flex;
             // 67 is the height of header
             height: calc(100% - (67px));
-          }
-          .FAQ {
-            width: 480px;
-            overflow-y: auto;
           }
           .BookingInfo {
             width: 548px;
