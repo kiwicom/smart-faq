@@ -49,7 +49,7 @@ exports[`ScreenInput should match snapshot 1`] = `
       className="jsx-1310403397 inputArea"
     >
       <textarea
-        className="jsx-1646602615"
+        className="jsx-1310403397"
         data-gramm_editor="false"
       />
     </div>
