@@ -4,7 +4,7 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 
-import OneWayTrip_booking from './__generated__/OneWayTrip_booking.graphql';
+import type OneWayTrip_booking from './__generated__/OneWayTrip_booking.graphql';
 import { TripDescriptionStyle } from './commonStyles';
 
 type Props = {|

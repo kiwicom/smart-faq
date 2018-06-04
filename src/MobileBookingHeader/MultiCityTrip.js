@@ -4,7 +4,7 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 
-import MultiCityTrip_booking from './__generated__/MultiCityTrip_booking.graphql';
+import type MultiCityTrip_booking from './__generated__/MultiCityTrip_booking.graphql';
 import { TripDescriptionStyle } from './commonStyles';
 
 type Props = {|
