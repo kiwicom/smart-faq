@@ -13,7 +13,7 @@ type Props = {|
 
 const OneWayTrip = ({ booking }: Props) => {
   const origin = idx(booking.trip.departure, _ => _.airport.city.name) || '';
-  const destination = booking.trip.arrival.airport.city.name;
+  const destination = idx(booking.trip.arrival, _ => _.airport.city.name) || '';
   return (
     <React.Fragment>
       <div className="TripDescription">{`${origin} to ${destination}`}</div>
