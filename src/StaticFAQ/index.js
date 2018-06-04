@@ -10,6 +10,8 @@ import Input from './../common/Input';
 import FAQCategoryList from './FAQCategoryList';
 import SearchAllFAQs from './SearchAllFAQs';
 
+let searchText = '';
+
 const style = css`
   .static-faq {
     width: 100%;
@@ -37,25 +39,27 @@ type Props = {|
 |};
 
 type State = {|
-  value: string,
+  searchText: string,
 |};
 
 class StaticFAQ extends React.Component<Props, State> {
   state = {
-    value: '',
+    searchText,
   };
 
   handleSearchChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({ value: e.target.value });
+    searchText = e.target.value;
+    this.setState({ searchText });
   };
 
   handleCancelSearch = () => {
-    this.setState({ value: '' });
+    searchText = '';
+    this.setState({ searchText });
   };
 
   renderInput = (isSearching: number) => (
     <Input
-      value={this.state.value}
+      value={this.state.searchText}
       onChange={this.handleSearchChange}
       placeholder="What can we help you with?"
       icon={<Search customColor="#bac7d5" />}
@@ -66,9 +70,8 @@ class StaticFAQ extends React.Component<Props, State> {
 
   render() {
     const categoryId = idx(this.props.match, _ => _.params.categoryId) || null;
-    const { value } = this.state;
-    const isSearching = value.length;
-
+    const { searchText } = this.state;
+    const isSearching = searchText.length;
     return (
       <div className="static-faq">
         <div className="static-faq-body">
@@ -76,7 +79,7 @@ class StaticFAQ extends React.Component<Props, State> {
             {!categoryId && this.renderInput(isSearching)}
           </div>
           {isSearching ? (
-            <SearchAllFAQs search={value} />
+            <SearchAllFAQs search={searchText} />
           ) : (
             <FAQCategoryList categoryId={categoryId} />
           )}
