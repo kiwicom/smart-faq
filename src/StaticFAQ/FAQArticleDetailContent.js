@@ -59,6 +59,11 @@ const globalStyle = css`
     color: #00ad98;
     text-decoration: none;
   }
+  .faq-article-text img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
   .faq-article-text li {
     display: list-item;
     padding-top: 10px;
