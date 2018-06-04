@@ -11,6 +11,7 @@ import MulticityOverlay from './bookingTypes/MulticityOverlay';
 import Contact from './bookingItem/Contact';
 import Notification from './bookingItem/Notification';
 import Header from './bookingItem/Header';
+import { ScrollableContent } from '../common';
 import bookingTypes from '../common/booking/bookingTypes';
 import { URGENCY_THRESHOLD } from '../helpers/dateUtils';
 import type { NearestBooking_booking } from './__generated__/NearestBookingQuery.graphql';
@@ -95,7 +96,7 @@ class BookingDetail extends React.Component<Props> {
     const showContactInfo = departureInfo.isUrgent || arrivalInfo.isUrgent;
 
     return (
-      <div className="nearestBooking">
+      <ScrollableContent styles="width: 100%; padding:40px; background-color: #f5f7f9;">
         <Header booking={booking} isFuture={arrivalInfo.isFuture} />
         {departureInfo.isFuture &&
           timeDelta && (
@@ -114,15 +115,6 @@ class BookingDetail extends React.Component<Props> {
         {showContactInfo && <Contact info={booking} />}
         <style jsx>
           {`
-            .nearestBooking {
-              width: 100%;
-              padding: 40px;
-              background-color: #f5f7f9;
-              height: 100%;
-              overflow-y: auto;
-              overflow-x: hidden;
-              max-height: 100%;
-            }
             .buttons {
               display: flex;
               justify-content: center;
@@ -142,7 +134,7 @@ class BookingDetail extends React.Component<Props> {
             }
           `}
         </style>
-      </div>
+      </ScrollableContent>
     );
   }
 }
