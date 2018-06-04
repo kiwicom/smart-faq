@@ -111,7 +111,7 @@ class MobileBookingDetail extends React.Component<Props> {
     return (
       <React.Fragment>
         <div className="TripId">
-          {`Upcoming trip #${formatBookingId(booking.databaseId)}`}
+          {`Upcoming trip # ${formatBookingId(booking.databaseId)}`}
         </div>
         {this.renderByType(booking)}
         {expanded ? (
