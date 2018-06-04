@@ -4,7 +4,7 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 
-import type ReturnTrip_booking from './__generated__/ReturnTrip_booking.graphql';
+import type { ReturnTrip_booking } from './__generated__/ReturnTrip_booking.graphql';
 import { TripDescriptionStyle } from './commonStyles';
 
 type Props = {|
@@ -13,9 +13,9 @@ type Props = {|
 
 const ReturnTrip = ({ booking }: Props) => {
   const origin =
-    idx(booking.outbound.departure, _ => _.airport.city.name) || '';
+    idx(booking.outbound, _ => _.departure.airport.city.name) || '';
   const destination =
-    idx(booking.inbound.departure, _ => _.airport.city.name) || '';
+    idx(booking.inbound, _ => _.departure.airport.city.name) || '';
   return (
     <React.Fragment>
       <div className="TripDescription">{`${origin} to ${destination} and back`}</div>
