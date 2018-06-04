@@ -57,7 +57,8 @@ const MobileBookingControls = (props: MobileBookingControlsProps) => (
     >
       Manage My Booking
     </a>
-    <div className="selectBookingButton">select another booking</div>
+    {/* Disabled until we have a design for booking selection page */}
+    {/* <div className="selectBookingButton">select another booking</div> */}
     <style jsx>{MobileBookingControlsStyle}</style>
   </React.Fragment>
 );
