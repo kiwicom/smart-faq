@@ -7,7 +7,7 @@
 describe('User can log into SmartFAQ', () => {
   beforeEach(() => {
     cy.visit('/');
-    cy.get('[data-cy=btn-existent-booking]').click();
+    cy.get('[data-cy=btn-existing-booking]').click();
     cy.get('[data-cy=link-kiwi-login]').click();
   });
 
@@ -16,6 +16,6 @@ describe('User can log into SmartFAQ', () => {
     cy.get('[data-cy=input-password]').type(Cypress.env('TEST_USER_PASSWORD'));
     cy.get('[data-cy=btn-sign-in]').click();
     cy.wait(1000);
-    cy.get('.nearestBooking').should('exist');
+    cy.get('[data-cy=nearestBooking]').should('exist');
   });
 });

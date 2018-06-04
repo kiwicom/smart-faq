@@ -9,7 +9,7 @@ describe('User not logged', () => {
 
   it('User can search in FAQs', () => {
     const wordToSearch = 'flight';
-    cy.get('[data-cy=input-text]').as('input-staticFAQ');
+    cy.get('[data-cy=input-staticFAQ]').as('input-staticFAQ');
 
     cy
       .get('@input-staticFAQ')

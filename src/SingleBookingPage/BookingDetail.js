@@ -96,7 +96,10 @@ class BookingDetail extends React.Component<Props> {
     const showContactInfo = departureInfo.isUrgent || arrivalInfo.isUrgent;
 
     return (
-      <ScrollableContent styles="width: 100%; padding:40px; background-color: #f5f7f9;">
+      <ScrollableContent
+        dataCy="nearestBooking"
+        styles="width: 100%; padding:40px; background-color: #f5f7f9;"
+      >
         <Header booking={booking} isFuture={arrivalInfo.isFuture} />
         {departureInfo.isFuture &&
           timeDelta && (

@@ -5,10 +5,11 @@ import * as React from 'react';
 type Props = {|
   children: React.Node,
   styles?: string,
+  dataCy?: string,
 |};
 
 const ScrollableContent = (props: Props) => (
-  <div className="scrollable-content">
+  <div className="scrollable-content" data-cy={props.dataCy}>
     {props.children}
     <style jsx>
       {`
