@@ -32,10 +32,10 @@ function renderFlightIcon(type: string) {
 }
 
 export const FromToRow = (props: Props) => {
-  const origin = idx(props.arrival, _ => _.airport.city.name) || '';
-  const destination = idx(props.departure, _ => _.airport.city.name) || '';
-  const IATAOrigin = idx(props.arrival, _ => _.airport.locationId) || '';
-  const IATADestination = idx(props.departure, _ => _.airport.locationId) || '';
+  const origin = idx(props.departure, _ => _.airport.city.name) || '';
+  const destination = idx(props.arrival, _ => _.airport.city.name) || '';
+  const IATAOrigin = idx(props.departure, _ => _.airport.locationId) || '';
+  const IATADestination = idx(props.arrival, _ => _.airport.locationId) || '';
 
   return (
     <div>
