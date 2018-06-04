@@ -4,7 +4,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import idx from 'idx';
 import { CarrierLogo } from '@kiwicom/orbit-components';
-import { ShowMore } from '@kiwicom/orbit-components/lib/icons';
+// import { ShowMore } from '@kiwicom/orbit-components/lib/icons';
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import { formatHour, formatTimeDuration } from '../../helpers/dateUtils';
@@ -112,9 +112,10 @@ const LegCities = (props: LegProps) => {
       <div className="carrier">
         <CarrierLogo size="large" carriers={[carrier]} />
       </div>
+      {/* This is commented out because of https://github.com/kiwicom/smart-faq/issues/307
       <div className="showMoreIcon">
         <ShowMore customColor="#94a2b0" size="12" />
-      </div>
+      </div> */}
       <span className="flightLength">
         {formatTimeDuration(leg.duration || 0)}
       </span>
