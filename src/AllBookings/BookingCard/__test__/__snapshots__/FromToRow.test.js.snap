@@ -5,7 +5,7 @@ exports[`FromToRow should render correctly 1`] = `
   <p
     className="flight"
   >
-    Barcelona BCN
+    Prague PRG
   </p>
   <div
     className="arrowIcon"
@@ -18,7 +18,7 @@ exports[`FromToRow should render correctly 1`] = `
   <p
     className="flight"
   >
-    Prague PRG
+    Barcelona BCN
   </p>
 </div>
 `;
