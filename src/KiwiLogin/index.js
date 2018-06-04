@@ -15,8 +15,6 @@ import image from '../../static/woman-with-laptop@2x.jpg';
 import type { onLogin } from '../types';
 
 const style = css`
-  .KiwiLogin {
-  }
   div.picture img {
     width: 203px;
     height: 156px;
