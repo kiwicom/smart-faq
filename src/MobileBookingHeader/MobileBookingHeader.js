@@ -83,7 +83,7 @@ class MobileBookingHeader extends React.Component<Props, State> {
   };
 
   toggle() {
-    this.setState({ expanded: !this.state.expanded });
+    this.setState(prevState => ({ expanded: !prevState.expanded }));
   }
 
   render() {
