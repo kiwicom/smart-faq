@@ -1,10 +1,10 @@
 // @flow
 
-import * as React from "react";
-import { createFragmentContainer, graphql } from "react-relay";
+import * as React from 'react';
+import { createFragmentContainer, graphql } from 'react-relay';
 
-import Multicity from "./Multicity";
-import type { MulticityOverlay_booking } from "./__generated__/MulticityOverlay_booking.graphql";
+import Multicity from './Multicity';
+import type { MulticityOverlay_booking } from './__generated__/MulticityOverlay_booking.graphql';
 
 type Props = {|
   booking: MulticityOverlay_booking,
@@ -21,7 +21,7 @@ class MulticityOverlay extends React.Component<Props, State> {
 
   toggleOverlapping = () => {
     this.setState(prevState => {
-      overlapping: !prevState.overlapping;
+      !prevState.overlapping;
     });
   };
 
@@ -34,21 +34,21 @@ class MulticityOverlay extends React.Component<Props, State> {
         <div
           className={
             this.state.overlapping
-              ? "multicityWrapper"
-              : "multicityWrapper multicityWrapperIsActive"
+              ? 'multicityWrapper'
+              : 'multicityWrapper multicityWrapperIsActive'
           }
         >
           <Multicity booking={booking} />
           <div
             className={
               this.state.overlapping
-                ? "multicityOverlay"
-                : "multicityOverlay multicityOverlayIsActive"
+                ? 'multicityOverlay'
+                : 'multicityOverlay multicityOverlayIsActive'
             }
           />
         </div>
         <button className="multicityButton" onClick={this.toggleOverlapping}>
-          {this.state.overlapping ? "Show more trips" : "Show less trips"}
+          {this.state.overlapping ? 'Show more trips' : 'Show less trips'}
         </button>
         <style jsx>
           {`
