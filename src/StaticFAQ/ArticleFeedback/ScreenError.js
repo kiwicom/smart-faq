@@ -6,7 +6,7 @@ import { SystemMessage } from '@kiwicom/orbit-components';
 import { Close, Alert } from '@kiwicom/orbit-components/lib/icons';
 
 import screensList from './screensList';
-import { Box, ContactPageLink } from '../../common';
+import { Box } from '../../common';
 
 type Props = {|
   changeScreen: (nextScreen: string) => void,
@@ -55,7 +55,6 @@ const ScreenError = (props: Props) => {
             link below to drop us a line.
           </SystemMessage>
         </div>
-        <ContactPageLink />
         <style jsx>{style}</style>
       </div>
     </Box>
