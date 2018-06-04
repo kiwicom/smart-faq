@@ -5,7 +5,7 @@ import css from 'styled-jsx/css';
 import { Heading, Text, Button } from '@kiwicom/orbit-components';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
 
-import { Box, ContactPageLink } from '../../common';
+import { Box } from '../../common';
 import createComment from '../../mutations/CreateCommentMutation';
 import screensList from './screensList';
 
@@ -31,7 +31,7 @@ const style = css`
   }
   div.button {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin-top: 19px;
   }
   div.close-icon {
@@ -99,7 +99,6 @@ class ScreenInput extends React.Component<Props, State> {
             <textarea />
           </div>
           <div className="button">
-            <ContactPageLink />
             <Button title="Submit" onClick={() => {}} width={100} />
           </div>
         </form>

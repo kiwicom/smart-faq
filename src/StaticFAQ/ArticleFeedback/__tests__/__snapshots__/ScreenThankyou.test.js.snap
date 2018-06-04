@@ -39,7 +39,6 @@ exports[`ScreenThankyou should match snapshot 1`] = `
         We appreciate your insight.
       </Heading>
     </div>
-    <ContactPageLink />
     <JSXStyle
       css="div.thank-you.jsx-3762548811{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:251px;}div.close-icon.jsx-3762548811{position:absolute;top:8px;right:8px;cursor:pointer;}div.message-2.jsx-3762548811{margin-bottom:16.6px;}"
       styleId="3762548811"
