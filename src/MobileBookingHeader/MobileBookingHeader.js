@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { ChevronDown, ChevronUp } from '@kiwicom/orbit-components/lib/icons';
 import css from 'styled-jsx/css';
 
 import responsiveStyleHelperClasses from '../common/responsiveStyleHelperClasses';
@@ -59,56 +58,16 @@ const MobileBookingHeaderStyle = css`
     box-shadow: inset 0 1px 0 0 #e8edf1;
     padding: 0 16px;
   }
-
-  .topRow {
-    display: flex;
-  }
-
-  .Chevron {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    cursor: pointer;
-  }
 `;
 
 type Props = {};
-type State = {
-  expanded: boolean,
-};
 
-class MobileBookingHeader extends React.Component<Props, State> {
-  state = {
-    expanded: false,
-  };
-
-  toggle() {
-    this.setState(prevState => ({ expanded: !prevState.expanded }));
-  }
-
+class MobileBookingHeader extends React.Component<Props> {
   render() {
     return (
       <React.Fragment>
         <div className="mobileOnly MobileBookingHeader">
-          <div className="topRow">
-            <MobileBookingSummary
-              style={{ flexGrow: 1 }}
-              expanded={this.state.expanded}
-            />
-            <div
-              className="Chevron"
-              onClick={() => this.toggle()}
-              onKeyDown={() => this.toggle()}
-              role="button"
-              tabIndex="0"
-            >
-              {this.state.expanded ? (
-                <ChevronUp customColor="#bac7d5" />
-              ) : (
-                <ChevronDown customColor="#bac7d5" />
-              )}
-            </div>
-          </div>
+          <MobileBookingSummary />
         </div>
         <style jsx>{responsiveStyleHelperClasses}</style>
         <style jsx>{MobileBookingHeaderStyle}</style>

@@ -126,35 +126,11 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
       </div>
     </div>
     <div
-      class="jsx-1542149023 jsx-3202484560 mobileOnly MobileBookingHeader"
+      class="jsx-1542149023 jsx-2516915671 mobileOnly MobileBookingHeader"
     >
-      <div
-        class="jsx-1542149023 jsx-3202484560 topRow"
-      >
-        <div
-          style="flex-grow:1"
-        >
-          <div>
-            Loading
-          </div>
-        </div>
-        <div
-          class="jsx-1542149023 jsx-3202484560 Chevron"
-          role="button"
-          tabindex="0"
-        >
-          <svg
-            fill="currentColor"
-            height="24px"
-            preserveAspectRatio="xMidYMid meet"
-            style="vertical-align:middle;color:#bac7d5"
-            viewBox="0 0 24 24"
-            width="24px"
-          >
-            <path
-              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-            />
-          </svg>
+      <div>
+        <div>
+          Loading
         </div>
       </div>
     </div>

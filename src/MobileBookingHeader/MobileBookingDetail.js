@@ -1,15 +1,16 @@
 // @flow
 
-import * as React from 'react';
-import { graphql, createFragmentContainer } from 'react-relay';
-import css from 'styled-jsx/css';
+import * as React from "react";
+import { graphql, createFragmentContainer } from "react-relay";
+import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons";
+import css from "styled-jsx/css";
 
-import bookingTypes from '../common/booking/bookingTypes';
-import type { MobileBookingDetail_booking } from './__generated__/MobileBookingDetail_booking.graphql';
-import OneWayTrip from './OneWayTrip';
-import ReturnTrip from './ReturnTrip';
-import MultiCityTrip from './MultiCityTrip';
-import formatBookingId from '../helpers/formatBookingId';
+import bookingTypes from "../common/booking/bookingTypes";
+import type { MobileBookingDetail_booking } from "./__generated__/MobileBookingDetail_booking.graphql";
+import OneWayTrip from "./OneWayTrip";
+import ReturnTrip from "./ReturnTrip";
+import MultiCityTrip from "./MultiCityTrip";
+import formatBookingId from "../helpers/formatBookingId";
 
 type Props = {|
   +booking: MobileBookingDetail_booking,
@@ -69,9 +70,28 @@ const MobileBookingSummaryStyle = css`
     color: #7f91a8;
     margin-top: 8px;
   }
+
+  .topRow {
+    display: flex;
+  }
+
+  .Chevron {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    cursor: pointer;
+  }
 `;
 
-class MobileBookingDetail extends React.Component<Props> {
+type State = {
+  expanded: boolean,
+};
+
+class MobileBookingDetail extends React.Component<Props, State> {
+  state = {
+    expanded: false,
+  };
+
   renderByType = booking => {
     if (booking.type === bookingTypes.ONE_WAY) {
       return <OneWayTrip booking={booking} />;
@@ -88,17 +108,38 @@ class MobileBookingDetail extends React.Component<Props> {
     return null;
   };
 
+  toggle() {
+    this.setState(prevState => ({ expanded: !prevState.expanded }));
+  }
+
   render() {
     const { booking, expanded } = this.props;
     return (
       <React.Fragment>
-        {booking.databaseId && (
-          <div className="TripId">
-            {`Upcoming trip # ${formatBookingId(booking.databaseId)}`}
+        <div className="topRow">
+          <div style={{flexGrow: 1}}>
+            {booking.databaseId && (
+              <div className="TripId">{`Upcoming trip # ${formatBookingId(
+                booking.databaseId,
+              )}`}</div>
+            )}
+            {this.renderByType(booking)}
           </div>
-        )}
-        {this.renderByType(booking)}
-        {expanded ? (
+          <div
+            className="Chevron"
+            onClick={() => this.toggle()}
+            onKeyDown={() => this.toggle()}
+            role="button"
+            tabIndex="0"
+          >
+            {this.state.expanded ? (
+              <ChevronUp customColor="#bac7d5" />
+            ) : (
+              <ChevronDown customColor="#bac7d5" />
+            )}
+          </div>
+        </div>
+        {this.state.expanded ? (
           <div className="bottomRow">
             <MobileBookingControls manageBookingURL={booking.directAccessURL} />
           </div>
