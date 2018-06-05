@@ -5,7 +5,7 @@ exports[`Markdown should match snapshot 1`] = `
   <div
     dangerouslySetInnerHTML={
       Object {
-        "__html": "<h1>Hello World</h1>
+        "__html": "<h1>Hello World <a target=\\"_blank\\" href=\\"https://www.kiwi.com/\\">this is my url</a> <a target=\\"_blank\\" href=\\"https://www.kiwi.com/\\">this is my second url</a> <a target=\\"_blank\\" href=\\"https://www.kiwi.com/\\">and this is third url</a></h1>
 ",
       }
     }
