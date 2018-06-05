@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
-import idx from 'idx';
 import css from 'styled-jsx/css';
 
 import bookingTypes from '../common/booking/bookingTypes';
@@ -89,31 +88,15 @@ class MobileBookingDetail extends React.Component<Props> {
     return null;
   };
 
-  getDepartureByType = booking => {
-    let date = null;
-
-    if (booking.type === bookingTypes.ONE_WAY) {
-      date = idx(booking, _ => _.trip.departure.time);
-    }
-
-    if (booking.type === bookingTypes.RETURN) {
-      date = idx(booking, _ => _.outbound.departure.time);
-    }
-
-    if (booking.type === bookingTypes.MULTICITY) {
-      date = idx(booking, _ => _.start.time);
-    }
-
-    return date ? new Date(date) : null;
-  };
-
   render() {
     const { booking, expanded } = this.props;
     return (
       <React.Fragment>
-        <div className="TripId">
-          {`Upcoming trip # ${formatBookingId(booking.databaseId)}`}
-        </div>
+        {booking.databaseId && (
+          <div className="TripId">
+            {`Upcoming trip # ${formatBookingId(booking.databaseId)}`}
+          </div>
+        )}
         {this.renderByType(booking)}
         {expanded ? (
           <div className="bottomRow">
@@ -137,25 +120,12 @@ export default createFragmentContainer(
       ...Header_booking
       ... on BookingOneWay {
         ...OneWayTrip_booking
-        trip {
-          departure {
-            time
-          }
-        }
       }
       ... on BookingReturn {
         ...ReturnTrip_booking
-        outbound {
-          departure {
-            time
-          }
-        }
       }
       ... on BookingMulticity {
         ...MultiCityTrip_booking
-        start {
-          time
-        }
       }
     }
   `,
