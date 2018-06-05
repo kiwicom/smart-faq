@@ -68,14 +68,15 @@ class MulticityOverlay extends React.Component<Props, State> {
               align-items: flex-end;
               position: absolute;
               top: 0;
+              left: 0;
               width: 100%;
               height: inherit;
               background: linear-gradient(
                 to bottom,
-                rgba(225, 0, 0, 0),
-                rgba(225, 0, 0, 0),
-                rgba(245, 247, 249, 0.59),
-                rgb(245, 247, 249)
+                rgba(225, 0, 0, 0) 50%,
+                rgba(225, 0, 0, 0) 30%,
+                rgba(245, 247, 249, 0.59) 30%,
+                rgb(245, 247, 249) 100%
               );
             }
             .multicityOverlayIsActive {
