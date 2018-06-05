@@ -5,6 +5,7 @@ import * as React from 'react';
 import idx from 'idx';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
+import MediaQuery from 'react-responsive';
 
 import FullFAQLink from '../FullFAQLink';
 import CloseButton from '../buttons/CloseButton';
@@ -135,7 +136,9 @@ const renderLoggedIn = (comesFromSearch: boolean) => {
         <style jsx>{loggedInStyle}</style>
         <style jsx>{responsiveStyleHelperClasses}</style>
       </div>
-      <MobileBookingHeader />
+      <MediaQuery query="screen and (min-width: 320px) and (max-width: 480px)">
+        <MobileBookingHeader />
+      </MediaQuery>
     </React.Fragment>
   );
 };

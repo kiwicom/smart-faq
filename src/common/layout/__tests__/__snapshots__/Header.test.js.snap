@@ -125,15 +125,6 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
         </div>
       </div>
     </div>
-    <div
-      class="jsx-1542149023 jsx-3051036439 mobileOnly MobileBookingHeader"
-    >
-      <div>
-        <div>
-          Loading
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 `;

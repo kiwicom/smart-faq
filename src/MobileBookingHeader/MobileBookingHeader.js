@@ -3,7 +3,6 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 
-import responsiveStyleHelperClasses from '../common/responsiveStyleHelperClasses';
 import { BookingState } from '../context/BookingState';
 import MobileNearestBooking from './MobileNearestBooking';
 import MobileSelectedBooking from './MobileSelectedBooking';
@@ -56,10 +55,9 @@ class MobileBookingHeader extends React.Component<Props> {
   render() {
     return (
       <React.Fragment>
-        <div className="mobileOnly MobileBookingHeader">
+        <div className="MobileBookingHeader">
           <MobileBookingSummary />
         </div>
-        <style jsx>{responsiveStyleHelperClasses}</style>
         <style jsx>{MobileBookingHeaderStyle}</style>
       </React.Fragment>
     );

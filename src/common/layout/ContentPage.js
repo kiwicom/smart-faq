@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
 
 import Header from './Header';
 import StaticFAQ from '../../StaticFAQ';
@@ -21,18 +22,20 @@ class ContentPage extends React.Component<Props> {
     <div className="ContentPage">
       <Header isLoggedIn={isLoggedIn} />
       <div className="Body">
-        {isLoggedIn && (
-          <div className="BookingInfo">
-            <BookingState.Consumer>
-              {({ bookingPage, selectedBooking }) => (
-                <BookingPage
-                  bookingPage={bookingPage}
-                  selectedBooking={selectedBooking}
-                />
-              )}
-            </BookingState.Consumer>
-          </div>
-        )}
+        <MediaQuery query="screen and (min-width: 480px)">
+          {isLoggedIn && (
+            <div className="BookingInfo">
+              <BookingState.Consumer>
+                {({ bookingPage, selectedBooking }) => (
+                  <BookingPage
+                    bookingPage={bookingPage}
+                    selectedBooking={selectedBooking}
+                  />
+                )}
+              </BookingState.Consumer>
+            </div>
+          )}
+        </MediaQuery>
         <div className="FAQ">
           <Switch location={this.props.history.location}>
             <Route exact path="/faq/:categoryId?" component={StaticFAQ} />
@@ -61,10 +64,6 @@ class ContentPage extends React.Component<Props> {
           }
 
           @media only screen and (min-width: 320px) and (max-width: 480px) {
-            .BookingInfo {
-              display: none;
-            }
-
             .ContentPage {
               min-width: 320px;
               width: 100vw;
