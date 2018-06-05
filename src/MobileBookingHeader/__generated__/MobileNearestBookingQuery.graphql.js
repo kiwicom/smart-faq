@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f76b4f0fd5e2ee9bbab9c7910dfd5a93
+ * @relayHash 563d2189a5f0912fff6410e04aec2801
  */
 
 /* eslint-disable */
@@ -32,8 +32,6 @@ fragment MobileBookingDetail_booking on BookingInterface {
   type
   databaseId
   directAccessURL
-  ...Contact_info
-  ...Header_booking
   ... on BookingOneWay {
     ...OneWayTrip_booking
   }
@@ -43,22 +41,6 @@ fragment MobileBookingDetail_booking on BookingInterface {
   ... on BookingMulticity {
     ...MultiCityTrip_booking
   }
-}
-
-fragment Contact_info on BookingInterface {
-  contactDetails {
-    phone
-    email
-  }
-}
-
-fragment Header_booking on BookingInterface {
-  type
-  status
-  databaseId
-  ...OneWay_bookingHeader
-  ...Return_bookingHeader
-  ...Multicity_bookingHeader
 }
 
 fragment OneWayTrip_booking on BookingOneWay {
@@ -102,63 +84,6 @@ fragment ReturnTrip_booking on BookingReturn {
 }
 
 fragment MultiCityTrip_booking on BookingMulticity {
-  trips {
-    departure {
-      airport {
-        city {
-          name
-        }
-      }
-    }
-  }
-  end {
-    airport {
-      city {
-        name
-      }
-    }
-  }
-}
-
-fragment OneWay_bookingHeader on BookingOneWay {
-  trip {
-    departure {
-      airport {
-        city {
-          name
-        }
-      }
-    }
-    arrival {
-      airport {
-        city {
-          name
-        }
-      }
-    }
-  }
-}
-
-fragment Return_bookingHeader on BookingReturn {
-  outbound {
-    departure {
-      airport {
-        city {
-          name
-        }
-      }
-    }
-    arrival {
-      airport {
-        city {
-          name
-        }
-      }
-    }
-  }
-}
-
-fragment Multicity_bookingHeader on BookingMulticity {
   trips {
     departure {
       airport {
@@ -222,26 +147,13 @@ v1 = {
 },
 v2 = [
   v1
-],
-v3 = [
-  v1,
-  {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "arrival",
-    "storageKey": null,
-    "args": null,
-    "concreteType": "RouteStop",
-    "plural": false,
-    "selections": v0
-  }
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "MobileNearestBookingQuery",
   "id": null,
-  "text": "query MobileNearestBookingQuery {\n  nearestBooking {\n    __typename\n    ...MobileBookingDetail_booking\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  directAccessURL\n  ...Contact_info\n  ...Header_booking\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTrip_booking\n  }\n}\n\nfragment Contact_info on BookingInterface {\n  contactDetails {\n    phone\n    email\n  }\n}\n\nfragment Header_booking on BookingInterface {\n  type\n  status\n  databaseId\n  ...OneWay_bookingHeader\n  ...Return_bookingHeader\n  ...Multicity_bookingHeader\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n}\n\nfragment MultiCityTrip_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n    }\n  }\n}\n\nfragment OneWay_bookingHeader on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n}\n\nfragment Return_bookingHeader on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n}\n\nfragment Multicity_bookingHeader on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n    }\n  }\n}\n",
+  "text": "query MobileNearestBookingQuery {\n  nearestBooking {\n    __typename\n    ...MobileBookingDetail_booking\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTrip_booking\n  }\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n}\n\nfragment MultiCityTrip_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -311,38 +223,6 @@ return {
             "storageKey": null
           },
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "contactDetails",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "BookingContactDetails",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "phone",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "email",
-                "args": null,
-                "storageKey": null
-              }
-            ]
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "status",
-            "args": null,
-            "storageKey": null
-          },
-          {
             "kind": "ScalarField",
             "alias": null,
             "name": "id",
@@ -387,7 +267,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v3
+                "selections": v2
               },
               {
                 "kind": "LinkedField",
@@ -413,7 +293,19 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v3
+                "selections": [
+                  v1,
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "arrival",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "RouteStop",
+                    "plural": false,
+                    "selections": v0
+                  }
+                ]
               }
             ]
           }

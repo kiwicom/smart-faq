@@ -156,8 +156,6 @@ export default createFragmentContainer(
       type
       databaseId
       directAccessURL
-      ...Contact_info
-      ...Header_booking
       ... on BookingOneWay {
         ...OneWayTrip_booking
       }
