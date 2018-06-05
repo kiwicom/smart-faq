@@ -4,6 +4,7 @@ exports[`IntroPage should match snapshot 1`] = `
 <ScrollableContent
   styles="width: 480px;padding-top: 128px;"
 >
+  <SelectUrlBooking />
   <CloseButton />
   <div
     className="jsx-2348043769 picture"

@@ -12,7 +12,7 @@ import { withUser } from '../context/User';
 import type { User } from '../types';
 import FullFAQLink from '../common/FullFAQLink';
 import redirectsLoggedIn from '../common/redirectsLoggedIn';
-import { selectUrlBooking } from '../common/integration/urlProcessing';
+import { SelectUrlBooking } from '../common/integration/urlProcessing';
 
 const style = css`
   .Intro {
@@ -163,4 +163,4 @@ export class PureIntro extends React.Component<Props> {
   }
 }
 
-export default selectUrlBooking(withUser(redirectsLoggedIn(PureIntro)));
+export default withUser(redirectsLoggedIn(PureIntro));

@@ -4,20 +4,19 @@ import * as React from 'react';
 
 import { BookingState } from '../../context/BookingState';
 
-export const selectUrlBooking = <Props>(
-  ComponentToWrap: React.ComponentType<Props>,
-) => {
+const SelectUrlBooking = () => {
   const urlMatch = window.location.href.match(
     /.*[kiwi.com|localhost:\d*]\/.*\/account\/bookings\/(\d*)$/,
   );
   const bookingId = urlMatch && urlMatch[1];
-  const WrappedComponent = (props: any) => (
+  return (
     <BookingState.Consumer>
       {({ onSelectBooking }) => {
         bookingId && onSelectBooking(bookingId);
-        return <ComponentToWrap {...props} />;
+        return null;
       }}
     </BookingState.Consumer>
   );
-  return WrappedComponent;
 };
+
+export { SelectUrlBooking };
