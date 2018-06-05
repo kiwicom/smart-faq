@@ -7,6 +7,7 @@ import {
   Store,
   QueryResponseCache,
 } from 'relay-runtime';
+import idx from 'idx';
 
 import { DEFAULT_LOCALE } from '../helpers/frontendLanguageToLocale';
 
