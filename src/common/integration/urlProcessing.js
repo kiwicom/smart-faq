@@ -10,14 +10,12 @@ export const selectUrlBooking = (ComponentToWrap: React.ComponentType<any>) => {
   );
   const bookingId = urlMatch && urlMatch[1];
   const WrappedComponent = (props: any) => (
-    <React.Fragment>
-      <BookingState.Consumer>
-        {({ onSelectBooking }) => {
-          bookingId && onSelectBooking(bookingId);
-          return <ComponentToWrap {...props} />;
-        }}
-      </BookingState.Consumer>
-    </React.Fragment>
+    <BookingState.Consumer>
+      {({ onSelectBooking }) => {
+        bookingId && onSelectBooking(bookingId);
+        return <ComponentToWrap {...props} />;
+      }}
+    </BookingState.Consumer>
   );
   return WrappedComponent;
 };
