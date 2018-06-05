@@ -44,7 +44,6 @@ const MobileBookingHeaderStyle = css`
     flex-direction: column;
     background-color: #f5f7f9;
     box-shadow: inset 0 1px 0 0 #e8edf1;
-
     padding: 0 16px;
   }
 `;
