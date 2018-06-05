@@ -23,7 +23,7 @@ class ContentPage extends React.Component<Props> {
     <div className="ContentPage">
       <Header isLoggedIn={isLoggedIn} />
       <div className="Body">
-        <MediaQuery query="screen and (min-width: 480px)">
+        <MediaQuery query="screen and (min-width: 812px)">
           {isLoggedIn && (
             <div className="BookingInfo">
               <BookingState.Consumer>
@@ -66,7 +66,7 @@ class ContentPage extends React.Component<Props> {
             width: 548px;
           }
 
-          @media only screen and (min-width: 320px) and (max-width: 480px) {
+          @media only screen and (max-width: 812px) {
             .ContentPage {
               min-width: 320px;
               width: 100vw;

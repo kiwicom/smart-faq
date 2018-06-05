@@ -24,12 +24,6 @@ exports[`SignIn should match snapshot 1`] = `
       className="jsx-1835212979 title"
     >
       <Heading
-        element="h1"
-        size="large"
-        weight="bold"
-      >
-        Sign in
-      </Heading>
     </div>
     <Text
       align="left"

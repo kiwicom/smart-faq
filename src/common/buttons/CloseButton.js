@@ -27,7 +27,7 @@ const CloseIcon = ({ onClick }: Props) => (
           padding: 8px;
           cursor: pointer;
         }
-        @media only screen and (min-width: 320px) and (max-width: 480px) {
+        @media only screen and (max-width: 812px) {
           top: 16px;
           right: 16px;
         }
