@@ -10,9 +10,13 @@ import ForgottenPassword from './ForgottenPassword';
 import { CheckRecoveryLink, CheckMagicLink } from './EmailPage';
 import ContentPage from './common/layout/ContentPage';
 
-const Routes = () => {
+type Props = {|
+  initialRoute: string,
+|};
+
+const Routes = (props: Props) => {
   return (
-    <MemoryRouter>
+    <MemoryRouter initialEntries={[props.initialRoute]} initialIndex={0}>
       <Switch>
         <Route exact path="/" component={Intro} />
         <Route path="/sign-in" component={SignIn} />
