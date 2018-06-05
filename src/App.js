@@ -11,6 +11,7 @@ import { LanguageContext } from './context/Language';
 import { UserContext } from './context/User';
 import BookingStateProvider from './context/BookingState';
 import { SelectUrlBooking } from './common/integration/urlProcessing';
+import SearchStateProvider from './context/SearchState';
 import type { onLogin, onLogout, onSocialLogin, User } from './types';
 
 const style = css`
@@ -89,11 +90,13 @@ class App extends React.Component<Props, State> {
                 }}
               >
                 <BookingStateProvider>
+                <SearchStateProvider>
                   <SelectUrlBooking
                     wasSelected={this.state.urlBookingWasSelected}
                     setSelected={this.urlBookingSelected}
                   />
                   <Routes initialRoute={this.props.initialRoute} />
+                  </SearchStateProvider>
                 </BookingStateProvider>
               </UserContext.Provider>
             </CloseContext.Provider>

@@ -6,11 +6,10 @@ import css from 'styled-jsx/css';
 import { Search } from '@kiwicom/orbit-components/lib/icons';
 import { withRouter } from 'react-router-dom';
 
+import { SearchState, type SearchStateType } from '../context/SearchState';
 import Input from './../common/Input';
 import FAQCategoryList from './FAQCategoryList';
 import SearchAllFAQs from './SearchAllFAQs';
-
-let searchText = '';
 
 const style = css`
   .static-faq {
@@ -43,49 +42,54 @@ type State = {|
 |};
 
 class StaticFAQ extends React.Component<Props, State> {
-  state = {
-    searchText,
-  };
-
+  changeSearchText = (text: string) => {}; // eslint-disable-line no-unused-vars
   handleSearchChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    searchText = e.target.value;
-    this.setState({ searchText });
+    this.changeSearchText(e.target.value);
   };
-
   handleCancelSearch = () => {
-    searchText = '';
-    this.setState({ searchText });
+    this.changeSearchText('');
   };
 
-  renderInput = (isSearching: number) => (
-    <Input
-      value={this.state.searchText}
-      onChange={this.handleSearchChange}
-      placeholder="What can we help you with?"
-      icon={<Search customColor="#bac7d5" />}
-      onReset={isSearching ? this.handleCancelSearch : undefined}
-      dataCy="input-staticFAQ"
-    />
-  );
+  renderInput = (searchText: string) => {
+    const isSearching = searchText.length;
+    return (
+      <Input
+        value={searchText}
+        onChange={this.handleSearchChange}
+        placeholder="What can we help you with?"
+        icon={<Search customColor="#bac7d5" />}
+        onReset={isSearching ? this.handleCancelSearch : undefined}
+        dataCy="input-staticFAQ"
+      />
+    );
+  };
 
   render() {
     const categoryId = idx(this.props.match, _ => _.params.categoryId) || null;
-    const { searchText } = this.state;
-    const isSearching = searchText.length;
+
     return (
-      <div className="static-faq">
-        <div className="static-faq-body">
-          <div className="static-faq-search">
-            {!categoryId && this.renderInput(isSearching)}
-          </div>
-          {isSearching ? (
-            <SearchAllFAQs search={searchText} />
-          ) : (
-            <FAQCategoryList categoryId={categoryId} />
-          )}
-        </div>
-        <style jsx>{style}</style>
-      </div>
+      <SearchState.Consumer>
+        {({ searchText, changeSearchText }: SearchStateType) => {
+          this.changeSearchText = changeSearchText;
+
+          const isSearching = searchText.length;
+          return (
+            <div className="static-faq">
+              <div className="static-faq-body">
+                <div className="static-faq-search">
+                  {!categoryId && this.renderInput(searchText)}
+                </div>
+                {isSearching ? (
+                  <SearchAllFAQs search={searchText} />
+                ) : (
+                  <FAQCategoryList categoryId={categoryId} />
+                )}
+              </div>
+              <style jsx>{style}</style>
+            </div>
+          );
+        }}
+      </SearchState.Consumer>
     );
   }
 }
