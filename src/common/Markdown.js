@@ -14,7 +14,7 @@ type Props = {
 
 const renderMarkdown = markdown => {
   const domString = md.render(markdown);
-  return domString.replace('<a href=', '<a target="_blank" href=');
+  return domString.replace(/<a href=/g, '<a target="_blank" href=');
 };
 
 const Markdown = (props: Props) => (
