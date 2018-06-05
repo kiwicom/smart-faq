@@ -74,6 +74,10 @@ const MobileBookingSummaryStyle = css`
     display: flex;
   }
 
+  .topRow:focus {
+    outline: 0;
+  }
+
   .Chevron {
     display: flex;
     flex-direction: column;
@@ -115,7 +119,13 @@ class MobileBookingDetail extends React.Component<Props, State> {
     const { booking } = this.props;
     return (
       <React.Fragment>
-        <div className="topRow">
+        <div
+          className="topRow"
+          onClick={() => this.toggle()}
+          onKeyDown={() => this.toggle()}
+          role="button"
+          tabIndex="0"
+        >
           <div style={{ flexGrow: 1 }}>
             {booking.databaseId && (
               <div className="TripId">
@@ -124,13 +134,7 @@ class MobileBookingDetail extends React.Component<Props, State> {
             )}
             {this.renderByType(booking)}
           </div>
-          <div
-            className="Chevron"
-            onClick={() => this.toggle()}
-            onKeyDown={() => this.toggle()}
-            role="button"
-            tabIndex="0"
-          >
+          <div className="Chevron">
             {this.state.expanded ? (
               <ChevronUp customColor="#bac7d5" />
             ) : (
