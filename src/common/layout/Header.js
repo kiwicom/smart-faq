@@ -5,12 +5,14 @@ import * as React from 'react';
 import idx from 'idx';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
+import MediaQuery from 'react-responsive';
 
 import FullFAQLink from '../FullFAQLink';
 import CloseButton from '../buttons/CloseButton';
 import BackButton from '../buttons/BackButton';
 import SignOutButton from './SignOutButton';
 import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
+import MobileBookingHeader from '../../MobileBookingHeader/MobileBookingHeader';
 
 const style = css`
   .loggedOut {
@@ -117,22 +119,27 @@ type Props = {
 
 const renderLoggedIn = (comesFromSearch: boolean) => {
   return (
-    <div className="loggedIn">
-      <div className="mobileOnly">
-        <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
-      </div>
-      <div className="helpHeader">Help</div>
-      <div className="links">
-        <div className="faqLink desktopOnly">
-          <FullFAQLink className="primary" />
+    <React.Fragment>
+      <div className="loggedIn">
+        <div className="mobileOnly">
+          <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
         </div>
-        <div className="desktopOnly">
-          <SignOutButton />
+        <div className="helpHeader">Help</div>
+        <div className="links">
+          <div className="faqLink desktopOnly">
+            <FullFAQLink className="primary" />
+          </div>
+          <div className="desktopOnly">
+            <SignOutButton />
+          </div>
         </div>
+        <style jsx>{loggedInStyle}</style>
+        <style jsx>{responsiveStyleHelperClasses}</style>
       </div>
-      <style jsx>{loggedInStyle}</style>
-      <style jsx>{responsiveStyleHelperClasses}</style>
-    </div>
+      <MediaQuery query="screen and (min-width: 320px) and (max-width: 480px)">
+        <MobileBookingHeader />
+      </MediaQuery>
+    </React.Fragment>
   );
 };
 
