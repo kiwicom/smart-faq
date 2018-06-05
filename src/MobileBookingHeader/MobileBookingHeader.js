@@ -11,39 +11,28 @@ import MobileSelectedBooking from './MobileSelectedBooking';
 type MobileBookingPageProps = {|
   +bookingPage: string,
   +selectedBooking: ?string,
-  +expanded: boolean,
 |};
 
 const MobileBookingPage = (props: MobileBookingPageProps) => {
-  const { bookingPage, selectedBooking, expanded } = props;
+  const { bookingPage, selectedBooking } = props;
   if (bookingPage === 'SINGLE_BOOKING') {
     if (selectedBooking) {
-      return (
-        <MobileSelectedBooking
-          bookingId={selectedBooking}
-          expanded={expanded}
-        />
-      );
+      return <MobileSelectedBooking bookingId={selectedBooking} />;
     }
 
-    return <MobileNearestBooking expanded={expanded} />;
+    return <MobileNearestBooking />;
   }
 
   return null;
 };
 
-type MobileBookingSummaryProps = {
-  +style: any,
-  +expanded: boolean,
-};
-const MobileBookingSummary = (props: MobileBookingSummaryProps) => (
-  <div style={props.style}>
+const MobileBookingSummary = () => (
+  <div>
     <BookingState.Consumer>
       {({ bookingPage, selectedBooking }) => (
         <MobileBookingPage
           bookingPage={bookingPage}
           selectedBooking={selectedBooking}
-          expanded={props.expanded}
         />
       )}
     </BookingState.Consumer>
@@ -56,6 +45,7 @@ const MobileBookingHeaderStyle = css`
     flex-direction: column;
     background-color: #f5f7f9;
     box-shadow: inset 0 1px 0 0 #e8edf1;
+
     padding: 0 16px;
   }
 `;

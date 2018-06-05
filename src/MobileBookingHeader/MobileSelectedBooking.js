@@ -33,7 +33,6 @@ const selectedBookingQuery = graphql`
 
 type Props = {
   bookingId: string,
-  expanded: boolean,
 };
 
 class MobileSelectedBooking extends React.Component<Props> {
@@ -65,9 +64,7 @@ class MobileSelectedBooking extends React.Component<Props> {
       return <div>Not found</div>;
     }
 
-    return (
-      <MobileBookingDetail expanded={this.props.expanded} booking={booking} />
-    );
+    return <MobileBookingDetail booking={booking} />;
   };
 
   render() {
