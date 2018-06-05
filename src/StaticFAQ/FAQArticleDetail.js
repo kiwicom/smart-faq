@@ -58,7 +58,7 @@ type Props = {
 
 const style = css`
   .breadcrumbs {
-    margin: 24px 40px;
+    margin: 24px 36px;
     margin-bottom: -2px;
   }
   @media only screen and (min-width: 320px) and (max-width: 480px) {
