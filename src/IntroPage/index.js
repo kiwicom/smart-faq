@@ -70,7 +70,7 @@ const style = css`
 
     line-height: 1.4;
   }
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
+  @media only screen and (max-width: 480px) {
     .Intro {
       width: 100%;
       padding-top: 75px;

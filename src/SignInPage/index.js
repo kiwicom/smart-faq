@@ -59,7 +59,7 @@ const style = css`
     object-fit: contain;
   }
 
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
+  @media only screen (max-width: 480px) {
     .SignIn {
       width: 100%;
       padding-top: 0px;

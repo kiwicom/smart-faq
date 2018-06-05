@@ -8,7 +8,7 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
     class="jsx-1101895493 HeaderFAQ"
   >
     <div
-      class="jsx-776539956 close-icon"
+      class="jsx-1432787347 close-icon"
       role="button"
       tabindex="-1"
     >
@@ -26,19 +26,19 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
       </svg>
     </div>
     <div
-      class="jsx-83608286 jsx-1542149023 loggedIn"
+      class="jsx-1324853618 jsx-537663413 loggedIn"
     >
       <div
-        class="jsx-83608286 jsx-1542149023 mobileOnly"
+        class="jsx-1324853618 jsx-537663413 mobileOnly"
       >
         <div
-          class="jsx-1248220229 back"
+          class="jsx-805680104 back"
           data-cy="back-button"
           role="button"
           tabindex="-1"
         >
           <div
-            class="jsx-1248220229 chevron"
+            class="jsx-805680104 chevron"
           >
             <svg
               fill="currentColor"
@@ -61,15 +61,15 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
         </div>
       </div>
       <div
-        class="jsx-83608286 jsx-1542149023 helpHeader"
+        class="jsx-1324853618 jsx-537663413 helpHeader"
       >
         Help
       </div>
       <div
-        class="jsx-83608286 jsx-1542149023 links"
+        class="jsx-1324853618 jsx-537663413 links"
       >
         <div
-          class="jsx-83608286 jsx-1542149023 faqLink desktopOnly"
+          class="jsx-1324853618 jsx-537663413 faqLink desktopOnly"
         >
           <div
             class="jsx-3768482590"
@@ -109,7 +109,7 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
           </div>
         </div>
         <div
-          class="jsx-83608286 jsx-1542149023 desktopOnly"
+          class="jsx-1324853618 jsx-537663413 desktopOnly"
         >
           <div
             class="jsx-1683419278 signOut"
@@ -137,7 +137,7 @@ exports[`ContentHeader should render loggedOut user header 1`] = `
     class="jsx-1101895493 HeaderFAQ"
   >
     <div
-      class="jsx-776539956 close-icon"
+      class="jsx-1432787347 close-icon"
       role="button"
       tabindex="-1"
     >
@@ -155,22 +155,22 @@ exports[`ContentHeader should render loggedOut user header 1`] = `
       </svg>
     </div>
     <div
-      class="jsx-1542149023 jsx-498636252 loggedOut"
+      class="jsx-537663413 jsx-2928277304 loggedOut"
     >
       <div
-        class="jsx-1542149023 jsx-498636252 signInOrBack"
+        class="jsx-537663413 jsx-2928277304 signInOrBack"
       >
         <div
-          class="jsx-1542149023 jsx-498636252 backButton"
+          class="jsx-537663413 jsx-2928277304 backButton"
         >
           <div
-            class="jsx-1248220229 back"
+            class="jsx-805680104 back"
             data-cy="back-button"
             role="button"
             tabindex="-1"
           >
             <div
-              class="jsx-1248220229 chevron"
+              class="jsx-805680104 chevron"
             >
               <svg
                 fill="currentColor"
@@ -194,7 +194,7 @@ exports[`ContentHeader should render loggedOut user header 1`] = `
         </div>
       </div>
       <div
-        class="jsx-1542149023 jsx-498636252 helpHeader"
+        class="jsx-537663413 jsx-2928277304 helpHeader"
       >
         Help
       </div>
