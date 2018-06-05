@@ -4,7 +4,9 @@ import * as React from 'react';
 
 import { BookingState } from '../../context/BookingState';
 
-export const selectUrlBooking = (ComponentToWrap: React.ComponentType<any>) => {
+export const selectUrlBooking = <Props>(
+  ComponentToWrap: React.ComponentType<Props>,
+) => {
   const urlMatch = window.location.href.match(
     /.*[kiwi.com|localhost:\d*]\/.*\/account\/bookings\/(\d*)$/,
   );
