@@ -4,6 +4,7 @@
   "scripts": {
     "prepublish": "yarn build",
     "start": "NODE_ENV=development LANGUAGE=en webpack-dev-server --open --mode development",
+    "start:ci": "NODE_ENV=production LANGUAGE=en webpack-dev-server --mode production",
     "build": "yarn clean && yarn build:lib",
     "build:bundle": "SENTRY_URL_STAGING=$SENTRY_URL_STAGING NODE_ENV=production LANGUAGE=en webpack --mode production",
     "build:pages": "yarn build:bundle && ./scripts/deploy-ghpages.sh",
@@ -15,6 +16,7 @@
     "test-ci": "yarn flow:check && yarn eslint && yarn test && yarn translations:check",
     "cypress:open": "cypress open &",
     "cypress:run": "cypress run --browser chrome",
+    "cypress:run-ci": "cypress run --record false",
     "flow": "flow --color always --show-all-errors --no-auto-start",
     "flow:check": "flow check",
     "flow:start": "flow start",
@@ -58,6 +60,7 @@
     "eslint": "^4.18.2",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-cypress": "^2.0.1",
     "eslint-plugin-flowtype": "^2.46.1",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jest": "^21.13.0",

@@ -54,6 +54,31 @@ jobs:
       - run:
           command: yarn && yarn build:bundle && yarn deploy:surge && yarn deploy:updateURL ${CIRCLE_BRANCH} https://smartfaq-$(git rev-parse --abbrev-ref HEAD).surge.sh
 
+  cypress-tests:
+    <<: *defaults
+    docker:
+      - image: cypress/base:8
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+      - run: yarn
+      - run: 
+          command: yarn start:ci
+          background: true
+      - run:
+          shell: /bin/sh
+          command: |
+            wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:8080
+            :
+      - run: yarn cypress:run-ci
+
   publish:
     <<: *defaults
     steps:
@@ -79,19 +104,24 @@ jobs:
 
 workflows:
   version: 2
-  # on each push publish the app to Surge
-  test-ci-and-surge-deploy:
+  # on each push publish the app to Surge and run integration tests
+  cypress-test-and-surge-deploy:
     jobs:
       - test-ci:
+         filters:
+           branches:
+             ignore: master
+      - cypress-tests:
           filters:
             branches:
               ignore: master
       - surge-deploy:
-          requires:
-            - test-ci
-          filters:
-            branches:
-              ignore: master
+         requires: 
+           - test-ci 
+           - cypress-tests
+         filters:
+           branches:
+             ignore: master
   # publish app to Github pages after merge into master
   test-ci-and-gh-pages-deploy:
     jobs:
@@ -111,7 +141,9 @@ workflows:
       - test-ci:
           filters:
             tags:
-              only: /.*/
+              only: /^v.*/
+            branches:
+              ignore: /.*/
       - publish:
           requires:
             - test-ci

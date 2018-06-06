@@ -15,7 +15,6 @@ describe('User not logged', () => {
       .get('@input-staticFAQ')
       .type(wordToSearch)
       .should('have.value', wordToSearch);
-
     cy.get('[data-cy=scrollable-box]').should('be.visible');
     cy.get('[data-cy=btn-reset-input]').trigger('click');
     cy.get('@input-staticFAQ').should('have.value', '');
