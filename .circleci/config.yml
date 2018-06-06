@@ -69,6 +69,14 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run: yarn
+      - run: 
+        command: yarn start
+        background: true
+      - run:
+        shell: /bin/sh
+        command: |
+          wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:8080
+          :
       - run: yarn cypress:run-ci
 
   publish:

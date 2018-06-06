@@ -15,7 +15,7 @@
     "test-ci": "yarn flow:check && yarn eslint && yarn test && yarn translations:check",
     "cypress:open": "cypress open &",
     "cypress:run": "cypress run --browser chrome",
-    "cypress:run-ci": "CYPRESS_baseUrl=https://smartfaq-$(git rev-parse --abbrev-ref HEAD).surge.sh cypress run --record --key $CYPRESS_KEY",
+    "cypress:run-ci": "cypress run --record --key $CYPRESS_KEY",
     "flow": "flow --color always --show-all-errors --no-auto-start",
     "flow:check": "flow check",
     "flow:start": "flow start",
