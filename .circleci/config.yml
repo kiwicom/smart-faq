@@ -105,7 +105,7 @@ jobs:
 workflows:
   version: 2
   # on each push publish the app to Surge and run integration tests
-  test-ci-and-surge-deploy:
+  cypress-test-and-surge-deploy:
     jobs:
       - test-ci:
          filters:
@@ -116,6 +116,9 @@ workflows:
             branches:
               ignore: master
       - surge-deploy:
+         requires: 
+           - test-ci 
+           - cypress-tests
          filters:
            branches:
              ignore: master
