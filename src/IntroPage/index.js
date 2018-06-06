@@ -125,6 +125,7 @@ export class PureIntro extends React.Component<Props> {
             <Trans i18nKey="IntroPage.header">Need help?</Trans>
           </p>
           <Typography type="secondary">
+            ALOHA
             <Trans i18nKey="IntroPage.subheader">
               {"We're here for you. First, let's narrow down your request."}
             </Trans>
