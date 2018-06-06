@@ -19,9 +19,11 @@ describe('RawBookingCardsList', () => {
 
   it('bookings in list', () => {
     const booking = {
-      edges: [{
-        node: null,
-      }],
+      edges: [
+        {
+          node: null,
+        },
+      ],
       $refType: mockRefType,
     };
     const result = shallow(
