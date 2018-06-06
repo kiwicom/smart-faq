@@ -95,6 +95,8 @@ const BookingCardsList = (props: Props) => {
   );
 };
 
+export const RawBookingCardsList = BookingCardsList;
+
 export default createFragmentContainer(
   BookingCardsList,
   graphql`
