@@ -6,7 +6,7 @@ import { Heading } from '@kiwicom/orbit-components';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
 
 import screensList from './screensList';
-import { Box, ContactPageLink } from '../../common';
+import { Box } from '../../common';
 
 type Props = {|
   changeScreen: (nextScreen: string) => void,
@@ -50,7 +50,6 @@ const ScreenThankyou = (props: Props) => {
             We appreciate your insight.
           </Heading>
         </div>
-        <ContactPageLink />
         <style jsx>{style}</style>
       </div>
     </Box>

@@ -35,7 +35,7 @@ class Accordion extends React.Component<Props, State> {
     isToggled: false,
   };
   toggleBody = () => {
-    this.setState({ isToggled: !this.state.isToggled });
+    this.setState(prevState => ({ isToggled: !prevState.isToggled }));
   };
   render() {
     const { trip } = this.props;

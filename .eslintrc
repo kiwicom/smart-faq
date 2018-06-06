@@ -41,6 +41,7 @@
       "components": [ "Link" ],
       "specialLink": [ "to" ]
     }],
+    "react/no-access-state-in-setstate": "error",
     "react/jsx-uses-vars": "error",
     "react/require-default-props": "off", // Optional props can be undefined.
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }], // Don't use jsx

@@ -53,7 +53,7 @@ class App extends React.Component<Props> {
     this.i18n = initTranslation(props.language, props.locale);
   }
 
-  render() {
+  renderApp() {
     return (
       <div className="smartFAQ" data-test="SmartFAQHelp">
         <meta
@@ -89,6 +89,12 @@ class App extends React.Component<Props> {
         </style>
       </div>
     );
+  }
+  render() {
+    if (window.Raven) {
+      return window.Raven.context(() => this.renderApp());
+    }
+    return this.renderApp();
   }
 }
 

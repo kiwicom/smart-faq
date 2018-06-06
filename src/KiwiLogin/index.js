@@ -30,7 +30,7 @@ const style = css`
     margin-bottom: 8px;
     line-height: 1.2;
   }
-  .forgot-password {
+  .forgotPassword {
     margin-top: 12px;
     display: inline-block;
   }
@@ -87,7 +87,7 @@ const style = css`
       margin-left: 16px;
       margin-right: 16px;
     }
-    div.forgot-password {
+    div.forgotPassword {
       text-align: center;
       display: block;
       margin-bottom: 20px;
@@ -193,10 +193,10 @@ class KiwiLogin extends React.Component<Props, State> {
             )}
             <Link
               to="/forgotten-password"
-              style={{ textDecoration: 'none', display: 'block' }}
+              style={{ textDecoration: 'none' }}
               data-cy="link-forgotten-password"
             >
-              <div className="forgot-password">
+              <div className="forgotPassword">
                 <Typography type="active">Forgot your password?</Typography>
               </div>
             </Link>

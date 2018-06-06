@@ -35,7 +35,7 @@ const style = css`
     margin: 0px 127px 0px 150px;
   }
   div.text {
-    margin: 68px 40px 32.8px 40px;
+    margin: 68px 40px 30px 40px;
   }
   .title {
     margin-bottom: 8px;
@@ -93,7 +93,7 @@ class SignIn extends React.Component<Props> {
         <style jsx>
           {`
             div.infoMessage {
-              margin-bottom: 15px;
+              margin: 20px 0 0;
             }
           `}
         </style>
@@ -124,8 +124,8 @@ class SignIn extends React.Component<Props> {
           <Text type="secondary">
             We need you to sign in to provide you with more personalised help.
           </Text>
+          {sessionExpired && this.renderExpiredSession()}
         </div>
-        {sessionExpired && this.renderExpiredSession()}
         <div className="buttons">
           <div className="googleButton">
             <Button

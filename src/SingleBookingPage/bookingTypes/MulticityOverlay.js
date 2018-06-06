@@ -20,7 +20,7 @@ class MulticityOverlay extends React.Component<Props, State> {
   };
 
   toggleOverlapping = () => {
-    this.setState({ overlapping: !this.state.overlapping });
+    this.setState(prevState => ({ overlapping: !prevState.overlapping }));
   };
 
   render() {
