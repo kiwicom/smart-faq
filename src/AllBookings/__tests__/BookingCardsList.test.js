@@ -16,4 +16,17 @@ describe('RawBookingCardsList', () => {
     );
     expect(result).toMatchSnapshot();
   });
+
+  it('bookings in list', () => {
+    const booking = {
+      edges: [{
+        node: null,
+      }],
+      $refType: mockRefType,
+    };
+    const result = shallow(
+      <RawBookingCardsList title="Example" booking={booking} />,
+    );
+    expect(result).toMatchSnapshot();
+  });
 });
