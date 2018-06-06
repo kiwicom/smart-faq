@@ -38,6 +38,7 @@ type Props = {|
   locale: {},
   user: User,
   loginToken: ?string,
+  initialRoute: string,
   onClose: () => void,
   onLogin: onLogin,
   onSocialLogin: onSocialLogin,
@@ -78,7 +79,7 @@ class App extends React.Component<Props> {
                 }}
               >
                 <BookingStateProvider>
-                  <Routes />
+                  <Routes initialRoute={this.props.initialRoute} />
                 </BookingStateProvider>
               </UserContext.Provider>
             </CloseContext.Provider>

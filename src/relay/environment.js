@@ -7,6 +7,7 @@ import {
   Store,
   QueryResponseCache,
 } from 'relay-runtime';
+import idx from 'idx';
 
 import { DEFAULT_LOCALE } from '../helpers/frontendLanguageToLocale';
 
@@ -46,7 +47,7 @@ const buildFetchQuery = (
     if (
       json.errors &&
       json.errors.length > 0 &&
-      json.errors.some(e => e._proxy.statusCode === 403)
+      json.errors.some(e => idx(e, _ => _._proxy.statusCode) === 403)
     ) {
       throw new Error(ERROR_FORBIDDEN);
     }

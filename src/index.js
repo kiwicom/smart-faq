@@ -86,6 +86,7 @@ class Root extends React.Component<Props, State> {
           language={language}
           locale={enLocale}
           user={this.state.user}
+          initialRoute="/"
           loginToken={this.state.loginToken}
         />
         <style jsx global>
