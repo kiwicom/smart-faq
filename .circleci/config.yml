@@ -28,7 +28,7 @@ install_steps: &install_steps
         paths:
           - node_modules/
     - persist_to_workspace:
-        root: ~/project
+        root: ~/smart-faq
         paths:
           - yarn
 jobs:
@@ -119,6 +119,8 @@ workflows:
           filters:
             branches:
               only: master
+          requires:
+            - install
       - deploy:
           requires:
             - test-ci
@@ -135,6 +137,8 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
+          requires:
+            - install
       - publish:
           requires:
             - test-ci
