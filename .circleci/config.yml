@@ -138,7 +138,9 @@ workflows:
       - test-ci:
           filters:
             tags:
-              only: /.*/
+              only: /^v.*/
+            branches:
+              ignore: /.*/
       - publish:
           requires:
             - test-ci
