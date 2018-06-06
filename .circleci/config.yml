@@ -72,6 +72,12 @@ jobs:
       - run: 
           command: yarn start:ci
           background: true
+      - run:
+          name: Wait for Cypress to start
+          command: |
+            Wait 30s for cardash-api to finish loading
+            sleep 30
+             exit $?
       - run: yarn cypress:run-ci
 
   publish:
