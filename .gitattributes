@@ -1,2 +1,3 @@
 *.graphql.js linguist-generated
+*.snap linguist-generated
 
