@@ -63,7 +63,7 @@ const loggedInStyle = css`
   a.open-icon {
     margin-left: 12px;
   }
-  @media only screen and (max-width: 813px) {
+  @media only screen and (max-width: 1181px) {
     .loggedIn {
       padding: 15px;
     }
@@ -95,7 +95,7 @@ const loggedOutStyle = css`
   .backButton {
     line-height: 2;
   }
-  @media only screen and (max-width: 813px) {
+  @media only screen and (max-width: 1181px) {
     .helpHeader {
       position: absolute;
       left: 0;
@@ -136,7 +136,7 @@ const renderLoggedIn = (comesFromSearch: boolean) => {
         <style jsx>{loggedInStyle}</style>
         <style jsx>{responsiveStyleHelperClasses}</style>
       </div>
-      <MediaQuery query="screen and (max-width: 813px)">
+      <MediaQuery query="screen and (max-width: 1180px)">
         <MobileBookingHeader />
       </MediaQuery>
     </React.Fragment>
