@@ -3,6 +3,5 @@
   "env": {
     "TEST_USER_EMAIL": "test@kiwi.com",
     "TEST_USER_PASSWORD": "kiwitest"
-  },
-  "projectId": "6sobt4"
+  }
 }
