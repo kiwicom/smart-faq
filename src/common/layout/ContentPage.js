@@ -37,15 +37,17 @@ class ContentPage extends React.Component<Props> {
             </div>
           )}
         </MediaQuery>
-        <div className="FAQ">
-          <Switch location={this.props.history.location}>
-            <Route exact path="/faq/:categoryId?" component={StaticFAQ} />
-            <Route
-              path="/faq/:categoryId/article/:articleId"
-              component={FAQArticleDetail}
-            />
-          </Switch>
-        </div>
+        <ScrollableContent>
+          <div className="FAQ">
+            <Switch location={this.props.history.location}>
+              <Route exact path="/faq/:categoryId?" component={StaticFAQ} />
+              <Route
+                path="/faq/:categoryId/article/:articleId"
+                component={FAQArticleDetail}
+              />
+            </Switch>
+          </div>
+        </ScrollableContent>
       </div>
       <style jsx>
         {`
