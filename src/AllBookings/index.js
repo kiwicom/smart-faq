@@ -1,16 +1,16 @@
 // @flow
 
-import idx from "idx";
-import * as React from "react";
-import { graphql } from "react-relay";
-import css from "styled-jsx/css";
-import { Heading } from "@kiwicom/orbit-components";
+import idx from 'idx';
+import * as React from 'react';
+import { graphql } from 'react-relay';
+import css from 'styled-jsx/css';
+import { Heading } from '@kiwicom/orbit-components';
 
-import QueryRenderer from "../relay/QueryRenderer";
-import BookingError from "../SingleBookingPage/BookingError";
-import { Loader, ScrollableContent } from "../common";
-import BookingCardsList from "./BookingCardsList";
-import type { AllBookingsQuery } from "./__generated__/AllBookingsQuery.graphql";
+import QueryRenderer from '../relay/QueryRenderer';
+import BookingError from '../SingleBookingPage/BookingError';
+import { Loader, ScrollableContent } from '../common';
+import BookingCardsList from './BookingCardsList';
+import type { AllBookingsQuery } from './__generated__/AllBookingsQuery.graphql';
 
 const styles = css`
   .allBookings {
