@@ -3,5 +3,7 @@
   "env": {
     "TEST_USER_EMAIL": "test@kiwi.com",
     "TEST_USER_PASSWORD": "kiwitest"
-  }
+  },
+  "viewportHeight" :  1080,
+  "viewportWidth": 1920
 }
