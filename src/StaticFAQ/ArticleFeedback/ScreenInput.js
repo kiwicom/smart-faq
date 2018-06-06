@@ -28,6 +28,7 @@ const style = css`
     border-radius: 3px;
     background-color: #ffffff;
     border: solid 1px #bac7d5;
+    resize: none;
   }
   div.button {
     display: flex;
