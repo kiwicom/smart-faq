@@ -37,15 +37,4 @@ export const Requester = {
       .then(
         r => (r.authorization_url ? r.authorization_url : Promise.reject(r)),
       ),
-  resetPassword: (email: string) =>
-    fetch(endPoints.authApiUrl + '/v1/user.resetPassword', {
-      method: 'post',
-      headers: {
-        Authorization: 'Basic ' + window.btoa(`${USER}:`),
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        login: email,
-      }),
-    }),
 };
