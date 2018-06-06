@@ -95,14 +95,14 @@ workflows:
          filters:
            branches:
              ignore: master
-           requires:
-             - install
+         requires:
+          - install
       - cypress-tests:
           filters:
             branches:
               ignore: master
-            requires:
-             - install
+          requires:
+            - install
       - surge-deploy:
          requires:
            - install
