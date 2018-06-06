@@ -114,6 +114,7 @@ workflows:
   # publish app to Github pages after merge into master
   test-ci-and-gh-pages-deploy:
     jobs:
+      - install
       - test-ci:
           filters:
             branches:
@@ -127,6 +128,7 @@ workflows:
   # publish npm package when new release tag is added on master
   test-ci-and-publish:
     jobs:
+      - install
       - test-ci:
           filters:
             tags:
