@@ -90,12 +90,12 @@ class App extends React.Component<Props, State> {
                 }}
               >
                 <BookingStateProvider>
-                <SearchStateProvider>
-                  <SelectUrlBooking
-                    wasSelected={this.state.urlBookingWasSelected}
-                    setSelected={this.urlBookingSelected}
-                  />
-                  <Routes initialRoute={this.props.initialRoute} />
+                  <SearchStateProvider>
+                    <SelectUrlBooking
+                      wasSelected={this.state.urlBookingWasSelected}
+                      setSelected={this.urlBookingSelected}
+                    />
+                    <Routes initialRoute={this.props.initialRoute} />
                   </SearchStateProvider>
                 </BookingStateProvider>
               </UserContext.Provider>
