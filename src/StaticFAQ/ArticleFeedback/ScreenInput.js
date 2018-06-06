@@ -45,7 +45,7 @@ const style = css`
     padding: 12px 16px;
     font-size: 14px;
   }
-  @media only screen and (max-width: 812px) {
+  @media only screen and (max-width: 813px) {
     div.inputArea textarea {
       width: 100%;
     }
