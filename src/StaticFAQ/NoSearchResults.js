@@ -23,7 +23,7 @@ const styles = css`
   div.subtitle {
     margin-top: 70px;
   }
-  @media only screen and (max-width: 813px) {
+  @media only screen and (max-width: 1181px) {
     div.content {
       padding-left: 30px;
     }
