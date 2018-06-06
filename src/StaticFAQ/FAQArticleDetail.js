@@ -61,7 +61,7 @@ const style = css`
     margin: 24px 36px;
     margin-bottom: -2px;
   }
-  @media only screen and (max-width: 812px) {
+  @media only screen and (max-width: 813px) {
     .breadcrumbs {
       margin: 24px 0;
     }
@@ -144,7 +144,7 @@ class FAQArticleDetail extends React.Component<Props> {
             .faq-article-detail {
               width: 100%;
             }
-            @media only screen and (max-width: 812px) {
+            @media only screen and (max-width: 813px) {
               .faq-article-detail {
                 width: 100%;
               }

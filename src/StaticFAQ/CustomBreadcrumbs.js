@@ -14,7 +14,7 @@ const style = css`
     white-space: nowrap;
     overflow: hidden;
   }
-  @media only screen and (max-width: 812px) {
+  @media only screen and (max-width: 813px) {
     .breadcrumbs {
       margin: 30px 16px;
     }
