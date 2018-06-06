@@ -57,7 +57,7 @@ class ContentPage extends React.Component<Props> {
             height: calc(100% - (64px));
           }
           .FAQ {
-            width: 480px;
+            width: ${isLoggedIn ? '650px;' : '480px;'};
           }
           .BookingInfo {
             width: 548px;
