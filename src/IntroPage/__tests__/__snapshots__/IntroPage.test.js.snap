@@ -1,24 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IntroPage should match snapshot 1`] = `
-<div
-  className="jsx-1363362481 Intro"
+<ScrollableContent
+  styles="width: 480px;padding-top: 128px;"
 >
   <CloseButton />
   <div
-    className="jsx-1363362481 picture"
+    className="jsx-2348043769 picture"
   >
     <img
       alt="Help"
-      className="jsx-1363362481"
+      className="jsx-2348043769"
       src="https://images.kiwi.com/smart-faq/woman-with-laptop@2x.jpg"
     />
   </div>
   <div
-    className="jsx-1363362481 text"
+    className="jsx-2348043769 text"
   >
     <p
-      className="jsx-1363362481 title"
+      className="jsx-2348043769 title"
     >
       <Trans
         i18nKey="IntroPage.header"
@@ -37,13 +37,13 @@ exports[`IntroPage should match snapshot 1`] = `
     </Typography>
   </div>
   <div
-    className="jsx-1363362481 buttons"
+    className="jsx-2348043769 buttons"
   >
     <div
-      className="jsx-1363362481 primary"
+      className="jsx-2348043769 primary"
     >
       <button
-        className="jsx-1363362481"
+        className="jsx-2348043769"
         data-cy="btn-existent-booking"
         onClick={[Function]}
       >
@@ -55,10 +55,10 @@ exports[`IntroPage should match snapshot 1`] = `
       </button>
     </div>
     <div
-      className="jsx-1363362481 secondary"
+      className="jsx-2348043769 secondary"
     >
       <button
-        className="jsx-1363362481"
+        className="jsx-2348043769"
         data-cy="btn-nonexistent-booking"
         onClick={[Function]}
       >
@@ -71,16 +71,16 @@ exports[`IntroPage should match snapshot 1`] = `
     </div>
   </div>
   <hr
-    className="jsx-1363362481 hr-line"
+    className="jsx-2348043769 hr-line"
   />
   <div
-    className="jsx-1363362481 faq-link"
+    className="jsx-2348043769 faq-link"
   >
     <FullFAQLink />
   </div>
   <JSXStyle
-    css=".Intro.jsx-1363362481{width:480px;padding-top:128px;}div.picture.jsx-1363362481{margin-left:150px;margin-bottom:68px;}div.text.jsx-1363362481{margin-left:40px;}div.picture.jsx-1363362481 img.jsx-1363362481{width:203px;height:156px;}p.title.jsx-1363362481{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:6px;}button.jsx-1363362481{cursor:pointer;height:44px;border-radius:3px;border:0;font-size:14px;font-weight:bold;line-height:1.43;padding:12px 16px;}.primary.jsx-1363362481 button.jsx-1363362481{background-color:#00a991;color:#ffffff;margin-bottom:16px;}.secondary.jsx-1363362481 button.jsx-1363362481{background-color:#e8edf1;color:#46515e;}div.buttons.jsx-1363362481{margin-left:40px;margin-top:52.4px;}hr.hr-line.jsx-1363362481{margin:36px 64px 22px 64px;height:0;border:0;border-top:1px solid #e8edf1;}.faq-link.jsx-1363362481{margin-left:182px;line-height:1.4;}@media only screen and (min-width:320px) and (max-width:480px){.Intro.jsx-1363362481{width:100%;padding-top:75px;}div.picture.jsx-1363362481{text-align:center;margin:0px 0px 40px 0px;}hr.hr-line.jsx-1363362481{margin:28px 16px 22px 16px;}div.text.jsx-1363362481{margin-left:16px;margin-right:16px;}div.buttons.jsx-1363362481{margin:28px 16px 24px 16px;}button.jsx-1363362481{width:100%;}.faq-link.jsx-1363362481{text-align:center;margin:0;}}"
-    styleId="1363362481"
+    css=".Intro.jsx-2348043769{width:480px;padding-top:128px;}div.picture.jsx-2348043769{margin-left:150px;margin-bottom:68px;}div.text.jsx-2348043769{margin-left:40px;}div.picture.jsx-2348043769 img.jsx-2348043769{width:203px;height:156px;}p.title.jsx-2348043769{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:6px;}button.jsx-2348043769{cursor:pointer;height:44px;border-radius:3px;border:0;font-size:14px;font-weight:bold;line-height:1.43;padding:12px 16px;}.primary.jsx-2348043769 button.jsx-2348043769{background-color:#00a991;color:#ffffff;margin-bottom:16px;}.secondary.jsx-2348043769 button.jsx-2348043769{background-color:#e8edf1;color:#46515e;}div.buttons.jsx-2348043769{margin-left:40px;margin-top:52.4px;}hr.hr-line.jsx-2348043769{margin:36px 64px 22px 64px;height:0;border:0;border-top:1px solid #e8edf1;}.faq-link.jsx-2348043769{margin-left:182px;margin-bottom:20px;line-height:1.4;}@media only screen and (min-width:320px) and (max-width:480px){.Intro.jsx-2348043769{width:100%;padding-top:75px;}div.picture.jsx-2348043769{text-align:center;margin:0px 0px 40px 0px;}hr.hr-line.jsx-2348043769{margin:28px 16px 22px 16px;}div.text.jsx-2348043769{margin-left:16px;margin-right:16px;}div.buttons.jsx-2348043769{margin:28px 16px 24px 16px;}button.jsx-2348043769{width:100%;}}"
+    styleId="2348043769"
   />
-</div>
+</ScrollableContent>
 `;

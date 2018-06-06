@@ -22,15 +22,11 @@ import image from '../../static/woman-with-laptop@2x.jpg';
 import chevronRight from '../../static/chevron-right.png';
 import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
+import { ScrollableContent } from '../common';
 import { withSocialLogin } from '../context/User';
 import type { onSocialLogin } from '../types';
 
 const style = css`
-  .SignIn {
-    width: 480px;
-    padding-top: 128px;
-    padding-bottom: 50px;
-  }
   div.picture img {
     width: 203px;
     height: 156px;
@@ -111,7 +107,11 @@ class SignIn extends React.Component<Props> {
       _ => _.state.sessionExpired,
     );
     return (
-      <div className="SignIn">
+      <ScrollableContent
+        styles="width: 480px;
+          padding-top: 128px;
+          padding-bottom: 50px;"
+      >
         <CloseButton />
         <BackButton text="Back" />
         <div className="picture">
@@ -165,7 +165,7 @@ class SignIn extends React.Component<Props> {
           </Link>
         </div>
         <style jsx>{style}</style>
-      </div>
+      </ScrollableContent>
     );
   }
 }
