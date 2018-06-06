@@ -10,7 +10,6 @@ defaults: &defaults
 install_steps: &install_steps
   steps:
     - checkout
-    - *attach_workspace
     - restore_cache:
         name: Restore node_modules cache
         keys:
