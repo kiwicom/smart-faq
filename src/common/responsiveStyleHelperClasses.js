@@ -7,7 +7,7 @@ const responsiveStyleHelperClasses = css`
       display: none !important;
     }
   }
-  @media only screen and (max-width: 1181px) {
+  @media only screen and (max-width: 1180px) {
     .desktopOnly {
       display: none !important;
     }

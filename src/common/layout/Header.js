@@ -63,7 +63,7 @@ const loggedInStyle = css`
   a.open-icon {
     margin-left: 12px;
   }
-  @media only screen and (max-width: 1181px) {
+  @media only screen and (max-width: 1180px) {
     .loggedIn {
       padding: 15px;
     }
