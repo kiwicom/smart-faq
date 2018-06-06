@@ -91,7 +91,7 @@ class Detail extends React.Component<Props> {
             .faq-article-text {
               padding: 24px 0;
             }
-            @media only screen and (min-width: 320px) and (max-width: 480px) {
+            @media only screen and (max-width: 813px) {
               .faq-article-content {
                 padding: 16px;
                 padding-top: 0;

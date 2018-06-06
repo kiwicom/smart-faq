@@ -7,7 +7,6 @@ import { Typography } from '@kiwicom/orbit-components';
 
 import image from '../../static/woman-with-laptop@2x.jpg';
 import CloseButton from './../common/buttons/CloseButton';
-import { ScrollableContent } from './../common';
 import { withUser } from '../context/User';
 import type { User } from '../types';
 import FullFAQLink from '../common/FullFAQLink';
@@ -17,6 +16,9 @@ const style = css`
   .Intro {
     width: 480px;
     padding-top: 128px;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   div.picture {
     margin-left: 150px;
@@ -64,7 +66,7 @@ const style = css`
     border: 0;
     border-top: 1px solid #e8edf1;
   }
-  .faq-link {
+  .faqLink {
     margin-left: 182px;
     margin-bottom: 20px;
 
@@ -92,6 +94,10 @@ const style = css`
     button {
       width: 100%;
     }
+    .faqLink {
+      text-align: center;
+      margin: 0;
+    }
   }
 `;
 
@@ -115,7 +121,7 @@ export class PureIntro extends React.Component<Props> {
 
   render() {
     return (
-      <ScrollableContent styles="width: 480px;padding-top: 128px;">
+      <div className="Intro">
         <CloseButton />
         <div className="picture">
           <img alt="Help" src={image} />
@@ -153,11 +159,11 @@ export class PureIntro extends React.Component<Props> {
           </div>
         </div>
         <hr className="hr-line" />
-        <div className="faq-link">
+        <div className="faqLink">
           <FullFAQLink />
         </div>
         <style jsx>{style}</style>
-      </ScrollableContent>
+      </div>
     );
   }
 }
