@@ -70,7 +70,7 @@ jobs:
           - v1-dependencies-
       - run: yarn
       - run: 
-          command: yarn start
+          command: yarn start:ci
           background: true
       - run: yarn cypress:run-ci
 
