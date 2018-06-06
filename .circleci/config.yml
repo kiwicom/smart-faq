@@ -73,11 +73,10 @@ jobs:
           command: yarn start:ci
           background: true
       - run:
-          name: Wait for Cypress to start
+          shell: /bin/sh
           command: |
-            Wait 30s for cardash-api to finish loading
-            sleep 30
-             exit $?
+            wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:8080
+            :
       - run: yarn cypress:run-ci
 
   publish:
