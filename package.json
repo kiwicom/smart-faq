@@ -16,7 +16,7 @@
     "test-ci": "yarn flow:check && yarn eslint && yarn test && yarn translations:check",
     "cypress:open": "cypress open &",
     "cypress:run": "cypress run --browser chrome",
-    "cypress:run-ci": "cypress run",
+    "cypress:run-ci": "cypress run --record false",
     "flow": "flow --color always --show-all-errors --no-auto-start",
     "flow:check": "flow check",
     "flow:start": "flow start",

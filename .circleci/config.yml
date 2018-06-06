@@ -102,18 +102,18 @@ workflows:
   # on each push publish the app to Surge and run integration tests
   test-ci-and-surge-deploy:
     jobs:
-      #- test-ci:
-      #    filters:
-      #      branches:
-      #        ignore: master
-      #- surge-deploy:
-      #    filters:
-      #      branches:
-      #        ignore: master
+      - test-ci:
+         filters:
+           branches:
+             ignore: master
       - cypress-tests:
           filters:
             branches:
               ignore: master
+      - surge-deploy:
+         filters:
+           branches:
+             ignore: master
   # publish app to Github pages after merge into master
   test-ci-and-gh-pages-deploy:
     jobs:
