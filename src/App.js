@@ -10,6 +10,7 @@ import { CloseContext } from './context/Close';
 import { LanguageContext } from './context/Language';
 import { UserContext } from './context/User';
 import BookingStateProvider from './context/BookingState';
+import { SelectUrlBooking } from './common/integration/urlProcessing';
 import type { onLogin, onLogout, onSocialLogin, User } from './types';
 
 const style = css`
@@ -44,15 +45,24 @@ type Props = {|
   onSocialLogin: onSocialLogin,
   onLogout: onLogout,
 |};
+type State = {|
+  urlBookingWasSelected: boolean,
+|};
 
-class App extends React.Component<Props> {
+class App extends React.Component<Props, State> {
   i18n: {};
 
   constructor(props: Props) {
     super(props);
 
     this.i18n = initTranslation(props.language, props.locale);
+    this.state = {
+      urlBookingWasSelected: false,
+    };
   }
+  urlBookingSelected = () => {
+    this.setState({ urlBookingWasSelected: true });
+  };
 
   renderApp() {
     return (
@@ -79,6 +89,10 @@ class App extends React.Component<Props> {
                 }}
               >
                 <BookingStateProvider>
+                  <SelectUrlBooking
+                    wasSelected={this.state.urlBookingWasSelected}
+                    setSelected={this.urlBookingSelected}
+                  />
                   <Routes initialRoute={this.props.initialRoute} />
                 </BookingStateProvider>
               </UserContext.Provider>

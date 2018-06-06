@@ -12,7 +12,6 @@ import { withUser } from '../context/User';
 import type { User } from '../types';
 import FullFAQLink from '../common/FullFAQLink';
 import redirectsLoggedIn from '../common/redirectsLoggedIn';
-import { SelectUrlBooking } from '../common/integration/urlProcessing';
 
 const style = css`
   .Intro {
