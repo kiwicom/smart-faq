@@ -6,6 +6,7 @@ import css from 'styled-jsx/css';
 import { Typography, SystemMessage } from '@kiwicom/orbit-components';
 import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
 
+import { ScrollableContent } from './../common';
 import CloseButton from './../common/buttons/CloseButton';
 import BackButton from '../common/buttons/BackButton';
 import Input from '../common/Input';
@@ -14,12 +15,6 @@ import image from '../../static/woman-with-laptop@2x.jpg';
 import type { onLogin } from '../types';
 
 const style = css`
-  .KiwiLogin {
-    width: 480px;
-    padding-top: 128px;
-    padding-left: 40px;
-    padding-right: 40px;
-  }
   div.picture img {
     width: 203px;
     height: 156px;
@@ -41,6 +36,7 @@ const style = css`
   }
   .singIn {
     float: right;
+    margin-bottom: 20px;
   }
   .singIn button {
     width: 100px;
@@ -100,10 +96,6 @@ const style = css`
     .singIn button {
       width: 100%;
     }
-    .singIn {
-      float: none;
-      width: 100%;
-    }
     label {
       width: 100%;
     }
@@ -153,7 +145,7 @@ class KiwiLogin extends React.Component<Props, State> {
   render() {
     const { showError } = this.state;
     return (
-      <div className="KiwiLogin">
+      <ScrollableContent styles="width: 480px; padding: 128px 40px 0 40px">
         <CloseButton />
         <BackButton text="Back" />
         <div className="picture">
@@ -214,7 +206,7 @@ class KiwiLogin extends React.Component<Props, State> {
           </form>
         </div>
         <style jsx>{style}</style>
-      </div>
+      </ScrollableContent>
     );
   }
 }

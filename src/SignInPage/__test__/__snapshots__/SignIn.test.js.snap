@@ -1,27 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SignIn should match snapshot 1`] = `
-<div
-  className="jsx-1380431358 SignIn"
+<ScrollableContent
+  styles="width: 480px; padding-top: 128px; padding-bottom: 50px;"
 >
   <CloseButton />
   <withRouter(BackButton)
     text="Back"
   />
   <div
-    className="jsx-1380431358 picture"
+    className="jsx-1835212979 picture"
   >
     <img
       alt="Help"
-      className="jsx-1380431358"
+      className="jsx-1835212979"
       src="https://images.kiwi.com/smart-faq/woman-with-laptop@2x.jpg"
     />
   </div>
   <div
-    className="jsx-1380431358 text"
+    className="jsx-1835212979 text"
   >
     <div
-      className="jsx-1380431358 title"
+      className="jsx-1835212979 title"
     >
       <Heading
         element="h1"
@@ -44,10 +44,10 @@ exports[`SignIn should match snapshot 1`] = `
     </Text>
   </div>
   <div
-    className="jsx-1380431358 buttons"
+    className="jsx-1835212979 buttons"
   >
     <div
-      className="jsx-1380431358 googleButton"
+      className="jsx-1835212979 googleButton"
     >
       <Button
         Facebook={true}
@@ -81,7 +81,7 @@ exports[`SignIn should match snapshot 1`] = `
     />
   </div>
   <div
-    className="jsx-1380431358 kiwi-account"
+    className="jsx-1835212979 kiwi-account"
   >
     <Link
       data-cy="link-kiwi-login"
@@ -100,40 +100,40 @@ exports[`SignIn should match snapshot 1`] = `
       </Typography>
       <img
         alt="kiwi login"
-        className="jsx-1380431358 chevron"
+        className="jsx-1835212979 chevron"
         src="https://images.kiwi.com/smart-faq/chevron-right.png"
       />
     </Link>
   </div>
   <JSXStyle
-    css=".SignIn.jsx-1380431358{width:480px;padding-top:128px;padding-bottom:50px;}div.picture.jsx-1380431358 img.jsx-1380431358{width:203px;height:156px;}div.picture.jsx-1380431358{margin:0px 127px 0px 150px;}div.text.jsx-1380431358{margin:68px 40px 30px 40px;}.title.jsx-1380431358{margin-bottom:8px;}.googleButton.jsx-1380431358{margin-bottom:16px;}.buttons.jsx-1380431358{margin-right:134px;margin-left:134px;margin-bottom:24px;}div.kiwi-account.jsx-1380431358{margin-top:8px;text-align:center;}img.chevron.jsx-1380431358{width:8px;height:8px;margin-left:5px;object-fit:contain;}@media only screen and (min-width:320px) and (max-width:480px){.SignIn.jsx-1380431358{width:100%;padding-top:0px;}div.picture.jsx-1380431358{text-align:center;margin:75px 0px 20px 0px;}div.text.jsx-1380431358{margin:0px 16px 33px 16px;}.buttons.jsx-1380431358{display:table;margin:0 auto;}}"
-    styleId="1380431358"
+    css="div.picture.jsx-1835212979 img.jsx-1835212979{width:203px;height:156px;}div.picture.jsx-1835212979{margin:0px 127px 0px 150px;}div.text.jsx-1835212979{margin:68px 40px 30px 40px;}.title.jsx-1835212979{margin-bottom:8px;}.googleButton.jsx-1835212979{margin-bottom:16px;}.buttons.jsx-1835212979{margin-right:134px;margin-left:134px;margin-bottom:24px;}div.kiwi-account.jsx-1835212979{margin-top:8px;text-align:center;}img.chevron.jsx-1835212979{width:8px;height:8px;margin-left:5px;object-fit:contain;}@media only screen and (min-width:320px) and (max-width:480px){.SignIn.jsx-1835212979{width:100%;padding-top:0px;}div.picture.jsx-1835212979{text-align:center;margin:75px 0px 20px 0px;}div.text.jsx-1835212979{margin:0px 16px 33px 16px;}.buttons.jsx-1835212979{display:table;margin:0 auto;}}"
+    styleId="1835212979"
   />
-</div>
+</ScrollableContent>
 `;
 
 exports[`SignIn should match snapshot with expired message 1`] = `
-<div
-  className="jsx-1380431358 SignIn"
+<ScrollableContent
+  styles="width: 480px; padding-top: 128px; padding-bottom: 50px;"
 >
   <CloseButton />
   <withRouter(BackButton)
     text="Back"
   />
   <div
-    className="jsx-1380431358 picture"
+    className="jsx-1835212979 picture"
   >
     <img
       alt="Help"
-      className="jsx-1380431358"
+      className="jsx-1835212979"
       src="https://images.kiwi.com/smart-faq/woman-with-laptop@2x.jpg"
     />
   </div>
   <div
-    className="jsx-1380431358 text"
+    className="jsx-1835212979 text"
   >
     <div
-      className="jsx-1380431358 title"
+      className="jsx-1835212979 title"
     >
       <Heading
         element="h1"
@@ -170,10 +170,10 @@ exports[`SignIn should match snapshot with expired message 1`] = `
     </div>
   </div>
   <div
-    className="jsx-1380431358 buttons"
+    className="jsx-1835212979 buttons"
   >
     <div
-      className="jsx-1380431358 googleButton"
+      className="jsx-1835212979 googleButton"
     >
       <Button
         Facebook={true}
@@ -207,7 +207,7 @@ exports[`SignIn should match snapshot with expired message 1`] = `
     />
   </div>
   <div
-    className="jsx-1380431358 kiwi-account"
+    className="jsx-1835212979 kiwi-account"
   >
     <Link
       data-cy="link-kiwi-login"
@@ -226,14 +226,14 @@ exports[`SignIn should match snapshot with expired message 1`] = `
       </Typography>
       <img
         alt="kiwi login"
-        className="jsx-1380431358 chevron"
+        className="jsx-1835212979 chevron"
         src="https://images.kiwi.com/smart-faq/chevron-right.png"
       />
     </Link>
   </div>
   <JSXStyle
-    css=".SignIn.jsx-1380431358{width:480px;padding-top:128px;padding-bottom:50px;}div.picture.jsx-1380431358 img.jsx-1380431358{width:203px;height:156px;}div.picture.jsx-1380431358{margin:0px 127px 0px 150px;}div.text.jsx-1380431358{margin:68px 40px 30px 40px;}.title.jsx-1380431358{margin-bottom:8px;}.googleButton.jsx-1380431358{margin-bottom:16px;}.buttons.jsx-1380431358{margin-right:134px;margin-left:134px;margin-bottom:24px;}div.kiwi-account.jsx-1380431358{margin-top:8px;text-align:center;}img.chevron.jsx-1380431358{width:8px;height:8px;margin-left:5px;object-fit:contain;}@media only screen and (min-width:320px) and (max-width:480px){.SignIn.jsx-1380431358{width:100%;padding-top:0px;}div.picture.jsx-1380431358{text-align:center;margin:75px 0px 20px 0px;}div.text.jsx-1380431358{margin:0px 16px 33px 16px;}.buttons.jsx-1380431358{display:table;margin:0 auto;}}"
-    styleId="1380431358"
+    css="div.picture.jsx-1835212979 img.jsx-1835212979{width:203px;height:156px;}div.picture.jsx-1835212979{margin:0px 127px 0px 150px;}div.text.jsx-1835212979{margin:68px 40px 30px 40px;}.title.jsx-1835212979{margin-bottom:8px;}.googleButton.jsx-1835212979{margin-bottom:16px;}.buttons.jsx-1835212979{margin-right:134px;margin-left:134px;margin-bottom:24px;}div.kiwi-account.jsx-1835212979{margin-top:8px;text-align:center;}img.chevron.jsx-1835212979{width:8px;height:8px;margin-left:5px;object-fit:contain;}@media only screen and (min-width:320px) and (max-width:480px){.SignIn.jsx-1835212979{width:100%;padding-top:0px;}div.picture.jsx-1835212979{text-align:center;margin:75px 0px 20px 0px;}div.text.jsx-1835212979{margin:0px 16px 33px 16px;}.buttons.jsx-1835212979{display:table;margin:0 auto;}}"
+    styleId="1835212979"
   />
-</div>
+</ScrollableContent>
 `;

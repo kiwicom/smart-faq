@@ -23,7 +23,7 @@ const ScrollableBox = (props: Props) => (
           background-color: rgba(171, 181, 195, 0.6);
         }
         div.scrollable-box {
-          overflow-y: scroll;
+          overflow-y: auto;
           max-height: 78vh;
           margin: 0 auto;
           padding: 4px;

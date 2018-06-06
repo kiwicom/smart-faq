@@ -19,6 +19,7 @@ describe('User can log into SmartFAQ', () => {
     cy.get('[data-cy=input-email]').type(Cypress.env('TEST_USER_EMAIL'));
     cy.get('[data-cy=input-password]').type(Cypress.env('TEST_USER_PASSWORD'));
     cy.get('[data-cy=btn-sign-in]').click();
-    cy.get('.nearestBooking').should('exist');
+    cy.wait(1000);
+    cy.get('[data-cy=nearestBooking]').should('exist');
   });
 });

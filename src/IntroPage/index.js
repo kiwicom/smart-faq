@@ -7,6 +7,7 @@ import { Typography } from '@kiwicom/orbit-components';
 
 import image from '../../static/woman-with-laptop@2x.jpg';
 import CloseButton from './../common/buttons/CloseButton';
+import { ScrollableContent } from './../common';
 import { withUser } from '../context/User';
 import type { User } from '../types';
 import FullFAQLink from '../common/FullFAQLink';
@@ -65,6 +66,8 @@ const style = css`
   }
   .faq-link {
     margin-left: 182px;
+    margin-bottom: 20px;
+
     line-height: 1.4;
   }
   @media only screen and (min-width: 320px) and (max-width: 480px) {
@@ -89,10 +92,6 @@ const style = css`
     button {
       width: 100%;
     }
-    .faq-link {
-      text-align: center;
-      margin: 0;
-    }
   }
 `;
 
@@ -116,7 +115,7 @@ export class PureIntro extends React.Component<Props> {
 
   render() {
     return (
-      <div className="Intro">
+      <ScrollableContent styles="width: 480px;padding-top: 128px;">
         <CloseButton />
         <div className="picture">
           <img alt="Help" src={image} />
@@ -158,7 +157,7 @@ export class PureIntro extends React.Component<Props> {
           <FullFAQLink />
         </div>
         <style jsx>{style}</style>
-      </div>
+      </ScrollableContent>
     );
   }
 }

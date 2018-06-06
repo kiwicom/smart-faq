@@ -7,6 +7,7 @@ import MediaQuery from 'react-responsive';
 import Header from './Header';
 import StaticFAQ from '../../StaticFAQ';
 import FAQArticleDetail from '../../StaticFAQ/FAQArticleDetail';
+import { ScrollableContent } from '../../common';
 import { UserContext, type UserContextType } from '../../context/User';
 import { BookingState } from '../../context/BookingState';
 import BookingPage from './BookingPage';
@@ -36,15 +37,17 @@ class ContentPage extends React.Component<Props> {
             </div>
           )}
         </MediaQuery>
-        <div className="FAQ">
-          <Switch location={this.props.history.location}>
-            <Route exact path="/faq/:categoryId?" component={StaticFAQ} />
-            <Route
-              path="/faq/:categoryId/article/:articleId"
-              component={FAQArticleDetail}
-            />
-          </Switch>
-        </div>
+        <ScrollableContent>
+          <div className="FAQ">
+            <Switch location={this.props.history.location}>
+              <Route exact path="/faq/:categoryId?" component={StaticFAQ} />
+              <Route
+                path="/faq/:categoryId/article/:articleId"
+                component={FAQArticleDetail}
+              />
+            </Switch>
+          </div>
+        </ScrollableContent>
       </div>
       <style jsx>
         {`
@@ -54,7 +57,7 @@ class ContentPage extends React.Component<Props> {
           }
           .ContentPage .Body {
             display: flex;
-            height: calc(100% - (64px));
+            height: calc(100% - (67px));
           }
           .FAQ {
             width: ${isLoggedIn ? '650px;' : '480px;'};
