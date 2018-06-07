@@ -10,9 +10,14 @@ const Loader = () => (
     <style jsx>
       {`
         div.wrapper {
-          text-align: center;
+          display:flex;
+          flex: 1;
+          height: 100%;
+          justify-content: center;
+          align-items: center;
         }
         .spinner {
+          width:140px;
           animation: spin 1.5s linear infinite;
           @keyframes spin {
             0% { transform rotate(0deg); }

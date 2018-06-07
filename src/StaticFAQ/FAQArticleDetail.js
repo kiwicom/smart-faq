@@ -97,7 +97,11 @@ class FAQArticleDetail extends React.Component<Props> {
       );
     }
 
-    return <Loader />;
+    return (
+      <div style={{ height: '100%' }}>
+        <Loader />
+      </div>
+    );
   };
 
   isSearchResult() {
@@ -143,11 +147,7 @@ class FAQArticleDetail extends React.Component<Props> {
           {`
             .faq-article-detail {
               width: 100%;
-            }
-            @media only screen and (max-width: 1181px) {
-              .faq-article-detail {
-                width: 100%;
-              }
+              height: 100%;
             }
           `}
         </style>
