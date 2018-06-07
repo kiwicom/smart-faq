@@ -87,10 +87,13 @@ jobs:
 
 workflows:
   version: 2
+  # Install everything before continuing
+  build:
+    jobs:
+      - install
   # on each push publish the app to Surge and run integration tests
   cypress-test-and-surge-deploy:
     jobs:
-      - install
       - test-ci:
          filters:
            branches:
