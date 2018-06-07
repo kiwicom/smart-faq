@@ -102,6 +102,7 @@ class BookingDetail extends React.Component<Props> {
       >
         <Header booking={booking} isFuture={arrivalInfo.isFuture} />
         {departureInfo.isFuture &&
+          booking.status === 'CONFIRMED' &&
           timeDelta && (
             <Notification hoursLeft={timeDelta} isUrgent={isUrgent} />
           )}
@@ -149,6 +150,7 @@ export default createFragmentContainer(
   graphql`
     fragment BookingDetail_booking on BookingInterface {
       type
+      status
       directAccessURL
       ...Header_booking
       ... on BookingOneWay {

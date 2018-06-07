@@ -12,11 +12,13 @@ type Header_booking$ref = any;
 type MulticityOverlay_booking$ref = any;
 type OneWay_booking$ref = any;
 type Return_booking$ref = any;
+export type BookingStatus = ('CANCELLED' | 'CLOSED' | 'CONFIRMED' | 'DELETED' | 'EXPIRED' | 'NEW' | 'PENDING' | 'REFUNDED' | '%future added value');
 export type BookingType = ('MULTICITY' | 'ONE_WAY' | 'RETURN' | '%future added value');
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type BookingDetail_booking$ref: FragmentReference;
 export type BookingDetail_booking = {|
   +type: ?BookingType,
+  +status: ?BookingStatus,
   +directAccessURL: ?string,
   +trip?: ?{|
     +departure: ?{|
@@ -95,6 +97,13 @@ return {
       "kind": "ScalarField",
       "alias": null,
       "name": "type",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "status",
       "args": null,
       "storageKey": null
     },
@@ -198,5 +207,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '19d7a8684065307450098d7752cc851c';
+(node/*: any*/).hash = 'af967e4ac6540a8a25339a072b6e7cd1';
 module.exports = node;
