@@ -1,44 +1,15 @@
 // @flow
 
 import * as React from 'react';
-import { TextLink, Typography, Text } from '@kiwicom/orbit-components';
-import { Chat, ChevronDown, Phone } from '@kiwicom/orbit-components/lib/icons';
+
+import ContactPageLink from '../../common/ContactPageLink';
 
 const Contact = () => {
-  const phone = '00 00';
-  const email = 'support.en@kiwi.com';
   return (
     <div className="contact">
       <hr />
-      <div className="title">
-        <Text size="large" type="attention">
-          Contacts
-        </Text>
-      </div>
       <div className="contact-options">
-        <div className="phone">
-          <div className="phone-icon inline-icon">
-            <Phone customColor="#00a991" />
-          </div>
-          <Typography size="normal" type="active">
-            {phone}
-          </Typography>
-          <div className="chevron-icon inline-icon">
-            <ChevronDown size="small" customColor="#00a991" />
-          </div>
-        </div>
-        <div className="chat">
-          <div className="chat-icon inline-icon">
-            <Chat customColor="#00a991" />
-          </div>
-          <TextLink
-            onClick={() => {}}
-            url={`mailto:${email}`}
-            title="Write us a message"
-          >
-            Write us a message
-          </TextLink>
-        </div>
+        <ContactPageLink text="Call us" textColor="#00a991" />
       </div>
       <div className="instructions">
         <ol>
