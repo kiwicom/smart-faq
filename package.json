@@ -104,6 +104,7 @@
     "isomorphic-fetch": "2.2.1",
     "luxon": "1.2.0",
     "markdown-it": "^8.4.1",
+    "react-content-loader": "^3.1.2",
     "react-i18next": "7.4.0",
     "react-relay": "1.5.0",
     "react-responsive": "^4.1.0",
