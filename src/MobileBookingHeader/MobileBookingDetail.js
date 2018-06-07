@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { ChevronDown, ChevronUp } from '@kiwicom/orbit-components/lib/icons';
+import { Button } from '@kiwicom/orbit-components';
 import css from 'styled-jsx/css';
 
 import bookingTypes from '../common/booking/bookingTypes';
@@ -19,14 +20,8 @@ type Props = {|
 const MobileBookingControlsStyle = css`
   .manageBookingButton {
     height: 32px;
-    line-height: 32px;
-    border-radius: 3px;
-    background-color: #e8edf1;
-    font-size: 12px;
-    font-weight: bold;
-    text-align: center;
-    color: #46515e;
     margin: 4px 0;
+    margin-bottom: 8px;
     display: block;
     text-decoration: none;
   }
@@ -54,7 +49,13 @@ const MobileBookingControls = (props: MobileBookingControlsProps) => (
       href={props.manageBookingURL}
       className="manageBookingButton"
     >
-      Manage My Booking
+      <Button
+        block
+        onClick={() => {}}
+        type="secondary"
+        size="small"
+        title="Manage My Booking"
+      />
     </a>
     {/* Disabled until we have a design for booking selection page */}
     {/* <div className="selectBookingButton">select another booking</div> */}
