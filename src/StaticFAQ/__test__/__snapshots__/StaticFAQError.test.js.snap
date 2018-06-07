@@ -69,24 +69,26 @@ exports[`StaticFAQError should match snapshot 1`] = `
     >
       <ContactPageLink>
         <div
-          className="jsx-700338373 contactUs"
+          className="jsx-3630812902 contactUs"
         >
           <a
-            className="jsx-700338373"
+            className="jsx-3630812902"
             href="https://www.kiwi.com/en/content/feedback"
             rel="noopener noreferrer"
             target="_blank"
           >
-            Having trouble? Contact us.
+            Having trouble? Contact us
             <span
-              className="jsx-700338373 open-icon"
+              className="jsx-3630812902 open-icon"
             >
               <NewWindow
                 color="attention"
+                customColor="#171b1e"
                 size="small"
               >
                 <OrbitIcon
                   color="attention"
+                  customColor="#171b1e"
                   size="small"
                   viewBox="0 0 24 24"
                 >
@@ -118,8 +120,13 @@ exports[`StaticFAQError should match snapshot 1`] = `
             </span>
           </a>
           <JSXStyle
-            css=".contactUs.jsx-700338373{text-align:center;margin-top:25px;}a.jsx-700338373{color:#171b1e;font-size:14px;-webkit-text-decoration:none;text-decoration:none;font-weight:bold;}a.jsx-700338373 .open-icon.jsx-700338373{margin-left:6px;}"
-            styleId="700338373"
+            css=".contactUs.__jsx-style-dynamic-selector{text-align:center;margin-top:25px;}a.__jsx-style-dynamic-selector{color:#171b1e;font-size:14px;-webkit-text-decoration:none;text-decoration:none;font-weight:bold;}a.__jsx-style-dynamic-selector .open-icon.__jsx-style-dynamic-selector{margin-left:6px;}"
+            dynamic={
+              Array [
+                "#171b1e",
+              ]
+            }
+            styleId="3011186473"
           />
         </div>
       </ContactPageLink>

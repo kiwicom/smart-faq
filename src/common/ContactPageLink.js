@@ -3,16 +3,24 @@
 import * as React from 'react';
 import { NewWindow } from '@kiwicom/orbit-components/lib/icons';
 
-const ContactPageLink = () => (
+type Props = {
+  text?: string,
+  textColor?: string,
+};
+
+const ContactPageLink = ({
+  text = 'Having trouble? Contact us',
+  textColor = '#171b1e',
+}: Props) => (
   <div className="contactUs">
     <a
       target="_blank"
       rel="noopener noreferrer"
       href="https://www.kiwi.com/en/content/feedback"
     >
-      Having trouble? Contact us.
+      {text}
       <span className="open-icon">
-        <NewWindow size="small" color="attention" />
+        <NewWindow size="small" color="attention" customColor={textColor} />
       </span>
     </a>
     <style jsx>
@@ -22,7 +30,7 @@ const ContactPageLink = () => (
           margin-top: 25px;
         }
         a {
-          color: #171b1e;
+          color: ${textColor};
           font-size: 14px;
           text-decoration: none;
           font-weight: bold;
