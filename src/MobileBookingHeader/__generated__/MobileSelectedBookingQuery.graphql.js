@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e7b8a1d778d92db65354b2f35e3835cc
+ * @relayHash d927d8d5b03a40f915478701eb4d6d39
  */
 
 /* eslint-disable */
@@ -75,6 +75,7 @@ fragment OneWayTrip_booking on BookingOneWay {
         city {
           name
         }
+        id
       }
     }
     arrival {
@@ -82,6 +83,7 @@ fragment OneWayTrip_booking on BookingOneWay {
         city {
           name
         }
+        id
       }
     }
   }
@@ -94,6 +96,7 @@ fragment ReturnTrip_booking on BookingReturn {
         city {
           name
         }
+        id
       }
     }
   }
@@ -103,6 +106,7 @@ fragment ReturnTrip_booking on BookingReturn {
         city {
           name
         }
+        id
       }
     }
   }
@@ -115,6 +119,7 @@ fragment MultiCityTrip_booking on BookingMulticity {
         city {
           name
         }
+        id
       }
     }
   }
@@ -123,6 +128,7 @@ fragment MultiCityTrip_booking on BookingMulticity {
       city {
         name
       }
+      id
     }
   }
 }
@@ -173,7 +179,14 @@ v5 = {
   "args": null,
   "storageKey": null
 },
-v6 = [
+v6 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v7 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -200,11 +213,12 @@ v6 = [
             "storageKey": null
           }
         ]
-      }
+      },
+      v6
     ]
   }
 ],
-v7 = {
+v8 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "departure",
@@ -212,9 +226,9 @@ v7 = {
   "args": null,
   "concreteType": "RouteStop",
   "plural": false,
-  "selections": v6
+  "selections": v7
 },
-v8 = {
+v9 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "trip",
@@ -223,7 +237,7 @@ v8 = {
   "concreteType": "Trip",
   "plural": false,
   "selections": [
-    v7,
+    v8,
     {
       "kind": "LinkedField",
       "alias": null,
@@ -232,19 +246,12 @@ v8 = {
       "args": null,
       "concreteType": "RouteStop",
       "plural": false,
-      "selections": v6
+      "selections": v7
     }
   ]
 },
-v9 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
 v10 = [
-  v7
+  v8
 ],
 v11 = {
   "kind": "LinkedField",
@@ -264,7 +271,7 @@ v12 = {
   "args": null,
   "concreteType": "RouteStop",
   "plural": false,
-  "selections": v6
+  "selections": v7
 },
 v13 = {
   "kind": "InlineFragment",
@@ -306,7 +313,7 @@ v17 = {
   "kind": "InlineFragment",
   "type": "BookingOneWay",
   "selections": [
-    v8
+    v9
   ]
 };
 return {
@@ -314,7 +321,7 @@ return {
   "operationKind": "query",
   "name": "MobileSelectedBookingQuery",
   "id": null,
-  "text": "query MobileSelectedBookingQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    type\n    oneWay {\n      ...MobileBookingDetail_booking\n      id\n    }\n    return {\n      ...MobileBookingDetail_booking\n      id\n    }\n    multicity {\n      ...MobileBookingDetail_booking\n      id\n    }\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTrip_booking\n  }\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n}\n\nfragment MultiCityTrip_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n    }\n  }\n}\n",
+  "text": "query MobileSelectedBookingQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    type\n    oneWay {\n      ...MobileBookingDetail_booking\n      id\n    }\n    return {\n      ...MobileBookingDetail_booking\n      id\n    }\n    multicity {\n      ...MobileBookingDetail_booking\n      id\n    }\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTrip_booking\n  }\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment MultiCityTrip_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -394,8 +401,8 @@ return {
               v2,
               v4,
               v5,
-              v8,
               v9,
+              v6,
               v13,
               v16
             ]
@@ -414,7 +421,7 @@ return {
               v5,
               v14,
               v15,
-              v9,
+              v6,
               v13,
               v17
             ]
@@ -433,12 +440,12 @@ return {
               v5,
               v11,
               v12,
-              v9,
+              v6,
               v16,
               v17
             ]
           },
-          v9
+          v6
         ]
       }
     ]

@@ -150,7 +150,6 @@ export default createFragmentContainer(
     fragment BookingDetail_booking on BookingInterface {
       type
       directAccessURL
-      ...Contact_info
       ...Header_booking
       ... on BookingOneWay {
         ...OneWay_booking
