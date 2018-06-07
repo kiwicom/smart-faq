@@ -51,7 +51,7 @@ class StaticFAQ extends React.Component<Props, State> {
   };
 
   renderInput = (searchText: string) => {
-    const isSearching = searchText.length;
+    const isSearching = searchText.length > 0;
     return (
       <Input
         value={searchText}
@@ -72,7 +72,7 @@ class StaticFAQ extends React.Component<Props, State> {
         {({ searchText, changeSearchText }: SearchStateType) => {
           this.changeSearchText = changeSearchText;
 
-          const isSearching = searchText.length;
+          const isSearching = searchText.length > 0;
           return (
             <div className="static-faq">
               <div className="static-faq-body">
