@@ -43,20 +43,17 @@ type MobileBookingControlsProps = {|
 
 const MobileBookingControls = (props: MobileBookingControlsProps) => (
   <React.Fragment>
-    <a
-      rel="noopener noreferrer"
-      target="_blank"
-      href={props.manageBookingURL}
-      className="manageBookingButton"
-    >
+    <div className="manageBookingButton">
       <Button
         block
-        onClick={() => {}}
+        onClick={() => {
+          window.open(props.manageBookingURL, '_blank');
+        }}
         type="secondary"
         size="small"
         title="Manage My Booking"
       />
-    </a>
+    </div>
     {/* Disabled until we have a design for booking selection page */}
     {/* <div className="selectBookingButton">select another booking</div> */}
     <style jsx>{MobileBookingControlsStyle}</style>
