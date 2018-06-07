@@ -14,8 +14,10 @@ import SearchAllFAQs from './SearchAllFAQs';
 const style = css`
   .static-faq {
     width: 100%;
+    height: 100%;
   }
   .static-faq-body {
+    height: 100%;
     padding: 24px 40px;
   }
 
