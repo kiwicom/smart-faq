@@ -1,21 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import idx from 'idx';
 import { TextLink, Typography, Text } from '@kiwicom/orbit-components';
 import { Chat, ChevronDown, Phone } from '@kiwicom/orbit-components/lib/icons';
-import { createFragmentContainer, graphql } from 'react-relay';
 
-import type { Contact_info } from './__generated__/Contact_info.graphql';
-
-type Props = {
-  info: Contact_info,
-};
-
-const Contact = (props: Props) => {
-  const { info } = props;
-  const phone = idx(info, _ => _.contactDetails.phone) || '';
-  const email = idx(info, _ => _.contactDetails.email) || '';
+const Contact = () => {
+  const phone = '00 00';
+  const email = 'support.en@kiwi.com';
   return (
     <div className="contact">
       <hr />
@@ -25,33 +16,29 @@ const Contact = (props: Props) => {
         </Text>
       </div>
       <div className="contact-options">
-        {phone ? (
-          <div className="phone">
-            <div className="phone-icon inline-icon">
-              <Phone customColor="#00a991" />
-            </div>
-            <Typography size="normal" type="active">
-              {phone}
-            </Typography>
-            <div className="chevron-icon inline-icon">
-              <ChevronDown size="small" customColor="#00a991" />
-            </div>
+        <div className="phone">
+          <div className="phone-icon inline-icon">
+            <Phone customColor="#00a991" />
           </div>
-        ) : null}
-        {email ? (
-          <div className="chat">
-            <div className="chat-icon inline-icon">
-              <Chat customColor="#00a991" />
-            </div>
-            <TextLink
-              onClick={() => {}}
-              url={`mailto:${email}`}
-              title="Write us a message"
-            >
-              Write us a message
-            </TextLink>
+          <Typography size="normal" type="active">
+            {phone}
+          </Typography>
+          <div className="chevron-icon inline-icon">
+            <ChevronDown size="small" customColor="#00a991" />
           </div>
-        ) : null}
+        </div>
+        <div className="chat">
+          <div className="chat-icon inline-icon">
+            <Chat customColor="#00a991" />
+          </div>
+          <TextLink
+            onClick={() => {}}
+            url={`mailto:${email}`}
+            title="Write us a message"
+          >
+            Write us a message
+          </TextLink>
+        </div>
       </div>
       <div className="instructions">
         <ol>
@@ -115,16 +102,4 @@ const Contact = (props: Props) => {
   );
 };
 
-export const RawContact = Contact;
-
-export default createFragmentContainer(
-  Contact,
-  graphql`
-    fragment Contact_info on BookingInterface {
-      contactDetails {
-        phone
-        email
-      }
-    }
-  `,
-);
+export default Contact;

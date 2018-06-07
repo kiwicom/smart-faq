@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com/
-# timestamp: Thu May 24 2018 16:06:03 GMT+0200 (CEST)
+# timestamp: Thu Jun 07 2018 10:26:38 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
@@ -151,6 +151,13 @@ type Booking {
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
+  isPastBooking: Boolean
+
+  """All services provided directly by Kiwi.com."""
+  availableServices: Services
+
+  """All services provided via whitelabels."""
+  availableWhitelabeledServices: WhitelabeledServices
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
@@ -233,6 +240,13 @@ interface BookingInterface {
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
+  isPastBooking: Boolean
+
+  """All services provided directly by Kiwi.com."""
+  availableServices: Services
+
+  """All services provided via whitelabels."""
+  availableWhitelabeledServices: WhitelabeledServices
 }
 
 type BookingMulticity implements BookingInterface {
@@ -266,6 +280,13 @@ type BookingMulticity implements BookingInterface {
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
+  isPastBooking: Boolean
+
+  """All services provided directly by Kiwi.com."""
+  availableServices: Services
+
+  """All services provided via whitelabels."""
+  availableWhitelabeledServices: WhitelabeledServices
 
   """Initial origin."""
   start: RouteStop
@@ -311,6 +332,13 @@ type BookingOneWay implements BookingInterface {
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
+  isPastBooking: Boolean
+
+  """All services provided directly by Kiwi.com."""
+  availableServices: Services
+
+  """All services provided via whitelabels."""
+  availableWhitelabeledServices: WhitelabeledServices
   trip: Trip
 }
 
@@ -346,6 +374,13 @@ type BookingReturn implements BookingInterface {
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
+  isPastBooking: Boolean
+
+  """All services provided directly by Kiwi.com."""
+  availableServices: Services
+
+  """All services provided via whitelabels."""
+  availableWhitelabeledServices: WhitelabeledServices
 
   """Trip from origin to destination."""
   outbound: Trip
@@ -627,6 +662,15 @@ type CurrencyDetailEdge {
   cursor: String!
 }
 
+type CustomerSupport {
+  phoneNumbers: [CustomerSupportPhoneNumber]
+}
+
+type CustomerSupportPhoneNumber {
+  availabilityDescription: String
+  number: String
+}
+
 """
 A date string, such as 2007-12-03, compliant with the `full-date` format
 outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
@@ -680,6 +724,65 @@ enum DirectAccessURLValues {
 input DurationInput {
   stopovers: StopoversInput
   maxFlightDuration: Int
+}
+
+"""Combination of flight and hotel"""
+type DynamicPackage {
+  """The ID of an object"""
+  id: ID!
+
+  """Accommodation part of the package"""
+  hotel: Hotel
+
+  """Transport part of the package"""
+  flight: Flight
+
+  """
+  URL to the whitelabel page where this dynamic package can be purchased
+  """
+  whitelabelUrl: String
+
+  """Total price"""
+  price: Price
+}
+
+"""A connection to a list of items."""
+type DynamicPackageConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [DynamicPackageEdge]
+}
+
+"""An edge in a connection."""
+type DynamicPackageEdge {
+  """The item at the end of the edge"""
+  node: DynamicPackage
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+input DynamicPackagesSimpleSearchInput {
+  """Valid airport code according the IATA standard"""
+  fromAirport: String!
+
+  """Valid airport code according the IATA standard"""
+  toAirport: String!
+
+  """List of outbound flight numbers (e.g. OK123)"""
+  outboundFlights: [String!]!
+
+  """List of inbound flight numbers (e.g. OK123)"""
+  inboundFlights: [String!]!
+
+  """Departure date"""
+  date: Date!
+
+  """Return date"""
+  returnDate: Date!
+  passengers: PassengersInput!
 }
 
 type FAQArticle {
@@ -1209,6 +1312,11 @@ type Identity {
   login: String
 }
 
+type InsuranceService {
+  """Returns passengers allowed to buy a travel insurance."""
+  passengers: [Passenger]
+}
+
 """The possible insurance type values"""
 enum InsuranceType {
   NONE
@@ -1366,6 +1474,9 @@ enum Locale {
 }
 
 type Location {
+  """The ID of an object"""
+  id: ID!
+
   """3-letter IATA code of airport or internal city code."""
   locationId: String
   name: String
@@ -1378,6 +1489,7 @@ type Location {
   city: LocationArea
   subdivision: LocationArea
   country: LocationArea
+  countryFlagURL: String
   isActive: Boolean
   stationsCount: Int
   airportsCount: Int
@@ -1435,6 +1547,15 @@ enum LocationType {
   subdivision
 }
 
+type LoungeService {
+  relevantAirports: [LoungeServiceRelevantAirports]
+}
+
+type LoungeServiceRelevantAirports {
+  whitelabelURL: String
+  location: Location
+}
+
 """An object with an ID"""
 interface Node {
   """The id of the object."""
@@ -1456,6 +1577,10 @@ type PageInfo {
   endCursor: String
 }
 
+type ParkingService {
+  whitelabelURL: String
+}
+
 """The passengers associated with the booking"""
 type Passenger {
   databaseId: Int
@@ -1474,6 +1599,7 @@ type Passenger {
 
 input PassengersInput {
   adults: Int!
+  infants: Int
 }
 
 type Price {
@@ -1494,6 +1620,10 @@ input RadiusInput {
   radius: Int!
 }
 
+type ResetPasswordResponse {
+  success: Boolean
+}
+
 input RoomsChildrenConfiguration {
   age: Int
 }
@@ -1506,6 +1636,7 @@ input RoomsConfiguration {
 """Root Mutation."""
 type RootMutation {
   login(email: String!, password: String!): User
+  resetPassword(email: String!): ResetPasswordResponse
   addFAQArticleComment(
     """ID of FAQ article to receive vote."""
     id: ID!
@@ -1692,6 +1823,25 @@ type RootQuery {
     """Language in which the text of the article is returned."""
     language: Language
   ): FAQArticle
+
+  """
+  All dynamic packages. Dynamic package is a combination of return flight and
+  accommodation in hotel. It saves time and also the price should be better then
+  buying flight and acommodation separately.
+  """
+  allDynamicPackages(
+    simpleSearch: DynamicPackagesSimpleSearchInput!
+
+    """An ISO-4217 currency code."""
+    currency: Currency
+    after: String
+    first: Int
+    before: String
+    last: Int
+  ): DynamicPackageConnection
+
+  """Customer support related data."""
+  customerSupport: CustomerSupport
 }
 
 type RouteStop {
@@ -1701,6 +1851,11 @@ type RouteStop {
 
   """City id of the route stop"""
   cityId: String
+}
+
+type Services {
+  """Travel insurance - returns "null" if not available."""
+  insurance: InsuranceService
 }
 
 input StopoversInput {
@@ -1749,4 +1904,9 @@ type Visa {
 
   """Countries where visa is not required"""
   okIn: [Location]
+}
+
+type WhitelabeledServices {
+  lounge(departureTime: DateTime!): LoungeService
+  parking(fromDate: DateTime!, toDate: DateTime!): ParkingService
 }

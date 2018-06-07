@@ -1,67 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Contact should not render email and phone 1`] = `
-<div
-  className="jsx-2410063808 contact"
->
-  <hr
-    className="jsx-2410063808"
-  />
-  <div
-    className="jsx-2410063808 title"
-  >
-    <Text
-      align="left"
-      element="p"
-      italic={false}
-      size="large"
-      type="attention"
-      uppercase={false}
-      weight="regular"
-    >
-      Contacts
-    </Text>
-  </div>
-  <div
-    className="jsx-2410063808 contact-options"
-  />
-  <div
-    className="jsx-2410063808 instructions"
-  >
-    <ol
-      className="jsx-2410063808"
-    >
-      <li
-        className="jsx-2410063808"
-      >
-        When contacting us we will ask the 
-        <b
-          className="jsx-2410063808"
-        >
-          full name
-        </b>
-         of at least one of the passengers.
-      </li>
-      <li
-        className="jsx-2410063808"
-      >
-        The full 
-        <b
-          className="jsx-2410063808"
-        >
-          email address
-        </b>
-         provided during the booking.
-      </li>
-    </ol>
-  </div>
-  <JSXStyle
-    css=".contact.jsx-2410063808{margin-top:32px;}.contact.jsx-2410063808 .title.jsx-2410063808{margin-bottom:18px;}.contact-options.jsx-2410063808,.phone.jsx-2410063808,.chat.jsx-2410063808,.inline-icon.jsx-2410063808{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.phone.jsx-2410063808{margin-right:40px;}hr.jsx-2410063808{margin-bottom:16px;border:none;border-bottom:1px solid #e8edf1;}.phone-icon.jsx-2410063808{margin-right:7px;}.chevron-icon.jsx-2410063808{margin-left:5px;}.chat-icon.jsx-2410063808{margin-right:14px;}.instructions.jsx-2410063808{margin-left:20px;margin-top:34px;font-size:14px;color:#46515e;}.instructions.jsx-2410063808 ol.jsx-2410063808{list-style-type:decimal;}li.jsx-2410063808{margin-bottom:7px;padding-left:10px;}"
-    styleId="2410063808"
-  />
-</div>
-`;
-
 exports[`Contact should render only email 1`] = `
 <div
   className="jsx-2410063808 contact"
@@ -88,6 +26,31 @@ exports[`Contact should render only email 1`] = `
     className="jsx-2410063808 contact-options"
   >
     <div
+      className="jsx-2410063808 phone"
+    >
+      <div
+        className="jsx-2410063808 phone-icon inline-icon"
+      >
+        <Phone
+          customColor="#00a991"
+        />
+      </div>
+      <Typography
+        size="normal"
+        type="active"
+      >
+        00 00
+      </Typography>
+      <div
+        className="jsx-2410063808 chevron-icon inline-icon"
+      >
+        <ChevronDown
+          customColor="#00a991"
+          size="small"
+        />
+      </div>
+    </div>
+    <div
       className="jsx-2410063808 chat"
     >
       <div
@@ -103,7 +66,7 @@ exports[`Contact should render only email 1`] = `
         size="normal"
         title="Write us a message"
         type="primary"
-        url="mailto:kiwi@email.com"
+        url="mailto:support.en@kiwi.com"
       >
         Write us a message
       </TextLink>
@@ -187,7 +150,7 @@ exports[`Contact should render with email and phone 1`] = `
       <span
         class="jsx-4212733848"
       >
-        12345678
+        00 00
       </span>
       <div
         class="jsx-2410063808 chevron-icon inline-icon"
@@ -227,7 +190,7 @@ exports[`Contact should render with email and phone 1`] = `
       </div>
       <a
         class="jsx-4115119518"
-        href="mailto:kiwi@email.com"
+        href="mailto:support.en@kiwi.com"
       >
         Write us a message
       </a>
