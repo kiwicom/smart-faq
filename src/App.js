@@ -1,4 +1,5 @@
 // @flow
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
@@ -65,9 +66,18 @@ class App extends React.Component<Props, State> {
     this.setState({ urlBookingWasSelected: true });
   };
 
+  onKeyDown = (e: SyntheticEvent<HTMLElement>) => {
+    // $FlowExpectedError: I know "noInputFocus" property doesn't exist...
+    e.nativeEvent.noInputFocus = true;
+  };
+
   renderApp() {
     return (
-      <div className="smartFAQ" data-test="SmartFAQHelp">
+      <div
+        className="smartFAQ"
+        data-test="SmartFAQHelp"
+        onKeyDown={this.onKeyDown}
+      >
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1 shrink-to-fit=no"
