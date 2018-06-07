@@ -3,54 +3,59 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 
 version: 2
+
 defaults: &defaults
   working_directory: ~/smart-faq
   docker:
     - image: circleci/node:8.0
+
+attach_workspace: &attach_workspace
+  attach_workspace:
+      at: ~/project
+
+install_steps: &install_steps
+  steps:
+    - checkout
+    - *attach_workspace
+    - restore_cache:
+        name: Restore node_modules cache
+        keys:
+        # WARNING: add `{{ arch }}` into the keys below and separate the installation steps
+        #          for Linux and macOS if you ever need platform-specific dependencies
+        #          (anything using node-gyp etc.)
+          - v2-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          - v2-node-{{ .Branch }}-
+          - v2-node-
+    - run:
+        name: Install Dependencies
+        command: yarn install --frozen-lockfile
+    - save_cache:
+        name: Save node_modules cache
+        key: v2-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        paths:
+          - node_modules/
+    - persist_to_workspace:
+        root: ~/project
+        paths:
+          - yarn
+
 jobs:
+  install:
+    <<: *defaults
+    <<: *install_steps
   test-ci:
     <<: *defaults
     steps:
-      - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "yarn.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-      - run: yarn
-
-      - save_cache:
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules
-
       - run: yarn test-ci
 
   deploy:
     <<: *defaults
     steps:
-      - checkout
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "yarn.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
       - run: yarn && yarn build:pages
 
   surge-deploy:
     <<: *defaults
     steps:
-      - checkout
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "yarn.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
       - run:
           command: yarn && yarn build:bundle && yarn deploy:surge && yarn deploy:updateURL ${CIRCLE_BRANCH} https://smartfaq-$(git rev-parse --abbrev-ref HEAD).surge.sh
 
@@ -62,33 +67,19 @@ jobs:
           ## this enables colors in the output
           TERM: xterm
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "yarn.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-      - run: yarn
       - run: 
           command: yarn start:ci
           background: true
       - run:
           shell: /bin/sh
           command: |
-            wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:8080
+            wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -ttth 20 http://localhost:8080
             :
       - run: yarn cypress:run-ci
 
   publish:
     <<: *defaults
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "yarn.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-      - run: yarn
       - run:
           name: Write NPM Token to ~/.npmrc
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
@@ -104,19 +95,26 @@ jobs:
 
 workflows:
   version: 2
+
   # on each push publish the app to Surge and run integration tests
   cypress-test-and-surge-deploy:
     jobs:
+      - install
       - test-ci:
          filters:
            branches:
              ignore: master
+         requires:
+          - install
       - cypress-tests:
           filters:
             branches:
               ignore: master
+          requires:
+            - install
       - surge-deploy:
-         requires: 
+         requires:
+           - install
            - test-ci 
            - cypress-tests
          filters:
@@ -129,6 +127,8 @@ workflows:
           filters:
             branches:
               only: master
+          requires:
+            - install
       - deploy:
           requires:
             - test-ci
@@ -144,6 +144,8 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
+          requires:
+            - install
       - publish:
           requires:
             - test-ci
