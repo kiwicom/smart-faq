@@ -59,12 +59,21 @@ describe('BookingDetail >', () => {
       expect(wrapper.find(Notification).props().isUrgent).toBeTruthy();
     });
 
-    it('is not displayed when status is anything but CONFIRMED', () => {
-      // $FlowExpectedError: We don't need all props for tests
-      const refundedBooking = { ...booking48HoursAgo, status: 'REFUNDED' };
-      const wrapper = shallow(<RawBookingDetail booking={refundedBooking} />);
-      expect(wrapper.find(Notification).exists()).toBeFalsy();
-    });
+    [
+      'REFUNDED',
+      'PENDING',
+      'CANCELLED',
+      'DELETED',
+      'CLOSED',
+      'EXPIRED',
+    ].forEach(status =>
+      it(`is not displayed for booking with ${status} status`, () => {
+        // $FlowExpectedError: We don't need all props for tests
+        const refundedBooking = { ...booking48HoursAgo, status };
+        const wrapper = shallow(<RawBookingDetail booking={refundedBooking} />);
+        expect(wrapper.find(Notification).exists()).toBeFalsy();
+      }),
+    );
 
     it('has prop isFuture true when inbound flight is in future and outbound flight date already passed', () => {
       // $FlowExpectedError: We don't need all props for tests
