@@ -28,10 +28,12 @@ const globalStyle = css`
     content: '';
     display: inline-block;
     margin-right: 19px;
-    background-color: #d5dee7;
     width: 6px;
     height: 6px;
     margin-bottom: 2px;
+  }
+  .faq-article-text ul li:before {
+    background-color: #d5dee7;
   }
   .faq-article-text a {
     color: #00ad98;
