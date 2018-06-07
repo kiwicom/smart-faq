@@ -5,7 +5,7 @@
 version: 2
 
 defaults: &defaults
-  working_directory: ~/smart-faq
+  working_directory: ~/project/smart-faq
   docker:
     - image: circleci/node:8.0
 
