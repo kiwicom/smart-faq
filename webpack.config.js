@@ -8,7 +8,27 @@ const Dotenv = require('dotenv-webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const language = process.env.LANGUAGE || 'en';
+const NODE_ENV = process.env.NODE_ENV || 'development';
 const destination = path.join(__dirname, 'dist');
+
+const plugins = [
+  new HtmlWebpackPlugin({
+    title: 'Smart FAQ demo',
+  }),
+  new Dotenv({
+    systemvars: true,
+  }),
+  new CopyWebpackPlugin([
+    { from: 'static', to: path.join(destination, 'static') },
+  ]),
+];
+if (NODE_ENV === 'production') {
+  plugins.push(
+    new UglifyJsPlugin({
+      sourceMap: true,
+    }),
+  );
+}
 
 module.exports = {
   name: language,
@@ -30,20 +50,7 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new UglifyJsPlugin({
-      sourceMap: true,
-    }),
-    new HtmlWebpackPlugin({
-      title: 'Smart FAQ demo',
-    }),
-    new Dotenv({
-      systemvars: true,
-    }),
-    new CopyWebpackPlugin([
-      { from: 'static', to: path.join(destination, 'static') },
-    ]),
-  ],
+  plugins,
   devServer: {
     contentBase: './dist',
     historyApiFallback: true,
