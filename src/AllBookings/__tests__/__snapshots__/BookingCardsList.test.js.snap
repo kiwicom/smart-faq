@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RawBookingCardsList bookings in list 1`] = `
+<React.Fragment>
+  <div
+    className="jsx-1893935473 subtitle"
+  >
+    <Heading
+      element="h1"
+      size="small"
+      weight="medium"
+    >
+      Example
+    </Heading>
+  </div>
+  <JSXStyle
+    css=".bookingCard.jsx-1893935473{cursor:pointer;outline:none;}div.subtitle.jsx-1893935473{margin-top:14px;margin-bottom:12px;}"
+    styleId="1893935473"
+  />
+</React.Fragment>
+`;
+
+exports[`RawBookingCardsList no bookings in list 1`] = `
+<React.Fragment>
+  <JSXStyle
+    css=".bookingCard.jsx-1893935473{cursor:pointer;outline:none;}div.subtitle.jsx-1893935473{margin-top:14px;margin-bottom:12px;}"
+    styleId="1893935473"
+  />
+</React.Fragment>
+`;

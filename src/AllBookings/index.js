@@ -8,8 +8,8 @@ import { Heading } from '@kiwicom/orbit-components';
 
 import QueryRenderer from '../relay/QueryRenderer';
 import BookingError from '../SingleBookingPage/BookingError';
-import BookingCardList from './BookingCardsList';
 import { Loader, ScrollableContent } from '../common';
+import BookingCardsList from './BookingCardsList';
 import type { AllBookingsQuery } from './__generated__/AllBookingsQuery.graphql';
 
 const styles = css`
@@ -17,9 +17,10 @@ const styles = css`
     width: 548px;
     padding: 40px 30px 40px 30px;
   }
-  div.subtitle {
-    margin-top: 14px;
-    margin-bottom: 12px;
+  div.scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 305px;
   }
 `;
 
@@ -58,27 +59,9 @@ class AllBooking extends React.Component<Props> {
           <Heading weight="medium" size="medium">
             Bookings
           </Heading>
+          {future && <BookingCardsList booking={future} title="Upcoming" />}
+          {past && <BookingCardsList booking={past} title="Past" />}
           {!future && !past && <Loader />}
-          {future && (
-            <React.Fragment>
-              <div className="subtitle">
-                <Heading weight="medium" size="small">
-                  Upcoming
-                </Heading>
-              </div>
-              <BookingCardList booking={future} />
-            </React.Fragment>
-          )}
-          {past && (
-            <React.Fragment>
-              <div className="subtitle">
-                <Heading weight="medium" size="small">
-                  Past
-                </Heading>
-              </div>
-              <BookingCardList booking={past} />
-            </React.Fragment>
-          )}
           <style>{styles}</style>
         </div>
       </ScrollableContent>
