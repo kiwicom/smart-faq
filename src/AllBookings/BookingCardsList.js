@@ -5,7 +5,6 @@ import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { Heading } from '@kiwicom/orbit-components';
 
-import bookingTypes from '../common/booking/bookingTypes';
 import OneWayBooking from './BookingTypes/OneWayBooking';
 import ReturnBooking from './BookingTypes/ReturnBooking';
 import MulticityBooking from './BookingTypes/MulticityBooking';
@@ -32,26 +31,17 @@ const BookingCardsList = (props: Props) => {
         </div>
       )}
       {bookings.map(booking => {
-        const type = idx(booking, _ => _.type);
         const id = idx(booking, _ => _.id);
-        let bookingComponent = null;
+        const type = idx(booking, _ => _.__typename);
+        const variants: Object = {
+          BookingOneWay: <OneWayBooking booking={booking} />,
+          BookingReturn: <ReturnBooking booking={booking} />,
+          BookingMulticity: <MulticityBooking booking={booking} />,
+        };
 
-        switch (type) {
-          case bookingTypes.ONE_WAY:
-            bookingComponent = (
-              <OneWayBooking booking={idx(booking, _ => _.oneWay)} />
-            );
-            break;
-          case bookingTypes.RETURN:
-            bookingComponent = (
-              <ReturnBooking booking={idx(booking, _ => _.return)} />
-            );
-            break;
-          case bookingTypes.MULTICITY:
-            bookingComponent = (
-              <MulticityBooking booking={idx(booking, _ => _.multicity)} />
-            );
-            break;
+        let bookingComponent = null;
+        if (variants[type]) {
+          bookingComponent = variants[type];
         }
 
         if (bookingComponent) {
@@ -99,18 +89,18 @@ export const RawBookingCardsList = BookingCardsList;
 export default createFragmentContainer(
   BookingCardsList,
   graphql`
-    fragment BookingCardsList_booking on BookingConnection {
+    fragment BookingCardsList_booking on BookingInterfaceConnection {
       edges {
         node {
           id
-          type
-          oneWay {
+          __typename
+          ... on BookingOneWay {
             ...OneWayBooking_booking
           }
-          return {
+          ... on BookingReturn {
             ...ReturnBooking_booking
           }
-          multicity {
+          ... on BookingMulticity {
             ...MulticityBooking_booking
           }
         }
