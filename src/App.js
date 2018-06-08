@@ -51,7 +51,7 @@ type State = {|
   urlBookingWasSelected: boolean,
 |};
 
-class App extends React.Component<Props, State> {
+class App extends React.PureComponent<Props, State> {
   i18n: {};
 
   constructor(props: Props) {
@@ -62,6 +62,7 @@ class App extends React.Component<Props, State> {
       urlBookingWasSelected: false,
     };
   }
+
   urlBookingSelected = () => {
     this.setState({ urlBookingWasSelected: true });
   };

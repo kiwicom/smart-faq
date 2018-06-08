@@ -60,10 +60,9 @@ const BookingCardsList = (props: Props) => {
           }
 
           return (
-            <BookingState.Consumer>
+            <BookingState.Consumer key={id}>
               {({ onSelectBooking }: BookingStateType) => (
                 <div
-                  key={id}
                   onClick={() => onSelectBooking(id)}
                   className="bookingCard"
                   role="button"
