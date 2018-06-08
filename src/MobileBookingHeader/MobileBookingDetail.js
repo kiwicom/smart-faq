@@ -47,7 +47,7 @@ const MobileBookingControls = (props: MobileBookingControlsProps) => (
       <Button
         block
         onClick={() => {
-          window.open(props.manageBookingURL, '_blank');
+          window.open(props.manageBookingURL, '_blank', 'noopener');
         }}
         type="secondary"
         size="small"
