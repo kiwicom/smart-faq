@@ -97,7 +97,7 @@ class ScreenInput extends React.Component<Props, State> {
             <Text>What problem were you trying to solve?</Text>
           </div>
           <div className="inputArea">
-            <textarea data-gramm_editor="false" />
+            <textarea data-gramm_editor="false" required />
           </div>
           <div className="button">
             <Button title="Submit" onClick={() => {}} width={100} />
