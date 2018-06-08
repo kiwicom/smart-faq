@@ -4,11 +4,11 @@ import * as React from 'react';
 import { graphql } from 'react-relay';
 import idx from 'idx';
 
-import Loader from '../common/Loader';
 import QueryRenderer from '../relay/QueryRenderer';
 import BookingError from './BookingError';
 import BookingDetail from './BookingDetail';
 import BookingNotFound from './BookingNotFound';
+import BookingLoader from './BookingLoader';
 import bookingTypes from '../common/booking/bookingTypes';
 import type { SelectedBookingQueryResponse as QueryResponseType } from './__generated__/SelectedBookingQuery.graphql';
 
@@ -40,15 +40,8 @@ const selectedBookingQuery = graphql`
 
 class SelectedBooking extends React.Component<Props> {
   renderSelectedBooking = (renderState: RenderState) => {
-    if (renderState.error) {
-      return <BookingError />;
-    }
-
-    if (!renderState.props) {
-      return <Loader />;
-    }
-
     const bookingType = idx(renderState.props, _ => _.booking.type);
+    let content = null;
     let booking = null;
 
     switch (bookingType) {
@@ -63,11 +56,25 @@ class SelectedBooking extends React.Component<Props> {
         break;
     }
 
-    if (!booking) {
-      return <BookingNotFound />;
+    if (booking) {
+      content = <BookingDetail booking={booking} />;
+    } else {
+      content = <BookingNotFound />;
     }
 
-    return <BookingDetail booking={booking} />;
+    if (!renderState.props) {
+      content = <BookingLoader />;
+    }
+
+    if (renderState.error) {
+      content = <BookingError />;
+    }
+
+    return (
+      <div style={{ height: '100%', backgroundColor: '#f5f7f9' }}>
+        {content}
+      </div>
+    );
   };
 
   render() {
