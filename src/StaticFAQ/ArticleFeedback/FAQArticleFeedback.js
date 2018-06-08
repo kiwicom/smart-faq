@@ -54,7 +54,7 @@ class FAQArticleFeedback extends React.Component<Props, State> {
     return (
       <div className="FAQArticleFeedback" data-cy="faq-article-form">
         {this.renderScreen()}
-        <ContactPageLink />
+        <ContactPageLink available />
         <style jsx>{style}</style>
       </div>
     );

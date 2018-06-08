@@ -11,6 +11,7 @@ exports[`Contact should render only email 1`] = `
     className="jsx-2410063808 contact-options"
   >
     <ContactPageLink
+      available={true}
       text="Call us"
       textColor="#00a991"
     />
@@ -63,17 +64,17 @@ exports[`Contact should render with email and phone 1`] = `
     class="jsx-2410063808 contact-options"
   >
     <div
-      class="jsx-3612348471 contactUs"
+      class="jsx-4293162489 contactUs"
     >
       <a
-        class="jsx-3612348471"
+        class="jsx-4293162489"
         href="https://www.kiwi.com/en/content/feedback"
         rel="noopener noreferrer"
         target="_blank"
       >
         Call us
         <span
-          class="jsx-3612348471 open-icon"
+          class="jsx-4293162489 open-icon"
         >
           <svg
             fill="currentColor"

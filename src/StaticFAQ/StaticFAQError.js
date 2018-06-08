@@ -31,7 +31,7 @@ const StaticFAQError = () => (
       hesitate to contact us.
     </Text>
     <div className="contactLink">
-      <ContactPageLink />
+      <ContactPageLink available />
     </div>
     <style jsx>{style}</style>
   </div>

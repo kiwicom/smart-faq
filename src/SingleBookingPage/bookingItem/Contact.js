@@ -9,7 +9,7 @@ const Contact = () => {
     <div className="contact">
       <hr />
       <div className="contact-options">
-        <ContactPageLink text="Call us" textColor="#00a991" />
+        <ContactPageLink text="Call us" textColor="#00a991" available />
       </div>
       <div className="instructions">
         <ol>
