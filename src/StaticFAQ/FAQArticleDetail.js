@@ -39,7 +39,7 @@ const queryFAQArticleDetailSearchResult = graphql`
 `;
 
 type FAQArticleDetailParams = {
-  props: FAQArticleDetailQuery | FAQArticleDetailSearchResultQuery,
+  props: ?FAQArticleDetailQuery | ?FAQArticleDetailSearchResultQuery,
   error: ?Error,
 };
 
@@ -74,24 +74,29 @@ class FAQArticleDetail extends React.Component<Props> {
       return <div>{params.error.message}</div>;
     }
     if (params.props) {
+      const category = params.props.FAQCategory;
+      const article = params.props.FAQArticle;
+
+      if (!article) {
+        return <div>Article not found.</div>;
+      }
+
       return (
         <React.Fragment>
           <div className="breadcrumbs">
             <CustomBreadcrumbs
               breadcrumbs={
-                params.props.FAQCategory
+                category
                   ? [{ title: 'Home' }]
-                      .concat(params.props.FAQCategory.ancestors)
-                      .concat(params.props.FAQCategory)
-                      .concat([{ title: params.props.FAQArticle.title }])
-                  : [{ title: 'Search' }].concat([
-                      { title: params.props.FAQArticle.title },
-                    ])
+                      .concat(category.ancestors ? category.ancestors : [])
+                      .concat(category)
+                      .concat([{ title: article.title }])
+                  : [{ title: 'Search' }].concat([{ title: article.title }])
               }
             />
           </div>
 
-          <FAQArticleDetailContent article={params.props.FAQArticle} />
+          <FAQArticleDetailContent article={article} />
           <style jsx>{style}</style>
         </React.Fragment>
       );
