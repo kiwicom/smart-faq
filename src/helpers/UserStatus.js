@@ -1,8 +1,8 @@
 // @flow
-import * as React from "react";
+import * as React from 'react';
 
-import { withUser } from "../context/User";
-import type { User } from "../types";
+import { withUser } from '../context/User';
+import type { User } from '../types';
 
 type Props = {
   user: User,
