@@ -3,11 +3,13 @@
 import * as React from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { withUser } from '../context/User';
+import UserStatus from '../helpers/UserStatus';
 
-const Redirector = withUser(({ user }) => (
-  <React.Fragment>{user ? <Redirect to="/faq/" /> : null}</React.Fragment>
-));
+const Redirector = () => (
+  <UserStatus.LoggedIn>
+    <Redirect to="/faq/" />
+  </UserStatus.LoggedIn>
+);
 
 const redirectsLoggedIn = (ComponentToWrap: React.ComponentType<any>) => {
   const WrappedComponent = (props: any) => (

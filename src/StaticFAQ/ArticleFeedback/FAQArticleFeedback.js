@@ -9,6 +9,7 @@ import ScreenThankyou from './ScreenThankyou';
 import ScreenError from './ScreenError';
 import screensList from './screensList';
 import { ContactPageLink } from '../../common';
+import UserStatus from '../../helpers/UserStatus';
 
 type Props = {
   articleId: string,
@@ -54,7 +55,9 @@ class FAQArticleFeedback extends React.Component<Props, State> {
     return (
       <div className="FAQArticleFeedback" data-cy="faq-article-form">
         {this.renderScreen()}
-        <ContactPageLink />
+        <UserStatus.LoggedIn>
+          <ContactPageLink />
+        </UserStatus.LoggedIn>
         <style jsx>{style}</style>
       </div>
     );

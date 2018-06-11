@@ -3,13 +3,16 @@
 import * as React from 'react';
 
 import ContactPageLink from '../../common/ContactPageLink';
+import UserStatus from '../../helpers/UserStatus';
 
 const Contact = () => {
   return (
     <div className="contact">
       <hr />
       <div className="contact-options">
-        <ContactPageLink text="Call us" textColor="#00a991" />
+        <UserStatus.LoggedIn>
+          <ContactPageLink text="Call us" textColor="#00a991" />
+        </UserStatus.LoggedIn>
       </div>
       <div className="instructions">
         <ol>
