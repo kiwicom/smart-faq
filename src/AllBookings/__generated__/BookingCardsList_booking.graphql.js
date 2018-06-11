@@ -16,7 +16,7 @@ declare export opaque type BookingCardsList_booking$ref: FragmentReference;
 export type BookingCardsList_booking = {|
   +edges: ?$ReadOnlyArray<?{|
     +node: ?{|
-      +id: string,
+      +databaseId: ?number,
       +__typename: string,
       +$fragmentRefs: (OneWayBooking_booking$ref & ReturnBooking_booking$ref & MulticityBooking_booking$ref),
     |},
@@ -54,7 +54,7 @@ const node/*: ConcreteFragment*/ = {
             {
               "kind": "ScalarField",
               "alias": null,
-              "name": "id",
+              "name": "databaseId",
               "args": null,
               "storageKey": null
             },
@@ -104,5 +104,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = '964110ee2cb7fc37e8da7f2daa57762f';
+(node/*: any*/).hash = 'b636998daf943de33470952bf207b83d';
 module.exports = node;

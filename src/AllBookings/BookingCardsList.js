@@ -31,7 +31,7 @@ const BookingCardsList = (props: Props) => {
         </div>
       )}
       {bookings.map(booking => {
-        const id = idx(booking, _ => _.id);
+        const id = idx(booking, _ => _.databaseId);
         const type = idx(booking, _ => _.__typename);
         const variants: Object = {
           BookingOneWay: <OneWayBooking booking={booking} />,
@@ -92,7 +92,7 @@ export default createFragmentContainer(
     fragment BookingCardsList_booking on BookingInterfaceConnection {
       edges {
         node {
-          id
+          databaseId
           __typename
           ... on BookingOneWay {
             ...OneWayBooking_booking
