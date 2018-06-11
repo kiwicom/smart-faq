@@ -32,7 +32,7 @@ const selectedBookingQuery = graphql`
 `;
 
 type Props = {
-  bookingId: string,
+  bookingId: number,
 };
 
 class MobileSelectedBooking extends React.Component<Props> {
