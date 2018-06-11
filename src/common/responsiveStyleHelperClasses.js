@@ -2,7 +2,7 @@
 import css from 'styled-jsx/css';
 
 const responsiveStyleHelperClasses = css`
-  @media only screen and (min-width: 481px) {
+  @media only screen and (min-width: 1025px) {
     .mobileOnly {
       display: none !important;
     }
