@@ -1,9 +1,7 @@
 // @flow
 
-import parse from 'url-parse';
-
-const replaceDomain = (URL: string, domain: string) => {
-  const parsed = parse(URL);
+const replaceDomain = (link: string, domain: string) => {
+  const parsed = new URL(link);
   return `${domain}${parsed.pathname}`;
 };
 

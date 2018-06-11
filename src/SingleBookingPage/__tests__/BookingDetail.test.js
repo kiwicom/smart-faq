@@ -27,6 +27,7 @@ const createBookingStub = (outboundDate, inboundDate) => ({
       time: new Date(outboundDate),
     },
   },
+  directAccessURL: 'https://example.com/asd',
   type: 'RETURN',
   status: 'CONFIRMED',
 });

@@ -112,8 +112,7 @@
     "react-router-dom": "^4.2.2",
     "relay-runtime": "1.5.0",
     "styled-jsx": "^2.2.5",
-    "uglifyjs-webpack-plugin": "^1.2.5",
-    "url-parse": "^1.4.1"
+    "uglifyjs-webpack-plugin": "^1.2.5"
   },
   "peerDependencies": {
     "react": "16.3.2",
