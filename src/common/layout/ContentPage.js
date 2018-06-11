@@ -37,27 +37,34 @@ class ContentPage extends React.Component<Props> {
             </div>
           )}
         </MediaQuery>
-        <ScrollableContent>
-          <div className="FAQ">
-            <Switch location={this.props.history.location}>
-              <Route exact path="/faq/:categoryId?" component={StaticFAQ} />
-              <Route
-                path="/faq/:categoryId/article/:articleId"
-                component={FAQArticleDetail}
-              />
-            </Switch>
-          </div>
-        </ScrollableContent>
+        <div className="FAQWrapper">
+          <ScrollableContent>
+            <div className="FAQ">
+              <Switch location={this.props.history.location}>
+                <Route exact path="/faq/:categoryId?" component={StaticFAQ} />
+                <Route
+                  path="/faq/:categoryId/article/:articleId"
+                  component={FAQArticleDetail}
+                />
+              </Switch>
+            </div>
+          </ScrollableContent>
+        </div>
       </div>
       <style jsx>
         {`
           .ContentPage {
             min-width: 480px;
             height: 100vh;
+            display: flex;
+            flex-direction: column;
+          }
+          .FAQWrapper {
+            flex-grow: 1;
+            position: relative;
           }
           .ContentPage .Body {
             display: flex;
-            height: calc(100% - (67px));
           }
           .FAQ {
             width: ${isLoggedIn ? '650px;' : '480px;'};
