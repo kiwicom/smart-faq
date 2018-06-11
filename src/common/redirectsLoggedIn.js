@@ -4,7 +4,7 @@ import * as React from "react";
 import { Redirect } from "react-router-dom";
 import UserStatus from "../helpers/UserStatus";
 
-const Redirector = (
+const Redirector = () => (
   <UserStatus.LoggedIn>
     <Redirect to="/faq/" />
   </UserStatus.LoggedIn>
