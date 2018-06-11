@@ -9,12 +9,10 @@ import ScreenThankyou from './ScreenThankyou';
 import ScreenError from './ScreenError';
 import screensList from './screensList';
 import { ContactPageLink } from '../../common';
-import { withUser } from '../../context/User';
-import type { User } from '../../types';
+import UserStatus from '../../helpers/UserStatus';
 
 type Props = {
   articleId: string,
-  user: User,
 };
 type State = {
   screen: $Values<typeof screensList>,
@@ -57,11 +55,13 @@ class FAQArticleFeedback extends React.Component<Props, State> {
     return (
       <div className="FAQArticleFeedback" data-cy="faq-article-form">
         {this.renderScreen()}
-        <ContactPageLink available={this.props.user != null} />
+        <UserStatus.LoggedIn>
+          <ContactPageLink />
+        </UserStatus.LoggedIn>
         <style jsx>{style}</style>
       </div>
     );
   }
 }
 
-export default withUser(FAQArticleFeedback);
+export default FAQArticleFeedback;

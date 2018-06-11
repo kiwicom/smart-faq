@@ -71,17 +71,17 @@ exports[`StaticFAQError should match snapshot 1`] = `
         available={true}
       >
         <div
-          className="jsx-3405637160 contactUs"
+          className="jsx-3630812902 contactUs"
         >
           <a
-            className="jsx-3405637160"
+            className="jsx-3630812902"
             href="https://www.kiwi.com/en/content/feedback"
             rel="noopener noreferrer"
             target="_blank"
           >
             Having trouble? Contact us
             <span
-              className="jsx-3405637160 open-icon"
+              className="jsx-3630812902 open-icon"
             >
               <NewWindow
                 color="attention"
@@ -128,7 +128,7 @@ exports[`StaticFAQError should match snapshot 1`] = `
                 "#171b1e",
               ]
             }
-            styleId="1280600690"
+            styleId="3011186473"
           />
         </div>
       </ContactPageLink>

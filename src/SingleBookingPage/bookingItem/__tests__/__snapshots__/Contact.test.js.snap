@@ -64,17 +64,17 @@ exports[`Contact should render with email and phone 1`] = `
     class="jsx-2410063808 contact-options"
   >
     <div
-      class="jsx-4293162489 contactUs"
+      class="jsx-3612348471 contactUs"
     >
       <a
-        class="jsx-4293162489"
+        class="jsx-3612348471"
         href="https://www.kiwi.com/en/content/feedback"
         rel="noopener noreferrer"
         target="_blank"
       >
         Call us
         <span
-          class="jsx-4293162489 open-icon"
+          class="jsx-3612348471 open-icon"
         >
           <svg
             fill="currentColor"
