@@ -1,3 +1,5 @@
+// @flow
+
 import replaceDomain from '../replaceDomain';
 
 const testCases = [
@@ -10,6 +12,6 @@ describe('replaceDomain', () => {
   testCases.forEach(([URL, domain, result]) => {
     it(`replaceDomain(${URL}, ${domain})`, () => {
       expect(replaceDomain(URL, domain)).toEqual(result);
-    })
+    });
   });
 });
