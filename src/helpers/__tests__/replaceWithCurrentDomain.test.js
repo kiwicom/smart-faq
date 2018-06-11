@@ -1,6 +1,6 @@
 // @flow
 
-import replaceDomain from '../replaceDomain';
+import { replaceDomain } from '../replaceWithCurrentDomain';
 
 const testCases = [
   ['https://example.com', 'https://domain.net', 'https://domain.net/'],
