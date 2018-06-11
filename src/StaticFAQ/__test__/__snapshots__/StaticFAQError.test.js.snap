@@ -67,9 +67,7 @@ exports[`StaticFAQError should match snapshot 1`] = `
     <div
       className="jsx-2228354116 contactLink"
     >
-      <ContactPageLink
-        available={true}
-      >
+      <ContactPageLink>
         <div
           className="jsx-3630812902 contactUs"
         >

@@ -1,19 +1,20 @@
 // @flow
-import * as React from 'react';
+import * as React from "react";
 
-import { withUser } from '../context/User';
-import type { User } from '../types';
+import { withUser } from "../context/User";
+import type { User } from "../types";
 
 type Props = {
   user: User,
   children?: React.Node,
 };
 
-const LoggedIn = (props: Props) => {
-  if (props.user === null) return null;
-  return props.children;
-};
+const RequireUserCriteria = (user_criteria: (user: User) => boolean) =>
+  withUser((props: Props) => {
+    if (!user_criteria(props.user)) return null;
+    return props.children;
+  });
 
 export default {
-  LoggedIn: withUser(LoggedIn),
+  LoggedIn: RequireUserCriteria(user => user !== null),
 };
