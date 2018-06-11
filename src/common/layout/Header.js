@@ -117,12 +117,18 @@ type Props = {
   },
 };
 
-const renderLoggedIn = (comesFromSearch: boolean) => {
+const renderLoggedIn = (
+  comesFromSearch: boolean,
+  hasCategory: string | null,
+  isArticle: boolean,
+) => {
   return (
     <React.Fragment>
       <div className="loggedIn">
         <div className="mobileOnly">
-          <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
+          {hasCategory || isArticle ? (
+            <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
+          ) : null}
         </div>
         <div className="helpHeader">Help</div>
         <div className="links">
@@ -184,7 +190,7 @@ const Header = (props: Props) => {
       <div className="HeaderFAQ">
         <CloseButton height="24" />
         {props.isLoggedIn
-          ? renderLoggedIn(comesFromSearch)
+          ? renderLoggedIn(comesFromSearch, hasCategory, isArticle)
           : renderLoggedOut(hasCategory, isArticle, comesFromSearch)}
         <style jsx>{style}</style>
       </div>
