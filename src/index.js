@@ -91,6 +91,9 @@ class Root extends React.Component<Props, State> {
         />
         <style jsx global>
           {`
+            body {
+              background: rgba(0, 0, 0, 0.5);
+            }
             .root {
               position: fixed;
               right: 0;
