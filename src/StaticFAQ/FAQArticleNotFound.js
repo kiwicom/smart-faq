@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Heading, Text, Button } from '@kiwicom/orbit-components';
 import { withRouter } from 'react-router-dom';
 import css from 'styled-jsx/css';
@@ -25,8 +25,8 @@ type Props = {
   },
 };
 
-class ArticleNotFound extends Component<Props> {
-  goToNoBooking = () => {
+class ArticleNotFound extends React.Component<Props> {
+  goToFAQ = () => {
     this.props.history.push('/faq/');
   };
   render() {
@@ -40,7 +40,7 @@ class ArticleNotFound extends Component<Props> {
               technical issue.
             </Text>
           </div>
-          <Button onClick={this.goToNoBooking} title="Open the Help Center" />
+          <Button onClick={this.goToFAQ} title="Open the Help Center" />
         </div>
         <style jsx>{style}</style>
       </div>
