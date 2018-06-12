@@ -5,6 +5,8 @@ import css from 'styled-jsx/css';
 import { Trans } from 'react-i18next';
 import { Typography } from '@kiwicom/orbit-components';
 
+import ErrorMessage from '../common/ErrorMessage';
+import { ErrorBoundary } from '../context/ErrorBoundary';
 import image from '../../static/woman-with-laptop@2x.jpg';
 import CloseButton from './../common/buttons/CloseButton';
 import { withUser } from '../context/User';
@@ -119,7 +121,7 @@ export class PureIntro extends React.Component<Props> {
     this.props.history.push('/faq/');
   };
 
-  render() {
+  renderIntro = () => {
     return (
       <div className="Intro">
         <CloseButton />
@@ -164,6 +166,19 @@ export class PureIntro extends React.Component<Props> {
         </div>
         <style jsx>{style}</style>
       </div>
+    );
+  };
+  render() {
+    return (
+      <ErrorBoundary.Consumer>
+        {({ error }) => {
+          if (error) {
+            return <ErrorMessage />;
+          } else {
+            return this.renderIntro();
+          }
+        }}
+      </ErrorBoundary.Consumer>
     );
   }
 }
