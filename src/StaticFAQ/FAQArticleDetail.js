@@ -8,6 +8,7 @@ import css from 'styled-jsx/css';
 import QueryRenderer from '../relay/QueryRenderer';
 import Loader from '../common/Loader';
 import FAQArticleDetailContent from './FAQArticleDetailContent';
+import FAQArticleNotFound from './FAQArticleNotFound';
 import type { FAQArticleDetailQuery } from './__generated__/FAQArticleDetailQuery.graphql';
 import type { FAQArticleDetailSearchResultQuery } from './__generated__/FAQArticleDetailSearchResultQuery.graphql';
 import CustomBreadcrumbs from './CustomBreadcrumbs';
@@ -78,7 +79,7 @@ class FAQArticleDetail extends React.Component<Props> {
       const article = params.props.FAQArticle;
 
       if (!article) {
-        return <div>Article not found.</div>;
+        return <FAQArticleNotFound />;
       }
 
       return (
