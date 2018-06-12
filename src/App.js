@@ -12,6 +12,7 @@ import { LanguageContext } from './context/Language';
 import { UserContext } from './context/User';
 import BookingStateProvider from './context/BookingState';
 import { SelectUrlBooking } from './common/integration/urlProcessing';
+import ErrorBoundaryProvider from './context/ErrorBoundary';
 import type { onLogin, onLogout, onSocialLogin, User } from './types';
 
 const style = css`
@@ -87,29 +88,31 @@ class App extends React.PureComponent<Props, State> {
           href="https://fonts.googleapis.com/css?family=Roboto"
           rel="stylesheet"
         />
-        <I18nextProvider i18n={this.i18n}>
-          <LanguageContext.Provider value={this.props.language}>
-            <CloseContext.Provider value={this.props.onClose}>
-              <UserContext.Provider
-                value={{
-                  user: this.props.user,
-                  onLogin: this.props.onLogin,
-                  onSocialLogin: this.props.onSocialLogin,
-                  onLogout: this.props.onLogout,
-                  loginToken: this.props.loginToken,
-                }}
-              >
-                <BookingStateProvider>
-                  <SelectUrlBooking
-                    wasSelected={this.state.urlBookingWasSelected}
-                    setSelected={this.urlBookingSelected}
-                  />
-                  <Routes initialRoute={this.props.initialRoute} />
-                </BookingStateProvider>
-              </UserContext.Provider>
-            </CloseContext.Provider>
-          </LanguageContext.Provider>
-        </I18nextProvider>
+        <ErrorBoundaryProvider>
+          <I18nextProvider i18n={this.i18n}>
+            <LanguageContext.Provider value={this.props.language}>
+              <CloseContext.Provider value={this.props.onClose}>
+                <UserContext.Provider
+                  value={{
+                    user: this.props.user,
+                    onLogin: this.props.onLogin,
+                    onSocialLogin: this.props.onSocialLogin,
+                    onLogout: this.props.onLogout,
+                    loginToken: this.props.loginToken,
+                  }}
+                >
+                  <BookingStateProvider>
+                    <SelectUrlBooking
+                      wasSelected={this.state.urlBookingWasSelected}
+                      setSelected={this.urlBookingSelected}
+                    />
+                    <Routes initialRoute={this.props.initialRoute} />
+                  </BookingStateProvider>
+                </UserContext.Provider>
+              </CloseContext.Provider>
+            </LanguageContext.Provider>
+          </I18nextProvider>
+        </ErrorBoundaryProvider>
         <style jsx global>
           {style}
         </style>
