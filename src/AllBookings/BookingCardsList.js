@@ -16,6 +16,12 @@ type Props = {
   title: string,
 };
 
+type BookingVariants = {
+  BookingOneWay: React.Node,
+  BookingReturn: React.Node,
+  BookingMulticity: React.Node,
+};
+
 const BookingCardsList = (props: Props) => {
   const { booking, title } = props;
   const edges = idx(booking, _ => _.edges) || [];
@@ -33,14 +39,14 @@ const BookingCardsList = (props: Props) => {
       {bookings.map(booking => {
         const id = idx(booking, _ => _.databaseId);
         const type = idx(booking, _ => _.__typename);
-        const variants: Object = {
+        const variants: BookingVariants = {
           BookingOneWay: <OneWayBooking booking={booking} />,
           BookingReturn: <ReturnBooking booking={booking} />,
           BookingMulticity: <MulticityBooking booking={booking} />,
         };
 
         let bookingComponent = null;
-        if (variants[type]) {
+        if (type && variants[type]) {
           bookingComponent = variants[type];
         }
 
