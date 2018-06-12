@@ -18,6 +18,11 @@ const style = css`
   }
 `;
 
+function openHelpCenter() {
+  var win = window.open('https://www.kiwi.com/helpcenter/', '_blank');
+  win.focus();
+}
+
 const ArticleNotFound = () => (
   <div className="notFoundContainer">
     <div>
@@ -28,7 +33,7 @@ const ArticleNotFound = () => (
           technical issue.
         </Text>
       </div>
-      <Button onClick={() => {}} title="Open the Help Center" />
+      <Button onClick={openHelpCenter} title="Open the Help Center" />
     </div>
     <style jsx>{style}</style>
   </div>
