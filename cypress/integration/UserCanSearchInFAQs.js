@@ -16,7 +16,17 @@ describe('User can search in FAQs', () => {
       .type(wordToSearch)
       .should('have.value', wordToSearch);
 
-    cy.get('[data-cy=scrollable-box]').should('be.visible');
+    cy
+      .get('[data-cy=scrollable-box]')
+      .find('a')
+      .should('have.length', 30);
+
+    cy
+      .get('[data-cy=faq-article-link]')
+      .first()
+      .find('h1')
+      .contains('Flight information');
+
     cy.get('[data-cy=btn-reset-input]').click();
     cy.get('@input-staticFAQ').should('have.value', '');
   });

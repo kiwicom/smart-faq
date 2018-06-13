@@ -28,7 +28,7 @@ const style = css`
 
 const FAQArticle = (props: Props) => (
   <Link
-    data-cy="faq-link"
+    data-cy="faq-article-link"
     to={
       props.isSearchResult
         ? `/faq/search/article/${props.article.id}`
@@ -38,7 +38,7 @@ const FAQArticle = (props: Props) => (
   >
     <Card>
       <div>
-        <Heading weight="medium" size="small">
+        <Heading weight="medium" size="small" data-cy="faq-title">
           {props.article.title}
         </Heading>
       </div>
