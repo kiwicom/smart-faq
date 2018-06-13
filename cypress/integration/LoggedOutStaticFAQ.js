@@ -36,7 +36,7 @@ describe('Display Static FAQ', () => {
 
     cy
       .get('@faq-box')
-      .find('[data-cy=faq-link]')
+      .find('[data-cy=faq-article-link]')
       .first()
       .click();
 
