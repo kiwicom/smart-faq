@@ -14,7 +14,7 @@ import { BookingState, type BookingStateType } from '../context/BookingState';
 type Props = {
   booking: BookingCardsList_booking,
   title: string,
-  dataCy: string,
+  dataCy?: string,
 };
 
 type BookingVariants = {

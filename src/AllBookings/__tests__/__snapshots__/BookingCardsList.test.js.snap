@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RawBookingCardsList bookings in list 1`] = `
-<React.Fragment>
+<div
+  className="jsx-1893935473"
+>
   <div
     className="jsx-1893935473 subtitle"
   >
@@ -17,14 +19,16 @@ exports[`RawBookingCardsList bookings in list 1`] = `
     css=".bookingCard.jsx-1893935473{cursor:pointer;outline:none;}div.subtitle.jsx-1893935473{margin-top:14px;margin-bottom:12px;}"
     styleId="1893935473"
   />
-</React.Fragment>
+</div>
 `;
 
 exports[`RawBookingCardsList no bookings in list 1`] = `
-<React.Fragment>
+<div
+  className="jsx-1893935473"
+>
   <JSXStyle
     css=".bookingCard.jsx-1893935473{cursor:pointer;outline:none;}div.subtitle.jsx-1893935473{margin-top:14px;margin-bottom:12px;}"
     styleId="1893935473"
   />
-</React.Fragment>
+</div>
 `;
