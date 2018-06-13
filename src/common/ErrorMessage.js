@@ -33,7 +33,11 @@ const ErrorMessage = () => (
         </Typography>
       </div>
       <p>
-        <TextLink url="" title="Go to contact page" onClick={() => {}} />
+        <TextLink
+          url="https://www.kiwi.com/en/content/feedback"
+          title="Go to contact page"
+          onClick={() => {}}
+        />
         {` `}
         <NewWindow size="small" color="secondary" />
       </p>
