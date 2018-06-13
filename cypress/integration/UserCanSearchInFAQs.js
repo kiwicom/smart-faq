@@ -19,7 +19,7 @@ describe('User can search in FAQs', () => {
     cy
       .get('[data-cy=scrollable-box]')
       .find('a')
-      .should('have.length', 30);
+      .should('exist');
 
     cy
       .get('[data-cy=faq-article-link]')

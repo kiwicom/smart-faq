@@ -34,6 +34,8 @@ describe('User can log into SmartFAQ', () => {
       .first()
       .click();
 
+    cy.wait(5000);
+
     cy
       .get('[data-cy=booking-type]')
       .find('p')

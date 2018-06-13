@@ -61,18 +61,14 @@ class AllBooking extends React.Component<Props> {
             Bookings
           </Heading>
           {future && (
-            <BookingCardsList
-              booking={future}
-              title="Upcoming"
-              dataCy="upcoming-bookings"
-            />
+            <div data-cy="upcoming-bookings">
+              <BookingCardsList booking={future} title="Upcoming" />
+            </div>
           )}
           {past && (
-            <BookingCardsList
-              booking={past}
-              title="Past"
-              dataCy="past-bookings"
-            />
+            <div data-cy="past-bookings">
+              <BookingCardsList booking={past} title="Past" />
+            </div>
           )}
           {!future && !past && <Loader />}
           <style>{styles}</style>
