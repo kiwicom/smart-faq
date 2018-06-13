@@ -19,6 +19,9 @@ const style = css`
   .static-faq-body {
     height: 100%;
     padding: 24px 40px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
   }
 
   @media only screen and (max-width: 1180px) {
