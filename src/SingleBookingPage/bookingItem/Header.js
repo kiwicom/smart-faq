@@ -60,7 +60,7 @@ const Header = (props: Props) => {
                 onDisplayAll();
               }}
               size="small"
-              title="Select other booking"
+              title="Select another booking"
             />
           )}
         </BookingState.Consumer>

@@ -114,7 +114,7 @@ class BookingDetail extends React.Component<Props> {
             rel="noopener noreferrer"
             href={replaceWithCurrentDomain(booking.directAccessURL)}
           >
-            <button className="manage-booking">Manage my booking</button>
+            <button className="manage-booking">Manage My Booking</button>
           </a>
         </div>
         {showContactInfo && <Contact info={booking} />}
