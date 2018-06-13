@@ -14,6 +14,7 @@ import { BookingState, type BookingStateType } from '../context/BookingState';
 type Props = {
   booking: BookingCardsList_booking,
   title: string,
+  dataCy: string,
 };
 
 type BookingVariants = {
@@ -23,12 +24,12 @@ type BookingVariants = {
 };
 
 const BookingCardsList = (props: Props) => {
-  const { booking, title } = props;
+  const { booking, title, dataCy } = props;
   const edges = idx(booking, _ => _.edges) || [];
   const bookings = edges.map(edge => idx(edge, _ => _.node));
 
   return (
-    <React.Fragment>
+    <div data-cy={dataCy}>
       {bookings.length > 0 && (
         <div className="subtitle">
           <Heading weight="medium" size="small">
@@ -61,6 +62,7 @@ const BookingCardsList = (props: Props) => {
                 <div
                   onClick={() => onSelectBooking(id)}
                   className="bookingCard"
+                  data-cy="booking-card"
                   role="button"
                   onKeyUp={() => onSelectBooking(id)}
                   tabIndex={0}
@@ -86,7 +88,7 @@ const BookingCardsList = (props: Props) => {
           }
         `}
       </style>
-    </React.Fragment>
+    </div>
   );
 };
 

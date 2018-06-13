@@ -43,29 +43,31 @@ const Header = (props: Props) => {
   return (
     <div>
       <div className="headerAbove">
-        <div>
+        <div data-cy="booking-type">
           {booking.databaseId && (
             <Text type="secondary">
-              {isFuture ? 'Upcoming' : 'Last'} trip #&nbsp;
+              {isFuture ? 'Upcoming' : 'Past'} trip #&nbsp;
               {formatBookingId(booking.databaseId)}
             </Text>
           )}
         </div>
         <BookingState.Consumer>
           {({ onDisplayAll }: BookingStateType) => (
-            <TextLink
-              url=""
-              onClick={e => {
-                e.preventDefault();
-                onDisplayAll();
-              }}
-              size="small"
-              title="Select another booking"
-            />
+            <div data-cy="btn-other-bookings">
+              <TextLink
+                url=""
+                onClick={e => {
+                  e.preventDefault();
+                  onDisplayAll();
+                }}
+                size="small"
+                title="Select another booking"
+              />
+            </div>
           )}
         </BookingState.Consumer>
       </div>
-      <div className="headerTitle">
+      <div className="headerTitle" data-cy="booking-title">
         <Typography size="header" type="attention" variant="bold">
           {type && renderHeaderTitleByType(type, booking)}
         </Typography>

@@ -108,7 +108,7 @@ class BookingDetail extends React.Component<Props> {
             <Notification hoursLeft={timeDelta} isUrgent={isUrgent} />
           )}
         {this.renderByType(booking)}
-        <div className="buttons">
+        <div className="buttons" data-cy="btn-manage-booking">
           <a
             target="_blank"
             rel="noopener noreferrer"
