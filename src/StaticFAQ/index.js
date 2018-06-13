@@ -73,14 +73,16 @@ class StaticFAQ extends React.Component<Props, State> {
       <SearchState.Consumer>
         {({ searchText, changeSearchText }: SearchStateType) => {
           this.changeSearchText = changeSearchText;
-
           const isSearching = searchText.length > 0;
+
           return (
             <div className="static-faq">
               <div className="static-faq-body">
-                <div className="static-faq-search">
-                  {!categoryId && this.renderInput(searchText)}
-                </div>
+                {!categoryId && (
+                  <div className="static-faq-search">
+                    {this.renderInput(searchText)}
+                  </div>
+                )}
                 {isSearching ? (
                   <SearchAllFAQs search={searchText} />
                 ) : (
