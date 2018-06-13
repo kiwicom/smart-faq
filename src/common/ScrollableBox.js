@@ -24,7 +24,7 @@ const ScrollableBox = (props: Props) => (
         }
         div.scrollable-box {
           overflow-y: auto;
-          max-height: 78vh;
+          max-width: 100vw;
           margin: 0 auto;
           padding: 4px;
         }
