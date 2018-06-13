@@ -34,10 +34,10 @@ type AllBookingsQueryProps = {
 
 const allBookingsQuery = graphql`
   query AllBookingsQuery {
-    future: allBookings(only: FUTURE) {
+    future: customerBookings(only: FUTURE) {
       ...BookingCardsList_booking
     }
-    past: allBookings(only: PAST) {
+    past: customerBookings(only: PAST) {
       ...BookingCardsList_booking
     }
   }

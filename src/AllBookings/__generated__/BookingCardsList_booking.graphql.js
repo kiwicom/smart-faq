@@ -11,23 +11,14 @@ import type { ConcreteFragment } from 'relay-runtime';
 type MulticityBooking_booking$ref = any;
 type OneWayBooking_booking$ref = any;
 type ReturnBooking_booking$ref = any;
-export type BookingType = ('MULTICITY' | 'ONE_WAY' | 'RETURN' | '%future added value');
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type BookingCardsList_booking$ref: FragmentReference;
 export type BookingCardsList_booking = {|
   +edges: ?$ReadOnlyArray<?{|
     +node: ?{|
-      +id: string,
-      +type: ?BookingType,
-      +oneWay: ?{|
-        +$fragmentRefs: OneWayBooking_booking$ref,
-      |},
-      +return: ?{|
-        +$fragmentRefs: ReturnBooking_booking$ref,
-      |},
-      +multicity: ?{|
-        +$fragmentRefs: MulticityBooking_booking$ref,
-      |},
+      +databaseId: ?number,
+      +__typename: string,
+      +$fragmentRefs: (OneWayBooking_booking$ref & ReturnBooking_booking$ref & MulticityBooking_booking$ref),
     |},
   |}>,
   +$refType: BookingCardsList_booking$ref,
@@ -38,7 +29,7 @@ export type BookingCardsList_booking = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "BookingCardsList_booking",
-  "type": "BookingConnection",
+  "type": "BookingInterfaceConnection",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -48,7 +39,7 @@ const node/*: ConcreteFragment*/ = {
       "name": "edges",
       "storageKey": null,
       "args": null,
-      "concreteType": "BookingEdge",
+      "concreteType": "BookingInterfaceEdge",
       "plural": true,
       "selections": [
         {
@@ -57,47 +48,37 @@ const node/*: ConcreteFragment*/ = {
           "name": "node",
           "storageKey": null,
           "args": null,
-          "concreteType": "Booking",
+          "concreteType": null,
           "plural": false,
           "selections": [
             {
               "kind": "ScalarField",
               "alias": null,
-              "name": "id",
+              "name": "databaseId",
               "args": null,
               "storageKey": null
             },
             {
               "kind": "ScalarField",
               "alias": null,
-              "name": "type",
+              "name": "__typename",
               "args": null,
               "storageKey": null
             },
             {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "oneWay",
-              "storageKey": null,
-              "args": null,
-              "concreteType": "BookingOneWay",
-              "plural": false,
+              "kind": "InlineFragment",
+              "type": "BookingMulticity",
               "selections": [
                 {
                   "kind": "FragmentSpread",
-                  "name": "OneWayBooking_booking",
+                  "name": "MulticityBooking_booking",
                   "args": null
                 }
               ]
             },
             {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "return",
-              "storageKey": null,
-              "args": null,
-              "concreteType": "BookingReturn",
-              "plural": false,
+              "kind": "InlineFragment",
+              "type": "BookingReturn",
               "selections": [
                 {
                   "kind": "FragmentSpread",
@@ -107,17 +88,12 @@ const node/*: ConcreteFragment*/ = {
               ]
             },
             {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "multicity",
-              "storageKey": null,
-              "args": null,
-              "concreteType": "BookingMulticity",
-              "plural": false,
+              "kind": "InlineFragment",
+              "type": "BookingOneWay",
               "selections": [
                 {
                   "kind": "FragmentSpread",
-                  "name": "MulticityBooking_booking",
+                  "name": "OneWayBooking_booking",
                   "args": null
                 }
               ]
@@ -128,5 +104,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = '3c73d343c3942b02adc6e42732e48d79';
+(node/*: any*/).hash = 'b636998daf943de33470952bf207b83d';
 module.exports = node;

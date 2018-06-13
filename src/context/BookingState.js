@@ -13,19 +13,19 @@ type Props = {
 
 export type State = {
   bookingPage: 'SINGLE_BOOKING' | 'ALL_BOOKINGS',
-  selectedBooking: ?string,
+  selectedBooking: ?number,
 };
 
 export type BookingStateProps = State;
 export type BookingStateType = State & {
   onDisplayAll: () => void,
-  onSelectBooking: (id: string) => void,
+  onSelectBooking: (id: number) => void,
 };
 
 export const BookingState = React.createContext({
   ...initialState,
   onDisplayAll: () => {},
-  onSelectBooking: (id: string) => {}, // eslint-disable-line no-unused-vars
+  onSelectBooking: (id: number) => {}, // eslint-disable-line no-unused-vars
 });
 
 class BookingStateProvider extends React.Component<Props, State> {
@@ -35,7 +35,7 @@ class BookingStateProvider extends React.Component<Props, State> {
     this.setState({ bookingPage: 'ALL_BOOKINGS' });
   };
 
-  onClickSelect = (id: string) => {
+  onClickSelect = (id: number) => {
     this.setState({ bookingPage: 'SINGLE_BOOKING', selectedBooking: id });
   };
 

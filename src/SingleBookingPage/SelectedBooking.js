@@ -13,7 +13,7 @@ import bookingTypes from '../common/booking/bookingTypes';
 import type { SelectedBookingQueryResponse as QueryResponseType } from './__generated__/SelectedBookingQuery.graphql';
 
 type Props = {|
-  bookingId: string,
+  bookingId: number,
 |};
 
 type RenderState = {
