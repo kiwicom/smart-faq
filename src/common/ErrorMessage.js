@@ -1,6 +1,4 @@
 // @flow
-/* eslint-disable react/no-unescaped-entities */
-
 import React from 'react';
 import css from 'styled-jsx/css';
 import { Heading, Typography, TextLink } from '@kiwicom/orbit-components';
@@ -21,7 +19,7 @@ const styles = css`
     margin: 10px 0;
   }
 `;
-
+/* eslint-disable react/no-unescaped-entities */
 const ErrorMessage = () => (
   <div className="errorContainer">
     <div>
@@ -34,7 +32,7 @@ const ErrorMessage = () => (
       </div>
       <p>
         <TextLink
-          url="https://www.kiwi.com/en/content/feedback"
+          url="/content/feedback"
           title="Go to contact page"
           onClick={() => {}}
         />
