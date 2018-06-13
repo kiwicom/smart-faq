@@ -32,13 +32,13 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
         class="jsx-1128370742 jsx-945710172 mobileOnly"
       >
         <div
-          class="jsx-945483044 back"
+          class="jsx-4256523651 back"
           data-cy="back-button"
           role="button"
           tabindex="-1"
         >
           <div
-            class="jsx-945483044 chevron"
+            class="jsx-4256523651 chevron"
           >
             <svg
               fill="currentColor"
@@ -164,13 +164,13 @@ exports[`ContentHeader should render loggedOut user header 1`] = `
           class="jsx-945710172 jsx-2971753977 backButton"
         >
           <div
-            class="jsx-945483044 back"
+            class="jsx-4256523651 back"
             data-cy="back-button"
             role="button"
             tabindex="-1"
           >
             <div
-              class="jsx-945483044 chevron"
+              class="jsx-4256523651 chevron"
             >
               <svg
                 fill="currentColor"
