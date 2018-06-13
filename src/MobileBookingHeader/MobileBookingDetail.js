@@ -12,6 +12,7 @@ import OneWayTrip from './OneWayTrip';
 import ReturnTrip from './ReturnTrip';
 import MultiCityTrip from './MultiCityTrip';
 import formatBookingId from '../helpers/formatBookingId';
+import replaceWithCurrentDomain from '../helpers/replaceWithCurrentDomain';
 
 type Props = {|
   +booking: MobileBookingDetail_booking,
@@ -142,7 +143,12 @@ class MobileBookingDetail extends React.Component<Props, State> {
         </div>
         {this.state.expanded ? (
           <div className="bottomRow">
-            <MobileBookingControls manageBookingURL={booking.directAccessURL} />
+            <MobileBookingControls
+              manageBookingURL={
+                booking.directAccessURL &&
+                replaceWithCurrentDomain(booking.directAccessURL)
+              }
+            />
           </div>
         ) : null}
         <style jsx>{MobileBookingSummaryStyle}</style>

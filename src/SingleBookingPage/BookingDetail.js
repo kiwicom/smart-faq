@@ -14,6 +14,7 @@ import Header from './bookingItem/Header';
 import { ScrollableContent } from '../common';
 import bookingTypes from '../common/booking/bookingTypes';
 import { URGENCY_THRESHOLD } from '../helpers/dateUtils';
+import replaceWithCurrentDomain from '../helpers/replaceWithCurrentDomain';
 import type { NearestBooking_booking } from './__generated__/NearestBookingQuery.graphql';
 
 type Props = {|
@@ -111,7 +112,7 @@ class BookingDetail extends React.Component<Props> {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href={booking.directAccessURL}
+            href={replaceWithCurrentDomain(booking.directAccessURL)}
           >
             <button className="manage-booking">Manage my booking</button>
           </a>
