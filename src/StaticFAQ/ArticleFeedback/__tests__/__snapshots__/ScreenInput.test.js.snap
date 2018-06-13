@@ -51,7 +51,9 @@ exports[`ScreenInput should match snapshot 1`] = `
       <textarea
         className="jsx-920636696"
         data-gramm_editor="false"
+        onChange={[Function]}
         required={true}
+        value=""
       />
     </div>
     <div
