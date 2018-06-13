@@ -12,7 +12,7 @@ import { LanguageContext } from './context/Language';
 import { UserContext } from './context/User';
 import BookingStateProvider from './context/BookingState';
 import { SelectUrlBooking } from './common/integration/urlProcessing';
-import ErrorBoundaryProvider from './context/ErrorBoundary';
+import ErrorBoundary from './common/ErrorBoundary';
 import type { onLogin, onLogout, onSocialLogin, User } from './types';
 
 const style = css`
@@ -88,7 +88,7 @@ class App extends React.PureComponent<Props, State> {
           href="https://fonts.googleapis.com/css?family=Roboto"
           rel="stylesheet"
         />
-        <ErrorBoundaryProvider>
+        <ErrorBoundary>
           <I18nextProvider i18n={this.i18n}>
             <LanguageContext.Provider value={this.props.language}>
               <CloseContext.Provider value={this.props.onClose}>
@@ -112,7 +112,7 @@ class App extends React.PureComponent<Props, State> {
               </CloseContext.Provider>
             </LanguageContext.Provider>
           </I18nextProvider>
-        </ErrorBoundaryProvider>
+        </ErrorBoundary>
         <style jsx global>
           {style}
         </style>

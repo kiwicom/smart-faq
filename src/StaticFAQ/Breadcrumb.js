@@ -22,7 +22,6 @@ const Breadcrumb = ({ breadcrumb, isCurrent }: Props) => {
       {breadcrumb.title}
     </Text>
   );
-
   return (
     <div className="breadcrumb">
       {isCurrent ? (
