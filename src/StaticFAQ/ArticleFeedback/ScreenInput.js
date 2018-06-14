@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Heading, Text, Button } from '@kiwicom/orbit-components';
+import { Heading, Text, Button, Typography } from '@kiwicom/orbit-components';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
 
 import { Box } from '../../common';
@@ -15,12 +15,16 @@ type Props = {|
 |};
 type State = {|
   comment: string,
+  error: boolean,
 |};
 
 const style = css`
   div.question {
     margin-bottom: 4px;
     margin-top: 8px;
+  }
+  div.inputArea.invalid textarea {
+    border-color: #d21c1c;
   }
   div.inputArea textarea {
     width: 100%;
@@ -55,13 +59,21 @@ const style = css`
 class ScreenInput extends React.Component<Props, State> {
   state = {
     comment: '',
+    error: false,
   };
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({ comment: e.target.value });
+    this.setState({ comment: e.target.value, error: false });
   };
   handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     const { changeScreen, articleId } = this.props;
+    const { comment } = this.state;
     e.preventDefault();
+    if (!comment.length) {
+      this.setState({
+        error: true,
+      });
+      return;
+    }
     createComment(
       articleId,
       this.state.comment,
@@ -73,6 +85,7 @@ class ScreenInput extends React.Component<Props, State> {
     this.props.changeScreen(screensList.INITIAL);
   };
   render() {
+    const { error } = this.state;
     return (
       <Box
         border="none"
@@ -96,13 +109,17 @@ class ScreenInput extends React.Component<Props, State> {
           <div className="question">
             <Text>What problem were you trying to solve?</Text>
           </div>
-          <div className="inputArea">
+          <div className={`inputArea  ${error ? 'invalid' : ''}`}>
             <textarea
               data-gramm_editor="false"
               onChange={this.handleChange}
               value={this.state.comment}
-              required
             />
+            {error ? (
+              <Typography size="small" type="error">
+                You haven't written any feedback.
+              </Typography>
+            ) : null}
           </div>
           <div className="button">
             <Button title="Submit" onClick={() => {}} width={100} />
