@@ -8,11 +8,11 @@ exports[`ScreenInput should match snapshot 1`] = `
   padding="40px 24px 24px 24px"
 >
   <form
-    className="jsx-920636696"
+    className="jsx-3230565394"
     onSubmit={[Function]}
   >
     <div
-      className="jsx-920636696 close-icon"
+      className="jsx-3230565394 close-icon"
       onClick={[Function]}
       onKeyUp={null}
       role="button"
@@ -31,7 +31,7 @@ exports[`ScreenInput should match snapshot 1`] = `
       Your feedback helps us improve.
     </Heading>
     <div
-      className="jsx-920636696 question"
+      className="jsx-3230565394 question"
     >
       <Text
         align="left"
@@ -46,18 +46,23 @@ exports[`ScreenInput should match snapshot 1`] = `
       </Text>
     </div>
     <div
-      className="jsx-920636696 inputArea"
+      className="jsx-3230565394 inputArea invalid"
     >
       <textarea
-        className="jsx-920636696"
+        className="jsx-3230565394"
         data-gramm_editor="false"
         onChange={[Function]}
-        required={true}
         value=""
       />
+      <Typography
+        size="small"
+        type="error"
+      >
+        You haven't written any feedback.
+      </Typography>
     </div>
     <div
-      className="jsx-920636696 button"
+      className="jsx-3230565394 button"
     >
       <Button
         block={false}
@@ -74,8 +79,93 @@ exports[`ScreenInput should match snapshot 1`] = `
     </div>
   </form>
   <JSXStyle
-    css="div.question.jsx-920636696{margin-bottom:4px;margin-top:8px;}div.inputArea.jsx-920636696 textarea.jsx-920636696{width:100%;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;resize:none;}div.button.jsx-920636696{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;margin-top:19px;}div.close-icon.jsx-920636696{position:absolute;top:8px;right:8px;cursor:pointer;}div.inputArea.jsx-920636696 textarea.jsx-920636696{padding:12px 16px;font-size:14px;}@media only screen and (max-width:1181px){div.inputArea.jsx-920636696 textarea.jsx-920636696{width:100%;}}"
-    styleId="920636696"
+    css="div.question.jsx-3230565394{margin-bottom:4px;margin-top:8px;}div.inputArea.invalid.jsx-3230565394 textarea.jsx-3230565394{border-color:#d21c1c;}div.inputArea.jsx-3230565394 textarea.jsx-3230565394{width:100%;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;resize:none;}div.button.jsx-3230565394{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;margin-top:19px;}div.close-icon.jsx-3230565394{position:absolute;top:8px;right:8px;cursor:pointer;}div.inputArea.jsx-3230565394 textarea.jsx-3230565394{padding:12px 16px;font-size:14px;}@media only screen and (max-width:1181px){div.inputArea.jsx-3230565394 textarea.jsx-3230565394{width:100%;}}"
+    styleId="3230565394"
+  />
+</Box>
+`;
+
+exports[`ScreenInput should try to submit empty form 1`] = `
+<Box
+  backgroundColor="#f5f7f9"
+  border="none"
+  borderRadius="4px"
+  padding="40px 24px 24px 24px"
+>
+  <form
+    className="jsx-3230565394"
+    onSubmit={[Function]}
+  >
+    <div
+      className="jsx-3230565394 close-icon"
+      onClick={[Function]}
+      onKeyUp={null}
+      role="button"
+      tabIndex="-1"
+    >
+      <Close
+        customColor="#bac7d5"
+        size="small"
+      />
+    </div>
+    <Heading
+      element="h1"
+      size="small"
+      weight="bold"
+    >
+      Your feedback helps us improve.
+    </Heading>
+    <div
+      className="jsx-3230565394 question"
+    >
+      <Text
+        align="left"
+        element="p"
+        italic={false}
+        size="normal"
+        type="primary"
+        uppercase={false}
+        weight="regular"
+      >
+        What problem were you trying to solve?
+      </Text>
+    </div>
+    <div
+      className="jsx-3230565394 inputArea invalid"
+    >
+      <textarea
+        className="jsx-3230565394"
+        data-gramm_editor="false"
+        onChange={[Function]}
+        value=""
+      />
+      <Typography
+        size="small"
+        type="error"
+      >
+        You haven't written any feedback.
+      </Typography>
+    </div>
+    <div
+      className="jsx-3230565394 button"
+    >
+      <Button
+        block={false}
+        disabled={false}
+        loading={false}
+        onClick={[Function]}
+        onlyIcon={false}
+        size="normal"
+        title="Submit"
+        type="primary"
+        variation="filled"
+        width={100}
+      />
+    </div>
+  </form>
+  <JSXStyle
+    css="div.question.jsx-3230565394{margin-bottom:4px;margin-top:8px;}div.inputArea.invalid.jsx-3230565394 textarea.jsx-3230565394{border-color:#d21c1c;}div.inputArea.jsx-3230565394 textarea.jsx-3230565394{width:100%;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;resize:none;}div.button.jsx-3230565394{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;margin-top:19px;}div.close-icon.jsx-3230565394{position:absolute;top:8px;right:8px;cursor:pointer;}div.inputArea.jsx-3230565394 textarea.jsx-3230565394{padding:12px 16px;font-size:14px;}@media only screen and (max-width:1181px){div.inputArea.jsx-3230565394 textarea.jsx-3230565394{width:100%;}}"
+    styleId="3230565394"
   />
 </Box>
 `;

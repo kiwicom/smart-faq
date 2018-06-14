@@ -65,9 +65,9 @@ class ScreenInput extends React.Component<Props, State> {
     this.setState({ comment: e.target.value, error: false });
   };
   handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const { changeScreen, articleId } = this.props;
     const { comment } = this.state;
-    e.preventDefault();
     if (!comment.length) {
       this.setState({
         error: true,
@@ -109,7 +109,7 @@ class ScreenInput extends React.Component<Props, State> {
           <div className="question">
             <Text>What problem were you trying to solve?</Text>
           </div>
-          <div className={`inputArea  ${error ? 'invalid' : ''}`}>
+          <div className={`inputArea ${error ? 'invalid' : ''}`}>
             <textarea
               data-gramm_editor="false"
               onChange={this.handleChange}
@@ -117,7 +117,7 @@ class ScreenInput extends React.Component<Props, State> {
             />
             {error ? (
               <Typography size="small" type="error">
-                You haven't written any feedback.
+                {"You haven't written any feedback."}
               </Typography>
             ) : null}
           </div>
