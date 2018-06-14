@@ -1,8 +1,7 @@
 // @flow
 import React from 'react';
 import css from 'styled-jsx/css';
-import { Heading, Typography, TextLink } from '@kiwicom/orbit-components';
-import { NewWindow } from '@kiwicom/orbit-components/lib/icons';
+import { Heading, Typography } from '@kiwicom/orbit-components';
 
 import ContactPageLink from './ContactPageLink';
 
