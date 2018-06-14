@@ -13,6 +13,7 @@ import {
   BookingState,
   type BookingStateType,
 } from '../../context/BookingState';
+import { simpleTracker } from '../../helpers/analytics/trackers';
 import bookingTypes from '../../common/booking/bookingTypes';
 import bookingStatuses from '../../common/booking/bookingStatuses';
 import type { Header_booking } from './__generated__/Header_booking.graphql';
@@ -59,6 +60,9 @@ const Header = (props: Props) => {
                 onClick={e => {
                   e.preventDefault();
                   onDisplayAll();
+                  simpleTracker('smartFAQBookingOverview', {
+                    action: 'selectAnotherBooking',
+                  });
                 }}
                 size="small"
                 title="Select another booking"

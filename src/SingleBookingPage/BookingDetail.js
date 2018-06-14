@@ -11,6 +11,7 @@ import MulticityOverlay from './bookingTypes/MulticityOverlay';
 import Contact from './bookingItem/Contact';
 import Notification from './bookingItem/Notification';
 import Header from './bookingItem/Header';
+import { simpleTracker } from '../helpers/analytics/trackers';
 import { ScrollableContent } from '../common';
 import bookingTypes from '../common/booking/bookingTypes';
 import { URGENCY_THRESHOLD } from '../helpers/dateUtils';
@@ -113,6 +114,9 @@ class BookingDetail extends React.Component<Props> {
             target="_blank"
             rel="noopener noreferrer"
             href={replaceWithCurrentDomain(booking.directAccessURL)}
+            onClick={simpleTracker('smartFAQBookingOverview', {
+              action: 'goToMMB',
+            })}
           >
             <button className="manage-booking">Manage My Booking</button>
           </a>

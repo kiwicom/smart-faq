@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash eb9e426679b2abe5d83a1f993979e514
+ * @relayHash 5cc2bc4f996754d06f7e71cb1361c653
  */
 
 /* eslint-disable */
@@ -16,6 +16,7 @@ export type FAQCategoryListRootQueryResponse = {|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +id: string,
+        +title: ?string,
         +$fragmentRefs: FAQCategory_category$ref,
       |},
     |}>,
@@ -30,6 +31,7 @@ query FAQCategoryListRootQuery {
     edges {
       node {
         id
+        title
         ...FAQCategory_category
       }
     }
@@ -50,13 +52,20 @@ var v0 = {
   "name": "id",
   "args": null,
   "storageKey": null
+},
+v1 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "title",
+  "args": null,
+  "storageKey": null
 };
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "FAQCategoryListRootQuery",
   "id": null,
-  "text": "query FAQCategoryListRootQuery {\n  allFAQCategories {\n    edges {\n      node {\n        id\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n",
+  "text": "query FAQCategoryListRootQuery {\n  allFAQCategories {\n    edges {\n      node {\n        id\n        title\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -93,6 +102,7 @@ return {
                 "plural": false,
                 "selections": [
                   v0,
+                  v1,
                   {
                     "kind": "FragmentSpread",
                     "name": "FAQCategory_category",
@@ -139,13 +149,7 @@ return {
                 "plural": false,
                 "selections": [
                   v0,
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "title",
-                    "args": null,
-                    "storageKey": null
-                  },
+                  v1,
                   {
                     "kind": "ScalarField",
                     "alias": null,
@@ -163,5 +167,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '2811f8e21dcc836b4321c21857e685d1';
+(node/*: any*/).hash = 'dc98da3b963e85683c6e412261986712';
 module.exports = node;

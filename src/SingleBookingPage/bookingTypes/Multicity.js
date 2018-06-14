@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 
+import { simpleTracker } from '../../helpers/analytics/trackers';
 import AccordionTitle from '../bookingItem/AccordionTitle';
 import Accordion from '../bookingItem/Accordion';
 import type { Multicity_booking } from './__generated__/Multicity_booking.graphql';
@@ -16,8 +17,18 @@ const Multicity = ({ booking }: Props) => (
     <AccordionTitle title="Trips" />
     {Array.isArray(booking.trips) &&
       booking.trips.map((trip, i) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <Accordion key={i} trip={trip} />
+        <div
+          key={i} //eslint-disable-line react/no-array-index-key
+          onKeyUp={null}
+          role="button"
+          tabIndex="-1"
+          style={{ outline: 'none' }}
+          onClick={simpleTracker('smartFAQBookingOverview', {
+            action: 'openFlightCard',
+          })}
+        >
+          <Accordion trip={trip} />{' '}
+        </div>
       ))}
   </div>
 );

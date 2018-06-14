@@ -5,6 +5,8 @@ import { Typography } from '@kiwicom/orbit-components';
 import { NewWindow } from '@kiwicom/orbit-components/lib/icons';
 import css from 'styled-jsx/css';
 
+import { simpleTracker } from '../helpers/analytics/trackers';
+
 const style = css`
   div.open-icon {
     display: inline-block;
@@ -34,6 +36,9 @@ const FullFAQLink = (props: Props) => (
         rel="noopener noreferrer"
         href="https://www.kiwi.com/helpcenter/"
         className={props.className}
+        onClick={simpleTracker('smartFAQBookingOverview', {
+          action: 'goToOldHelp',
+        })}
       >
         Full FAQ site
         <span className="inline-icon">
