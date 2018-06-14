@@ -2,20 +2,27 @@
 /* global cy */
 
 describe('Querry params redirect to corect article', () => {
-  it(`User should see article about cabin baggage`, () => {
+  it(`User should navigate to a FAQ aricle with url`, () => {
     cy.visit(
       '/?cypress-query=/faq/RkFRQ2F0ZWdvcnk6ODk=/article/RkFRQXJ0aWNsZTo0MQ==',
     );
-    cy.get('[data-cy=faq-breadcrumbs]').as('faq-breadcrumbs');
-    cy.get('[data-cy=faq-article-form]').as('faq-article-form');
+  });
 
+  it(`Breadcrumbs should have length of 4`, () => {
+    cy.get('[data-cy=faq-breadcrumbs]').as('faq-breadcrumbs');
     cy
       .get('@faq-breadcrumbs')
       .children()
       .should('have.length', 4);
+  });
+
+  it(`Feedback form should be present`, () => {
+    cy.get('[data-cy=faq-article-form]').as('faq-article-form');
 
     cy.get('@faq-article-form').should('exist');
+  });
 
+  it(`Article title should be corect`, () => {
     cy
       .get('.faq-article-detail')
       .find('h1')
