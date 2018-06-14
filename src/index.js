@@ -17,6 +17,7 @@ type Props = {||};
 type State = {|
   user: User,
   loginToken: ?string,
+  cypressQuerry: ?string,
 |};
 
 const user = {
@@ -35,11 +36,20 @@ class Root extends React.Component<Props, State> {
     this.cookieKey = 'mockedLogin';
 
     const loginToken = Cookies.get(this.cookieKey);
+
+    this.setupLogs();
+    //
+    // Cypress Querys
+    //
+    const paramsString = window.location.search;
+    const params = new URLSearchParams(paramsString);
+    const cypressQuerry = params.get('cypress-query');
+
     this.state = {
       user: loginToken ? user : null,
       loginToken,
+      cypressQuerry: cypressQuerry,
     };
-    this.setupLogs();
   }
   setupLogs = () => {
     if (
@@ -74,8 +84,9 @@ class Root extends React.Component<Props, State> {
   };
 
   render() {
+    const { cypressQuerry } = this.state;
     const language = 'en';
-
+    const initialRoute = cypressQuerry ? cypressQuerry : '/';
     return (
       <div className="root">
         <App
@@ -86,7 +97,7 @@ class Root extends React.Component<Props, State> {
           language={language}
           locale={enLocale}
           user={this.state.user}
-          initialRoute="/"
+          initialRoute={initialRoute}
           loginToken={this.state.loginToken}
         />
         <style jsx global>
