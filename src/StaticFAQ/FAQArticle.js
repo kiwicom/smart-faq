@@ -38,7 +38,7 @@ const FAQArticle = (props: Props) => (
   >
     <Card>
       <div>
-        <Heading weight="medium" size="small" data-cy="faq-title">
+        <Heading weight="medium" size="small">
           {props.article.title}
         </Heading>
       </div>
