@@ -65,6 +65,7 @@ class ContentPage extends React.Component<Props> {
           }
           .ContentPage .Body {
             display: flex;
+            flex: 1;
           }
           .FAQ {
             width: ${isLoggedIn ? '650px;' : '480px;'};
