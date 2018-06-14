@@ -4,6 +4,8 @@ import css from 'styled-jsx/css';
 import { Heading, Typography, TextLink } from '@kiwicom/orbit-components';
 import { NewWindow } from '@kiwicom/orbit-components/lib/icons';
 
+import ContactPageLink from './ContactPageLink';
+
 const styles = css`
   .errorContainer {
     display: flex;
@@ -30,15 +32,7 @@ const ErrorMessage = () => (
           problem persists, don't hesitate to contact us.
         </Typography>
       </div>
-      <p>
-        <TextLink
-          url="/content/feedback"
-          title="Go to contact page"
-          onClick={() => {}}
-        />
-        {` `}
-        <NewWindow size="small" color="secondary" />
-      </p>
+      <ContactPageLink text="Go to contact page" textColor="#00a991" />
     </div>
     <style jsx>{styles}</style>
   </div>
