@@ -54,12 +54,17 @@ exports[`ScreenInput should match snapshot 1`] = `
         onChange={[Function]}
         value=""
       />
-      <Typography
+      <Text
+        align="left"
+        element="p"
+        italic={false}
         size="small"
-        type="error"
+        type="primary"
+        uppercase={false}
+        weight="regular"
       >
         You haven't written any feedback.
-      </Typography>
+      </Text>
     </div>
     <div
       className="jsx-3230565394 button"
@@ -81,6 +86,47 @@ exports[`ScreenInput should match snapshot 1`] = `
   <JSXStyle
     css="div.question.jsx-3230565394{margin-bottom:4px;margin-top:8px;}div.inputArea.invalid.jsx-3230565394 textarea.jsx-3230565394{border-color:#d21c1c;}div.inputArea.jsx-3230565394 textarea.jsx-3230565394{width:100%;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;resize:none;}div.button.jsx-3230565394{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;margin-top:19px;}div.close-icon.jsx-3230565394{position:absolute;top:8px;right:8px;cursor:pointer;}div.inputArea.jsx-3230565394 textarea.jsx-3230565394{padding:12px 16px;font-size:14px;}@media only screen and (max-width:1181px){div.inputArea.jsx-3230565394 textarea.jsx-3230565394{width:100%;}}"
     styleId="3230565394"
+  />
+  <JSXStyle
+    css={
+      String {
+        "0": "d",
+        "1": "i",
+        "10": "r",
+        "11": "e",
+        "12": "a",
+        "13": " ",
+        "14": "p",
+        "15": "{",
+        "16": "c",
+        "17": "o",
+        "18": "l",
+        "19": "o",
+        "2": "v",
+        "20": "r",
+        "21": ":",
+        "22": "#",
+        "23": "d",
+        "24": "2",
+        "25": "1",
+        "26": "c",
+        "27": "1",
+        "28": "c",
+        "29": ";",
+        "3": ".",
+        "30": "}",
+        "4": "i",
+        "5": "n",
+        "6": "p",
+        "7": "u",
+        "8": "t",
+        "9": "A",
+        "__hash": "232747302",
+        "__scoped": "div.inputArea.jsx-3269896583 p.jsx-3269896583{color:#d21c1c;}",
+        "__scopedHash": "3269896583",
+      }
+    }
+    styleId="232747302"
   />
 </Box>
 `;
@@ -139,12 +185,17 @@ exports[`ScreenInput should try to submit empty form 1`] = `
         onChange={[Function]}
         value=""
       />
-      <Typography
+      <Text
+        align="left"
+        element="p"
+        italic={false}
         size="small"
-        type="error"
+        type="primary"
+        uppercase={false}
+        weight="regular"
       >
         You haven't written any feedback.
-      </Typography>
+      </Text>
     </div>
     <div
       className="jsx-3230565394 button"
@@ -166,6 +217,47 @@ exports[`ScreenInput should try to submit empty form 1`] = `
   <JSXStyle
     css="div.question.jsx-3230565394{margin-bottom:4px;margin-top:8px;}div.inputArea.invalid.jsx-3230565394 textarea.jsx-3230565394{border-color:#d21c1c;}div.inputArea.jsx-3230565394 textarea.jsx-3230565394{width:100%;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;resize:none;}div.button.jsx-3230565394{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;margin-top:19px;}div.close-icon.jsx-3230565394{position:absolute;top:8px;right:8px;cursor:pointer;}div.inputArea.jsx-3230565394 textarea.jsx-3230565394{padding:12px 16px;font-size:14px;}@media only screen and (max-width:1181px){div.inputArea.jsx-3230565394 textarea.jsx-3230565394{width:100%;}}"
     styleId="3230565394"
+  />
+  <JSXStyle
+    css={
+      String {
+        "0": "d",
+        "1": "i",
+        "10": "r",
+        "11": "e",
+        "12": "a",
+        "13": " ",
+        "14": "p",
+        "15": "{",
+        "16": "c",
+        "17": "o",
+        "18": "l",
+        "19": "o",
+        "2": "v",
+        "20": "r",
+        "21": ":",
+        "22": "#",
+        "23": "d",
+        "24": "2",
+        "25": "1",
+        "26": "c",
+        "27": "1",
+        "28": "c",
+        "29": ";",
+        "3": ".",
+        "30": "}",
+        "4": "i",
+        "5": "n",
+        "6": "p",
+        "7": "u",
+        "8": "t",
+        "9": "A",
+        "__hash": "232747302",
+        "__scoped": "div.inputArea.jsx-3269896583 p.jsx-3269896583{color:#d21c1c;}",
+        "__scopedHash": "3269896583",
+      }
+    }
+    styleId="232747302"
   />
 </Box>
 `;
