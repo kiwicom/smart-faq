@@ -10,6 +10,7 @@ import Routes from './Routes';
 import { CloseContext } from './context/Close';
 import { LanguageContext } from './context/Language';
 import { UserContext } from './context/User';
+import SearchStateProvider from './context/SearchState';
 import BookingStateProvider from './context/BookingState';
 import { SelectUrlBooking } from './common/integration/urlProcessing';
 import ErrorBoundary from './common/ErrorBoundary';
@@ -101,13 +102,15 @@ class App extends React.PureComponent<Props, State> {
                     loginToken: this.props.loginToken,
                   }}
                 >
-                  <BookingStateProvider>
-                    <SelectUrlBooking
-                      wasSelected={this.state.urlBookingWasSelected}
-                      setSelected={this.urlBookingSelected}
-                    />
-                    <Routes initialRoute={this.props.initialRoute} />
-                  </BookingStateProvider>
+                  <SearchStateProvider>
+                    <BookingStateProvider>
+                      <SelectUrlBooking
+                        wasSelected={this.state.urlBookingWasSelected}
+                        setSelected={this.urlBookingSelected}
+                      />
+                      <Routes initialRoute={this.props.initialRoute} />
+                    </BookingStateProvider>
+                  </SearchStateProvider>
                 </UserContext.Provider>
               </CloseContext.Provider>
             </LanguageContext.Provider>

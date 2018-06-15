@@ -6,10 +6,7 @@ import css from 'styled-jsx/css';
 import { Search } from '@kiwicom/orbit-components/lib/icons';
 import { withRouter } from 'react-router-dom';
 
-import SearchStateProvider, {
-  SearchState,
-  type SearchStateType,
-} from '../context/SearchState';
+import { SearchState, type SearchStateType } from '../context/SearchState';
 import Input from './../common/Input';
 import FAQCategoryList from './FAQCategoryList';
 import SearchAllFAQs from './SearchAllFAQs';
@@ -73,30 +70,28 @@ class StaticFAQ extends React.Component<Props, State> {
     const categoryId = idx(this.props.match, _ => _.params.categoryId) || null;
 
     return (
-      <SearchStateProvider>
-        <SearchState.Consumer>
-          {({ searchText, changeSearchText }: SearchStateType) => {
-            this.changeSearchText = changeSearchText;
+      <SearchState.Consumer>
+        {({ searchText, changeSearchText }: SearchStateType) => {
+          this.changeSearchText = changeSearchText;
 
-            const isSearching = searchText.length > 0;
-            return (
-              <div className="static-faq">
-                <div className="static-faq-body">
-                  <div className="static-faq-search">
-                    {!categoryId && this.renderInput(searchText)}
-                  </div>
-                  {isSearching ? (
-                    <SearchAllFAQs search={searchText} />
-                  ) : (
-                    <FAQCategoryList categoryId={categoryId} />
-                  )}
+          const isSearching = searchText.length > 0;
+          return (
+            <div className="static-faq">
+              <div className="static-faq-body">
+                <div className="static-faq-search">
+                  {!categoryId && this.renderInput(searchText)}
                 </div>
-                <style jsx>{style}</style>
+                {isSearching ? (
+                  <SearchAllFAQs search={searchText} />
+                ) : (
+                  <FAQCategoryList categoryId={categoryId} />
+                )}
               </div>
-            );
-          }}
-        </SearchState.Consumer>
-      </SearchStateProvider>
+              <style jsx>{style}</style>
+            </div>
+          );
+        }}
+      </SearchState.Consumer>
     );
   }
 }
