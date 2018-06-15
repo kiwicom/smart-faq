@@ -14,7 +14,7 @@ import type { AllBookingsQuery } from './__generated__/AllBookingsQuery.graphql'
 
 const styles = css`
   .allBookings {
-    width: 548px;
+    width: 100%;
     height: 100%;
     padding: 40px 30px 40px 30px;
   }

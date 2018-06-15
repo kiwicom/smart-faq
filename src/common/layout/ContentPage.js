@@ -20,76 +20,113 @@ type Props = {|
 
 class ContentPage extends React.Component<Props> {
   renderPage = (isLoggedIn: boolean) => (
-    <div className="ContentPage">
-      <Header isLoggedIn={isLoggedIn} />
-      <div className="Body">
-        <MediaQuery query="screen and (min-width: 1181px)">
-          {isLoggedIn && (
-            <div className="BookingInfo">
-              <BookingState.Consumer>
-                {({ bookingPage, selectedBooking }) => (
-                  <BookingPage
-                    bookingPage={bookingPage}
-                    selectedBooking={selectedBooking}
-                  />
-                )}
-              </BookingState.Consumer>
-            </div>
-          )}
-        </MediaQuery>
-        <div className="FAQWrapper">
-          <ScrollableContent>
-            <div className="FAQ">
-              <Switch location={this.props.history.location}>
-                <Route exact path="/faq/:categoryId?" component={StaticFAQ} />
-                <Route
-                  path="/faq/:categoryId/article/:articleId"
-                  component={FAQArticleDetail}
+    <BookingState.Consumer>
+      {({ bookingPage, selectedBooking }) => (
+        <div className="ContentPage">
+          <Header isLoggedIn={isLoggedIn} />
+          <div className="Body">
+            {bookingPage === 'ALL_BOOKINGS' ? (
+              <div className="BookingInfo">
+                <BookingPage
+                  bookingPage={bookingPage}
+                  selectedBooking={selectedBooking}
                 />
-              </Switch>
-            </div>
-          </ScrollableContent>
+              </div>
+            ) : (
+              <MediaQuery query="screen and (min-width: 1181px)">
+                {isLoggedIn && (
+                  <div className="BookingInfo">
+                    <BookingPage
+                      bookingPage={bookingPage}
+                      selectedBooking={selectedBooking}
+                    />
+                  </div>
+                )}
+              </MediaQuery>
+            )}
+            {bookingPage === 'ALL_BOOKINGS' ? (
+              <MediaQuery query="screen and (min-width: 1181px)">
+                <div className="FAQWrapper">
+                  <ScrollableContent>
+                    <div className="FAQ">
+                      <Switch location={this.props.history.location}>
+                        <Route
+                          exact
+                          path="/faq/:categoryId?"
+                          component={StaticFAQ}
+                        />
+                        <Route
+                          path="/faq/:categoryId/article/:articleId"
+                          component={FAQArticleDetail}
+                        />
+                      </Switch>
+                    </div>
+                  </ScrollableContent>
+                </div>
+              </MediaQuery>
+            ) : (
+              <div className="FAQWrapper">
+                <ScrollableContent>
+                  <div className="FAQ">
+                    <Switch location={this.props.history.location}>
+                      <Route
+                        exact
+                        path="/faq/:categoryId?"
+                        component={StaticFAQ}
+                      />
+                      <Route
+                        path="/faq/:categoryId/article/:articleId"
+                        component={FAQArticleDetail}
+                      />
+                    </Switch>
+                  </div>
+                </ScrollableContent>
+              </div>
+            )}
+          </div>
+          <style jsx>
+            {`
+              .ContentPage {
+                min-width: 650px;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+              }
+              .FAQWrapper {
+                flex-grow: 1;
+                position: relative;
+              }
+              .ContentPage .Body {
+                display: flex;
+                flex: 1;
+              }
+              .FAQ {
+                width: 650px;
+                height: 100%;
+              }
+              .BookingInfo {
+                width: 548px;
+              }
+              @media only screen and (max-width: 1180px) {
+                .ContentPage {
+                  min-width: 320px;
+                  width: 100vw;
+                }
+                .ContentPage .Body {
+                  height: calc(100% - (123px));
+                }
+                .FAQ {
+                  width: 100%;
+                }
+                .BookingInfo {
+                  width: 100%;
+                }
+              }
+            `}
+          </style>
         </div>
-      </div>
-      <style jsx>
-        {`
-          .ContentPage {
-            min-width: 650px;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-          }
-          .FAQWrapper {
-            flex-grow: 1;
-            position: relative;
-          }
-          .ContentPage .Body {
-            display: flex;
-            flex: 1;
-          }
-          .FAQ {
-            width: 650px;
-            height: 100%;
-          }
-          .BookingInfo {
-            width: 548px;
-          }
-
-          @media only screen and (max-width: 1180px) {
-            .ContentPage {
-              min-width: 320px;
-              width: 100vw;
-            }
-            .ContentPage .Body {
-              flex-grow: 1;
-            }
-            .FAQ {
-              width: 100%;
-            }
-          }
-        `}
-      </style>
-    </div>
+      )}
+    </BookingState.Consumer>
   );
 
   render() {

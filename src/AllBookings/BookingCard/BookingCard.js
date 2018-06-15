@@ -25,10 +25,6 @@ const styles = css`
     padding: 12px 44px 24px 44px;
     margin-bottom: 24px;
   }
-  div.fields {
-    display: flex;
-    justify-content: space-between;
-  }
   div.logoCarriers {
     position: absolute;
     top: 23px;
@@ -40,6 +36,10 @@ const styles = css`
     right: 16px;
     line-height: 1.6;
   }
+  div.fields {
+    display: flex;
+    justify-content: space-between;
+  }
   div.label {
     display: block;
     margin-bottom: 4px;
@@ -47,6 +47,7 @@ const styles = css`
   div.section {
     display: block;
   }
+
   p.flight {
     font-size: 16px;
     font-weight: bold;
@@ -61,6 +62,30 @@ const styles = css`
     margin-left: 8px;
     margin-right: 8px;
     vertical-align: top;
+  }
+  @media only screen and (max-width: 1180px) {
+    .card {
+      width: 304px;
+      height: 161px;
+      position: relative;
+      margin-bottom: 16;
+    }
+    p.flight {
+      font-size: 12px;
+    }
+    div.section {
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    div.section:nth-child(1) {
+      margin-right: 30px;
+    }
+    div.section:nth-child(3) {
+      margin-right: 65px;
+    }
+    div.fields {
+      display: block;
+    }
   }
 `;
 

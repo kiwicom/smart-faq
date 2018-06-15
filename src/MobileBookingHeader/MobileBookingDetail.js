@@ -3,10 +3,11 @@
 import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { ChevronDown, ChevronUp } from '@kiwicom/orbit-components/lib/icons';
-import { Button } from '@kiwicom/orbit-components';
+import { Button, TextLink } from '@kiwicom/orbit-components';
 import css from 'styled-jsx/css';
 
 import bookingTypes from '../common/booking/bookingTypes';
+import { BookingState, type BookingStateType } from '../context/BookingState';
 import type { MobileBookingDetail_booking } from './__generated__/MobileBookingDetail_booking.graphql';
 import OneWayTrip from './OneWayTrip';
 import ReturnTrip from './ReturnTrip';
@@ -55,8 +56,23 @@ const MobileBookingControls = (props: MobileBookingControlsProps) => (
         title="Manage My Booking"
       />
     </div>
-    {/* Disabled until we have a design for booking selection page */}
-    {/* <div className="selectBookingButton">select another booking</div> */}
+    <div className="selectBookingButton">
+      <BookingState.Consumer>
+        {({ onDisplayAll }: BookingStateType) => (
+          <div data-cy="btn-other-bookings">
+            <TextLink
+              url=""
+              onClick={e => {
+                e.preventDefault();
+                onDisplayAll();
+              }}
+              size="small"
+              title="Select another booking"
+            />
+          </div>
+        )}
+      </BookingState.Consumer>
+    </div>
     <style jsx>{MobileBookingControlsStyle}</style>
   </React.Fragment>
 );
