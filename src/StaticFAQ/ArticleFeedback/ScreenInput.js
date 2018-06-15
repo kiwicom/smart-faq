@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Heading, Text, Button, Typography } from '@kiwicom/orbit-components';
+import { Heading, Text, Button } from '@kiwicom/orbit-components';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
 
 import { Box } from '../../common';
@@ -18,6 +18,11 @@ type State = {|
   error: boolean,
 |};
 
+const globalStyles = css`
+  div.inputArea p {
+    color: #d21c1c;
+  }
+`;
 const style = css`
   div.question {
     margin-bottom: 4px;
@@ -85,6 +90,7 @@ class ScreenInput extends React.Component<Props, State> {
     this.props.changeScreen(screensList.INITIAL);
   };
   render() {
+    /* eslint-disable react/no-unescaped-entities */
     const { error } = this.state;
     return (
       <Box
@@ -116,9 +122,7 @@ class ScreenInput extends React.Component<Props, State> {
               value={this.state.comment}
             />
             {error ? (
-              <Typography size="small" type="error">
-                {"You haven't written any feedback."}
-              </Typography>
+              <Text size="small">You haven't written any feedback.</Text>
             ) : null}
           </div>
           <div className="button">
@@ -126,6 +130,9 @@ class ScreenInput extends React.Component<Props, State> {
           </div>
         </form>
         <style jsx>{style}</style>
+        <style jsx global>
+          {globalStyles}
+        </style>
       </Box>
     );
   }
