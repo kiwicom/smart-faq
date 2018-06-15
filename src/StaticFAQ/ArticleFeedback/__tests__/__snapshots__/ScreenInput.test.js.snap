@@ -8,11 +8,11 @@ exports[`ScreenInput should match snapshot 1`] = `
   padding="40px 24px 24px 24px"
 >
   <form
-    className="jsx-3230565394"
+    className="jsx-2839840948"
     onSubmit={[Function]}
   >
     <div
-      className="jsx-3230565394 close-icon"
+      className="jsx-2839840948 close-icon"
       onClick={[Function]}
       onKeyUp={null}
       role="button"
@@ -31,7 +31,7 @@ exports[`ScreenInput should match snapshot 1`] = `
       Your feedback helps us improve.
     </Heading>
     <div
-      className="jsx-3230565394 question"
+      className="jsx-2839840948 question"
     >
       <Text
         align="left"
@@ -46,28 +46,22 @@ exports[`ScreenInput should match snapshot 1`] = `
       </Text>
     </div>
     <div
-      className="jsx-3230565394 inputArea invalid"
+      className="jsx-2839840948 inputArea invalid"
     >
       <textarea
-        className="jsx-3230565394"
+        className="jsx-2839840948"
         data-gramm_editor="false"
         onChange={[Function]}
         value=""
       />
-      <Text
-        align="left"
-        element="p"
-        italic={false}
-        size="small"
-        type="primary"
-        uppercase={false}
-        weight="regular"
+      <p
+        className="jsx-2839840948"
       >
         You haven't written any feedback.
-      </Text>
+      </p>
     </div>
     <div
-      className="jsx-3230565394 button"
+      className="jsx-2839840948 button"
     >
       <Button
         block={false}
@@ -84,49 +78,8 @@ exports[`ScreenInput should match snapshot 1`] = `
     </div>
   </form>
   <JSXStyle
-    css="div.question.jsx-3230565394{margin-bottom:4px;margin-top:8px;}div.inputArea.invalid.jsx-3230565394 textarea.jsx-3230565394{border-color:#d21c1c;}div.inputArea.jsx-3230565394 textarea.jsx-3230565394{width:100%;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;resize:none;}div.button.jsx-3230565394{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;margin-top:19px;}div.close-icon.jsx-3230565394{position:absolute;top:8px;right:8px;cursor:pointer;}div.inputArea.jsx-3230565394 textarea.jsx-3230565394{padding:12px 16px;font-size:14px;}@media only screen and (max-width:1181px){div.inputArea.jsx-3230565394 textarea.jsx-3230565394{width:100%;}}"
-    styleId="3230565394"
-  />
-  <JSXStyle
-    css={
-      String {
-        "0": "d",
-        "1": "i",
-        "10": "r",
-        "11": "e",
-        "12": "a",
-        "13": " ",
-        "14": "p",
-        "15": "{",
-        "16": "c",
-        "17": "o",
-        "18": "l",
-        "19": "o",
-        "2": "v",
-        "20": "r",
-        "21": ":",
-        "22": "#",
-        "23": "d",
-        "24": "2",
-        "25": "1",
-        "26": "c",
-        "27": "1",
-        "28": "c",
-        "29": ";",
-        "3": ".",
-        "30": "}",
-        "4": "i",
-        "5": "n",
-        "6": "p",
-        "7": "u",
-        "8": "t",
-        "9": "A",
-        "__hash": "232747302",
-        "__scoped": "div.inputArea.jsx-3269896583 p.jsx-3269896583{color:#d21c1c;}",
-        "__scopedHash": "3269896583",
-      }
-    }
-    styleId="232747302"
+    css="div.question.jsx-2839840948{margin-bottom:4px;margin-top:8px;}div.inputArea.invalid.jsx-2839840948 textarea.jsx-2839840948{border-color:#d21c1c;}div.inputArea.jsx-2839840948 p.jsx-2839840948{font-family:'Roboto';font-size:12px;font-weight:400;color:#d21c1c;}div.inputArea.jsx-2839840948 textarea.jsx-2839840948{width:100%;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;resize:none;}div.button.jsx-2839840948{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;margin-top:19px;}div.close-icon.jsx-2839840948{position:absolute;top:8px;right:8px;cursor:pointer;}div.inputArea.jsx-2839840948 textarea.jsx-2839840948{padding:12px 16px;font-size:14px;}@media only screen and (max-width:1181px){div.inputArea.jsx-2839840948 textarea.jsx-2839840948{width:100%;}}"
+    styleId="2839840948"
   />
 </Box>
 `;
@@ -139,11 +92,11 @@ exports[`ScreenInput should try to submit empty form 1`] = `
   padding="40px 24px 24px 24px"
 >
   <form
-    className="jsx-3230565394"
+    className="jsx-2839840948"
     onSubmit={[Function]}
   >
     <div
-      className="jsx-3230565394 close-icon"
+      className="jsx-2839840948 close-icon"
       onClick={[Function]}
       onKeyUp={null}
       role="button"
@@ -162,7 +115,7 @@ exports[`ScreenInput should try to submit empty form 1`] = `
       Your feedback helps us improve.
     </Heading>
     <div
-      className="jsx-3230565394 question"
+      className="jsx-2839840948 question"
     >
       <Text
         align="left"
@@ -177,28 +130,22 @@ exports[`ScreenInput should try to submit empty form 1`] = `
       </Text>
     </div>
     <div
-      className="jsx-3230565394 inputArea invalid"
+      className="jsx-2839840948 inputArea invalid"
     >
       <textarea
-        className="jsx-3230565394"
+        className="jsx-2839840948"
         data-gramm_editor="false"
         onChange={[Function]}
         value=""
       />
-      <Text
-        align="left"
-        element="p"
-        italic={false}
-        size="small"
-        type="primary"
-        uppercase={false}
-        weight="regular"
+      <p
+        className="jsx-2839840948"
       >
         You haven't written any feedback.
-      </Text>
+      </p>
     </div>
     <div
-      className="jsx-3230565394 button"
+      className="jsx-2839840948 button"
     >
       <Button
         block={false}
@@ -215,49 +162,8 @@ exports[`ScreenInput should try to submit empty form 1`] = `
     </div>
   </form>
   <JSXStyle
-    css="div.question.jsx-3230565394{margin-bottom:4px;margin-top:8px;}div.inputArea.invalid.jsx-3230565394 textarea.jsx-3230565394{border-color:#d21c1c;}div.inputArea.jsx-3230565394 textarea.jsx-3230565394{width:100%;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;resize:none;}div.button.jsx-3230565394{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;margin-top:19px;}div.close-icon.jsx-3230565394{position:absolute;top:8px;right:8px;cursor:pointer;}div.inputArea.jsx-3230565394 textarea.jsx-3230565394{padding:12px 16px;font-size:14px;}@media only screen and (max-width:1181px){div.inputArea.jsx-3230565394 textarea.jsx-3230565394{width:100%;}}"
-    styleId="3230565394"
-  />
-  <JSXStyle
-    css={
-      String {
-        "0": "d",
-        "1": "i",
-        "10": "r",
-        "11": "e",
-        "12": "a",
-        "13": " ",
-        "14": "p",
-        "15": "{",
-        "16": "c",
-        "17": "o",
-        "18": "l",
-        "19": "o",
-        "2": "v",
-        "20": "r",
-        "21": ":",
-        "22": "#",
-        "23": "d",
-        "24": "2",
-        "25": "1",
-        "26": "c",
-        "27": "1",
-        "28": "c",
-        "29": ";",
-        "3": ".",
-        "30": "}",
-        "4": "i",
-        "5": "n",
-        "6": "p",
-        "7": "u",
-        "8": "t",
-        "9": "A",
-        "__hash": "232747302",
-        "__scoped": "div.inputArea.jsx-3269896583 p.jsx-3269896583{color:#d21c1c;}",
-        "__scopedHash": "3269896583",
-      }
-    }
-    styleId="232747302"
+    css="div.question.jsx-2839840948{margin-bottom:4px;margin-top:8px;}div.inputArea.invalid.jsx-2839840948 textarea.jsx-2839840948{border-color:#d21c1c;}div.inputArea.jsx-2839840948 p.jsx-2839840948{font-family:'Roboto';font-size:12px;font-weight:400;color:#d21c1c;}div.inputArea.jsx-2839840948 textarea.jsx-2839840948{width:100%;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;resize:none;}div.button.jsx-2839840948{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;margin-top:19px;}div.close-icon.jsx-2839840948{position:absolute;top:8px;right:8px;cursor:pointer;}div.inputArea.jsx-2839840948 textarea.jsx-2839840948{padding:12px 16px;font-size:14px;}@media only screen and (max-width:1181px){div.inputArea.jsx-2839840948 textarea.jsx-2839840948{width:100%;}}"
+    styleId="2839840948"
   />
 </Box>
 `;
