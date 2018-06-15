@@ -18,11 +18,6 @@ type State = {|
   error: boolean,
 |};
 
-const globalStyles = css`
-  div.inputArea p {
-    color: #d21c1c;
-  }
-`;
 const style = css`
   div.question {
     margin-bottom: 4px;
@@ -30,6 +25,12 @@ const style = css`
   }
   div.inputArea.invalid textarea {
     border-color: #d21c1c;
+  }
+  div.inputArea p {
+    font-family: 'Roboto';
+    font-size: 12px;
+    font-weight: 400;
+    color: #d21c1c;
   }
   div.inputArea textarea {
     width: 100%;
@@ -121,18 +122,13 @@ class ScreenInput extends React.Component<Props, State> {
               onChange={this.handleChange}
               value={this.state.comment}
             />
-            {error ? (
-              <Text size="small">You haven't written any feedback.</Text>
-            ) : null}
+            {error ? <p>You haven't written any feedback.</p> : null}
           </div>
           <div className="button">
             <Button title="Submit" onClick={() => {}} width={100} />
           </div>
         </form>
         <style jsx>{style}</style>
-        <style jsx global>
-          {globalStyles}
-        </style>
       </Box>
     );
   }
