@@ -17,7 +17,7 @@ type Props = {||};
 type State = {|
   user: User,
   loginToken: ?string,
-  cypressQuerry: ?string,
+  helpQuery: ?string,
 |};
 
 const user = {
@@ -43,12 +43,12 @@ class Root extends React.Component<Props, State> {
     //
     const paramsString = window.location.search;
     const params = new URLSearchParams(paramsString);
-    const cypressQuerry = params.get('cypress-query');
+    const helpQueryString = params.get('help');
 
     this.state = {
       user: loginToken ? user : null,
       loginToken,
-      cypressQuerry: cypressQuerry,
+      helpQuery: helpQueryString,
     };
   }
   setupLogs = () => {
@@ -84,9 +84,9 @@ class Root extends React.Component<Props, State> {
   };
 
   render() {
-    const { cypressQuerry } = this.state;
+    const { helpQuery } = this.state;
     const language = 'en';
-    const initialRoute = cypressQuerry ? cypressQuerry : '/';
+    const initialRoute = helpQuery ? helpQuery : '/';
     return (
       <div className="root">
         <App
