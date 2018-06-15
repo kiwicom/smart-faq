@@ -6,6 +6,7 @@ describe('Querry params redirect to corect article', () => {
     cy.visit(
       '/?cypress-query=/faq/RkFRQ2F0ZWdvcnk6ODk=/article/RkFRQXJ0aWNsZTo0MQ==',
     );
+    cy.wait(5000);
   });
 
   it(`Breadcrumbs should have length of 4`, () => {
