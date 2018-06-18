@@ -32,6 +32,18 @@ const CustomBreadcrumbs = ({ breadcrumbs, loginToken }: Props) => {
   const previousCategory = [...breadcrumbs].slice(-2)[0];
   const id = previousCategory && previousCategory.id;
 
+  const breadcrubsLength = breadcrumbs.map(b => b.title).join().length;
+
+  if (breadcrubsLength > 54) {
+    const length = breadcrumbs.length;
+    breadcrumbs = breadcrumbs.map((b, i) => {
+      if (i !== 0 && i !== length - 1 && i !== length - 2) {
+        return { ...b, title: '...' };
+      }
+      return b;
+    });
+  }
+
   return (
     <div className="breadcrumbs" data-cy="faq-breadcrumbs">
       {loginToken && (

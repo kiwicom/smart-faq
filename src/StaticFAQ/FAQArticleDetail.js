@@ -91,19 +91,6 @@ class FAQArticleDetail extends React.Component<Props> {
           .concat(category.ancestors ? category.ancestors : [])
           .concat(category)
           .concat([{ title: 'Article' }]);
-
-        const breadcrubsLength = breadcrumbs.map(b => b.title).join().length;
-
-        if (breadcrubsLength > 54) {
-          const ancestors = category.ancestors.map(a => ({
-            ...a,
-            title: '...',
-          }));
-          breadcrumbs = [{ title: 'Home' }]
-            .concat(ancestors ? ancestors : [])
-            .concat(category)
-            .concat([{ title: 'Article' }]);
-        }
       }
 
       return (
