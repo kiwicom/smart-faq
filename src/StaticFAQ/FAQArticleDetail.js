@@ -82,19 +82,34 @@ class FAQArticleDetail extends React.Component<Props> {
         return <FAQArticleNotFound />;
       }
 
+      let breadcrumbs = [{ title: 'Search' }].concat([
+        { title: article.title },
+      ]);
+
+      if (category) {
+        breadcrumbs = [{ title: 'Home' }]
+          .concat(category.ancestors ? category.ancestors : [])
+          .concat(category)
+          .concat([{ title: 'Article' }]);
+
+        const breadcrubsLength = breadcrumbs.map(b => b.title).join().length;
+
+        if (breadcrubsLength > 54) {
+          const ancestors = category.ancestors.map(a => ({
+            ...a,
+            title: '...',
+          }));
+          breadcrumbs = [{ title: 'Home' }]
+            .concat(ancestors ? ancestors : [])
+            .concat(category)
+            .concat([{ title: 'Article' }]);
+        }
+      }
+
       return (
         <React.Fragment>
           <div className="breadcrumbs">
-            <CustomBreadcrumbs
-              breadcrumbs={
-                category
-                  ? [{ title: 'Home' }]
-                      .concat(category.ancestors ? category.ancestors : [])
-                      .concat(category)
-                      .concat([{ title: article.title }])
-                  : [{ title: 'Search' }].concat([{ title: article.title }])
-              }
-            />
+            <CustomBreadcrumbs breadcrumbs={breadcrumbs} />
           </div>
 
           <FAQArticleDetailContent article={article} />
