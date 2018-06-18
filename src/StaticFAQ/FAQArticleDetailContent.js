@@ -10,7 +10,6 @@ import { UserContext, type UserContextType } from '../context/User';
 import Markdown from '../common/Markdown';
 import FAQArticleFeedback from './ArticleFeedback/FAQArticleFeedback';
 import { EnterTracker, TimeTracker } from '../helpers/analytics/trackers';
-import { resourceId } from '../helpers/graphqlUtils';
 import type { FAQArticleDetailContent_article } from './__generated__/FAQArticleDetailContent_article.graphql';
 
 type Props = {
@@ -124,7 +123,7 @@ const EnterTrackedDetail = EnterTracker(
   'smartFAQCategories',
   (props: Props) => ({
     action: 'clickOnArticle',
-    articleId: resourceId(idx(props.article, _ => _.id) || ''),
+    articleId: idx(props.article, _ => _.id) || '',
     articleName: idx(props.article, _ => _.title) || '',
   }),
 );
@@ -133,7 +132,7 @@ const TimeTrackedDetail = TimeTracker(
   'smartFAQCategories',
   (props: Props) => ({
     action: 'articleClose',
-    articleId: resourceId(idx(props.article, _ => _.id) || ''),
+    articleId: idx(props.article, _ => _.id) || '',
     articleName: idx(props.article, _ => _.title) || '',
   }),
 );

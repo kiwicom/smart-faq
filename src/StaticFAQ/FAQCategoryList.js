@@ -12,7 +12,6 @@ import FAQCategory from './FAQCategory';
 import Breadcrumbs from './Breadcrumbs';
 import StaticFAQError from './StaticFAQError';
 import { simpleTracker } from '../helpers/analytics/trackers';
-import { resourceId } from '../helpers/graphqlUtils';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
 import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
 import type { FAQCategoryListRootQueryResponse } from './__generated__/FAQCategoryListRootQuery.graphql';
@@ -104,7 +103,7 @@ class FAQCategoryList extends React.Component<Props> {
                 style={{ textDecoration: 'none', display: 'block' }}
                 onClick={simpleTracker('smartFAQCategories', {
                   action: 'clickOnCategory',
-                  categoryId: resourceId(category.id),
+                  categoryId: category.id,
                   categoryName: category.title || '',
                 })}
               >
