@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 
-import { simpleTracker } from '../../helpers/analytics/trackers';
 import AccordionTitle from '../bookingItem/AccordionTitle';
 import Accordion from '../bookingItem/Accordion';
 import type { Multicity_booking } from './__generated__/Multicity_booking.graphql';
