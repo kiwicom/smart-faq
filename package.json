@@ -31,6 +31,8 @@
     "relay": "relay-compiler --src ./src --schema ./schema.graphql",
     "schema": "graphql get-schema dev"
   },
+
+  
   "main": "lib/App.js",
   "author": "kiwi.com",
   "devDependencies": {
