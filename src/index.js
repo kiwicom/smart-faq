@@ -5,12 +5,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Cookies from 'js-cookie';
 import Raven from 'raven-js';
+import KeenTracking from 'keen-tracking';
 
 import App from './App';
 import enLocale from '../i18n/en/translation.json';
 import { socialLogin } from './helpers/Auth';
 import { Requester } from './helpers/Requests';
 import type { User } from './types';
+import { type LogEvent, type EventPayload } from './helpers/analytics/cuckoo';
 
 type Props = {||};
 
@@ -18,6 +20,7 @@ type State = {|
   user: User,
   loginToken: ?string,
   helpQuery: ?string,
+  open: boolean,
 |};
 
 const user = {
@@ -49,8 +52,24 @@ class Root extends React.Component<Props, State> {
       user: loginToken ? user : null,
       loginToken,
       helpQuery: helpQueryString,
+      open: true,
     };
+    this.setupLogs();
+    this.setupTracker();
   }
+  setupTracker = () => {
+    const keen = new KeenTracking({
+      projectId: process.env.KEENIO_PROJECTID,
+      writeKey: process.env.KEENIO_WRITEKEY,
+    });
+    const stagingCuckoo = {
+      infinario: (eventName: LogEvent, payload: EventPayload) => {
+        console.info('Event recorded to KeenIO',eventName, payload); //eslint-disable-line
+        keen.recordEvent(eventName, payload);
+      },
+    };
+    window.cuckoo = stagingCuckoo;
+  };
   setupLogs = () => {
     if (
       process.env.NODE_ENV === 'production' &&
@@ -82,6 +101,13 @@ class Root extends React.Component<Props, State> {
     this.setState({ user: null, loginToken: null });
     Cookies.remove(this.cookieKey);
   };
+  toggleApp = () => {
+    const isOpen = this.state.open;
+    this.setState({ open: !isOpen });
+  };
+  closeApp = () => {
+    this.setState({ open: false });
+  };
 
   render() {
     const { helpQuery } = this.state;
@@ -89,17 +115,28 @@ class Root extends React.Component<Props, State> {
     const initialRoute = helpQuery ? helpQuery : '/';
     return (
       <div className="root">
-        <App
-          onClose={() => {}}
-          onLogin={this.onLogin}
-          onSocialLogin={this.onSocialLogin}
-          onLogout={this.onLogout}
-          language={language}
-          locale={enLocale}
-          user={this.state.user}
-          initialRoute={initialRoute}
-          loginToken={this.state.loginToken}
-        />
+        <div
+          className="toggler"
+          onKeyUp={() => {}}
+          role="button"
+          tabIndex="-1"
+          onClick={this.toggleApp}
+        >
+          Toggle SmartFAQ
+        </div>
+        {this.state.open && (
+          <App
+            onClose={this.closeApp}
+            onLogin={this.onLogin}
+            onSocialLogin={this.onSocialLogin}
+            onLogout={this.onLogout}
+            language={language}
+            locale={enLocale}
+            user={this.state.user}
+            initialRoute={initialRoute}
+            loginToken={this.state.loginToken}
+          />
+        )}
         <style jsx global>
           {`
             body {
@@ -109,6 +146,17 @@ class Root extends React.Component<Props, State> {
               position: fixed;
               right: 0;
               top: 0;
+            }
+            .toggler {
+              position: fixed;
+              top: 20px;
+              left: 20px;
+              cursor: pointer;
+              color: white;
+              border: 3px solid green;
+              padding: 5px;
+              outline: none;
+              background: green;
             }
           `}
         </style>

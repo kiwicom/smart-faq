@@ -15,6 +15,7 @@ exports[`FullFAQLink should match snapshot 1`] = `
         <a
           className="jsx-3768482590 "
           href="https://www.kiwi.com/helpcenter/"
+          onClick={[Function]}
           rel="noopener noreferrer"
           target="_blank"
         >

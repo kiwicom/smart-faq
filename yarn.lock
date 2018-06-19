@@ -3018,7 +3018,7 @@ compare-versions@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-3.1.0.tgz#43310256a5c555aaed4193c04d8f154cf9c6efd5"
 
-component-emitter@^1.2.1:
+component-emitter@^1.2.0, component-emitter@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.2.1.tgz#137918d6d78283f7df7a6b7c5a63e140e69425e6"
 
@@ -6933,6 +6933,10 @@ js-base64@^2.1.9, js-base64@^2.3.2:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.3.tgz#2e545ec2b0f2957f41356510205214e98fad6582"
 
+js-cookie@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.1.0.tgz#479c20d0a0bb6cab81491f917788cd025d6452f0"
+
 js-cookie@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.2.0.tgz#1b2c279a6eece380a12168b92485265b35b1effb"
@@ -7143,6 +7147,20 @@ jws@^3.1.4:
     base64url "^2.0.0"
     jwa "^1.1.4"
     safe-buffer "^5.0.1"
+
+keen-core@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/keen-core/-/keen-core-0.1.3.tgz#b78cccad3cd62ef2e35196984d9b370bec6b1ce2"
+  dependencies:
+    component-emitter "^1.2.0"
+
+keen-tracking@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/keen-tracking/-/keen-tracking-2.0.1.tgz#3e4d11bac7db5bef84e4c38f7ceaa1b5b0ea442b"
+  dependencies:
+    component-emitter "^1.2.0"
+    js-cookie "2.1.0"
+    keen-core "^0.1.3"
 
 kefir@^3.7.3:
   version "3.8.2"
