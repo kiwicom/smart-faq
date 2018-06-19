@@ -30,9 +30,6 @@ const style = css`
     border-bottom: 1px solid #e8edf1;
     background-color: #ffffff;
   }
-  .FAQ {
-    width: 480px;
-  }
   .faqLink {
     margin-left: 182px;
     line-height: 1.4;
