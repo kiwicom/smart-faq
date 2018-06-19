@@ -11,6 +11,7 @@ import FAQArticle from './FAQArticle';
 import FAQCategory from './FAQCategory';
 import Breadcrumbs from './Breadcrumbs';
 import StaticFAQError from './StaticFAQError';
+import { simpleTracker } from '../helpers/analytics/trackers';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
 import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
 import type { FAQCategoryListRootQueryResponse } from './__generated__/FAQCategoryListRootQuery.graphql';
@@ -30,7 +31,11 @@ type SubcategoryQueryRendererParams = {
   error: ?Error,
 };
 
-type CategoryFragment = {| +id: string, +$fragmentRefs: FAQCategory_category |};
+type CategoryFragment = {|
+  +id: string,
+  +title: ?string,
+  +$fragmentRefs: FAQCategory_category,
+|};
 type FAQArticlePerexFragment = {|
   +id: string,
   +$fragmentRefs: FAQArticle_article,
@@ -42,6 +47,7 @@ const queryRoot = graphql`
       edges {
         node {
           id
+          title
           ...FAQCategory_category
         }
       }
@@ -55,6 +61,7 @@ const querySubcategory = graphql`
       title
       subcategories {
         id
+        title
         ...FAQCategory_category
       }
       ancestors {
@@ -68,7 +75,12 @@ const querySubcategory = graphql`
     }
   }
 `;
-
+const categoryClicked = (category: CategoryFragment) => () =>
+  simpleTracker('smartFAQCategories', {
+    action: 'clickOnCategory',
+    categoryId: category.id,
+    categoryName: category.title || '',
+  });
 class FAQCategoryList extends React.Component<Props> {
   renderFAQArticlePerexes = (
     faqs: $ReadOnlyArray<?FAQArticlePerexFragment>,
@@ -84,7 +96,6 @@ class FAQCategoryList extends React.Component<Props> {
       </div>
     );
   };
-
   renderCategories = (categories: $ReadOnlyArray<CategoryFragment>) => {
     return (
       <div data-cy="faq-categories">
@@ -95,6 +106,7 @@ class FAQCategoryList extends React.Component<Props> {
                 key={category.id}
                 to={`/faq/${category.id}`}
                 style={{ textDecoration: 'none', display: 'block' }}
+                onClick={categoryClicked(category)}
               >
                 <FAQCategory category={category} />
               </Link>
@@ -141,10 +153,12 @@ class FAQCategoryList extends React.Component<Props> {
 
       return (
         <React.Fragment>
-          <Breadcrumbs
-            breadcrumbs={ancestors}
-            currentCategory={currentCategory}
-          />
+          <div>
+            <Breadcrumbs
+              breadcrumbs={ancestors}
+              currentCategory={currentCategory}
+            />
+          </div>
           <ScrollableBox>
             {this.renderCategories(categories.filter(Boolean))}
             {this.renderFAQArticlePerexes(faqs, categoryId)}

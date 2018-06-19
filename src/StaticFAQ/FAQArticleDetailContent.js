@@ -4,10 +4,12 @@ import * as React from 'react';
 import { Heading, Text } from '@kiwicom/orbit-components';
 import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
+import idx from 'idx';
 
 import { UserContext, type UserContextType } from '../context/User';
 import Markdown from '../common/Markdown';
 import FAQArticleFeedback from './ArticleFeedback/FAQArticleFeedback';
+import { EnterTracker, TimeTracker } from '../helpers/analytics/trackers';
 import type { FAQArticleDetailContent_article } from './__generated__/FAQArticleDetailContent_article.graphql';
 
 type Props = {
@@ -116,8 +118,26 @@ class Detail extends React.Component<Props> {
   }
 }
 
-export default createFragmentContainer(
+const EnterTrackedDetail = EnterTracker(
   Detail,
+  'smartFAQCategories',
+  (props: Props) => ({
+    action: 'clickOnArticle',
+    articleId: idx(props.article, _ => _.id) || '',
+    articleName: idx(props.article, _ => _.title) || '',
+  }),
+);
+const TimeTrackedDetail = TimeTracker(
+  EnterTrackedDetail,
+  'smartFAQCategories',
+  (props: Props) => ({
+    action: 'articleClose',
+    articleId: idx(props.article, _ => _.id) || '',
+    articleName: idx(props.article, _ => _.title) || '',
+  }),
+);
+export default createFragmentContainer(
+  TimeTrackedDetail,
   graphql`
     fragment FAQArticleDetailContent_article on FAQArticle {
       id

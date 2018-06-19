@@ -4,6 +4,7 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 
+import { simpleTracker } from '../../helpers/analytics/trackers';
 import { Box } from '../../common';
 import AccordionBody from './AccordionBody';
 import AccordionHeader from './AccordionHeader';
@@ -35,6 +36,10 @@ class Accordion extends React.Component<Props, State> {
     isToggled: false,
   };
   toggleBody = () => {
+    !this.state.isToggled &&
+      simpleTracker('smartFAQBookingOverview', {
+        action: 'openFlightCard',
+      });
     this.setState(prevState => ({ isToggled: !prevState.isToggled }));
   };
   render() {

@@ -14,6 +14,7 @@ import SearchStateProvider from './context/SearchState';
 import BookingStateProvider from './context/BookingState';
 import { SelectUrlBooking } from './common/integration/urlProcessing';
 import ErrorBoundary from './common/ErrorBoundary';
+import { EnterTracker, TimeTracker } from './helpers/analytics/trackers';
 import type { onLogin, onLogout, onSocialLogin, User } from './types';
 
 const style = css`
@@ -129,5 +130,13 @@ class App extends React.PureComponent<Props, State> {
     return this.renderApp();
   }
 }
+const EnterTrackedApp = EnterTracker(App, 'smartFAQ', props => ({
+  action: 'clickOnHelp',
+  loggedIn: props ? !!props.user : false,
+}));
+const TimeTrackedApp = TimeTracker(EnterTrackedApp, 'smartFAQ', props => ({
+  action: 'close',
+  loggedIn: props ? !!props.user : false,
+}));
 
-export default App;
+export default TimeTrackedApp;

@@ -153,6 +153,7 @@ class FAQArticleDetail extends React.Component<Props> {
           {`
             .faq-article-detail {
               width: 100%;
+              max-width: 100vw;
               height: 100%;
             }
           `}

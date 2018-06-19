@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 
 import { withLogout } from '../../context/User';
 import type { onLogout } from '../../types';
+import { simpleTracker } from '../../helpers/analytics/trackers';
 
 type Props = {|
   onLogout: onLogout,
@@ -18,6 +19,9 @@ class SignOutButton extends React.Component<Props> {
   onSignOut = async () => {
     await this.props.onLogout();
     this.props.history.push('/');
+    simpleTracker('smartFAQBookingOverview', {
+      action: 'signOut',
+    });
   };
 
   render() {

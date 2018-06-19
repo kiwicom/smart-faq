@@ -16,7 +16,7 @@ const Multicity = ({ booking }: Props) => (
     <AccordionTitle title="Trips" />
     {Array.isArray(booking.trips) &&
       booking.trips.map((trip, i) => (
-        // eslint-disable-next-line react/no-array-index-key
+        //eslint-disable-next-line react/no-array-index-key
         <Accordion key={i} trip={trip} />
       ))}
   </div>

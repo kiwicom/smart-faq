@@ -11,6 +11,7 @@ import MulticityOverlay from './bookingTypes/MulticityOverlay';
 import Contact from './bookingItem/Contact';
 import Notification from './bookingItem/Notification';
 import Header from './bookingItem/Header';
+import { simpleTracker } from '../helpers/analytics/trackers';
 import { ScrollableContent } from '../common';
 import bookingTypes from '../common/booking/bookingTypes';
 import { URGENCY_THRESHOLD } from '../helpers/dateUtils';
@@ -20,7 +21,10 @@ import type { NearestBooking_booking } from './__generated__/NearestBookingQuery
 type Props = {|
   booking: NearestBooking_booking,
 |};
-
+const goToMMB = () =>
+  simpleTracker('smartFAQBookingOverview', {
+    action: 'goToMMB',
+  });
 class BookingDetail extends React.Component<Props> {
   renderByType = (booking: NearestBooking_booking) => {
     if (booking.type === bookingTypes.ONE_WAY) {
@@ -113,6 +117,7 @@ class BookingDetail extends React.Component<Props> {
             target="_blank"
             rel="noopener noreferrer"
             href={replaceWithCurrentDomain(booking.directAccessURL)}
+            onClick={goToMMB}
           >
             <button className="manage-booking">Manage My Booking</button>
           </a>
