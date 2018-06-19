@@ -54,7 +54,7 @@ class ContentPage extends React.Component<Props> {
       <style jsx>
         {`
           .ContentPage {
-            min-width: 480px;
+            min-width: 650px;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -68,7 +68,7 @@ class ContentPage extends React.Component<Props> {
             flex: 1;
           }
           .FAQ {
-            width: ${isLoggedIn ? '650px;' : '480px;'};
+            width: 650px;
             height: 100%;
           }
           .BookingInfo {
