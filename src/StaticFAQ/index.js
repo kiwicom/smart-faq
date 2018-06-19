@@ -10,6 +10,8 @@ import { SearchState, type SearchStateType } from '../context/SearchState';
 import Input from './../common/Input';
 import FAQCategoryList from './FAQCategoryList';
 import SearchAllFAQs from './SearchAllFAQs';
+import { simpleTracker } from '../helpers/analytics/trackers';
+import { debounce } from '../helpers/functionUtils';
 
 const style = css`
   .static-faq {
@@ -45,22 +47,36 @@ type Props = {|
 type State = {|
   searchText: string,
 |};
-
+const logSearchQuery = debounce(q =>
+  simpleTracker('smartFAQBookingOverview', {
+    action: 'search',
+    searchedText: q,
+  }),
+);
 class StaticFAQ extends React.Component<Props, State> {
   changeSearchText = (text: string) => {}; // eslint-disable-line no-unused-vars
+  resetQueriesCount = () => {}; // eslint-disable-line no-unused-vars
+  incrementQueriesCount = () => {}; // eslint-disable-line no-unused-vars
+
   handleSearchChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.changeSearchText(e.target.value);
+    logSearchQuery(e.target.value);
   };
   handleCancelSearch = () => {
     this.changeSearchText('');
+    this.resetQueriesCount();
   };
 
   renderInput = (searchText: string) => {
     const isSearching = searchText.length > 0;
+    const inputChange = e => {
+      this.incrementQueriesCount();
+      this.handleSearchChange(e);
+    };
     return (
       <Input
         value={searchText}
-        onChange={this.handleSearchChange}
+        onChange={inputChange}
         placeholder="What can we help you with?"
         icon={<Search customColor="#bac7d5" />}
         onReset={isSearching ? this.handleCancelSearch : undefined}
@@ -74,8 +90,15 @@ class StaticFAQ extends React.Component<Props, State> {
 
     return (
       <SearchState.Consumer>
-        {({ searchText, changeSearchText }: SearchStateType) => {
+        {({
+          searchText,
+          changeSearchText,
+          incrementQueriesCount,
+          resetQueriesCount,
+        }: SearchStateType) => {
           this.changeSearchText = changeSearchText;
+          this.resetQueriesCount = resetQueriesCount;
+          this.incrementQueriesCount = incrementQueriesCount;
           const isSearching = searchText.length > 0;
 
           return (

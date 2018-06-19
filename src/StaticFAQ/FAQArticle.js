@@ -7,6 +7,8 @@ import { Text, Heading } from '@kiwicom/orbit-components';
 import css from 'styled-jsx/css';
 
 import Card from './../common/Card';
+import { SearchState, type SearchStateType } from '../context/SearchState';
+import { simpleTracker } from '../helpers/analytics/trackers';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
 
 type Props = {|
@@ -26,34 +28,62 @@ const style = css`
   }
 `;
 
-const FAQArticle = (props: Props) => (
-  <Link
-    data-cy="faq-article-link"
-    to={
-      props.isSearchResult
-        ? `/faq/search/article/${props.article.id}`
-        : `/faq/${props.categoryId || ''}/article/${props.article.id}`
-    }
-    style={{ textDecoration: 'none', display: 'block' }}
-  >
-    <Card>
-      <div>
-        <Heading weight="medium" size="small">
-          {props.article.title}
-        </Heading>
-      </div>
-      <div className="perex">
-        <Text type="secondary" size="small" element="span">
-          {props.article.perex}
-        </Text>
-      </div>
-    </Card>
-    <style jsx>{style}</style>
-  </Link>
+const articleClicked = (
+  resetQueriesCount: () => void,
+  queriesBeforeClick: number,
+  searchText: string,
+) => () => {
+  if (searchText) {
+    simpleTracker('smartFAQBookingOverview', {
+      action: 'articleClicked',
+      queriesBeforeClick,
+    });
+    resetQueriesCount();
+  }
+};
+const RawFAQArticle = (props: Props) => (
+  <SearchState.Consumer>
+    {({
+      resetQueriesCount,
+      queriesBeforeClick,
+      searchText,
+    }: SearchStateType) => {
+      return (
+        <Link
+          data-cy="faq-article-link"
+          to={
+            props.isSearchResult
+              ? `/faq/search/article/${props.article.id}`
+              : `/faq/${props.categoryId || ''}/article/${props.article.id}`
+          }
+          style={{ textDecoration: 'none', display: 'block' }}
+          onClick={articleClicked(
+            resetQueriesCount,
+            queriesBeforeClick,
+            searchText,
+          )}
+        >
+          <Card>
+            <div>
+              <Heading weight="medium" size="small">
+                {props.article.title}
+              </Heading>
+            </div>
+            <div className="perex">
+              <Text type="secondary" size="small" element="span">
+                {props.article.perex}
+              </Text>
+            </div>
+          </Card>
+          <style jsx>{style}</style>
+        </Link>
+      );
+    }}
+  </SearchState.Consumer>
 );
-
+export { RawFAQArticle };
 export default createFragmentContainer(
-  FAQArticle,
+  RawFAQArticle,
   graphql`
     fragment FAQArticle_article on FAQArticle {
       id
