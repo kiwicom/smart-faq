@@ -18,11 +18,33 @@ const cache = new QueryResponseCache({ size: 200, ttl: 30 * 60 * 1000 });
 
 export const ERROR_FORBIDDEN = 'Forbidden 403';
 
-const buildFetchQuery = (
+export async function fetchQuery(headers, operation, variables) {
+  const response = await fetch(process.env.GRAPHQL_URI || uri, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      query: operation.text, // GraphQL text from input
+      variables,
+    }),
+  });
+  const json = await response.json();
+  if (
+    json.errors &&
+    json.errors.length > 0 &&
+    json.errors.some(
+      error => idx(error, _ => _.extensions.proxy.statusCode) === '403',
+    )
+  ) {
+    throw new Error(ERROR_FORBIDDEN);
+  }
+  return json;
+}
+
+const buildQueryFetcher = (
   token: string = '',
   locale: string = DEFAULT_LOCALE,
 ) => {
-  return async function fetchQuery(operation, variables, cacheConfig) {
+  return async (operation, variables, cacheConfig) => {
     const forceFetch = cacheConfig.force;
     const isQuery = operation.operationKind === 'query';
     if (!forceFetch && isQuery) {
@@ -31,26 +53,14 @@ const buildFetchQuery = (
         return cachedData;
       }
     }
-    const response = await fetch(process.env.GRAPHQL_URI || uri, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept-Language': locale,
-        Authorization: token,
-      },
-      body: JSON.stringify({
-        query: operation.text, // GraphQL text from input
-        variables,
-      }),
-    });
-    const json = await response.json();
-    if (
-      json.errors &&
-      json.errors.length > 0 &&
-      json.errors.some(e => idx(e, _ => _._proxy.statusCode) === 403)
-    ) {
-      throw new Error(ERROR_FORBIDDEN);
-    }
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Accept-Language': locale,
+      Authorization: token,
+    };
+
+    const json = await fetchQuery(headers, operation, variables);
 
     if (!forceFetch && isQuery) {
       cache.set(operation.text, variables, json);
@@ -62,7 +72,7 @@ const buildFetchQuery = (
 
 const createEnvironment = (token: ?string, locale: ?string) => {
   return new Environment({
-    network: Network.create(buildFetchQuery(token, locale)),
+    network: Network.create(buildQueryFetcher(token, locale)),
     store: new Store(new RecordSource()),
   });
 };
