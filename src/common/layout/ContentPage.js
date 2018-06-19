@@ -81,7 +81,7 @@ class ContentPage extends React.Component<Props> {
               width: 100vw;
             }
             .ContentPage .Body {
-              height: calc(100% - (123px));
+              flex-grow: 1;
             }
             .FAQ {
               width: 100%;

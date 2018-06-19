@@ -153,10 +153,12 @@ class FAQCategoryList extends React.Component<Props> {
 
       return (
         <React.Fragment>
-          <Breadcrumbs
-            breadcrumbs={ancestors}
-            currentCategory={currentCategory}
-          />
+          <div>
+            <Breadcrumbs
+              breadcrumbs={ancestors}
+              currentCategory={currentCategory}
+            />
+          </div>
           <ScrollableBox>
             {this.renderCategories(categories.filter(Boolean))}
             {this.renderFAQArticlePerexes(faqs, categoryId)}
