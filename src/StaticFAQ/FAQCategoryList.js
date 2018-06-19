@@ -75,7 +75,12 @@ const querySubcategory = graphql`
     }
   }
 `;
-
+const categoryClicked = (category: CategoryFragment) => () =>
+  simpleTracker('smartFAQCategories', {
+    action: 'clickOnCategory',
+    categoryId: category.id,
+    categoryName: category.title || '',
+  });
 class FAQCategoryList extends React.Component<Props> {
   renderFAQArticlePerexes = (
     faqs: $ReadOnlyArray<?FAQArticlePerexFragment>,
@@ -101,11 +106,7 @@ class FAQCategoryList extends React.Component<Props> {
                 key={category.id}
                 to={`/faq/${category.id}`}
                 style={{ textDecoration: 'none', display: 'block' }}
-                onClick={simpleTracker('smartFAQCategories', {
-                  action: 'clickOnCategory',
-                  categoryId: category.id,
-                  categoryName: category.title || '',
-                })}
+                onClick={categoryClicked(category)}
               >
                 <FAQCategory category={category} />
               </Link>

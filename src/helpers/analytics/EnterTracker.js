@@ -12,7 +12,7 @@ const EnterTracker = <TargetProps>(
   class EnterTracked extends React.Component<TargetProps> {
     componentDidMount() {
       const payload = payloadBuilder ? { ...payloadBuilder(this.props) } : {};
-      simpleTracker(eventName, payload)();
+      simpleTracker(eventName, payload);
     }
     render() {
       return <TargetComponent {...this.props} />;

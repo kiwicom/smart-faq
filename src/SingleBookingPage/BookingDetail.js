@@ -21,7 +21,10 @@ import type { NearestBooking_booking } from './__generated__/NearestBookingQuery
 type Props = {|
   booking: NearestBooking_booking,
 |};
-
+const goToMMB = () =>
+  simpleTracker('smartFAQBookingOverview', {
+    action: 'goToMMB',
+  });
 class BookingDetail extends React.Component<Props> {
   renderByType = (booking: NearestBooking_booking) => {
     if (booking.type === bookingTypes.ONE_WAY) {
@@ -114,9 +117,7 @@ class BookingDetail extends React.Component<Props> {
             target="_blank"
             rel="noopener noreferrer"
             href={replaceWithCurrentDomain(booking.directAccessURL)}
-            onClick={simpleTracker('smartFAQBookingOverview', {
-              action: 'goToMMB',
-            })}
+            onClick={goToMMB}
           >
             <button className="manage-booking">Manage My Booking</button>
           </a>

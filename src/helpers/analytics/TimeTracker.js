@@ -25,7 +25,7 @@ const TimeTracker = <TargetProps>(
       const payload = payloadBuilder
         ? { ...payloadBuilder(this.props), timeOpen }
         : {};
-      simpleTracker(eventName, payload)();
+      simpleTracker(eventName, payload);
     }
     render() {
       return <TargetComponent {...this.props} />;

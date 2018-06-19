@@ -9,7 +9,7 @@ const exponeaTracker = (eventName: LogEvent, payload?: EventPayload) => {
     ? window.cuckoo.infinario(eventName, payload || {})
     : emptyCuckoo.infinario(eventName, payload || {});
 };
-const simpleTracker = (eventName: LogEvent, payload?: EventPayload) => () => {
+const simpleTracker = (eventName: LogEvent, payload?: EventPayload) => {
   exponeaTracker(eventName, payload);
 };
 

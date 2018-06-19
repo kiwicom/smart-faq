@@ -152,10 +152,11 @@ class Root extends React.Component<Props, State> {
               top: 20px;
               left: 20px;
               cursor: pointer;
-              color: green;
-              border: 1px dotted green;
+              color: white;
+              border: 3px solid green;
               padding: 5px;
               outline: none;
+              background: green;
             }
           `}
         </style>

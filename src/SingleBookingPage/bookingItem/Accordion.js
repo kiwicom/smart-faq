@@ -39,7 +39,7 @@ class Accordion extends React.Component<Props, State> {
     !this.state.isToggled &&
       simpleTracker('smartFAQBookingOverview', {
         action: 'openFlightCard',
-      })();
+      });
     this.setState(prevState => ({ isToggled: !prevState.isToggled }));
   };
   render() {

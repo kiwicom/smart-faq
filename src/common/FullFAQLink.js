@@ -27,7 +27,10 @@ const style = css`
 type Props = {
   className?: string,
 };
-
+const linkClicked = () =>
+  simpleTracker('smartFAQBookingOverview', {
+    action: 'goToOldHelp',
+  });
 const FullFAQLink = (props: Props) => (
   <div>
     <Typography type="attention" variant="bold">
@@ -36,9 +39,7 @@ const FullFAQLink = (props: Props) => (
         rel="noopener noreferrer"
         href="https://www.kiwi.com/helpcenter/"
         className={props.className}
-        onClick={simpleTracker('smartFAQBookingOverview', {
-          action: 'goToOldHelp',
-        })}
+        onClick={linkClicked}
       >
         Full FAQ site
         <span className="inline-icon">
