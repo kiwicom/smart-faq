@@ -103,6 +103,7 @@ const style = css`
 
 type Props = {
   user: User,
+  initialRoute: string,
   history: {
     push: string => void,
   },
@@ -119,7 +120,15 @@ export class PureIntro extends React.Component<Props> {
     this.props.history.push('/faq/');
   };
 
+  goToFAQArticle = (url: string) => {
+    this.props.history.push(url);
+  };
+
   render() {
+    const { initialRoute } = this.props;
+    if (initialRoute && initialRoute !== '/') {
+      this.goToFAQArticle(initialRoute);
+    }
     return (
       <div className="Intro">
         <CloseButton />
