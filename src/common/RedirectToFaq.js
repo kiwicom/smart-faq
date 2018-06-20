@@ -19,7 +19,7 @@ const Redirector = ({ initialRoute }: { initialRoute?: string }) => {
   return null;
 };
 
-const RedirectsLoggedIn = (props: Props) => {
+const RedirectToFAQ = (props: Props) => {
   return (
     <React.Fragment>
       <Redirector initialRoute={props.initialRoute} />
@@ -28,4 +28,4 @@ const RedirectsLoggedIn = (props: Props) => {
   );
 };
 
-export default RedirectsLoggedIn;
+export default RedirectToFAQ;
