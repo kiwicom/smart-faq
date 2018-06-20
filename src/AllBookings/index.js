@@ -4,6 +4,7 @@ import idx from 'idx';
 import * as React from 'react';
 import { graphql } from 'react-relay';
 import css from 'styled-jsx/css';
+import MediaQuery from 'react-responsive';
 import { Heading } from '@kiwicom/orbit-components';
 
 import QueryRenderer from '../relay/QueryRenderer';
@@ -22,6 +23,13 @@ const styles = css`
     overflow-y: auto;
     overflow-x: hidden;
     max-height: 305px;
+  }
+  @media only screen and (max-width: 1180px) {
+    .allBookings {
+      display: grid;
+      place-items: center center;
+      padding: 20px 0px 20px 0px;
+    }
   }
 `;
 
@@ -57,9 +65,11 @@ class AllBooking extends React.Component<Props> {
     return (
       <ScrollableContent styles="background-color: #f5f7f9;">
         <div className="allBookings">
-          <Heading weight="medium" size="medium">
-            Bookings
-          </Heading>
+          <MediaQuery query="screen and (min-width: 1181px)">
+            <Heading weight="medium" size="medium">
+              Bookings
+            </Heading>
+          </MediaQuery>
           {future && (
             <div data-cy="upcoming-bookings">
               <BookingCardsList booking={future} title="Upcoming" />
