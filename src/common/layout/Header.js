@@ -11,6 +11,7 @@ import FullFAQLink from '../FullFAQLink';
 import CloseButton from '../buttons/CloseButton';
 import BackButton from '../buttons/BackButton';
 import SignOutButton from './SignOutButton';
+import { BookingState } from '../../context/BookingState';
 import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
 import MobileBookingHeader from '../../MobileBookingHeader/MobileBookingHeader';
 
@@ -127,7 +128,24 @@ const renderLoggedIn = (
             <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
           ) : null}
         </div>
-        <div className="helpHeader">Help</div>
+        <BookingState.Consumer>
+          {({ bookingPage }) => (
+            <div className="helpHeader">
+              {bookingPage === 'ALL_BOOKINGS' ? (
+                <React.Fragment>
+                  <MediaQuery query="screen and (max-width: 1180px)">
+                    Your Trips
+                  </MediaQuery>
+                  <MediaQuery query="screen and (min-width: 1181px)">
+                    Help
+                  </MediaQuery>
+                </React.Fragment>
+              ) : (
+                'Help'
+              )}
+            </div>
+          )}
+        </BookingState.Consumer>
         <div className="links">
           <div className="faqLink desktopOnly">
             <FullFAQLink className="primary" />
