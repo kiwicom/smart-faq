@@ -6,7 +6,7 @@ import { BookingState } from '../../context/BookingState';
 
 type Props = {
   wasSelected: boolean,
-  setSelected: () => void,
+  setSelected: (bookingId: string) => void,
 };
 
 const SelectUrlBooking = (props: Props) => {
@@ -17,10 +17,10 @@ const SelectUrlBooking = (props: Props) => {
   const { wasSelected, setSelected } = props;
   return (
     <BookingState.Consumer>
-      {({ onSelectBooking }) => {
-        if (bookingId && !wasSelected) {
+      {({ onSelectBooking, selectedBooking }) => {
+        if (bookingId && bookingId !== selectedBooking && !wasSelected) {
           onSelectBooking(bookingId);
-          setSelected();
+          setSelected(bookingId);
         }
         return null;
       }}
