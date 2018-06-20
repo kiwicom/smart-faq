@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 
-import BookingHelper from './helpers/BookingProvider.ignore';
+import BookingStateProvider from '../../../context/BookingState';
 import { SelectUrlBooking } from '../urlProcessing';
 
 describe('UrlProcessing', () => {
@@ -15,9 +15,9 @@ describe('UrlProcessing', () => {
     });
 
     mount(
-      <BookingHelper>
+      <BookingStateProvider>
         <SelectUrlBooking setSelected={selectedBooking} />
-      </BookingHelper>,
+      </BookingStateProvider>,
     );
 
     expect(selectedBooking.mock.calls).toHaveLength(1);
@@ -32,9 +32,9 @@ describe('UrlProcessing', () => {
     });
 
     mount(
-      <BookingHelper>
+      <BookingStateProvider>
         <SelectUrlBooking setSelected={selectedBooking} />
-      </BookingHelper>,
+      </BookingStateProvider>,
     );
 
     expect(selectedBooking.mock.calls).toHaveLength(0);
