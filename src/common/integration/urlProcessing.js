@@ -6,26 +6,43 @@ import { BookingState } from '../../context/BookingState';
 
 type Props = {
   wasSelected: boolean,
-  setSelected: (bookingId: string) => void,
+  setSelected: (bookingId: number) => void,
 };
 
-const SelectUrlBooking = (props: Props) => {
-  const urlMatch = window.location.href.match(
-    /.*[kiwi.com|localhost:\d*]\/.*\/account\/bookings\/(\d*)\?.*$/,
-  );
-  const bookingId = urlMatch && urlMatch[1];
-  const { wasSelected, setSelected } = props;
-  return (
-    <BookingState.Consumer>
-      {({ onSelectBooking, selectedBooking }) => {
-        if (bookingId && bookingId !== selectedBooking && !wasSelected) {
-          onSelectBooking(bookingId);
-          setSelected(bookingId);
-        }
-        return null;
-      }}
-    </BookingState.Consumer>
-  );
+type State = {
+  selectedBooking: ?number,
 };
+
+class SelectUrlBooking extends React.Component<Props, State> {
+  static getDerivedStateFromProps(prevProps: Props, prevState: State) {
+    const { selectedBooking } = prevState;
+    const urlMatch = window.location.href.match(
+      /.*[kiwi.com|localhost:\d*]\/.*\/account\/bookings\/(\d*)/,
+    );
+    const bookingId = urlMatch && urlMatch[1];
+    if (bookingId && bookingId !== selectedBooking) {
+      return { selectedBooking: bookingId };
+    }
+    return null;
+  }
+  state = {
+    selectedBooking: null,
+  };
+  render() {
+    const { selectedBooking } = this.state;
+    const { wasSelected, setSelected } = this.props;
+    return (
+      <BookingState.Consumer>
+        {({ onSelectBooking }) => {
+          if (selectedBooking && !wasSelected) {
+            onSelectBooking(selectedBooking);
+            setSelected(selectedBooking);
+          }
+          return null;
+        }}
+      </BookingState.Consumer>
+    );
+  }
+}
 
 export { SelectUrlBooking };
