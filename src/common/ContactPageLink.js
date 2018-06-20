@@ -18,7 +18,7 @@ const ContactPageLink = ({
 }: Props) => {
   return (
     <div className="contactUs">
-      <a target="_blank" href={`${language}/content/feedback`}>
+      <a target="_blank" href={`/${language}/content/feedback`}>
         {text}
         <span className="open-icon">
           <NewWindow size="small" color="attention" customColor={textColor} />
