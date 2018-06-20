@@ -13,20 +13,12 @@ import { BookingState } from '../../context/BookingState';
 import BookingPage from './BookingPage';
 
 type Props = {|
-  initialRoute: string,
   history: {
     location: string,
-    push: string => void,
   },
 |};
-type State = {|
-  initialRoute: ?string,
-|};
 
-class ContentPage extends React.Component<Props, State> {
-  goToFAQArticle = (url: string) => {
-    this.props.history.push(url);
-  };
+class ContentPage extends React.Component<Props> {
   renderPage = (isLoggedIn: boolean) => (
     <div className="ContentPage">
       <Header isLoggedIn={isLoggedIn} />
