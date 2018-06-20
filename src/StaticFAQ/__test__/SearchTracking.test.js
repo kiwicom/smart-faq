@@ -13,8 +13,8 @@ const queriesBeforeClick = 5; //eslint-disable-line
 const resetQueriesCount = jest.fn();
 const incrementQueriesCount = jest.fn();
 const changeSearchText = jest.fn();
-window.cuckoo = {
-  infinario: jest.fn(),
+window.infinario = {
+  track: jest.fn(),
 };
 const queryText = 'queeery';
 describe('SearchTracking', () => {
@@ -39,8 +39,8 @@ describe('SearchTracking', () => {
       .first()
       .simulate('change', { target: { value: queryText } });
     setTimeout(() => {
-      expect(window.cuckoo.infinario.mock.calls).toHaveLength(1);
-      expect(window.cuckoo.infinario.mock.calls[0][1]).toEqual({
+      expect(window.infinario.track.mock.calls).toHaveLength(1);
+      expect(window.infinario.track.mock.calls[0][1]).toEqual({
         action: 'search',
         searchedText: queryText,
       });

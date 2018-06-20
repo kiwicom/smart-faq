@@ -17,8 +17,8 @@ const resetQueriesCount = jest.fn(() => {
 const changeSearchText = jest.fn();
 const incrementQueriesCount = jest.fn();
 const article = { id: '23', perex: 'aa', title: 'llk', $refType: mockRefType };
-window.cuckoo = {
-  infinario: jest.fn(),
+window.infinario = {
+  track: jest.fn(),
 };
 describe('FAQArticle', () => {
   it('click should track queriesBeforeClick and reset queriesCounter', () => {
@@ -45,8 +45,8 @@ describe('FAQArticle', () => {
       .find('a[data-cy="faq-article-link"]')
       .first()
       .simulate('click');
-    expect(window.cuckoo.infinario.mock.calls).toHaveLength(1);
-    expect(window.cuckoo.infinario.mock.calls[0][1]).toEqual({
+    expect(window.infinario.track.mock.calls).toHaveLength(1);
+    expect(window.infinario.track.mock.calls[0][1]).toEqual({
       action: 'articleClicked',
       queriesBeforeClick: 5,
     });
