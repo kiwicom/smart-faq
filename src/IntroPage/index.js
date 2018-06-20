@@ -10,7 +10,7 @@ import CloseButton from './../common/buttons/CloseButton';
 import { withUser } from '../context/User';
 import type { User } from '../types';
 import FullFAQLink from '../common/FullFAQLink';
-import redirectsLoggedIn from '../common/redirectsLoggedIn';
+import RedirectsLoggedIn from '../common/RedirectsLoggedIn';
 
 const style = css`
   .Intro {
@@ -120,61 +120,56 @@ export class PureIntro extends React.Component<Props> {
     this.props.history.push('/faq/');
   };
 
-  goToFAQArticle = (url: string) => {
-    this.props.history.push(url);
-  };
-
   render() {
     const { initialRoute } = this.props;
-    if (initialRoute && initialRoute !== '/') {
-      this.goToFAQArticle(initialRoute);
-    }
     return (
-      <div className="Intro">
-        <CloseButton />
-        <div className="picture">
-          <img alt="Help" src={image} />
-        </div>
-        <div className="text">
-          <p className="title">
-            <Trans i18nKey="IntroPage.header">Need help?</Trans>
-          </p>
-          <Typography type="secondary">
-            <Trans i18nKey="IntroPage.subheader">
-              {"We're here for you. First, let's narrow down your request."}
-            </Trans>
-          </Typography>
-        </div>
-        <div className="buttons">
-          <div className="primary">
-            <button
-              onClick={this.goToExistingBooking}
-              data-cy="btn-existent-booking"
-            >
-              <Trans i18nKey="IntroPage.existingBooking">
-                I have an existing booking
-              </Trans>
-            </button>
+      <RedirectsLoggedIn initialRoute={initialRoute}>
+        <div className="Intro">
+          <CloseButton />
+          <div className="picture">
+            <img alt="Help" src={image} />
           </div>
-          <div className="secondary">
-            <button
-              onClick={this.goToNoBooking}
-              data-cy="btn-nonexistent-booking"
-            >
-              <Trans i18nKey="IntroPage.noBooking">
-                I don&apos;t have a booking
+          <div className="text">
+            <p className="title">
+              <Trans i18nKey="IntroPage.header">Need help?</Trans>
+            </p>
+            <Typography type="secondary">
+              <Trans i18nKey="IntroPage.subheader">
+                {"We're here for you. First, let's narrow down your request."}
               </Trans>
-            </button>
+            </Typography>
           </div>
+          <div className="buttons">
+            <div className="primary">
+              <button
+                onClick={this.goToExistingBooking}
+                data-cy="btn-existent-booking"
+              >
+                <Trans i18nKey="IntroPage.existingBooking">
+                  I have an existing booking
+                </Trans>
+              </button>
+            </div>
+            <div className="secondary">
+              <button
+                onClick={this.goToNoBooking}
+                data-cy="btn-nonexistent-booking"
+              >
+                <Trans i18nKey="IntroPage.noBooking">
+                  I don&apos;t have a booking
+                </Trans>
+              </button>
+            </div>
+          </div>
+          <hr className="hr-line" />
+          <div className="faqLink">
+            <FullFAQLink />
+          </div>
+          <style jsx>{style}</style>
         </div>
-        <hr className="hr-line" />
-        <div className="faqLink">
-          <FullFAQLink />
-        </div>
-        <style jsx>{style}</style>
-      </div>
+      </RedirectsLoggedIn>
     );
   }
 }
 
-export default withUser(redirectsLoggedIn(PureIntro));
+export default withUser(PureIntro);

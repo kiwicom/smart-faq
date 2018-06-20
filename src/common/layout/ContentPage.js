@@ -19,8 +19,11 @@ type Props = {|
     push: string => void,
   },
 |};
+type State = {|
+  initialRoute: ?string,
+|};
 
-class ContentPage extends React.Component<Props> {
+class ContentPage extends React.Component<Props, State> {
   goToFAQArticle = (url: string) => {
     this.props.history.push(url);
   };
@@ -98,10 +101,6 @@ class ContentPage extends React.Component<Props> {
   );
 
   render() {
-    const { initialRoute } = this.props;
-    if (initialRoute && initialRoute !== '/') {
-      this.goToFAQArticle(initialRoute);
-    }
     return (
       <UserContext.Consumer>
         {({ user }: UserContextType) => this.renderPage(Boolean(user))}

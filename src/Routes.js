@@ -28,11 +28,7 @@ const Routes = (props: Props) => {
         <Route path="/check-magic-link" component={CheckMagicLink} />
         <Route path="/check-recovery-link" component={CheckRecoveryLink} />
         <Route path="/forgotten-password" component={ForgottenPassword} />
-        <Route
-          exact
-          path="/faq/:categoryId?"
-          render={p => <ContentPage initialRoute={props.initialRoute} {...p} />}
-        />
+        <Route exact path="/faq/:categoryId?" component={ContentPage} />
         <Route
           path="/faq/:categoryId/article/:articleId"
           component={ContentPage}
