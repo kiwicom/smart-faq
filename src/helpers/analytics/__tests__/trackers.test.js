@@ -15,14 +15,14 @@ describe('Trackers', () => {
       //$FlowExpectedError: mock property not present in module
       expect(emptyCuckoo.infinario.mock.calls).toHaveLength(1);
     });
-    it('existing window.cuckoo should use window.cuckoo', () => {
-      const cuckoo = {
-        infinario: jest.fn(),
+    it('existing window.infinario should use window.infinario', () => {
+      const infinario = {
+        track: jest.fn(),
       };
-      window.cuckoo = cuckoo;
+      window.infinario = infinario;
       simpleTracker('smartFAQ', {});
       simpleTracker('smartFAQ', {});
-      expect(cuckoo.infinario.mock.calls).toHaveLength(2);
+      expect(infinario.track.mock.calls).toHaveLength(2);
       //$FlowExpectedError: mock property not present in module
       expect(emptyCuckoo.infinario.mock.calls).toHaveLength(0);
     });

@@ -10,15 +10,15 @@ jest.mock('../cuckoo');
 const BaseComp = () => <div />;
 const event = 'smartFAQ';
 const payload = { greeting: 'hola' };
-const cuckoo = {
-  infinario: jest.fn(),
+const infinario = {
+  track: jest.fn(),
 };
-window.cuckoo = cuckoo;
+window.infinario = infinario;
 describe('EnterTracker', () => {
   const Tracked = EnterTracker(BaseComp, event, () => payload);
   it('logs upon mounting', () => {
     shallow(<Tracked />);
-    expect(cuckoo.infinario.mock.calls).toHaveLength(1);
-    expect(cuckoo.infinario.mock.calls[0][1]).toEqual(payload);
+    expect(infinario.track.mock.calls).toHaveLength(1);
+    expect(infinario.track.mock.calls[0][1]).toEqual(payload);
   });
 });
