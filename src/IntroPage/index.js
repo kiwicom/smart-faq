@@ -103,7 +103,7 @@ const style = css`
 
 type Props = {
   user: User,
-  initialRoute: string,
+  initialRoute?: string,
   history: {
     push: string => void,
   },
