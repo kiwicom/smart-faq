@@ -16,7 +16,7 @@ type Props = {|
 
 const Routes = (props: Props) => {
   return (
-    <MemoryRouter initialEntries={['/']} initialIndex={0}>
+    <MemoryRouter>
       <Switch>
         <Route
           exact
