@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import MediaQuery from 'react-responsive';
 
 import Breadcrumb from './Breadcrumb';
 import BackArrow from './BackArrow';
@@ -18,6 +17,16 @@ const style = css`
   @media only screen and (max-width: 1181px) {
     .breadcrumbs {
       margin: 30px 16px;
+    }
+  }
+  @media only screen and (min-width: 600px) {
+    .breadcrumbs-mobile {
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .breadcrumbs-desktop {
+      display: none;
     }
   }
 `;
@@ -65,12 +74,12 @@ class CustomBreadcrumbs extends React.Component<Props> {
           </span>
         )}
         <Breadcrumb breadcrumb={{ title: firstCategory.title }} />
-        <MediaQuery query="screen and (min-width: 320px) and (max-width: 600px)">
+        <span className="breadcrumbs-mobile">
           {this.renderBreadCrumbs(breadcrumbs, maxBreadcrumbsLengthMobile)}
-        </MediaQuery>
-        <MediaQuery query="screen and (min-width: 600px)">
+        </span>
+        <span className="breadcrumbs-desktop">
           {this.renderBreadCrumbs(breadcrumbs)}
-        </MediaQuery>
+        </span>
         <Breadcrumb breadcrumb={{ title: lastCategory.title }} isCurrent />
         <style jsx>{style}</style>
         <style jsx>{responsiveStyleHelperClasses}</style>
