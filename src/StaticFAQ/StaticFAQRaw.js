@@ -18,9 +18,6 @@ const style = css`
   .static-faq-body {
     height: 100%;
     padding: 24px 40px;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
   }
 
   @media only screen and (max-width: 1180px) {
@@ -28,7 +25,8 @@ const style = css`
       padding: 0;
     }
     .static-faq-search {
-      margin: 16px;
+      padding: 16px;
+      background-color: #f5f7f9;
     }
   }
 `;
@@ -48,6 +46,7 @@ const StaticFAQRaw = (props: Props) => {
   const categoryId = idx(props.match, _ => _.params.categoryId) || null;
   const { searchText, onSearchChange, onSearchCancel } = props;
   const isSearching = searchText.length > 0;
+
   return (
     <div className="static-faq">
       <div className="static-faq-body">
