@@ -80,7 +80,7 @@ jobs:
       - run:
           shell: /bin/sh
           command: |
-            sleep 30s
+            sleep 45s
             :
       - run: yarn cypress:run-ci
 
