@@ -22,7 +22,7 @@ type Props = {|
 const styles = css`
   .ContentPage {
     min-width: 650px;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
   }
