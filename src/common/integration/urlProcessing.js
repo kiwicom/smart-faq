@@ -21,7 +21,7 @@ class SelectUrlBooking extends React.Component<Props, State> {
     );
     const bookingId = urlMatch && urlMatch[1];
     if (bookingId && bookingId !== selectedBooking) {
-      return { selectedBooking: bookingId };
+      return { selectedBooking: Number(bookingId) };
     }
     return null;
   }

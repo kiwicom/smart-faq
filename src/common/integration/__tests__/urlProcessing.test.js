@@ -27,8 +27,8 @@ describe('UrlProcessing', () => {
 
     expect(selectedBooking.mock.calls).toHaveLength(1);
     expect(onSelectBooking.mock.calls).toHaveLength(1);
-    expect(selectedBooking.mock.calls[0][0]).toBe('6372221');
-    expect(onSelectBooking.mock.calls[0][0]).toBe('6372221');
+    expect(selectedBooking.mock.calls[0][0]).toBe(6372221);
+    expect(onSelectBooking.mock.calls[0][0]).toBe(6372221);
   });
 
   it('should not call selectedBooking because url is not valid', () => {
