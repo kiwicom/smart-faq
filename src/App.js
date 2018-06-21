@@ -19,9 +19,11 @@ import type { onLogin, onLogout, onSocialLogin, User } from './types';
 
 const style = css`
   .smartFAQ {
-    position: relative;
+    position: fixed;
     min-width: 480px;
-    height: 100vh;
+    top: 0;
+    bottom: 0;
+    right: 0;
     background-color: #fff;
     font-family: 'Roboto', sans-serif;
   }
