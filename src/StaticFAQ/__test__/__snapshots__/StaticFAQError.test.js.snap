@@ -3,10 +3,10 @@
 exports[`StaticFAQError should match snapshot 1`] = `
 <StaticFAQError>
   <div
-    className="jsx-2228354116 staticFAQError"
+    className="jsx-606556222 staticFAQError"
   >
     <div
-      className="jsx-2228354116 title"
+      className="jsx-606556222 title"
     >
       <Heading
         element="h1"
@@ -65,7 +65,7 @@ exports[`StaticFAQError should match snapshot 1`] = `
       />
     </Text>
     <div
-      className="jsx-2228354116 contactLink"
+      className="jsx-606556222 contactLink"
     >
       <ContactPageLink>
         <div
@@ -132,8 +132,8 @@ exports[`StaticFAQError should match snapshot 1`] = `
       </ContactPageLink>
     </div>
     <JSXStyle
-      css=".staticFAQError.jsx-2228354116{height:78vh;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}.title.jsx-2228354116{margin-bottom:8.4px;}div.contactLink.jsx-2228354116{margin-top:16.8px;}"
-      styleId="2228354116"
+      css=".staticFAQError.jsx-606556222{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}.title.jsx-606556222{margin-bottom:8.4px;}div.contactLink.jsx-606556222{margin-top:16.8px;}"
+      styleId="606556222"
     />
   </div>
 </StaticFAQError>
