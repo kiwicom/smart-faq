@@ -155,13 +155,13 @@ exports[`ContentHeader should render loggedOut user header 1`] = `
       </svg>
     </div>
     <div
-      class="jsx-945710172 jsx-2971753977 loggedOut"
+      class="jsx-945710172 jsx-1652122256 loggedOut"
     >
       <div
-        class="jsx-945710172 jsx-2971753977 signInOrBack"
+        class="jsx-945710172 jsx-1652122256 signInOrBack"
       >
         <div
-          class="jsx-945710172 jsx-2971753977 backButton"
+          class="jsx-945710172 jsx-1652122256 backButton"
         >
           <div
             class="jsx-4256523651 back"
@@ -193,11 +193,11 @@ exports[`ContentHeader should render loggedOut user header 1`] = `
           </div>
         </div>
       </div>
-      <div
-        class="jsx-945710172 jsx-2971753977 helpHeader"
+      <p
+        class="jsx-945710172 jsx-1652122256 helpHeader"
       >
         Help
-      </div>
+      </p>
     </div>
   </div>
 </div>

@@ -74,6 +74,10 @@ const loggedInStyle = css`
 
 const loggedOutStyle = css`
   .helpHeader {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
     font-size: 28px;
     font-weight: bold;
     color: #171b1e;
@@ -82,11 +86,9 @@ const loggedOutStyle = css`
   .loggedOut {
     display: flex;
     padding: 16px;
-    align-items: center;
     height: 66px;
   }
   .signInOrBack {
-    margin-right: 149px;
     width: 43px;
     height: 20px;
   }
@@ -186,7 +188,7 @@ const renderLoggedOut = (
           </Link>
         )}
       </div>
-      <div className="helpHeader">Help</div>
+      <p className="helpHeader">Help</p>
       <style jsx>{responsiveStyleHelperClasses}</style>
       <style jsx>{loggedOutStyle}</style>
     </div>
