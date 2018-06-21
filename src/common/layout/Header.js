@@ -203,7 +203,17 @@ const Header = (props: Props) => {
   return (
     <div className="header">
       <div className="HeaderFAQ">
-        <CloseButton height="24" />
+        <BookingState.Consumer>
+          {({ bookingPage }) =>
+            bookingPage === 'ALL_BOOKINGS' ? (
+              <MediaQuery query="screen and (min-width: 1181px)">
+                <CloseButton height="24" />
+              </MediaQuery>
+            ) : (
+              <CloseButton height="24" />
+            )
+          }
+        </BookingState.Consumer>
         {props.isLoggedIn
           ? renderLoggedIn(comesFromSearch, hasCategory, isArticle)
           : renderLoggedOut(hasCategory, isArticle, comesFromSearch)}

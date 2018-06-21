@@ -65,8 +65,7 @@ const styles = css`
   @media only screen and (max-width: 1180px) {
     .card {
       width: 304px;
-      height: 161px;
-      position: relative;
+      height: 100%;
       margin-bottom: 16;
     }
     p.flight {
@@ -84,6 +83,7 @@ const styles = css`
     }
     div.fields {
       display: block;
+      margin-top: 5px;
     }
   }
 `;
