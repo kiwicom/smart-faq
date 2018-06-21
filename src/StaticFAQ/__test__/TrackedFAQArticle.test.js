@@ -4,7 +4,6 @@ import * as React from 'react';
 import { MemoryRouter } from 'react-router';
 import { mount } from 'enzyme';
 
-//import { RawFAQArticle as FAQArticle } from '../FAQArticle';
 import TrackedFAQArticle from '../TrackedFAQArticle';
 import { SearchState } from '../../context/SearchState';
 
@@ -20,7 +19,7 @@ const article = { id: '23', perex: 'aa', title: 'llk', $refType: mockRefType };
 window.infinario = {
   track: jest.fn(),
 };
-describe('FAQArticle', () => {
+describe('TrackedFAQArticle', () => {
   it('click should track queriesBeforeClick and reset queriesCounter', () => {
     const result = mount(
       <MemoryRouter>
