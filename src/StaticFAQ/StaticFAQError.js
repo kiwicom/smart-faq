@@ -8,7 +8,7 @@ import { ContactPageLink } from '../common';
 
 const style = css`
   .staticFAQError {
-    height: 78vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
