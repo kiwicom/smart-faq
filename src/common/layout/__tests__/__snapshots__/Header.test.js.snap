@@ -79,7 +79,7 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
             >
               <a
                 class="jsx-3768482590 primary"
-                href="https://www.kiwi.com/helpcenter/"
+                href="/helpcenter"
                 rel="noopener noreferrer"
                 target="_blank"
               >

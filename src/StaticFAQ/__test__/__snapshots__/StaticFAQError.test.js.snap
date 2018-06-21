@@ -1,140 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`StaticFAQError should match snapshot 1`] = `
-<StaticFAQError>
+<div
+  class="jsx-606556222 staticFAQError"
+>
   <div
-    className="jsx-606556222 staticFAQError"
+    class="jsx-606556222 title"
+  >
+    <h1
+      class="jsx-2957264124 "
+    >
+      Something's not quite right.
+    </h1>
+  </div>
+  <p
+    class="jsx-1323762365 "
+  >
+    Please, try refreshing the page. If the problem persists, don't hesitate to contact us.
+  </p>
+  <div
+    class="jsx-606556222 contactLink"
   >
     <div
-      className="jsx-606556222 title"
+      class="jsx-3405637160 contactUs"
     >
-      <Heading
-        element="h1"
-        size="large"
-        weight="bold"
+      <a
+        class="jsx-3405637160"
+        href="/en/content/feedback"
+        target="_blank"
       >
-        <h1
-          className="jsx-2957264124 "
+        Having trouble? Contact us
+        <span
+          class="jsx-3405637160 open-icon"
         >
-          Something's not quite right.
-        </h1>
-        <JSXStyle
-          css=".__jsx-style-dynamic-selector{font-family:\\"Roboto\\", -apple-system, \\".SFNSText-Regular\\", \\"San Francisco\\", \\"Segoe UI\\", \\"Helvetica Neue\\", \\"Lucida Grande\\", sans-serif;font-size:28px;font-weight:700;color:#171b1e;line-height:1.2;}"
-          dynamic={
-            Array [
-              "\\"Roboto\\", -apple-system, \\".SFNSText-Regular\\", \\"San Francisco\\", \\"Segoe UI\\", \\"Helvetica Neue\\", \\"Lucida Grande\\", sans-serif",
-              "28px",
-              "700",
-              "#171b1e",
-              "1.2",
-            ]
-          }
-          styleId="3067881581"
-        />
-      </Heading>
-    </div>
-    <Text
-      align="left"
-      element="p"
-      italic={false}
-      size="large"
-      type="secondary"
-      uppercase={false}
-      weight="regular"
-    >
-      <p
-        className="jsx-1323762365 "
-      >
-        Please, try refreshing the page. If the problem persists, don't hesitate to contact us.
-      </p>
-      <JSXStyle
-        css=".__jsx-style-dynamic-selector{font-family:\\"Roboto\\", -apple-system, \\".SFNSText-Regular\\", \\"San Francisco\\", \\"Segoe UI\\", \\"Helvetica Neue\\", \\"Lucida Grande\\", sans-serif;font-size:16px;font-weight:400;color:#7f91a8;line-height:1.4;text-align:left;;;}"
-        dynamic={
-          Array [
-            "\\"Roboto\\", -apple-system, \\".SFNSText-Regular\\", \\"San Francisco\\", \\"Segoe UI\\", \\"Helvetica Neue\\", \\"Lucida Grande\\", sans-serif",
-            "16px",
-            "400",
-            "#7f91a8",
-            "1.4",
-            "left",
-            "",
-            "",
-          ]
-        }
-        styleId="143391915"
-      />
-    </Text>
-    <div
-      className="jsx-606556222 contactLink"
-    >
-      <ContactPageLink>
-        <div
-          className="jsx-3630812902 contactUs"
-        >
-          <a
-            className="jsx-3630812902"
-            href="https://www.kiwi.com/en/content/feedback"
-            rel="noopener noreferrer"
-            target="_blank"
+          <svg
+            fill="currentColor"
+            height="16px"
+            preserveAspectRatio="xMidYMid meet"
+            style="vertical-align:middle;color:#171b1e"
+            viewBox="0 0 24 24"
+            width="16px"
           >
-            Having trouble? Contact us
-            <span
-              className="jsx-3630812902 open-icon"
-            >
-              <NewWindow
-                color="attention"
-                customColor="#171b1e"
-                size="small"
-              >
-                <OrbitIcon
-                  color="attention"
-                  customColor="#171b1e"
-                  size="small"
-                  viewBox="0 0 24 24"
-                >
-                  <IconBase
-                    color="#171b1e"
-                    size="16px"
-                    viewBox="0 0 24 24"
-                  >
-                    <svg
-                      fill="currentColor"
-                      height="16px"
-                      preserveAspectRatio="xMidYMid meet"
-                      style={
-                        Object {
-                          "color": "#171b1e",
-                          "verticalAlign": "middle",
-                        }
-                      }
-                      viewBox="0 0 24 24"
-                      width="16px"
-                    >
-                      <path
-                        d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
-                      />
-                    </svg>
-                  </IconBase>
-                </OrbitIcon>
-              </NewWindow>
-            </span>
-          </a>
-          <JSXStyle
-            css=".contactUs.__jsx-style-dynamic-selector{text-align:center;margin-top:25px;}a.__jsx-style-dynamic-selector{color:#171b1e;font-size:14px;-webkit-text-decoration:none;text-decoration:none;font-weight:bold;}a.__jsx-style-dynamic-selector .open-icon.__jsx-style-dynamic-selector{margin-left:6px;}"
-            dynamic={
-              Array [
-                "#171b1e",
-              ]
-            }
-            styleId="3011186473"
-          />
-        </div>
-      </ContactPageLink>
+            <path
+              d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+            />
+          </svg>
+        </span>
+      </a>
     </div>
-    <JSXStyle
-      css=".staticFAQError.jsx-606556222{height:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}.title.jsx-606556222{margin-bottom:8.4px;}div.contactLink.jsx-606556222{margin-top:16.8px;}"
-      styleId="606556222"
-    />
   </div>
-</StaticFAQError>
+</div>
 `;
