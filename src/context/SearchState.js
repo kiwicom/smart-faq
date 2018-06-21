@@ -7,6 +7,7 @@ import { debounce } from '../helpers/functionUtils';
 const initialState = {
   searchText: '',
   queriesBeforeClick: 0,
+  isVisible: true,
 };
 
 type Props = {
@@ -16,12 +17,14 @@ type Props = {
 export type State = {
   searchText: string,
   queriesBeforeClick: number,
+  isVisible: boolean,
 };
 
 export type SearchStateType = State & {
   changeSearchText: (searchText: string) => void,
   incrementQueriesCount: () => void,
   resetQueriesCount: () => void,
+  toggleSearch: () => void,
 };
 
 export const SearchState = React.createContext({
@@ -29,6 +32,7 @@ export const SearchState = React.createContext({
   changeSearchText: (text: string) => {}, // eslint-disable-line no-unused-vars
   incrementQueriesCount: () => {}, // eslint-disable-line no-unused-vars
   resetQueriesCount: () => {}, // eslint-disable-line no-unused-vars
+  toggleSearch: () => {}, // eslint-disable-line no-unused-vars
 });
 
 class SearchStateProvider extends React.Component<Props, State> {
@@ -46,17 +50,23 @@ class SearchStateProvider extends React.Component<Props, State> {
     }));
   });
 
+  toggleSearch = () => {
+    this.setState(prevState => ({ isVisible: !prevState.isVisible }));
+  };
+
   render() {
-    const { queriesBeforeClick, searchText } = this.state;
+    const { queriesBeforeClick, searchText, isVisible } = this.state;
 
     return (
       <SearchState.Provider
         value={{
           searchText,
+          isVisible,
           changeSearchText: this.changeSearchText,
           incrementQueriesCount: this.incrementQueriesCount,
           resetQueriesCount: this.resetQueriesCount,
           queriesBeforeClick,
+          toggleSearch: this.toggleSearch,
         }}
       >
         {this.props.children}
