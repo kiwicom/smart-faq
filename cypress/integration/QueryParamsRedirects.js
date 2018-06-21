@@ -25,6 +25,6 @@ describe('Query params redirect to corect article', () => {
     cy
       .get('.faq-article-detail')
       .find('h1')
-      .contains('What is cabin baggage and how much can I bring?');
+      .contains('Cabin baggage');
   });
 });
