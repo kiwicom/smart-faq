@@ -62,6 +62,30 @@ const styles = css`
     margin-right: 8px;
     vertical-align: top;
   }
+  @media only screen and (max-width: 1180px) {
+    .card {
+      width: 304px;
+      height: 100%;
+      margin-bottom: 16;
+    }
+    p.flight {
+      font-size: 12px;
+    }
+    div.section {
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    div.section:nth-child(1) {
+      margin-right: 30px;
+    }
+    div.section:nth-child(3) {
+      margin-right: 65px;
+    }
+    div.fields {
+      display: block;
+      margin-top: 5px;
+    }
+  }
 `;
 
 type Props = {|
