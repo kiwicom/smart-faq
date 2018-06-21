@@ -37,7 +37,7 @@ const FullFAQLink = (props: Props) => (
       <a
         target="_blank"
         rel="noopener noreferrer"
-        href="https://www.kiwi.com/helpcenter/"
+        href="/helpcenter"
         className={props.className}
         onClick={linkClicked}
       >

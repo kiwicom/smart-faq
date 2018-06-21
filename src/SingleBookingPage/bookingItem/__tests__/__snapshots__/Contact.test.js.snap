@@ -11,7 +11,7 @@ exports[`Contact should render only email 1`] = `
     className="jsx-2410063808 contact-options"
   >
     <withUserHOC>
-      <ContactPageLink
+      <withLanguageHOC
         text="Call us"
         textColor="#00a991"
       />

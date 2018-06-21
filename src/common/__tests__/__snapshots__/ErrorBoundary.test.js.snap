@@ -66,72 +66,77 @@ exports[`ErrorBoundary should trow an error 1`] = `
             </span>
           </Typography>
         </div>
-        <ContactPageLink
+        <withLanguageHOC
           text="Go to contact page"
           textColor="#00a991"
         >
-          <div
-            className="jsx-3612348471 contactUs"
+          <ContactPageLink
+            language="en"
+            text="Go to contact page"
+            textColor="#00a991"
           >
-            <a
-              className="jsx-3612348471"
-              href="https://www.kiwi.com/en/content/feedback"
-              rel="noopener noreferrer"
-              target="_blank"
+            <div
+              className="jsx-4293162489 contactUs"
             >
-              Go to contact page
-              <span
-                className="jsx-3612348471 open-icon"
+              <a
+                className="jsx-4293162489"
+                href="/en/content/feedback"
+                target="_blank"
               >
-                <NewWindow
-                  color="attention"
-                  customColor="#00a991"
-                  size="small"
+                Go to contact page
+                <span
+                  className="jsx-4293162489 open-icon"
                 >
-                  <OrbitIcon
+                  <NewWindow
                     color="attention"
                     customColor="#00a991"
                     size="small"
-                    viewBox="0 0 24 24"
                   >
-                    <IconBase
-                      color="#00a991"
-                      size="16px"
+                    <OrbitIcon
+                      color="attention"
+                      customColor="#00a991"
+                      size="small"
                       viewBox="0 0 24 24"
                     >
-                      <svg
-                        fill="currentColor"
-                        height="16px"
-                        preserveAspectRatio="xMidYMid meet"
-                        style={
-                          Object {
-                            "color": "#00a991",
-                            "verticalAlign": "middle",
-                          }
-                        }
+                      <IconBase
+                        color="#00a991"
+                        size="16px"
                         viewBox="0 0 24 24"
-                        width="16px"
                       >
-                        <path
-                          d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
-                        />
-                      </svg>
-                    </IconBase>
-                  </OrbitIcon>
-                </NewWindow>
-              </span>
-            </a>
-            <JSXStyle
-              css=".contactUs.__jsx-style-dynamic-selector{text-align:center;margin-top:25px;}a.__jsx-style-dynamic-selector{color:#00a991;font-size:14px;-webkit-text-decoration:none;text-decoration:none;font-weight:bold;}a.__jsx-style-dynamic-selector .open-icon.__jsx-style-dynamic-selector{margin-left:6px;}"
-              dynamic={
-                Array [
-                  "#00a991",
-                ]
-              }
-              styleId="3011186473"
-            />
-          </div>
-        </ContactPageLink>
+                        <svg
+                          fill="currentColor"
+                          height="16px"
+                          preserveAspectRatio="xMidYMid meet"
+                          style={
+                            Object {
+                              "color": "#00a991",
+                              "verticalAlign": "middle",
+                            }
+                          }
+                          viewBox="0 0 24 24"
+                          width="16px"
+                        >
+                          <path
+                            d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+                          />
+                        </svg>
+                      </IconBase>
+                    </OrbitIcon>
+                  </NewWindow>
+                </span>
+              </a>
+              <JSXStyle
+                css=".contactUs.__jsx-style-dynamic-selector{text-align:center;margin-top:25px;}a.__jsx-style-dynamic-selector{color:#00a991;font-size:14px;-webkit-text-decoration:none;text-decoration:none;font-weight:bold;}a.__jsx-style-dynamic-selector .open-icon.__jsx-style-dynamic-selector{margin-left:6px;}"
+                dynamic={
+                  Array [
+                    "#00a991",
+                  ]
+                }
+                styleId="1280600690"
+              />
+            </div>
+          </ContactPageLink>
+        </withLanguageHOC>
       </div>
       <JSXStyle
         css=".errorContainer.jsx-2885065558{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex:1;-ms-flex:1;flex:1;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:480px;height:100%;overflow-y:auto;overflow-x:hidden;padding:0 50px;}.desc.jsx-2885065558{margin:10px 0;}"
