@@ -9,11 +9,13 @@ import Header from './Header';
 import StaticFAQ from '../../StaticFAQ';
 import FAQArticleDetail from '../../StaticFAQ/FAQArticleDetail';
 import { ScrollableContent } from '../../common';
+import RedirectToFaq from '../../common/RedirectToFaq';
 import { UserContext, type UserContextType } from '../../context/User';
 import { BookingState } from '../../context/BookingState';
 import BookingPage from './BookingPage';
 
 type Props = {|
+  initialRoute?: string,
   history: {
     location: string,
   },
@@ -115,10 +117,13 @@ class ContentPage extends React.Component<Props> {
   );
 
   render() {
+    const { initialRoute } = this.props;
     return (
-      <UserContext.Consumer>
-        {({ user }: UserContextType) => this.renderPage(Boolean(user))}
-      </UserContext.Consumer>
+      <RedirectToFaq initialRoute={initialRoute}>
+        <UserContext.Consumer>
+          {({ user }: UserContextType) => this.renderPage(Boolean(user))}
+        </UserContext.Consumer>
+      </RedirectToFaq>
     );
   }
 }

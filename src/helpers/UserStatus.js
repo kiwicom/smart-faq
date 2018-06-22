@@ -17,4 +17,5 @@ const RequireUserCriteria = (user_criteria: (user: User) => boolean) =>
 
 export default {
   LoggedIn: RequireUserCriteria(user => user !== null),
+  LoggedOut: RequireUserCriteria(user => user === null),
 };
