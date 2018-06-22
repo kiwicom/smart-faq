@@ -14,6 +14,7 @@
   "plugins":[
     "styled-jsx/babel",
     "transform-runtime",
+    "transform-flow-comments",
     "relay",
     ["transform-assets-import-to-string", {
       "baseDir": "/",
