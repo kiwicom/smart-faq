@@ -24,7 +24,10 @@ const style = css`
   .header {
     display: flex;
     align-items: center;
-    height: 64px;
+  }
+  .header.hide {
+    opacity: 0;
+    max-height: 0;
   }
   .HeaderFAQ {
     width: 100%;
@@ -68,6 +71,7 @@ const loggedInStyle = css`
     .helpHeader {
       width: 100%;
       text-align: center;
+      font-size: 1.2em;
     }
   }
 `;
@@ -105,6 +109,11 @@ const loggedOutStyle = css`
   }
 `;
 
+type State = {
+  isScrolling: boolean,
+  lastScroll: number,
+};
+
 type Props = {
   isLoggedIn: boolean,
   match: {
@@ -117,18 +126,12 @@ type Props = {
   },
 };
 
-const renderLoggedIn = (
-  comesFromSearch: boolean,
-  hasCategory: string | null,
-  isArticle: boolean,
-) => {
+const renderLoggedIn = () => {
   return (
     <React.Fragment>
       <div className="loggedIn">
         <div className="mobileOnly">
-          {hasCategory || isArticle ? (
-            <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
-          ) : null}
+          <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
         </div>
         <BookingState.Consumer>
           {({ bookingPage }) => (
@@ -195,35 +198,66 @@ const renderLoggedOut = (
   );
 };
 
-const Header = (props: Props) => {
-  const hasCategory = idx(props.match, _ => _.params.categoryId) || null;
-  const currentpath = props.location && props.location.pathname;
+class Header extends React.Component<Props, State> {
+  state = {
+    isScrolling: false,
+    lastScroll: 0,
+  };
 
-  const isArticle = currentpath.includes('article/');
-  const comesFromSearch = currentpath.includes('faq/search/');
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll, true);
+  }
 
-  return (
-    <div className="header">
-      <div className="HeaderFAQ">
-        <BookingState.Consumer>
-          {({ bookingPage }) =>
-            bookingPage === 'ALL_BOOKINGS' ? (
-              <MediaQuery query="screen and (min-width: 1181px)">
+  hasCategory = idx(this.props.match, _ => _.params.categoryId) || null;
+  currentpath = this.props.location && this.props.location.pathname;
+
+  isArticle = this.currentpath.includes('article/');
+  comesFromSearch = this.currentpath.includes('faq/search/');
+
+  handleScroll = ({ target }: SyntheticInputEvent<HTMLInputElement>) => {
+    const currentScroll = target.scrollTop;
+
+    if (currentScroll > this.state.lastScroll) {
+      this.setState({
+        isScrolling: true,
+      });
+    } else {
+      this.setState({
+        isScrolling: false,
+      });
+    }
+
+    this.setState({ lastScroll: currentScroll });
+  };
+
+  render() {
+    return (
+      <div className={this.state.isScrolling ? 'header hide' : 'header'}>
+        <div className="HeaderFAQ">
+          <BookingState.Consumer>
+            {({ bookingPage }) =>
+              bookingPage === 'ALL_BOOKINGS' ? (
+                <MediaQuery query="screen and (min-width: 1181px)">
+                  <CloseButton height="24" />
+                </MediaQuery>
+              ) : (
                 <CloseButton height="24" />
-              </MediaQuery>
-            ) : (
-              <CloseButton height="24" />
-            )
-          }
-        </BookingState.Consumer>
-        {props.isLoggedIn
-          ? renderLoggedIn(comesFromSearch, hasCategory, isArticle)
-          : renderLoggedOut(hasCategory, isArticle, comesFromSearch)}
+              )
+            }
+          </BookingState.Consumer>
+          {this.props.isLoggedIn
+            ? renderLoggedIn()
+            : renderLoggedOut(
+                this.hasCategory,
+                this.isArticle,
+                this.comesFromSearch,
+              )}
+        </div>
         <style jsx>{style}</style>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export const RawContentHeader = Header;
 
