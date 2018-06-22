@@ -2,74 +2,24 @@
 
 exports[`ContentHeader should render loggedIn user header 1`] = `
 <div
-  class="header"
+  class="jsx-3520888367 header"
 >
   <div
-    class="jsx-1615436566 HeaderFAQ"
+    class="jsx-3520888367 HeaderFAQ"
   >
     <div
-      class="jsx-1199691705 close-icon"
-      role="button"
-      tabindex="-1"
-    >
-      <svg
-        fill="currentColor"
-        height="24px"
-        preserveAspectRatio="xMidYMid meet"
-        style="vertical-align:middle;color:#46515e"
-        viewBox="0 0 24 24"
-        width="24px"
-      >
-        <path
-          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-        />
-      </svg>
-    </div>
-    <div
-      class="jsx-1128370742 jsx-945710172 loggedIn"
+      class="jsx-2647284336 jsx-945710172 loggedIn"
     >
       <div
-        class="jsx-1128370742 jsx-945710172 mobileOnly"
-      >
-        <div
-          class="jsx-4256523651 back"
-          data-cy="back-button"
-          role="button"
-          tabindex="-1"
-        >
-          <div
-            class="jsx-4256523651 chevron"
-          >
-            <svg
-              fill="currentColor"
-              height="16px"
-              preserveAspectRatio="xMidYMid meet"
-              style="vertical-align:middle;color:#8291a6"
-              viewBox="0 0 24 24"
-              width="16px"
-            >
-              <path
-                d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
-              />
-            </svg>
-          </div>
-          <span
-            class="jsx-141524338"
-          >
-            Back
-          </span>
-        </div>
-      </div>
-      <div
-        class="jsx-1128370742 jsx-945710172 helpHeader"
+        class="jsx-2647284336 jsx-945710172 helpHeader"
       >
         Help
       </div>
       <div
-        class="jsx-1128370742 jsx-945710172 links"
+        class="jsx-2647284336 jsx-945710172 links"
       >
         <div
-          class="jsx-1128370742 jsx-945710172 faqLink desktopOnly"
+          class="jsx-2647284336 jsx-945710172 faqLink desktopOnly"
         >
           <div
             class="jsx-3768482590"
@@ -109,7 +59,7 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
           </div>
         </div>
         <div
-          class="jsx-1128370742 jsx-945710172 desktopOnly"
+          class="jsx-2647284336 jsx-945710172 desktopOnly"
         >
           <div
             class="jsx-1683419278 signOut"
@@ -131,7 +81,7 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
 
 exports[`ContentHeader should render loggedOut user header 1`] = `
 <div
-  class="header"
+  class="jsx-3520888367 header"
 >
   <div
     class="jsx-1615436566 HeaderFAQ"
