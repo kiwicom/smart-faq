@@ -9,12 +9,14 @@ import { SearchState } from '../../context/SearchState';
 
 const mockRefType: any = null;
 const searchText = 'Hola hola';
+const isVisible = false;
 let queriesBeforeClick = 5; //eslint-disable-line
 const resetQueriesCount = jest.fn(() => {
   queriesBeforeClick = 0;
 });
 const changeSearchText = jest.fn();
 const incrementQueriesCount = jest.fn();
+const toggleSearch = jest.fn();
 const article = { id: '23', perex: 'aa', title: 'llk', $refType: mockRefType };
 window.infinario = {
   track: jest.fn(),
@@ -26,10 +28,12 @@ describe('TrackedFAQArticle', () => {
         <SearchState.Provider
           value={{
             searchText,
+            isVisible,
             resetQueriesCount,
             queriesBeforeClick,
             changeSearchText,
             incrementQueriesCount,
+            toggleSearch,
           }}
         >
           <TrackedFAQArticle

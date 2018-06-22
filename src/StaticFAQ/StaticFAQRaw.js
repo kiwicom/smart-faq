@@ -38,19 +38,20 @@ type Props = {|
     },
   },
   searchText: string,
+  isVisible: boolean,
   onSearchChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   onSearchCancel: () => void,
 |};
 
 const StaticFAQRaw = (props: Props) => {
   const categoryId = idx(props.match, _ => _.params.categoryId) || null;
-  const { searchText, onSearchChange, onSearchCancel } = props;
+  const { isVisible, searchText, onSearchChange, onSearchCancel } = props;
   const isSearching = searchText.length > 0;
 
   return (
     <div className="static-faq">
       <div className="static-faq-body">
-        {!categoryId && (
+        {!categoryId && isVisible ? (
           <div className="static-faq-search">
             <Input
               value={searchText}
@@ -61,7 +62,7 @@ const StaticFAQRaw = (props: Props) => {
               dataCy="input-staticFAQ"
             />
           </div>
-        )}
+        ) : null}
         {isSearching ? (
           <SearchAllFAQs search={searchText} />
         ) : (

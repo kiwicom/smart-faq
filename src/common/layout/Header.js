@@ -25,10 +25,6 @@ const style = css`
     display: flex;
     align-items: center;
   }
-  .header.hide {
-    opacity: 0;
-    max-height: 0;
-  }
   .HeaderFAQ {
     width: 100%;
     border-bottom: 1px solid #e8edf1;
@@ -37,6 +33,12 @@ const style = css`
   .faqLink {
     margin-left: 182px;
     line-height: 1.4;
+  }
+  @media only screen and (max-width: 1180px) {
+    .header.hide {
+      opacity: 0;
+      max-height: 0;
+    }
   }
 `;
 
@@ -130,9 +132,6 @@ const renderLoggedIn = () => {
   return (
     <React.Fragment>
       <div className="loggedIn">
-        <div className="mobileOnly">
-          <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
-        </div>
         <BookingState.Consumer>
           {({ bookingPage }) => (
             <div className="helpHeader">
@@ -234,17 +233,9 @@ class Header extends React.Component<Props, State> {
     return (
       <div className={this.state.isScrolling ? 'header hide' : 'header'}>
         <div className="HeaderFAQ">
-          <BookingState.Consumer>
-            {({ bookingPage }) =>
-              bookingPage === 'ALL_BOOKINGS' ? (
-                <MediaQuery query="screen and (min-width: 1181px)">
-                  <CloseButton height="24" />
-                </MediaQuery>
-              ) : (
-                <CloseButton height="24" />
-              )
-            }
-          </BookingState.Consumer>
+          <MediaQuery query="screen and (min-width: 1181px)">
+            <CloseButton height="24" />
+          </MediaQuery>
           {this.props.isLoggedIn
             ? renderLoggedIn()
             : renderLoggedOut(

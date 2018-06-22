@@ -2,10 +2,10 @@
 
 exports[`ContentHeader should render loggedIn user header 1`] = `
 <div
-  class="jsx-3520888367 header"
+  class="jsx-2508097542 header"
 >
   <div
-    class="jsx-3520888367 HeaderFAQ"
+    class="jsx-2508097542 HeaderFAQ"
   >
     <div
       class="jsx-2647284336 jsx-945710172 loggedIn"
@@ -81,29 +81,11 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
 
 exports[`ContentHeader should render loggedOut user header 1`] = `
 <div
-  class="jsx-3520888367 header"
+  class="jsx-2508097542 header"
 >
   <div
-    class="jsx-1615436566 HeaderFAQ"
+    class="jsx-2508097542 HeaderFAQ"
   >
-    <div
-      class="jsx-1199691705 close-icon"
-      role="button"
-      tabindex="-1"
-    >
-      <svg
-        fill="currentColor"
-        height="24px"
-        preserveAspectRatio="xMidYMid meet"
-        style="vertical-align:middle;color:#46515e"
-        viewBox="0 0 24 24"
-        width="24px"
-      >
-        <path
-          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-        />
-      </svg>
-    </div>
     <div
       class="jsx-945710172 jsx-1652122256 loggedOut"
     >

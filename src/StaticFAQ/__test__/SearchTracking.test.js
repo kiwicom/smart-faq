@@ -10,9 +10,12 @@ import { SearchState } from '../../context/SearchState';
 
 const searchText = 'Hola hola';
 const queriesBeforeClick = 5; //eslint-disable-line
+const isVisible = false;
 const resetQueriesCount = jest.fn();
 const incrementQueriesCount = jest.fn();
 const changeSearchText = jest.fn();
+const toggleSearch = jest.fn();
+
 window.infinario = {
   track: jest.fn(),
 };
@@ -25,9 +28,11 @@ describe('SearchTracking', () => {
           value={{
             incrementQueriesCount,
             searchText,
+            isVisible,
             changeSearchText,
             resetQueriesCount,
             queriesBeforeClick,
+            toggleSearch,
           }}
         >
           <StaticFAQ />
@@ -35,7 +40,7 @@ describe('SearchTracking', () => {
       </MemoryRouter>,
     );
     result
-      .find('input[data-cy="input-staticFAQ"]')
+      .find('input[dataCy="input-staticFAQ"]')
       .first()
       .simulate('change', { target: { value: queryText } });
     setTimeout(() => {
