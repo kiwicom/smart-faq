@@ -96,10 +96,11 @@ Done automatically when you add a new release tag on [Github](https://github.com
 ## Analytics
 
 These are the events being recorded. Note that additionally to these attributes frontend is also sending additional data such as:
--`browser`
--`device`
--`location`: origin URL.
--`os`: operating system
+
+- `browser`
+- `device`
+- `location`: origin URL.
+- `os`: operating system
 
 #### Eventname "smartFAQ"
 - Possible payloads
