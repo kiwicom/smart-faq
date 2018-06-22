@@ -93,4 +93,32 @@ Done automatically when you add a new release tag on [Github](https://github.com
 - automatically updates package.json with correct version
 - publish changes onto npm
 
+## Analytics
 
+These are the events being recorded. Note that additionally to these attributes frontend is also sending additional data such as:
+-`browser`
+-`device`
+-`location`: origin URL.
+-`os`: operating system
+
+#### Eventname "smartFAQ"
+- Possible payloads
+  - When smartFAQ is opened: `{ action: "clickOnHelp", loggedIn: true | false}`
+  - When smartFAQ is closed: `{ action: "close", loggedIn: true | false, timeOpen: "number of seconds open"}`
+
+#### Eventname "smartFAQBookingOverview"
+- Possible payloads
+  - Select another booking is clicked: `{ action: "selectAnotherBooking"}`
+  - Manage my booking is clicked: `{ action: "goToMMB"}`
+  - Article is clicked: `{ action: "articleClicked", queriesBeforeClick:"Number of searches the user made before clicking on an article"}`
+  - Full FAQ link is clicked: `{ action: "goToOldHelp"}`
+  - User clicks sign out: `{ action: "signOut"}`
+  - Flight accordion is opened: `{ action: "openFlightCard"}`
+  - When smartFAQ is closed: `{ action: "close", timeOpen: "number of seconds open"}`
+
+
+#### Eventname "smartFAQCategories"
+- Possible payloads
+  - Click on category: `{ action: "clickOnCategory", categoryId:"id of category", categoryName:"category title"}`
+  - Enter Article: `{ action: "clickOnArticle", articleId:"id of article", articleName:"article title"}`
+  - Close Article: `{ action: "articleClose", articleId:"id of article", articleName:"article title", timeOpen: "time it remained open"}`
