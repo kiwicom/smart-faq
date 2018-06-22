@@ -3,7 +3,7 @@
 import { Route, Switch, MemoryRouter } from 'react-router-dom';
 import * as React from 'react';
 
-import UrlSync from './UrlSync';
+import UrlSync from './common/UrlSync';
 import Intro from './IntroPage';
 import SignIn from './SignInPage';
 import KiwiLogin from './KiwiLogin';
@@ -18,7 +18,8 @@ type Props = {|
 const Routes = (props: Props) => {
   return (
     <MemoryRouter initialEntries={[props.initialRoute]} initialIndex={0}>
-      <UrlSync>
+      <React.Fragment>
+        <UrlSync />
         <Switch>
           <Route exact path="/" component={Intro} />
           <Route path="/sign-in" component={SignIn} />
@@ -32,7 +33,7 @@ const Routes = (props: Props) => {
             component={ContentPage}
           />
         </Switch>
-      </UrlSync>
+      </React.Fragment>
     </MemoryRouter>
   );
 };
