@@ -119,7 +119,6 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "relay-runtime": "1.5.0",
-    "set-query-string": "^2.2.0",
     "styled-jsx": "^2.2.5"
   },
   "peerDependencies": {
