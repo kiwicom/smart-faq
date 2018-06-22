@@ -203,23 +203,19 @@ class MobileBookingHeader extends React.Component<{}, State> {
                 >
                   <AccountCircle size="medium" customColor="#45505d" />
                 </div>
-                <div
-                  className="option"
-                  onClick={() => null}
-                  onKeyDown={() => null}
-                  role="button"
-                  tabIndex="0"
-                >
-                  <CloseContext.Consumer>
-                    {(onClose: () => void) => (
-                      <Close
-                        size="medium"
-                        customColor="#45505d"
-                        onClick={onClose}
-                      />
-                    )}
-                  </CloseContext.Consumer>
-                </div>
+                <CloseContext.Consumer>
+                  {(onClose: () => void) => (
+                    <div
+                      className="option"
+                      role="button"
+                      tabIndex="0"
+                      onKeyDown={onClose}
+                      onClick={onClose}
+                    >
+                      <Close size="medium" customColor="#45505d" />
+                    </div>
+                  )}
+                </CloseContext.Consumer>
               </div>
             );
           }}
