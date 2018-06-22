@@ -5,7 +5,7 @@
     "prepublish": "yarn build",
     "start": "NODE_ENV=development LANGUAGE=en webpack-dev-server --open --mode development",
     "start:ci": "NODE_ENV=production LANGUAGE=en webpack-dev-server --mode production",
-    "build": "yarn clean && yarn build:lib",
+    "build": "yarn clean && yarn build:lib && yarn build:flow",
     "build:bundle": "KEENIO_WRITEKEY=$KEENIO_WRITEKEY KEENIO_PROJECTID=$KEENIO_PROJECTID SENTRY_URL_STAGING=$SENTRY_URL_STAGING NODE_ENV=production LANGUAGE=en webpack --mode production",
     "build:pages": "yarn build:bundle && ./scripts/deploy-ghpages.sh",
     "build:lib": "babel --out-dir lib --ignore *.stories.js,*.test.js src",
