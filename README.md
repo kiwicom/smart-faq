@@ -27,11 +27,14 @@ We use this commit message convention: [https://gist.github.com/stephenparish/99
 
 A git hook will verify your commit message and point out any issues with it.
 
-To make following this convention easier, here's some tooling available. Use
+To make following this convention easier, there's some tooling available. Use
 ```
 git cz
 ```
 to compose your commit message using an interactive command line tool.
+
+If you squash your commits when merging a pull request, compose the message of
+the squashed commit also according to the convention.
 
 
 ## Translations
