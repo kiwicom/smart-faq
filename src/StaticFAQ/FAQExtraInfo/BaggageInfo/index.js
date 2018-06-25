@@ -1,5 +1,6 @@
 // @flow
 
+import idx from 'idx';
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { graphql } from 'react-relay';
@@ -10,15 +11,18 @@ import {
   BookingState,
   type BookingStateType,
 } from '../../../context/BookingState';
+import CheckedBaggage from './CheckedBaggage';
+import CabinBaggage from './CabinBaggage';
 import QueryRenderer from '../../../relay/QueryRenderer';
+import type { BaggageInfoQuery } from './__generated__/BaggageInfoQuery.graphql';
 
 type Props = {||};
 
 const styles = css`
   div.card {
     margin-top: 22px;
-    width: 100 %;
-    height: 303px;
+    width: 100%;
+    height: 100%;
     border-radius: 3px;
     background-color: #ffffff;
     border: solid 1px #e8edf1;
@@ -32,11 +36,14 @@ const styles = css`
   }
   div.subtitle {
     margin-left: 24px;
+    margin-bottom: 24px;
   }
   hr.separationLine {
-    margin-top: 24.4px;
     border: solid 1px #e8edf1;
-    width: 100 %;
+    width: 100%;
+  }
+  div.baggageRow {
+    padding: 15px 24px 15px 24px;
   }
 `;
 
@@ -44,33 +51,16 @@ const queryInfoBaggage = graphql`
   query BaggageInfoQuery($id: ID!) {
     booking(id: $id) {
       allowedBaggage {
-        checked {
-          height
-          length
-          width
-          weight
-        }
-        cabin {
-          height
-          length
-          width
-          weight
-        }
-        additionalBaggage {
-          price {
-            amount
-            currency
-          }
-          quantity
-        }
+        ...CabinBaggage
+        ...CheckedBaggage
       }
     }
   }
 `;
 
 class BaggageInfo extends React.Component<Props> {
-  renderBaggageCard = queryProps => {
-    console.log(queryProps);
+  renderBaggageCard = (queryProps: BaggageInfoQuery) => {
+    const baggage = idx(queryProps.props, _ => _.booking.allowedBaggage);
     return (
       <div className="card">
         <div className="iconTitle">
@@ -83,6 +73,13 @@ class BaggageInfo extends React.Component<Props> {
           <Text type="attention">Here you can see your baggage allowance</Text>
         </div>
         <hr className="separationLine" />
+        <div className="baggageRow">
+          <CheckedBaggage data={baggage} />
+        </div>
+        <hr className="separationLine" />
+        <div className="baggageRow">
+          <CabinBaggage data={baggage} />
+        </div>
         <style jsx>{styles}</style>
       </div>
     );

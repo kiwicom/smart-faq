@@ -9,7 +9,6 @@ import BookingError from './BookingError';
 import BookingDetail from './BookingDetail';
 import BookingNotFound from './BookingNotFound';
 import BookingLoader from './BookingLoader';
-import { BookingState, type BookingStateType } from '../context/BookingState';
 import type { NearestBookingQueryResponse as QueryResponseType } from './__generated__/NearestBookingQuery.graphql';
 
 type Props = {||};
@@ -22,7 +21,6 @@ type RenderState = {
 const query = graphql`
   query NearestBookingQuery {
     nearestBooking {
-      id
       ...BookingDetail_booking
     }
   }
@@ -30,8 +28,6 @@ const query = graphql`
 
 class NearestBooking extends React.Component<Props> {
   renderBooking = (renderState: RenderState) => {
-    console.log(renderState);
-    const id = idx(renderState.props, _ => _.nearestBooking);
     let content = null;
     const booking = idx(renderState.props, _ => _.nearestBooking);
 
@@ -50,14 +46,9 @@ class NearestBooking extends React.Component<Props> {
     }
 
     return (
-      <BookingState.Consumer>
-        {({ onSelectBooking }: BookingStateType) => (
-          <div style={{ height: '100%', backgroundColor: '#f5f7f9' }}>
-            {content}
-            {onSelectBooking(id)}
-          </div>
-        )}
-      </BookingState.Consumer>
+      <div style={{ height: '100%', backgroundColor: '#f5f7f9' }}>
+        {content}
+      </div>
     );
   };
 

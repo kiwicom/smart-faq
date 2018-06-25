@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b7e0b29034be1dd3a8b20d0816142fc2
+ * @relayHash 01f5649a30b6167f1105a68de739f5c2
  */
 
 /* eslint-disable */
@@ -9,31 +9,15 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type CabinBaggage$ref = any;
+type CheckedBaggage$ref = any;
 export type BaggageInfoQueryVariables = {|
   id: string,
 |};
 export type BaggageInfoQueryResponse = {|
   +booking: ?{|
     +allowedBaggage: ?{|
-      +checked: ?$ReadOnlyArray<?{|
-        +height: ?number,
-        +length: ?number,
-        +width: ?number,
-        +weight: ?number,
-      |}>,
-      +cabin: ?$ReadOnlyArray<?{|
-        +height: ?number,
-        +length: ?number,
-        +width: ?number,
-        +weight: ?number,
-      |}>,
-      +additionalBaggage: ?$ReadOnlyArray<?{|
-        +price: ?{|
-          +amount: ?number,
-          +currency: ?string,
-        |},
-        +quantity: ?number,
-      |}>,
+      +$fragmentRefs: (CabinBaggage$ref & CheckedBaggage$ref),
     |},
   |},
 |};
@@ -46,27 +30,28 @@ query BaggageInfoQuery(
 ) {
   booking(id: $id) {
     allowedBaggage {
-      checked {
-        height
-        length
-        width
-        weight
-      }
-      cabin {
-        height
-        length
-        width
-        weight
-      }
-      additionalBaggage {
-        price {
-          amount
-          currency
-        }
-        quantity
-      }
+      ...CabinBaggage
+      ...CheckedBaggage
     }
     id
+  }
+}
+
+fragment CabinBaggage on AllowedBaggage {
+  cabin {
+    height
+    length
+    width
+    weight
+  }
+}
+
+fragment CheckedBaggage on AllowedBaggage {
+  checked {
+    height
+    length
+    width
+    weight
   }
 }
 */
@@ -117,87 +102,13 @@ v2 = [
     "args": null,
     "storageKey": null
   }
-],
-v3 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "allowedBaggage",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "AllowedBaggage",
-  "plural": false,
-  "selections": [
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "checked",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "Baggage",
-      "plural": true,
-      "selections": v2
-    },
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "cabin",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "Baggage",
-      "plural": true,
-      "selections": v2
-    },
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "additionalBaggage",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "AdditionalBaggage",
-      "plural": true,
-      "selections": [
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "price",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "Price",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "amount",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "currency",
-              "args": null,
-              "storageKey": null
-            }
-          ]
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "quantity",
-          "args": null,
-          "storageKey": null
-        }
-      ]
-    }
-  ]
-};
+];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "BaggageInfoQuery",
   "id": null,
-  "text": "query BaggageInfoQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    allowedBaggage {\n      checked {\n        height\n        length\n        width\n        weight\n      }\n      cabin {\n        height\n        length\n        width\n        weight\n      }\n      additionalBaggage {\n        price {\n          amount\n          currency\n        }\n        quantity\n      }\n    }\n    id\n  }\n}\n",
+  "text": "query BaggageInfoQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    allowedBaggage {\n      ...CabinBaggage\n      ...CheckedBaggage\n    }\n    id\n  }\n}\n\nfragment CabinBaggage on AllowedBaggage {\n  cabin {\n    height\n    length\n    width\n    weight\n  }\n}\n\nfragment CheckedBaggage on AllowedBaggage {\n  checked {\n    height\n    length\n    width\n    weight\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -215,7 +126,27 @@ return {
         "concreteType": "Booking",
         "plural": false,
         "selections": [
-          v3
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "allowedBaggage",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "AllowedBaggage",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "FragmentSpread",
+                "name": "CabinBaggage",
+                "args": null
+              },
+              {
+                "kind": "FragmentSpread",
+                "name": "CheckedBaggage",
+                "args": null
+              }
+            ]
+          }
         ]
       }
     ]
@@ -234,7 +165,37 @@ return {
         "concreteType": "Booking",
         "plural": false,
         "selections": [
-          v3,
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "allowedBaggage",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "AllowedBaggage",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "cabin",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Baggage",
+                "plural": true,
+                "selections": v2
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "checked",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Baggage",
+                "plural": true,
+                "selections": v2
+              }
+            ]
+          },
           {
             "kind": "ScalarField",
             "alias": null,
@@ -248,5 +209,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '5b0b13080cb2b836f95fc1678c781139';
+(node/*: any*/).hash = 'f5e66622d5eb14974b1ab6f7afa2e70d';
 module.exports = node;
