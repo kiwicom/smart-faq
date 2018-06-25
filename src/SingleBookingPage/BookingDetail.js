@@ -93,6 +93,7 @@ class BookingDetail extends React.Component<Props> {
 
   render() {
     const { booking } = this.props;
+    const eTicketLink = idx(booking, _ => _.assets.ticketUrl);
     const departureTime = this.getDepartureByType(booking);
     const arrivalTime = this.getArrivalByType(booking);
     const departureInfo = this.decideIfIsFutureAndUrgent(departureTime);
@@ -122,13 +123,17 @@ class BookingDetail extends React.Component<Props> {
             <button className="manage-booking">Manage My Booking</button>
           </a>
         </div>
+        {eTicketLink && (
+          <a className="eTicket" href={eTicketLink} target="_blank">
+            Download e-ticket
+          </a>
+        )}
         {showContactInfo && <Contact info={booking} />}
         <style jsx>
           {`
             .buttons {
-              display: flex;
-              justify-content: center;
               margin-top: 24px;
+              margin-bottom: 20px;
             }
             .manage-booking {
               font-weight: bold;
@@ -141,6 +146,16 @@ class BookingDetail extends React.Component<Props> {
               border: none;
               color: #46515e;
               cursor: pointer;
+            }
+            .eTicket {
+              font-size: 14px;
+              color: #171b1e;
+              font-weight: 500;
+              text-decoration: underline;
+              cursor: pointer;
+            }
+            .eTicket:hover {
+              color: #00907b;
             }
           `}
         </style>
@@ -157,6 +172,9 @@ export default createFragmentContainer(
     fragment BookingDetail_booking on BookingInterface {
       type
       status
+      assets {
+        ticketUrl
+      }
       directAccessURL
       ...Header_booking
       ... on BookingOneWay {
