@@ -51,6 +51,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "copy-webpack-plugin": "4.5.1",
     "cypress": "^2.1.0",
+    "cz-conventional-changelog": "^2.1.0",
     "dotenv": "5.0.1",
     "dotenv-webpack": "^1.5.5",
     "enzyme": "^3.3.0",
@@ -119,5 +120,10 @@
   "peerDependencies": {
     "react": "16.3.2",
     "react-dom": "16.3.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
