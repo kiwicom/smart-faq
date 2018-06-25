@@ -207,12 +207,6 @@ class Header extends React.Component<Props, State> {
     window.addEventListener('scroll', this.handleScroll, true);
   }
 
-  hasCategory = idx(this.props.match, _ => _.params.categoryId) || null;
-  currentpath = this.props.location && this.props.location.pathname;
-
-  isArticle = this.currentpath.includes('article/');
-  comesFromSearch = this.currentpath.includes('faq/search/');
-
   handleScroll = ({ target }: SyntheticInputEvent<HTMLInputElement>) => {
     const currentScroll = target.scrollTop;
 
@@ -230,6 +224,11 @@ class Header extends React.Component<Props, State> {
   };
 
   render() {
+    const hasCategory = idx(this.props.match, _ => _.params.categoryId) || null;
+    const currentpath = this.props.location && this.props.location.pathname;
+    const isArticle = currentpath.includes('article/');
+    const comesFromSearch = currentpath.includes('faq/search/');
+
     return (
       <div className={this.state.isScrolling ? 'header hide' : 'header'}>
         <div className="HeaderFAQ">
@@ -238,11 +237,7 @@ class Header extends React.Component<Props, State> {
           </MediaQuery>
           {this.props.isLoggedIn
             ? renderLoggedIn()
-            : renderLoggedOut(
-                this.hasCategory,
-                this.isArticle,
-                this.comesFromSearch,
-              )}
+            : renderLoggedOut(hasCategory, isArticle, comesFromSearch)}
         </div>
         <style jsx>{style}</style>
       </div>
