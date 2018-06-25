@@ -22,6 +22,18 @@ Where the value of `GRAPHQL_URI` and `KIWILOGIN_USER` will be provided privately
 Webpack and particularly `dotenv-webpack` package will take care of importing the variables from `.env` to your resulting build app or dev-server.
 
 
+## Commit message convention
+We use this commit message convention: [https://gist.github.com/stephenparish/9941e89d80e2bc58a153#format-of-the-commit-message](https://gist.github.com/stephenparish/9941e89d80e2bc58a153#format-of-the-commit-message)
+
+A git hook will verify your commit message and point out any issues with it.
+
+To make following this convention easier, here's some tooling available. Use
+```
+git cz
+```
+to compose your commit message using an interactive command line tool.
+
+
 ## Translations
 
 - Check out [react-i18next](https://react.i18next.com/) and [i18next](https://www.i18next.com/) docs for more info.
