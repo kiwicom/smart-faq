@@ -33,6 +33,7 @@ const styles = css`
   .ContentPage .Body {
     display: flex;
     flex: 1;
+    min-height: 0;
   }
   .FAQ {
     width: 650px;
