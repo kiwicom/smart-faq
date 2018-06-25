@@ -72,9 +72,7 @@ class Detail extends React.Component<Props> {
         </div>
         <hr className="faq-article-delimiter" />
         <div className="faq-article-text">
-          <Text>
-            <Markdown>{article.content}</Markdown>
-          </Text>
+          <Markdown>{article.content}</Markdown>
         </div>
         <hr className="faq-article-delimiter" />
         <FAQArticleFeedback articleId={article.id} />
