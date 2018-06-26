@@ -24,7 +24,9 @@ const ResponsiveSocialButton = (props: Props) => {
   const renderButton = width => (
     <Button
       title={title}
-      onClick={() => onSocialLogin(type)}
+      onClick={() => {
+        onSocialLogin(type);
+      }}
       variation={variation}
       width={width}
       type={type}
