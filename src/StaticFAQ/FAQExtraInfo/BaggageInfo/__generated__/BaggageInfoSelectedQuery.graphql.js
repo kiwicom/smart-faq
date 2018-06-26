@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 01f5649a30b6167f1105a68de739f5c2
+ * @relayHash 013a7a4efa8f904d6c3609d922365091
  */
 
 /* eslint-disable */
@@ -9,15 +9,14 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type CabinBaggage$ref = any;
-type CheckedBaggage$ref = any;
-export type BaggageInfoQueryVariables = {|
+type BaggageSummary$ref = any;
+export type BaggageInfoSelectedQueryVariables = {|
   id: string,
 |};
-export type BaggageInfoQueryResponse = {|
+export type BaggageInfoSelectedQueryResponse = {|
   +booking: ?{|
     +allowedBaggage: ?{|
-      +$fragmentRefs: (CabinBaggage$ref & CheckedBaggage$ref),
+      +$fragmentRefs: BaggageSummary$ref,
     |},
   |},
 |};
@@ -25,29 +24,25 @@ export type BaggageInfoQueryResponse = {|
 
 
 /*
-query BaggageInfoQuery(
+query BaggageInfoSelectedQuery(
   $id: ID!
 ) {
   booking(id: $id) {
     allowedBaggage {
-      ...CabinBaggage
-      ...CheckedBaggage
+      ...BaggageSummary
     }
     id
   }
 }
 
-fragment CabinBaggage on AllowedBaggage {
-  cabin {
+fragment BaggageSummary on AllowedBaggage {
+  checked {
     height
     length
     width
     weight
   }
-}
-
-fragment CheckedBaggage on AllowedBaggage {
-  checked {
+  cabin {
     height
     length
     width
@@ -106,13 +101,13 @@ v2 = [
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "BaggageInfoQuery",
+  "name": "BaggageInfoSelectedQuery",
   "id": null,
-  "text": "query BaggageInfoQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    allowedBaggage {\n      ...CabinBaggage\n      ...CheckedBaggage\n    }\n    id\n  }\n}\n\nfragment CabinBaggage on AllowedBaggage {\n  cabin {\n    height\n    length\n    width\n    weight\n  }\n}\n\nfragment CheckedBaggage on AllowedBaggage {\n  checked {\n    height\n    length\n    width\n    weight\n  }\n}\n",
+  "text": "query BaggageInfoSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    allowedBaggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on AllowedBaggage {\n  checked {\n    height\n    length\n    width\n    weight\n  }\n  cabin {\n    height\n    length\n    width\n    weight\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "BaggageInfoQuery",
+    "name": "BaggageInfoSelectedQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -137,12 +132,7 @@ return {
             "selections": [
               {
                 "kind": "FragmentSpread",
-                "name": "CabinBaggage",
-                "args": null
-              },
-              {
-                "kind": "FragmentSpread",
-                "name": "CheckedBaggage",
+                "name": "BaggageSummary",
                 "args": null
               }
             ]
@@ -153,7 +143,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "BaggageInfoQuery",
+    "name": "BaggageInfoSelectedQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -177,7 +167,7 @@ return {
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "cabin",
+                "name": "checked",
                 "storageKey": null,
                 "args": null,
                 "concreteType": "Baggage",
@@ -187,7 +177,7 @@ return {
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "checked",
+                "name": "cabin",
                 "storageKey": null,
                 "args": null,
                 "concreteType": "Baggage",
@@ -209,5 +199,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = 'f5e66622d5eb14974b1ab6f7afa2e70d';
+(node/*: any*/).hash = '11465dc3babf44de1689831b0605fca4';
 module.exports = node;

@@ -1,25 +1,17 @@
 // @flow
 
-import idx from 'idx';
 import * as React from 'react';
-import { graphql, createFragmentContainer } from 'react-relay';
-import { BaggageBig } from '@kiwicom/orbit-components/lib/icons';
+import { BaggageSmall } from '@kiwicom/orbit-components/lib/icons';
 
-import type { CheckedBaggage as CheckedBaggageProps } from './__generated__/CheckedBaggage.graphql';
-
-type Props = {|
-  data: CheckedBaggageProps,
-|};
-
-export const CheckedBaggage = ({ data }: Props) => {
-  const baggageNumber = (idx(data, _ => _.checked) || []).length;
-  const { height, weight, width, length } = idx(data, _ => _.checked[0]) || {};
+type Props = {||};
+const BaggageDescription = ({ dimensions, amount, type }: Props) => {
+  const { height, weight, width, length } = dimensions;
   return (
     <React.Fragment>
       <div className="baggageNumber">
-        <p>{baggageNumber}x</p>
+        <p>{amount}x</p>
       </div>
-      <BaggageBig customColor="#7f91a8" />
+      <BaggageSmall customColor="#7f91a8" />
       <p className="baggageWeight">Cabin baggage {weight} kg</p>
       <div className="baggageSize">
         <p>
@@ -61,16 +53,4 @@ export const CheckedBaggage = ({ data }: Props) => {
   );
 };
 
-export default createFragmentContainer(
-  CheckedBaggage,
-  graphql`
-    fragment CheckedBaggage on AllowedBaggage {
-      checked {
-        height
-        length
-        width
-        weight
-      }
-    }
-  `,
-);
+export default BaggageDescription;

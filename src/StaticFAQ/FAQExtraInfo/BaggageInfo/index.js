@@ -11,12 +11,16 @@ import {
   BookingState,
   type BookingStateType,
 } from '../../../context/BookingState';
-import CheckedBaggage from './CheckedBaggage';
-import CabinBaggage from './CabinBaggage';
+import BaggageSummary from './BaggageSummary';
 import QueryRenderer from '../../../relay/QueryRenderer';
-import type { BaggageInfoQuery } from './__generated__/BaggageInfoQuery.graphql';
+import type { BaggageInfoQuery } from './__generated__/BaggageInfoSelectedQuery.graphql';
+import type { BaggageInfoNearestQuery } from './__generated__/BaggageInfoNearestQuery.graphql';
 
 type Props = {||};
+
+type QueryProps = {|
+  props: BaggageInfoQuery | BaggageInfoNearestQuery,
+|};
 
 const styles = css`
   div.card {
@@ -42,44 +46,49 @@ const styles = css`
     border: solid 1px #e8edf1;
     width: 100%;
   }
-  div.baggageRow {
-    padding: 15px 24px 15px 24px;
+`;
+
+const selectedBaggageInfo = graphql`
+  query BaggageInfoSelectedQuery($id: ID!) {
+    booking(id: $id) {
+      allowedBaggage {
+        ...BaggageSummary
+      }
+    }
   }
 `;
 
-const queryInfoBaggage = graphql`
-  query BaggageInfoQuery($id: ID!) {
-    booking(id: $id) {
+const nearestInfoBaggage = graphql`
+  query BaggageInfoNearestQuery {
+    nearestBooking {
       allowedBaggage {
-        ...CabinBaggage
-        ...CheckedBaggage
+        ...BaggageSummary
       }
     }
   }
 `;
 
 class BaggageInfo extends React.Component<Props> {
-  renderBaggageCard = (queryProps: BaggageInfoQuery) => {
-    const baggage = idx(queryProps.props, _ => _.booking.allowedBaggage);
+  renderBaggageCard = (queryProps: QueryProps) => {
+    const baggage =
+      idx(queryProps.props, _ => _.booking.allowedBaggage) ||
+      idx(queryProps.props, _ => _.nearestBooking.allowedBaggage);
+
     return (
       <div className="card">
         <div className="iconTitle">
           <Baggages customColor="black" />
         </div>
         <div className="title">
-          <Heading>Your baggage</Heading>
+          <Heading type="title2" element="h2">
+            Your baggage
+          </Heading>
         </div>
         <div className="subtitle">
           <Text type="attention">Here you can see your baggage allowance</Text>
         </div>
         <hr className="separationLine" />
-        <div className="baggageRow">
-          <CheckedBaggage data={baggage} />
-        </div>
-        <hr className="separationLine" />
-        <div className="baggageRow">
-          <CabinBaggage data={baggage} />
-        </div>
+        <BaggageSummary data={baggage} />
         <style jsx>{styles}</style>
       </div>
     );
@@ -88,14 +97,22 @@ class BaggageInfo extends React.Component<Props> {
   render() {
     return (
       <BookingState.Consumer>
-        {({ selectedBooking }: BookingStateType) => (
-          <QueryRenderer
-            query={queryInfoBaggage}
-            render={this.renderBaggageCard}
-            cacheConfig={{ force: true }}
-            variables={{ id: selectedBooking }}
-          />
-        )}
+        {({ selectedBooking }: BookingStateType) => {
+          return selectedBooking === null ? (
+            <QueryRenderer
+              query={nearestInfoBaggage}
+              render={this.renderBaggageCard}
+              cacheConfig={{ force: true }}
+            />
+          ) : (
+            <QueryRenderer
+              query={selectedBaggageInfo}
+              render={this.renderBaggageCard}
+              cacheConfig={{ force: true }}
+              variables={{ id: selectedBooking }}
+            />
+          );
+        }}
       </BookingState.Consumer>
     );
   }
