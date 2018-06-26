@@ -24,13 +24,20 @@ import {
   ExtraInfoState,
   type ExtraInfoStateType,
 } from '../context/ExtraInfoState';
+import { BookingState } from '../context/BookingState';
 
-type Props = {|
+type ComponentProps = {
   booking: NearestBooking_booking,
   history: {
     push: string => void,
   },
-|};
+};
+
+type ContextProps = {
+  onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
+};
+
+type Props = ComponentProps & ContextProps;
 
 const styles = css`
   .buttons {
@@ -90,6 +97,32 @@ const goToMMB = () =>
   });
 
 class BookingDetail extends React.Component<Props> {
+  componentDidMount() {
+    this.updateFAQSection();
+  }
+
+  componentDidUpdate() {
+    this.updateFAQSection();
+  }
+
+  updateFAQSection = () => {
+    const { booking } = this.props;
+
+    const departureTime = this.getDepartureByType(booking);
+    const isUrgent = this.isUrgentBooking(booking.isPastBooking, departureTime);
+
+    this.props.onSetFAQSection(isUrgent, booking.isPastBooking);
+  };
+
+  isUrgentBooking = (isPastBooking: boolean, departureTime: ?Date) => {
+    const timeDelta = departureTime
+      ? DateTime.fromJSDate(departureTime, { zone: 'utc' }).diffNow('hours').hours
+      : null;
+    const isUrgent = timeDelta !== null && URGENCY_THRESHOLD > timeDelta;
+
+    return isPastBooking === false && isUrgent;
+  };
+
   renderByType = (booking: NearestBooking_booking) => {
     if (booking.type === bookingTypes.ONE_WAY) {
       return <OneWay booking={booking} />;
@@ -162,8 +195,8 @@ class BookingDetail extends React.Component<Props> {
     const arrivalTime = this.getArrivalByType(booking);
     const departureInfo = this.decideIfIsFutureAndUrgent(departureTime);
     const arrivalInfo = this.decideIfIsFutureAndUrgent(arrivalTime);
-    const { isUrgent, timeDelta } = departureInfo;
-    const showContactInfo = departureInfo.isUrgent || arrivalInfo.isUrgent;
+    const { timeDelta, isFuture } = departureInfo;
+    const isUrgent = this.isUrgentBooking(booking.isPastBooking, departureTime);
 
     return (
       <ScrollableContent
@@ -171,7 +204,7 @@ class BookingDetail extends React.Component<Props> {
         styles="width: 100%; padding:40px; background-color: #f5f7f9;"
       >
         <Header booking={booking} isFuture={arrivalInfo.isFuture} />
-        {departureInfo.isFuture &&
+        {isFuture &&
           booking.status === 'CONFIRMED' &&
           timeDelta && (
             <Notification hoursLeft={timeDelta} isUrgent={isUrgent} />
@@ -206,7 +239,7 @@ class BookingDetail extends React.Component<Props> {
             Download e-ticket
           </a>
         )}
-        {showContactInfo && <Contact info={booking} />}
+        {isUrgent && <Contact info={booking} />}
         <style jsx>{styles}</style>
       </ScrollableContent>
     );
@@ -215,8 +248,16 @@ class BookingDetail extends React.Component<Props> {
 
 export const RawBookingDetail = BookingDetail;
 
+const BookingDetailWithFAQHandler = (props: ComponentProps) => (
+  <BookingState.Consumer>
+    {({ onSetFAQSection }: ContextProps) => (
+      <BookingDetail {...props} onSetFAQSection={onSetFAQSection} />
+    )}
+  </BookingState.Consumer>
+);
+
 export default createFragmentContainer(
-  withRouter(BookingDetail),
+  withRouter(BookingDetailWithFAQHandler),
   graphql`
     fragment BookingDetail_booking on BookingInterface {
       type
@@ -225,6 +266,7 @@ export default createFragmentContainer(
         ticketUrl
       }
       directAccessURL
+      isPastBooking
       ...Header_booking
       ... on BookingOneWay {
         ...OneWay_booking
@@ -241,9 +283,6 @@ export default createFragmentContainer(
         ...Return_booking
         outbound {
           departure {
-            time
-          }
-          arrival {
             time
           }
         }

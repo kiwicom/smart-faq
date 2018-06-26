@@ -1406,6 +1406,8 @@ input HotelsSearchInput {
   roomsConfiguration: [RoomsConfiguration!]!
 }
 
+scalar IP
+
 type Identity {
   """The ID of an object"""
   id: ID!
@@ -1439,8 +1441,6 @@ enum InsuranceType {
   TRAVEL_BASIC
   TRAVEL_PLUS
 }
-
-scalar IP
 
 """Use "Accept-Language" HTTP header to specify locale."""
 enum Language {
@@ -1648,16 +1648,6 @@ input LocationInput {
   radius: RadiusInput
 }
 
-input LocationsOptionsInput {
-  """
-  DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
-  """
-  locale: Locale
-
-  """Desired location type the response should only include."""
-  locationType: LocationType
-}
-
 """Type of location"""
 enum LocationType {
   airport
@@ -1666,6 +1656,16 @@ enum LocationType {
   country
   station
   subdivision
+}
+
+input LocationsOptionsInput {
+  """
+  DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
+  """
+  locale: Locale
+
+  """Desired location type the response should only include."""
+  locationType: LocationType
 }
 
 type LoungeService {
