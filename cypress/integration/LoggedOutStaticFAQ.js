@@ -21,7 +21,7 @@ describe('Display Static FAQ', () => {
     cy
       .get('@faq-breadcrumbs')
       .children()
-      .should('have.length', 4);
+      .should('have.length', 2);
 
     cy
       .get('@faq-box')
@@ -32,7 +32,7 @@ describe('Display Static FAQ', () => {
     cy
       .get('@faq-breadcrumbs')
       .children()
-      .should('have.length', 4);
+      .should('have.length', 3);
 
     cy
       .get('@faq-box')
@@ -44,6 +44,11 @@ describe('Display Static FAQ', () => {
       .get('@faq-breadcrumbs')
       .children()
       .should('have.length', 4);
+
+    cy
+      .get('@faq-breadcrumbs')
+      .last()
+      .contains('Article');
   });
 
   it('FAQ Article should have all the necessary data', () => {
