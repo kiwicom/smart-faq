@@ -44,6 +44,11 @@ describe('Display Static FAQ', () => {
       .get('@faq-breadcrumbs')
       .children()
       .should('have.length', 4);
+
+    cy
+      .get('@faq-breadcrumbs')
+      .last()
+      .contains('Article');
   });
 
   it('FAQ Article should have all the necessary data', () => {

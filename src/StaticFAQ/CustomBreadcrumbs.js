@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
+import MediaQuery from 'react-responsive';
 
 import Breadcrumb from './Breadcrumb';
 import BackArrow from './BackArrow';
@@ -23,36 +24,59 @@ const style = css`
 
 type Props = {|
   breadcrumbs: Array<{ id: ?string, title: string }>,
-  loginToken: string,
+  loginToken: ?string,
 |};
 
-const CustomBreadcrumbs = ({ breadcrumbs, loginToken }: Props) => {
-  const firstCategory = [...breadcrumbs].shift();
-  const lastCategory = [...breadcrumbs].pop();
-  const previousCategory = [...breadcrumbs].slice(-2)[0];
-  const id = previousCategory && previousCategory.id;
+class CustomBreadcrumbs extends React.Component<Props> {
+  renderBreadCrumbs = (breadcrumbs, maxBreadcrumbsLength) => {
+    const breadcrubsLength = breadcrumbs.map(b => b.title).join().length;
+    if (maxBreadcrumbsLength && breadcrubsLength > maxBreadcrumbsLength) {
+      const length = breadcrumbs.length;
+      breadcrumbs = breadcrumbs.map((b, i) => {
+        if (i !== 0 && i !== length - 1 && i !== length - 2) {
+          return { ...b, title: '...' };
+        }
+        return b;
+      });
+    }
+    return breadcrumbs
+      .slice(1, breadcrumbs.length - 1)
+      .map(breadcrumb => (
+        <Breadcrumb
+          key={breadcrumb.id}
+          breadcrumb={{ id: breadcrumb.id, title: breadcrumb.title }}
+        />
+      ));
+  };
+  render() {
+    const { loginToken, breadcrumbs } = this.props;
+    const firstCategory = [...breadcrumbs].shift();
+    const lastCategory = [...breadcrumbs].pop();
+    const previousCategory = [...breadcrumbs].slice(-2)[0];
+    const id = previousCategory && previousCategory.id;
 
-  return (
-    <div className="breadcrumbs" data-cy="faq-breadcrumbs">
-      {loginToken && (
-        <span className="desktopOnly">
-          <BackArrow id={id} />
-        </span>
-      )}
-      <Breadcrumb breadcrumb={{ title: firstCategory.title }} />
-      {breadcrumbs
-        .slice(1, breadcrumbs.length - 1)
-        .map(breadcrumb => (
-          <Breadcrumb
-            key={breadcrumb.id}
-            breadcrumb={{ id: breadcrumb.id, title: breadcrumb.title }}
-          />
-        ))}
-      <Breadcrumb breadcrumb={{ title: lastCategory.title }} isCurrent />
-      <style jsx>{style}</style>
-      <style jsx>{responsiveStyleHelperClasses}</style>
-    </div>
-  );
-};
+    const maxBreadcrumbsLengthMobile = 55;
+
+    return (
+      <div className="breadcrumbs" data-cy="faq-breadcrumbs">
+        {loginToken && (
+          <span className="desktopOnly">
+            <BackArrow id={id} />
+          </span>
+        )}
+        <Breadcrumb breadcrumb={{ title: firstCategory.title }} />
+        <MediaQuery maxWidth="600px">
+          {this.renderBreadCrumbs(breadcrumbs, maxBreadcrumbsLengthMobile)}
+        </MediaQuery>
+        <MediaQuery minWidth="600px">
+          {this.renderBreadCrumbs(breadcrumbs)}
+        </MediaQuery>
+        <Breadcrumb breadcrumb={{ title: lastCategory.title }} isCurrent />
+        <style jsx>{style}</style>
+        <style jsx>{responsiveStyleHelperClasses}</style>
+      </div>
+    );
+  }
+}
 
 export default withLoginToken(CustomBreadcrumbs);
