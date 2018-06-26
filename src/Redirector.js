@@ -2,48 +2,36 @@
 /* eslint-disable */
 import * as React from 'react';
 import { withRouter } from 'react-router-dom';
-
 import { withUser } from './context/User';
 import type { User } from './types';
 
 type Props = {
   user: User,
-  initialRoute: string,
-  location: {
-    pathname: string
-  },
-  history: {
-    push: string => void,
-  },
-};
-type State = {
-  usedInitialRoute: string,
 };
 
+type State = {
+  firstOpen: boolean
+}
+
 class Redirector extends React.Component<Props, State> {
-  static getDerivedStateFromProps(newProps: Props, newState: State) {
-    const { initialRoute, location } = newProps;
-    if (initialRoute) {
-      if (location.pathname !== initialRoute) {
-        if (initialRoute !== newState.usedInitialRoute) {
-          newProps.history.push(initialRoute);
-          return {
-            usedInitialRoute: initialRoute,
-          };
-        }
+  state = {
+    firstOpen: true
+  }
+  static getDerivedStateFromProps(props, state) {
+    const { firstOpen } = state;
+    if(firstOpen) {
+      const paramsString = window.location.search;
+      const params = new URLSearchParams(paramsString);
+      const helpQueryString = params.get('help');
+      // if user is logged in redirect him to faq
+      if(helpQueryString === "/" && props.user ){
+        props.history.push("/faq/");
+      } else {
+        props.history.push(helpQueryString);
       }
     }
-    // if (initialRoute === '/' && newProps.user) {
-    //   newProps.history.push('/faq/');
-    //   return {
-    //     usedInitialRoute: initialRoute,
-    //   };
-    // }
-    return null;
+    return { firstOpen: false }
   }
-  state = {
-    usedInitialRoute: '/',
-  };
   render() {
     return null;
   }

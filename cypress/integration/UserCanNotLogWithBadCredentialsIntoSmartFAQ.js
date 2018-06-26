@@ -13,7 +13,7 @@ describe(`User can't log into SmartFAQ with wrong credentials`, () => {
 
   it(`The user shouldn't be able to log into SmartFAQ with wrong credentials.`, () => {
     const wrongData = {
-      email: Cypress.env('TEST_USER_EMAIL'),
+      email: 'myemail@kiwi.com',
       password: 'wrongPassword',
     };
 

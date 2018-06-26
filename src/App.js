@@ -45,7 +45,6 @@ type Props = {|
   locale: {},
   user: User,
   loginToken: ?string,
-  initialRoute: string,
   onClose: () => void,
   onLogin: onLogin,
   onSocialLogin: onSocialLogin,
@@ -111,7 +110,7 @@ class App extends React.PureComponent<Props, State> {
                         wasSelected={this.state.urlBookingWasSelected}
                         setSelected={this.urlBookingSelected}
                       />
-                      <Routes initialRoute={this.props.initialRoute} />
+                      <Routes />
                     </BookingStateProvider>
                   </SearchStateProvider>
                 </UserContext.Provider>

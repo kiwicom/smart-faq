@@ -12,15 +12,11 @@ import ForgottenPassword from './ForgottenPassword';
 import { CheckRecoveryLink, CheckMagicLink } from './EmailPage';
 import ContentPage from './common/layout/ContentPage';
 
-type Props = {|
-  initialRoute: string,
-|};
-
-const Routes = (props: Props) => {
+const Routes = () => {
   return (
     <MemoryRouter>
       <React.Fragment>
-        <Redirector initialRoute={props.initialRoute} />
+        <Redirector />
         <UrlSync />
         <Switch>
           <Route exact path="/" component={Intro} />
