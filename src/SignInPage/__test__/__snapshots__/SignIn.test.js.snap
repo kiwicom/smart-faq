@@ -2,34 +2,51 @@
 
 exports[`SignIn should match snapshot 1`] = `
 <div
-  className="jsx-1939792885 SignIn"
+  className="jsx-269888215 SignIn"
 >
   <CloseButton />
   <withRouter(BackButton)
     text="Back"
   />
   <div
-    className="jsx-1939792885 picture"
+    className="jsx-269888215 picture"
   >
     <img
       alt="Help"
-      className="jsx-1939792885"
+      className="jsx-269888215"
       src="https://images.kiwi.com/smart-faq/woman-with-laptop@2x.jpg"
     />
   </div>
   <div
-    className="jsx-1939792885 text"
+    className="jsx-269888215 text"
   >
     <div
-      className="jsx-1939792885 title"
+      className="jsx-269888215 title"
     >
-      <Heading
-        element="h1"
-        size="large"
-        weight="bold"
+      <MediaQuery
+        query="screen and (max-width: 700px)"
+        values={Object {}}
       >
-        Sign in
-      </Heading>
+        <Heading
+          element="h1"
+          size="medium"
+          weight="bold"
+        >
+          Sign in
+        </Heading>
+      </MediaQuery>
+      <MediaQuery
+        query="screen and (min-width: 701px)"
+        values={Object {}}
+      >
+        <Heading
+          element="h1"
+          size="large"
+          weight="bold"
+        >
+          Sign in
+        </Heading>
+      </MediaQuery>
     </div>
     <Text
       align="left"
@@ -44,44 +61,32 @@ exports[`SignIn should match snapshot 1`] = `
     </Text>
   </div>
   <div
-    className="jsx-1939792885 buttons"
+    className="jsx-269888215 buttons"
   >
     <div
-      className="jsx-1939792885 googleButton"
+      className="jsx-269888215 googleButton"
     >
-      <Button
-        Facebook={true}
-        Icon={[Function]}
-        block={false}
-        disabled={false}
-        loading={false}
-        onClick={[Function]}
-        onlyIcon={false}
-        size="normal"
+      <withLoginHOC
+        icon={[Function]}
+        onSocialLogin={[MockFunction]}
         title="Continue with Google"
         type="google"
         variation="bordered"
-        width={212}
       />
     </div>
-    <Button
-      Facebook={true}
-      Icon={[Function]}
-      block={false}
-      className="facebook"
-      disabled={false}
-      loading={false}
-      onClick={[Function]}
-      onlyIcon={false}
-      size="normal"
-      title="Continue with Facebook"
-      type="facebook"
-      variation="filled"
-      width={212}
-    />
+    <div
+      className="jsx-269888215 facebookButton"
+    >
+      <withLoginHOC
+        icon={[Function]}
+        onSocialLogin={[MockFunction]}
+        title="Continue with Facebook"
+        type="facebook"
+      />
+    </div>
   </div>
   <div
-    className="jsx-1939792885 kiwi-account"
+    className="jsx-269888215 kiwi-account"
   >
     <Link
       data-cy="link-kiwi-login"
@@ -100,48 +105,65 @@ exports[`SignIn should match snapshot 1`] = `
       </Typography>
       <img
         alt="kiwi login"
-        className="jsx-1939792885 chevron"
+        className="jsx-269888215 chevron"
         src="https://images.kiwi.com/smart-faq/chevron-right.png"
       />
     </Link>
   </div>
   <JSXStyle
-    css=".SignIn.jsx-1939792885{width:480px;padding-top:128px;padding-bottom:50px;height:100%;overflow-y:auto;overflow-x:hidden;}div.picture.jsx-1939792885 img.jsx-1939792885{width:203px;height:156px;}div.picture.jsx-1939792885{margin:0px 127px 0px 150px;}div.text.jsx-1939792885{margin:68px 40px 30px 40px;}.title.jsx-1939792885{margin-bottom:8px;}.googleButton.jsx-1939792885{margin-bottom:16px;}.buttons.jsx-1939792885{margin-right:134px;margin-left:134px;margin-bottom:24px;}div.kiwi-account.jsx-1939792885{margin-top:8px;text-align:center;}img.chevron.jsx-1939792885{width:8px;height:8px;margin-left:5px;object-fit:contain;}@media only screen and (max-width:480px){.SignIn.jsx-1939792885{width:100%;padding-top:30px;}div.picture.jsx-1939792885{text-align:center;margin:50px 0px 20px 0px;}div.text.jsx-1939792885{margin:0px 16px 33px 16px;}.buttons.jsx-1939792885{display:table;margin:0 auto;}}"
-    styleId="1939792885"
+    css=".SignIn.jsx-269888215{width:480px;padding-top:128px;padding-bottom:50px;height:100%;overflow-y:auto;overflow-x:hidden;}div.picture.jsx-269888215 img.jsx-269888215{width:203px;height:156px;}div.picture.jsx-269888215{margin:0px 127px 0px 150px;}div.text.jsx-269888215{margin:68px 40px 30px 40px;}.title.jsx-269888215{margin-bottom:8px;}.googleButton.jsx-269888215{margin-bottom:16px;}.buttons.jsx-269888215{margin-right:134px;margin-left:134px;margin-bottom:24px;}div.kiwi-account.jsx-269888215{margin-top:8px;text-align:center;}img.chevron.jsx-269888215{width:8px;height:8px;margin-left:5px;object-fit:contain;}@media only screen and (max-width:480px){.SignIn.jsx-269888215{width:100%;padding-top:30px;}div.picture.jsx-269888215{text-align:center;margin:50px 0px 20px 0px;}div.text.jsx-269888215{width:288px;margin-left:auto;margin-right:auto;}.buttons.jsx-269888215{display:table;margin:0 auto;}}@media only screen and (orientation:landscape) and (max-height:480px){.SignIn.jsx-269888215{width:100%;padding-top:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}div.picture.jsx-269888215{display:none;}div.text.jsx-269888215{margin:0 auto 29px;width:288px;}.buttons.jsx-269888215{display:table;margin:0 auto;width:288px;}div.kiwi-account.jsx-269888215{margin-top:28px;}}"
+    styleId="269888215"
   />
 </div>
 `;
 
 exports[`SignIn should match snapshot with expired message 1`] = `
 <div
-  className="jsx-1939792885 SignIn"
+  className="jsx-269888215 SignIn"
 >
   <CloseButton />
   <withRouter(BackButton)
     text="Back"
   />
   <div
-    className="jsx-1939792885 picture"
+    className="jsx-269888215 picture"
   >
     <img
       alt="Help"
-      className="jsx-1939792885"
+      className="jsx-269888215"
       src="https://images.kiwi.com/smart-faq/woman-with-laptop@2x.jpg"
     />
   </div>
   <div
-    className="jsx-1939792885 text"
+    className="jsx-269888215 text"
   >
     <div
-      className="jsx-1939792885 title"
+      className="jsx-269888215 title"
     >
-      <Heading
-        element="h1"
-        size="large"
-        weight="bold"
+      <MediaQuery
+        query="screen and (max-width: 700px)"
+        values={Object {}}
       >
-        Sign in
-      </Heading>
+        <Heading
+          element="h1"
+          size="medium"
+          weight="bold"
+        >
+          Sign in
+        </Heading>
+      </MediaQuery>
+      <MediaQuery
+        query="screen and (min-width: 701px)"
+        values={Object {}}
+      >
+        <Heading
+          element="h1"
+          size="large"
+          weight="bold"
+        >
+          Sign in
+        </Heading>
+      </MediaQuery>
     </div>
     <Text
       align="left"
@@ -170,44 +192,32 @@ exports[`SignIn should match snapshot with expired message 1`] = `
     </div>
   </div>
   <div
-    className="jsx-1939792885 buttons"
+    className="jsx-269888215 buttons"
   >
     <div
-      className="jsx-1939792885 googleButton"
+      className="jsx-269888215 googleButton"
     >
-      <Button
-        Facebook={true}
-        Icon={[Function]}
-        block={false}
-        disabled={false}
-        loading={false}
-        onClick={[Function]}
-        onlyIcon={false}
-        size="normal"
+      <withLoginHOC
+        icon={[Function]}
+        onSocialLogin={[MockFunction]}
         title="Continue with Google"
         type="google"
         variation="bordered"
-        width={212}
       />
     </div>
-    <Button
-      Facebook={true}
-      Icon={[Function]}
-      block={false}
-      className="facebook"
-      disabled={false}
-      loading={false}
-      onClick={[Function]}
-      onlyIcon={false}
-      size="normal"
-      title="Continue with Facebook"
-      type="facebook"
-      variation="filled"
-      width={212}
-    />
+    <div
+      className="jsx-269888215 facebookButton"
+    >
+      <withLoginHOC
+        icon={[Function]}
+        onSocialLogin={[MockFunction]}
+        title="Continue with Facebook"
+        type="facebook"
+      />
+    </div>
   </div>
   <div
-    className="jsx-1939792885 kiwi-account"
+    className="jsx-269888215 kiwi-account"
   >
     <Link
       data-cy="link-kiwi-login"
@@ -226,14 +236,14 @@ exports[`SignIn should match snapshot with expired message 1`] = `
       </Typography>
       <img
         alt="kiwi login"
-        className="jsx-1939792885 chevron"
+        className="jsx-269888215 chevron"
         src="https://images.kiwi.com/smart-faq/chevron-right.png"
       />
     </Link>
   </div>
   <JSXStyle
-    css=".SignIn.jsx-1939792885{width:480px;padding-top:128px;padding-bottom:50px;height:100%;overflow-y:auto;overflow-x:hidden;}div.picture.jsx-1939792885 img.jsx-1939792885{width:203px;height:156px;}div.picture.jsx-1939792885{margin:0px 127px 0px 150px;}div.text.jsx-1939792885{margin:68px 40px 30px 40px;}.title.jsx-1939792885{margin-bottom:8px;}.googleButton.jsx-1939792885{margin-bottom:16px;}.buttons.jsx-1939792885{margin-right:134px;margin-left:134px;margin-bottom:24px;}div.kiwi-account.jsx-1939792885{margin-top:8px;text-align:center;}img.chevron.jsx-1939792885{width:8px;height:8px;margin-left:5px;object-fit:contain;}@media only screen and (max-width:480px){.SignIn.jsx-1939792885{width:100%;padding-top:30px;}div.picture.jsx-1939792885{text-align:center;margin:50px 0px 20px 0px;}div.text.jsx-1939792885{margin:0px 16px 33px 16px;}.buttons.jsx-1939792885{display:table;margin:0 auto;}}"
-    styleId="1939792885"
+    css=".SignIn.jsx-269888215{width:480px;padding-top:128px;padding-bottom:50px;height:100%;overflow-y:auto;overflow-x:hidden;}div.picture.jsx-269888215 img.jsx-269888215{width:203px;height:156px;}div.picture.jsx-269888215{margin:0px 127px 0px 150px;}div.text.jsx-269888215{margin:68px 40px 30px 40px;}.title.jsx-269888215{margin-bottom:8px;}.googleButton.jsx-269888215{margin-bottom:16px;}.buttons.jsx-269888215{margin-right:134px;margin-left:134px;margin-bottom:24px;}div.kiwi-account.jsx-269888215{margin-top:8px;text-align:center;}img.chevron.jsx-269888215{width:8px;height:8px;margin-left:5px;object-fit:contain;}@media only screen and (max-width:480px){.SignIn.jsx-269888215{width:100%;padding-top:30px;}div.picture.jsx-269888215{text-align:center;margin:50px 0px 20px 0px;}div.text.jsx-269888215{width:288px;margin-left:auto;margin-right:auto;}.buttons.jsx-269888215{display:table;margin:0 auto;}}@media only screen and (orientation:landscape) and (max-height:480px){.SignIn.jsx-269888215{width:100%;padding-top:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}div.picture.jsx-269888215{display:none;}div.text.jsx-269888215{margin:0 auto 29px;width:288px;}.buttons.jsx-269888215{display:table;margin:0 auto;width:288px;}div.kiwi-account.jsx-269888215{margin-top:28px;}}"
+    styleId="269888215"
   />
 </div>
 `;

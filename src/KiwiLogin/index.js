@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
+import MediaQuery from 'react-responsive';
 import { Typography, SystemMessage } from '@kiwicom/orbit-components';
 import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
 
@@ -84,6 +85,9 @@ const style = css`
       padding-left: 0px;
       padding-right: 0px;
     }
+    p.title {
+      font-size: 22px;
+    }
     div.picture {
       display: none;
     }
@@ -112,7 +116,38 @@ const style = css`
       width: 100%;
     }
   }
+  @media only screen and (orientation: landscape) and (max-width: 700px) {
+    .KiwiLogin {
+      width: 100%;
+      padding-top: 20px;
+    }
+    p.title {
+      font-size: 22px;
+    }
+    div.picture {
+      display: none;
+    }
+    div.main {
+      width: 288px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    div.input {
+      width: 288px;
+      margin-bottom: 26px;
+    }
+    div.forgotPassword {
+      display: block;
+      text-align: center;
+      margin-bottom: 20px;
+      margin-top: 0;
+    }
+    .singIn button {
+      width: 288px;
+    }
+  }
 `;
+
 type Props = {
   onLogin: onLogin,
   history: {
@@ -165,11 +200,20 @@ class KiwiLogin extends React.Component<Props, State> {
         </div>
         <div className="main">
           <p className="title">Kiwi.com account</p>
-          <Typography type="secondary">
-            {
-              'If you have an account with us, just use your credentials to sign in.'
-            }
-          </Typography>
+          <MediaQuery query="(min-width: 480px) and (min-height: 480px)">
+            <Typography type="secondary">
+              {
+                'If you have an account with us, just use your credentials to sign in.'
+              }
+            </Typography>
+          </MediaQuery>
+          <MediaQuery query="only screen and (max-width: 480px) and (orientation: portrait)">
+            <Typography type="secondary">
+              {
+                'If you have an account with us, just use your credentials to sign in.'
+              }
+            </Typography>
+          </MediaQuery>
           <form onSubmit={this.handleSignIn}>
             <label htmlFor="email">
               Email:
