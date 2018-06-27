@@ -23,7 +23,12 @@ describe('KiwiLogin', () => {
   it('should change state', () => {
     const Login = wrapper.instance();
     const state = Login.state;
-    expect(state).toEqual({ email: '', password: '', showError: false });
+    expect(state).toEqual({
+      email: '',
+      password: '',
+      showError: false,
+      isLoading: false,
+    });
 
     wrapper.find(`[type="email"]`).simulate('change', {
       target: { name: 'email', value: 'email@kiwi.com' },

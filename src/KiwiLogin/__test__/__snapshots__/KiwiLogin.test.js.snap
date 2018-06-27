@@ -3,6 +3,7 @@
 exports[`KiwiLogin should change state 1`] = `
 Object {
   "email": "email@kiwi.com",
+  "isLoading": false,
   "password": "myRealPassword",
   "showError": false,
 }

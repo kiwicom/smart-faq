@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import MediaQuery from 'react-responsive';
 import { Typography, SystemMessage, Button } from '@kiwicom/orbit-components';
-import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
+import { AlertCircle, Loading } from '@kiwicom/orbit-components/lib/icons';
 
 import CloseButton from './../common/buttons/CloseButton';
 import BackButton from '../common/buttons/BackButton';
@@ -145,6 +145,7 @@ type State = {|
   email: string,
   password: string,
   showError: boolean,
+  isLoading: boolean,
 |};
 
 class KiwiLogin extends React.Component<Props, State> {
@@ -152,6 +153,7 @@ class KiwiLogin extends React.Component<Props, State> {
     email: '',
     password: '',
     showError: false,
+    isLoading: false,
   };
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
@@ -160,6 +162,7 @@ class KiwiLogin extends React.Component<Props, State> {
   };
   handleSignIn = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
+    this.setState({ isLoading: true });
     try {
       const response = await this.props.onLogin(
         this.state.email,
@@ -170,13 +173,21 @@ class KiwiLogin extends React.Component<Props, State> {
         throw new Error('Login failed.');
       }
 
+      this.setState({ isLoading: false });
       this.props.history.push('/faq/');
     } catch (e) {
-      this.setState({ showError: true });
+      this.setState({ showError: true, isLoading: false });
     }
   };
   render() {
-    const { showError } = this.state;
+    const { showError, isLoading } = this.state;
+    const loadingButtonProps = isLoading
+      ? {
+          disabled: true,
+          Icon: Loading,
+        }
+      : null;
+
     return (
       <div className="KiwiLogin">
         <CloseButton />
@@ -247,6 +258,7 @@ class KiwiLogin extends React.Component<Props, State> {
                 title="Sign In"
                 block
                 onClick={() => {}}
+                {...loadingButtonProps}
                 data-cy="btn-sign-in"
               />
             </span>
