@@ -13,8 +13,8 @@ Install all the dependencies with `yarn`
 In order to be able to login one requires an `.env` file at the root of the codebase, with the following contents:
 
 ```javascript
-GRAPHQL_URI = XXXXXXXX;
-KIWILOGIN_USER = XXXXXXXX;
+GRAPHQL_URI = XXXXXXXX
+KIWILOGIN_USER = XXXXXXXX
 ```
 
 `KIWILOGIN_USER` is only needed for this standalone app to work
