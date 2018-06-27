@@ -28,9 +28,6 @@ const BaggageDescription = ({
   return (
     <React.Fragment>
       <div className="baggageRow">
-        <div className="baggageNumber">
-          <p>{1}x</p>
-        </div>
         {renderIcon(type)}
         <p className="baggageWeight">
           {type} baggage {weight} kg
@@ -68,6 +65,7 @@ const BaggageDescription = ({
             display: inline-block;
           }
           p.baggageWeight {
+            margin-left: 5px;
             font-size: 14px;
             font-weight: bold;
             line-height: 1.4;

@@ -8,20 +8,15 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type BaggageDescription$ref = any;
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type BaggageSummary$ref: FragmentReference;
 export type BaggageSummary = {|
   +checked: ?$ReadOnlyArray<?{|
-    +height: ?number,
-    +weight: ?number,
-    +width: ?number,
-    +length: ?number,
+    +$fragmentRefs: BaggageDescription$ref,
   |}>,
   +cabin: ?$ReadOnlyArray<?{|
-    +height: ?number,
-    +weight: ?number,
-    +width: ?number,
-    +length: ?number,
+    +$fragmentRefs: BaggageDescription$ref,
   |}>,
   +$refType: BaggageSummary$ref,
 |};
@@ -31,32 +26,9 @@ export type BaggageSummary = {|
 const node/*: ConcreteFragment*/ = (function(){
 var v0 = [
   {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "height",
-    "args": null,
-    "storageKey": null
-  },
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "weight",
-    "args": null,
-    "storageKey": null
-  },
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "width",
-    "args": null,
-    "storageKey": null
-  },
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "length",
-    "args": null,
-    "storageKey": null
+    "kind": "FragmentSpread",
+    "name": "BaggageDescription",
+    "args": null
   }
 ];
 return {
@@ -89,5 +61,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '60078cad3d7bbf906556013c0677ba58';
+(node/*: any*/).hash = '94d1b33aa28d6840eff0a99736a76a33';
 module.exports = node;

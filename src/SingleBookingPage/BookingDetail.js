@@ -20,6 +20,10 @@ import bookingTypes from '../common/booking/bookingTypes';
 import { URGENCY_THRESHOLD } from '../helpers/dateUtils';
 import replaceWithCurrentDomain from '../helpers/replaceWithCurrentDomain';
 import type { NearestBooking_booking } from './__generated__/NearestBookingQuery.graphql';
+import {
+  ExtraInfoState,
+  type ExtraInfoStateType,
+} from '../context/ExtraInfoState';
 
 type Props = {|
   booking: NearestBooking_booking,
@@ -30,9 +34,8 @@ type Props = {|
 
 const styles = css`
   .buttons {
-    display: flex;
-    justify-content: center;
     margin-top: 24px;
+    margin-bottom: 20px;
   }
   .manage-booking {
     font-weight: bold;
@@ -85,8 +88,6 @@ const goToMMB = () =>
   simpleTracker('smartFAQBookingOverview', {
     action: 'goToMMB',
   });
-
-const isBaggageActive = true;
 
 class BookingDetail extends React.Component<Props> {
   renderByType = (booking: NearestBooking_booking) => {
@@ -175,13 +176,20 @@ class BookingDetail extends React.Component<Props> {
           timeDelta && (
             <Notification hoursLeft={timeDelta} isUrgent={isUrgent} />
           )}
-        <button
-          className={`baggageButton ${isBaggageActive && 'active'}`}
-          onClick={() => this.props.history.push('/faq/RkFRQ2F0ZWdvcnk6ODk=')}
-        >
-          <Baggages customColor="#00a991" />
-          <p className="iconLabel">Bagagge</p>
-        </button>
+        <ExtraInfoState.Consumer>
+          {({ isBaggageVisible, toggleBaggage }: ExtraInfoStateType) => (
+            <button
+              className={`baggageButton ${isBaggageVisible ? 'active' : ''}`}
+              onClick={() => {
+                toggleBaggage();
+                this.props.history.push('/faq/RkFRQ2F0ZWdvcnk6ODk=');
+              }}
+            >
+              <Baggages customColor="#00a991" />
+              <p className="iconLabel">Bagagge</p>
+            </button>
+          )}
+        </ExtraInfoState.Consumer>
         {this.renderByType(booking)}
         <div className="buttons" data-cy="btn-manage-booking">
           <a
@@ -205,7 +213,7 @@ class BookingDetail extends React.Component<Props> {
   }
 }
 
-export const RawBookingDetail = withRouter(BookingDetail);
+export const RawBookingDetail = BookingDetail;
 
 export default createFragmentContainer(
   withRouter(BookingDetail),

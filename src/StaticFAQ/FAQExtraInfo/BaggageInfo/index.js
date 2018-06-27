@@ -4,7 +4,7 @@ import idx from 'idx';
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { graphql } from 'react-relay';
-import { Heading, Text } from '@kiwicom/orbit-components';
+import { Text } from '@kiwicom/orbit-components';
 import { Baggages } from '@kiwicom/orbit-components/lib/icons';
 
 import {
@@ -23,7 +23,7 @@ type QueryProps = {|
 |};
 
 const styles = css`
-  div.card {
+  div.baggageCard {
     margin-top: 22px;
     width: 100%;
     height: 100%;
@@ -35,8 +35,12 @@ const styles = css`
     margin: 25px 12px 8.6px 24px;
     display: inline-block;
   }
-  div.title {
+  h1.title {
     display: inline-block;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #171b1e;
   }
   div.subtitle {
     margin-left: 24px;
@@ -48,7 +52,7 @@ const styles = css`
   }
 `;
 
-const selectedBaggageInfo = graphql`
+const selectedInfoBaggage = graphql`
   query BaggageInfoSelectedQuery($id: ID!) {
     booking(id: $id) {
       allowedBaggage {
@@ -75,15 +79,11 @@ class BaggageInfo extends React.Component<Props> {
       idx(queryProps.props, _ => _.nearestBooking.allowedBaggage);
 
     return (
-      <div className="card">
+      <div className="baggageCard">
         <div className="iconTitle">
           <Baggages customColor="black" />
         </div>
-        <div className="title">
-          <Heading type="title2" element="h2">
-            Your baggage
-          </Heading>
-        </div>
+        <h1 className="title">Your baggage</h1>
         <div className="subtitle">
           <Text type="attention">Here you can see your baggage allowance</Text>
         </div>
@@ -106,7 +106,7 @@ class BaggageInfo extends React.Component<Props> {
             />
           ) : (
             <QueryRenderer
-              query={selectedBaggageInfo}
+              query={selectedInfoBaggage}
               render={this.renderBaggageCard}
               cacheConfig={{ force: true }}
               variables={{ id: selectedBooking }}

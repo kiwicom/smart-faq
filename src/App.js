@@ -12,6 +12,7 @@ import { LanguageContext } from './context/Language';
 import { UserContext } from './context/User';
 import SearchStateProvider from './context/SearchState';
 import BookingStateProvider from './context/BookingState';
+import ExtraInfoStateProvider from './context/ExtraInfoState';
 import { SelectUrlBooking } from './common/integration/urlProcessing';
 import ErrorBoundary from './common/ErrorBoundary';
 import { EnterTracker, TimeTracker } from './helpers/analytics/trackers';
@@ -107,11 +108,13 @@ class App extends React.PureComponent<Props, State> {
                 >
                   <SearchStateProvider>
                     <BookingStateProvider>
-                      <SelectUrlBooking
-                        wasSelected={this.state.urlBookingWasSelected}
-                        setSelected={this.urlBookingSelected}
-                      />
-                      <Routes initialRoute={this.props.initialRoute} />
+                      <ExtraInfoStateProvider>
+                        <SelectUrlBooking
+                          wasSelected={this.state.urlBookingWasSelected}
+                          setSelected={this.urlBookingSelected}
+                        />
+                        <Routes initialRoute={this.props.initialRoute} />
+                      </ExtraInfoStateProvider>
                     </BookingStateProvider>
                   </SearchStateProvider>
                 </UserContext.Provider>

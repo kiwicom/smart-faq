@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 54714218b743dd6afb7e94d533ecc98e
+ * @relayHash bf67ed44d3cead684d80c49892260211
  */
 
 /* eslint-disable */
@@ -34,17 +34,18 @@ query BaggageInfoNearestQuery {
 
 fragment BaggageSummary on AllowedBaggage {
   checked {
-    height
-    weight
-    width
-    length
+    ...BaggageDescription
   }
   cabin {
-    height
-    weight
-    width
-    length
+    ...BaggageDescription
   }
+}
+
+fragment BaggageDescription on Baggage {
+  height
+  weight
+  width
+  length
 }
 */
 
@@ -84,7 +85,7 @@ return {
   "operationKind": "query",
   "name": "BaggageInfoNearestQuery",
   "id": null,
-  "text": "query BaggageInfoNearestQuery {\n  nearestBooking {\n    __typename\n    allowedBaggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on AllowedBaggage {\n  checked {\n    height\n    weight\n    width\n    length\n  }\n  cabin {\n    height\n    weight\n    width\n    length\n  }\n}\n",
+  "text": "query BaggageInfoNearestQuery {\n  nearestBooking {\n    __typename\n    allowedBaggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on AllowedBaggage {\n  checked {\n    ...BaggageDescription\n  }\n  cabin {\n    ...BaggageDescription\n  }\n}\n\nfragment BaggageDescription on Baggage {\n  height\n  weight\n  width\n  length\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",

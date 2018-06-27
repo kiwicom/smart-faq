@@ -6,6 +6,11 @@ import { graphql } from 'react-relay';
 import MediaQuery from 'react-responsive';
 import { Link, withRouter } from 'react-router-dom';
 
+import {
+  ExtraInfoState,
+  type ExtraInfoStateType,
+} from '../context/ExtraInfoState';
+import UserStatus from '../helpers/UserStatus';
 import { Loader, ScrollableBox } from '../common';
 import QueryRenderer from '../relay/QueryRenderer';
 import BaggageInfo from './FAQExtraInfo/BaggageInfo';
@@ -110,7 +115,13 @@ class FAQCategoryList extends React.Component<Props> {
     return (
       <React.Fragment>
         <MediaQuery query="screen and (min-width: 1181px)">
-          {isCategoryBaggage && <BaggageInfo />}
+          <UserStatus.LoggedIn>
+            <ExtraInfoState.Consumer>
+              {({ isBaggageVisible }: ExtraInfoStateType) =>
+                isCategoryBaggage && isBaggageVisible && <BaggageInfo />
+              }
+            </ExtraInfoState.Consumer>
+          </UserStatus.LoggedIn>
         </MediaQuery>
         <div data-cy="faq-categories">
           {categories.map(category => {

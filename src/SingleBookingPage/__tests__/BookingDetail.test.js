@@ -69,16 +69,16 @@ describe('BookingDetail >', () => {
       'EXPIRED',
     ].forEach(status =>
       it(`is not displayed for booking with ${status} status`, () => {
-        // $FlowExpectedError: We don't need all props for tests
         const refundedBooking = { ...booking48HoursAgo, status };
+        // $FlowExpectedError: We don't need all props for tests
         const wrapper = shallow(<RawBookingDetail booking={refundedBooking} />);
         expect(wrapper.find(Notification).exists()).toBeFalsy();
       }),
     );
 
     it('has prop isFuture true when inbound flight is in future and outbound flight date already passed', () => {
-      // $FlowExpectedError: We don't need all props for tests
       const wrapper = shallow(
+        // $FlowExpectedError: We don't need all props for tests
         <RawBookingDetail booking={bookingBetweenDepartureAndArrival} />,
       );
       expect(wrapper.find(Header).props().isFuture).toBeTruthy();
@@ -93,8 +93,8 @@ describe('BookingDetail >', () => {
     });
 
     it('is not displayed when inbound flight is in future and outbound flight date already passed', () => {
-      // $FlowExpectedError: We don't need all props for tests
       const wrapper = shallow(
+        // $FlowExpectedError: We don't need all props for tests
         <RawBookingDetail booking={bookingBetweenDepartureAndArrival} />,
       );
       expect(wrapper.find(Contact).exists()).toBeFalsy();

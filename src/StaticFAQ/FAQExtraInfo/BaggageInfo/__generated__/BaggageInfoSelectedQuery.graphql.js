@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 506648e0b3ef5afae831223acdf5902b
+ * @relayHash e7f5d0f0b60cda71010f86625fac9162
  */
 
 /* eslint-disable */
@@ -37,17 +37,18 @@ query BaggageInfoSelectedQuery(
 
 fragment BaggageSummary on AllowedBaggage {
   checked {
-    height
-    weight
-    width
-    length
+    ...BaggageDescription
   }
   cabin {
-    height
-    weight
-    width
-    length
+    ...BaggageDescription
   }
+}
+
+fragment BaggageDescription on Baggage {
+  height
+  weight
+  width
+  length
 }
 */
 
@@ -103,7 +104,7 @@ return {
   "operationKind": "query",
   "name": "BaggageInfoSelectedQuery",
   "id": null,
-  "text": "query BaggageInfoSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    allowedBaggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on AllowedBaggage {\n  checked {\n    height\n    weight\n    width\n    length\n  }\n  cabin {\n    height\n    weight\n    width\n    length\n  }\n}\n",
+  "text": "query BaggageInfoSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    allowedBaggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on AllowedBaggage {\n  checked {\n    ...BaggageDescription\n  }\n  cabin {\n    ...BaggageDescription\n  }\n}\n\nfragment BaggageDescription on Baggage {\n  height\n  weight\n  width\n  length\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",

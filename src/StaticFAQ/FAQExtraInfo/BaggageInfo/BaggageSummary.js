@@ -12,13 +12,6 @@ type Props = {|
   data: BaggageSummaryProps,
 |};
 
-// const countBaggage = (baggage: []) =>
-//   baggage.reduce((acc, obj) => {
-//     const key = JSON.stringify(obj);
-//     acc[key] = (acc[key] || 0) + 1;
-//     return acc;
-//   }, {});
-
 const BaggageSummary = ({ data }: Props) => {
   const cabinBaggage = idx(data, _ => _.cabin) || [];
   const checkedBaggage = idx(data, _ => _.checked) || [];
@@ -26,11 +19,11 @@ const BaggageSummary = ({ data }: Props) => {
     <React.Fragment>
       {checkedBaggage.map((bagagge, i) => (
         /* eslint-disable react/no-array-index-key*/
-        <BaggageDescription key={i} data={bagagge} amount={3} type="Checked" />
+        <BaggageDescription key={i} data={bagagge} type="Checked" />
       ))}
       {cabinBaggage.map((bagagge, i) => (
         /* eslint-disable react/no-array-index-key*/
-        <BaggageDescription key={i} data={bagagge} amount={3} type="Cabin" />
+        <BaggageDescription key={i} data={bagagge} type="Cabin" />
       ))}
     </React.Fragment>
   ) : (
@@ -43,10 +36,10 @@ export default createFragmentContainer(
   graphql`
     fragment BaggageSummary on AllowedBaggage {
       checked {
-        ...BaggageDescription @relay(mask: false)
+        ...BaggageDescription
       }
       cabin {
-        ...BaggageDescription @relay(mask: false)
+        ...BaggageDescription
       }
     }
   `,
