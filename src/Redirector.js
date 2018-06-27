@@ -19,16 +19,20 @@ class Redirector extends React.Component<Props, State> {
   }
   static getDerivedStateFromProps(props, state) {
     const { firstOpen } = state;
+    const paramsString = window.location.search;
+    const params = new URLSearchParams(paramsString);
+    const helpQueryString = params.get('help');
     if(firstOpen) {
-      const paramsString = window.location.search;
-      const params = new URLSearchParams(paramsString);
-      const helpQueryString = params.get('help');
       // if user is logged in redirect him to faq
       if(helpQueryString === "/" && props.user ){
         props.history.push("/faq/");
       } else {
         props.history.push(helpQueryString);
       }
+    }
+    // reset it to first open after smart-faq is closed
+    if(!helpQueryString) {
+      return { firstOpen: true }
     }
     return { firstOpen: false }
   }
