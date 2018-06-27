@@ -13,15 +13,15 @@ declare export opaque type BaggageSummary$ref: FragmentReference;
 export type BaggageSummary = {|
   +checked: ?$ReadOnlyArray<?{|
     +height: ?number,
-    +length: ?number,
-    +width: ?number,
     +weight: ?number,
+    +width: ?number,
+    +length: ?number,
   |}>,
   +cabin: ?$ReadOnlyArray<?{|
     +height: ?number,
-    +length: ?number,
-    +width: ?number,
     +weight: ?number,
+    +width: ?number,
+    +length: ?number,
   |}>,
   +$refType: BaggageSummary$ref,
 |};
@@ -40,7 +40,7 @@ var v0 = [
   {
     "kind": "ScalarField",
     "alias": null,
-    "name": "length",
+    "name": "weight",
     "args": null,
     "storageKey": null
   },
@@ -54,7 +54,7 @@ var v0 = [
   {
     "kind": "ScalarField",
     "alias": null,
-    "name": "weight",
+    "name": "length",
     "args": null,
     "storageKey": null
   }
@@ -89,5 +89,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = 'c46981e70c0b2a00a10e9789f94a4971';
+(node/*: any*/).hash = '60078cad3d7bbf906556013c0677ba58';
 module.exports = node;

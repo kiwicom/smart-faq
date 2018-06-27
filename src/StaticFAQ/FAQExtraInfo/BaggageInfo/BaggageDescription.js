@@ -1,25 +1,52 @@
 // @flow
 
 import * as React from 'react';
-import { BaggageSmall } from '@kiwicom/orbit-components/lib/icons';
+import { graphql, createFragmentContainer } from 'react-relay';
+import { BaggageSmall, BaggageBig } from '@kiwicom/orbit-components/lib/icons';
 
-type Props = {||};
-const BaggageDescription = ({ dimensions, amount, type }: Props) => {
-  const { height, weight, width, length } = dimensions;
+import type { BaggageDescription as BaggageDescriptionProps } from './__generated__/BaggageDescription.graphql';
+
+type Props = {|
+  type: 'Cabin' | 'Checked',
+  data: BaggageDescriptionProps,
+|};
+
+function renderIcon(type: string) {
+  switch (type) {
+    case 'Cabin':
+      return <BaggageSmall size="medium" customColor="#bac7d5" />;
+    case 'Checked':
+      return <BaggageBig size="medium" customColor="#bac7d5" />;
+  }
+  return null;
+}
+
+const BaggageDescription = ({
+  type,
+  data: { height, weight, width, length },
+}: Props) => {
   return (
     <React.Fragment>
-      <div className="baggageNumber">
-        <p>{amount}x</p>
-      </div>
-      <BaggageSmall customColor="#7f91a8" />
-      <p className="baggageWeight">Cabin baggage {weight} kg</p>
-      <div className="baggageSize">
-        <p>
-          {height} x {width} x {length}
+      <div className="baggageRow">
+        <div className="baggageNumber">
+          <p>{1}x</p>
+        </div>
+        {renderIcon(type)}
+        <p className="baggageWeight">
+          {type} baggage {weight} kg
         </p>
+        <div className="baggageSize">
+          <p>
+            {height} x {width} x {length}
+          </p>
+        </div>
       </div>
+      <hr className="separationLine" />
       <style jsx>
         {`
+          div.baggageRow {
+            padding: 15px 24px 15px 24px;
+          }
           div.baggageSize {
             display: inline-block;
             float: right;
@@ -47,10 +74,24 @@ const BaggageDescription = ({ dimensions, amount, type }: Props) => {
             color: #46515e;
             display: inline-block;
           }
+          hr.separationLine {
+            border: solid 1px #e8edf1;
+            width: 100%;
+          }
         `}
       </style>
     </React.Fragment>
   );
 };
 
-export default BaggageDescription;
+export default createFragmentContainer(
+  BaggageDescription,
+  graphql`
+    fragment BaggageDescription on Baggage {
+      height
+      weight
+      width
+      length
+    }
+  `,
+);

@@ -11,38 +11,27 @@ import type { BaggageSummary as BaggageSummaryProps } from './__generated__/Bagg
 type Props = {|
   data: BaggageSummaryProps,
 |};
+
+// const countBaggage = (baggage: []) =>
+//   baggage.reduce((acc, obj) => {
+//     const key = JSON.stringify(obj);
+//     acc[key] = (acc[key] || 0) + 1;
+//     return acc;
+//   }, {});
+
 const BaggageSummary = ({ data }: Props) => {
-  const baggageNumber = (idx(data, _ => _.checked) || []).length;
-  const { height, weight, width, length } = idx(data, _ => _.checked[0]) || {};
-  const dimensions = { height, weight, width, length };
+  const cabinBaggage = idx(data, _ => _.cabin) || [];
+  const checkedBaggage = idx(data, _ => _.checked) || [];
   return data ? (
     <React.Fragment>
-      <div className="baggageRow">
-        <BaggageDescription
-          dimensions={dimensions}
-          amount={baggageNumber}
-          type="checked"
-        />
-      </div>
-      <hr className="separationLine" />
-      <div className="baggageRow">
-        <BaggageDescription
-          dimensions={dimensions}
-          amount={baggageNumber}
-          type="checked"
-        />
-      </div>
-      <style jsx>
-        {`
-          hr.separationLine {
-            border: solid 1px #e8edf1;
-            width: 100%;
-          }
-          div.baggageRow {
-            padding: 15px 24px 15px 24px;
-          }
-        `}
-      </style>
+      {checkedBaggage.map((bagagge, i) => (
+        /* eslint-disable react/no-array-index-key*/
+        <BaggageDescription key={i} data={bagagge} amount={3} type="Checked" />
+      ))}
+      {cabinBaggage.map((bagagge, i) => (
+        /* eslint-disable react/no-array-index-key*/
+        <BaggageDescription key={i} data={bagagge} amount={3} type="Cabin" />
+      ))}
     </React.Fragment>
   ) : (
     <BaggageLoader />
@@ -54,16 +43,10 @@ export default createFragmentContainer(
   graphql`
     fragment BaggageSummary on AllowedBaggage {
       checked {
-        height
-        length
-        width
-        weight
+        ...BaggageDescription @relay(mask: false)
       }
       cabin {
-        height
-        length
-        width
-        weight
+        ...BaggageDescription @relay(mask: false)
       }
     }
   `,

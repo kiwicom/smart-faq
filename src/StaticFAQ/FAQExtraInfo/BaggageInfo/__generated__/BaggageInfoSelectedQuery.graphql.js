@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 013a7a4efa8f904d6c3609d922365091
+ * @relayHash 506648e0b3ef5afae831223acdf5902b
  */
 
 /* eslint-disable */
@@ -38,15 +38,15 @@ query BaggageInfoSelectedQuery(
 fragment BaggageSummary on AllowedBaggage {
   checked {
     height
-    length
-    width
     weight
+    width
+    length
   }
   cabin {
     height
-    length
-    width
     weight
+    width
+    length
   }
 }
 */
@@ -79,7 +79,7 @@ v2 = [
   {
     "kind": "ScalarField",
     "alias": null,
-    "name": "length",
+    "name": "weight",
     "args": null,
     "storageKey": null
   },
@@ -93,7 +93,7 @@ v2 = [
   {
     "kind": "ScalarField",
     "alias": null,
-    "name": "weight",
+    "name": "length",
     "args": null,
     "storageKey": null
   }
@@ -103,7 +103,7 @@ return {
   "operationKind": "query",
   "name": "BaggageInfoSelectedQuery",
   "id": null,
-  "text": "query BaggageInfoSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    allowedBaggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on AllowedBaggage {\n  checked {\n    height\n    length\n    width\n    weight\n  }\n  cabin {\n    height\n    length\n    width\n    weight\n  }\n}\n",
+  "text": "query BaggageInfoSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    allowedBaggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on AllowedBaggage {\n  checked {\n    height\n    weight\n    width\n    length\n  }\n  cabin {\n    height\n    weight\n    width\n    length\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",

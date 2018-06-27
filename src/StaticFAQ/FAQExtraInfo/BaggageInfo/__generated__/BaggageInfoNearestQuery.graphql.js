@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 09369cf970726ee9d2999d047cabb029
+ * @relayHash 54714218b743dd6afb7e94d533ecc98e
  */
 
 /* eslint-disable */
@@ -35,15 +35,15 @@ query BaggageInfoNearestQuery {
 fragment BaggageSummary on AllowedBaggage {
   checked {
     height
-    length
-    width
     weight
+    width
+    length
   }
   cabin {
     height
-    length
-    width
     weight
+    width
+    length
   }
 }
 */
@@ -60,7 +60,7 @@ var v0 = [
   {
     "kind": "ScalarField",
     "alias": null,
-    "name": "length",
+    "name": "weight",
     "args": null,
     "storageKey": null
   },
@@ -74,7 +74,7 @@ var v0 = [
   {
     "kind": "ScalarField",
     "alias": null,
-    "name": "weight",
+    "name": "length",
     "args": null,
     "storageKey": null
   }
@@ -84,7 +84,7 @@ return {
   "operationKind": "query",
   "name": "BaggageInfoNearestQuery",
   "id": null,
-  "text": "query BaggageInfoNearestQuery {\n  nearestBooking {\n    __typename\n    allowedBaggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on AllowedBaggage {\n  checked {\n    height\n    length\n    width\n    weight\n  }\n  cabin {\n    height\n    length\n    width\n    weight\n  }\n}\n",
+  "text": "query BaggageInfoNearestQuery {\n  nearestBooking {\n    __typename\n    allowedBaggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on AllowedBaggage {\n  checked {\n    height\n    weight\n    width\n    length\n  }\n  cabin {\n    height\n    weight\n    width\n    length\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
