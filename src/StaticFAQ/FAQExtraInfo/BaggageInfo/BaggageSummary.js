@@ -5,7 +5,7 @@ import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 
 import BaggageLoader from './BaggageLoader';
-import BaggageDescription from './BaggageDescription';
+import BaggageDescriptionFragment from './BaggageDescription';
 import type { BaggageSummary as BaggageSummaryProps } from './__generated__/BaggageSummary.graphql';
 
 type Props = {|
@@ -19,11 +19,11 @@ const BaggageSummary = ({ data }: Props) => {
     <React.Fragment>
       {checkedBaggage.map((bagagge, i) => (
         /* eslint-disable react/no-array-index-key*/
-        <BaggageDescription key={i} data={bagagge} type="Checked" />
+        <BaggageDescriptionFragment key={i} data={bagagge} type="Checked" />
       ))}
       {cabinBaggage.map((bagagge, i) => (
         /* eslint-disable react/no-array-index-key*/
-        <BaggageDescription key={i} data={bagagge} type="Cabin" />
+        <BaggageDescriptionFragment key={i} data={bagagge} type="Cabin" />
       ))}
     </React.Fragment>
   ) : (

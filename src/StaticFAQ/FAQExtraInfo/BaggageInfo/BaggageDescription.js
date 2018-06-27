@@ -21,7 +21,7 @@ function renderIcon(type: string) {
   return null;
 }
 
-const BaggageDescription = ({
+export const BaggageDescription = ({
   type,
   data: { height, weight, width, length },
 }: Props) => {
