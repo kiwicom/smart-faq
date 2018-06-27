@@ -45,6 +45,7 @@ type Props = {|
   locale: {},
   user: User,
   loginToken: ?string,
+  initialRoute: ?string, // eslint-disable-line
   onClose: () => void,
   onLogin: onLogin,
   onSocialLogin: onSocialLogin,

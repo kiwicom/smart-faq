@@ -127,6 +127,8 @@ class Root extends React.Component<Props, State> {
   render() {
     const language = 'en';
     const { open } = this.state;
+    const loc = window.location;
+    const params = new URLSearchParams(loc.search).toString();
     return (
       <div className="root">
         <div
@@ -148,6 +150,7 @@ class Root extends React.Component<Props, State> {
             locale={enLocale}
             user={this.state.user}
             loginToken={this.state.loginToken}
+            initialRoute={params}
           />
         </div>
         <style jsx global>
