@@ -4,6 +4,7 @@ import * as React from 'react';
 import { DateTime } from 'luxon';
 import { graphql, createFragmentContainer } from 'react-relay';
 import idx from 'idx';
+import { withRouter } from 'react-router-dom';
 
 import OneWay from './bookingTypes/OneWay';
 import Return from './bookingTypes/Return';
@@ -20,6 +21,9 @@ import type { NearestBooking_booking } from './__generated__/NearestBookingQuery
 
 type Props = {|
   booking: NearestBooking_booking,
+  history: {
+    push: string => void,
+  },
 |};
 const goToMMB = () =>
   simpleTracker('smartFAQBookingOverview', {
@@ -112,6 +116,13 @@ class BookingDetail extends React.Component<Props> {
           timeDelta && (
             <Notification hoursLeft={timeDelta} isUrgent={isUrgent} />
           )}
+        <button
+          onClick={() => {
+            this.props.history.push('/faq/RkFRQ2F0ZWdvcnk6ODQ=');
+          }}
+        >
+          Baggage
+        </button>
         {this.renderByType(booking)}
         <div className="buttons" data-cy="btn-manage-booking">
           <a
@@ -167,7 +178,7 @@ class BookingDetail extends React.Component<Props> {
 export const RawBookingDetail = BookingDetail;
 
 export default createFragmentContainer(
-  BookingDetail,
+  withRouter(BookingDetail),
   graphql`
     fragment BookingDetail_booking on BookingInterface {
       type
