@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import MediaQuery from 'react-responsive';
-import { Typography, SystemMessage } from '@kiwicom/orbit-components';
+import { Typography, SystemMessage, Button } from '@kiwicom/orbit-components';
 import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
 
 import CloseButton from './../common/buttons/CloseButton';
@@ -43,19 +43,9 @@ const style = css`
     margin-top: 12px;
     display: inline-block;
   }
-  .singIn {
+  .signIn {
     float: right;
     margin-bottom: 20px;
-  }
-  .singIn button {
-    width: 100px;
-    height: 44px;
-    border-radius: 3px;
-    background-color: #00a991;
-    font-size: 14px;
-    font-weight: bold;
-    color: #ffffff;
-    border: none;
   }
   form {
     margin-top: 32.8px;
@@ -105,12 +95,8 @@ const style = css`
       margin-bottom: 20px;
       margin-top: 0px;
     }
-    .singIn button {
-      width: 100%;
-    }
-    .singIn {
+    .signIn {
       float: none;
-      width: 100%;
     }
     label {
       width: 100%;
@@ -142,8 +128,8 @@ const style = css`
       margin-bottom: 20px;
       margin-top: 0;
     }
-    .singIn button {
-      width: 288px;
+    .signIn {
+      float: none;
     }
   }
 `;
@@ -256,8 +242,13 @@ class KiwiLogin extends React.Component<Props, State> {
                 <Typography type="active">Forgot your password?</Typography>
               </div>
             </Link>
-            <span className="singIn">
-              <button data-cy="btn-sign-in">Sign In</button>
+            <span className="signIn">
+              <Button
+                title="Sign In"
+                block
+                onClick={() => {}}
+                data-cy="btn-sign-in"
+              />
             </span>
           </form>
         </div>
