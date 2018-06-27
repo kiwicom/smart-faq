@@ -4,9 +4,9 @@ import idx from 'idx';
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { DateTime } from 'luxon';
-import { withRouter } from 'react-router';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { Baggages } from '@kiwicom/orbit-components/lib/icons';
+import { withRouter } from 'react-router-dom';
 
 import OneWay from './bookingTypes/OneWay';
 import Return from './bookingTypes/Return';
@@ -224,6 +224,13 @@ class BookingDetail extends React.Component<Props> {
             </button>
           )}
         </ExtraInfoState.Consumer>
+        <button
+          onClick={() => {
+            this.props.history.push('/faq/RkFRQ2F0ZWdvcnk6ODQ=');
+          }}
+        >
+          Baggage
+        </button>
         {this.renderByType(booking)}
         <div className="buttons" data-cy="btn-manage-booking">
           <a
