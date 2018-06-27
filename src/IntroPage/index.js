@@ -88,6 +88,9 @@ const style = css`
       margin-left: 16px;
       margin-right: 16px;
     }
+    p.title {
+      font-size: 22px;
+    }
     div.buttons {
       margin: 28px 16px 24px 16px;
     }
@@ -96,6 +99,41 @@ const style = css`
     }
     .faqLink {
       text-align: center;
+      margin: 0;
+    }
+  }
+  @media only screen and (max-height: 480px) and (orientation: landscape) {
+    .Intro {
+      width: 100%;
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    div.picture {
+      display: none;
+    }
+    hr.hr-line {
+      width: 288px;
+      margin: 19px 0 22px;
+    }
+    div.text {
+      width: 288px;
+      margin: 0;
+    }
+    p.title {
+      font-size: 22px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    div.buttons {
+      width: 288px;
+      margin: 12px 0 0;
+    }
+    div.buttons button {
+      width: 100%;
+    }
+    .faqLink {
       margin: 0;
     }
   }

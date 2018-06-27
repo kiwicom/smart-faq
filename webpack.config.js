@@ -52,6 +52,7 @@ module.exports = {
   },
   plugins,
   devServer: {
+    host: '0.0.0.0',
     contentBase: './dist',
     historyApiFallback: true,
     disableHostCheck: true,

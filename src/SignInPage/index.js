@@ -9,7 +9,6 @@ import {
   Text,
   Heading,
   SystemMessage,
-  Button,
 } from '@kiwicom/orbit-components';
 import {
   AlertCircle,
@@ -17,12 +16,13 @@ import {
   Facebook,
 } from '@kiwicom/orbit-components/lib/icons';
 import type { Location } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
 
 import image from '../../static/woman-with-laptop@2x.jpg';
 import chevronRight from '../../static/chevron-right.png';
 import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
-import { withSocialLogin } from '../context/User';
+import ResponsiveSocialButton from './ResponsiveSocialButton';
 import type { onSocialLogin } from '../types';
 
 const style = css`
@@ -65,7 +65,6 @@ const style = css`
     margin-left: 5px;
     object-fit: contain;
   }
-
   @media only screen and (max-width: 480px) {
     .SignIn {
       width: 100%;
@@ -76,11 +75,37 @@ const style = css`
       margin: 50px 0px 20px 0px;
     }
     div.text {
-      margin: 0px 16px 33px 16px;
+      width: 288px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .buttons {
       display: table;
       margin: 0 auto;
+    }
+  }
+  @media only screen and (orientation: landscape) and (max-height: 480px) {
+    .SignIn {
+      width: 100%;
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    div.picture {
+      display: none;
+    }
+    div.text {
+      margin: 0 auto 29px;
+      width: 288px;
+    }
+    .buttons {
+      display: table;
+      margin: 0 auto;
+      width: 288px;
+    }
+    div.kiwi-account {
+      margin-top: 28px;
     }
   }
 `;
@@ -122,7 +147,14 @@ class SignIn extends React.Component<Props> {
         </div>
         <div className="text">
           <div className="title">
-            <Heading weight="bold">Sign in</Heading>
+            <MediaQuery query="screen and (max-width: 700px)">
+              <Heading weight="bold" size="medium">
+                Sign in
+              </Heading>
+            </MediaQuery>
+            <MediaQuery query="screen and (min-width: 701px)">
+              <Heading weight="bold">Sign in</Heading>
+            </MediaQuery>
           </div>
           <Text type="secondary">
             We need you to sign in to provide you with more personalised help.
@@ -131,29 +163,22 @@ class SignIn extends React.Component<Props> {
         </div>
         <div className="buttons">
           <div className="googleButton">
-            <Button
+            <ResponsiveSocialButton
               title="Continue with Google"
-              onClick={() => {
-                onSocialLogin('google');
-              }}
-              variation="bordered"
-              width={212}
               type="google"
-              Icon={Google}
-              Facebook
+              icon={Google}
+              variation="bordered"
+              onSocialLogin={onSocialLogin}
             />
           </div>
-          <Button
-            title="Continue with Facebook"
-            onClick={() => {
-              onSocialLogin('facebook');
-            }}
-            type="facebook"
-            width={212}
-            Icon={Facebook}
-            Facebook
-            className="facebook"
-          />
+          <div className="facebookButton">
+            <ResponsiveSocialButton
+              title="Continue with Facebook"
+              type="facebook"
+              icon={Facebook}
+              onSocialLogin={onSocialLogin}
+            />
+          </div>
         </div>
         <div className="kiwi-account">
           <Link
@@ -173,5 +198,4 @@ class SignIn extends React.Component<Props> {
   }
 }
 
-export const RawSignIn = SignIn;
-export default withSocialLogin(SignIn);
+export default SignIn;
