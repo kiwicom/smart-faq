@@ -77,6 +77,7 @@ const style = css`
     }
     p.title {
       font-size: 22px;
+      text-align: center;
     }
     div.picture {
       display: none;
@@ -109,6 +110,7 @@ const style = css`
     }
     p.title {
       font-size: 22px;
+      text-align: center;
     }
     div.picture {
       display: none;
