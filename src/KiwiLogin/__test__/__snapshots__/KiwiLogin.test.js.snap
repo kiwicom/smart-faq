@@ -115,10 +115,10 @@ exports[`KiwiLogin should match snapshot 1`] = `
       </Link>
       <span
         className="jsx-2081747249 signIn"
+        data-cy="btn-sign-in"
       >
         <Button
           block={true}
-          data-cy="btn-sign-in"
           disabled={false}
           loading={false}
           onClick={[Function]}

@@ -253,13 +253,12 @@ class KiwiLogin extends React.Component<Props, State> {
                 <Typography type="active">Forgot your password?</Typography>
               </div>
             </Link>
-            <span className="signIn">
+            <span className="signIn" data-cy="btn-sign-in">
               <Button
                 title="Sign In"
                 block
                 onClick={() => {}}
                 {...loadingButtonProps}
-                data-cy="btn-sign-in"
               />
             </span>
           </form>
