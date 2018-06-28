@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com/
-# timestamp: Fri Jun 08 2018 21:01:24 GMT+0200 (CEST)
+# timestamp: Tue Jun 26 2018 17:18:42 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
@@ -31,6 +31,14 @@ type Airline {
   isLowCost: Boolean
 }
 
+type AirportArrivalTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+
+  """Location of departure"""
+  location: RouteStop
+}
+
 enum AllBookingsOnlyEnum {
   FUTURE
   PAST
@@ -55,6 +63,14 @@ input AreaInput {
   bottomRight: CoordinatesInput!
 }
 
+type ArrivalTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+
+  """Location of arrival"""
+  location: RouteStop
+}
+
 input AvailableHotelOptionsInput {
   """Three-letters ISO 4217 currency code, e.g. EUR or USD"""
   currency: Currency
@@ -75,6 +91,22 @@ type Baggage {
   width: Int
   weight: Int
   note: String
+}
+
+type BoardingTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+
+  """Gate at which boarding is done"""
+  gate: String
+}
+
+type BookedFlightTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+
+  """Location of arrival"""
+  location: RouteStop
 }
 
 type BookedService {
@@ -171,6 +203,11 @@ type BookingAssets {
 
   """URL of the invoice."""
   invoiceUrl: String
+}
+
+type BookingConfirmedTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
 }
 
 """A connection to a list of items."""
@@ -418,10 +455,24 @@ enum BookingStatus {
   EXPIRED
 }
 
+type BookingTimeline {
+  """List of events of the Bookingtimeline"""
+  events: [TimelineEvent]
+}
+
 enum BookingType {
   ONE_WAY
   RETURN
   MULTICITY
+}
+
+type CarRentalService {
+  relevantCities: [CarRentalServiceRelevantCities]
+}
+
+type CarRentalServiceRelevantCities {
+  whitelabelURL: String
+  location: Location
 }
 
 type Carrier {
@@ -685,15 +736,6 @@ enum CustomerBookingsOnlyEnum {
   PAST
 }
 
-type CustomerSupport {
-  phoneNumbers: [CustomerSupportPhoneNumber]
-}
-
-type CustomerSupportPhoneNumber {
-  availabilityDescription: String
-  number: String
-}
-
 """
 A date string, such as 2007-12-03, compliant with the `full-date` format
 outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
@@ -724,6 +766,17 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
 """
 scalar DateTime
 
+type DepartureTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+
+  """Location of arrival"""
+  location: RouteStop
+
+  """Flight duration in minutes."""
+  duration: Int
+}
+
 enum DirectAccessURLValues {
   CHANGE_TRIP
   INSURANCE
@@ -742,6 +795,33 @@ enum DirectAccessURLValues {
   VALIDATE_PAYMENT
   TRAVEL_DOCUMENTS
   PAYMENT
+}
+
+type DownloadBoardingPassTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+}
+
+type DownloadETicketTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+
+  """URL of the eTicket"""
+  ticketUrl: String
+}
+
+type DownloadInvoiceTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+
+  """URL of the invoice"""
+  invoiceUrl: String
+
+  """Number of passengers"""
+  numberPassengers: Int
+
+  """Legs of the booking"""
+  legs: [Leg]
 }
 
 input DurationInput {
@@ -812,6 +892,9 @@ type FAQArticle {
   """The ID of an object"""
   id: ID!
 
+  """Original numeric id of the article"""
+  originalId: Int
+
   """Title of the article"""
   title: String
 
@@ -849,6 +932,9 @@ type FAQArticleEdge {
 type FAQCategory {
   """The ID of an object"""
   id: ID!
+
+  """Original numeric id of the FAQ category"""
+  originalId: Int
 
   """Title of the FAQ category"""
   title: String
@@ -890,6 +976,13 @@ enum FAQCommentType {
   DONT_LIKE
   NOT_ACCURATE
   OTHER
+}
+
+enum FAQSection {
+  BEFORE_BOOKING
+  UPCOMING_BOOKING
+  URGENT_BOOKING
+  PAST_BOOKING
 }
 
 type Flight {
@@ -1399,6 +1492,11 @@ enum Language {
   zhtw @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
 }
 
+type LeaveForAirportTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+}
+
 """
 Leg is the operation of an aircraft from one scheduled departure station to its next scheduled arrival station.
 """
@@ -1625,6 +1723,11 @@ input PassengersInput {
   infants: Int
 }
 
+type PaymentConfirmedTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+}
+
 type Price {
   amount: Float
 
@@ -1712,9 +1815,9 @@ type RootQuery {
   """Retrieve list of FAQ categories."""
   allFAQCategories(
     """
-    Language in which the titles and perexes of FAQ categories are returned.
+    Fetch only subsection of FAQ based on the current situation of customer.
     """
-    language: Language
+    section: FAQSection
     after: String
     first: Int
     before: String
@@ -1725,9 +1828,6 @@ type RootQuery {
   allFAQs(
     """Keyword for the search"""
     search: String
-
-    """Language in which the search is made and the answer is returned"""
-    language: Language
     after: String
     first: Int
     before: String
@@ -1780,7 +1880,9 @@ type RootQuery {
 
   """Find booking by its id or databaseId."""
   booking(
-    """Both Booking id & databaseId can be used as ID."""
+    """
+    Database ID (human readable ID) of the booking. You should use "node" query if you want to use opaque ID.
+    """
     id: ID!
   ): Booking @deprecated(reason: "Use \"node\" query instead.")
 
@@ -1809,27 +1911,16 @@ type RootQuery {
     last: Int
   ): BookingInterfaceConnection
 
-  """Customer support related data."""
-  customerSupport: CustomerSupport
-
   """Retrieve single FAQ article."""
   FAQArticle(
     """ID of FAQ article to retrieve."""
     id: ID!
-
-    """Language in which the text of the article is returned."""
-    language: Language
   ): FAQArticle
 
   """Retrieve specific FAQ category and its subcategories & articles."""
   FAQCategory(
     """ID of FAQ category to retrieve."""
     id: ID!
-
-    """
-    Language in which the titles and perexes of FAQ categories are returned.
-    """
-    language: Language
   ): FAQCategory
 
   """Geography info by an IP address"""
@@ -1873,6 +1964,12 @@ type RootQuery {
   """
   nearestBooking: BookingInterface
 
+  """Get the timeline for your booking."""
+  bookingTimeline(
+    """Only Booking id can be used as ID."""
+    id: ID!
+  ): BookingTimeline
+
   """Fetches an object given its ID"""
   node(
     """The ID of an object"""
@@ -1900,6 +1997,16 @@ input StopoversInput {
 
   """Maximum number of hours of stopover duration."""
   to: Int
+}
+
+interface TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+}
+
+type TransportFromAirportTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
 }
 
 """Travel document info"""
@@ -1943,6 +2050,7 @@ type Visa {
 }
 
 type WhitelabeledServices {
-  lounge(departureTime: DateTime!): LoungeService
-  parking(fromDate: DateTime!, toDate: DateTime!): ParkingService
+  lounge: LoungeService
+  parking: ParkingService
+  carRental: CarRentalService
 }
