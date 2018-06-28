@@ -28,12 +28,15 @@ class Redirector extends React.Component<Props, State> {
         // if user is logged in redirect him to faq
         if(helpQueryString === "/" && props.user ){
           props.history.push("/faq/");
-        } else {
+          return { firstOpen: false }
+        } else if(helpQueryString) {
           props.history.push(helpQueryString);
+          return { firstOpen: false }
         }
+        return null;
       }
     }
-    return { firstOpen: false }
+    return null;
   }
   render() {
     return null;

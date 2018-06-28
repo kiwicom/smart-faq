@@ -158,11 +158,6 @@ class Root extends React.Component<Props, State> {
             body {
               background: rgba(0, 0, 0, 0.5);
             }
-            .root {
-              position: fixed;
-              right: 0;
-              top: 0;
-            }
             .toggler {
               position: fixed;
               top: 20px;
@@ -175,7 +170,11 @@ class Root extends React.Component<Props, State> {
               background: green;
             }
             .faqContainer {
+              position: fixed;
+              right: 0;
+              top: 0;
               opacity: 0;
+              height: 100%;
             }
             .show {
               opacity: 1;

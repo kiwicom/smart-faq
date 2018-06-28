@@ -20,6 +20,7 @@ import type { onLogin, onLogout, onSocialLogin, User } from './types';
 const style = css`
   .smartFAQ {
     min-width: 480px;
+    height: 100%;
     top: 0;
     bottom: 0;
     right: 0;
