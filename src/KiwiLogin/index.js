@@ -4,8 +4,8 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import MediaQuery from 'react-responsive';
-import { Typography, SystemMessage } from '@kiwicom/orbit-components';
-import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
+import { Typography, SystemMessage, Button } from '@kiwicom/orbit-components';
+import { AlertCircle, Loading } from '@kiwicom/orbit-components/lib/icons';
 
 import CloseButton from './../common/buttons/CloseButton';
 import BackButton from '../common/buttons/BackButton';
@@ -43,19 +43,9 @@ const style = css`
     margin-top: 12px;
     display: inline-block;
   }
-  .singIn {
+  .signIn {
     float: right;
     margin-bottom: 20px;
-  }
-  .singIn button {
-    width: 100px;
-    height: 44px;
-    border-radius: 3px;
-    background-color: #00a991;
-    font-size: 14px;
-    font-weight: bold;
-    color: #ffffff;
-    border: none;
   }
   form {
     margin-top: 32.8px;
@@ -105,12 +95,8 @@ const style = css`
       margin-bottom: 20px;
       margin-top: 0px;
     }
-    .singIn button {
-      width: 100%;
-    }
-    .singIn {
+    .signIn {
       float: none;
-      width: 100%;
     }
     label {
       width: 100%;
@@ -142,8 +128,8 @@ const style = css`
       margin-bottom: 20px;
       margin-top: 0;
     }
-    .singIn button {
-      width: 288px;
+    .signIn {
+      float: none;
     }
   }
 `;
@@ -159,6 +145,7 @@ type State = {|
   email: string,
   password: string,
   showError: boolean,
+  isLoading: boolean,
 |};
 
 class KiwiLogin extends React.Component<Props, State> {
@@ -166,6 +153,7 @@ class KiwiLogin extends React.Component<Props, State> {
     email: '',
     password: '',
     showError: false,
+    isLoading: false,
   };
 
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
@@ -174,6 +162,7 @@ class KiwiLogin extends React.Component<Props, State> {
   };
   handleSignIn = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
+    this.setState({ isLoading: true });
     try {
       const response = await this.props.onLogin(
         this.state.email,
@@ -184,13 +173,21 @@ class KiwiLogin extends React.Component<Props, State> {
         throw new Error('Login failed.');
       }
 
+      this.setState({ isLoading: false });
       this.props.history.push('/faq/');
     } catch (e) {
-      this.setState({ showError: true });
+      this.setState({ showError: true, isLoading: false });
     }
   };
   render() {
-    const { showError } = this.state;
+    const { showError, isLoading } = this.state;
+    const loadingButtonProps = isLoading
+      ? {
+          disabled: true,
+          Icon: Loading,
+        }
+      : null;
+
     return (
       <div className="KiwiLogin">
         <CloseButton />
@@ -256,8 +253,13 @@ class KiwiLogin extends React.Component<Props, State> {
                 <Typography type="active">Forgot your password?</Typography>
               </div>
             </Link>
-            <span className="singIn">
-              <button data-cy="btn-sign-in">Sign In</button>
+            <span className="signIn" data-cy="btn-sign-in">
+              <Button
+                title="Sign In"
+                block
+                onClick={() => {}}
+                {...loadingButtonProps}
+              />
             </span>
           </form>
         </div>

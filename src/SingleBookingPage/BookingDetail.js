@@ -1,10 +1,12 @@
 // @flow
 
-import * as React from 'react';
-import { DateTime } from 'luxon';
-import { graphql, createFragmentContainer } from 'react-relay';
 import idx from 'idx';
-import { withRouter } from 'react-router-dom';
+import * as React from 'react';
+import css from 'styled-jsx/css';
+import { DateTime } from 'luxon';
+import { withRouter } from 'react-router';
+import { graphql, createFragmentContainer } from 'react-relay';
+import { Baggages } from '@kiwicom/orbit-components/lib/icons';
 
 import OneWay from './bookingTypes/OneWay';
 import Return from './bookingTypes/Return';
@@ -18,6 +20,10 @@ import bookingTypes from '../common/booking/bookingTypes';
 import { URGENCY_THRESHOLD } from '../helpers/dateUtils';
 import replaceWithCurrentDomain from '../helpers/replaceWithCurrentDomain';
 import type { NearestBooking_booking } from './__generated__/NearestBookingQuery.graphql';
+import {
+  ExtraInfoState,
+  type ExtraInfoStateType,
+} from '../context/ExtraInfoState';
 
 type Props = {|
   booking: NearestBooking_booking,
@@ -25,10 +31,64 @@ type Props = {|
     push: string => void,
   },
 |};
+
+const styles = css`
+  .buttons {
+    margin-top: 24px;
+    margin-bottom: 20px;
+  }
+  .manage-booking {
+    font-weight: bold;
+    font-size: 14px;
+    width: 260px;
+    height: 44px;
+    padding: 12px 42px;
+    border-radius: 3px;
+    background-color: #e8edf1;
+    border: none;
+    color: #46515e;
+    cursor: pointer;
+  }
+  p.iconLabel {
+    display: inline-block;
+    width: 56px;
+    height: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.43;
+    color: #00a991;
+    margin-left: 8px;
+  }
+  button.baggageButton {
+    width: 116px;
+    height: 44px;
+    border-radius: 3px;
+    background-color: #f5f7f9;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 24px;
+  }
+  button.active {
+    background-color: #e8edf1;
+  }
+  .eTicket {
+    font-size: 14px;
+    color: #171b1e;
+    font-weight: 500;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .eTicket:hover {
+    color: #00907b;
+  }
+`;
+
 const goToMMB = () =>
   simpleTracker('smartFAQBookingOverview', {
     action: 'goToMMB',
   });
+
 class BookingDetail extends React.Component<Props> {
   renderByType = (booking: NearestBooking_booking) => {
     if (booking.type === bookingTypes.ONE_WAY) {
@@ -116,13 +176,20 @@ class BookingDetail extends React.Component<Props> {
           timeDelta && (
             <Notification hoursLeft={timeDelta} isUrgent={isUrgent} />
           )}
-        <button
-          onClick={() => {
-            this.props.history.push('/faq/RkFRQ2F0ZWdvcnk6ODQ=');
-          }}
-        >
-          Baggage
-        </button>
+        <ExtraInfoState.Consumer>
+          {({ isBaggageVisible, toggleBaggage }: ExtraInfoStateType) => (
+            <button
+              className={`baggageButton ${isBaggageVisible ? 'active' : ''}`}
+              onClick={() => {
+                toggleBaggage();
+                this.props.history.push('/faq/RkFRQ2F0ZWdvcnk6ODk=');
+              }}
+            >
+              <Baggages customColor="#00a991" />
+              <p className="iconLabel">Bagagge</p>
+            </button>
+          )}
+        </ExtraInfoState.Consumer>
         {this.renderByType(booking)}
         <div className="buttons" data-cy="btn-manage-booking">
           <a
@@ -140,36 +207,7 @@ class BookingDetail extends React.Component<Props> {
           </a>
         )}
         {showContactInfo && <Contact info={booking} />}
-        <style jsx>
-          {`
-            .buttons {
-              margin-top: 24px;
-              margin-bottom: 20px;
-            }
-            .manage-booking {
-              font-weight: bold;
-              font-size: 14px;
-              width: 260px;
-              height: 44px;
-              padding: 12px 42px;
-              border-radius: 3px;
-              background-color: #e8edf1;
-              border: none;
-              color: #46515e;
-              cursor: pointer;
-            }
-            .eTicket {
-              font-size: 14px;
-              color: #171b1e;
-              font-weight: 500;
-              text-decoration: underline;
-              cursor: pointer;
-            }
-            .eTicket:hover {
-              color: #00907b;
-            }
-          `}
-        </style>
+        <style jsx>{styles}</style>
       </ScrollableContent>
     );
   }

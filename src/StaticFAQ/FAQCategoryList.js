@@ -1,12 +1,19 @@
 // @flow
 
-import * as React from 'react';
 import idx from 'idx';
-import { Link } from 'react-router-dom';
+import * as React from 'react';
 import { graphql } from 'react-relay';
+import MediaQuery from 'react-responsive';
+import { Link, withRouter } from 'react-router-dom';
 
+import {
+  ExtraInfoState,
+  type ExtraInfoStateType,
+} from '../context/ExtraInfoState';
+import UserStatus from '../helpers/UserStatus';
 import { Loader, ScrollableBox } from '../common';
 import QueryRenderer from '../relay/QueryRenderer';
+import BaggageInfo from './FAQExtraInfo/BaggageInfo';
 import FAQArticle from './FAQArticle';
 import FAQCategory from './FAQCategory';
 import Breadcrumbs from './Breadcrumbs';
@@ -19,6 +26,11 @@ import type { FAQCategoryListSubcategoryQueryResponse } from './__generated__/FA
 
 type Props = {|
   categoryId: string | null,
+  history: {
+    location: {
+      pathname: string,
+    },
+  },
 |};
 
 type RootQueryRendererParams = {
@@ -97,25 +109,39 @@ class FAQCategoryList extends React.Component<Props> {
     );
   };
   renderCategories = (categories: $ReadOnlyArray<CategoryFragment>) => {
+    const isCategoryBaggage = this.props.history.location.pathname.includes(
+      'RkFRQ2F0ZWdvcnk6ODk',
+    );
     return (
-      <div data-cy="faq-categories">
-        {categories.map(category => {
-          if (category) {
-            return (
-              <Link
-                key={category.id}
-                to={`/faq/${category.id}`}
-                style={{ textDecoration: 'none', display: 'block' }}
-                onClick={categoryClicked(category)}
-              >
-                <FAQCategory category={category} />
-              </Link>
-            );
-          }
+      <React.Fragment>
+        <MediaQuery query="screen and (min-width: 1181px)">
+          <UserStatus.LoggedIn>
+            <ExtraInfoState.Consumer>
+              {({ isBaggageVisible }: ExtraInfoStateType) =>
+                isCategoryBaggage && isBaggageVisible && <BaggageInfo />
+              }
+            </ExtraInfoState.Consumer>
+          </UserStatus.LoggedIn>
+        </MediaQuery>
+        <div data-cy="faq-categories">
+          {categories.map(category => {
+            if (category) {
+              return (
+                <Link
+                  key={category.id}
+                  to={`/faq/${category.id}`}
+                  style={{ textDecoration: 'none', display: 'block' }}
+                  onClick={categoryClicked(category)}
+                >
+                  <FAQCategory category={category} />
+                </Link>
+              );
+            }
 
-          return null;
-        })}
-      </div>
+            return null;
+          })}
+        </div>
+      </React.Fragment>
     );
   };
 
@@ -193,4 +219,4 @@ class FAQCategoryList extends React.Component<Props> {
   }
 }
 
-export default FAQCategoryList;
+export default withRouter(FAQCategoryList);
