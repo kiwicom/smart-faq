@@ -19,19 +19,20 @@ class Redirector extends React.Component<Props, State> {
   }
   static getDerivedStateFromProps(props, state) {
     const { firstOpen } = state;
-    const paramsString = window.location.search;
-    const params = new URLSearchParams(paramsString);
-    const helpQueryString = params.get('help');
-    const redirectQueryString = params.get('redirect');
-    if(firstOpen || redirectQueryString) {
-      // if user is logged in redirect him to faq
-      if(helpQueryString === "/" && props.user ){
-        props.history.push("/faq/");
-      } else {
-        props.history.push(helpQueryString);
+    if (typeof window !== 'undefined' && window && window.location) {
+      const paramsString = window.location.search;
+      const params = new URLSearchParams(paramsString);
+      const helpQueryString = params.get('help');
+      const redirectQueryString = params.get('redirect');
+      if(firstOpen || redirectQueryString) {
+        // if user is logged in redirect him to faq
+        if(helpQueryString === "/" && props.user ){
+          props.history.push("/faq/");
+        } else {
+          props.history.push(helpQueryString);
+        }
       }
     }
-
     return { firstOpen: false }
   }
   render() {

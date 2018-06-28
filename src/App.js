@@ -19,7 +19,6 @@ import type { onLogin, onLogout, onSocialLogin, User } from './types';
 
 const style = css`
   .smartFAQ {
-    position: fixed;
     min-width: 480px;
     top: 0;
     bottom: 0;
@@ -126,7 +125,7 @@ class App extends React.PureComponent<Props, State> {
     );
   }
   render() {
-    if (window.Raven) {
+    if (typeof window !== 'undefined' && window && window.Raven) {
       return window.Raven.context(() => this.renderApp());
     }
     return this.renderApp();

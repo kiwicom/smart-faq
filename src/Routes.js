@@ -3,7 +3,7 @@
 import { Route, Switch, MemoryRouter } from 'react-router-dom';
 import * as React from 'react';
 
-import UrlSync from './common/UrlSync';
+import UrlSync from './URLSyncer';
 import Redirector from './Redirector';
 import Intro from './IntroPage';
 import SignIn from './SignInPage';

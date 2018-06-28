@@ -16,12 +16,14 @@ type State = {
 class SelectUrlBooking extends React.Component<Props, State> {
   static getDerivedStateFromProps(prevProps: Props, prevState: State) {
     const { selectedBooking } = prevState;
-    const urlMatch = window.location.href.match(
-      /.*[kiwi.com|localhost:\d*]\/.*\/account\/bookings\/(\d*)\?.*$/,
-    );
-    const bookingId = urlMatch && urlMatch[1];
-    if (bookingId && bookingId !== selectedBooking) {
-      return { selectedBooking: Number(bookingId) };
+    if (typeof window !== 'undefined' && window && window.location) {
+      const urlMatch = window.location.href.match(
+        /.*[kiwi.com|localhost:\d*]\/.*\/account\/bookings\/(\d*)\?.*$/,
+      );
+      const bookingId = urlMatch && urlMatch[1];
+      if (bookingId && bookingId !== selectedBooking) {
+        return { selectedBooking: Number(bookingId) };
+      }
     }
     return null;
   }
