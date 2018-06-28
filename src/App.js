@@ -5,6 +5,8 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { I18nextProvider } from 'react-i18next';
 
+import 'url-search-params-polyfill';
+
 import initTranslation from './initTranslation';
 import Routes from './Routes';
 import { CloseContext } from './context/Close';
