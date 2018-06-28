@@ -5,6 +5,8 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { I18nextProvider } from 'react-i18next';
 
+import 'url-search-params-polyfill';
+
 import initTranslation from './initTranslation';
 import Routes from './Routes';
 import { CloseContext } from './context/Close';
@@ -19,8 +21,8 @@ import type { onLogin, onLogout, onSocialLogin, User } from './types';
 
 const style = css`
   .smartFAQ {
-    position: fixed;
     min-width: 480px;
+    height: 100%;
     top: 0;
     bottom: 0;
     right: 0;
@@ -45,7 +47,7 @@ type Props = {|
   locale: {},
   user: User,
   loginToken: ?string,
-  initialRoute: string,
+  initialRoute: ?string, // eslint-disable-line
   onClose: () => void,
   onLogin: onLogin,
   onSocialLogin: onSocialLogin,
@@ -111,7 +113,7 @@ class App extends React.PureComponent<Props, State> {
                         wasSelected={this.state.urlBookingWasSelected}
                         setSelected={this.urlBookingSelected}
                       />
-                      <Routes initialRoute={this.props.initialRoute} />
+                      <Routes />
                     </BookingStateProvider>
                   </SearchStateProvider>
                 </UserContext.Provider>
@@ -126,7 +128,7 @@ class App extends React.PureComponent<Props, State> {
     );
   }
   render() {
-    if (window.Raven) {
+    if (typeof window !== 'undefined' && window && window.Raven) {
       return window.Raven.context(() => this.renderApp());
     }
     return this.renderApp();

@@ -10,7 +10,6 @@ import CloseButton from './../common/buttons/CloseButton';
 import { withUser } from '../context/User';
 import type { User } from '../types';
 import FullFAQLink from '../common/FullFAQLink';
-import redirectsLoggedIn from '../common/redirectsLoggedIn';
 
 const style = css`
   .Intro {
@@ -206,4 +205,4 @@ export class PureIntro extends React.Component<Props> {
   }
 }
 
-export default withUser(redirectsLoggedIn(PureIntro));
+export default withUser(PureIntro);

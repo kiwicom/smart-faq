@@ -19,7 +19,6 @@ type Props = {||};
 type State = {|
   user: User,
   loginToken: ?string,
-  helpQuery: ?string,
   open: boolean,
 |};
 
@@ -40,22 +39,25 @@ class Root extends React.Component<Props, State> {
 
     const loginToken = Cookies.get(this.cookieKey);
 
+    const loc = window.location;
+    const params = new URLSearchParams(loc.search);
+    if (!params.toString()) {
+      params.set('help', '/');
+      window.history.replaceState(
+        {},
+        '',
+        `${loc.pathname}?${params.toString()}`,
+      );
+    }
+
     this.setupLogs();
-    //
-    // Cypress Querys
-    //
-    const paramsString = window.location.search;
-    const params = new URLSearchParams(paramsString);
-    const helpQueryString = params.get('help');
+    this.setupTracker();
 
     this.state = {
       user: loginToken ? user : null,
       loginToken,
-      helpQuery: helpQueryString,
       open: true,
     };
-    this.setupLogs();
-    this.setupTracker();
   }
   setupTracker = () => {
     const keen = new KeenTracking({
@@ -103,6 +105,19 @@ class Root extends React.Component<Props, State> {
   };
   toggleApp = () => {
     const isOpen = this.state.open;
+    const loc = window.location;
+    const params = new URLSearchParams(loc.search);
+    if (!this.state.open) {
+      params.set('help', '/');
+      window.history.replaceState(
+        {},
+        '',
+        `${loc.pathname}?${params.toString()}`,
+      );
+    } else {
+      window.history.replaceState({}, '', `${loc.pathname}`);
+    }
+
     this.setState({ open: !isOpen });
   };
   closeApp = () => {
@@ -110,9 +125,10 @@ class Root extends React.Component<Props, State> {
   };
 
   render() {
-    const { helpQuery } = this.state;
     const language = 'en';
-    const initialRoute = helpQuery ? helpQuery : '/';
+    const { open } = this.state;
+    const loc = window.location;
+    const params = new URLSearchParams(loc.search).toString();
     return (
       <div className="root">
         <div
@@ -124,7 +140,7 @@ class Root extends React.Component<Props, State> {
         >
           Toggle SmartFAQ
         </div>
-        {this.state.open && (
+        <div className={`faqContainer ${open ? 'show' : ''}`}>
           <App
             onClose={this.closeApp}
             onLogin={this.onLogin}
@@ -133,19 +149,14 @@ class Root extends React.Component<Props, State> {
             language={language}
             locale={enLocale}
             user={this.state.user}
-            initialRoute={initialRoute}
             loginToken={this.state.loginToken}
+            initialRoute={params}
           />
-        )}
+        </div>
         <style jsx global>
           {`
             body {
               background: rgba(0, 0, 0, 0.5);
-            }
-            .root {
-              position: fixed;
-              right: 0;
-              top: 0;
             }
             .toggler {
               position: fixed;
@@ -157,6 +168,16 @@ class Root extends React.Component<Props, State> {
               padding: 5px;
               outline: none;
               background: green;
+            }
+            .faqContainer {
+              position: fixed;
+              right: 0;
+              top: 0;
+              opacity: 0;
+              height: 100%;
+            }
+            .show {
+              opacity: 1;
             }
           `}
         </style>
