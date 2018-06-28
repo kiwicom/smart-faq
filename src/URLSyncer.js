@@ -1,7 +1,13 @@
 // @flow
 import { withRouter } from 'react-router-dom';
 
-const UrlSync = ({ location }) => {
+type Props = {|
+  location: {
+    pathname: string,
+  },
+|};
+
+const UrlSync = ({ location }: Props) => {
   if (typeof window !== 'undefined' && window && window.location) {
     const loc = window.location;
     const params = new URLSearchParams(loc.search);
