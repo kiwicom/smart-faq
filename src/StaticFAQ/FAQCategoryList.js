@@ -124,8 +124,9 @@ class RawFAQCategoryList extends React.Component<Props> {
         <MediaQuery query="screen and (min-width: 1181px)">
           <UserStatus.LoggedIn>
             <ExtraInfoState.Consumer>
-              {({ isBaggageVisible }: ExtraInfoStateType) =>
-                isCategoryBaggage && isBaggageVisible && <BaggageInfo />
+              {({ activeExtraInfoCategory }: ExtraInfoStateType) =>
+                isCategoryBaggage &&
+                activeExtraInfoCategory === 'baggage' && <BaggageInfo />
               }
             </ExtraInfoState.Consumer>
           </UserStatus.LoggedIn>

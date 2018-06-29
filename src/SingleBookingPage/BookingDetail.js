@@ -210,12 +210,17 @@ class BookingDetail extends React.Component<Props> {
             <Notification hoursLeft={timeDelta} isUrgent={isUrgent} />
           )}
         <ExtraInfoState.Consumer>
-          {({ isBaggageVisible, toggleBaggage }: ExtraInfoStateType) => (
+          {({
+            activeExtraInfoCategory,
+            toggleExtraInfoCategory,
+          }: ExtraInfoStateType) => (
             <React.Fragment>
               <button
-                className={`extraInfoRadioButton ${isBaggageVisible ? 'active' : ''}`}
+                className={`extraInfoRadioButton ${
+                  activeExtraInfoCategory === 'baggage' ? 'active' : ''
+                }`}
                 onClick={() => {
-                  toggleBaggage();
+                  toggleExtraInfoCategory('baggage');
                   this.props.history.push('/faq/RkFRQ2F0ZWdvcnk6ODk=');
                 }}
               >
@@ -223,9 +228,11 @@ class BookingDetail extends React.Component<Props> {
                 <p className="iconLabel">Bagagge</p>
               </button>
               <button
-                className={`extraInfoRadioButton`}
+                className={`extraInfoRadioButton ${
+                  activeExtraInfoCategory === 'boarding-passes' ? 'active' : ''
+                }`}
                 onClick={() => {
-                  toggleBaggage();
+                  toggleExtraInfoCategory('boarding-passes');
                   this.props.history.push('/faq/RkFRQ2F0ZWdvcnk6ODQ=');
                 }}
               >
