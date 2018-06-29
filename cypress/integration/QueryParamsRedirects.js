@@ -1,8 +1,8 @@
 // @noflow
 /* global cy */
 
-describe('Query params redirect to corect article', () => {
-  it(`User should navigate to a FAQ aricle with url`, () => {
+describe('Query params redirect to correct article', () => {
+  it(`User should navigate to a FAQ article with url`, () => {
     cy.visit('/?help=/faq/RkFRQ2F0ZWdvcnk6ODk=/article/RkFRQXJ0aWNsZTo0MQ==');
     cy.wait(5000);
   });
