@@ -77,6 +77,7 @@ const style = css`
     }
     p.title {
       font-size: 22px;
+      text-align: center;
     }
     div.picture {
       display: none;
@@ -102,13 +103,14 @@ const style = css`
       width: 100%;
     }
   }
-  @media only screen and (orientation: landscape) and (max-width: 700px) {
+  @media only screen and (max-height: 480px) and (orientation: landscape) {
     .KiwiLogin {
       width: 100%;
       padding-top: 20px;
     }
     p.title {
       font-size: 22px;
+      text-align: center;
     }
     div.picture {
       display: none;

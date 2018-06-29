@@ -79,6 +79,9 @@ const style = css`
       margin-left: auto;
       margin-right: auto;
     }
+    div.title {
+      text-align: center;
+    }
     .buttons {
       display: table;
       margin: 0 auto;
@@ -98,6 +101,9 @@ const style = css`
     div.text {
       margin: 0 auto 29px;
       width: 288px;
+    }
+    div.title {
+      text-align: center;
     }
     .buttons {
       display: table;
@@ -156,9 +162,16 @@ class SignIn extends React.Component<Props> {
               <Heading weight="bold">Sign in</Heading>
             </MediaQuery>
           </div>
-          <Text type="secondary">
-            We need you to sign in to provide you with more personalised help.
-          </Text>
+          <MediaQuery query="(min-width: 480px) and (min-height: 480px)">
+            <Text type="secondary">
+              We need you to sign in to provide you with more personalised help.
+            </Text>
+          </MediaQuery>
+          <MediaQuery query="only screen and (max-width: 480px) and (orientation: portrait)">
+            <Text type="secondary">
+              We need you to sign in to provide you with more personalised help.
+            </Text>
+          </MediaQuery>
           {sessionExpired && this.renderExpiredSession()}
         </div>
         <div className="buttons">
