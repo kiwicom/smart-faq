@@ -10,11 +10,11 @@ Clone the repo `git clone git@github.com:kiwicom/smart-faq.git`
 
 Install all the dependencies with `yarn`
 
-In order to be able to login one requires an `.env` file at the root of the codebase, with the following contents:
+In order to be able to login one requires a `.env` file at the root of the codebase, with the following content:
 
-```javascript
-GRAPHQL_URI = XXXXXXXX
-KIWILOGIN_USER = XXXXXXXX
+```
+GRAPHQL_URI=XXXXXXXX
+KIWILOGIN_USER=XXXXXXXX
 ```
 
 `KIWILOGIN_USER` is only needed for this standalone app to work
@@ -100,6 +100,12 @@ the squashed commit also according to the convention.
 5.  _(In future)_ When the new version is published to npm, translations are uploaded on CDN.
 
 ## Cypress test
+
+In order to be able to run the tests, you need to add the following environment variables to the `.env` file:
+```
+TEST_USER_EMAIL=XXXXXXXX
+TEST_USER_PASSWORD=XXXXXXXX
+```
 
 Steps to run Cypress tests:
 
