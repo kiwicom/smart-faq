@@ -1,5 +1,5 @@
-# source: http://localhost:3000/
-# timestamp: Sat Jun 30 2018 11:54:24 GMT+0200 (CEST)
+# source: https://graphql.kiwi.com
+# timestamp: Tue Jul 03 2018 12:07:00 GMT+0200 (Central European Summer Time)
 
 schema {
   query: RootQuery
@@ -96,6 +96,7 @@ type Baggage {
 type BoardingPass {
   flightNumber: String
   boardingPassUrl: String
+  leg: Leg
 }
 
 type BoardingTimelineEvent implements TimelineEvent {
@@ -808,6 +809,9 @@ enum DirectAccessURLValues {
 type DownloadBoardingPassTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
+
+  """Leg corresponding to the boarding pass"""
+  leg: Leg
 }
 
 type DownloadETicketTimelineEvent implements TimelineEvent {
@@ -1414,8 +1418,6 @@ input HotelsSearchInput {
   roomsConfiguration: [RoomsConfiguration!]!
 }
 
-scalar IP
-
 type Identity {
   """The ID of an object"""
   id: ID!
@@ -1449,6 +1451,8 @@ enum InsuranceType {
   TRAVEL_BASIC
   TRAVEL_PLUS
 }
+
+scalar IP
 
 """Use "Accept-Language" HTTP header to specify locale."""
 enum Language {
@@ -1526,6 +1530,9 @@ type Leg {
 
   """Information about who covers the transfer"""
   guarantee: CoveredBy
+
+  """Boarding pass for this leg"""
+  boardingPass: BoardingPass
 }
 
 """
@@ -1656,16 +1663,6 @@ input LocationInput {
   radius: RadiusInput
 }
 
-"""Type of location"""
-enum LocationType {
-  airport
-  autonomous_territory
-  city
-  country
-  station
-  subdivision
-}
-
 input LocationsOptionsInput {
   """
   DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
@@ -1674,6 +1671,16 @@ input LocationsOptionsInput {
 
   """Desired location type the response should only include."""
   locationType: LocationType
+}
+
+"""Type of location"""
+enum LocationType {
+  airport
+  autonomous_territory
+  city
+  country
+  station
+  subdivision
 }
 
 type LoungeService {
