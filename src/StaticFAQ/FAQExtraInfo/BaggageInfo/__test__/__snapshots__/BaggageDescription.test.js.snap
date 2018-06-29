@@ -28,6 +28,7 @@ exports[`BaggageDescription should render correctly 1`] = `
         30
          x 
         15
+         cm
       </p>
     </div>
   </div>

@@ -34,7 +34,7 @@ export const BaggageDescription = ({
         </p>
         <div className="baggageSize">
           <p>
-            {height} x {width} x {length}
+            {height} x {width} x {length} cm
           </p>
         </div>
       </div>

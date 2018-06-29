@@ -38,8 +38,8 @@ const styles = css`
     display: inline-block;
     font-size: 22px;
     font-weight: 500;
-    line-height: 1.2;
     color: #171b1e;
+    vertical-align: middle;
   }
   div.subtitle {
     margin-left: 24px;
@@ -84,7 +84,7 @@ class BaggageInfo extends React.Component<Props> {
         </div>
         <h1 className="title">Your baggage</h1>
         <div className="subtitle">
-          <Text type="attention">Here you can see your baggage allowance</Text>
+          <Text type="attention">Here you can see your baggage allowance.</Text>
         </div>
         <hr className="separationLine" />
         <BaggageSummary data={baggage} />
