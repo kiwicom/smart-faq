@@ -13,11 +13,16 @@ import type { AccordionBodyLastLeg_leg } from './__generated__/AccordionBodyLast
 
 const lastLegStyle = css`
   div.lastLeg {
-    border-left: 2px dotted #adb9c5;
-    padding: 0px 18px;
-    height: 64px;
     position: relative;
-    margin-top: 5px;
+    padding: 0px 18px;
+    margin: 5px 0 -30px 2px;
+  }
+  div.lastLeg:before {
+    content: '';
+    position: absolute;
+    border-left: 2px dotted #adb9c5;
+    height: 64px;
+    left: -2px;
   }
   div.calendarIcon {
     position: absolute;

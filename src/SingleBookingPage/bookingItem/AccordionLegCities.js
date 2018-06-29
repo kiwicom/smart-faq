@@ -4,7 +4,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import idx from 'idx';
 import { CarrierLogo } from '@kiwicom/orbit-components';
-// import { ShowMore } from '@kiwicom/orbit-components/lib/icons';
+import { ShowMore } from '@kiwicom/orbit-components/lib/icons';
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import { formatHour, formatTimeDuration } from '../../helpers/dateUtils';
@@ -19,6 +19,10 @@ const citiesStyle = css`
     margin-bottom: 15px;
     align-items: space-between;
     padding: 7px 13px;
+    cursor: pointer;
+  }
+  div.legCities:focus {
+    outline: none;
   }
   div.cities {
     width: 294px;
@@ -28,8 +32,8 @@ const citiesStyle = css`
   }
   div.showMoreIcon {
     position: absolute;
-    right: -7px;
-    top: 13px;
+    right: -8px;
+    top: 16px;
     background: #fff;
   }
   span.flightLength {
@@ -45,7 +49,7 @@ const citiesStyle = css`
   div.citiesArrow {
     border: none;
     position: absolute;
-    top: 40%;
+    top: 21px;
     left: -5px;
   }
   div.citiesArrow div.arrows {
@@ -78,57 +82,81 @@ const citiesStyle = css`
   }
 `;
 
-type LegProps = {|
+type Props = {|
   leg: AccordionLegCities_leg,
 |};
 
-const LegCities = (props: LegProps) => {
-  const { leg } = props;
-  const { departure, arrival } = leg;
-  const departureTime = (departure && departure.localTime) || '';
-  const departureCityName = idx(departure, _ => _.airport.city.name) || '';
-  const departureCityCode = idx(departure, _ => _.airport.locationId) || '';
-  const arrivalTime = (arrival && arrival.localTime) || '';
-  const arrivalCityName = idx(arrival, _ => _.airport.city.name) || '';
-  const arrivalCityCode = idx(arrival, _ => _.airport.locationId) || '';
-  const carrier = {
-    code: idx(leg.airline, _ => _.code) || '',
-    name: idx(leg.airline, _ => _.name) || '',
+type State = {|
+  isExpanded: boolean,
+|};
+
+class LegCities extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      isExpanded: false,
+    };
+  }
+
+  handleClick = () => {
+    this.setState(prevState => ({ isExpanded: !prevState.isExpanded }));
   };
-  return (
-    <div className="legCities">
-      <div className="cities">
-        <div className="departure">
-          <div className="time">{formatHour(departureTime)}</div>
-          <div className="city">
-            {`${departureCityName} ${departureCityCode}`}
+
+  render() {
+    const { leg } = this.props;
+    const { departure, arrival } = leg;
+    const departureTime = (departure && departure.localTime) || '';
+    const departureCityName = idx(departure, _ => _.airport.city.name) || '';
+    const departureCityCode = idx(departure, _ => _.airport.locationId) || '';
+    const arrivalTime = (arrival && arrival.localTime) || '';
+    const arrivalCityName = idx(arrival, _ => _.airport.city.name) || '';
+    const arrivalCityCode = idx(arrival, _ => _.airport.locationId) || '';
+    const carrier = {
+      code: idx(leg.airline, _ => _.code) || '',
+      name: idx(leg.airline, _ => _.name) || '',
+    };
+
+    return (
+      <div
+        className="legCities"
+        onClick={this.handleClick}
+        onKeyUp={null}
+        tabIndex="0"
+        role="button"
+      >
+        <div className="cities">
+          <div className="departure">
+            <div className="time">{formatHour(departureTime)}</div>
+            <div className="city">{`${departureCityName} ${departureCityCode}`}</div>
+          </div>
+          <div className="arrival">
+            <div className="time">{formatHour(arrivalTime)}</div>
+            <div className="city">{`${arrivalCityName} ${arrivalCityCode}`}</div>
+          </div>
+          {this.state.isExpanded && (
+            <div>here comes the expanded content...</div>
+          )}
+        </div>
+        <div className="carrier">
+          <CarrierLogo size="large" carriers={[carrier]} />
+        </div>
+        <div className="showMoreIcon">
+          <ShowMore customColor="#94a2b0" size="12" />
+        </div>
+        <span className="flightLength">
+          {formatTimeDuration(leg.duration || 0)}
+        </span>
+        <div className="citiesArrow">
+          <div className="arrows">
+            <div className="visibleArrow" />
+            <div className="mask" />
           </div>
         </div>
-        <div className="arrival">
-          <div className="time">{formatHour(arrivalTime)}</div>
-          <div className="city">{`${arrivalCityName} ${arrivalCityCode}`}</div>
-        </div>
+        <style jsx>{citiesStyle}</style>
       </div>
-      <div className="carrier">
-        <CarrierLogo size="large" carriers={[carrier]} />
-      </div>
-      {/* This is commented out because of https://github.com/kiwicom/smart-faq/issues/307
-      <div className="showMoreIcon">
-        <ShowMore customColor="#94a2b0" size="12" />
-      </div> */}
-      <span className="flightLength">
-        {formatTimeDuration(leg.duration || 0)}
-      </span>
-      <div className="citiesArrow">
-        <div className="arrows">
-          <div className="visibleArrow" />
-          <div className="mask" />
-        </div>
-      </div>
-      <style jsx>{citiesStyle}</style>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default createFragmentContainer(
   LegCities,
