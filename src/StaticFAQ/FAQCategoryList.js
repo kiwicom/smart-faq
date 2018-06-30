@@ -74,8 +74,8 @@ const queryRoot = graphql`
   }
 `;
 const querySubcategory = graphql`
-  query FAQCategoryListSubcategoryQuery($id: ID!) {
-    FAQCategory(id: $id) {
+  query FAQCategoryListSubcategoryQuery($id: ID!, $section: FAQSection!) {
+    FAQCategory(id: $id, section: $section) {
       id
       title
       subcategories {

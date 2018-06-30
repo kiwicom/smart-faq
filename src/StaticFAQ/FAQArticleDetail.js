@@ -12,14 +12,19 @@ import FAQArticleNotFound from './FAQArticleNotFound';
 import type { FAQArticleDetailQuery } from './__generated__/FAQArticleDetailQuery.graphql';
 import type { FAQArticleDetailSearchResultQuery } from './__generated__/FAQArticleDetailSearchResultQuery.graphql';
 import CustomBreadcrumbs from './CustomBreadcrumbs';
+import { BookingState, type FAQSectionType } from '../context/BookingState';
 
 const queryFAQArticleDetail = graphql`
-  query FAQArticleDetailQuery($id: ID!, $category_id: ID!) {
+  query FAQArticleDetailQuery(
+    $id: ID!
+    $category_id: ID!
+    $section: FAQSection!
+  ) {
     FAQArticle(id: $id) {
       title
       ...FAQArticleDetailContent_article
     }
-    FAQCategory(id: $category_id) {
+    FAQCategory(id: $category_id, section: $section) {
       title
       id
       ancestors {
@@ -44,7 +49,7 @@ type FAQArticleDetailParams = {
   error: ?Error,
 };
 
-type Props = {
+type ComponentProps = {
   match: {
     params: {
       articleId: string,
@@ -55,6 +60,10 @@ type Props = {
     path: string,
     url: string,
   },
+};
+
+type Props = ComponentProps & {
+  section: FAQSectionType,
 };
 
 const style = css`
@@ -69,7 +78,7 @@ const style = css`
   }
 `;
 
-class FAQArticleDetail extends React.Component<Props> {
+class RawFAQArticleDetail extends React.Component<Props> {
   renderDetailContent = (params: FAQArticleDetailParams) => {
     if (params.error) {
       return <div>{params.error.message}</div>;
@@ -137,6 +146,7 @@ class FAQArticleDetail extends React.Component<Props> {
         variables={{
           id: this.getArticleId(),
           category_id: this.getCategoryId(),
+          section: this.props.section,
         }}
         render={this.renderDetailContent}
       />
@@ -164,5 +174,13 @@ class FAQArticleDetail extends React.Component<Props> {
     );
   }
 }
+
+const FAQArticleDetail = (props: ComponentProps) => (
+  <BookingState.Consumer>
+    {({ FAQSection }) => (
+      <RawFAQArticleDetail section={FAQSection} {...props} />
+    )}
+  </BookingState.Consumer>
+);
 
 export default FAQArticleDetail;
