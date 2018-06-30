@@ -24,7 +24,7 @@ class ExtraInfoStateProvider extends React.Component<
   Props,
   ExtraInfoStateType,
 > {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
