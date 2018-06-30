@@ -43,7 +43,7 @@ describe('Display Static FAQ', () => {
     cy
       .get('@faq-breadcrumbs')
       .children()
-      .should('have.length', 4);
+      .should('have.length', 3);
 
     cy
       .get('@faq-breadcrumbs')
