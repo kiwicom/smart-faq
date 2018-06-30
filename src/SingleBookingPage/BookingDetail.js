@@ -116,7 +116,8 @@ class BookingDetail extends React.Component<Props> {
 
   isUrgentBooking = (isPastBooking: boolean, departureTime: ?Date) => {
     const timeDelta = departureTime
-      ? DateTime.fromJSDate(departureTime, { zone: 'utc' }).diffNow('hours').hours
+      ? DateTime.fromJSDate(departureTime, { zone: 'utc' }).diffNow('hours')
+          .hours
       : null;
     const isUrgent = timeDelta !== null && URGENCY_THRESHOLD > timeDelta;
 

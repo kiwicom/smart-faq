@@ -48,19 +48,13 @@ const MobileBookingHeaderStyle = css`
   }
 `;
 
-type Props = {};
-
-class MobileBookingHeader extends React.Component<Props> {
-  render() {
-    return (
-      <React.Fragment>
-        <div className="MobileBookingHeader">
-          <MobileBookingSummary />
-        </div>
-        <style jsx>{MobileBookingHeaderStyle}</style>
-      </React.Fragment>
-    );
-  }
-}
+const MobileBookingHeader = () => (
+  <React.Fragment>
+    <div className="MobileBookingHeader">
+      <MobileBookingSummary />
+    </div>
+    <style jsx>{MobileBookingHeaderStyle}</style>
+  </React.Fragment>
+);
 
 export default MobileBookingHeader;

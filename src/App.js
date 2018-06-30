@@ -52,6 +52,7 @@ type Props = {|
   onSocialLogin: onSocialLogin,
   onLogout: onLogout,
 |};
+
 type State = {|
   urlBookingWasSelected: boolean,
   userContext: UserContextType,
@@ -82,7 +83,6 @@ class App extends React.PureComponent<Props, State> {
         user: props.user,
         onLogin: props.onLogin,
         onSocialLogin: props.onSocialLogin,
-        onLogout: props.onLogout,
         loginToken: props.loginToken,
       },
     };
@@ -119,7 +119,7 @@ class App extends React.PureComponent<Props, State> {
               <CloseContext.Provider value={this.props.onClose}>
                 <UserContext.Provider value={this.state.userContext}>
                   <SearchStateProvider>
-                    <BookingStateProvider>
+                    <BookingStateProvider onLogout={this.props.onLogout}>
                       <ExtraInfoStateProvider>
                         <SelectUrlBooking
                           wasSelected={this.state.urlBookingWasSelected}

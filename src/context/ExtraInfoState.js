@@ -10,11 +10,8 @@ type Props = {
   children: React.Node,
 };
 
-export type State = {
+export type ExtraInfoStateType = {
   isBaggageVisible: boolean,
-};
-
-export type ExtraInfoStateType = State & {
   toggleBaggage: () => void,
 };
 
@@ -23,8 +20,18 @@ export const ExtraInfoState = React.createContext({
   toggleBaggage: () => {}, // eslint-disable-line no-unused-vars
 });
 
-class ExtraInfoStateProvider extends React.Component<Props, State> {
-  state = initialState;
+class ExtraInfoStateProvider extends React.Component<
+  Props,
+  ExtraInfoStateType,
+> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      ...initialState,
+      toggleBaggage: this.toggleBaggage, // eslint-disable-line react/no-unused-state
+    };
+  }
 
   toggleBaggage = () => {
     this.setState(prevState => ({
@@ -33,12 +40,8 @@ class ExtraInfoStateProvider extends React.Component<Props, State> {
   };
 
   render() {
-    const { isBaggageVisible } = this.state;
-
     return (
-      <ExtraInfoState.Provider
-        value={{ isBaggageVisible, toggleBaggage: this.toggleBaggage }}
-      >
+      <ExtraInfoState.Provider value={this.state}>
         {this.props.children}
       </ExtraInfoState.Provider>
     );

@@ -3,6 +3,8 @@
 
 import * as React from 'react';
 
+import type { onLogout } from '../types';
+
 const initialState = {
   FAQSection: 'BEFORE_BOOKING',
   bookingPage: 'SINGLE_BOOKING',
@@ -17,6 +19,7 @@ export type FAQSectionType =
 
 type Props = {
   children: React.Node,
+  onLogout: onLogout,
 };
 
 type StateValues = {
@@ -29,6 +32,7 @@ type StateCallbacks = {
   onDisplayAll: () => void,
   onSelectBooking: (id: number) => void,
   onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
+  onLogout: onLogout,
 };
 
 export type BookingStateType = StateValues & StateCallbacks;
@@ -38,6 +42,7 @@ export const BookingState = React.createContext({
   onDisplayAll: () => {},
   onSelectBooking: (id: number) => {}, // eslint-disable-line no-unused-vars
   onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => {}, // eslint-disable-line no-unused-vars
+  onLogout: () => Promise.resolve(true),
 });
 
 class BookingStateProvider extends React.Component<Props, BookingStateType> {
@@ -46,11 +51,17 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
 
     this.state = {
       ...initialState,
+      onLogout: this.onLogout,
       onSelectBooking: this.onClickSelect,
       onDisplayAll: this.onClickAllBooking,
       onSetFAQSection: this.onSetFAQSection,
     };
   }
+
+  onLogout = async () => {
+    await this.props.onLogout();
+    this.setState({ FAQSection: 'BEFORE_BOOKING' });
+  };
 
   onClickAllBooking = () => {
     this.setState({ bookingPage: 'ALL_BOOKINGS' });
@@ -84,5 +95,18 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
     );
   }
 }
+
+export const withLogout = <Props>(
+  Component: React.ComponentType<{ onLogout: onLogout } & Props>,
+) =>
+  function withLogoutHOC(props: Props) {
+    return (
+      <BookingState.Consumer>
+        {({ onLogout }: BookingStateType) => (
+          <Component {...props} onLogout={onLogout} />
+        )}
+      </BookingState.Consumer>
+    );
+  };
 
 export default BookingStateProvider;
