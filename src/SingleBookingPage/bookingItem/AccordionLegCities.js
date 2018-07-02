@@ -4,9 +4,10 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import idx from 'idx';
 import { CarrierLogo } from '@kiwicom/orbit-components';
-import { ShowMore } from '@kiwicom/orbit-components/lib/icons';
+import { ShowMore, ShowLess } from '@kiwicom/orbit-components/lib/icons';
 import { createFragmentContainer, graphql } from 'react-relay';
 
+import LegCitiesInfo from './AccordionLegCitiesInfo';
 import { formatHour, formatTimeDuration } from '../../helpers/dateUtils';
 import type { AccordionLegCities_leg } from './__generated__/AccordionLegCities_leg.graphql';
 
@@ -115,6 +116,7 @@ class LegCities extends React.Component<Props, State> {
       code: idx(leg.airline, _ => _.code) || '',
       name: idx(leg.airline, _ => _.name) || '',
     };
+    const { isExpanded } = this.state;
 
     return (
       <div
@@ -133,15 +135,17 @@ class LegCities extends React.Component<Props, State> {
             <div className="time">{formatHour(arrivalTime)}</div>
             <div className="city">{`${arrivalCityName} ${arrivalCityCode}`}</div>
           </div>
-          {this.state.isExpanded && (
-            <div>here comes the expanded content...</div>
-          )}
+          {isExpanded && <LegCitiesInfo leg={leg} />}
         </div>
         <div className="carrier">
           <CarrierLogo size="large" carriers={[carrier]} />
         </div>
         <div className="showMoreIcon">
-          <ShowMore customColor="#94a2b0" size="12" />
+          {!isExpanded ? (
+            <ShowMore customColor="#94a2b0" size="12" />
+          ) : (
+            <ShowLess customColor="#94a2b0" size="12" />
+          )}
         </div>
         <span className="flightLength">
           {formatTimeDuration(leg.duration || 0)}
@@ -162,6 +166,7 @@ export default createFragmentContainer(
   LegCities,
   graphql`
     fragment AccordionLegCities_leg on Leg {
+      ...AccordionLegCitiesInfo_leg
       duration
       airline {
         code
