@@ -34,7 +34,7 @@ class ExtraInfoStateProvider extends React.Component<
 
     this.state = {
       ...initialState,
-      toggleBaggage: this.toggleBaggage, // eslint-disable-line react/no-unused-state
+      toggleExtraInfoCategory: this.toggleExtraInfoCategory, // eslint-disable-line react/no-unused-state
     };
   }
 

@@ -242,13 +242,6 @@ class BookingDetail extends React.Component<Props> {
             </React.Fragment>
           )}
         </ExtraInfoState.Consumer>
-        <button
-          onClick={() => {
-            this.props.history.push('/faq/RkFRQ2F0ZWdvcnk6ODQ=');
-          }}
-        >
-          Baggage
-        </button>
         {this.renderByType(booking)}
         <div className="buttons" data-cy="btn-manage-booking">
           <a
