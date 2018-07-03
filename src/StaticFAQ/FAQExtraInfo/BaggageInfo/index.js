@@ -84,7 +84,7 @@ class BaggageInfo extends React.Component<Props> {
         </div>
         <h1 className="title">Your baggage</h1>
         <div className="subtitle">
-          <Text type="attention">Here you can see your baggage allowance</Text>
+          <Text type="attention">Here you can see your baggage allowance.</Text>
         </div>
         <hr className="separationLine" />
         <BaggageSummary data={baggage} />
