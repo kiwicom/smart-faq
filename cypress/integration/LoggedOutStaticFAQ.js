@@ -26,16 +26,6 @@ describe('Display Static FAQ', () => {
     cy
       .get('@faq-box')
       .children()
-      .first()
-      .click();
-
-    cy
-      .get('@faq-breadcrumbs')
-      .children()
-      .should('have.length', 3);
-
-    cy
-      .get('@faq-box')
       .find('[data-cy=faq-article-link]')
       .first()
       .click();
