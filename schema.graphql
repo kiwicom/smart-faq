@@ -1,5 +1,5 @@
-# source: https://graphql.kiwi.com/
-# timestamp: Tue Jun 26 2018 17:18:42 GMT+0200 (CEST)
+# source: http://localhost:3000/
+# timestamp: Sat Jun 30 2018 11:54:24 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
@@ -91,6 +91,11 @@ type Baggage {
   width: Int
   weight: Int
   note: String
+}
+
+type BoardingPass {
+  flightNumber: String
+  boardingPassUrl: String
 }
 
 type BoardingTimelineEvent implements TimelineEvent {
@@ -203,6 +208,9 @@ type BookingAssets {
 
   """URL of the invoice."""
   invoiceUrl: String
+
+  """Boarding passes for flights in this booking"""
+  boardingPasses: [BoardingPass]
 }
 
 type BookingConfirmedTimelineEvent implements TimelineEvent {
@@ -1406,6 +1414,8 @@ input HotelsSearchInput {
   roomsConfiguration: [RoomsConfiguration!]!
 }
 
+scalar IP
+
 type Identity {
   """The ID of an object"""
   id: ID!
@@ -1439,8 +1449,6 @@ enum InsuranceType {
   TRAVEL_BASIC
   TRAVEL_PLUS
 }
-
-scalar IP
 
 """Use "Accept-Language" HTTP header to specify locale."""
 enum Language {
@@ -1648,16 +1656,6 @@ input LocationInput {
   radius: RadiusInput
 }
 
-input LocationsOptionsInput {
-  """
-  DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
-  """
-  locale: Locale
-
-  """Desired location type the response should only include."""
-  locationType: LocationType
-}
-
 """Type of location"""
 enum LocationType {
   airport
@@ -1666,6 +1664,16 @@ enum LocationType {
   country
   station
   subdivision
+}
+
+input LocationsOptionsInput {
+  """
+  DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
+  """
+  locale: Locale
+
+  """Desired location type the response should only include."""
+  locationType: LocationType
 }
 
 type LoungeService {
@@ -1921,6 +1929,11 @@ type RootQuery {
   FAQCategory(
     """ID of FAQ category to retrieve."""
     id: ID!
+
+    """
+    Fetch only subsection of FAQ based on the current situation of customer.
+    """
+    section: FAQSection
   ): FAQCategory
 
   """Geography info by an IP address"""
