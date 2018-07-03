@@ -9,9 +9,11 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 type AccordionLegCitiesInfo_leg$ref = any;
+export type VehicleType = ('AIRCRAFT' | 'BUS' | 'TRAIN' | '%future added value');
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type AccordionLegCities_leg$ref: FragmentReference;
 export type AccordionLegCities_leg = {|
+  +type: ?VehicleType,
   +duration: ?number,
   +airline: ?{|
     +code: ?string,
@@ -106,6 +108,13 @@ return {
     {
       "kind": "ScalarField",
       "alias": null,
+      "name": "type",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
       "name": "duration",
       "args": null,
       "storageKey": null
@@ -152,5 +161,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '99cfc089e1c71700dcea05bfd762e358';
+(node/*: any*/).hash = '7c221ea7011d8c696fe80a661228341b';
 module.exports = node;

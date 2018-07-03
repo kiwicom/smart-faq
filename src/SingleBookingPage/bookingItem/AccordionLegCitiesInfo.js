@@ -38,19 +38,17 @@ const LegCitiesInfo = (props: Props) => {
   const flightNumber = leg.flightNumber || '';
 
   return (
-    leg.type === 'AIRCRAFT' && (
-      <div className="legCitiesInfo">
-        <div className="infoRow">
-          <CarrierLogo className="logo" size="small" carriers={[carrier]} />
-          <p>Airline: {carrier.name}</p>
-        </div>
-        <div className="infoRow">
-          <InformationCircle size="small" color="secondary" />
-          <p>Flight no: {`${carrier.code} ${flightNumber}`}</p>
-        </div>
-        <style jsx>{citiesInfoStyle}</style>
+    <div className="legCitiesInfo">
+      <div className="infoRow">
+        <CarrierLogo className="logo" size="small" carriers={[carrier]} />
+        <p>Airline: {carrier.name}</p>
       </div>
-    )
+      <div className="infoRow">
+        <InformationCircle size="small" color="secondary" />
+        <p>Flight no: {`${carrier.code} ${flightNumber}`}</p>
+      </div>
+      <style jsx>{citiesInfoStyle}</style>
+    </div>
   );
 };
 
@@ -63,7 +61,6 @@ export default createFragmentContainer(
         name
       }
       flightNumber
-      type
     }
   `,
 );

@@ -100,6 +100,7 @@ class LegCities extends React.Component<Props, State> {
   }
 
   handleClick = () => {
+    if (this.props.leg.type !== 'AIRCRAFT') return;
     this.setState(prevState => ({ isExpanded: !prevState.isExpanded }));
   };
 
@@ -140,13 +141,15 @@ class LegCities extends React.Component<Props, State> {
         <div className="carrier">
           <CarrierLogo size="large" carriers={[carrier]} />
         </div>
-        <div className="showMoreIcon">
-          {!isExpanded ? (
-            <ShowMore customColor="#94a2b0" size="12" />
-          ) : (
-            <ShowLess customColor="#94a2b0" size="12" />
-          )}
-        </div>
+        {leg.type === 'AIRCRAFT' && (
+          <div className="showMoreIcon">
+            {!isExpanded ? (
+              <ShowMore customColor="#94a2b0" size="12" />
+            ) : (
+              <ShowLess customColor="#94a2b0" size="12" />
+            )}
+          </div>
+        )}
         <span className="flightLength">
           {formatTimeDuration(leg.duration || 0)}
         </span>
@@ -167,6 +170,7 @@ export default createFragmentContainer(
   graphql`
     fragment AccordionLegCities_leg on Leg {
       ...AccordionLegCitiesInfo_leg
+      type
       duration
       airline {
         code
