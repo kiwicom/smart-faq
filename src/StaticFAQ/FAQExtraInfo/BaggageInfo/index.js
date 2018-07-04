@@ -46,10 +46,6 @@ const styles = css`
     margin-left: 24px;
     margin-bottom: 24px;
   }
-  hr.separationLine {
-    border: solid 1px #e8edf1;
-    width: 100%;
-  }
 `;
 
 const selectedInfoBaggage = graphql`
@@ -87,7 +83,6 @@ class BaggageInfo extends React.Component<Props> {
         <div className="subtitle">
           <Text type="attention">Here you can see your baggage allowance.</Text>
         </div>
-        <hr className="separationLine" />
         <BaggageSummary data={baggage} />
         <style jsx>{styles}</style>
       </div>
