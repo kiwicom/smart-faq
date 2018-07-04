@@ -24,15 +24,22 @@ import type { FAQArticle_article } from './__generated__/FAQArticle_article.grap
 import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
 import type { FAQCategoryListRootQueryResponse } from './__generated__/FAQCategoryListRootQuery.graphql';
 import type { FAQCategoryListSubcategoryQueryResponse } from './__generated__/FAQCategoryListSubcategoryQuery.graphql';
+import { BookingState, type FAQSectionType } from '../context/BookingState';
 
-type Props = {|
+type ComponentProps = {
   categoryId: string | null,
   history: {
     location: {
       pathname: string,
     },
   },
-|};
+};
+
+type ContainerProps = {
+  section: FAQSectionType,
+};
+
+type Props = ComponentProps & ContainerProps;
 
 type RootQueryRendererParams = {
   props: ?FAQCategoryListRootQueryResponse,
@@ -55,8 +62,8 @@ type FAQArticlePerexFragment = {|
 |};
 
 const queryRoot = graphql`
-  query FAQCategoryListRootQuery {
-    allFAQCategories {
+  query FAQCategoryListRootQuery($section: FAQSection!) {
+    allFAQCategories(section: $section) {
       edges {
         node {
           id
@@ -68,8 +75,8 @@ const queryRoot = graphql`
   }
 `;
 const querySubcategory = graphql`
-  query FAQCategoryListSubcategoryQuery($id: ID!) {
-    FAQCategory(id: $id) {
+  query FAQCategoryListSubcategoryQuery($id: ID!, $section: FAQSection!) {
+    FAQCategory(id: $id, section: $section) {
       id
       title
       subcategories {
@@ -94,7 +101,7 @@ const categoryClicked = (category: CategoryFragment) => () =>
     categoryId: category.id,
     categoryName: category.title || '',
   });
-class FAQCategoryList extends React.Component<Props> {
+class RawFAQCategoryList extends React.Component<Props> {
   renderFAQArticlePerexes = (
     faqs: $ReadOnlyArray<?FAQArticlePerexFragment>,
     categoryId: string,
@@ -210,14 +217,14 @@ class FAQCategoryList extends React.Component<Props> {
   };
 
   render() {
-    const { categoryId } = this.props;
+    const { categoryId, section } = this.props;
 
     if (categoryId) {
       return (
         <QueryRenderer
           query={querySubcategory}
           render={this.renderSubcategory}
-          variables={{ id: categoryId }}
+          variables={{ id: categoryId, section }}
         />
       );
     }
@@ -226,10 +233,16 @@ class FAQCategoryList extends React.Component<Props> {
       <QueryRenderer
         query={queryRoot}
         render={this.renderRootCategory}
-        variables={{}}
+        variables={{ section }}
       />
     );
   }
 }
+
+const FAQCategoryList = (props: ComponentProps) => (
+  <BookingState.Consumer>
+    {({ FAQSection }) => <RawFAQCategoryList section={FAQSection} {...props} />}
+  </BookingState.Consumer>
+);
 
 export default withRouter(FAQCategoryList);
