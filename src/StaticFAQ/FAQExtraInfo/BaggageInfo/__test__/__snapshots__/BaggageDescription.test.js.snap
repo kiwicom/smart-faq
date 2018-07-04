@@ -2,18 +2,15 @@
 
 exports[`BaggageDescription should render correctly 1`] = `
 <React.Fragment>
-  <hr
-    className="jsx-677876937 separationLine"
-  />
   <div
-    className="jsx-677876937 baggageRow"
+    className="jsx-2247068386 baggageRow"
   >
     <BaggageBig
       customColor="#bac7d5"
       size="medium"
     />
     <p
-      className="jsx-677876937 baggageWeight"
+      className="jsx-2247068386 baggageWeight"
     >
       Checked
        baggage 
@@ -21,23 +18,25 @@ exports[`BaggageDescription should render correctly 1`] = `
        kg
     </p>
     <div
-      className="jsx-677876937 baggageSize"
+      className="jsx-2247068386 baggageSize"
     >
       <p
-        className="jsx-677876937"
+        className="jsx-2247068386"
       >
         40
          x 
         30
          x 
         15
-         cm
       </p>
     </div>
   </div>
+  <hr
+    className="jsx-2247068386 separationLine"
+  />
   <JSXStyle
-    css="div.baggageRow.jsx-677876937{padding:15px 24px 15px 24px;}div.baggageSize.jsx-677876937{display:inline-block;float:right;}div.baggageSize.jsx-677876937 p.jsx-677876937{font-size:12px;line-height:1.4;color:#46515e;}div.baggageNumber.jsx-677876937{display:inline-block;margin-right:8px;}div.baggageNumber.jsx-677876937 p.jsx-677876937{font-size:14px;font-weight:bold;line-height:1.4;color:#46515e;display:inline-block;}p.baggageWeight.jsx-677876937{margin-left:5px;font-size:14px;font-weight:bold;line-height:1.4;color:#46515e;display:inline-block;}hr.separationLine.jsx-677876937{height:1px;background-color:#e8edf1;border:none;}"
-    styleId="677876937"
+    css="div.baggageRow.jsx-2247068386{padding:15px 24px 15px 24px;}div.baggageSize.jsx-2247068386{display:inline-block;float:right;}div.baggageSize.jsx-2247068386 p.jsx-2247068386{font-size:12px;line-height:1.4;color:#46515e;}div.baggageNumber.jsx-2247068386{display:inline-block;margin-right:8px;}div.baggageNumber.jsx-2247068386 p.jsx-2247068386{font-size:14px;font-weight:bold;line-height:1.4;color:#46515e;display:inline-block;}p.baggageWeight.jsx-2247068386{margin-left:5px;font-size:14px;font-weight:bold;line-height:1.4;color:#46515e;display:inline-block;}hr.separationLine.jsx-2247068386{border:solid 1px #e8edf1;width:100%;}"
+    styleId="2247068386"
   />
 </React.Fragment>
 `;
