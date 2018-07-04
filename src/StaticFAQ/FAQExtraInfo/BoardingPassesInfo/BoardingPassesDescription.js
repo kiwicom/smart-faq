@@ -5,13 +5,15 @@ import idx from 'idx';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { FlightDirect, Download } from '@kiwicom/orbit-components/lib/icons';
 
+import replaceWithCurrentDomain from '../../../helpers/replaceWithCurrentDomain';
 import type { BoardingPassesDescription as BoardingPassesDescriptionProps } from './__generated__/BoardingPassesDescription.graphql';
 
 type Props = {|
   data: BoardingPassesDescriptionProps,
+  mmbUrl: string,
 |};
 
-const BoardingPassesDescription = ({ data }: Props) => {
+const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
   if (data.leg === null) return null;
   const departureCity = idx(data, _ => _.leg.departure.airport.city.name);
   const arrivalCity = idx(data, _ => _.leg.arrival.airport.city.name);
@@ -27,12 +29,14 @@ const BoardingPassesDescription = ({ data }: Props) => {
         </p>
         <div className="info">
           {boardingPassUrl ? (
-            <a href={boardingPassUrl}>
+            <a href={boardingPassUrl} className="download">
               <Download size="medium" customColor="#00a991" />
               Download
             </a>
           ) : (
-            <p>Not available yet</p>
+            <a href={replaceWithCurrentDomain(mmbUrl)} className="moreInfo">
+              More info
+            </a>
           )}
         </div>
       </div>
@@ -51,10 +55,13 @@ const BoardingPassesDescription = ({ data }: Props) => {
             line-height: 1.4;
             color: #46515e;
           }
-          div.info a {
+          div.info a.download {
             font-size: 12px;
             color: #00a991;
             text-decoration: none;
+          }
+          div.info a.moreInfo {
+            color: inherit;
           }
           div.boardingPassesNumber {
             display: inline-block;

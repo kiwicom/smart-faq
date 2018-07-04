@@ -9,9 +9,10 @@ import type { BoardingPassesSummary as BoardingPassesSummaryProps } from './__ge
 
 type Props = {|
   data: BoardingPassesSummaryProps,
+  mmbUrl: string,
 |};
 
-const BoardingPassesSummary = ({ data }: Props) => {
+const BoardingPassesSummary = ({ data, mmbUrl }: Props) => {
   if (data === null) return <BoardingPassesLoader />;
   const { boardingPasses } = data;
   return (
@@ -22,6 +23,7 @@ const BoardingPassesSummary = ({ data }: Props) => {
           <BoardingPassesDescription
             key={boardingPass.flightNumber}
             data={boardingPass}
+            mmbUrl={mmbUrl}
           />
         ),
     )

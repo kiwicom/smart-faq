@@ -57,6 +57,7 @@ const selectedInfoBoardingPasses = graphql`
       assets {
         ...BoardingPassesSummary
       }
+      directAccessURL
     }
   }
 `;
@@ -67,6 +68,7 @@ const nearestInfoBoardingPasses = graphql`
       assets {
         ...BoardingPassesSummary
       }
+      directAccessURL
     }
   }
 `;
@@ -76,6 +78,9 @@ class BoardingPassesInfo extends React.Component<Props> {
     const boardingPasses =
       idx(queryProps.props, _ => _.booking.assets) ||
       idx(queryProps.props, _ => _.nearestBooking.assets);
+    const directAccessURL =
+      idx(queryProps.props, _ => _.booking.directAccessURL) ||
+      idx(queryProps.props, _ => _.nearestBooking.directAccessURL);
 
     return (
       <div className="boardingPassesCard">
@@ -90,7 +95,7 @@ class BoardingPassesInfo extends React.Component<Props> {
           </Text>
         </div>
         <hr className="separationLine" />
-        <BoardingPassesSummary data={boardingPasses} />
+        <BoardingPassesSummary data={boardingPasses} mmbUrl={directAccessURL} />
         <style jsx>{styles}</style>
       </div>
     );

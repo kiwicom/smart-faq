@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 171ed1fc1410ad8f8bf857aad2043e69
+ * @relayHash 294bb4841a737639b1bdefb3969ed137
  */
 
 /* eslint-disable */
@@ -18,6 +18,7 @@ export type BoardingPassesInfoSelectedQueryResponse = {|
     +assets: ?{|
       +$fragmentRefs: BoardingPassesSummary$ref,
     |},
+    +directAccessURL: ?string,
   |},
 |};
 */
@@ -31,6 +32,7 @@ query BoardingPassesInfoSelectedQuery(
     assets {
       ...BoardingPassesSummary
     }
+    directAccessURL
     id
   }
 }
@@ -45,7 +47,6 @@ fragment BoardingPassesSummary on BookingAssets {
 fragment BoardingPassesDescription on BoardingPass {
   flightNumber
   boardingPassUrl
-  availableAt
   leg {
     id
     departure {
@@ -88,11 +89,18 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
+  "name": "directAccessURL",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v3 = [
+v4 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -120,7 +128,7 @@ v3 = [
           }
         ]
       },
-      v2
+      v3
     ]
   }
 ];
@@ -129,7 +137,7 @@ return {
   "operationKind": "query",
   "name": "BoardingPassesInfoSelectedQuery",
   "id": null,
-  "text": "query BoardingPassesInfoSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    assets {\n      ...BoardingPassesSummary\n    }\n    id\n  }\n}\n\nfragment BoardingPassesSummary on BookingAssets {\n  boardingPasses {\n    flightNumber\n    ...BoardingPassesDescription\n  }\n}\n\nfragment BoardingPassesDescription on BoardingPass {\n  flightNumber\n  boardingPassUrl\n  availableAt\n  leg {\n    id\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n",
+  "text": "query BoardingPassesInfoSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    assets {\n      ...BoardingPassesSummary\n    }\n    directAccessURL\n    id\n  }\n}\n\nfragment BoardingPassesSummary on BookingAssets {\n  boardingPasses {\n    flightNumber\n    ...BoardingPassesDescription\n  }\n}\n\nfragment BoardingPassesDescription on BoardingPass {\n  flightNumber\n  boardingPassUrl\n  leg {\n    id\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -162,7 +170,8 @@ return {
                 "args": null
               }
             ]
-          }
+          },
+          v2
         ]
       }
     ]
@@ -214,13 +223,6 @@ return {
                     "storageKey": null
                   },
                   {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "availableAt",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
                     "kind": "LinkedField",
                     "alias": null,
                     "name": "leg",
@@ -229,7 +231,7 @@ return {
                     "concreteType": "Leg",
                     "plural": false,
                     "selections": [
-                      v2,
+                      v3,
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -238,7 +240,7 @@ return {
                         "args": null,
                         "concreteType": "RouteStop",
                         "plural": false,
-                        "selections": v3
+                        "selections": v4
                       },
                       {
                         "kind": "LinkedField",
@@ -248,7 +250,7 @@ return {
                         "args": null,
                         "concreteType": "RouteStop",
                         "plural": false,
-                        "selections": v3
+                        "selections": v4
                       }
                     ]
                   }
@@ -256,12 +258,13 @@ return {
               }
             ]
           },
-          v2
+          v2,
+          v3
         ]
       }
     ]
   }
 };
 })();
-(node/*: any*/).hash = '3a9fd049704977d70c9b616b00652b2c';
+(node/*: any*/).hash = 'a06e78338e090a6947999085dbf864ba';
 module.exports = node;
