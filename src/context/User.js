@@ -2,13 +2,14 @@
 
 import * as React from 'react';
 
-import type { User, onLogin, onSocialLogin } from '../types';
+import type { User, onLogin, onLogout, onSocialLogin } from '../types';
 
 export type UserContextType = {
   user: User,
   loginToken: ?string,
   onLogin: onLogin,
   onSocialLogin: onSocialLogin,
+  onLogout: onLogout,
 };
 
 export const UserContext = React.createContext(
@@ -17,6 +18,7 @@ export const UserContext = React.createContext(
     loginToken: null,
     onLogin: (email, password) => Promise.resolve({ email, password }),
     onSocialLogin: provider => Promise.resolve(provider),
+    onLogout: () => Promise.resolve(true),
   }: UserContextType),
 );
 
@@ -41,6 +43,19 @@ export const withSocialLogin = <Props>(
       <UserContext.Consumer>
         {({ onSocialLogin }: UserContextType) => (
           <Component {...props} onSocialLogin={onSocialLogin} />
+        )}
+      </UserContext.Consumer>
+    );
+  };
+
+export const withLogout = <Props>(
+  Component: React.ComponentType<{ onLogout: onLogout } & Props>,
+) =>
+  function withLogoutHOC(props: Props) {
+    return (
+      <UserContext.Consumer>
+        {({ onLogout }: UserContextType) => (
+          <Component {...props} onLogout={onLogout} />
         )}
       </UserContext.Consumer>
     );

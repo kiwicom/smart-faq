@@ -48,7 +48,7 @@
     "react/require-default-props": "off", // Optional props can be undefined.
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }], // Don't use jsx
     "react/default-props-match-prop-types": "off",
-    "react/prefer-stateless-function": "error",
+    "react/prefer-stateless-function": "warn",
     "react/sort-comp": ["error", {
       "order": [
         "type-annotations",

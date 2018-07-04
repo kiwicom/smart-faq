@@ -12,7 +12,7 @@ describe('Query params redirect to corect article', () => {
     cy
       .get('@faq-breadcrumbs')
       .children()
-      .should('have.length', 3);
+      .should('have.length', 4);
   });
 
   it(`Feedback form should be present`, () => {
