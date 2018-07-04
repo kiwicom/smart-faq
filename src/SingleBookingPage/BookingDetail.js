@@ -232,8 +232,8 @@ class BookingDetail extends React.Component<Props> {
                   activeExtraInfoCategory === 'boarding-passes' ? 'active' : ''
                 }`}
                 onClick={() => {
-                  toggleExtraInfoCategory('boarding-passes');
                   this.props.history.push('/faq/RkFRQ2F0ZWdvcnk6ODQ=');
+                  toggleExtraInfoCategory('boarding-passes');
                 }}
               >
                 <Ticket customColor="#00a991" />
