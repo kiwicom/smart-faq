@@ -9,7 +9,7 @@ import initTranslation from './initTranslation';
 import Routes from './Routes';
 import { CloseContext } from './context/Close';
 import { LanguageContext } from './context/Language';
-import { UserContext, type UserContextType } from './context/User';
+import { UserContext } from './context/User';
 import SearchStateProvider from './context/SearchState';
 import BookingStateProvider from './context/BookingState';
 import ExtraInfoStateProvider from './context/ExtraInfoState';
@@ -52,26 +52,12 @@ type Props = {|
   onSocialLogin: onSocialLogin,
   onLogout: onLogout,
 |};
-
 type State = {|
   urlBookingWasSelected: boolean,
-  userContext: UserContextType,
 |};
 
 class App extends React.PureComponent<Props, State> {
   i18n: {};
-
-  static getDerivedStateFromProps(nextProps: Props) {
-    return {
-      userContext: {
-        user: nextProps.user,
-        onLogin: nextProps.onLogin,
-        onSocialLogin: nextProps.onSocialLogin,
-        onLogout: nextProps.onLogout,
-        loginToken: nextProps.loginToken,
-      },
-    };
-  }
 
   constructor(props: Props) {
     super(props);
@@ -79,12 +65,6 @@ class App extends React.PureComponent<Props, State> {
     this.i18n = initTranslation(props.language, props.locale);
     this.state = {
       urlBookingWasSelected: false,
-      userContext: {
-        user: props.user,
-        onLogin: props.onLogin,
-        onSocialLogin: props.onSocialLogin,
-        loginToken: props.loginToken,
-      },
     };
   }
 
@@ -117,9 +97,17 @@ class App extends React.PureComponent<Props, State> {
           <I18nextProvider i18n={this.i18n}>
             <LanguageContext.Provider value={this.props.language}>
               <CloseContext.Provider value={this.props.onClose}>
-                <UserContext.Provider value={this.state.userContext}>
+                <UserContext.Provider
+                  value={{
+                    user: this.props.user,
+                    onLogin: this.props.onLogin,
+                    onSocialLogin: this.props.onSocialLogin,
+                    onLogout: this.props.onLogout,
+                    loginToken: this.props.loginToken,
+                  }}
+                >
                   <SearchStateProvider>
-                    <BookingStateProvider onLogout={this.props.onLogout}>
+                    <BookingStateProvider>
                       <ExtraInfoStateProvider>
                         <SelectUrlBooking
                           wasSelected={this.state.urlBookingWasSelected}

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b9cd38141aa2e56117d1615577261149
+ * @relayHash 5cc2bc4f996754d06f7e71cb1361c653
  */
 
 /* eslint-disable */
@@ -10,10 +10,7 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type FAQCategory_category$ref = any;
-export type FAQSection = ('BEFORE_BOOKING' | 'PAST_BOOKING' | 'UPCOMING_BOOKING' | 'URGENT_BOOKING' | '%future added value');
-export type FAQCategoryListRootQueryVariables = {|
-  section: FAQSection,
-|};
+export type FAQCategoryListRootQueryVariables = {| |};
 export type FAQCategoryListRootQueryResponse = {|
   +allFAQCategories: ?{|
     +edges: ?$ReadOnlyArray<?{|
@@ -29,10 +26,8 @@ export type FAQCategoryListRootQueryResponse = {|
 
 
 /*
-query FAQCategoryListRootQuery(
-  $section: FAQSection!
-) {
-  allFAQCategories(section: $section) {
+query FAQCategoryListRootQuery {
+  allFAQCategories {
     edges {
       node {
         id
@@ -51,30 +46,14 @@ fragment FAQCategory_category on FAQCategory {
 */
 
 const node/*: ConcreteRequest*/ = (function(){
-var v0 = [
-  {
-    "kind": "LocalArgument",
-    "name": "section",
-    "type": "FAQSection!",
-    "defaultValue": null
-  }
-],
-v1 = [
-  {
-    "kind": "Variable",
-    "name": "section",
-    "variableName": "section",
-    "type": "FAQSection"
-  }
-],
-v2 = {
+var v0 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v3 = {
+v1 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "title",
@@ -86,21 +65,21 @@ return {
   "operationKind": "query",
   "name": "FAQCategoryListRootQuery",
   "id": null,
-  "text": "query FAQCategoryListRootQuery(\n  $section: FAQSection!\n) {\n  allFAQCategories(section: $section) {\n    edges {\n      node {\n        id\n        title\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n",
+  "text": "query FAQCategoryListRootQuery {\n  allFAQCategories {\n    edges {\n      node {\n        id\n        title\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "FAQCategoryListRootQuery",
     "type": "RootQuery",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": [],
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "allFAQCategories",
         "storageKey": null,
-        "args": v1,
+        "args": null,
         "concreteType": "FAQCategoryConnection",
         "plural": false,
         "selections": [
@@ -122,8 +101,8 @@ return {
                 "concreteType": "FAQCategory",
                 "plural": false,
                 "selections": [
-                  v2,
-                  v3,
+                  v0,
+                  v1,
                   {
                     "kind": "FragmentSpread",
                     "name": "FAQCategory_category",
@@ -140,14 +119,14 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "FAQCategoryListRootQuery",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": [],
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "allFAQCategories",
         "storageKey": null,
-        "args": v1,
+        "args": null,
         "concreteType": "FAQCategoryConnection",
         "plural": false,
         "selections": [
@@ -169,8 +148,8 @@ return {
                 "concreteType": "FAQCategory",
                 "plural": false,
                 "selections": [
-                  v2,
-                  v3,
+                  v0,
+                  v1,
                   {
                     "kind": "ScalarField",
                     "alias": null,
@@ -188,5 +167,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = 'bb11a304ab4fd141759538bc09936e92';
+(node/*: any*/).hash = 'dc98da3b963e85683c6e412261986712';
 module.exports = node;

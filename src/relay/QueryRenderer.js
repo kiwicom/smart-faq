@@ -4,8 +4,7 @@ import * as React from 'react';
 import { QueryRenderer as OriginalQueryRenderer } from 'react-relay';
 import { withRouter, type RouterHistory } from 'react-router-dom';
 
-import { withLoginToken } from '../context/User';
-import { withLogout } from '../context/BookingState';
+import { withLoginToken, withLogout } from '../context/User';
 import { withLanguage } from '../context/Language';
 import createEnvironment, { ERROR_FORBIDDEN } from './environment';
 import frontendLanguageToLocale from '../helpers/frontendLanguageToLocale';

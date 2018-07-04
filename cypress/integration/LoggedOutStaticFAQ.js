@@ -26,7 +26,6 @@ describe('Display Static FAQ', () => {
     cy
       .get('@faq-box')
       .children()
-      .find('[data-cy=faq-article-link]')
       .first()
       .click();
 
@@ -34,6 +33,17 @@ describe('Display Static FAQ', () => {
       .get('@faq-breadcrumbs')
       .children()
       .should('have.length', 3);
+
+    cy
+      .get('@faq-box')
+      .find('[data-cy=faq-article-link]')
+      .first()
+      .click();
+
+    cy
+      .get('@faq-breadcrumbs')
+      .children()
+      .should('have.length', 4);
 
     cy
       .get('@faq-breadcrumbs')
