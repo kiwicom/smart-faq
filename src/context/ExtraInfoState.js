@@ -3,41 +3,57 @@
 import * as React from 'react';
 
 const initialState = {
-  isBaggageVisible: false,
+  activeExtraInfoCategory: null,
 };
+
+export type ExtraInfoCategory = 'baggage' | 'boarding-passes';
 
 type Props = {
   children: React.Node,
 };
 
 export type State = {
-  isBaggageVisible: boolean,
+  activeExtraInfoCategory: ?ExtraInfoCategory,
 };
 
 export type ExtraInfoStateType = State & {
-  toggleBaggage: () => void,
+  toggleExtraInfoCategory: (category: ExtraInfoCategory) => void,
 };
 
 export const ExtraInfoState = React.createContext({
   ...initialState,
-  toggleBaggage: () => {}, // eslint-disable-line no-unused-vars
+  toggleExtraInfoCategory: () => {}, // eslint-disable-line no-unused-vars
 });
 
-class ExtraInfoStateProvider extends React.Component<Props, State> {
-  state = initialState;
+class ExtraInfoStateProvider extends React.Component<
+  Props,
+  ExtraInfoStateType,
+> {
+  constructor(props: Props) {
+    super(props);
 
-  toggleBaggage = () => {
+    this.state = {
+      ...initialState,
+      toggleExtraInfoCategory: this.toggleExtraInfoCategory, // eslint-disable-line react/no-unused-state
+    };
+  }
+
+  toggleExtraInfoCategory = (category: ExtraInfoCategory) => {
     this.setState(prevState => ({
-      isBaggageVisible: !prevState.isBaggageVisible,
+      activeExtraInfoCategory:
+        prevState.activeExtraInfoCategory === category ? null : category,
     }));
   };
 
   render() {
-    const { isBaggageVisible } = this.state;
+    const { activeExtraInfoCategory } = this.state;
 
     return (
       <ExtraInfoState.Provider
-        value={{ isBaggageVisible, toggleBaggage: this.toggleBaggage }}
+        value={{
+          activeExtraInfoCategory,
+          toggleExtraInfoCategory: this.toggleExtraInfoCategory,
+        }}
       >
         {this.props.children}
       </ExtraInfoState.Provider>

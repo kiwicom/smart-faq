@@ -1,5 +1,5 @@
-# source: https://graphql.kiwi.com/
-# timestamp: Tue Jun 26 2018 17:18:42 GMT+0200 (CEST)
+# source: https://graphql.kiwi.com
+# timestamp: Wed Jul 04 2018 18:18:46 GMT+0200 (Central European Summer Time)
 
 schema {
   query: RootQuery
@@ -91,6 +91,17 @@ type Baggage {
   width: Int
   weight: Int
   note: String
+}
+
+type BoardingPass {
+  flightNumber: String
+  boardingPassUrl: String
+
+  """The leg for the boarding pass"""
+  leg: Leg
+
+  """The date when the boarding pass will be available for download"""
+  availableAt: Date
 }
 
 type BoardingTimelineEvent implements TimelineEvent {
@@ -203,6 +214,9 @@ type BookingAssets {
 
   """URL of the invoice."""
   invoiceUrl: String
+
+  """Boarding passes for flights in this booking"""
+  boardingPasses: [BoardingPass]
 }
 
 type BookingConfirmedTimelineEvent implements TimelineEvent {
@@ -775,6 +789,12 @@ type DepartureTimelineEvent implements TimelineEvent {
 
   """Flight duration in minutes."""
   duration: Int
+
+  """Airline for the flight"""
+  airline: Airline
+
+  """Flight number"""
+  flightNumber: Int
 }
 
 enum DirectAccessURLValues {
@@ -800,6 +820,9 @@ enum DirectAccessURLValues {
 type DownloadBoardingPassTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
+
+  """Leg corresponding to the boarding pass"""
+  leg: Leg
 }
 
 type DownloadETicketTimelineEvent implements TimelineEvent {
@@ -1518,6 +1541,9 @@ type Leg {
 
   """Information about who covers the transfer"""
   guarantee: CoveredBy
+
+  """Boarding pass for this leg"""
+  boardingPass: BoardingPass
 }
 
 """
@@ -1921,6 +1947,11 @@ type RootQuery {
   FAQCategory(
     """ID of FAQ category to retrieve."""
     id: ID!
+
+    """
+    Fetch only subsection of FAQ based on the current situation of customer.
+    """
+    section: FAQSection
   ): FAQCategory
 
   """Geography info by an IP address"""

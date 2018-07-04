@@ -4,9 +4,9 @@ import idx from 'idx';
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { DateTime } from 'luxon';
-import { withRouter } from 'react-router';
 import { graphql, createFragmentContainer } from 'react-relay';
-import { Baggages } from '@kiwicom/orbit-components/lib/icons';
+import { withRouter } from 'react-router-dom';
+import { Baggages, Ticket } from '@kiwicom/orbit-components/lib/icons';
 
 import OneWay from './bookingTypes/OneWay';
 import Return from './bookingTypes/Return';
@@ -51,7 +51,6 @@ const styles = css`
   }
   p.iconLabel {
     display: inline-block;
-    width: 56px;
     height: 20px;
     font-size: 14px;
     font-weight: 500;
@@ -59,8 +58,8 @@ const styles = css`
     color: #00a991;
     margin-left: 8px;
   }
-  button.baggageButton {
-    width: 116px;
+  button.extraInfoRadioButton {
+    padding: 0 12px;
     height: 44px;
     border-radius: 3px;
     background-color: #f5f7f9;
@@ -177,17 +176,36 @@ class BookingDetail extends React.Component<Props> {
             <Notification hoursLeft={timeDelta} isUrgent={isUrgent} />
           )}
         <ExtraInfoState.Consumer>
-          {({ isBaggageVisible, toggleBaggage }: ExtraInfoStateType) => (
-            <button
-              className={`baggageButton ${isBaggageVisible ? 'active' : ''}`}
-              onClick={() => {
-                toggleBaggage();
-                this.props.history.push('/faq/RkFRQ2F0ZWdvcnk6ODk=');
-              }}
-            >
-              <Baggages customColor="#00a991" />
-              <p className="iconLabel">Bagagge</p>
-            </button>
+          {({
+            activeExtraInfoCategory,
+            toggleExtraInfoCategory,
+          }: ExtraInfoStateType) => (
+            <React.Fragment>
+              <button
+                className={`extraInfoRadioButton ${
+                  activeExtraInfoCategory === 'baggage' ? 'active' : ''
+                }`}
+                onClick={() => {
+                  toggleExtraInfoCategory('baggage');
+                  this.props.history.push('/faq/RkFRQ2F0ZWdvcnk6ODk=');
+                }}
+              >
+                <Baggages customColor="#00a991" />
+                <p className="iconLabel">Bagagge</p>
+              </button>
+              <button
+                className={`extraInfoRadioButton ${
+                  activeExtraInfoCategory === 'boarding-passes' ? 'active' : ''
+                }`}
+                onClick={() => {
+                  this.props.history.push('/faq/RkFRQ2F0ZWdvcnk6ODQ=');
+                  toggleExtraInfoCategory('boarding-passes');
+                }}
+              >
+                <Ticket customColor="#00a991" />
+                <p className="iconLabel">Boarding passes</p>
+              </button>
+            </React.Fragment>
           )}
         </ExtraInfoState.Consumer>
         {this.renderByType(booking)}

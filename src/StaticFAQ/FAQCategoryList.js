@@ -14,6 +14,7 @@ import UserStatus from '../helpers/UserStatus';
 import { Loader, ScrollableBox } from '../common';
 import QueryRenderer from '../relay/QueryRenderer';
 import BaggageInfo from './FAQExtraInfo/BaggageInfo';
+import BoardingPassesInfo from './FAQExtraInfo/BoardingPassesInfo';
 import FAQArticle from './FAQArticle';
 import FAQCategory from './FAQCategory';
 import Breadcrumbs from './Breadcrumbs';
@@ -112,13 +113,25 @@ class FAQCategoryList extends React.Component<Props> {
     const isCategoryBaggage = this.props.history.location.pathname.includes(
       'RkFRQ2F0ZWdvcnk6ODk',
     );
+    const isCategoryBoardingPass = this.props.history.location.pathname.includes(
+      'RkFRQ2F0ZWdvcnk6ODQ',
+    );
     return (
       <React.Fragment>
         <MediaQuery query="screen and (min-width: 1181px)">
           <UserStatus.LoggedIn>
             <ExtraInfoState.Consumer>
-              {({ isBaggageVisible }: ExtraInfoStateType) =>
-                isCategoryBaggage && isBaggageVisible && <BaggageInfo />
+              {({ activeExtraInfoCategory }: ExtraInfoStateType) =>
+                isCategoryBaggage &&
+                activeExtraInfoCategory === 'baggage' && <BaggageInfo />
+              }
+            </ExtraInfoState.Consumer>
+            <ExtraInfoState.Consumer>
+              {({ activeExtraInfoCategory }: ExtraInfoStateType) =>
+                isCategoryBoardingPass &&
+                activeExtraInfoCategory === 'boarding-passes' && (
+                  <BoardingPassesInfo />
+                )
               }
             </ExtraInfoState.Consumer>
           </UserStatus.LoggedIn>
