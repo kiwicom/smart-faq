@@ -27,7 +27,6 @@ export const BaggageDescription = ({
 }: Props) => {
   return (
     <React.Fragment>
-      <hr className="separationLine" />
       <div className="baggageRow">
         {renderIcon(type)}
         <p className="baggageWeight">
@@ -35,10 +34,11 @@ export const BaggageDescription = ({
         </p>
         <div className="baggageSize">
           <p>
-            {height} x {width} x {length} cm
+            {height} x {width} x {length}
           </p>
         </div>
       </div>
+      <hr className="separationLine" />
       <style jsx>
         {`
           div.baggageRow {
@@ -73,9 +73,8 @@ export const BaggageDescription = ({
             display: inline-block;
           }
           hr.separationLine {
-            height: 1px;
-            background-color: #e8edf1;
-            border: none;
+            border: solid 1px #e8edf1;
+            width: 100%;
           }
         `}
       </style>
