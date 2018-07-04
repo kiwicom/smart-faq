@@ -1,5 +1,4 @@
 # source: https://graphql.kiwi.com
-# timestamp: Wed Jul 04 2018 14:47:58 GMT+0200 (Central European Summer Time)
 
 schema {
   query: RootQuery
@@ -96,12 +95,7 @@ type Baggage {
 type BoardingPass {
   flightNumber: String
   boardingPassUrl: String
-
-  """The leg for the boarding pass"""
   leg: Leg
-
-  """The date when the boarding pass will be available for download"""
-  availableAt: Date
 }
 
 type BoardingTimelineEvent implements TimelineEvent {
@@ -789,12 +783,6 @@ type DepartureTimelineEvent implements TimelineEvent {
 
   """Flight duration in minutes."""
   duration: Int
-
-  """Airline for the flight"""
-  airline: Airline
-
-  """Flight number"""
-  flightNumber: Int
 }
 
 enum DirectAccessURLValues {

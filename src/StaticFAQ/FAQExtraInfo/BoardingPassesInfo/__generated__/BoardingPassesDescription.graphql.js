@@ -13,6 +13,7 @@ declare export opaque type BoardingPassesDescription$ref: FragmentReference;
 export type BoardingPassesDescription = {|
   +flightNumber: ?string,
   +boardingPassUrl: ?string,
+  +availableAt: ?any,
   +leg: ?{|
     +id: string,
     +departure: ?{|
@@ -89,6 +90,13 @@ return {
       "storageKey": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "availableAt",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "leg",
@@ -129,5 +137,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '79ae2b9a33e71179c462b525db2e5548';
+(node/*: any*/).hash = '27788e9cd44afa2026e76e7f80d9c0d6';
 module.exports = node;

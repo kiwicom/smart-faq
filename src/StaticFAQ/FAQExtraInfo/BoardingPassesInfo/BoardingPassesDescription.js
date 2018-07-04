@@ -18,6 +18,7 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
   const departureCity = idx(data, _ => _.leg.departure.airport.city.name);
   const arrivalCity = idx(data, _ => _.leg.arrival.airport.city.name);
   const boardingPassUrl = idx(data, _ => _.boardingPassUrl);
+  const availableAt = idx(data, _ => _.availableAt);
 
   return (
     <React.Fragment>
@@ -33,6 +34,8 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
               <Download size="medium" customColor="#00a991" />
               Download
             </a>
+          ) : availableAt ? (
+            <p>Available {availableAt}</p>
           ) : (
             <a href={replaceWithCurrentDomain(mmbUrl)} className="moreInfo">
               More info
@@ -98,6 +101,7 @@ export default createFragmentContainer(
     fragment BoardingPassesDescription on BoardingPass {
       flightNumber
       boardingPassUrl
+      availableAt
       leg {
         id
         departure {
