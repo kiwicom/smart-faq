@@ -38,22 +38,20 @@ const styles = css`
     display: inline-block;
     font-size: 22px;
     font-weight: 500;
-    line-height: 1.2;
+    line-height: 1.7;
+    vertical-align: bottom;
     color: #171b1e;
   }
   div.subtitle {
     margin-left: 24px;
     margin-bottom: 24px;
   }
-  hr.separationLine {
-    border: solid 1px #e8edf1;
-    width: 100%;
-  }
 `;
 
 const selectedInfoBaggage = graphql`
   query BaggageInfoSelectedQuery($id: ID!) {
     booking(id: $id) {
+      directAccessURL
       allowedBaggage {
         ...BaggageSummary
       }
@@ -64,6 +62,7 @@ const selectedInfoBaggage = graphql`
 const nearestInfoBaggage = graphql`
   query BaggageInfoNearestQuery {
     nearestBooking {
+      directAccessURL
       allowedBaggage {
         ...BaggageSummary
       }
@@ -77,6 +76,10 @@ class BaggageInfo extends React.Component<Props> {
       idx(queryProps.props, _ => _.booking.allowedBaggage) ||
       idx(queryProps.props, _ => _.nearestBooking.allowedBaggage);
 
+    const directAccessURL =
+      idx(queryProps.props, _ => _.booking.directAccessURL) ||
+      idx(queryProps.props, _ => _.nearestBooking.directAccessURL);
+
     return (
       <div className="baggageCard">
         <div className="iconTitle">
@@ -84,10 +87,9 @@ class BaggageInfo extends React.Component<Props> {
         </div>
         <h1 className="title">Your baggage</h1>
         <div className="subtitle">
-          <Text type="attention">Here you can see your baggage allowance</Text>
+          <Text type="attention">Here you can see your baggage allowance.</Text>
         </div>
-        <hr className="separationLine" />
-        <BaggageSummary data={baggage} />
+        <BaggageSummary data={baggage} mmbUrl={directAccessURL} />
         <style jsx>{styles}</style>
       </div>
     );

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e7f5d0f0b60cda71010f86625fac9162
+ * @relayHash 4f7314356af3ca33ddc6ae9a14060e5e
  */
 
 /* eslint-disable */
@@ -15,6 +15,7 @@ export type BaggageInfoSelectedQueryVariables = {|
 |};
 export type BaggageInfoSelectedQueryResponse = {|
   +booking: ?{|
+    +directAccessURL: ?string,
     +allowedBaggage: ?{|
       +$fragmentRefs: BaggageSummary$ref,
     |},
@@ -28,6 +29,7 @@ query BaggageInfoSelectedQuery(
   $id: ID!
 ) {
   booking(id: $id) {
+    directAccessURL
     allowedBaggage {
       ...BaggageSummary
     }
@@ -69,7 +71,14 @@ v1 = [
     "type": "ID!"
   }
 ],
-v2 = [
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "directAccessURL",
+  "args": null,
+  "storageKey": null
+},
+v3 = [
   {
     "kind": "ScalarField",
     "alias": null,
@@ -104,7 +113,7 @@ return {
   "operationKind": "query",
   "name": "BaggageInfoSelectedQuery",
   "id": null,
-  "text": "query BaggageInfoSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    allowedBaggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on AllowedBaggage {\n  checked {\n    ...BaggageDescription\n  }\n  cabin {\n    ...BaggageDescription\n  }\n}\n\nfragment BaggageDescription on Baggage {\n  height\n  weight\n  width\n  length\n}\n",
+  "text": "query BaggageInfoSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    directAccessURL\n    allowedBaggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on AllowedBaggage {\n  checked {\n    ...BaggageDescription\n  }\n  cabin {\n    ...BaggageDescription\n  }\n}\n\nfragment BaggageDescription on Baggage {\n  height\n  weight\n  width\n  length\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -122,6 +131,7 @@ return {
         "concreteType": "Booking",
         "plural": false,
         "selections": [
+          v2,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -156,6 +166,7 @@ return {
         "concreteType": "Booking",
         "plural": false,
         "selections": [
+          v2,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -173,7 +184,7 @@ return {
                 "args": null,
                 "concreteType": "Baggage",
                 "plural": true,
-                "selections": v2
+                "selections": v3
               },
               {
                 "kind": "LinkedField",
@@ -183,7 +194,7 @@ return {
                 "args": null,
                 "concreteType": "Baggage",
                 "plural": true,
-                "selections": v2
+                "selections": v3
               }
             ]
           },
@@ -200,5 +211,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '11465dc3babf44de1689831b0605fca4';
+(node/*: any*/).hash = '01ff6b79634c9c1eecb4b35ad6a1cfbd';
 module.exports = node;
