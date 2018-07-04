@@ -38,16 +38,13 @@ const styles = css`
     display: inline-block;
     font-size: 22px;
     font-weight: 500;
-    line-height: 1.2;
+    line-height: 1.7;
+    vertical-align: bottom;
     color: #171b1e;
   }
   div.subtitle {
     margin-left: 24px;
     margin-bottom: 24px;
-  }
-  hr.separationLine {
-    border: solid 1px #e8edf1;
-    width: 100%;
   }
 `;
 
@@ -84,9 +81,8 @@ class BaggageInfo extends React.Component<Props> {
         </div>
         <h1 className="title">Your baggage</h1>
         <div className="subtitle">
-          <Text type="attention">Here you can see your baggage allowance</Text>
+          <Text type="attention">Here you can see your baggage allowance.</Text>
         </div>
-        <hr className="separationLine" />
         <BaggageSummary data={baggage} />
         <style jsx>{styles}</style>
       </div>
