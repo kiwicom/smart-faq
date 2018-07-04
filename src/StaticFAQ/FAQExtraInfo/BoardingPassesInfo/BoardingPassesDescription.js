@@ -64,7 +64,10 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
             text-decoration: none;
           }
           div.info a.moreInfo {
-            color: inherit;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.4;
+            color: #171b1e;
           }
           div.boardingPassesNumber {
             display: inline-block;
