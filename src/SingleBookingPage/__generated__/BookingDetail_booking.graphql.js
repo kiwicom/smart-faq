@@ -23,6 +23,7 @@ export type BookingDetail_booking = {|
     +ticketUrl: ?string,
   |},
   +directAccessURL: ?string,
+  +isPastBooking: ?boolean,
   +trip?: ?{|
     +departure: ?{|
       +time: ?any,
@@ -33,9 +34,6 @@ export type BookingDetail_booking = {|
   |},
   +outbound?: ?{|
     +departure: ?{|
-      +time: ?any,
-    |},
-    +arrival: ?{|
       +time: ?any,
     |},
   |},
@@ -69,26 +67,23 @@ var v0 = [
 v1 = {
   "kind": "LinkedField",
   "alias": null,
-  "name": "arrival",
+  "name": "departure",
   "storageKey": null,
   "args": null,
   "concreteType": "RouteStop",
   "plural": false,
   "selections": v0
 },
-v2 = [
-  {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "departure",
-    "storageKey": null,
-    "args": null,
-    "concreteType": "RouteStop",
-    "plural": false,
-    "selections": v0
-  },
-  v1
-];
+v2 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "arrival",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": v0
+};
 return {
   "kind": "Fragment",
   "name": "BookingDetail_booking",
@@ -132,6 +127,13 @@ return {
       "kind": "ScalarField",
       "alias": null,
       "name": "directAccessURL",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "isPastBooking",
       "args": null,
       "storageKey": null
     },
@@ -188,7 +190,9 @@ return {
           "args": null,
           "concreteType": "Trip",
           "plural": false,
-          "selections": v2
+          "selections": [
+            v1
+          ]
         },
         {
           "kind": "LinkedField",
@@ -199,7 +203,7 @@ return {
           "concreteType": "Trip",
           "plural": false,
           "selections": [
-            v1
+            v2
           ]
         }
       ]
@@ -221,12 +225,15 @@ return {
           "args": null,
           "concreteType": "Trip",
           "plural": false,
-          "selections": v2
+          "selections": [
+            v1,
+            v2
+          ]
         }
       ]
     }
   ]
 };
 })();
-(node/*: any*/).hash = 'e058901ad58944710067122de073d224';
+(node/*: any*/).hash = '1cbcb4276314c60ebbb7278d264adb62';
 module.exports = node;
