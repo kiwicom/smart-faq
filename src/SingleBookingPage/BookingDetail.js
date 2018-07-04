@@ -5,12 +5,8 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { DateTime } from 'luxon';
 import { graphql, createFragmentContainer } from 'react-relay';
-<<<<<<< HEAD
 import { withRouter } from 'react-router-dom';
 import { Baggages, Ticket } from '@kiwicom/orbit-components/lib/icons';
-=======
-import { Baggages } from '@kiwicom/orbit-components/lib/icons';
->>>>>>> revert(extra-info): re-enable #453
 
 import OneWay from './bookingTypes/OneWay';
 import Return from './bookingTypes/Return';
