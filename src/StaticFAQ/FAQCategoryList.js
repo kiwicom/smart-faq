@@ -62,7 +62,7 @@ type FAQArticlePerexFragment = {|
 |};
 
 const queryRoot = graphql`
-  query FAQCategoryListRootQuery($section: FAQSection!) {
+  query FAQCategoryListRootQuery($section: FAQSection) {
     allFAQCategories(section: $section) {
       edges {
         node {
@@ -75,7 +75,7 @@ const queryRoot = graphql`
   }
 `;
 const querySubcategory = graphql`
-  query FAQCategoryListSubcategoryQuery($id: ID!, $section: FAQSection!) {
+  query FAQCategoryListSubcategoryQuery($id: ID!, $section: FAQSection) {
     FAQCategory(id: $id, section: $section) {
       id
       title
@@ -221,20 +221,31 @@ class RawFAQCategoryList extends React.Component<Props> {
 
     if (categoryId) {
       return (
-        <QueryRenderer
-          query={querySubcategory}
-          render={this.renderSubcategory}
-          variables={{ id: categoryId, section }}
-        />
+        <ExtraInfoState.Consumer>
+          {({ activeExtraInfoCategory }: ExtraInfoStateType) => (
+            <QueryRenderer
+              query={querySubcategory}
+              render={this.renderSubcategory}
+              variables={{
+                id: categoryId,
+                section: activeExtraInfoCategory ? null : section,
+              }}
+            />
+          )}
+        </ExtraInfoState.Consumer>
       );
     }
 
     return (
-      <QueryRenderer
-        query={queryRoot}
-        render={this.renderRootCategory}
-        variables={{ section }}
-      />
+      <ExtraInfoState.Consumer>
+        {({ activeExtraInfoCategory }: ExtraInfoStateType) => (
+          <QueryRenderer
+            query={queryRoot}
+            render={this.renderRootCategory}
+            variables={{ section: activeExtraInfoCategory ? null : section }}
+          />
+        )}
+      </ExtraInfoState.Consumer>
     );
   }
 }
