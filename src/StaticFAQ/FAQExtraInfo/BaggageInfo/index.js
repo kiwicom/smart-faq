@@ -51,6 +51,7 @@ const styles = css`
 const selectedInfoBaggage = graphql`
   query BaggageInfoSelectedQuery($id: ID!) {
     booking(id: $id) {
+      directAccessURL
       allowedBaggage {
         ...BaggageSummary
       }
@@ -61,6 +62,7 @@ const selectedInfoBaggage = graphql`
 const nearestInfoBaggage = graphql`
   query BaggageInfoNearestQuery {
     nearestBooking {
+      directAccessURL
       allowedBaggage {
         ...BaggageSummary
       }
@@ -74,6 +76,10 @@ class BaggageInfo extends React.Component<Props> {
       idx(queryProps.props, _ => _.booking.allowedBaggage) ||
       idx(queryProps.props, _ => _.nearestBooking.allowedBaggage);
 
+    const directAccessURL =
+      idx(queryProps.props, _ => _.booking.directAccessURL) ||
+      idx(queryProps.props, _ => _.nearestBooking.directAccessURL);
+
     return (
       <div className="baggageCard">
         <div className="iconTitle">
@@ -83,7 +89,7 @@ class BaggageInfo extends React.Component<Props> {
         <div className="subtitle">
           <Text type="attention">Here you can see your baggage allowance.</Text>
         </div>
-        <BaggageSummary data={baggage} />
+        <BaggageSummary data={baggage} mmbUrl={directAccessURL} />
         <style jsx>{styles}</style>
       </div>
     );

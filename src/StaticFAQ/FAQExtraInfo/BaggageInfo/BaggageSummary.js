@@ -7,11 +7,12 @@ import css from 'styled-jsx/css';
 
 import BaggageLoader from './BaggageLoader';
 import BaggageDescriptionFragment from './BaggageDescription';
-// import replaceWithCurrentDomain from '../../../helpers/replaceWithCurrentDomain';
+import replaceWithCurrentDomain from '../../../helpers/replaceWithCurrentDomain';
 import type { BaggageSummary as BaggageSummaryProps } from './__generated__/BaggageSummary.graphql';
 
 type Props = {|
   data: BaggageSummaryProps,
+  mmbUrl: string,
 |};
 
 const styles = css`
@@ -27,7 +28,7 @@ const styles = css`
   }
 `;
 
-const BaggageSummary = ({ data }: Props) => {
+const BaggageSummary = ({ data, mmbUrl }: Props) => {
   const cabinBaggage = idx(data, _ => _.cabin) || [];
   const checkedBaggage = idx(data, _ => _.checked) || [];
   return data ? (
@@ -44,8 +45,7 @@ const BaggageSummary = ({ data }: Props) => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          // href={replaceWithCurrentDomain(booking.directAccessURL)}
-          href="/"
+          href={replaceWithCurrentDomain(mmbUrl)}
         >
           More Info
         </a>
