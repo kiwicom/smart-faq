@@ -22,7 +22,7 @@ const citiesStyle = css`
     padding: 7px 13px;
     cursor: pointer;
   }
-  div.legCities:active {
+  div.legCities:focus {
     outline: 0;
   }
   div.cities {
