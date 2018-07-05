@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9ec426cad58535a5aa43eb703b642aea
+ * @relayHash c2a6c80e3e4572940fef1f8010871ac3
  */
 
 /* eslint-disable */
@@ -12,8 +12,10 @@ import type { ConcreteRequest } from 'relay-runtime';
 type Breadcrumbs_breadcrumbs$ref = any;
 type FAQArticle_article$ref = any;
 type FAQCategory_category$ref = any;
+export type FAQSection = ('BEFORE_BOOKING' | 'PAST_BOOKING' | 'UPCOMING_BOOKING' | 'URGENT_BOOKING' | '%future added value');
 export type FAQCategoryListSubcategoryQueryVariables = {|
   id: string,
+  section?: ?FAQSection,
 |};
 export type FAQCategoryListSubcategoryQueryResponse = {|
   +FAQCategory: ?{|
@@ -40,8 +42,9 @@ export type FAQCategoryListSubcategoryQueryResponse = {|
 /*
 query FAQCategoryListSubcategoryQuery(
   $id: ID!
+  $section: FAQSection
 ) {
-  FAQCategory(id: $id) {
+  FAQCategory(id: $id, section: $section) {
     id
     title
     subcategories {
@@ -85,6 +88,12 @@ var v0 = [
     "name": "id",
     "type": "ID!",
     "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "section",
+    "type": "FAQSection",
+    "defaultValue": null
   }
 ],
 v1 = [
@@ -93,6 +102,12 @@ v1 = [
     "name": "id",
     "variableName": "id",
     "type": "ID!"
+  },
+  {
+    "kind": "Variable",
+    "name": "section",
+    "variableName": "section",
+    "type": "FAQSection"
   }
 ],
 v2 = {
@@ -125,7 +140,7 @@ return {
   "operationKind": "query",
   "name": "FAQCategoryListSubcategoryQuery",
   "id": null,
-  "text": "query FAQCategoryListSubcategoryQuery(\n  $id: ID!\n) {\n  FAQCategory(id: $id) {\n    id\n    title\n    subcategories {\n      id\n      title\n      ...FAQCategory_category\n    }\n    ancestors {\n      id\n      ...Breadcrumbs_breadcrumbs\n    }\n    FAQs {\n      id\n      ...FAQArticle_article\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n",
+  "text": "query FAQCategoryListSubcategoryQuery(\n  $id: ID!\n  $section: FAQSection\n) {\n  FAQCategory(id: $id, section: $section) {\n    id\n    title\n    subcategories {\n      id\n      title\n      ...FAQCategory_category\n    }\n    ancestors {\n      id\n      ...Breadcrumbs_breadcrumbs\n    }\n    FAQs {\n      id\n      ...FAQArticle_article\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n\nfragment Breadcrumbs_breadcrumbs on FAQCategory {\n  id\n  title\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -256,5 +271,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '590348ef68c7088b7f065f880c2c0726';
+(node/*: any*/).hash = 'a9286b8e65fec70c1749d92656cf882a';
 module.exports = node;

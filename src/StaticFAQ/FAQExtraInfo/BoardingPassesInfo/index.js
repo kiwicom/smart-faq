@@ -45,10 +45,6 @@ const styles = css`
     margin-left: 24px;
     margin-bottom: 24px;
   }
-  hr.separationLine {
-    border: solid 1px #e8edf1;
-    width: 100%;
-  }
 `;
 
 const selectedInfoBoardingPasses = graphql`
@@ -94,7 +90,6 @@ class BoardingPassesInfo extends React.Component<Props> {
             become available
           </Text>
         </div>
-        <hr className="separationLine" />
         <BoardingPassesSummary data={boardingPasses} mmbUrl={directAccessURL} />
         <style jsx>{styles}</style>
       </div>

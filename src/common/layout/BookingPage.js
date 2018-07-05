@@ -5,24 +5,22 @@ import * as React from 'react';
 import AllBooking from '../../AllBookings';
 import NearestBooking from '../../SingleBookingPage/NearestBooking';
 import SelectedBooking from '../../SingleBookingPage/SelectedBooking';
-import { type BookingStateProps } from '../../context/BookingState';
 
-type Props = BookingStateProps;
+type Props = {
+  bookingPage: 'SINGLE_BOOKING' | 'ALL_BOOKINGS',
+  selectedBooking: ?number,
+};
 
-class BookingPage extends React.PureComponent<Props> {
-  render() {
-    const { bookingPage, selectedBooking } = this.props;
-
-    if (bookingPage === 'SINGLE_BOOKING') {
-      if (selectedBooking) {
-        return <SelectedBooking bookingId={selectedBooking} />;
-      }
-
-      return <NearestBooking />;
+const BookingPage = ({ bookingPage, selectedBooking }: Props) => {
+  if (bookingPage === 'SINGLE_BOOKING') {
+    if (selectedBooking) {
+      return <SelectedBooking bookingId={selectedBooking} />;
     }
 
-    return <AllBooking />;
+    return <NearestBooking />;
   }
-}
+
+  return <AllBooking />;
+};
 
 export default BookingPage;
