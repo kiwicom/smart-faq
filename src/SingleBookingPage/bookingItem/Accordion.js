@@ -20,7 +20,7 @@ const styles = css`
     border-radius: 3px;
   }
   .bookingAccordion > div:focus {
-    outline: none;
+    outline: 0;
   }
 `;
 
