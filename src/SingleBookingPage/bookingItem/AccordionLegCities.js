@@ -99,9 +99,18 @@ class LegCities extends React.Component<Props, State> {
     };
   }
 
-  handleClick = () => {
+  toggleLeg = () => {
     if (this.props.leg.type !== 'AIRCRAFT') return;
     this.setState(prevState => ({ isExpanded: !prevState.isExpanded }));
+  };
+
+  handleClick = () => {
+    this.toggleLeg();
+  };
+
+  handleKeyUp = e => {
+    if (e.key !== 'Enter') return;
+    this.toggleLeg();
   };
 
   render() {
@@ -123,7 +132,7 @@ class LegCities extends React.Component<Props, State> {
       <div
         className="legCities"
         onClick={this.handleClick}
-        onKeyUp={null}
+        onKeyUp={this.handleKeyUp}
         tabIndex="0"
         role="button"
       >

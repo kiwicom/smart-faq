@@ -20,7 +20,7 @@ const styles = css`
     border-radius: 3px;
   }
   .bookingAccordion > div:focus {
-    outline: 0;
+    outline: none;
   }
 `;
 
@@ -35,6 +35,7 @@ class Accordion extends React.Component<Props, State> {
   state = {
     isToggled: false,
   };
+
   toggleBody = () => {
     !this.state.isToggled &&
       simpleTracker('smartFAQBookingOverview', {
@@ -42,6 +43,12 @@ class Accordion extends React.Component<Props, State> {
       });
     this.setState(prevState => ({ isToggled: !prevState.isToggled }));
   };
+
+  handleKeyUp = e => {
+    if (e.key !== 'Enter') return;
+    this.toggleBody();
+  };
+
   render() {
     const { trip } = this.props;
     return (
@@ -50,7 +57,7 @@ class Accordion extends React.Component<Props, State> {
           <div className="bookingAccordion">
             <div
               onClick={this.toggleBody}
-              onKeyUp={null}
+              onKeyUp={this.handleKeyUp}
               tabIndex="0"
               role="button"
             >
