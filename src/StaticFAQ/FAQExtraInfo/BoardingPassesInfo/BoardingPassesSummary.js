@@ -13,7 +13,23 @@ type Props = {|
 |};
 
 const BoardingPassesSummary = ({ data, mmbUrl }: Props) => {
-  if (data === null) return <BoardingPassesLoader />;
+  if (data === null) {
+    return (
+      <React.Fragment>
+        <hr className="separationLine" />
+        <BoardingPassesLoader />
+        <style jsx>
+          {`
+            hr.separationLine {
+              height: 1px;
+              background-color: #e8edf1;
+              border: none;
+            }
+          `}
+        </style>
+      </React.Fragment>
+    );
+  }
   const { boardingPasses } = data;
   return (
     boardingPasses &&

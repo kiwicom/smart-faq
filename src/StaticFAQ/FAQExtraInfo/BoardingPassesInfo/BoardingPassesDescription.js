@@ -22,6 +22,7 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
 
   return (
     <React.Fragment>
+      <hr className="separationLine" />
       <div className="boardingPassesRow">
         <p className="leg">
           {departureCity}
@@ -43,7 +44,6 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
           )}
         </div>
       </div>
-      <hr className="separationLine" />
       <style jsx>
         {`
           div.boardingPassesRow {
@@ -89,8 +89,9 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
             display: inline-block;
           }
           hr.separationLine {
-            border: solid 1px #e8edf1;
-            width: 100%;
+            height: 1px;
+            background-color: #e8edf1;
+            border: none;
           }
         `}
       </style>

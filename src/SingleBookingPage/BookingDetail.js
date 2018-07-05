@@ -225,7 +225,7 @@ class BookingDetail extends React.Component<Props> {
                 }}
               >
                 <Baggages customColor="#00a991" />
-                <p className="iconLabel">Bagagge</p>
+                <p className="iconLabel">Baggage</p>
               </button>
               <button
                 className={`extraInfoRadioButton ${
