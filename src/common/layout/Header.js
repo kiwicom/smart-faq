@@ -5,8 +5,8 @@ import * as React from 'react';
 import idx from 'idx';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
-import MediaQuery from 'react-responsive';
 
+import { Desktop, Mobile } from '../Responsive';
 import FullFAQLink from '../FullFAQLink';
 import CloseButton from '../buttons/CloseButton';
 import BackButton from '../buttons/BackButton';
@@ -135,12 +135,8 @@ const renderLoggedIn = (
             <div className="helpHeader">
               {bookingPage === 'ALL_BOOKINGS' ? (
                 <React.Fragment>
-                  <MediaQuery query="screen and (max-width: 1180px)">
-                    Your Trips
-                  </MediaQuery>
-                  <MediaQuery query="screen and (min-width: 1181px)">
-                    Help
-                  </MediaQuery>
+                  <Mobile>Your Trips</Mobile>
+                  <Desktop>Help</Desktop>
                 </React.Fragment>
               ) : (
                 'Help'
@@ -159,9 +155,9 @@ const renderLoggedIn = (
         <style jsx>{loggedInStyle}</style>
         <style jsx>{responsiveStyleHelperClasses}</style>
       </div>
-      <MediaQuery query="screen and (max-width: 1180px)">
+      <Mobile>
         <MobileBookingHeader />
-      </MediaQuery>
+      </Mobile>
     </React.Fragment>
   );
 };
@@ -208,9 +204,9 @@ const Header = (props: Props) => {
         <BookingState.Consumer>
           {({ bookingPage }) =>
             bookingPage === 'ALL_BOOKINGS' ? (
-              <MediaQuery query="screen and (min-width: 1181px)">
+              <Desktop>
                 <CloseButton height="24" />
-              </MediaQuery>
+              </Desktop>
             ) : (
               <CloseButton height="24" />
             )

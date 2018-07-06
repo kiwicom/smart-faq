@@ -3,9 +3,9 @@
 import idx from 'idx';
 import * as React from 'react';
 import { graphql } from 'react-relay';
-import MediaQuery from 'react-responsive';
 import { Link, withRouter } from 'react-router-dom';
 
+import { Desktop } from '../common/Responsive';
 import {
   ExtraInfoState,
   type ExtraInfoStateType,
@@ -125,7 +125,7 @@ class RawFAQCategoryList extends React.Component<Props> {
     );
     return (
       <React.Fragment>
-        <MediaQuery query="screen and (min-width: 1181px)">
+        <Desktop>
           <UserStatus.LoggedIn>
             <ExtraInfoState.Consumer>
               {({ activeExtraInfoCategory }: ExtraInfoStateType) =>
@@ -142,7 +142,7 @@ class RawFAQCategoryList extends React.Component<Props> {
               }
             </ExtraInfoState.Consumer>
           </UserStatus.LoggedIn>
-        </MediaQuery>
+        </Desktop>
         <div data-cy="faq-categories">
           {categories.map(category => {
             if (category) {
