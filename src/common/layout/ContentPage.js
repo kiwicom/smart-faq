@@ -57,6 +57,12 @@ const styles = css`
       width: 100%;
     }
   }
+  @media only screen and (max-width: 1180px) and (min-width: 900px) {
+    .BookingInfo,
+    .FAQWrapper {
+      width: 50%;
+    }
+  }
 `;
 
 const FAQRoute = ({ history }: Props) => (
