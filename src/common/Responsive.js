@@ -7,7 +7,7 @@ type Props = {|
   children: React.Node,
 |};
 
-const breakPoint = 1180;
+const breakPoint = 900;
 
 export const Desktop = ({ children }: Props) => (
   <MediaQuery query={`screen and (min-width: ${breakPoint + 1}px`}>
