@@ -4,9 +4,9 @@ import idx from 'idx';
 import * as React from 'react';
 import { graphql } from 'react-relay';
 import css from 'styled-jsx/css';
-import MediaQuery from 'react-responsive';
 import { Heading } from '@kiwicom/orbit-components';
 
+import { Desktop } from '../common/Responsive';
 import QueryRenderer from '../relay/QueryRenderer';
 import BookingError from '../SingleBookingPage/BookingError';
 import { Loader, ScrollableContent } from '../common';
@@ -65,11 +65,11 @@ class AllBooking extends React.Component<Props> {
     return (
       <ScrollableContent styles="background-color: #f5f7f9;">
         <div className="allBookings">
-          <MediaQuery query="screen and (min-width: 1181px)">
+          <Desktop>
             <Heading weight="medium" size="medium">
               Bookings
             </Heading>
-          </MediaQuery>
+          </Desktop>
           {future && (
             <div data-cy="upcoming-bookings">
               <BookingCardsList booking={future} title="Upcoming" />
