@@ -30,7 +30,7 @@ describe('BaggageDescription', () => {
 
   it('should show size of the baggage', () => {
     const wrapper = render(baggageDescriptionComponent);
-    expect(wrapper.text()).toContain('40 x 30 x 15');
+    expect(wrapper.text()).toContain('40 x 30 x 15 cm');
   });
 
   it('should show weight of the baggage', () => {
