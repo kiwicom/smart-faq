@@ -132,6 +132,7 @@ class MobileBookingDetail extends React.Component<Props, State> {
 
   render() {
     const { booking } = this.props;
+    const { isPastBooking, databaseId } = booking;
     return (
       <React.Fragment>
         <div
@@ -142,9 +143,11 @@ class MobileBookingDetail extends React.Component<Props, State> {
           tabIndex="0"
         >
           <div style={{ flexGrow: 1 }}>
-            {booking.databaseId && (
+            {databaseId && (
               <div className="TripId">
-                {`Upcoming trip # ${formatBookingId(booking.databaseId)}`}
+                {`${
+                  isPastBooking ? 'Past' : 'Upcoming'
+                } trip # ${formatBookingId(databaseId)}`}
               </div>
             )}
             {this.renderByType(booking)}
@@ -179,6 +182,7 @@ export default createFragmentContainer(
     fragment MobileBookingDetail_booking on BookingInterface {
       type
       databaseId
+      isPastBooking
       directAccessURL
       ... on BookingOneWay {
         ...OneWayTrip_booking

@@ -17,6 +17,7 @@ declare export opaque type MobileBookingDetail_booking$ref: FragmentReference;
 export type MobileBookingDetail_booking = {|
   +type: ?BookingType,
   +databaseId: ?number,
+  +isPastBooking: ?boolean,
   +directAccessURL: ?string,
   +$fragmentRefs: (OneWayTrip_booking$ref & ReturnTrip_booking$ref & MultiCityTrip_booking$ref),
   +$refType: MobileBookingDetail_booking$ref,
@@ -42,6 +43,13 @@ const node/*: ConcreteFragment*/ = {
       "kind": "ScalarField",
       "alias": null,
       "name": "databaseId",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "isPastBooking",
       "args": null,
       "storageKey": null
     },
@@ -87,5 +95,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = 'dd0f6cf02064ed3fe7c6112ccf0b0c62';
+(node/*: any*/).hash = 'c84a3e51d34759dd2c67f6015dd8ad6b';
 module.exports = node;

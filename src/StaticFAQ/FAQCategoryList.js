@@ -14,6 +14,7 @@ import UserStatus from '../helpers/UserStatus';
 import { Loader, ScrollableBox } from '../common';
 import QueryRenderer from '../relay/QueryRenderer';
 import BaggageInfo from './FAQExtraInfo/BaggageInfo';
+import BoardingPassesInfo from './FAQExtraInfo/BoardingPassesInfo';
 import FAQArticle from './FAQArticle';
 import FAQCategory from './FAQCategory';
 import Breadcrumbs from './Breadcrumbs';
@@ -61,7 +62,7 @@ type FAQArticlePerexFragment = {|
 |};
 
 const queryRoot = graphql`
-  query FAQCategoryListRootQuery($section: FAQSection!) {
+  query FAQCategoryListRootQuery($section: FAQSection) {
     allFAQCategories(section: $section) {
       edges {
         node {
@@ -74,7 +75,7 @@ const queryRoot = graphql`
   }
 `;
 const querySubcategory = graphql`
-  query FAQCategoryListSubcategoryQuery($id: ID!, $section: FAQSection!) {
+  query FAQCategoryListSubcategoryQuery($id: ID!, $section: FAQSection) {
     FAQCategory(id: $id, section: $section) {
       id
       title
@@ -119,13 +120,25 @@ class RawFAQCategoryList extends React.Component<Props> {
     const isCategoryBaggage = this.props.history.location.pathname.includes(
       'RkFRQ2F0ZWdvcnk6ODk',
     );
+    const isCategoryBoardingPass = this.props.history.location.pathname.includes(
+      'RkFRQ2F0ZWdvcnk6ODQ',
+    );
     return (
       <React.Fragment>
         <MediaQuery query="screen and (min-width: 1181px)">
           <UserStatus.LoggedIn>
             <ExtraInfoState.Consumer>
-              {({ isBaggageVisible }: ExtraInfoStateType) =>
-                isCategoryBaggage && isBaggageVisible && <BaggageInfo />
+              {({ activeExtraInfoCategory }: ExtraInfoStateType) =>
+                isCategoryBaggage &&
+                activeExtraInfoCategory === 'baggage' && <BaggageInfo />
+              }
+            </ExtraInfoState.Consumer>
+            <ExtraInfoState.Consumer>
+              {({ activeExtraInfoCategory }: ExtraInfoStateType) =>
+                isCategoryBoardingPass &&
+                activeExtraInfoCategory === 'boarding-passes' && (
+                  <BoardingPassesInfo />
+                )
               }
             </ExtraInfoState.Consumer>
           </UserStatus.LoggedIn>
@@ -208,20 +221,31 @@ class RawFAQCategoryList extends React.Component<Props> {
 
     if (categoryId) {
       return (
-        <QueryRenderer
-          query={querySubcategory}
-          render={this.renderSubcategory}
-          variables={{ id: categoryId, section }}
-        />
+        <ExtraInfoState.Consumer>
+          {({ activeExtraInfoCategory }: ExtraInfoStateType) => (
+            <QueryRenderer
+              query={querySubcategory}
+              render={this.renderSubcategory}
+              variables={{
+                id: categoryId,
+                section: activeExtraInfoCategory ? null : section,
+              }}
+            />
+          )}
+        </ExtraInfoState.Consumer>
       );
     }
 
     return (
-      <QueryRenderer
-        query={queryRoot}
-        render={this.renderRootCategory}
-        variables={{ section }}
-      />
+      <ExtraInfoState.Consumer>
+        {({ activeExtraInfoCategory }: ExtraInfoStateType) => (
+          <QueryRenderer
+            query={queryRoot}
+            render={this.renderRootCategory}
+            variables={{ section: activeExtraInfoCategory ? null : section }}
+          />
+        )}
+      </ExtraInfoState.Consumer>
     );
   }
 }

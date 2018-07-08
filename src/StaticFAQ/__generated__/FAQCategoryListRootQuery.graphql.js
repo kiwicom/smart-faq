@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b9cd38141aa2e56117d1615577261149
+ * @relayHash 11d140b2da08939a51ed567964aa5d04
  */
 
 /* eslint-disable */
@@ -12,7 +12,7 @@ import type { ConcreteRequest } from 'relay-runtime';
 type FAQCategory_category$ref = any;
 export type FAQSection = ('BEFORE_BOOKING' | 'PAST_BOOKING' | 'UPCOMING_BOOKING' | 'URGENT_BOOKING' | '%future added value');
 export type FAQCategoryListRootQueryVariables = {|
-  section: FAQSection,
+  section?: ?FAQSection,
 |};
 export type FAQCategoryListRootQueryResponse = {|
   +allFAQCategories: ?{|
@@ -30,7 +30,7 @@ export type FAQCategoryListRootQueryResponse = {|
 
 /*
 query FAQCategoryListRootQuery(
-  $section: FAQSection!
+  $section: FAQSection
 ) {
   allFAQCategories(section: $section) {
     edges {
@@ -55,7 +55,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "section",
-    "type": "FAQSection!",
+    "type": "FAQSection",
     "defaultValue": null
   }
 ],
@@ -86,7 +86,7 @@ return {
   "operationKind": "query",
   "name": "FAQCategoryListRootQuery",
   "id": null,
-  "text": "query FAQCategoryListRootQuery(\n  $section: FAQSection!\n) {\n  allFAQCategories(section: $section) {\n    edges {\n      node {\n        id\n        title\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n",
+  "text": "query FAQCategoryListRootQuery(\n  $section: FAQSection\n) {\n  allFAQCategories(section: $section) {\n    edges {\n      node {\n        id\n        title\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -188,5 +188,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = 'bb11a304ab4fd141759538bc09936e92';
+(node/*: any*/).hash = 'cfa6813e3c6e4a1128cae4d4d757cd29';
 module.exports = node;

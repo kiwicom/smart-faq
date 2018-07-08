@@ -5,25 +5,25 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { graphql } from 'react-relay';
 import { Text } from '@kiwicom/orbit-components';
-import { Baggages } from '@kiwicom/orbit-components/lib/icons';
+import { Ticket } from '@kiwicom/orbit-components/lib/icons';
 
 import {
   BookingState,
   type BookingStateType,
 } from '../../../context/BookingState';
-import BaggageSummary from './BaggageSummary';
+import BoardingPassesSummary from './BoardingPassesSummary';
 import QueryRenderer from '../../../relay/QueryRenderer';
-import type { BaggageInfoQuery } from './__generated__/BaggageInfoSelectedQuery.graphql';
-import type { BaggageInfoNearestQuery } from './__generated__/BaggageInfoNearestQuery.graphql';
+import type { BoardingPassesInfoQuery } from './__generated__/BoardingPassesInfoSelectedQuery.graphql';
+import type { BoardingPassesInfoNearestQuery } from './__generated__/BoardingPassesInfoNearestQuery.graphql';
 
 type Props = {||};
 
 type QueryProps = {|
-  props: BaggageInfoQuery | BaggageInfoNearestQuery,
+  props: BoardingPassesInfoQuery | BoardingPassesInfoNearestQuery,
 |};
 
 const styles = css`
-  div.baggageCard {
+  div.boardingPassesCard {
     margin-top: 22px;
     width: 100%;
     border-radius: 3px;
@@ -38,8 +38,7 @@ const styles = css`
     display: inline-block;
     font-size: 22px;
     font-weight: 500;
-    line-height: 1.7;
-    vertical-align: bottom;
+    line-height: 1.2;
     color: #171b1e;
   }
   div.subtitle {
@@ -48,48 +47,50 @@ const styles = css`
   }
 `;
 
-const selectedInfoBaggage = graphql`
-  query BaggageInfoSelectedQuery($id: ID!) {
+const selectedInfoBoardingPasses = graphql`
+  query BoardingPassesInfoSelectedQuery($id: ID!) {
     booking(id: $id) {
-      directAccessURL
-      allowedBaggage {
-        ...BaggageSummary
+      assets {
+        ...BoardingPassesSummary
       }
+      directAccessURL
     }
   }
 `;
 
-const nearestInfoBaggage = graphql`
-  query BaggageInfoNearestQuery {
+const nearestInfoBoardingPasses = graphql`
+  query BoardingPassesInfoNearestQuery {
     nearestBooking {
-      directAccessURL
-      allowedBaggage {
-        ...BaggageSummary
+      assets {
+        ...BoardingPassesSummary
       }
+      directAccessURL
     }
   }
 `;
 
-class BaggageInfo extends React.Component<Props> {
-  renderBaggageCard = (queryProps: QueryProps) => {
-    const baggage =
-      idx(queryProps.props, _ => _.booking.allowedBaggage) ||
-      idx(queryProps.props, _ => _.nearestBooking.allowedBaggage);
-
+class BoardingPassesInfo extends React.Component<Props> {
+  renderBoardingPassesCard = (queryProps: QueryProps) => {
+    const boardingPasses =
+      idx(queryProps.props, _ => _.booking.assets) ||
+      idx(queryProps.props, _ => _.nearestBooking.assets);
     const directAccessURL =
       idx(queryProps.props, _ => _.booking.directAccessURL) ||
       idx(queryProps.props, _ => _.nearestBooking.directAccessURL);
 
     return (
-      <div className="baggageCard">
+      <div className="boardingPassesCard">
         <div className="iconTitle">
-          <Baggages customColor="black" />
+          <Ticket customColor="black" />
         </div>
-        <h1 className="title">Your baggage</h1>
+        <h1 className="title">Your boarding passes</h1>
         <div className="subtitle">
-          <Text type="attention">Here you can see your baggage allowance.</Text>
+          <Text type="attention">
+            Here, you can download your boarding passes or see when they will
+            become available
+          </Text>
         </div>
-        <BaggageSummary data={baggage} mmbUrl={directAccessURL} />
+        <BoardingPassesSummary data={boardingPasses} mmbUrl={directAccessURL} />
         <style jsx>{styles}</style>
       </div>
     );
@@ -101,14 +102,14 @@ class BaggageInfo extends React.Component<Props> {
         {({ selectedBooking }: BookingStateType) => {
           return selectedBooking === null ? (
             <QueryRenderer
-              query={nearestInfoBaggage}
-              render={this.renderBaggageCard}
+              query={nearestInfoBoardingPasses}
+              render={this.renderBoardingPassesCard}
               cacheConfig={{ force: true }}
             />
           ) : (
             <QueryRenderer
-              query={selectedInfoBaggage}
-              render={this.renderBaggageCard}
+              query={selectedInfoBoardingPasses}
+              render={this.renderBoardingPassesCard}
               cacheConfig={{ force: true }}
               variables={{ id: selectedBooking }}
             />
@@ -119,4 +120,4 @@ class BaggageInfo extends React.Component<Props> {
   }
 }
 
-export default BaggageInfo;
+export default BoardingPassesInfo;

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7ddf5a436e641abc162aff593d64b3f6
+ * @relayHash 5de23134ecb9b7211f660a817dd77a14
  */
 
 /* eslint-disable */
@@ -31,6 +31,7 @@ query MobileNearestBookingQuery {
 fragment MobileBookingDetail_booking on BookingInterface {
   type
   databaseId
+  isPastBooking
   directAccessURL
   ... on BookingOneWay {
     ...OneWayTrip_booking
@@ -167,7 +168,7 @@ return {
   "operationKind": "query",
   "name": "MobileNearestBookingQuery",
   "id": null,
-  "text": "query MobileNearestBookingQuery {\n  nearestBooking {\n    __typename\n    ...MobileBookingDetail_booking\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTrip_booking\n  }\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment MultiCityTrip_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
+  "text": "query MobileNearestBookingQuery {\n  nearestBooking {\n    __typename\n    ...MobileBookingDetail_booking\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  isPastBooking\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTrip_booking\n  }\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment MultiCityTrip_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -226,6 +227,13 @@ return {
             "kind": "ScalarField",
             "alias": null,
             "name": "databaseId",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "isPastBooking",
             "args": null,
             "storageKey": null
           },
