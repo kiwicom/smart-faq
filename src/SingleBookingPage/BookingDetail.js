@@ -6,7 +6,7 @@ import css from 'styled-jsx/css';
 import { DateTime } from 'luxon';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { withRouter } from 'react-router-dom';
-import { Baggages, Ticket } from '@kiwicom/orbit-components/lib/icons';
+import { Ticket } from '@kiwicom/orbit-components/lib/icons';
 
 import OneWay from './bookingTypes/OneWay';
 import Return from './bookingTypes/Return';
@@ -190,13 +190,14 @@ class BookingDetail extends React.Component<Props> {
           timeDelta && (
             <Notification hoursLeft={timeDelta} isUrgent={isUrgent} />
           )}
-        <FAQExtraInfoButton
+        {/* F.I.X.M.E Baggage is buggy */}
+        {/* <FAQExtraInfoButton
           category="baggage"
           categoryId="RkFRQ2F0ZWdvcnk6ODk="
         >
           <Baggages customColor="#00a991" />
           <p className="iconLabel">Baggage</p>
-        </FAQExtraInfoButton>
+        </FAQExtraInfoButton> */}
         <FAQExtraInfoButton
           category="boarding-passes"
           categoryId="RkFRQ2F0ZWdvcnk6ODQ="
