@@ -20,17 +20,11 @@ import bookingTypes from '../common/booking/bookingTypes';
 import { URGENCY_THRESHOLD } from '../helpers/dateUtils';
 import replaceWithCurrentDomain from '../helpers/replaceWithCurrentDomain';
 import type { NearestBooking_booking } from './__generated__/NearestBookingQuery.graphql';
-import {
-  ExtraInfoState,
-  type ExtraInfoStateType,
-} from '../context/ExtraInfoState';
+import FAQExtraInfoButton from '../StaticFAQ/FAQExtraInfo/FAQExtraInfoButton';
 import { BookingState } from '../context/BookingState';
 
 type ComponentProps = {
   booking: NearestBooking_booking,
-  history: {
-    push: string => void,
-  },
 };
 
 type ContextProps = {
@@ -64,19 +58,6 @@ const styles = css`
     line-height: 1.43;
     color: #00a991;
     margin-left: 8px;
-  }
-  button.extraInfoRadioButton {
-    padding: 0 12px;
-    height: 44px;
-    border-radius: 3px;
-    background-color: #f5f7f9;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 24px;
-  }
-  button.active {
-    background-color: #e8edf1;
   }
   .eTicket {
     font-size: 14px;
@@ -209,39 +190,20 @@ class BookingDetail extends React.Component<Props> {
           timeDelta && (
             <Notification hoursLeft={timeDelta} isUrgent={isUrgent} />
           )}
-        <ExtraInfoState.Consumer>
-          {({
-            activeExtraInfoCategory,
-            toggleExtraInfoCategory,
-          }: ExtraInfoStateType) => (
-            <React.Fragment>
-              <button
-                className={`extraInfoRadioButton ${
-                  activeExtraInfoCategory === 'baggage' ? 'active' : ''
-                }`}
-                onClick={() => {
-                  toggleExtraInfoCategory('baggage');
-                  this.props.history.push('/faq/RkFRQ2F0ZWdvcnk6ODk=');
-                }}
-              >
-                <Baggages customColor="#00a991" />
-                <p className="iconLabel">Baggage</p>
-              </button>
-              <button
-                className={`extraInfoRadioButton ${
-                  activeExtraInfoCategory === 'boarding-passes' ? 'active' : ''
-                }`}
-                onClick={() => {
-                  this.props.history.push('/faq/RkFRQ2F0ZWdvcnk6ODQ=');
-                  toggleExtraInfoCategory('boarding-passes');
-                }}
-              >
-                <Ticket customColor="#00a991" />
-                <p className="iconLabel">Boarding passes</p>
-              </button>
-            </React.Fragment>
-          )}
-        </ExtraInfoState.Consumer>
+        <FAQExtraInfoButton
+          category="baggage"
+          categoryId="RkFRQ2F0ZWdvcnk6ODk="
+        >
+          <Baggages customColor="#00a991" />
+          <p className="iconLabel">Baggage</p>
+        </FAQExtraInfoButton>
+        <FAQExtraInfoButton
+          category="boarding-passes"
+          categoryId="RkFRQ2F0ZWdvcnk6ODQ="
+        >
+          <Ticket customColor="#00a991" />
+          <p className="iconLabel">Boarding passes</p>
+        </FAQExtraInfoButton>
         {this.renderByType(booking)}
         <div className="buttons" data-cy="btn-manage-booking">
           <a
