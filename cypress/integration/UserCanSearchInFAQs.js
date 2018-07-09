@@ -23,7 +23,6 @@ describe('User can search in FAQs', () => {
 
     cy
       .get('[data-cy=faq-article-link]')
-      .first()
       .find('h1')
       .contains('How to adjust your flight (date, destination, etc)');
 
