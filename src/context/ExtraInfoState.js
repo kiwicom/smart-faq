@@ -6,7 +6,7 @@ const initialState = {
   activeExtraInfoCategory: null,
 };
 
-export type ExtraInfoCategory = 'baggage' | 'boarding-passes';
+export type ExtraInfoCategory = 'baggage' | 'boarding-passes' | '';
 
 type Props = {
   children: React.Node,
@@ -17,12 +17,12 @@ export type State = {
 };
 
 export type ExtraInfoStateType = State & {
-  toggleExtraInfoCategory: (category: ExtraInfoCategory) => void,
+  setExtraInfoCategory: (category: ExtraInfoCategory) => void,
 };
 
 export const ExtraInfoState = React.createContext({
   ...initialState,
-  toggleExtraInfoCategory: () => {}, // eslint-disable-line no-unused-vars
+  setExtraInfoCategory: () => {}, // eslint-disable-line no-unused-vars
 });
 
 class ExtraInfoStateProvider extends React.Component<
@@ -34,15 +34,14 @@ class ExtraInfoStateProvider extends React.Component<
 
     this.state = {
       ...initialState,
-      toggleExtraInfoCategory: this.toggleExtraInfoCategory, // eslint-disable-line react/no-unused-state
+      setExtraInfoCategory: this.setExtraInfoCategory, // eslint-disable-line react/no-unused-state
     };
   }
 
-  toggleExtraInfoCategory = (category: ExtraInfoCategory) => {
-    this.setState(prevState => ({
-      activeExtraInfoCategory:
-        prevState.activeExtraInfoCategory === category ? null : category,
-    }));
+  setExtraInfoCategory = (category: ExtraInfoCategory) => {
+    this.setState({
+      activeExtraInfoCategory: category,
+    });
   };
 
   render() {
@@ -52,7 +51,7 @@ class ExtraInfoStateProvider extends React.Component<
       <ExtraInfoState.Provider
         value={{
           activeExtraInfoCategory,
-          toggleExtraInfoCategory: this.toggleExtraInfoCategory,
+          setExtraInfoCategory: this.setExtraInfoCategory,
         }}
       >
         {this.props.children}

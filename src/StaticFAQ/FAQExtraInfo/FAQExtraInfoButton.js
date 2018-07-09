@@ -16,6 +16,11 @@ type Props = {|
   categoryId: string,
   history: {
     push: string => void,
+    location: {
+      pathname: {
+        includes: string => boolean,
+      },
+    },
   },
 |};
 
@@ -40,32 +45,45 @@ const FAQExtraInfoButton = ({
   categoryId,
   children,
   history,
-}: Props) => (
-  <React.Fragment>
-    <ExtraInfoState.Consumer>
-      {({
-        activeExtraInfoCategory,
-        toggleExtraInfoCategory,
-      }: ExtraInfoStateType) => (
-        <button
-          className={`extraInfoRadioButton ${
-            activeExtraInfoCategory === category ? 'active' : ''
-          }`}
-          onClick={() => {
-            toggleExtraInfoCategory(category);
-            if (activeExtraInfoCategory) {
-              history.push('');
-            } else {
-              history.push(`/faq/${categoryId}`);
-            }
-          }}
-        >
-          {children}
-        </button>
-      )}
-    </ExtraInfoState.Consumer>
-    <style jsx>{styles}</style>
-  </React.Fragment>
-);
+}: Props) => {
+  return (
+    <React.Fragment>
+      <ExtraInfoState.Consumer>
+        {({
+          activeExtraInfoCategory,
+          setExtraInfoCategory,
+        }: ExtraInfoStateType) => {
+          const isActive =
+            activeExtraInfoCategory === category &&
+            history.location.pathname.includes(`/faq/${categoryId}`);
+          const activate = () => {
+            setExtraInfoCategory(category);
+            history.push(`/faq/${categoryId}`);
+          };
+          const desactivate = () => {
+            setExtraInfoCategory('');
+            history.push('/');
+          };
+
+          return (
+            <button
+              className={`extraInfoRadioButton ${isActive ? 'active' : ''}`}
+              onClick={() => {
+                if (isActive) {
+                  desactivate();
+                } else {
+                  activate();
+                }
+              }}
+            >
+              {children}
+            </button>
+          );
+        }}
+      </ExtraInfoState.Consumer>
+      <style jsx>{styles}</style>
+    </React.Fragment>
+  );
+};
 
 export default withRouter(FAQExtraInfoButton);
