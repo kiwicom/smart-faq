@@ -31,7 +31,7 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
         </p>
         <div className="info">
           {boardingPassUrl ? (
-            <a href={boardingPassUrl} className="download">
+            <a href={boardingPassUrl} target="_blank" className="download">
               <Download size="medium" customColor="#00a991" />
               Download
             </a>

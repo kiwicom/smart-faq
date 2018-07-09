@@ -38,7 +38,8 @@ const styles = css`
     display: inline-block;
     font-size: 22px;
     font-weight: 500;
-    line-height: 1.2;
+    line-height: 1.8;
+    vertical-align: bottom;
     color: #171b1e;
   }
   div.subtitle {
@@ -87,7 +88,7 @@ class BoardingPassesInfo extends React.Component<Props> {
         <div className="subtitle">
           <Text type="attention">
             Here, you can download your boarding passes or see when they will
-            become available
+            become available.
           </Text>
         </div>
         <BoardingPassesSummary data={boardingPasses} mmbUrl={directAccessURL} />
