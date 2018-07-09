@@ -17,7 +17,7 @@ class SelectUrlBooking extends React.Component<Props, State> {
   static getDerivedStateFromProps(prevProps: Props, prevState: State) {
     const { selectedBooking } = prevState;
     const urlMatch = window.location.href.match(
-      /.*[kiwi.com|localhost:\d*]\/.*\/account\/bookings\/(\d*)\?.*$/,
+      /.*(?:kiwi.com|localhost:\d*)\/.*\/(?:account\/bookings|manage)\/(\d*)\?.*$/,
     );
     const bookingId = urlMatch && urlMatch[1];
     if (bookingId && bookingId !== selectedBooking) {
