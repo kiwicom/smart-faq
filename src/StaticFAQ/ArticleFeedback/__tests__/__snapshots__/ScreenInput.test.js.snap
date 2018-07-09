@@ -8,11 +8,11 @@ exports[`ScreenInput should match snapshot 1`] = `
   padding="40px 24px 24px 24px"
 >
   <form
-    className="jsx-2839840948"
+    className="jsx-892344281"
     onSubmit={[Function]}
   >
     <div
-      className="jsx-2839840948 close-icon"
+      className="jsx-892344281 close-icon"
       onClick={[Function]}
       onKeyUp={null}
       role="button"
@@ -31,7 +31,7 @@ exports[`ScreenInput should match snapshot 1`] = `
       Your feedback helps us improve.
     </Heading>
     <div
-      className="jsx-2839840948 question"
+      className="jsx-892344281 question"
     >
       <Text
         align="left"
@@ -46,22 +46,22 @@ exports[`ScreenInput should match snapshot 1`] = `
       </Text>
     </div>
     <div
-      className="jsx-2839840948 inputArea invalid"
+      className="jsx-892344281 inputArea invalid"
     >
       <textarea
-        className="jsx-2839840948"
+        className="jsx-892344281"
         data-gramm_editor="false"
         onChange={[Function]}
         value=""
       />
       <p
-        className="jsx-2839840948"
+        className="jsx-892344281"
       >
         You haven't written any feedback.
       </p>
     </div>
     <div
-      className="jsx-2839840948 button"
+      className="jsx-892344281 button"
     >
       <Button
         block={false}
@@ -78,8 +78,8 @@ exports[`ScreenInput should match snapshot 1`] = `
     </div>
   </form>
   <JSXStyle
-    css="div.question.jsx-2839840948{margin-bottom:4px;margin-top:8px;}div.inputArea.invalid.jsx-2839840948 textarea.jsx-2839840948{border-color:#d21c1c;}div.inputArea.jsx-2839840948 p.jsx-2839840948{font-family:'Roboto';font-size:12px;font-weight:400;color:#d21c1c;}div.inputArea.jsx-2839840948 textarea.jsx-2839840948{width:100%;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;resize:none;}div.button.jsx-2839840948{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;margin-top:19px;}div.close-icon.jsx-2839840948{position:absolute;top:8px;right:8px;cursor:pointer;}div.inputArea.jsx-2839840948 textarea.jsx-2839840948{padding:12px 16px;font-size:14px;}@media only screen and (max-width:1181px){div.inputArea.jsx-2839840948 textarea.jsx-2839840948{width:100%;}}"
-    styleId="2839840948"
+    css="div.question.jsx-892344281{margin-bottom:4px;margin-top:8px;}div.inputArea.invalid.jsx-892344281 textarea.jsx-892344281{border-color:#d21c1c;}div.inputArea.jsx-892344281 p.jsx-892344281{font-family:'Roboto';font-size:12px;font-weight:400;color:#d21c1c;}div.inputArea.jsx-892344281 textarea.jsx-892344281{width:100%;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;resize:none;}div.button.jsx-892344281{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;margin-top:19px;}div.close-icon.jsx-892344281{position:absolute;top:8px;right:8px;cursor:pointer;}div.inputArea.jsx-892344281 textarea.jsx-892344281{padding:12px 16px;font-size:14px;}@media only screen and (max-width:901px){div.inputArea.jsx-892344281 textarea.jsx-892344281{width:100%;}}"
+    styleId="892344281"
   />
 </Box>
 `;
@@ -92,11 +92,11 @@ exports[`ScreenInput should try to submit empty form 1`] = `
   padding="40px 24px 24px 24px"
 >
   <form
-    className="jsx-2839840948"
+    className="jsx-892344281"
     onSubmit={[Function]}
   >
     <div
-      className="jsx-2839840948 close-icon"
+      className="jsx-892344281 close-icon"
       onClick={[Function]}
       onKeyUp={null}
       role="button"
@@ -115,7 +115,7 @@ exports[`ScreenInput should try to submit empty form 1`] = `
       Your feedback helps us improve.
     </Heading>
     <div
-      className="jsx-2839840948 question"
+      className="jsx-892344281 question"
     >
       <Text
         align="left"
@@ -130,22 +130,22 @@ exports[`ScreenInput should try to submit empty form 1`] = `
       </Text>
     </div>
     <div
-      className="jsx-2839840948 inputArea invalid"
+      className="jsx-892344281 inputArea invalid"
     >
       <textarea
-        className="jsx-2839840948"
+        className="jsx-892344281"
         data-gramm_editor="false"
         onChange={[Function]}
         value=""
       />
       <p
-        className="jsx-2839840948"
+        className="jsx-892344281"
       >
         You haven't written any feedback.
       </p>
     </div>
     <div
-      className="jsx-2839840948 button"
+      className="jsx-892344281 button"
     >
       <Button
         block={false}
@@ -162,8 +162,8 @@ exports[`ScreenInput should try to submit empty form 1`] = `
     </div>
   </form>
   <JSXStyle
-    css="div.question.jsx-2839840948{margin-bottom:4px;margin-top:8px;}div.inputArea.invalid.jsx-2839840948 textarea.jsx-2839840948{border-color:#d21c1c;}div.inputArea.jsx-2839840948 p.jsx-2839840948{font-family:'Roboto';font-size:12px;font-weight:400;color:#d21c1c;}div.inputArea.jsx-2839840948 textarea.jsx-2839840948{width:100%;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;resize:none;}div.button.jsx-2839840948{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;margin-top:19px;}div.close-icon.jsx-2839840948{position:absolute;top:8px;right:8px;cursor:pointer;}div.inputArea.jsx-2839840948 textarea.jsx-2839840948{padding:12px 16px;font-size:14px;}@media only screen and (max-width:1181px){div.inputArea.jsx-2839840948 textarea.jsx-2839840948{width:100%;}}"
-    styleId="2839840948"
+    css="div.question.jsx-892344281{margin-bottom:4px;margin-top:8px;}div.inputArea.invalid.jsx-892344281 textarea.jsx-892344281{border-color:#d21c1c;}div.inputArea.jsx-892344281 p.jsx-892344281{font-family:'Roboto';font-size:12px;font-weight:400;color:#d21c1c;}div.inputArea.jsx-892344281 textarea.jsx-892344281{width:100%;height:72px;border-radius:3px;background-color:#ffffff;border:solid 1px #bac7d5;resize:none;}div.button.jsx-892344281{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;margin-top:19px;}div.close-icon.jsx-892344281{position:absolute;top:8px;right:8px;cursor:pointer;}div.inputArea.jsx-892344281 textarea.jsx-892344281{padding:12px 16px;font-size:14px;}@media only screen and (max-width:901px){div.inputArea.jsx-892344281 textarea.jsx-892344281{width:100%;}}"
+    styleId="892344281"
   />
 </Box>
 `;

@@ -24,7 +24,7 @@ const styles = css`
     overflow-x: hidden;
     max-height: 305px;
   }
-  @media only screen and (max-width: 1180px) {
+  @media only screen and (max-width: 900px) {
     .allBookings {
       display: grid;
       place-items: center center;

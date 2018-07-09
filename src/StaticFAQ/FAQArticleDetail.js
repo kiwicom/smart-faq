@@ -71,7 +71,7 @@ const style = css`
     margin: 24px 36px;
     margin-bottom: -2px;
   }
-  @media only screen and (max-width: 1181px) {
+  @media only screen and (max-width: 901px) {
     .breadcrumbs {
       margin: 24px 0;
     }

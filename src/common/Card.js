@@ -19,7 +19,7 @@ const styles = css`
       0px 6px 6px rgba(0, 0, 0, 0.09);
   }
 
-  @media only screen and (max-width: 1180px) {
+  @media only screen and (max-width: 900px) {
     .card {
       padding: 14px 22px;
       position: relative;
