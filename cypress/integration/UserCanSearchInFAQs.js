@@ -25,7 +25,7 @@ describe('User can search in FAQs', () => {
       .get('[data-cy=faq-article-link]')
       .first()
       .find('h1')
-      .contains('Flight information');
+      .contains('Price Alerts can save you time and money');
 
     cy.get('[data-cy=btn-reset-input]').click();
     cy.get('@input-staticFAQ').should('have.value', '');

@@ -16,7 +16,6 @@ const legStyle = css`
   div.leg {
     border-left: 2px dotted #adb9c5;
     padding: 0px 18px;
-    height: 150px;
     position: relative;
     margin-top: 5px;
   }
