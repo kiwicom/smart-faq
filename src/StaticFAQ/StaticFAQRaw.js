@@ -23,7 +23,7 @@ const style = css`
     flex-direction: column;
   }
 
-  @media only screen and (max-width: 1180px) {
+  @media only screen and (max-width: 900px) {
     .static-faq-body {
       padding: 0;
     }
