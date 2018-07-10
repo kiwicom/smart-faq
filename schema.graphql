@@ -1,5 +1,5 @@
-# source: https://graphql.kiwi.com
-# timestamp: Wed Jul 04 2018 19:52:05 GMT+0200 (Central European Summer Time)
+# source: https://graphql.kiwi.com/
+# timestamp: Tue Jul 10 2018 17:16:12 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
@@ -18,6 +18,14 @@ type Address {
   street: String
   city: String
   zip: String
+}
+
+"""AirHelp+ offer as a booking ancillary"""
+type AirHelpPlusOffer {
+  isPossible: Boolean
+
+  """Price per passenger"""
+  pricePerPerson: Price
 }
 
 type Airline {
@@ -1709,6 +1717,11 @@ interface Node {
   id: ID!
 }
 
+type NoMoreEditsTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+}
+
 """Information about pagination in a connection."""
 type PageInfo {
   """When paginating forwards, are there more items?"""
@@ -2006,6 +2019,9 @@ type RootQuery {
     """The ID of an object"""
     id: ID!
   ): Node
+
+  """AirHelp+ offer that can be purchased with booking"""
+  airHelpPlusOffer(bookingId: String!): AirHelpPlusOffer
 }
 
 type RouteStop {
