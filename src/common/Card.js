@@ -29,6 +29,9 @@ const styles = css`
       box-shadow: none;
       border-top: 2px solid #e8edf1;
     }
+    .card:hover {
+      box-shadow: none;
+    }
   }
 `;
 
