@@ -8,6 +8,11 @@ import { graphql, createFragmentContainer } from 'react-relay';
 import { withRouter } from 'react-router-dom';
 import { Ticket } from '@kiwicom/orbit-components/lib/icons';
 
+import {
+  isUrgentBooking,
+  updateFAQSection,
+  getDepartureTimeByType,
+} from '../common/booking/utils';
 import OneWay from './bookingTypes/OneWay';
 import Return from './bookingTypes/Return';
 import MulticityOverlay from './bookingTypes/MulticityOverlay';
@@ -23,15 +28,16 @@ import type { NearestBooking_booking } from './__generated__/NearestBookingQuery
 import FAQExtraInfoButton from '../StaticFAQ/FAQExtraInfo/FAQExtraInfoButton';
 import { BookingState } from '../context/BookingState';
 
-type ComponentProps = {
-  booking: NearestBooking_booking,
-};
-
 type ContextProps = {
   onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
 };
 
-type Props = ComponentProps & ContextProps;
+type ComponentProps = {
+  +booking: NearestBooking_booking,
+  onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
+};
+
+type Props = ComponentProps;
 
 const styles = css`
   .buttons {
@@ -78,31 +84,12 @@ const goToMMB = () =>
 
 class BookingDetail extends React.Component<Props> {
   componentDidMount() {
-    this.updateFAQSection();
+    updateFAQSection(this.props);
   }
 
   componentDidUpdate() {
-    this.updateFAQSection();
+    updateFAQSection(this.props);
   }
-
-  updateFAQSection = () => {
-    const { booking } = this.props;
-
-    const departureTime = this.getDepartureByType(booking);
-    const isUrgent = this.isUrgentBooking(booking.isPastBooking, departureTime);
-
-    this.props.onSetFAQSection(isUrgent, booking.isPastBooking);
-  };
-
-  isUrgentBooking = (isPastBooking: boolean, departureTime: ?Date) => {
-    const timeDelta = departureTime
-      ? DateTime.fromJSDate(departureTime, { zone: 'utc' }).diffNow('hours')
-          .hours
-      : null;
-    const isUrgent = timeDelta !== null && URGENCY_THRESHOLD > timeDelta;
-
-    return isPastBooking === false && isUrgent;
-  };
 
   renderByType = (booking: NearestBooking_booking) => {
     if (booking.type === bookingTypes.ONE_WAY) {
@@ -118,24 +105,6 @@ class BookingDetail extends React.Component<Props> {
     }
 
     return null;
-  };
-
-  getDepartureByType = (booking: NearestBooking_booking) => {
-    let date = null;
-
-    if (booking.type === bookingTypes.ONE_WAY) {
-      date = idx(booking, _ => _.trip.departure.time);
-    }
-
-    if (booking.type === bookingTypes.RETURN) {
-      date = idx(booking, _ => _.outbound.departure.time);
-    }
-
-    if (booking.type === bookingTypes.MULTICITY) {
-      date = idx(booking, _ => _.start.time);
-    }
-
-    return date ? new Date(date) : null;
   };
 
   getArrivalByType = (booking: NearestBooking_booking) => {
@@ -172,12 +141,12 @@ class BookingDetail extends React.Component<Props> {
   render() {
     const { booking } = this.props;
     const eTicketLink = idx(booking, _ => _.assets.ticketUrl);
-    const departureTime = this.getDepartureByType(booking);
+    const departureTime = getDepartureTimeByType(booking);
     const arrivalTime = this.getArrivalByType(booking);
     const departureInfo = this.decideIfIsFutureAndUrgent(departureTime);
     const arrivalInfo = this.decideIfIsFutureAndUrgent(arrivalTime);
     const { timeDelta, isFuture } = departureInfo;
-    const isUrgent = this.isUrgentBooking(booking.isPastBooking, departureTime);
+    const isUrgent = isUrgentBooking(booking.isPastBooking, departureTime);
 
     return (
       <ScrollableContent

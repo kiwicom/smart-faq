@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5de23134ecb9b7211f660a817dd77a14
+ * @relayHash 61e37cfdc945f7a676ed303a76c8444d
  */
 
 /* eslint-disable */
@@ -35,12 +35,25 @@ fragment MobileBookingDetail_booking on BookingInterface {
   directAccessURL
   ... on BookingOneWay {
     ...OneWayTrip_booking
+    trip {
+      departure {
+        time
+      }
+    }
   }
   ... on BookingReturn {
     ...ReturnTrip_booking
+    outbound {
+      departure {
+        time
+      }
+    }
   }
   ... on BookingMulticity {
     ...MultiCityTrip_booking
+    start {
+      time
+    }
   }
 }
 
@@ -118,39 +131,59 @@ var v0 = {
   "args": null,
   "storageKey": null
 },
-v1 = [
+v1 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "airport",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "Location",
+  "plural": false,
+  "selections": [
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "city",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "LocationArea",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "name",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    v0
+  ]
+},
+v2 = [
+  v1
+],
+v3 = [
   {
     "kind": "LinkedField",
     "alias": null,
-    "name": "airport",
+    "name": "departure",
     "storageKey": null,
     "args": null,
-    "concreteType": "Location",
+    "concreteType": "RouteStop",
     "plural": false,
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "city",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "LocationArea",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "name",
-            "args": null,
-            "storageKey": null
-          }
-        ]
-      },
-      v0
-    ]
+    "selections": v2
   }
 ],
-v2 = {
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "time",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "departure",
@@ -158,17 +191,17 @@ v2 = {
   "args": null,
   "concreteType": "RouteStop",
   "plural": false,
-  "selections": v1
-},
-v3 = [
-  v2
-];
+  "selections": [
+    v1,
+    v4
+  ]
+};
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "MobileNearestBookingQuery",
   "id": null,
-  "text": "query MobileNearestBookingQuery {\n  nearestBooking {\n    __typename\n    ...MobileBookingDetail_booking\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  isPastBooking\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTrip_booking\n  }\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment MultiCityTrip_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
+  "text": "query MobileNearestBookingQuery {\n  nearestBooking {\n    __typename\n    ...MobileBookingDetail_booking\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  isPastBooking\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MultiCityTrip_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment MultiCityTrip_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -267,7 +300,19 @@ return {
                 "args": null,
                 "concreteType": "RouteStop",
                 "plural": false,
-                "selections": v1
+                "selections": v2
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "start",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "RouteStop",
+                "plural": false,
+                "selections": [
+                  v4
+                ]
               }
             ]
           },
@@ -283,7 +328,9 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v3
+                "selections": [
+                  v5
+                ]
               },
               {
                 "kind": "LinkedField",
@@ -310,7 +357,7 @@ return {
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": [
-                  v2,
+                  v5,
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -319,7 +366,7 @@ return {
                     "args": null,
                     "concreteType": "RouteStop",
                     "plural": false,
-                    "selections": v1
+                    "selections": v2
                   }
                 ]
               }

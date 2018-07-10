@@ -6,6 +6,7 @@ import { ChevronDown, ChevronUp } from '@kiwicom/orbit-components/lib/icons';
 import { Button, TextLink } from '@kiwicom/orbit-components';
 import css from 'styled-jsx/css';
 
+import { updateFAQSection } from '../common/booking/utils';
 import bookingTypes from '../common/booking/bookingTypes';
 import { BookingState, type BookingStateType } from '../context/BookingState';
 import type { MobileBookingDetail_booking } from './__generated__/MobileBookingDetail_booking.graphql';
@@ -15,9 +16,20 @@ import MultiCityTrip from './MultiCityTrip';
 import formatBookingId from '../helpers/formatBookingId';
 import replaceWithCurrentDomain from '../helpers/replaceWithCurrentDomain';
 
-type Props = {|
+type ContextProps = {
+  onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
+};
+
+type ComponentProps = {
   +booking: MobileBookingDetail_booking,
+  onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
+};
+
+type MobileBookingControlsProps = {|
+  +manageBookingURL: ?string,
 |};
+
+type Props = ComponentProps;
 
 const MobileBookingControlsStyle = css`
   .manageBookingButton {
@@ -38,10 +50,6 @@ const MobileBookingControlsStyle = css`
     margin-bottom: 8px;
   }
 `;
-
-type MobileBookingControlsProps = {|
-  +manageBookingURL: ?string,
-|};
 
 const MobileBookingControls = (props: MobileBookingControlsProps) => (
   <React.Fragment>
@@ -110,6 +118,14 @@ class MobileBookingDetail extends React.Component<Props, State> {
     expanded: false,
   };
 
+  componentDidMount() {
+    updateFAQSection(this.props);
+  }
+
+  componentDidUpdate() {
+    updateFAQSection(this.props);
+  }
+
   renderByType = booking => {
     if (booking.type === bookingTypes.ONE_WAY) {
       return <OneWayTrip booking={booking} />;
@@ -176,8 +192,16 @@ class MobileBookingDetail extends React.Component<Props, State> {
   }
 }
 
+const MobileBookingDetailWithFAQHandler = (props: ComponentProps) => (
+  <BookingState.Consumer>
+    {({ onSetFAQSection }: ContextProps) => (
+      <MobileBookingDetail {...props} onSetFAQSection={onSetFAQSection} />
+    )}
+  </BookingState.Consumer>
+);
+
 export default createFragmentContainer(
-  MobileBookingDetail,
+  MobileBookingDetailWithFAQHandler,
   graphql`
     fragment MobileBookingDetail_booking on BookingInterface {
       type
@@ -186,12 +210,25 @@ export default createFragmentContainer(
       directAccessURL
       ... on BookingOneWay {
         ...OneWayTrip_booking
+        trip {
+          departure {
+            time
+          }
+        }
       }
       ... on BookingReturn {
         ...ReturnTrip_booking
+        outbound {
+          departure {
+            time
+          }
+        }
       }
       ... on BookingMulticity {
         ...MultiCityTrip_booking
+        start {
+          time
+        }
       }
     }
   `,
