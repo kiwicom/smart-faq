@@ -9,6 +9,7 @@ import {
   AccountCircle,
   Close,
 } from '@kiwicom/orbit-components/lib/icons';
+import { withRouter } from 'react-router-dom';
 
 import { SearchState, type SearchStateType } from '../context/SearchState';
 import { BookingState } from '../context/BookingState';
@@ -85,13 +86,26 @@ const MobileBookingHeaderStyle = css`
   }
 `;
 
+type Props = {|
+  history: {
+    goBack: () => void,
+    push: string => void,
+    location: {
+      pathname: string,
+    },
+    entries: Array<{
+      pathname: string,
+    }>,
+  },
+|};
+
 type State = {
   isSearchActive: boolean,
   isSummaryActive: boolean,
   isAccountActive: boolean,
 };
 
-class MobileBookingHeader extends React.Component<{}, State> {
+class MobileBookingHeader extends React.Component<Props, State> {
   state: State = {
     isSearchActive: false,
     isSummaryActive: false,
@@ -147,6 +161,15 @@ class MobileBookingHeader extends React.Component<{}, State> {
     }
   };
 
+  goBack() {
+    const { entries } = this.props.history;
+    const firstEntry = entries[0];
+    const faqCategory = firstEntry.pathname.split('article')[0];
+    return firstEntry.pathname === location.pathname
+      ? this.props.history.push(faqCategory)
+      : this.props.history.goBack();
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -158,10 +181,10 @@ class MobileBookingHeader extends React.Component<{}, State> {
               <div className="MobileBookingHeader">
                 <div
                   className="option"
-                  onClick={() => null}
-                  onKeyDown={() => null}
+                  onClick={() => this.goBack()}
+                  onKeyUp={() => this.goBack()}
                   role="button"
-                  tabIndex="0"
+                  tabIndex="-1"
                 >
                   <BackButtonMobile />
                 </div>
@@ -236,4 +259,4 @@ class MobileBookingHeader extends React.Component<{}, State> {
   }
 }
 
-export default MobileBookingHeader;
+export default withRouter(MobileBookingHeader);

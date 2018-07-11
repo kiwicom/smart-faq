@@ -39,27 +39,13 @@ const BackButtonMobileStyle = css`
 `;
 
 const BackButtonMobile = (props: Props) => {
-  const { location, entries } = props.history;
+  const { location } = props.history;
   const hasCategory = idx(props.match, _ => _.params.categoryId) || null;
   const currentpath = location && location.pathname;
   const isArticle = currentpath.includes('article/');
-  const goBack = () => {
-    const firstEntry = entries[0];
-    const faqCategory = firstEntry.pathname.split('article')[0];
-    return firstEntry.pathname === location.pathname
-      ? props.history.push(faqCategory)
-      : props.history.goBack();
-  };
 
   return (
-    <div
-      data-cy="back-button"
-      className="back"
-      onClick={goBack}
-      onKeyUp={goBack}
-      role="button"
-      tabIndex="-1"
-    >
+    <div data-cy="back-button" className="back">
       {hasCategory || isArticle ? (
         <ChevronLeft size="medium" customColor="#45505d" />
       ) : null}
