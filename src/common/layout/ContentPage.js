@@ -3,8 +3,8 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Switch, Route } from 'react-router-dom';
-import MediaQuery from 'react-responsive';
 
+import { Desktop } from '../Responsive';
 import Header from './Header';
 import StaticFAQ from '../../StaticFAQ';
 import FAQArticleDetail from '../../StaticFAQ/FAQArticleDetail';
@@ -57,6 +57,12 @@ const styles = css`
       width: 100%;
     }
   }
+  @media only screen and (max-width: 1180px) and (min-width: 900px) {
+    .BookingInfo,
+    .FAQWrapper {
+      width: 50%;
+    }
+  }
 `;
 
 const FAQRoute = ({ history }: Props) => (
@@ -84,7 +90,7 @@ class ContentPage extends React.Component<Props> {
                 />
               </div>
             ) : (
-              <MediaQuery query="screen and (min-width: 1181px)">
+              <Desktop>
                 {isLoggedIn && (
                   <div className="BookingInfo">
                     <BookingPage
@@ -93,15 +99,15 @@ class ContentPage extends React.Component<Props> {
                     />
                   </div>
                 )}
-              </MediaQuery>
+              </Desktop>
             )}
             <div className="FAQWrapper">
               <ScrollableContent>
                 <div className="FAQ">
                   {bookingPage === 'ALL_BOOKINGS' ? (
-                    <MediaQuery query="screen and (min-width: 1181px)">
+                    <Desktop>
                       <FAQRoute history={this.props.history} />
-                    </MediaQuery>
+                    </Desktop>
                   ) : (
                     <FAQRoute history={this.props.history} />
                   )}

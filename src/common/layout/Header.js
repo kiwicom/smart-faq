@@ -5,8 +5,8 @@ import * as React from 'react';
 import idx from 'idx';
 import css from 'styled-jsx/css';
 import { Typography } from '@kiwicom/orbit-components';
-import MediaQuery from 'react-responsive';
 
+import { Desktop, Mobile } from '../Responsive';
 import FullFAQLink from '../FullFAQLink';
 import CloseButton from '../buttons/CloseButton';
 import BackButton from '../buttons/BackButton';
@@ -66,7 +66,7 @@ const loggedInStyle = css`
   a.open-icon {
     margin-left: 12px;
   }
-  @media only screen and (max-width: 1180px) {
+  @media only screen and (max-width: 900px) {
     .loggedIn {
       padding: 15px;
     }
@@ -101,7 +101,7 @@ const loggedOutStyle = css`
   .backButton {
     line-height: 2;
   }
-  @media only screen and (max-width: 1181px) {
+  @media only screen and (max-width: 901px) {
     .helpHeader {
       position: absolute;
       left: 0;
@@ -137,12 +137,8 @@ const renderLoggedIn = () => {
             <div className="helpHeader">
               {bookingPage === 'ALL_BOOKINGS' ? (
                 <React.Fragment>
-                  <MediaQuery query="screen and (max-width: 1180px)">
-                    Your Trips
-                  </MediaQuery>
-                  <MediaQuery query="screen and (min-width: 1181px)">
-                    Help
-                  </MediaQuery>
+                  <Mobile>Your Trips</Mobile>
+                  <Desktop>Help</Desktop>
                 </React.Fragment>
               ) : (
                 'Help'
@@ -161,9 +157,9 @@ const renderLoggedIn = () => {
         <style jsx>{loggedInStyle}</style>
         <style jsx>{responsiveStyleHelperClasses}</style>
       </div>
-      <MediaQuery query="screen and (max-width: 1180px)">
+      <Mobile>
         <MobileBookingHeader />
-      </MediaQuery>
+      </Mobile>
     </React.Fragment>
   );
 };
@@ -232,14 +228,22 @@ class Header extends React.Component<Props, State> {
     return (
       <div className={this.state.isScrolling ? 'header hide' : 'header'}>
         <div className="HeaderFAQ">
-          <MediaQuery query="screen and (min-width: 1181px)">
-            <CloseButton height="24" />
-          </MediaQuery>
+          <BookingState.Consumer>
+            {({ bookingPage }) =>
+              bookingPage === 'ALL_BOOKINGS' ? (
+                <Desktop>
+                  <CloseButton height="24" />
+                </Desktop>
+              ) : (
+                <CloseButton height="24" />
+              )
+            }
+          </BookingState.Consumer>
           {this.props.isLoggedIn
             ? renderLoggedIn()
             : renderLoggedOut(hasCategory, isArticle, comesFromSearch)}
+          <style jsx>{style}</style>
         </div>
-        <style jsx>{style}</style>
       </div>
     );
   }

@@ -26,7 +26,7 @@ const styles = css`
     margin-top: 5px;
   }
 
-  @media only screen and (max-width: 1181px) {
+  @media only screen and (max-width: 901px) {
     .faq-item-chevron {
       top: 16px;
     }

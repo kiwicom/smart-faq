@@ -14,6 +14,7 @@ const style = css`
   .ForgottenPassword {
     width: 480px;
     padding-top: 128px;
+    margin: auto;
   }
   div.picture img {
     width: 203px;

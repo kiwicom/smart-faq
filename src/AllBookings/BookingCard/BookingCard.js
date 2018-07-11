@@ -16,7 +16,7 @@ import type { BookingCard_booking } from './__generated__/BookingCard_booking.gr
 
 const styles = css`
   .card {
-    width: 468px;
+    width: 100%;
     height: 128px;
     position: relative;
     border-radius: 3px;
@@ -62,7 +62,7 @@ const styles = css`
     margin-right: 8px;
     vertical-align: top;
   }
-  @media only screen and (max-width: 1180px) {
+  @media only screen and (max-width: 900px) {
     .card {
       width: 304px;
       height: 100%;

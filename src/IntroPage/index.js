@@ -19,6 +19,7 @@ const style = css`
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
+    margin: auto;
   }
   div.picture {
     margin-left: 150px;

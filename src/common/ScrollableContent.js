@@ -19,7 +19,7 @@ const ScrollableContent = (props: Props) => (
           overflow-x: hidden;
           ${props.styles ? props.styles : ''};
         }
-        @media only screen and (max-width: 1180px) {
+        @media only screen and (max-width: 900px) {
           .scrollable-content {
             width: 100%;
           }
