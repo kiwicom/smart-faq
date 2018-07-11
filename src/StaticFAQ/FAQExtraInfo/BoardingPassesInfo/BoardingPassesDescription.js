@@ -38,7 +38,11 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
           ) : availableAt ? (
             <p>Available {availableAt}</p>
           ) : (
-            <a href={replaceWithCurrentDomain(mmbUrl)} className="moreInfo">
+            <a
+              href={replaceWithCurrentDomain(mmbUrl)}
+              target="_blank"
+              className="moreInfo"
+            >
               More info
             </a>
           )}
