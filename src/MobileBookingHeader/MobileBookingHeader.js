@@ -229,6 +229,7 @@ class MobileBookingHeader extends React.Component<Props, State> {
                   onKeyDown={() => this.toggleSummary()}
                   role="button"
                   tabIndex="0"
+                  data-cy="trip-button"
                 >
                   <Trip size="medium" customColor="#45505d" />
                 </div>

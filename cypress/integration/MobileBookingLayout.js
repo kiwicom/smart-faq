@@ -15,6 +15,9 @@ describe('Mobile Booking Layout', () => {
 
     cy.contains('Manage My Booking').should('not.be.visible');
     cy.contains('Select another booking').should('not.be.visible');
+    cy.get('.TripDescription').should('not.be.visible');
+
+    cy.get('[data-cy=trip-button]').click();
     cy.get('.TripDescription').should('be.visible');
 
     cy.contains(/(Upcoming|Past) trip #[0-9 ]+/).should('be.visible');
@@ -35,7 +38,5 @@ describe('Mobile Booking Layout', () => {
       .find('.bookingCard')
       .eq(3)
       .click();
-
-    cy.get('.TripDescription').should('be.visible');
   });
 });
