@@ -116,13 +116,23 @@ class MobileBookingHeader extends React.Component<Props, State> {
     this.contextToggleSearch();
   }
 
+  contextEnableSearch = () => {};
+  contextDisableSearch = () => {};
   contextToggleSearch = () => {};
 
   toggleSearch = () => {
-    this.contextToggleSearch();
-    this.setState(prevState => ({
-      isSearchActive: !prevState.isSearchActive,
-    }));
+    if (this.isSearchActive()) {
+      this.setState({
+        isSearchActive: false,
+      });
+      this.contextDisableSearch();
+    } else {
+      this.setState({
+        isSearchActive: true,
+      });
+      this.props.history.push('/faq/');
+      this.contextEnableSearch();
+    }
 
     if (this.state.isSummaryActive) {
       this.toggleSummary();
@@ -170,11 +180,20 @@ class MobileBookingHeader extends React.Component<Props, State> {
       : this.props.history.goBack();
   }
 
+  isSearchActive() {
+    return (
+      this.state.isSearchActive &&
+      this.props.history.location.pathname === '/faq/'
+    );
+  }
+
   render() {
     return (
       <React.Fragment>
         <SearchState.Consumer>
-          {({ toggleSearch }: SearchStateType) => {
+          {({ disableSearch, enableSearch, toggleSearch }: SearchStateType) => {
+            this.contextEnableSearch = enableSearch;
+            this.contextDisableSearch = disableSearch;
             this.contextToggleSearch = toggleSearch;
 
             return (
@@ -194,9 +213,7 @@ class MobileBookingHeader extends React.Component<Props, State> {
                   </Text>
                 </div>
                 <div
-                  className={
-                    this.state.isSearchActive ? 'option active' : 'option'
-                  }
+                  className={this.isSearchActive() ? 'option active' : 'option'}
                   onClick={() => this.toggleSearch()}
                   onKeyDown={() => this.toggleSearch()}
                   role="button"

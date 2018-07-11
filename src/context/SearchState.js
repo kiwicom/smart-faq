@@ -25,6 +25,8 @@ export type SearchStateType = State & {
   incrementQueriesCount: () => void,
   resetQueriesCount: () => void,
   toggleSearch: () => void,
+  disableSearch: () => void,
+  enableSearch: () => void,
 };
 
 export const SearchState = React.createContext({
@@ -33,6 +35,8 @@ export const SearchState = React.createContext({
   incrementQueriesCount: () => {}, // eslint-disable-line no-unused-vars
   resetQueriesCount: () => {}, // eslint-disable-line no-unused-vars
   toggleSearch: () => {}, // eslint-disable-line no-unused-vars
+  disableSearch: () => {},
+  enableSearch: () => {},
 });
 
 class SearchStateProvider extends React.Component<Props, State> {
@@ -54,6 +58,14 @@ class SearchStateProvider extends React.Component<Props, State> {
     this.setState(prevState => ({ isVisible: !prevState.isVisible }));
   };
 
+  disableSearch = () => {
+    this.setState({ isVisible: false });
+  };
+
+  enableSearch = () => {
+    this.setState({ isVisible: true });
+  };
+
   render() {
     const { queriesBeforeClick, searchText, isVisible } = this.state;
 
@@ -67,6 +79,8 @@ class SearchStateProvider extends React.Component<Props, State> {
           resetQueriesCount: this.resetQueriesCount,
           queriesBeforeClick,
           toggleSearch: this.toggleSearch,
+          enableSearch: this.enableSearch,
+          disableSearch: this.disableSearch,
         }}
       >
         {this.props.children}

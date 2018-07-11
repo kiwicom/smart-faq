@@ -17,6 +17,8 @@ const resetQueriesCount = jest.fn(() => {
 const changeSearchText = jest.fn();
 const incrementQueriesCount = jest.fn();
 const toggleSearch = jest.fn();
+const enableSearch = jest.fn();
+const disableSearch = jest.fn();
 const article = { id: '23', perex: 'aa', title: 'llk', $refType: mockRefType };
 window.infinario = {
   track: jest.fn(),
@@ -34,6 +36,8 @@ describe('TrackedFAQArticle', () => {
             changeSearchText,
             incrementQueriesCount,
             toggleSearch,
+            enableSearch,
+            disableSearch,
           }}
         >
           <TrackedFAQArticle
