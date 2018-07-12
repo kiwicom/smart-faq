@@ -4,6 +4,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { withRouter } from 'react-router-dom';
 
+import { SearchState, type SearchStateType } from '../../context/SearchState';
 import {
   ExtraInfoState,
   type ExtraInfoStateType,
@@ -48,39 +49,44 @@ const FAQExtraInfoButton = ({
 }: Props) => {
   return (
     <React.Fragment>
-      <ExtraInfoState.Consumer>
-        {({
-          activeExtraInfoCategory,
-          setExtraInfoCategory,
-        }: ExtraInfoStateType) => {
-          const isActive =
-            activeExtraInfoCategory === category &&
-            history.location.pathname.includes(`/faq/${categoryId}`);
-          const activate = () => {
-            setExtraInfoCategory(category);
-            history.push(`/faq/${categoryId}`);
-          };
-          const desactivate = () => {
-            setExtraInfoCategory('');
-            history.push('/');
-          };
+      <SearchState.Consumer>
+        {({ changeSearchText }: SearchStateType) => (
+          <ExtraInfoState.Consumer>
+            {({
+              activeExtraInfoCategory,
+              setExtraInfoCategory,
+            }: ExtraInfoStateType) => {
+              const isActive =
+                activeExtraInfoCategory === category &&
+                history.location.pathname.includes(`/faq/${categoryId}`);
+              const activate = () => {
+                setExtraInfoCategory(category);
+                history.push(`/faq/${categoryId}`);
+                changeSearchText('');
+              };
+              const desactivate = () => {
+                setExtraInfoCategory('');
+                history.push('/');
+              };
 
-          return (
-            <button
-              className={`extraInfoRadioButton ${isActive ? 'active' : ''}`}
-              onClick={() => {
-                if (isActive) {
-                  desactivate();
-                } else {
-                  activate();
-                }
-              }}
-            >
-              {children}
-            </button>
-          );
-        }}
-      </ExtraInfoState.Consumer>
+              return (
+                <button
+                  className={`extraInfoRadioButton ${isActive ? 'active' : ''}`}
+                  onClick={() => {
+                    if (isActive) {
+                      desactivate();
+                    } else {
+                      activate();
+                    }
+                  }}
+                >
+                  {children}
+                </button>
+              );
+            }}
+          </ExtraInfoState.Consumer>
+        )}
+      </SearchState.Consumer>
       <style jsx>{styles}</style>
     </React.Fragment>
   );
