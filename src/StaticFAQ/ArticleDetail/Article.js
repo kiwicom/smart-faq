@@ -5,24 +5,20 @@ import idx from 'idx';
 import { graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 
-import QueryRenderer from '../relay/QueryRenderer';
-import Loader from '../common/Loader';
-import FAQArticleDetailContent from './FAQArticleDetailContent';
+import QueryRenderer from '../../relay/QueryRenderer';
+import Loader from '../../common/Loader';
+import FAQArticleDetailContent from './ArticleContent';
 import FAQArticleNotFound from './FAQArticleNotFound';
-import type { FAQArticleDetailQuery } from './__generated__/FAQArticleDetailQuery.graphql';
-import type { FAQArticleDetailSearchResultQuery } from './__generated__/FAQArticleDetailSearchResultQuery.graphql';
-import CustomBreadcrumbs from './CustomBreadcrumbs';
-import { BookingState, type FAQSectionType } from '../context/BookingState';
+import type { ArticleDetailQuery } from './__generated__/ArticleDetailQuery.graphql';
+import type { ArticleDetailSearchResultQuery } from './__generated__/ArticleDetailSearchResultQuery.graphql';
+import CustomBreadcrumbs from '../breadcrumbs/CustomBreadcrumbs';
+import { BookingState, type FAQSectionType } from '../../context/BookingState';
 
 const queryFAQArticleDetail = graphql`
-  query FAQArticleDetailQuery(
-    $id: ID!
-    $category_id: ID!
-    $section: FAQSection!
-  ) {
+  query ArticleDetailQuery($id: ID!, $category_id: ID!, $section: FAQSection!) {
     FAQArticle(id: $id) {
       title
-      ...FAQArticleDetailContent_article
+      ...ArticleContent_article
     }
     FAQCategory(id: $category_id, section: $section) {
       title
@@ -36,16 +32,16 @@ const queryFAQArticleDetail = graphql`
 `;
 
 const queryFAQArticleDetailSearchResult = graphql`
-  query FAQArticleDetailSearchResultQuery($id: ID!) {
+  query ArticleDetailSearchResultQuery($id: ID!) {
     FAQArticle(id: $id) {
       title
-      ...FAQArticleDetailContent_article
+      ...ArticleContent_article
     }
   }
 `;
 
 type FAQArticleDetailParams = {
-  props: ?FAQArticleDetailQuery | ?FAQArticleDetailSearchResultQuery,
+  props: ?ArticleDetailQuery | ?ArticleDetailSearchResultQuery,
   error: ?Error,
 };
 
@@ -175,7 +171,7 @@ class RawFAQArticleDetail extends React.Component<Props> {
   }
 }
 
-const FAQArticleDetail = (props: ComponentProps) => (
+const Article = (props: ComponentProps) => (
   <BookingState.Consumer>
     {({ FAQSection }) => (
       <RawFAQArticleDetail section={FAQSection} {...props} />
@@ -183,4 +179,4 @@ const FAQArticleDetail = (props: ComponentProps) => (
   </BookingState.Consumer>
 );
 
-export default FAQArticleDetail;
+export default Article;

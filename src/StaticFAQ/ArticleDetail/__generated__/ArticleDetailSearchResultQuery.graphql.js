@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 317bf318a02ceea4025f155d4106200e
+ * @relayHash 2df52c7b4cff383545f6b04ecaaadce5
  */
 
 /* eslint-disable */
@@ -9,31 +9,31 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type FAQArticleDetailContent_article$ref = any;
-export type FAQArticleDetailSearchResultQueryVariables = {|
+type ArticleContent_article$ref = any;
+export type ArticleDetailSearchResultQueryVariables = {|
   id: string,
 |};
-export type FAQArticleDetailSearchResultQueryResponse = {|
+export type ArticleDetailSearchResultQueryResponse = {|
   +FAQArticle: ?{|
     +title: ?string,
-    +$fragmentRefs: FAQArticleDetailContent_article$ref,
+    +$fragmentRefs: ArticleContent_article$ref,
   |},
 |};
 */
 
 
 /*
-query FAQArticleDetailSearchResultQuery(
+query ArticleDetailSearchResultQuery(
   $id: ID!
 ) {
   FAQArticle(id: $id) {
     title
-    ...FAQArticleDetailContent_article
+    ...ArticleContent_article
     id
   }
 }
 
-fragment FAQArticleDetailContent_article on FAQArticle {
+fragment ArticleContent_article on FAQArticle {
   id
   title
   perex
@@ -68,13 +68,13 @@ v2 = {
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "FAQArticleDetailSearchResultQuery",
+  "name": "ArticleDetailSearchResultQuery",
   "id": null,
-  "text": "query FAQArticleDetailSearchResultQuery(\n  $id: ID!\n) {\n  FAQArticle(id: $id) {\n    title\n    ...FAQArticleDetailContent_article\n    id\n  }\n}\n\nfragment FAQArticleDetailContent_article on FAQArticle {\n  id\n  title\n  perex\n  content\n}\n",
+  "text": "query ArticleDetailSearchResultQuery(\n  $id: ID!\n) {\n  FAQArticle(id: $id) {\n    title\n    ...ArticleContent_article\n    id\n  }\n}\n\nfragment ArticleContent_article on FAQArticle {\n  id\n  title\n  perex\n  content\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "FAQArticleDetailSearchResultQuery",
+    "name": "ArticleDetailSearchResultQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -91,7 +91,7 @@ return {
           v2,
           {
             "kind": "FragmentSpread",
-            "name": "FAQArticleDetailContent_article",
+            "name": "ArticleContent_article",
             "args": null
           }
         ]
@@ -100,7 +100,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "FAQArticleDetailSearchResultQuery",
+    "name": "ArticleDetailSearchResultQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -140,5 +140,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = 'ce0ab3e092e49671f7d877806de6893a';
+(node/*: any*/).hash = '27fe3526e1f34bbeec766c9c1820093d';
 module.exports = node;

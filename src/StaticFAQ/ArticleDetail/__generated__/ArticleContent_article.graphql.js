@@ -9,20 +9,20 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from 'relay-runtime';
-declare export opaque type FAQArticleDetailContent_article$ref: FragmentReference;
-export type FAQArticleDetailContent_article = {|
+declare export opaque type ArticleContent_article$ref: FragmentReference;
+export type ArticleContent_article = {|
   +id: string,
   +title: ?string,
   +perex: ?string,
   +content: ?string,
-  +$refType: FAQArticleDetailContent_article$ref,
+  +$refType: ArticleContent_article$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "FAQArticleDetailContent_article",
+  "name": "ArticleContent_article",
   "type": "FAQArticle",
   "metadata": null,
   "argumentDefinitions": [],
@@ -57,5 +57,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = 'e7476ce482415a9ef5a8390f3d9d88cc';
+(node/*: any*/).hash = 'c5c3622ca8d9a9b3677fa3d24f7f5eba';
 module.exports = node;
