@@ -66,6 +66,12 @@ const loggedInStyle = css`
   a.open-icon {
     margin-left: 12px;
   }
+  @media only screen and (max-width: 900px) and (max-height: 480px) {
+    .loggedIn,
+    .closeButton {
+      display: none;
+    }
+  }
   @media only screen and (max-width: 900px) {
     .loggedIn {
       padding: 15px;
@@ -232,10 +238,14 @@ class Header extends React.Component<Props, State> {
             {({ bookingPage }) =>
               bookingPage === 'ALL_BOOKINGS' ? (
                 <Desktop>
-                  <CloseButton height="24" />
+                  <div className="closeButton">
+                    <CloseButton height="24" />
+                  </div>
                 </Desktop>
               ) : (
-                <CloseButton height="24" />
+                <div className="closeButton">
+                  <CloseButton height="24" />
+                </div>
               )
             }
           </BookingState.Consumer>

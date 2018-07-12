@@ -104,7 +104,7 @@ const style = css`
       width: 100%;
     }
   }
-  @media only screen and (max-height: 480px) and (orientation: landscape) {
+  @media only screen and (max-height: 480px) {
     .KiwiLogin {
       width: 100%;
       padding-top: 20px;

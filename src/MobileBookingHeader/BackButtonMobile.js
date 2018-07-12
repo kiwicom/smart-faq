@@ -31,7 +31,7 @@ const BackButtonMobileStyle = css`
   .faqTitle {
     display: none;
   }
-  @media screen and (orientation: landscape) {
+  @media screen and (max-height: 480px) {
     .faqTitle {
       display: inline-block;
     }

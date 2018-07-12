@@ -78,7 +78,7 @@ const MobileBookingHeaderStyle = css`
     padding: 8px 16px;
   }
 
-  @media screen and (orientation: landscape) {
+  @media screen and (max-height: 480px) {
     .option:nth-child(2) {
       flex: 7;
       display: flex;
