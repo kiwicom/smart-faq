@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 24cdd929a62ad7cf880649b9a6b9be67
+ * @relayHash e75048f0d1c67a0777da1ef3486e6a94
  */
 
 /* eslint-disable */
@@ -60,12 +60,25 @@ fragment MobileBookingDetail_booking on BookingInterface {
   directAccessURL
   ... on BookingOneWay {
     ...OneWayTrip_booking
+    trip {
+      departure {
+        time
+      }
+    }
   }
   ... on BookingReturn {
     ...ReturnTrip_booking
+    outbound {
+      departure {
+        time
+      }
+    }
   }
   ... on BookingMulticity {
     ...MultiCityTrip_booking
+    start {
+      time
+    }
   }
 }
 
@@ -194,39 +207,44 @@ v7 = {
   "args": null,
   "storageKey": null
 },
-v8 = [
-  {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "airport",
-    "storageKey": null,
-    "args": null,
-    "concreteType": "Location",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "city",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "LocationArea",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "name",
-            "args": null,
-            "storageKey": null
-          }
-        ]
-      },
-      v7
-    ]
-  }
-],
+v8 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "airport",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "Location",
+  "plural": false,
+  "selections": [
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "city",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "LocationArea",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "name",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    v7
+  ]
+},
 v9 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "time",
+  "args": null,
+  "storageKey": null
+},
+v10 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "departure",
@@ -234,9 +252,15 @@ v9 = {
   "args": null,
   "concreteType": "RouteStop",
   "plural": false,
-  "selections": v8
+  "selections": [
+    v8,
+    v9
+  ]
 },
-v10 = {
+v11 = [
+  v8
+],
+v12 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "trip",
@@ -245,7 +269,7 @@ v10 = {
   "concreteType": "Trip",
   "plural": false,
   "selections": [
-    v9,
+    v10,
     {
       "kind": "LinkedField",
       "alias": null,
@@ -254,14 +278,23 @@ v10 = {
       "args": null,
       "concreteType": "RouteStop",
       "plural": false,
-      "selections": v8
+      "selections": v11
     }
   ]
 },
-v11 = [
-  v9
+v13 = [
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "departure",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "RouteStop",
+    "plural": false,
+    "selections": v11
+  }
 ],
-v12 = {
+v14 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "trips",
@@ -269,9 +302,9 @@ v12 = {
   "args": null,
   "concreteType": "Trip",
   "plural": true,
-  "selections": v11
+  "selections": v13
 },
-v13 = {
+v15 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "end",
@@ -279,17 +312,30 @@ v13 = {
   "args": null,
   "concreteType": "RouteStop",
   "plural": false,
-  "selections": v8
+  "selections": v11
 },
-v14 = {
+v16 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "start",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": [
+    v9
+  ]
+},
+v17 = {
   "kind": "InlineFragment",
   "type": "BookingMulticity",
   "selections": [
-    v12,
-    v13
+    v14,
+    v15,
+    v16
   ]
 },
-v15 = {
+v18 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "outbound",
@@ -297,9 +343,11 @@ v15 = {
   "args": null,
   "concreteType": "Trip",
   "plural": false,
-  "selections": v11
+  "selections": [
+    v10
+  ]
 },
-v16 = {
+v19 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "inbound",
@@ -307,21 +355,21 @@ v16 = {
   "args": null,
   "concreteType": "Trip",
   "plural": false,
-  "selections": v11
+  "selections": v13
 },
-v17 = {
+v20 = {
   "kind": "InlineFragment",
   "type": "BookingReturn",
   "selections": [
-    v15,
-    v16
+    v18,
+    v19
   ]
 },
-v18 = {
+v21 = {
   "kind": "InlineFragment",
   "type": "BookingOneWay",
   "selections": [
-    v10
+    v12
   ]
 };
 return {
@@ -329,7 +377,7 @@ return {
   "operationKind": "query",
   "name": "MobileSelectedBookingQuery",
   "id": null,
-  "text": "query MobileSelectedBookingQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    type\n    oneWay {\n      ...MobileBookingDetail_booking\n      id\n    }\n    return {\n      ...MobileBookingDetail_booking\n      id\n    }\n    multicity {\n      ...MobileBookingDetail_booking\n      id\n    }\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  isPastBooking\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTrip_booking\n  }\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment MultiCityTrip_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
+  "text": "query MobileSelectedBookingQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    type\n    oneWay {\n      ...MobileBookingDetail_booking\n      id\n    }\n    return {\n      ...MobileBookingDetail_booking\n      id\n    }\n    multicity {\n      ...MobileBookingDetail_booking\n      id\n    }\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  isPastBooking\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MultiCityTrip_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment MultiCityTrip_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -410,10 +458,10 @@ return {
               v4,
               v5,
               v6,
-              v10,
+              v12,
               v7,
-              v14,
-              v17
+              v17,
+              v20
             ]
           },
           {
@@ -429,11 +477,11 @@ return {
               v4,
               v5,
               v6,
-              v15,
-              v16,
+              v18,
+              v19,
               v7,
-              v14,
-              v18
+              v17,
+              v21
             ]
           },
           {
@@ -449,11 +497,12 @@ return {
               v4,
               v5,
               v6,
-              v12,
-              v13,
+              v14,
+              v15,
+              v16,
               v7,
-              v17,
-              v18
+              v20,
+              v21
             ]
           },
           v7
