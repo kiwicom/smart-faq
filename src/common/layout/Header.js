@@ -67,12 +67,14 @@ const loggedInStyle = css`
     margin-left: 12px;
   }
   @media only screen and (max-width: 900px) and (max-height: 480px) {
-    .loggedIn,
-    .closeButton {
+    .loggedIn {
       display: none;
     }
   }
   @media only screen and (max-width: 900px) {
+    .closeButton {
+      display: none;
+    }
     .loggedIn {
       padding: 15px;
     }
