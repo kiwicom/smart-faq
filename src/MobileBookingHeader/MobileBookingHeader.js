@@ -64,7 +64,7 @@ const MobileBookingHeaderStyle = css`
     border: 1px solid #eaeaea;
     outline: none;
   }
-  .option:nth-child(2) {
+  .option.help {
     display: none;
   }
   .option.active {
@@ -79,7 +79,7 @@ const MobileBookingHeaderStyle = css`
   }
 
   @media screen and (max-height: 480px) {
-    .option:nth-child(2) {
+    .option.help {
       flex: 7;
       display: flex;
     }
@@ -195,19 +195,24 @@ class MobileBookingHeader extends React.Component<Props, State> {
             this.contextEnableSearch = enableSearch;
             this.contextDisableSearch = disableSearch;
             this.contextToggleSearch = toggleSearch;
+            const { location } = this.props.history;
+            const currentpath = location && location.pathname;
+            const isArticle = currentpath.includes('article/');
 
             return (
               <div className="MobileBookingHeader">
-                <div
-                  className="option"
-                  onClick={() => this.goBack()}
-                  onKeyUp={() => this.goBack()}
-                  role="button"
-                  tabIndex="-1"
-                >
-                  <BackButtonMobile />
-                </div>
-                <div className="option">
+                {isArticle ? (
+                  <div
+                    className="option"
+                    onClick={() => this.goBack()}
+                    onKeyUp={() => this.goBack()}
+                    role="button"
+                    tabIndex="-1"
+                  >
+                    <BackButtonMobile />
+                  </div>
+                ) : null}
+                <div className="option help">
                   <Text type="primary" weight="bold">
                     Help
                   </Text>
