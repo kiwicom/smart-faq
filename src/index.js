@@ -112,7 +112,7 @@ class Root extends React.Component<Props, State> {
   render() {
     const { helpQuery } = this.state;
     const language = 'en';
-    const initialRoute = helpQuery ? helpQuery : '/';
+    const route = helpQuery ? helpQuery : '/';
     return (
       <div className="root">
         <div
@@ -133,7 +133,7 @@ class Root extends React.Component<Props, State> {
             language={language}
             locale={enLocale}
             user={this.state.user}
-            initialRoute={initialRoute}
+            route={route}
             loginToken={this.state.loginToken}
           />
         )}

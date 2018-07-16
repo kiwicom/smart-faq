@@ -4,6 +4,7 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { I18nextProvider } from 'react-i18next';
+import 'url-search-params-polyfill';
 
 import initTranslation from './initTranslation';
 import Routes from './Routes';
@@ -46,7 +47,7 @@ type Props = {|
   locale: {},
   user: User,
   loginToken: ?string,
-  initialRoute: string,
+  route: string,
   onClose: () => void,
   onLogin: onLogin,
   onSocialLogin: onSocialLogin,
@@ -125,7 +126,7 @@ class App extends React.PureComponent<Props, State> {
                           wasSelected={this.state.urlBookingWasSelected}
                           setSelected={this.urlBookingSelected}
                         />
-                        <Routes initialRoute={this.props.initialRoute} />
+                        <Routes route={this.props.route} />
                       </ExtraInfoStateProvider>
                     </BookingStateProvider>
                   </SearchStateProvider>

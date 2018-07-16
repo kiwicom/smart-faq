@@ -1,6 +1,6 @@
 // @flow
 
-import { Route, Switch, MemoryRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import * as React from 'react';
 
 import Intro from './IntroPage';
@@ -9,14 +9,15 @@ import KiwiLogin from './KiwiLogin';
 import ForgottenPassword from './ForgottenPassword';
 import { CheckRecoveryLink, CheckMagicLink } from './EmailPage';
 import ContentPage from './common/layout/ContentPage';
+import QueryParamRouter from './helpers/QueryParamRouter';
 
 type Props = {|
-  initialRoute: string,
+  route: string,
 |};
 
 const Routes = (props: Props) => {
   return (
-    <MemoryRouter initialEntries={[props.initialRoute]} initialIndex={0}>
+    <QueryParamRouter route={props.route}>
       <Switch>
         <Route exact path="/" component={Intro} />
         <Route path="/sign-in" component={SignIn} />
@@ -30,7 +31,7 @@ const Routes = (props: Props) => {
           component={ContentPage}
         />
       </Switch>
-    </MemoryRouter>
+    </QueryParamRouter>
   );
 };
 
