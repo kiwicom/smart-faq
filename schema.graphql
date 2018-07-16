@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com/
-# timestamp: Tue Jul 10 2018 17:16:12 GMT+0200 (CEST)
+# timestamp: Thu Jul 12 2018 15:50:40 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
@@ -1535,12 +1535,17 @@ type Leg {
   """The ID of an object"""
   id: ID!
   airline: Airline
+  operatingAirline: OperatingAirline
+  vehicle: Vehicle
   arrival: RouteStop
   departure: RouteStop
 
   """Leg duration in minutes."""
   duration: Int
   flightNumber: Int
+
+  """Reservation number related to the leg."""
+  pnr: String
   recheckRequired: Boolean
 
   """Determines whether Leg is related to return flight."""
@@ -1722,7 +1727,7 @@ type NoMoreEditsTimelineEvent implements TimelineEvent {
   timestamp: DateTime
 }
 
-"""Information about pagination in a connection."""
+s"""Information about pagination in a connection."""
 type PageInfo {
   """When paginating forwards, are there more items?"""
   hasNextPage: Boolean!
@@ -2076,6 +2081,11 @@ type User {
   token: String
   isLoggedIn: Boolean
   identity: Identity
+}
+
+type Vehicle {
+  manufacturer: String
+  model: String
 }
 
 enum VehicleType {
