@@ -26,10 +26,10 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
       </svg>
     </div>
     <div
-      class="jsx-3577095128 jsx-1744862482 loggedIn"
+      class="jsx-3577095128 jsx-2367066345 loggedIn"
     >
       <div
-        class="jsx-3577095128 jsx-1744862482 mobileOnly"
+        class="jsx-3577095128 jsx-2367066345 mobileOnly"
       >
         <div
           class="jsx-1190988628 back"
@@ -61,15 +61,15 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
         </div>
       </div>
       <div
-        class="jsx-3577095128 jsx-1744862482 helpHeader"
+        class="jsx-3577095128 jsx-2367066345 helpHeader"
       >
         Help
       </div>
       <div
-        class="jsx-3577095128 jsx-1744862482 links"
+        class="jsx-3577095128 jsx-2367066345 links"
       >
         <div
-          class="jsx-3577095128 jsx-1744862482 faqLink desktopOnly"
+          class="jsx-3577095128 jsx-2367066345 faqLink desktopOnly"
         >
           <div
             class="jsx-3768482590"
@@ -109,7 +109,7 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
           </div>
         </div>
         <div
-          class="jsx-3577095128 jsx-1744862482 desktopOnly"
+          class="jsx-3577095128 jsx-2367066345 desktopOnly"
         >
           <div
             class="jsx-1683419278 signOut"
@@ -155,13 +155,13 @@ exports[`ContentHeader should render loggedOut user header 1`] = `
       </svg>
     </div>
     <div
-      class="jsx-1744862482 jsx-1560173719 loggedOut"
+      class="jsx-2367066345 jsx-1560173719 loggedOut"
     >
       <div
-        class="jsx-1744862482 jsx-1560173719 signInOrBack"
+        class="jsx-2367066345 jsx-1560173719 signInOrBack"
       >
         <div
-          class="jsx-1744862482 jsx-1560173719 backButton"
+          class="jsx-2367066345 jsx-1560173719 backButton"
         >
           <div
             class="jsx-1190988628 back"
@@ -194,7 +194,7 @@ exports[`ContentHeader should render loggedOut user header 1`] = `
         </div>
       </div>
       <p
-        class="jsx-1744862482 jsx-1560173719 helpHeader"
+        class="jsx-2367066345 jsx-1560173719 helpHeader"
       >
         Help
       </p>
