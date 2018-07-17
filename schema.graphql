@@ -1727,7 +1727,7 @@ type NoMoreEditsTimelineEvent implements TimelineEvent {
   timestamp: DateTime
 }
 
-s"""Information about pagination in a connection."""
+"""Information about pagination in a connection."""
 type PageInfo {
   """When paginating forwards, are there more items?"""
   hasNextPage: Boolean!
