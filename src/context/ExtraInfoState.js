@@ -6,7 +6,7 @@ const initialState = {
   activeExtraInfoCategory: null,
 };
 
-export type ExtraInfoCategory = 'baggage' | 'boarding-passes' | '';
+export type ExtraInfoCategory = 'baggage' | 'boarding-passes';
 
 type Props = {
   children: React.Node,
@@ -17,7 +17,12 @@ export type State = {
 };
 
 export type ExtraInfoStateType = State & {
-  setExtraInfoCategory: (category: ExtraInfoCategory) => void,
+  setExtraInfoCategory: (category: ?ExtraInfoCategory) => void,
+};
+
+export const categories = {
+  BAGGAGE: 'RkFRQ2F0ZWdvcnk6ODk',
+  BOARDING_PASS: 'RkFRQ2F0ZWdvcnk6ODQ',
 };
 
 export const ExtraInfoState = React.createContext({
@@ -38,22 +43,15 @@ class ExtraInfoStateProvider extends React.Component<
     };
   }
 
-  setExtraInfoCategory = (category: ExtraInfoCategory) => {
+  setExtraInfoCategory = (category: ?ExtraInfoCategory) => {
     this.setState({
-      activeExtraInfoCategory: category,
+      activeExtraInfoCategory: category, // eslint-disable-line react/no-unused-state
     });
   };
 
   render() {
-    const { activeExtraInfoCategory } = this.state;
-
     return (
-      <ExtraInfoState.Provider
-        value={{
-          activeExtraInfoCategory,
-          setExtraInfoCategory: this.setExtraInfoCategory,
-        }}
-      >
+      <ExtraInfoState.Provider value={this.state}>
         {this.props.children}
       </ExtraInfoState.Provider>
     );
