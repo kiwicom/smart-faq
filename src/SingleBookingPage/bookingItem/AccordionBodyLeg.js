@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
+import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import idx from 'idx';
 import { Clock, Check, Calendar } from '@kiwicom/orbit-components/lib/icons';
@@ -84,9 +85,14 @@ const AccordionBodyLeg = (props: LegProps) => {
         </div>
         <div className="guarantee">
           <Check customColor="#01bba5" height="23" />
-          <span className="text">
-            Transfer protected by the <b>Kiwi.com Guarantee</b>
-          </span>
+          <Link
+            to="/faq/search/article/RkFRQXJ0aWNsZToxNDY="
+            style={{ textDecoration: 'none' }}
+          >
+            <span className="text">
+              Transfer protected by the <b>Kiwi.com Guarantee</b>
+            </span>
+          </Link>
         </div>
         <LegTypeIcon leg={leg} />
       </div>
