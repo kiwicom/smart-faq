@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7ede17a8077f63cec95d1acf8db57a5e
+ * @relayHash cf85d5f4f0d9e7711179f47b3ec14e2a
  */
 
 /* eslint-disable */
@@ -9,17 +9,17 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type FAQArticleDetailContent_article$ref = any;
+type ArticleContent_article$ref = any;
 export type FAQSection = ('BEFORE_BOOKING' | 'PAST_BOOKING' | 'UPCOMING_BOOKING' | 'URGENT_BOOKING' | '%future added value');
-export type FAQArticleDetailQueryVariables = {|
+export type ArticleDetailQueryVariables = {|
   id: string,
   category_id: string,
   section: FAQSection,
 |};
-export type FAQArticleDetailQueryResponse = {|
+export type ArticleDetailQueryResponse = {|
   +FAQArticle: ?{|
     +title: ?string,
-    +$fragmentRefs: FAQArticleDetailContent_article$ref,
+    +$fragmentRefs: ArticleContent_article$ref,
   |},
   +FAQCategory: ?{|
     +title: ?string,
@@ -34,14 +34,14 @@ export type FAQArticleDetailQueryResponse = {|
 
 
 /*
-query FAQArticleDetailQuery(
+query ArticleDetailQuery(
   $id: ID!
   $category_id: ID!
   $section: FAQSection!
 ) {
   FAQArticle(id: $id) {
     title
-    ...FAQArticleDetailContent_article
+    ...ArticleContent_article
     id
   }
   FAQCategory(id: $category_id, section: $section) {
@@ -54,7 +54,7 @@ query FAQArticleDetailQuery(
   }
 }
 
-fragment FAQArticleDetailContent_article on FAQArticle {
+fragment ArticleContent_article on FAQArticle {
   id
   title
   perex
@@ -147,13 +147,13 @@ v4 = {
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "FAQArticleDetailQuery",
+  "name": "ArticleDetailQuery",
   "id": null,
-  "text": "query FAQArticleDetailQuery(\n  $id: ID!\n  $category_id: ID!\n  $section: FAQSection!\n) {\n  FAQArticle(id: $id) {\n    title\n    ...FAQArticleDetailContent_article\n    id\n  }\n  FAQCategory(id: $category_id, section: $section) {\n    title\n    id\n    ancestors {\n      id\n      title\n    }\n  }\n}\n\nfragment FAQArticleDetailContent_article on FAQArticle {\n  id\n  title\n  perex\n  content\n}\n",
+  "text": "query ArticleDetailQuery(\n  $id: ID!\n  $category_id: ID!\n  $section: FAQSection!\n) {\n  FAQArticle(id: $id) {\n    title\n    ...ArticleContent_article\n    id\n  }\n  FAQCategory(id: $category_id, section: $section) {\n    title\n    id\n    ancestors {\n      id\n      title\n    }\n  }\n}\n\nfragment ArticleContent_article on FAQArticle {\n  id\n  title\n  perex\n  content\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "FAQArticleDetailQuery",
+    "name": "ArticleDetailQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -170,7 +170,7 @@ return {
           v2,
           {
             "kind": "FragmentSpread",
-            "name": "FAQArticleDetailContent_article",
+            "name": "ArticleContent_article",
             "args": null
           }
         ]
@@ -180,7 +180,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "FAQArticleDetailQuery",
+    "name": "ArticleDetailQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -215,5 +215,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '8f6e31868e2c6a4c2030aff3d1eb2b57';
+(node/*: any*/).hash = 'f4320ee608acf164cae8fd611c87dba8';
 module.exports = node;

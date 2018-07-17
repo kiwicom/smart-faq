@@ -6,14 +6,14 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 import idx from 'idx';
 
-import { UserContext, type UserContextType } from '../context/User';
-import Markdown from '../common/Markdown';
-import FAQArticleFeedback from './ArticleFeedback/FAQArticleFeedback';
-import { EnterTracker, TimeTracker } from '../helpers/analytics/trackers';
-import type { FAQArticleDetailContent_article } from './__generated__/FAQArticleDetailContent_article.graphql';
+import { UserContext, type UserContextType } from '../../context/User';
+import Markdown from '../../common/Markdown';
+import FAQArticleFeedback from '../ArticleFeedback/FAQArticleFeedback';
+import { EnterTracker, TimeTracker } from '../../helpers/analytics/trackers';
+import type { ArticleContent_article } from './__generated__/ArticleContent_article.graphql';
 
 type Props = {
-  article: FAQArticleDetailContent_article,
+  article: ArticleContent_article,
 };
 const globalStyle = css`
   .faq-article-text ul {
@@ -58,7 +58,7 @@ const globalStyle = css`
     line-height: 22px;
   }
 `;
-class Detail extends React.Component<Props> {
+class ArticleContent extends React.Component<Props> {
   renderArticle = isLoggedIn => {
     const { article } = this.props;
     return (
@@ -117,7 +117,7 @@ class Detail extends React.Component<Props> {
 }
 
 const EnterTrackedDetail = EnterTracker(
-  Detail,
+  ArticleContent,
   'smartFAQCategories',
   (props: Props) => ({
     action: 'clickOnArticle',
@@ -137,7 +137,7 @@ const TimeTrackedDetail = TimeTracker(
 export default createFragmentContainer(
   TimeTrackedDetail,
   graphql`
-    fragment FAQArticleDetailContent_article on FAQArticle {
+    fragment ArticleContent_article on FAQArticle {
       id
       title
       perex
