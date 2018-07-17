@@ -4,7 +4,11 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import idx from 'idx';
 import { CarrierLogo } from '@kiwicom/orbit-components';
-import { InformationCircle } from '@kiwicom/orbit-components/lib/icons';
+import {
+  InformationCircle,
+  Ticket,
+  Airplane,
+} from '@kiwicom/orbit-components/lib/icons';
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import type { AccordionLegCitiesInfo_leg } from './__generated__/AccordionLegCitiesInfo_leg.graphql';
@@ -31,22 +35,60 @@ type Props = {|
 
 const LegCitiesInfo = (props: Props) => {
   const { leg } = props;
-  const carrier = {
+  const flightNumber = leg.flightNumber || '';
+  const reservationNumber = leg.pnr || '';
+  const iconProps = { size: 'small', color: 'secondary' };
+
+  const airline = {
     code: idx(leg.airline, _ => _.code) || '',
     name: idx(leg.airline, _ => _.name) || '',
   };
-  const flightNumber = leg.flightNumber || '';
+
+  const operatingAirline = {
+    code: idx(leg.operatingAirline, _ => _.iata) || '',
+    name: idx(leg.operatingAirline, _ => _.name) || '',
+  };
+
+  const vehicle = {
+    manufacturer: idx(leg.vehicle, _ => _.manufacturer) || '',
+    model: idx(leg.vehicle, _ => _.model) || '',
+  };
+
+  const hasOperatingAirline = () =>
+    operatingAirline.code && operatingAirline.code !== airline.code;
 
   return (
     <div className="legCitiesInfo">
       <div className="infoRow">
-        <CarrierLogo className="logo" size="small" carriers={[carrier]} />
-        <p>Airline: {carrier.name}</p>
+        <CarrierLogo className="logo" size="small" carriers={[airline]} />
+        <p>Airline: {airline.name}</p>
       </div>
+      {hasOperatingAirline() && (
+        <div className="infoRow">
+          <CarrierLogo
+            className="logo"
+            size="small"
+            carriers={[operatingAirline]}
+          />
+          <p>Operating airline: {operatingAirline.name}</p>
+        </div>
+      )}
       <div className="infoRow">
-        <InformationCircle size="small" color="secondary" />
-        <p>Flight no: {`${carrier.code} ${flightNumber}`}</p>
+        <InformationCircle {...iconProps} />
+        <p>Flight no: {`${airline.code} ${flightNumber}`}</p>
       </div>
+      {reservationNumber && (
+        <div className="infoRow">
+          <Ticket {...iconProps} />
+          <p>PNR: {reservationNumber}</p>
+        </div>
+      )}
+      {vehicle.manufacturer && (
+        <div className="infoRow">
+          <Airplane {...iconProps} />
+          <p>{`${vehicle.manufacturer} ${vehicle.model}`}</p>
+        </div>
+      )}
       <style jsx>{citiesInfoStyle}</style>
     </div>
   );
@@ -60,7 +102,16 @@ export default createFragmentContainer(
         code
         name
       }
+      operatingAirline {
+        iata
+        name
+      }
       flightNumber
+      vehicle {
+        manufacturer
+        model
+      }
+      pnr
     }
   `,
 );
