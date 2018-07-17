@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 
-import WithRouter from '../../common/__tests__/helpers/ComponentWithRouter.ignore';
+import WithRouter from '../../../common/__tests__/helpers/ComponentWithRouter.ignore';
 import CustomBreadcrumbs from '../CustomBreadcrumbs';
 
 describe('CustomBreadcrumbs', () => {

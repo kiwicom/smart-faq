@@ -17,7 +17,7 @@ import BaggageInfo from './FAQExtraInfo/BaggageInfo';
 import BoardingPassesInfo from './FAQExtraInfo/BoardingPassesInfo';
 import FAQArticle from './FAQArticle';
 import FAQCategory from './FAQCategory';
-import Breadcrumbs from './Breadcrumbs';
+import Breadcrumbs from './breadcrumbs/Breadcrumbs';
 import StaticFAQError from './StaticFAQError';
 import { simpleTracker } from '../helpers/analytics/trackers';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';

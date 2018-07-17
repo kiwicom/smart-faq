@@ -6,8 +6,8 @@ import MediaQuery from 'react-responsive';
 
 import Breadcrumb from './Breadcrumb';
 import BackArrow from './BackArrow';
-import { withLoginToken } from '../context/User';
-import responsiveStyleHelperClasses from '../common/responsiveStyleHelperClasses';
+import { withLoginToken } from '../../context/User';
+import responsiveStyleHelperClasses from '../../common/responsiveStyleHelperClasses';
 
 const style = css`
   .breadcrumbs {

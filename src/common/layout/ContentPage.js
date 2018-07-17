@@ -7,7 +7,7 @@ import { Switch, Route } from 'react-router-dom';
 import { Desktop } from '../Responsive';
 import Header from './Header';
 import StaticFAQ from '../../StaticFAQ';
-import FAQArticleDetail from '../../StaticFAQ/FAQArticleDetail';
+import Article from '../../StaticFAQ/ArticleDetail/Article';
 import { ScrollableContent } from '../../common';
 import { UserContext, type UserContextType } from '../../context/User';
 import { BookingState } from '../../context/BookingState';
@@ -68,10 +68,7 @@ const styles = css`
 const FAQRoute = ({ history }: Props) => (
   <Switch location={history.location}>
     <Route exact path="/faq/:categoryId?" component={StaticFAQ} />
-    <Route
-      path="/faq/:categoryId/article/:articleId"
-      component={FAQArticleDetail}
-    />
+    <Route path="/faq/:categoryId/article/:articleId" component={Article} />
   </Switch>
 );
 
