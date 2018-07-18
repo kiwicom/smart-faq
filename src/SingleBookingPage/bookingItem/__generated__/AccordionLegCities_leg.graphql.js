@@ -9,11 +9,9 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 type AccordionLegCitiesInfo_leg$ref = any;
-export type VehicleType = ('AIRCRAFT' | 'BUS' | 'TRAIN' | '%future added value');
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type AccordionLegCities_leg$ref: FragmentReference;
 export type AccordionLegCities_leg = {|
-  +type: ?VehicleType,
   +duration: ?number,
   +airline: ?{|
     +code: ?string,
@@ -23,7 +21,6 @@ export type AccordionLegCities_leg = {|
     +localTime: ?any,
     +airport: ?{|
       +locationId: ?string,
-      +name: ?string,
       +city: ?{|
         +name: ?string,
       |},
@@ -33,7 +30,6 @@ export type AccordionLegCities_leg = {|
     +localTime: ?any,
     +airport: ?{|
       +locationId: ?string,
-      +name: ?string,
       +city: ?{|
         +name: ?string,
       |},
@@ -77,7 +73,6 @@ v1 = [
         "args": null,
         "storageKey": null
       },
-      v0,
       {
         "kind": "LinkedField",
         "alias": null,
@@ -104,13 +99,6 @@ return {
       "kind": "FragmentSpread",
       "name": "AccordionLegCitiesInfo_leg",
       "args": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "type",
-      "args": null,
-      "storageKey": null
     },
     {
       "kind": "ScalarField",
@@ -161,5 +149,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '7c221ea7011d8c696fe80a661228341b';
+(node/*: any*/).hash = 'cf13377cce0064c7d92e2ca4c3ccdc71';
 module.exports = node;

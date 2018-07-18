@@ -8,9 +8,11 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+export type VehicleType = ('AIRCRAFT' | 'BUS' | 'TRAIN' | '%future added value');
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type AccordionLegCitiesInfo_leg$ref: FragmentReference;
 export type AccordionLegCitiesInfo_leg = {|
+  +type: ?VehicleType,
   +airline: ?{|
     +code: ?string,
     +name: ?string,
@@ -25,6 +27,16 @@ export type AccordionLegCitiesInfo_leg = {|
     +model: ?string,
   |},
   +pnr: ?string,
+  +departure: ?{|
+    +airport: ?{|
+      +name: ?string,
+    |},
+  |},
+  +arrival: ?{|
+    +airport: ?{|
+      +name: ?string,
+    |},
+  |},
   +$refType: AccordionLegCitiesInfo_leg$ref,
 |};
 */
@@ -37,7 +49,21 @@ var v0 = {
   "name": "name",
   "args": null,
   "storageKey": null
-};
+},
+v1 = [
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "airport",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "Location",
+    "plural": false,
+    "selections": [
+      v0
+    ]
+  }
+];
 return {
   "kind": "Fragment",
   "name": "AccordionLegCitiesInfo_leg",
@@ -45,6 +71,13 @@ return {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "type",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -121,9 +154,29 @@ return {
       "name": "pnr",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "departure",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "RouteStop",
+      "plural": false,
+      "selections": v1
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "arrival",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "RouteStop",
+      "plural": false,
+      "selections": v1
     }
   ]
 };
 })();
-(node/*: any*/).hash = 'de3aa6fb2fb8316e5c4e7d2e72c34aa5';
+(node/*: any*/).hash = 'c653c9e9ef4175b71eae35bdded98357';
 module.exports = node;

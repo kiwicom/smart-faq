@@ -100,7 +100,6 @@ class LegCities extends React.Component<Props, State> {
   }
 
   toggleLeg = () => {
-    if (this.props.leg.type !== 'AIRCRAFT') return;
     this.setState(prevState => ({ isExpanded: !prevState.isExpanded }));
   };
 
@@ -116,16 +115,21 @@ class LegCities extends React.Component<Props, State> {
   render() {
     const { leg } = this.props;
     const { departure, arrival } = leg;
+
     const departureTime = (departure && departure.localTime) || '';
+    const arrivalTime = (arrival && arrival.localTime) || '';
+
     const departureCityName = idx(departure, _ => _.airport.city.name) || '';
     const departureCityCode = idx(departure, _ => _.airport.locationId) || '';
-    const arrivalTime = (arrival && arrival.localTime) || '';
+
     const arrivalCityName = idx(arrival, _ => _.airport.city.name) || '';
     const arrivalCityCode = idx(arrival, _ => _.airport.locationId) || '';
+
     const carrier = {
       code: idx(leg.airline, _ => _.code) || '',
       name: idx(leg.airline, _ => _.name) || '',
     };
+
     const { isExpanded } = this.state;
 
     return (
@@ -150,15 +154,13 @@ class LegCities extends React.Component<Props, State> {
         <div className="carrier">
           <CarrierLogo size="large" carriers={[carrier]} />
         </div>
-        {leg.type === 'AIRCRAFT' && (
-          <div className="showMoreIcon">
-            {!isExpanded ? (
-              <ShowMore customColor="#94a2b0" size="12" />
-            ) : (
-              <ShowLess customColor="#94a2b0" size="12" />
-            )}
-          </div>
-        )}
+        <div className="showMoreIcon">
+          {!isExpanded ? (
+            <ShowMore customColor="#94a2b0" size="12" />
+          ) : (
+            <ShowLess customColor="#94a2b0" size="12" />
+          )}
+        </div>
         <span className="flightLength">
           {formatTimeDuration(leg.duration || 0)}
         </span>
@@ -179,7 +181,6 @@ export default createFragmentContainer(
   graphql`
     fragment AccordionLegCities_leg on Leg {
       ...AccordionLegCitiesInfo_leg
-      type
       duration
       airline {
         code
@@ -189,7 +190,6 @@ export default createFragmentContainer(
         localTime
         airport {
           locationId
-          name
           city {
             name
           }
@@ -199,7 +199,6 @@ export default createFragmentContainer(
         localTime
         airport {
           locationId
-          name
           city {
             name
           }
