@@ -54,6 +54,7 @@ type Props = {|
   loginToken: ?string,
   route: string,
   isOpen: boolean,
+  simpleToken: ?string,
   onClose: () => void,
   onLogin: onLogin,
   onSocialLogin: onSocialLogin,
@@ -76,6 +77,7 @@ class App extends React.PureComponent<Props, State> {
         onSocialLogin: nextProps.onSocialLogin,
         onLogout: nextProps.onLogout,
         loginToken: nextProps.loginToken,
+        simpleToken: nextProps.simpleToken,
       },
     };
   }
@@ -91,6 +93,7 @@ class App extends React.PureComponent<Props, State> {
         onLogin: props.onLogin,
         onSocialLogin: props.onSocialLogin,
         loginToken: props.loginToken,
+        simpleToken: props.simpleToken,
       },
     };
   }

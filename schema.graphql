@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com
-# timestamp: Tue Jul 17 2018 16:12:50 GMT+0200 (Central European Summer Time)
+# timestamp: Thu Jul 19 2018 10:19:44 GMT+0200 (Central European Summer Time)
 
 schema {
   query: RootQuery
@@ -2056,6 +2056,17 @@ type RootQuery {
 
   """AirHelp+ offer that can be purchased with booking"""
   airHelpPlusOffer(bookingId: String!): AirHelpPlusOffer
+
+  """Find booking by its id and its simple access token."""
+  singleBooking(
+    """
+    Database ID (human readable ID) of the booking. You should use "node" query if you want to use opaque ID.
+    """
+    id: ID!
+
+    """Simple Token that lets you fetch a unique booking."""
+    simpleToken: String!
+  ): Booking
 }
 
 type RouteStop {

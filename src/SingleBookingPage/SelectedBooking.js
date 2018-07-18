@@ -10,14 +10,16 @@ import BookingDetail from './BookingDetail';
 import BookingNotFound from './BookingNotFound';
 import BookingLoader from './BookingLoader';
 import bookingTypes from '../common/booking/bookingTypes';
-import type { SelectedBookingQueryResponse as QueryResponseType } from './__generated__/SelectedBookingQuery.graphql';
+import { UserContext, type UserContextType } from '../context/User';
+import type { SelectedBookingQuery } from './__generated__/SelectedBookingQuery.graphql';
+import type { SelectedBookingBySimpleTokenQuery } from './__generated__/SelectedBookingBySimpleTokenQuery.graphql';
 
 type Props = {|
   bookingId: number,
 |};
 
 type RenderState = {
-  props: ?QueryResponseType,
+  props: SelectedBookingQuery | SelectedBookingBySimpleTokenQuery,
   error: ?Error,
 };
 
@@ -38,21 +40,47 @@ const selectedBookingQuery = graphql`
   }
 `;
 
+const singleBookingQuery = graphql`
+  query SelectedBookingBySimpleTokenQuery($id: ID!, $simpleToken: String!) {
+    singleBooking(id: $id, simpleToken: $simpleToken) {
+      type
+      oneWay {
+        ...BookingDetail_booking
+      }
+      return {
+        ...BookingDetail_booking
+      }
+      multicity {
+        ...BookingDetail_booking
+      }
+    }
+  }
+`;
+
 class SelectedBooking extends React.Component<Props> {
   renderSelectedBooking = (renderState: RenderState) => {
-    const bookingType = idx(renderState.props, _ => _.booking.type);
+    const bookingType =
+      idx(renderState.props, _ => _.booking.type) ||
+      idx(renderState.props, _ => _.singleBooking.type);
+
     let content = null;
     let booking = null;
 
     switch (bookingType) {
       case bookingTypes.ONE_WAY:
-        booking = idx(renderState.props, _ => _.booking.oneWay);
+        booking =
+          idx(renderState.props, _ => _.booking.oneWay) ||
+          idx(renderState.props, _ => _.singleBooking.oneWay);
         break;
       case bookingTypes.RETURN:
-        booking = idx(renderState.props, _ => _.booking.return);
+        booking =
+          idx(renderState.props, _ => _.booking.return) ||
+          idx(renderState.props, _ => _.singleBooking.return);
         break;
       case bookingTypes.MULTICITY:
-        booking = idx(renderState.props, _ => _.booking.multicity);
+        booking =
+          idx(renderState.props, _ => _.booking.multicity) ||
+          idx(renderState.props, _ => _.singleBooking.multicity);
         break;
     }
 
@@ -81,11 +109,29 @@ class SelectedBooking extends React.Component<Props> {
     const { bookingId } = this.props;
 
     return (
-      <QueryRenderer
-        query={selectedBookingQuery}
-        variables={{ id: bookingId }}
-        render={this.renderSelectedBooking}
-      />
+      <UserContext.Consumer>
+        {({ simpleToken, loginToken }: UserContextType) => {
+          if (loginToken) {
+            return (
+              <QueryRenderer
+                query={selectedBookingQuery}
+                variables={{ id: bookingId }}
+                render={this.renderSelectedBooking}
+              />
+            );
+          }
+          if (simpleToken) {
+            return (
+              <QueryRenderer
+                query={singleBookingQuery}
+                variables={{ id: bookingId, simpleToken }}
+                render={this.renderSelectedBooking}
+              />
+            );
+          }
+          return <BookingError />;
+        }}
+      </UserContext.Consumer>
     );
   }
 }
