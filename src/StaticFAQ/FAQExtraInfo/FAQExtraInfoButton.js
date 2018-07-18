@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { SearchState, type SearchStateType } from '../../context/SearchState';
 import {
   ExtraInfoState,
+  categories,
   type ExtraInfoStateType,
   type ExtraInfoCategory,
 } from '../../context/ExtraInfoState';
@@ -18,9 +19,7 @@ type Props = {|
   history: {
     push: string => void,
     location: {
-      pathname: {
-        includes: string => boolean,
-      },
+      pathname: string,
     },
   },
 |};
@@ -41,12 +40,7 @@ const styles = css`
   }
 `;
 
-const FAQExtraInfoButton = ({
-  category,
-  categoryId,
-  children,
-  history,
-}: Props) => {
+const FAQExtraInfoButton = ({ category, children, history }: Props) => {
   return (
     <React.Fragment>
       <SearchState.Consumer>
@@ -56,6 +50,10 @@ const FAQExtraInfoButton = ({
               activeExtraInfoCategory,
               setExtraInfoCategory,
             }: ExtraInfoStateType) => {
+              const categoryId =
+                category === 'baggage'
+                  ? categories.BAGGAGE
+                  : categories.BOARDING_PASS;
               const isActive =
                 activeExtraInfoCategory === category &&
                 history.location.pathname.includes(`/faq/${categoryId}`);
@@ -64,8 +62,8 @@ const FAQExtraInfoButton = ({
                 history.push(`/faq/${categoryId}`);
                 changeSearchText('');
               };
-              const desactivate = () => {
-                setExtraInfoCategory('');
+              const deactivate = () => {
+                setExtraInfoCategory(null);
                 history.push('/');
               };
 
@@ -74,7 +72,7 @@ const FAQExtraInfoButton = ({
                   className={`extraInfoRadioButton ${isActive ? 'active' : ''}`}
                   onClick={() => {
                     if (isActive) {
-                      desactivate();
+                      deactivate();
                     } else {
                       activate();
                     }

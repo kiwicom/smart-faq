@@ -162,15 +162,11 @@ class BookingDetail extends React.Component<Props> {
         {/* F.I.X.M.E Baggage is buggy */}
         {/* <FAQExtraInfoButton
           category="baggage"
-          categoryId="RkFRQ2F0ZWdvcnk6ODk="
         >
           <Baggages customColor="#00a991" />
           <p className="iconLabel">Baggage</p>
         </FAQExtraInfoButton> */}
-        <FAQExtraInfoButton
-          category="boarding-passes"
-          categoryId="RkFRQ2F0ZWdvcnk6ODQ="
-        >
+        <FAQExtraInfoButton category="boarding-passes">
           <Ticket customColor="#00a991" />
           <p className="iconLabel">Boarding passes</p>
         </FAQExtraInfoButton>

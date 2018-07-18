@@ -117,25 +117,17 @@ class RawFAQCategoryList extends React.Component<Props> {
     );
   };
   renderCategories = (categories: $ReadOnlyArray<CategoryFragment>) => {
-    const isCategoryBaggage = this.props.history.location.pathname.includes(
-      'RkFRQ2F0ZWdvcnk6ODk',
-    );
-    const isCategoryBoardingPass = this.props.history.location.pathname.includes(
-      'RkFRQ2F0ZWdvcnk6ODQ',
-    );
     return (
       <React.Fragment>
         <Desktop>
           <UserStatus.LoggedIn>
             <ExtraInfoState.Consumer>
               {({ activeExtraInfoCategory }: ExtraInfoStateType) =>
-                isCategoryBaggage &&
                 activeExtraInfoCategory === 'baggage' && <BaggageInfo />
               }
             </ExtraInfoState.Consumer>
             <ExtraInfoState.Consumer>
               {({ activeExtraInfoCategory }: ExtraInfoStateType) =>
-                isCategoryBoardingPass &&
                 activeExtraInfoCategory === 'boarding-passes' && (
                   <BoardingPassesInfo />
                 )
