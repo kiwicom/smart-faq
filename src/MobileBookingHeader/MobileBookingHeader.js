@@ -58,7 +58,7 @@ const MobileBookingHeaderStyle = css`
   }
   .option {
     flex: 1;
-    padding: 5%;
+    padding: 19px;
     text-align: center;
     background-color: #fff;
     border: 1px solid #eaeaea;
