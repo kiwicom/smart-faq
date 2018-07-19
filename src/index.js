@@ -8,7 +8,6 @@ import Raven from 'raven-js';
 import KeenTracking from 'keen-tracking';
 
 import App from './App';
-import enLocale from '../i18n/en/translation.json';
 import { socialLogin } from './helpers/Auth';
 import { Requester } from './helpers/Requests';
 import type { User } from './types';
@@ -124,19 +123,17 @@ class Root extends React.Component<Props, State> {
         >
           Toggle SmartFAQ
         </div>
-        {this.state.open && (
-          <App
-            onClose={this.closeApp}
-            onLogin={this.onLogin}
-            onSocialLogin={this.onSocialLogin}
-            onLogout={this.onLogout}
-            language={language}
-            locale={enLocale}
-            user={this.state.user}
-            route={route}
-            loginToken={this.state.loginToken}
-          />
-        )}
+        <App
+          onClose={this.closeApp}
+          onLogin={this.onLogin}
+          onSocialLogin={this.onSocialLogin}
+          onLogout={this.onLogout}
+          language={language}
+          isOpen={this.state.open}
+          user={this.state.user}
+          route={route}
+          loginToken={this.state.loginToken}
+        />
         <style jsx global>
           {`
             body {

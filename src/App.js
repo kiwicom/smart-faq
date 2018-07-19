@@ -3,10 +3,12 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
+import classNames from 'classnames';
 import { I18nextProvider } from 'react-i18next';
 import 'url-search-params-polyfill';
 
 import initTranslation from './initTranslation';
+import EnLocale from '../i18n/en/translation.json';
 import Routes from './Routes';
 import { CloseContext } from './context/Close';
 import { LanguageContext } from './context/Language';
@@ -21,6 +23,7 @@ import type { onLogin, onLogout, onSocialLogin, User } from './types';
 
 const style = css`
   .smartFAQ {
+    display: none;
     position: fixed;
     min-width: 480px;
     top: 0;
@@ -28,6 +31,9 @@ const style = css`
     right: 0;
     background-color: #fff;
     font-family: 'Roboto', sans-serif;
+  }
+  .smartFAQ.open {
+    display: block;
   }
   .smartFAQ * {
     box-sizing: border-box;
@@ -44,10 +50,10 @@ const style = css`
 
 type Props = {|
   language: string,
-  locale: {},
   user: User,
   loginToken: ?string,
   route: string,
+  isOpen: boolean,
   onClose: () => void,
   onLogin: onLogin,
   onSocialLogin: onSocialLogin,
@@ -77,7 +83,7 @@ class App extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.i18n = initTranslation(props.language, props.locale);
+    this.i18n = initTranslation(props.language, EnLocale);
     this.state = {
       urlBookingWasSelected: false,
       userContext: {
@@ -99,9 +105,13 @@ class App extends React.PureComponent<Props, State> {
   };
 
   renderApp() {
+    const { isOpen } = this.props;
+
     return (
       <div
-        className="smartFAQ"
+        className={classNames('smartFAQ', {
+          open: isOpen,
+        })}
         data-test="SmartFAQHelp"
         onKeyDown={this.onKeyDown}
       >
@@ -122,11 +132,15 @@ class App extends React.PureComponent<Props, State> {
                   <SearchStateProvider>
                     <BookingStateProvider onLogout={this.props.onLogout}>
                       <ExtraInfoStateProvider>
-                        <SelectUrlBooking
-                          wasSelected={this.state.urlBookingWasSelected}
-                          setSelected={this.urlBookingSelected}
-                        />
-                        <Routes route={this.props.route} />
+                        {isOpen && (
+                          <React.Fragment>
+                            <SelectUrlBooking
+                              wasSelected={this.state.urlBookingWasSelected}
+                              setSelected={this.urlBookingSelected}
+                            />
+                            <Routes route={this.props.route} />
+                          </React.Fragment>
+                        )}
                       </ExtraInfoStateProvider>
                     </BookingStateProvider>
                   </SearchStateProvider>
@@ -137,6 +151,13 @@ class App extends React.PureComponent<Props, State> {
         </ErrorBoundary>
         <style jsx global>
           {style}
+        </style>
+        <style jsx global>
+          {`
+            body {
+              overflow-y: ${isOpen ? 'hidden' : 'auto'};
+            }
+          `}
         </style>
       </div>
     );
