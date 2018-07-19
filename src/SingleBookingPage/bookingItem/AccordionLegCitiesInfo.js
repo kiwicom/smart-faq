@@ -2,10 +2,10 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import idx from 'idx';
-import { CarrierLogo, TextLink } from '@kiwicom/orbit-components';
+import { CarrierLogo } from '@kiwicom/orbit-components';
 import {
   InformationCircle,
   Ticket,
@@ -27,18 +27,16 @@ const citiesInfoStyle = css`
     align-items: center;
     margin-bottom: 6px;
   }
-  p,
-  .moreInfoLink {
+  p {
     margin-left: 10px;
+  }
+  .moreInfoLink {
+    color: #00a991;
+    border-bottom: 1px solid #00a991;
   }
 `;
 
-type Props = {|
-  leg: AccordionLegCitiesInfo_leg,
-  history: {
-    push: string => void,
-  },
-|};
+type Props = {| leg: AccordionLegCitiesInfo_leg |};
 
 const LegCitiesInfo = (props: Props) => {
   const { leg } = props;
@@ -139,19 +137,12 @@ const LegCitiesInfo = (props: Props) => {
           </div>
           <div className="infoRow">
             <InformationCircle size="small" customColor="#00a991" />
-            <span className="moreInfoLink">
-              <TextLink
-                url=""
-                onClick={e => {
-                  e.preventDefault();
-                  props.history.push(
-                    '/faq/search/article/RkFRQXJ0aWNsZToxMjc=',
-                  );
-                }}
-                size="small"
-                title="Trains and Buses Info"
-              />
-            </span>
+            <Link
+              to="/faq/search/article/RkFRQXJ0aWNsZToxMjc="
+              style={{ textDecoration: 'none' }}
+            >
+              <p className="moreInfoLink">Trains and Buses Info</p>
+            </Link>
           </div>
         </React.Fragment>
       )}
@@ -161,7 +152,7 @@ const LegCitiesInfo = (props: Props) => {
 };
 
 export default createFragmentContainer(
-  withRouter(LegCitiesInfo),
+  LegCitiesInfo,
   graphql`
     fragment AccordionLegCitiesInfo_leg on Leg {
       type
