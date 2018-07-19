@@ -105,13 +105,11 @@ class BoardingPassesInfo extends React.Component<Props> {
             <QueryRenderer
               query={nearestInfoBoardingPasses}
               render={this.renderBoardingPassesCard}
-              cacheConfig={{ force: true }}
             />
           ) : (
             <QueryRenderer
               query={selectedInfoBoardingPasses}
               render={this.renderBoardingPassesCard}
-              cacheConfig={{ force: true }}
               variables={{ id: selectedBooking }}
             />
           );
