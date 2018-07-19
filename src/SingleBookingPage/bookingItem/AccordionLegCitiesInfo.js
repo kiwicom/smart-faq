@@ -2,9 +2,10 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
+import { withRouter } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import idx from 'idx';
-import { CarrierLogo } from '@kiwicom/orbit-components';
+import { CarrierLogo, TextLink } from '@kiwicom/orbit-components';
 import {
   InformationCircle,
   Ticket,
@@ -25,13 +26,17 @@ const citiesInfoStyle = css`
     align-items: center;
     margin-bottom: 6px;
   }
-  p {
+  p,
+  .moreInfoLink {
     margin-left: 10px;
   }
 `;
 
 type Props = {|
   leg: AccordionLegCitiesInfo_leg,
+  history: {
+    push: string => void,
+  },
 |};
 
 const LegCitiesInfo = (props: Props) => {
@@ -134,6 +139,22 @@ const LegCitiesInfo = (props: Props) => {
             <City {...iconProps} />
             <p>{arrivalStationName}</p>
           </div>
+          <div className="infoRow">
+            <InformationCircle size="small" customColor="#00a991" />
+            <span className="moreInfoLink">
+              <TextLink
+                url=""
+                onClick={e => {
+                  e.preventDefault();
+                  props.history.push(
+                    '/faq/search/article/RkFRQXJ0aWNsZToxMjc=',
+                  );
+                }}
+                size="small"
+                title="Trains and Buses Info"
+              />
+            </span>
+          </div>
         </React.Fragment>
       )}
       <style jsx>{citiesInfoStyle}</style>
@@ -142,7 +163,7 @@ const LegCitiesInfo = (props: Props) => {
 };
 
 export default createFragmentContainer(
-  LegCitiesInfo,
+  withRouter(LegCitiesInfo),
   graphql`
     fragment AccordionLegCitiesInfo_leg on Leg {
       type
