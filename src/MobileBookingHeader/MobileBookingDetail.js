@@ -115,7 +115,7 @@ type State = {
 
 class MobileBookingDetail extends React.Component<Props, State> {
   state = {
-    expanded: false,
+    expanded: true,
   };
 
   componentDidMount() {
