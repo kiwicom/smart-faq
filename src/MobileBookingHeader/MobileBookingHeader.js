@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
+import idx from 'idx';
 import { Text } from '@kiwicom/orbit-components';
 import {
   Search,
@@ -198,10 +199,12 @@ class MobileBookingHeader extends React.Component<Props, State> {
             const { location } = this.props.history;
             const currentpath = location && location.pathname;
             const isArticle = currentpath.includes('article/');
+            const hasCategory =
+              idx(this.props.match, _ => _.params.categoryId) || null;
 
             return (
               <div className="MobileBookingHeader">
-                {isArticle ? (
+                {isArticle || hasCategory ? (
                   <div
                     className="option"
                     onClick={() => this.goBack()}
