@@ -88,12 +88,12 @@ const MobileBookingHeaderStyle = css`
 `;
 
 type Props = {|
-  history: {
-    match: {
-      params: {
-        categoryId: ?string,
-      },
+  match: {
+    params: {
+      categoryId: ?string,
     },
+  },
+  history: {
     goBack: () => void,
     push: string => void,
     location: {
@@ -106,16 +106,12 @@ type Props = {|
 |};
 
 type State = {
-  isSearchActive: boolean,
-  isSummaryActive: boolean,
-  isAccountActive: boolean,
+  activeTab: 'search' | 'summary' | 'account' | null,
 };
 
 class MobileBookingHeader extends React.Component<Props, State> {
   state: State = {
-    isSearchActive: false,
-    isSummaryActive: false,
-    isAccountActive: false,
+    activeTab: null,
   };
 
   componentDidMount() {
@@ -129,52 +125,28 @@ class MobileBookingHeader extends React.Component<Props, State> {
   toggleSearch = () => {
     if (this.isSearchActive()) {
       this.setState({
-        isSearchActive: false,
+        activeTab: null,
       });
       this.contextDisableSearch();
     } else {
       this.setState({
-        isSearchActive: true,
+        activeTab: 'search',
       });
       this.props.history.push('/faq/');
       this.contextEnableSearch();
-    }
-
-    if (this.state.isSummaryActive) {
-      this.toggleSummary();
-    }
-
-    if (this.state.isAccountActive) {
-      this.toggleAccount();
     }
   };
 
   toggleSummary = () => {
     this.setState(prevState => ({
-      isSummaryActive: !prevState.isSummaryActive,
+      activeTab: prevState.activeTab === 'summary' ? null : 'summary',
     }));
-
-    if (this.isSearchActive()) {
-      this.toggleSearch();
-    }
-
-    if (this.state.isAccountActive) {
-      this.toggleAccount();
-    }
   };
 
   toggleAccount = () => {
     this.setState(prevState => ({
-      isAccountActive: !prevState.isAccountActive,
+      activeTab: prevState.activeTab === 'account' ? null : 'account',
     }));
-
-    if (this.isSearchActive()) {
-      this.toggleSearch();
-    }
-
-    if (this.state.isSummaryActive) {
-      this.toggleSummary();
-    }
   };
 
   goBack() {
@@ -188,7 +160,7 @@ class MobileBookingHeader extends React.Component<Props, State> {
 
   isSearchActive() {
     return (
-      this.state.isSearchActive &&
+      this.state.activeTab === 'search' &&
       this.props.history.location.pathname === '/faq/'
     );
   }
@@ -236,7 +208,9 @@ class MobileBookingHeader extends React.Component<Props, State> {
                 </div>
                 <div
                   className={
-                    this.state.isSummaryActive ? 'option active' : 'option'
+                    this.state.activeTab === 'summary'
+                      ? 'option active'
+                      : 'option'
                   }
                   onClick={() => this.toggleSummary()}
                   onKeyDown={() => this.toggleSummary()}
@@ -248,7 +222,9 @@ class MobileBookingHeader extends React.Component<Props, State> {
                 </div>
                 <div
                   className={
-                    this.state.isAccountActive ? 'option active' : 'option'
+                    this.state.activeTab === 'account'
+                      ? 'option active'
+                      : 'option'
                   }
                   onClick={() => this.toggleAccount()}
                   onKeyDown={() => this.toggleAccount()}
@@ -274,12 +250,12 @@ class MobileBookingHeader extends React.Component<Props, State> {
             );
           }}
         </SearchState.Consumer>
-        {this.state.isSummaryActive ? (
+        {this.state.activeTab === 'summary' ? (
           <div className="openedContent">
             <MobileBookingSummary />
           </div>
         ) : null}
-        {this.state.isAccountActive ? (
+        {this.state.activeTab === 'account' ? (
           <div className="openedContent">
             <MobileUserDetail />
           </div>
