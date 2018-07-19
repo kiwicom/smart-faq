@@ -14,6 +14,7 @@ import {
 } from '@kiwicom/orbit-components/lib/icons';
 
 import type { AccordionLegCitiesInfo_leg } from './__generated__/AccordionLegCitiesInfo_leg.graphql';
+import bookingLegTypes from '../../common/booking/bookingLegTypes';
 
 const citiesInfoStyle = css`
   div.legCitiesInfo {
@@ -40,15 +41,12 @@ type Props = {|
 |};
 
 const LegCitiesInfo = (props: Props) => {
-  const aircraft = 'AIRCRAFT';
-  const bus = 'BUS';
-  const train = 'TRAIN';
-
   const { leg } = props;
   const flightNumber = leg.flightNumber || '';
   const transportationMode = leg.type;
   const reservationNumber = leg.pnr || '';
-  const carrierTitle = transportationMode === aircraft ? 'Airline' : 'Carrier';
+  const carrierTitle =
+    transportationMode === bookingLegTypes.AIRCRAFT ? 'Airline' : 'Carrier';
   const iconProps = { size: 'small', color: 'secondary' };
 
   const carrier = {
@@ -70,24 +68,24 @@ const LegCitiesInfo = (props: Props) => {
   const arrivalStationName = idx(leg, _ => _.arrival.airport.name) || '';
 
   const showOperatingAirline = () =>
-    transportationMode === aircraft &&
+    transportationMode === bookingLegTypes.AIRCRAFT &&
     operatingAirline.code &&
     operatingAirline.code !== carrier.code;
 
   const showReservationNumber = () =>
-    transportationMode === aircraft && reservationNumber;
+    transportationMode === bookingLegTypes.AIRCRAFT && reservationNumber;
 
   const showAircraftType = () =>
-    transportationMode === aircraft && vehicle.manufacturer;
+    transportationMode === bookingLegTypes.AIRCRAFT && vehicle.manufacturer;
 
   const renderFlightNumber = () => {
-    if (transportationMode === bus) return null;
+    if (transportationMode === bookingLegTypes.BUS) return null;
 
     let title = '';
 
-    if (transportationMode === aircraft) {
+    if (transportationMode === bookingLegTypes.AIRCRAFT) {
       title = 'Flight no:';
-    } else if (transportationMode === train) {
+    } else if (transportationMode === bookingLegTypes.TRAIN) {
       title = 'Train no:';
     }
 
@@ -129,7 +127,7 @@ const LegCitiesInfo = (props: Props) => {
           <p>{`${vehicle.manufacturer} ${vehicle.model}`}</p>
         </div>
       )}
-      {transportationMode !== aircraft && (
+      {transportationMode !== bookingLegTypes.AIRCRAFT && (
         <React.Fragment>
           <div className="infoRow">
             <City {...iconProps} />

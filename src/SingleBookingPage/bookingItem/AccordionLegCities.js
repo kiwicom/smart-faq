@@ -10,6 +10,7 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import LegCitiesInfo from './AccordionLegCitiesInfo';
 import { formatHour, formatTimeDuration } from '../../helpers/dateUtils';
 import type { AccordionLegCities_leg } from './__generated__/AccordionLegCities_leg.graphql';
+import bookingLegTypes from '../../common/booking/bookingLegTypes';
 
 const citiesStyle = css`
   div.legCities {
@@ -136,7 +137,10 @@ class LegCities extends React.Component<Props, State> {
 
     const { isExpanded } = this.state;
 
-    const legTitle = type === 'BUS' ? 'Bus' : type === 'TRAIN' ? 'Train' : null;
+    const legTitle =
+      type === bookingLegTypes.BUS
+        ? 'Bus'
+        : type === bookingLegTypes.TRAIN ? 'Train' : null;
 
     return (
       <div
@@ -147,7 +151,9 @@ class LegCities extends React.Component<Props, State> {
         role="button"
       >
         <div className="cities">
-          {type !== 'AIRCRAFT' && <div className="legTitle">{legTitle}</div>}
+          {type !== bookingLegTypes.AIRCRAFT && (
+            <div className="legTitle">{legTitle}</div>
+          )}
           <div className="departure">
             <div className="time">{formatHour(departureTime)}</div>
             <div className="city">{`${departureCityName} ${departureCityCode}`}</div>
