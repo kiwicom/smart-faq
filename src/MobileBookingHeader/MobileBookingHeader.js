@@ -89,6 +89,11 @@ const MobileBookingHeaderStyle = css`
 
 type Props = {|
   history: {
+    match: {
+      params: {
+        categoryId: ?string,
+      },
+    },
     goBack: () => void,
     push: string => void,
     location: {
