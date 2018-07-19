@@ -30,11 +30,11 @@ const LegTypeIcon = (props: IconProps) => {
       break;
 
     case bookingLegTypes.TRAIN:
-      icon = <Train customColor="#adb9c5" height="12" />;
+      icon = <Train customColor="#00a991" height="12" />;
       break;
 
     case bookingLegTypes.BUS:
-      icon = <Bus customColor="#adb9c5" height="12" />;
+      icon = <Bus customColor="#00a991" height="12" />;
       break;
 
     default:

@@ -28,6 +28,10 @@ const citiesStyle = css`
   div.cities {
     width: 294px;
   }
+  div.legTitle {
+    color: #00a991;
+    margin-bottom: 5px;
+  }
   div.city {
     color: #7c8b99;
   }
@@ -114,7 +118,7 @@ class LegCities extends React.Component<Props, State> {
 
   render() {
     const { leg } = this.props;
-    const { departure, arrival } = leg;
+    const { departure, arrival, type } = leg;
 
     const departureTime = (departure && departure.localTime) || '';
     const arrivalTime = (arrival && arrival.localTime) || '';
@@ -132,6 +136,8 @@ class LegCities extends React.Component<Props, State> {
 
     const { isExpanded } = this.state;
 
+    const legTitle = type === 'BUS' ? 'Bus' : type === 'TRAIN' ? 'Train' : null;
+
     return (
       <div
         className="legCities"
@@ -141,6 +147,7 @@ class LegCities extends React.Component<Props, State> {
         role="button"
       >
         <div className="cities">
+          {type !== 'AIRCRAFT' && <div className="legTitle">{legTitle}</div>}
           <div className="departure">
             <div className="time">{formatHour(departureTime)}</div>
             <div className="city">{`${departureCityName} ${departureCityCode}`}</div>
@@ -181,6 +188,7 @@ export default createFragmentContainer(
   graphql`
     fragment AccordionLegCities_leg on Leg {
       ...AccordionLegCitiesInfo_leg
+      type
       duration
       airline {
         code
