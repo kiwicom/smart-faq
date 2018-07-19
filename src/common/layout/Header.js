@@ -34,7 +34,7 @@ const style = css`
     margin-left: 182px;
     line-height: 1.4;
   }
-  @media only screen and (max-width: 1180px) {
+  @media only screen and (max-width: 500px) {
     .header.hide {
       opacity: 0;
       max-height: 0;
@@ -254,8 +254,8 @@ class Header extends React.Component<Props, State> {
           {this.props.isLoggedIn
             ? renderLoggedIn()
             : renderLoggedOut(hasCategory, isArticle, comesFromSearch)}
-          <style jsx>{style}</style>
         </div>
+        <style jsx>{style}</style>
       </div>
     );
   }
