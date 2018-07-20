@@ -103,7 +103,7 @@ const style = css`
       margin: 0;
     }
   }
-  @media only screen and (max-height: 480px) and (orientation: landscape) {
+  @media only screen and (max-height: 480px) {
     .Intro {
       width: 100%;
       padding-top: 20px;

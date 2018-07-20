@@ -21,6 +21,7 @@ const TrackedStaticFAQ = () => {
         changeSearchText,
         incrementQueriesCount,
         resetQueriesCount,
+        isVisible,
       }: SearchStateType) => {
         const onSearchCancel = () => {
           changeSearchText('');
@@ -42,6 +43,7 @@ const TrackedStaticFAQ = () => {
             onSearchChange={onSearchChange}
             onSearchCancel={onSearchCancel}
             searchText={searchText}
+            isVisible={isVisible}
           />
         );
       }}

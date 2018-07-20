@@ -24,7 +24,6 @@ const style = css`
   .header {
     display: flex;
     align-items: center;
-    height: 64px;
   }
   .HeaderFAQ {
     width: 100%;
@@ -34,6 +33,12 @@ const style = css`
   .faqLink {
     margin-left: 182px;
     line-height: 1.4;
+  }
+  @media only screen and (max-width: 500px) {
+    .header.hide {
+      opacity: 0;
+      max-height: 0;
+    }
   }
 `;
 
@@ -61,13 +66,22 @@ const loggedInStyle = css`
   a.open-icon {
     margin-left: 12px;
   }
+  @media only screen and (max-width: 900px) and (max-height: 480px) {
+    .loggedIn {
+      display: none;
+    }
+  }
   @media only screen and (max-width: 900px) {
+    .closeButton {
+      display: none;
+    }
     .loggedIn {
       padding: 15px;
     }
     .helpHeader {
       width: 100%;
       text-align: center;
+      font-size: 1.2em;
     }
   }
 `;
@@ -105,6 +119,11 @@ const loggedOutStyle = css`
   }
 `;
 
+type State = {
+  isScrolling: boolean,
+  lastScroll: number,
+};
+
 type Props = {
   isLoggedIn: boolean,
   match: {
@@ -117,19 +136,10 @@ type Props = {
   },
 };
 
-const renderLoggedIn = (
-  comesFromSearch: boolean,
-  hasCategory: string | null,
-  isArticle: boolean,
-) => {
+const renderLoggedIn = () => {
   return (
     <React.Fragment>
       <div className="loggedIn">
-        <div className="mobileOnly">
-          {hasCategory || isArticle ? (
-            <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
-          ) : null}
-        </div>
         <BookingState.Consumer>
           {({ bookingPage }) => (
             <div className="helpHeader">
@@ -191,35 +201,65 @@ const renderLoggedOut = (
   );
 };
 
-const Header = (props: Props) => {
-  const hasCategory = idx(props.match, _ => _.params.categoryId) || null;
-  const currentpath = props.location && props.location.pathname;
+class Header extends React.Component<Props, State> {
+  state = {
+    isScrolling: false,
+    lastScroll: 0,
+  };
 
-  const isArticle = currentpath.includes('article/');
-  const comesFromSearch = currentpath.includes('faq/search/');
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll, true);
+  }
 
-  return (
-    <div className="header">
-      <div className="HeaderFAQ">
-        <BookingState.Consumer>
-          {({ bookingPage }) =>
-            bookingPage === 'ALL_BOOKINGS' ? (
-              <Desktop>
-                <CloseButton height="24" />
-              </Desktop>
-            ) : (
-              <CloseButton height="24" />
-            )
-          }
-        </BookingState.Consumer>
-        {props.isLoggedIn
-          ? renderLoggedIn(comesFromSearch, hasCategory, isArticle)
-          : renderLoggedOut(hasCategory, isArticle, comesFromSearch)}
+  handleScroll = ({ target }: SyntheticInputEvent<HTMLInputElement>) => {
+    const currentScroll = target.scrollTop;
+
+    if (currentScroll > this.state.lastScroll) {
+      this.setState({
+        isScrolling: true,
+      });
+    } else {
+      this.setState({
+        isScrolling: false,
+      });
+    }
+
+    this.setState({ lastScroll: currentScroll });
+  };
+
+  render() {
+    const hasCategory = idx(this.props.match, _ => _.params.categoryId) || null;
+    const currentpath = this.props.location && this.props.location.pathname;
+    const isArticle = currentpath.includes('article/');
+    const comesFromSearch = currentpath.includes('faq/search/');
+
+    return (
+      <div className={this.state.isScrolling ? 'header hide' : 'header'}>
+        <div className="HeaderFAQ">
+          <BookingState.Consumer>
+            {({ bookingPage }) =>
+              bookingPage === 'ALL_BOOKINGS' ? (
+                <Desktop>
+                  <div className="closeButton">
+                    <CloseButton height="24" />
+                  </div>
+                </Desktop>
+              ) : (
+                <div className="closeButton">
+                  <CloseButton height="24" />
+                </div>
+              )
+            }
+          </BookingState.Consumer>
+          {this.props.isLoggedIn
+            ? renderLoggedIn()
+            : renderLoggedOut(hasCategory, isArticle, comesFromSearch)}
+        </div>
         <style jsx>{style}</style>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export const RawContentHeader = Header;
 

@@ -88,7 +88,7 @@ const style = css`
       margin: 0 auto;
     }
   }
-  @media only screen and (orientation: landscape) and (max-height: 480px) {
+  @media only screen and (max-height: 480px) {
     .SignIn {
       width: 100%;
       padding-top: 20px;

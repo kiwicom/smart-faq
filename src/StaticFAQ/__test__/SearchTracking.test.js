@@ -10,6 +10,10 @@ import { SearchState } from '../../context/SearchState';
 
 const searchText = 'Hola hola';
 const queriesBeforeClick = 5; //eslint-disable-line
+const isVisible = true;
+const toggleSearch = jest.fn();
+const enableSearch = jest.fn();
+const disableSearch = jest.fn();
 const resetQueriesCount = jest.fn();
 const incrementQueriesCount = jest.fn();
 const changeSearchText = jest.fn();
@@ -28,6 +32,10 @@ describe('SearchTracking', () => {
             changeSearchText,
             resetQueriesCount,
             queriesBeforeClick,
+            isVisible,
+            toggleSearch,
+            enableSearch,
+            disableSearch,
           }}
         >
           <StaticFAQ />

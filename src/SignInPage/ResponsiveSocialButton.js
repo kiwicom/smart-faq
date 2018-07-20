@@ -42,7 +42,7 @@ const ResponsiveSocialButton = (props: Props) => {
       <MediaQuery query="only screen and (max-width: 480px) and (orientation: portrait)">
         {renderButton(mobileLandscapeButtonWidth)}
       </MediaQuery>
-      <MediaQuery query="only screen and (max-height: 480px) and (orientation: landscape)">
+      <MediaQuery query="only screen and (max-height: 480px)">
         {renderButton(mobileLandscapeButtonWidth)}
       </MediaQuery>
     </React.Fragment>
