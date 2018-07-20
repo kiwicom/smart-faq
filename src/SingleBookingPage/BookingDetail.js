@@ -82,6 +82,11 @@ const goToMMB = () =>
     action: 'goToMMB',
   });
 
+const clickEticket = () =>
+  simpleTracker('smartFAQBookingOverview', {
+    action: 'clickOnEticket',
+  });
+
 class BookingDetail extends React.Component<Props> {
   componentDidMount() {
     updateFAQSection(this.props);
@@ -182,7 +187,12 @@ class BookingDetail extends React.Component<Props> {
           </a>
         </div>
         {eTicketLink && (
-          <a className="eTicket" href={eTicketLink} target="_blank">
+          <a
+            className="eTicket"
+            href={eTicketLink}
+            target="_blank"
+            onClick={clickEticket}
+          >
             Download e-ticket
           </a>
         )}

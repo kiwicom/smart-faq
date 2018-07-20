@@ -164,6 +164,9 @@ These are the events being recorded. Note that additionally to these attributes 
   - Flight accordion is opened: `{ action: "openFlightCard"}`
   - When smartFAQ is closed: `{ action: "close", timeOpen: "number of seconds open"}`
   - Every search(with a debounce of 250ms by default): `{ action: "search", searchedText: "query being searched"}`
+  - When eTicket is clicked: `{ action: "clickOnEticket" }`
+  - When BoardingPasses button is clicked: `{ action: "clickOnBoardingPassButton" }`
+  - When Baggage button is clicked: `{ action: "clickOnBaggageButton" }`
 
 #### Eventname "smartFAQCategories"
 
