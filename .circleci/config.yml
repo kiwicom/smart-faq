@@ -6,7 +6,7 @@ version: 2
 defaults: &defaults
   working_directory: ~/smart-faq
   docker:
-    - image: circleci/node:8.0
+    - image: circleci/node:9.0
 jobs:
   test-ci:
     <<: *defaults
@@ -88,24 +88,16 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "yarn.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-      - run: yarn
       - run:
-          name: Write NPM Token to ~/.npmrc
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+          name: install
+          command: yarn
       - run:
-          name: Install dot-json package
-          command: yarn add dot-json --dev
+          name: commitlint
+          command: semantic-commitlint -- --ci
       - run:
-          name: Write version to package.json
-          command: $(yarn bin)/dot-json package.json version ${CIRCLE_TAG:1}
-      - run:
-          name: Publish to NPM
-          command: npm publish --access=public
+          name: release
+          command: yarn run semantic-release || true
+
 
 workflows:
   version: 2
@@ -129,6 +121,7 @@ workflows:
          filters:
            branches:
              ignore: master
+
   # publish app to Github pages after merge into master
   test-ci-and-gh-pages-deploy:
     jobs:

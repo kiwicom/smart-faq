@@ -1,6 +1,6 @@
 {
   "name": "@kiwicom/smart-faq",
-  "version": "0.0.1",
+  "version": "0.0.0-development",
   "scripts": {
     "prepublish": "yarn build",
     "start": "NODE_ENV=development LANGUAGE=en webpack-dev-server --open --mode development",
@@ -29,7 +29,9 @@
     "translations:check": "node scripts/checkTranslations.js",
     "relay": "relay-compiler --src ./src --schema ./schema.graphql",
     "schema": "graphql get-schema dev",
-    "commitmsg": "commitlint -E GIT_PARAMS"
+    "commitmsg": "commitlint -E GIT_PARAMS",
+    "semantic-commitlint": "semantic-commitlint",
+    "semantic-release": "semantic-release"
   },
   "main": "lib/App.js",
   "author": "kiwi.com",
@@ -102,7 +104,11 @@
     "surge": "^0.20.1",
     "webpack": "4.1.0",
     "webpack-cli": "2.0.10",
-    "webpack-dev-server": "3.1.0"
+    "webpack-dev-server": "3.1.0",
+    "semantic-release": "^15.8.1"
+  },
+  "release": {
+    "verifyRelease": ["semantic-commitlint"]
   },
   "dependencies": {
     "@kiwicom/orbit-components": "0.0.0-rc7",
@@ -133,5 +139,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kiwicom/smart-faq.git"
   }
 }
