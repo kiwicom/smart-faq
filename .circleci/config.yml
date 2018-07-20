@@ -90,13 +90,13 @@ jobs:
       - checkout
       - run:
           name: install
-          command: npm install
+          command: yarn
       - run:
           name: commitlint
           command: semantic-commitlint -- --ci
       - run:
           name: release
-          command: npm run semantic-release || true
+          command: yarn run semantic-release || true
 
 
 workflows:
