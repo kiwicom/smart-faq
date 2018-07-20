@@ -30,6 +30,7 @@
     "relay": "relay-compiler --src ./src --schema ./schema.graphql",
     "schema": "graphql get-schema dev",
     "commitmsg": "commitlint -E GIT_PARAMS",
+    "semantic-commitlint": "semantic-commitlint",
     "semantic-release": "semantic-release"
   },
   "main": "lib/App.js",
@@ -105,6 +106,9 @@
     "webpack-cli": "2.0.10",
     "webpack-dev-server": "3.1.0",
     "semantic-release": "^15.8.1"
+  },
+  "release": {
+    "verifyRelease": ["semantic-commitlint"]
   },
   "dependencies": {
     "@kiwicom/orbit-components": "0.0.0-rc7",
