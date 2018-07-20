@@ -151,9 +151,13 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
+      - cypress-tests:
+          requires:
+            - test-ci
       - publish:
           requires:
             - test-ci
+            - cypress-tests
           # https://circleci.com/docs/2.0/workflows/#git-tag-job-execution
           filters:
             tags:
