@@ -4,6 +4,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { withRouter } from 'react-router-dom';
 
+import { simpleTracker } from '../../helpers/analytics/trackers';
 import { SearchState, type SearchStateType } from '../../context/SearchState';
 import {
   ExtraInfoState,
@@ -23,6 +24,15 @@ type Props = {|
     },
   },
 |};
+
+const trackBaggage = () =>
+  simpleTracker('smartFAQBookingOverview', {
+    action: 'clickOnBaggageButton',
+  });
+const trackBoardingPass = () =>
+  simpleTracker('smartFAQBookingOverview', {
+    action: 'clickOnBoardingPassButton',
+  });
 
 const styles = css`
   button.extraInfoRadioButton {
@@ -71,6 +81,9 @@ const FAQExtraInfoButton = ({ category, children, history }: Props) => {
                 <button
                   className={`extraInfoRadioButton ${isActive ? 'active' : ''}`}
                   onClick={() => {
+                    category === 'baggage'
+                      ? trackBaggage()
+                      : trackBoardingPass();
                     if (isActive) {
                       deactivate();
                     } else {
