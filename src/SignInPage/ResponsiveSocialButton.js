@@ -8,30 +8,30 @@ import { withSocialLogin } from '../context/User';
 import type { onSocialLogin, Provider } from '../types';
 
 type Props = {
-  title: string,
   type: Provider,
-  variation?: 'bordered',
+  bordered?: boolean,
   onSocialLogin: onSocialLogin,
   icon: React.ComponentType<Props>,
 };
 
 const ResponsiveSocialButton = (props: Props) => {
-  const { title, type, icon, variation, onSocialLogin } = props;
+  const { type, icon, bordered, onSocialLogin } = props;
 
   const buttonWidth = 212;
   const mobileLandscapeButtonWidth = 288;
 
   const renderButton = width => (
     <Button
-      title={title}
       onClick={() => {
         onSocialLogin(type);
       }}
-      variation={variation}
+      bordered={bordered ? true : false}
       width={width}
       type={type}
-      Icon={icon}
-    />
+      icon={icon}
+    >
+      {props.children}
+    </Button>
   );
 
   return (

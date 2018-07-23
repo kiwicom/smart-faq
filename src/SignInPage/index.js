@@ -178,20 +178,22 @@ class SignIn extends React.Component<Props> {
         <div className="buttons">
           <div className="googleButton">
             <ResponsiveSocialButton
-              title="Continue with Google"
               type="google"
-              icon={Google}
-              variation="bordered"
+              bordered
+              icon={<Google />}
               onSocialLogin={onSocialLogin}
-            />
+            >
+              Continue with Google
+            </ResponsiveSocialButton>
           </div>
           <div className="facebookButton">
             <ResponsiveSocialButton
-              title="Continue with Facebook"
               type="facebook"
-              icon={Facebook}
+              icon={<Facebook />}
               onSocialLogin={onSocialLogin}
-            />
+            >
+              Continue with Facebook
+            </ResponsiveSocialButton>
           </div>
         </div>
         <div className="kiwi-account">

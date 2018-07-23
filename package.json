@@ -98,14 +98,18 @@
     "request": "2.83.0",
     "request-promise-native": "1.0.5",
     "rimraf": "^2.6.2",
+    "semantic-release": "^15.8.1",
     "storybook-router": "^0.3.3",
     "surge": "^0.20.1",
     "webpack": "4.1.0",
     "webpack-cli": "2.0.10",
     "webpack-dev-server": "3.1.0"
   },
+  "release": {
+    "verifyRelease": ["semantic-commitlint"]
+  },
   "dependencies": {
-    "@kiwicom/orbit-components": "0.0.0-rc7",
+    "@kiwicom/orbit-components": "0.1.2",
     "babel-runtime": "^6.26.0",
     "classnames": "2.2.6",
     "history": "4.7.2",
@@ -122,6 +126,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "relay-runtime": "1.5.0",
+    "styled-components": "^3.2.6",
     "styled-jsx": "^2.2.5",
     "url-search-params-polyfill": "4.0.1"
   },
