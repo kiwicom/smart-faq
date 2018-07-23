@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ErrorBoundary should render normallu 1`] = `
+exports[`ErrorBoundary should render normally 1`] = `
 <ErrorBoundaryProvider>
   <h1>
     This is not an error
@@ -8,7 +8,7 @@ exports[`ErrorBoundary should render normallu 1`] = `
 </ErrorBoundaryProvider>
 `;
 
-exports[`ErrorBoundary should trow an error 1`] = `
+exports[`ErrorBoundary should throw an error 1`] = `
 <ErrorBoundaryProvider>
   <ErrorMessage>
     <div

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 76d5d3d966218fcfc54aa16038b8f971
+ * @relayHash 3685c2cdb0e8ed1d842c515628cf4f06
  */
 
 /* eslint-disable */
@@ -194,7 +194,6 @@ fragment AccordionLegCities_leg on Leg {
     localTime
     airport {
       locationId
-      name
       city {
         name
       }
@@ -205,7 +204,6 @@ fragment AccordionLegCities_leg on Leg {
     localTime
     airport {
       locationId
-      name
       city {
         name
       }
@@ -219,6 +217,7 @@ fragment AccordionLegTypeIcon_leg on Leg {
 }
 
 fragment AccordionLegCitiesInfo_leg on Leg {
+  type
   airline {
     code
     name
@@ -233,6 +232,18 @@ fragment AccordionLegCitiesInfo_leg on Leg {
     model
   }
   pnr
+  departure {
+    airport {
+      name
+      id
+    }
+  }
+  arrival {
+    airport {
+      name
+      id
+    }
+  }
 }
 
 fragment OneWay_bookingHeader on BookingOneWay {
@@ -378,19 +389,11 @@ v7 = {
 v8 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "duration",
-  "args": null,
-  "storageKey": null
-},
-v9 = {
-  "kind": "ScalarField",
-  "alias": null,
   "name": "time",
   "args": null,
   "storageKey": null
 },
-v10 = [
-  v6,
+v9 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -400,14 +403,22 @@ v10 = [
     "concreteType": "Location",
     "plural": false,
     "selections": [
-      v4,
       v2,
-      v3,
-      v1
+      v1,
+      v4,
+      v3
     ]
   },
-  v9
+  v6,
+  v8
 ],
+v10 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "duration",
+  "args": null,
+  "storageKey": null
+},
 v11 = {
   "kind": "LinkedField",
   "alias": null,
@@ -450,6 +461,7 @@ v11 = {
       "args": null,
       "storageKey": null
     },
+    v0,
     {
       "kind": "LinkedField",
       "alias": null,
@@ -501,18 +513,6 @@ v11 = {
       "args": null,
       "storageKey": null
     },
-    v0,
-    v8,
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "arrival",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "RouteStop",
-      "plural": false,
-      "selections": v10
-    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -521,8 +521,19 @@ v11 = {
       "args": null,
       "concreteType": "RouteStop",
       "plural": false,
-      "selections": v10
+      "selections": v9
     },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "arrival",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "RouteStop",
+      "plural": false,
+      "selections": v9
+    },
+    v10,
     v1
   ]
 },
@@ -537,7 +548,7 @@ v12 = {
   "selections": [
     v5,
     v6,
-    v9
+    v8
   ]
 };
 return {
@@ -545,7 +556,7 @@ return {
   "operationKind": "query",
   "name": "NearestBookingQuery",
   "id": null,
-  "text": "query NearestBookingQuery {\n  nearestBooking {\n    __typename\n    ...BookingDetail_booking\n    id\n  }\n}\n\nfragment BookingDetail_booking on BookingInterface {\n  type\n  status\n  assets {\n    ticketUrl\n  }\n  directAccessURL\n  isPastBooking\n  ...Header_booking\n  ... on BookingOneWay {\n    ...OneWay_booking\n    trip {\n      departure {\n        time\n      }\n      arrival {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...Return_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n    inbound {\n      arrival {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MulticityOverlay_booking\n    start {\n      time\n    }\n    end {\n      time\n    }\n  }\n}\n\nfragment Header_booking on BookingInterface {\n  type\n  status\n  databaseId\n  ...OneWay_bookingHeader\n  ...Return_bookingHeader\n  ...Multicity_bookingHeader\n}\n\nfragment OneWay_booking on BookingOneWay {\n  trip {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment Return_booking on BookingReturn {\n  outbound {\n    ...AccordionTripSummary_trip\n  }\n  inbound {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment MulticityOverlay_booking on BookingMulticity {\n  trips {\n    duration\n  }\n  ...Multicity_booking\n}\n\nfragment Multicity_booking on BookingMulticity {\n  trips {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment AccordionTripSummary_trip on Trip {\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  legs {\n    airline {\n      name\n      code\n      logoUrl\n    }\n    ...CarrierLogoWrapper_legs\n    ...AccordionBody_legs\n    id\n  }\n}\n\nfragment CarrierLogoWrapper_legs on Leg {\n  airline {\n    name\n    code\n  }\n}\n\nfragment AccordionBody_legs on Leg {\n  flightNumber\n  ...AccordionBodyLeg_leg\n  ...AccordionBodyLeg_nextLeg\n  ...AccordionBodyLastLeg_leg\n}\n\nfragment AccordionBodyLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  ...AccordionLegTypeIcon_leg\n  arrival {\n    time\n    localTime\n  }\n  departure {\n    time\n    localTime\n  }\n}\n\nfragment AccordionBodyLeg_nextLeg on Leg {\n  departure {\n    time\n  }\n}\n\nfragment AccordionBodyLastLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  ...AccordionLegTypeIcon_leg\n  departure {\n    localTime\n  }\n}\n\nfragment AccordionLegCities_leg on Leg {\n  ...AccordionLegCitiesInfo_leg\n  type\n  duration\n  airline {\n    code\n    name\n  }\n  arrival {\n    localTime\n    airport {\n      locationId\n      name\n      city {\n        name\n      }\n      id\n    }\n  }\n  departure {\n    localTime\n    airport {\n      locationId\n      name\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment AccordionLegTypeIcon_leg on Leg {\n  type\n}\n\nfragment AccordionLegCitiesInfo_leg on Leg {\n  airline {\n    code\n    name\n  }\n  operatingAirline {\n    iata\n    name\n  }\n  flightNumber\n  vehicle {\n    manufacturer\n    model\n  }\n  pnr\n}\n\nfragment OneWay_bookingHeader on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment Return_bookingHeader on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment Multicity_bookingHeader on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
+  "text": "query NearestBookingQuery {\n  nearestBooking {\n    __typename\n    ...BookingDetail_booking\n    id\n  }\n}\n\nfragment BookingDetail_booking on BookingInterface {\n  type\n  status\n  assets {\n    ticketUrl\n  }\n  directAccessURL\n  isPastBooking\n  ...Header_booking\n  ... on BookingOneWay {\n    ...OneWay_booking\n    trip {\n      departure {\n        time\n      }\n      arrival {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...Return_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n    inbound {\n      arrival {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MulticityOverlay_booking\n    start {\n      time\n    }\n    end {\n      time\n    }\n  }\n}\n\nfragment Header_booking on BookingInterface {\n  type\n  status\n  databaseId\n  ...OneWay_bookingHeader\n  ...Return_bookingHeader\n  ...Multicity_bookingHeader\n}\n\nfragment OneWay_booking on BookingOneWay {\n  trip {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment Return_booking on BookingReturn {\n  outbound {\n    ...AccordionTripSummary_trip\n  }\n  inbound {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment MulticityOverlay_booking on BookingMulticity {\n  trips {\n    duration\n  }\n  ...Multicity_booking\n}\n\nfragment Multicity_booking on BookingMulticity {\n  trips {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment AccordionTripSummary_trip on Trip {\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  legs {\n    airline {\n      name\n      code\n      logoUrl\n    }\n    ...CarrierLogoWrapper_legs\n    ...AccordionBody_legs\n    id\n  }\n}\n\nfragment CarrierLogoWrapper_legs on Leg {\n  airline {\n    name\n    code\n  }\n}\n\nfragment AccordionBody_legs on Leg {\n  flightNumber\n  ...AccordionBodyLeg_leg\n  ...AccordionBodyLeg_nextLeg\n  ...AccordionBodyLastLeg_leg\n}\n\nfragment AccordionBodyLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  ...AccordionLegTypeIcon_leg\n  arrival {\n    time\n    localTime\n  }\n  departure {\n    time\n    localTime\n  }\n}\n\nfragment AccordionBodyLeg_nextLeg on Leg {\n  departure {\n    time\n  }\n}\n\nfragment AccordionBodyLastLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  ...AccordionLegTypeIcon_leg\n  departure {\n    localTime\n  }\n}\n\nfragment AccordionLegCities_leg on Leg {\n  ...AccordionLegCitiesInfo_leg\n  type\n  duration\n  airline {\n    code\n    name\n  }\n  arrival {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment AccordionLegTypeIcon_leg on Leg {\n  type\n}\n\nfragment AccordionLegCitiesInfo_leg on Leg {\n  type\n  airline {\n    code\n    name\n  }\n  operatingAirline {\n    iata\n    name\n  }\n  flightNumber\n  vehicle {\n    manufacturer\n    model\n  }\n  pnr\n  departure {\n    airport {\n      name\n      id\n    }\n  }\n  arrival {\n    airport {\n      name\n      id\n    }\n  }\n}\n\nfragment OneWay_bookingHeader on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment Return_bookingHeader on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment Multicity_bookingHeader on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -704,7 +715,7 @@ return {
                       v1
                     ]
                   },
-                  v9
+                  v8
                 ]
               },
               {
@@ -716,7 +727,7 @@ return {
                 "concreteType": "Trip",
                 "plural": true,
                 "selections": [
-                  v8
+                  v10
                 ]
               },
               {
@@ -728,7 +739,7 @@ return {
                 "concreteType": "RouteStop",
                 "plural": false,
                 "selections": [
-                  v9
+                  v8
                 ]
               }
             ]
@@ -794,7 +805,7 @@ return {
                     "plural": false,
                     "selections": [
                       v7,
-                      v9
+                      v8
                     ]
                   },
                   v11
@@ -826,7 +837,7 @@ return {
                     "plural": false,
                     "selections": [
                       v5,
-                      v9
+                      v8
                     ]
                   },
                   v11

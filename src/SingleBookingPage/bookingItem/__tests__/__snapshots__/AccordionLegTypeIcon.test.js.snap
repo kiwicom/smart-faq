@@ -23,7 +23,7 @@ exports[`LegTypeIcon should render bus icon 1`] = `
     className="jsx-885109022 legTypeIcon"
   >
     <Bus
-      customColor="#adb9c5"
+      customColor="#00a991"
       height="12"
     />
     <JSXStyle
@@ -40,7 +40,7 @@ exports[`LegTypeIcon should render train icon 1`] = `
     className="jsx-885109022 legTypeIcon"
   >
     <Train
-      customColor="#adb9c5"
+      customColor="#00a991"
       height="12"
     />
     <JSXStyle

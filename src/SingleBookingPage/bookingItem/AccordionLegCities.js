@@ -10,6 +10,7 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import LegCitiesInfo from './AccordionLegCitiesInfo';
 import { formatHour, formatTimeDuration } from '../../helpers/dateUtils';
 import type { AccordionLegCities_leg } from './__generated__/AccordionLegCities_leg.graphql';
+import bookingLegTypes from '../../common/booking/bookingLegTypes';
 
 const citiesStyle = css`
   div.legCities {
@@ -27,6 +28,10 @@ const citiesStyle = css`
   }
   div.cities {
     width: 294px;
+  }
+  div.legTitle {
+    color: #00a991;
+    margin-bottom: 5px;
   }
   div.city {
     color: #7c8b99;
@@ -100,7 +105,6 @@ class LegCities extends React.Component<Props, State> {
   }
 
   toggleLeg = () => {
-    if (this.props.leg.type !== 'AIRCRAFT') return;
     this.setState(prevState => ({ isExpanded: !prevState.isExpanded }));
   };
 
@@ -115,18 +119,28 @@ class LegCities extends React.Component<Props, State> {
 
   render() {
     const { leg } = this.props;
-    const { departure, arrival } = leg;
+    const { departure, arrival, type } = leg;
+
     const departureTime = (departure && departure.localTime) || '';
+    const arrivalTime = (arrival && arrival.localTime) || '';
+
     const departureCityName = idx(departure, _ => _.airport.city.name) || '';
     const departureCityCode = idx(departure, _ => _.airport.locationId) || '';
-    const arrivalTime = (arrival && arrival.localTime) || '';
+
     const arrivalCityName = idx(arrival, _ => _.airport.city.name) || '';
     const arrivalCityCode = idx(arrival, _ => _.airport.locationId) || '';
+
     const carrier = {
       code: idx(leg.airline, _ => _.code) || '',
       name: idx(leg.airline, _ => _.name) || '',
     };
+
     const { isExpanded } = this.state;
+
+    const legTitle =
+      type === bookingLegTypes.BUS
+        ? 'Bus'
+        : type === bookingLegTypes.TRAIN ? 'Train' : null;
 
     return (
       <div
@@ -137,6 +151,9 @@ class LegCities extends React.Component<Props, State> {
         role="button"
       >
         <div className="cities">
+          {type !== bookingLegTypes.AIRCRAFT && (
+            <div className="legTitle">{legTitle}</div>
+          )}
           <div className="departure">
             <div className="time">{formatHour(departureTime)}</div>
             <div className="city">{`${departureCityName} ${departureCityCode}`}</div>
@@ -150,15 +167,13 @@ class LegCities extends React.Component<Props, State> {
         <div className="carrier">
           <CarrierLogo size="large" carriers={[carrier]} />
         </div>
-        {leg.type === 'AIRCRAFT' && (
-          <div className="showMoreIcon">
-            {!isExpanded ? (
-              <ShowMore customColor="#94a2b0" size="12" />
-            ) : (
-              <ShowLess customColor="#94a2b0" size="12" />
-            )}
-          </div>
-        )}
+        <div className="showMoreIcon">
+          {!isExpanded ? (
+            <ShowMore customColor="#94a2b0" size="12" />
+          ) : (
+            <ShowLess customColor="#94a2b0" size="12" />
+          )}
+        </div>
         <span className="flightLength">
           {formatTimeDuration(leg.duration || 0)}
         </span>
@@ -189,7 +204,6 @@ export default createFragmentContainer(
         localTime
         airport {
           locationId
-          name
           city {
             name
           }
@@ -199,7 +213,6 @@ export default createFragmentContainer(
         localTime
         airport {
           locationId
-          name
           city {
             name
           }

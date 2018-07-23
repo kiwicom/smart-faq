@@ -23,7 +23,6 @@ export type AccordionLegCities_leg = {|
     +localTime: ?any,
     +airport: ?{|
       +locationId: ?string,
-      +name: ?string,
       +city: ?{|
         +name: ?string,
       |},
@@ -33,7 +32,6 @@ export type AccordionLegCities_leg = {|
     +localTime: ?any,
     +airport: ?{|
       +locationId: ?string,
-      +name: ?string,
       +city: ?{|
         +name: ?string,
       |},
@@ -77,7 +75,6 @@ v1 = [
         "args": null,
         "storageKey": null
       },
-      v0,
       {
         "kind": "LinkedField",
         "alias": null,
@@ -161,5 +158,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '7c221ea7011d8c696fe80a661228341b';
+(node/*: any*/).hash = '98586023330169a4bbd9642e126ddba4';
 module.exports = node;

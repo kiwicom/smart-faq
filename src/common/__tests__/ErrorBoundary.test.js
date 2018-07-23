@@ -6,7 +6,7 @@ import ErrorBoundary from '../ErrorBoundary';
 import ComponentWithError from './helpers/ComponentWithError.ignore';
 
 describe('ErrorBoundary', () => {
-  it('should render normallu', () => {
+  it('should render normally', () => {
     const result = mount(
       <ErrorBoundary>
         <h1>This is not an error</h1>
@@ -14,7 +14,7 @@ describe('ErrorBoundary', () => {
     );
     expect(result).toMatchSnapshot();
   });
-  it('should trow an error', () => {
+  it('should throw an error', () => {
     const result = mount(
       <ErrorBoundary>
         <ComponentWithError />
