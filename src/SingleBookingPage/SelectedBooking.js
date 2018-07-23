@@ -41,18 +41,10 @@ const selectedBookingQuery = graphql`
 `;
 
 const singleBookingQuery = graphql`
-  query SelectedBookingBySimpleTokenQuery($id: ID!, $simpleToken: String!) {
-    singleBooking(id: $id, simpleToken: $simpleToken) {
+  query SelectedBookingBySimpleTokenQuery($id: Int!, $authToken: String!) {
+    singleBooking(id: $id, authToken: $authToken) {
       type
-      oneWay {
-        ...BookingDetail_booking
-      }
-      return {
-        ...BookingDetail_booking
-      }
-      multicity {
-        ...BookingDetail_booking
-      }
+      ...BookingDetail_booking
     }
   }
 `;
@@ -70,17 +62,17 @@ class SelectedBooking extends React.Component<Props> {
       case bookingTypes.ONE_WAY:
         booking =
           idx(renderState.props, _ => _.booking.oneWay) ||
-          idx(renderState.props, _ => _.singleBooking.oneWay);
+          idx(renderState.props, _ => _.singleBooking);
         break;
       case bookingTypes.RETURN:
         booking =
           idx(renderState.props, _ => _.booking.return) ||
-          idx(renderState.props, _ => _.singleBooking.return);
+          idx(renderState.props, _ => _.singleBooking);
         break;
       case bookingTypes.MULTICITY:
         booking =
           idx(renderState.props, _ => _.booking.multicity) ||
-          idx(renderState.props, _ => _.singleBooking.multicity);
+          idx(renderState.props, _ => _.singleBooking);
         break;
     }
 
@@ -124,7 +116,7 @@ class SelectedBooking extends React.Component<Props> {
             return (
               <QueryRenderer
                 query={singleBookingQuery}
-                variables={{ id: bookingId, simpleToken }}
+                variables={{ id: bookingId, authToken: simpleToken }}
                 render={this.renderSelectedBooking}
               />
             );

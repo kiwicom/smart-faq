@@ -13,13 +13,18 @@ import {
 } from '../../../context/BookingState';
 import BoardingPassesSummary from './BoardingPassesSummary';
 import QueryRenderer from '../../../relay/QueryRenderer';
+import { UserContext, type UserContextType } from '../../../context/User';
 import type { BoardingPassesInfoQuery } from './__generated__/BoardingPassesInfoSelectedQuery.graphql';
 import type { BoardingPassesInfoNearestQuery } from './__generated__/BoardingPassesInfoNearestQuery.graphql';
+import type { BoardingPassesInfoSingleQuery } from './__generated__/BoardingPassesInfoSingleQuery.graphql';
 
 type Props = {||};
 
 type QueryProps = {|
-  props: BoardingPassesInfoQuery | BoardingPassesInfoNearestQuery,
+  props:
+    | BoardingPassesInfoQuery
+    | BoardingPassesInfoNearestQuery
+    | BoardingPassesInfoSingleQuery,
 |};
 
 const styles = css`
@@ -70,14 +75,27 @@ const nearestInfoBoardingPasses = graphql`
   }
 `;
 
+const singleBookingBoardingPasses = graphql`
+  query BoardingPassesInfoSingleQuery($id: Int!, $authToken: String!) {
+    singleBooking(id: $id, authToken: $authToken) {
+      assets {
+        ...BoardingPassesSummary
+      }
+      directAccessURL
+    }
+  }
+`;
+
 class BoardingPassesInfo extends React.Component<Props> {
   renderBoardingPassesCard = (queryProps: QueryProps) => {
     const boardingPasses =
       idx(queryProps.props, _ => _.booking.assets) ||
-      idx(queryProps.props, _ => _.nearestBooking.assets);
+      idx(queryProps.props, _ => _.nearestBooking.assets) ||
+      idx(queryProps.props, _ => _.singleBooking.assets);
     const directAccessURL =
       idx(queryProps.props, _ => _.booking.directAccessURL) ||
-      idx(queryProps.props, _ => _.nearestBooking.directAccessURL);
+      idx(queryProps.props, _ => _.nearestBooking.directAccessURL) ||
+      idx(queryProps.props, _ => _.singleBooking.directAccessURL);
 
     return (
       <div className="boardingPassesCard">
@@ -101,16 +119,28 @@ class BoardingPassesInfo extends React.Component<Props> {
     return (
       <BookingState.Consumer>
         {({ selectedBooking }: BookingStateType) => {
-          return selectedBooking === null ? (
+          return selectedBooking ? (
+            <UserContext.Consumer>
+              {({ simpleToken }: UserContextType) => {
+                return simpleToken ? (
+                  <QueryRenderer
+                    query={singleBookingBoardingPasses}
+                    variables={{ id: selectedBooking, authToken: simpleToken }}
+                    render={this.renderBoardingPassesCard}
+                  />
+                ) : (
+                  <QueryRenderer
+                    query={selectedInfoBoardingPasses}
+                    render={this.renderBoardingPassesCard}
+                    variables={{ id: selectedBooking }}
+                  />
+                );
+              }}
+            </UserContext.Consumer>
+          ) : (
             <QueryRenderer
               query={nearestInfoBoardingPasses}
               render={this.renderBoardingPassesCard}
-            />
-          ) : (
-            <QueryRenderer
-              query={selectedInfoBoardingPasses}
-              render={this.renderBoardingPassesCard}
-              variables={{ id: selectedBooking }}
             />
           );
         }}

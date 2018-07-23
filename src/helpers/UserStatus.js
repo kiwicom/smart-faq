@@ -10,18 +10,16 @@ type Props = {
   children?: React.Node,
 };
 
-const RequireUserCriteria = (
-  user_criteria: (user: User | ?string) => boolean,
-) => {
-  return withSimpleToken(
+const RequireUserCriteria = () =>
+  withSimpleToken(
     withUser((props: Props) => {
-      if (!user_criteria(props.user) && !user_criteria(props.simpleToken))
+      if (!props.user && !props.simpleToken) {
         return null;
+      }
       return props.children;
     }),
   );
-};
 
 export default {
-  LoggedIn: RequireUserCriteria(user => user !== null),
+  LoggedIn: RequireUserCriteria(),
 };

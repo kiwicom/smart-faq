@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { translate } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { Typography, TextLink, Text } from '@kiwicom/orbit-components';
 
@@ -16,12 +17,16 @@ import {
 import { simpleTracker } from '../../helpers/analytics/trackers';
 import bookingTypes from '../../common/booking/bookingTypes';
 import bookingStatuses from '../../common/booking/bookingStatuses';
+import { UserContext, type UserContextType } from '../../context/User';
 import type { Header_booking } from './__generated__/Header_booking.graphql';
 
 type Props = {|
   booking: Header_booking,
   isFuture: boolean,
   t: string => string,
+  history: {
+    push: string => void,
+  },
 |};
 
 function renderHeaderTitleByType(type: string, booking: Header_booking) {
@@ -54,20 +59,26 @@ const Header = (props: Props) => {
         </div>
         <BookingState.Consumer>
           {({ onDisplayAll }: BookingStateType) => (
-            <div data-cy="btn-other-bookings">
-              <TextLink
-                url=""
-                onClick={e => {
-                  e.preventDefault();
-                  onDisplayAll();
-                  simpleTracker('smartFAQBookingOverview', {
-                    action: 'selectAnotherBooking',
-                  });
-                }}
-                size="small"
-                title="Select another booking"
-              />
-            </div>
+            <UserContext.Consumer>
+              {({ simpleToken }: UserContextType) => (
+                <div data-cy="btn-other-bookings">
+                  <TextLink
+                    url=""
+                    onClick={e => {
+                      e.preventDefault();
+                      simpleTracker('smartFAQBookingOverview', {
+                        action: 'selectAnotherBooking',
+                      });
+                      simpleToken
+                        ? props.history.push('/sign-in')
+                        : onDisplayAll();
+                    }}
+                    size="small"
+                    title="Select another booking"
+                  />
+                </div>
+              )}
+            </UserContext.Consumer>
           )}
         </BookingState.Consumer>
       </div>
@@ -106,7 +117,7 @@ const Header = (props: Props) => {
 };
 
 export default createFragmentContainer(
-  translate()(Header),
+  translate()(withRouter(Header)),
   graphql`
     fragment Header_booking on BookingInterface {
       type
