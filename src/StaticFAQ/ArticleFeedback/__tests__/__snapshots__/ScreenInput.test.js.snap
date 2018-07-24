@@ -23,25 +23,16 @@ exports[`ScreenInput should match snapshot 1`] = `
         size="small"
       />
     </div>
-    <Heading
-      element="h1"
+    <WithTheme(Heading)
       size="small"
       weight="bold"
     >
       Your feedback helps us improve.
-    </Heading>
+    </WithTheme(Heading)>
     <div
       className="jsx-892344281 question"
     >
-      <Text
-        align="left"
-        element="p"
-        italic={false}
-        size="normal"
-        type="primary"
-        uppercase={false}
-        weight="regular"
-      >
+      <Text>
         What problem were you trying to solve?
       </Text>
     </div>
@@ -63,16 +54,9 @@ exports[`ScreenInput should match snapshot 1`] = `
     <div
       className="jsx-892344281 button"
     >
-      <Button
-        block={false}
-        disabled={false}
-        loading={false}
+      <WithTheme(Button)
         onClick={[Function]}
-        onlyIcon={false}
-        size="normal"
         title="Submit"
-        type="primary"
-        variation="filled"
         width={100}
       />
     </div>
@@ -107,25 +91,16 @@ exports[`ScreenInput should try to submit empty form 1`] = `
         size="small"
       />
     </div>
-    <Heading
-      element="h1"
+    <WithTheme(Heading)
       size="small"
       weight="bold"
     >
       Your feedback helps us improve.
-    </Heading>
+    </WithTheme(Heading)>
     <div
       className="jsx-892344281 question"
     >
-      <Text
-        align="left"
-        element="p"
-        italic={false}
-        size="normal"
-        type="primary"
-        uppercase={false}
-        weight="regular"
-      >
+      <Text>
         What problem were you trying to solve?
       </Text>
     </div>
@@ -147,16 +122,9 @@ exports[`ScreenInput should try to submit empty form 1`] = `
     <div
       className="jsx-892344281 button"
     >
-      <Button
-        block={false}
-        disabled={false}
-        loading={false}
+      <WithTheme(Button)
         onClick={[Function]}
-        onlyIcon={false}
-        size="normal"
         title="Submit"
-        type="primary"
-        variation="filled"
         width={100}
       />
     </div>

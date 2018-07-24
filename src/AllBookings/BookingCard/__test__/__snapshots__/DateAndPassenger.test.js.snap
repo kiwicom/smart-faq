@@ -11,26 +11,13 @@ exports[`DateAndPassenger should render correctly 1`] = `
       className="label"
     >
       <Text
-        align="left"
-        element="p"
-        italic={false}
         size="small"
         type="secondary"
-        uppercase={false}
-        weight="regular"
       >
         Departure date
       </Text>
     </div>
-    <Text
-      align="left"
-      element="p"
-      italic={false}
-      size="normal"
-      type="primary"
-      uppercase={false}
-      weight="regular"
-    >
+    <Text>
       23/11/2017
     </Text>
   </div>
@@ -41,26 +28,13 @@ exports[`DateAndPassenger should render correctly 1`] = `
       className="label"
     >
       <Text
-        align="left"
-        element="p"
-        italic={false}
         size="small"
         type="secondary"
-        uppercase={false}
-        weight="regular"
       >
         Booking date
       </Text>
     </div>
-    <Text
-      align="left"
-      element="p"
-      italic={false}
-      size="normal"
-      type="primary"
-      uppercase={false}
-      weight="regular"
-    >
+    <Text>
       14/5/2018
     </Text>
   </div>
@@ -71,26 +45,13 @@ exports[`DateAndPassenger should render correctly 1`] = `
       className="label"
     >
       <Text
-        align="left"
-        element="p"
-        italic={false}
         size="small"
         type="secondary"
-        uppercase={false}
-        weight="regular"
       >
         Includes
       </Text>
     </div>
-    <Text
-      align="left"
-      element="p"
-      italic={false}
-      size="normal"
-      type="primary"
-      uppercase={false}
-      weight="regular"
-    >
+    <Text>
       <Passengers
         customColor="#bac7d5"
         size="small"
@@ -105,13 +66,8 @@ exports[`DateAndPassenger should render correctly 1`] = `
       className="label"
     >
       <Text
-        align="left"
-        element="p"
-        italic={false}
         size="small"
         type="secondary"
-        uppercase={false}
-        weight="regular"
       >
         Status
       </Text>

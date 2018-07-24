@@ -4,7 +4,7 @@ exports[`Notification should render 1`] = `
 <div
   className="jsx-96008846 notification"
 >
-  <SystemMessage
+  <Component
     type="warning"
   >
     <div
@@ -24,7 +24,7 @@ exports[`Notification should render 1`] = `
   Don't hesitate to call us if you have an urgent problem.
       </div>
     </div>
-  </SystemMessage>
+  </Component>
   <JSXStyle
     css=".notification.jsx-96008846{margin-bottom:24px;}.system-message.jsx-96008846{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.system-message.jsx-96008846 .icon.jsx-96008846{margin-right:14px;}"
     styleId="96008846"

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import MediaQuery from 'react-responsive';
-import { Typography, SystemMessage, Button } from '@kiwicom/orbit-components';
+import { Typography, Alert, Button } from '@kiwicom/orbit-components';
 import { AlertCircle, Loading } from '@kiwicom/orbit-components/lib/icons';
 
 import CloseButton from './../common/buttons/CloseButton';
@@ -79,6 +79,7 @@ const style = css`
     p.title {
       font-size: 22px;
       text-align: center;
+      margin-top: 0;
     }
     div.picture {
       display: none;
@@ -112,6 +113,7 @@ const style = css`
     p.title {
       font-size: 22px;
       text-align: center;
+      margin-top: 0;
     }
     div.picture {
       display: none;
@@ -187,7 +189,7 @@ class KiwiLogin extends React.Component<Props, State> {
     const loadingButtonProps = isLoading
       ? {
           disabled: true,
-          Icon: Loading,
+          icon: <Loading />,
         }
       : null;
 
@@ -202,16 +204,14 @@ class KiwiLogin extends React.Component<Props, State> {
           <p className="title">Kiwi.com account</p>
           <MediaQuery query="(min-width: 480px) and (min-height: 480px)">
             <Typography type="secondary">
-              {
-                'If you have an account with us, just use your credentials to sign in.'
-              }
+              If you have an account with us, just use your credentials to sign
+              in.
             </Typography>
           </MediaQuery>
           <MediaQuery query="only screen and (max-width: 480px) and (orientation: portrait)">
             <Typography type="secondary">
-              {
-                'If you have an account with us, just use your credentials to sign in.'
-              }
+              If you have an account with us, just use your credentials to sign
+              in.
             </Typography>
           </MediaQuery>
           <form onSubmit={this.handleSignIn}>
@@ -242,9 +242,9 @@ class KiwiLogin extends React.Component<Props, State> {
             </label>
             {showError && (
               <div className="errorMessage">
-                <SystemMessage type="error" Icon={AlertCircle}>
+                <Alert type="critical" icon={<AlertCircle />}>
                   The username or password you&apos;ve entered is invalid.
-                </SystemMessage>
+                </Alert>
               </div>
             )}
             <Link
@@ -257,12 +257,9 @@ class KiwiLogin extends React.Component<Props, State> {
               </div>
             </Link>
             <span className="signIn" data-cy="btn-sign-in">
-              <Button
-                title="Sign In"
-                block
-                onClick={() => {}}
-                {...loadingButtonProps}
-              />
+              <Button block onClick={() => {}} {...loadingButtonProps}>
+                Sign In
+              </Button>
             </span>
           </form>
         </div>

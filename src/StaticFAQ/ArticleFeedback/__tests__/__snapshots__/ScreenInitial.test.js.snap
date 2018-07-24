@@ -12,13 +12,7 @@ exports[`ScreenInitial should match snapshot 1`] = `
     className="jsx-3628750341 question"
   >
     <Text
-      align="left"
-      element="p"
-      italic={false}
-      size="normal"
       type="secondary"
-      uppercase={false}
-      weight="regular"
     >
       Didn't find the answer you were looking for?
     </Text>
@@ -26,16 +20,10 @@ exports[`ScreenInitial should match snapshot 1`] = `
   <div
     className="jsx-3628750341 button"
   >
-    <Button
-      block={false}
-      disabled={false}
-      loading={false}
+    <WithTheme(Button)
       onClick={[Function]}
-      onlyIcon={false}
-      size="normal"
       title="Let us know"
       type="secondary"
-      variation="filled"
       width={115}
     />
   </div>

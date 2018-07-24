@@ -27,25 +27,22 @@ exports[`SignIn should match snapshot 1`] = `
         query="screen and (max-width: 700px)"
         values={Object {}}
       >
-        <Heading
-          element="h1"
+        <WithTheme(Heading)
           size="medium"
           weight="bold"
         >
           Sign in
-        </Heading>
+        </WithTheme(Heading)>
       </MediaQuery>
       <MediaQuery
         query="screen and (min-width: 701px)"
         values={Object {}}
       >
-        <Heading
-          element="h1"
-          size="large"
+        <WithTheme(Heading)
           weight="bold"
         >
           Sign in
-        </Heading>
+        </WithTheme(Heading)>
       </MediaQuery>
     </div>
     <MediaQuery
@@ -53,13 +50,7 @@ exports[`SignIn should match snapshot 1`] = `
       values={Object {}}
     >
       <Text
-        align="left"
-        element="p"
-        italic={false}
-        size="normal"
         type="secondary"
-        uppercase={false}
-        weight="regular"
       >
         We need you to sign in to provide you with more personalised help.
       </Text>
@@ -69,13 +60,7 @@ exports[`SignIn should match snapshot 1`] = `
       values={Object {}}
     >
       <Text
-        align="left"
-        element="p"
-        italic={false}
-        size="normal"
         type="secondary"
-        uppercase={false}
-        weight="regular"
       >
         We need you to sign in to provide you with more personalised help.
       </Text>
@@ -88,22 +73,24 @@ exports[`SignIn should match snapshot 1`] = `
       className="jsx-4100188086 googleButton"
     >
       <withLoginHOC
-        icon={[Function]}
+        bordered={true}
+        icon={<Google />}
         onSocialLogin={[MockFunction]}
-        title="Continue with Google"
         type="google"
-        variation="bordered"
-      />
+      >
+        Continue with Google
+      </withLoginHOC>
     </div>
     <div
       className="jsx-4100188086 facebookButton"
     >
       <withLoginHOC
-        icon={[Function]}
+        icon={<Facebook />}
         onSocialLogin={[MockFunction]}
-        title="Continue with Facebook"
         type="facebook"
-      />
+      >
+        Continue with Facebook
+      </withLoginHOC>
     </div>
   </div>
   <div
@@ -119,11 +106,11 @@ exports[`SignIn should match snapshot 1`] = `
       }
       to="/kiwi-login"
     >
-      <Typography
+      <Component
         type="active"
       >
         I want to use my Kiwi.com account
-      </Typography>
+      </Component>
       <img
         alt="kiwi login"
         className="jsx-4100188086 chevron"
@@ -165,25 +152,22 @@ exports[`SignIn should match snapshot with expired message 1`] = `
         query="screen and (max-width: 700px)"
         values={Object {}}
       >
-        <Heading
-          element="h1"
+        <WithTheme(Heading)
           size="medium"
           weight="bold"
         >
           Sign in
-        </Heading>
+        </WithTheme(Heading)>
       </MediaQuery>
       <MediaQuery
         query="screen and (min-width: 701px)"
         values={Object {}}
       >
-        <Heading
-          element="h1"
-          size="large"
+        <WithTheme(Heading)
           weight="bold"
         >
           Sign in
-        </Heading>
+        </WithTheme(Heading)>
       </MediaQuery>
     </div>
     <MediaQuery
@@ -191,13 +175,7 @@ exports[`SignIn should match snapshot with expired message 1`] = `
       values={Object {}}
     >
       <Text
-        align="left"
-        element="p"
-        italic={false}
-        size="normal"
         type="secondary"
-        uppercase={false}
-        weight="regular"
       >
         We need you to sign in to provide you with more personalised help.
       </Text>
@@ -207,13 +185,7 @@ exports[`SignIn should match snapshot with expired message 1`] = `
       values={Object {}}
     >
       <Text
-        align="left"
-        element="p"
-        italic={false}
-        size="normal"
         type="secondary"
-        uppercase={false}
-        weight="regular"
       >
         We need you to sign in to provide you with more personalised help.
       </Text>
@@ -221,12 +193,12 @@ exports[`SignIn should match snapshot with expired message 1`] = `
     <div
       className="jsx-2959917577 infoMessage"
     >
-      <SystemMessage
-        Icon={[Function]}
+      <WithTheme(Alert)
+        icon={<AlertCircle />}
         type="info"
       >
         Your last session has expired. Please sign in again.
-      </SystemMessage>
+      </WithTheme(Alert)>
       <JSXStyle
         css="div.infoMessage.jsx-2959917577{margin:20px 0 0;}"
         styleId="2959917577"
@@ -240,22 +212,24 @@ exports[`SignIn should match snapshot with expired message 1`] = `
       className="jsx-4100188086 googleButton"
     >
       <withLoginHOC
-        icon={[Function]}
+        bordered={true}
+        icon={<Google />}
         onSocialLogin={[MockFunction]}
-        title="Continue with Google"
         type="google"
-        variation="bordered"
-      />
+      >
+        Continue with Google
+      </withLoginHOC>
     </div>
     <div
       className="jsx-4100188086 facebookButton"
     >
       <withLoginHOC
-        icon={[Function]}
+        icon={<Facebook />}
         onSocialLogin={[MockFunction]}
-        title="Continue with Facebook"
         type="facebook"
-      />
+      >
+        Continue with Facebook
+      </withLoginHOC>
     </div>
   </div>
   <div
@@ -271,11 +245,11 @@ exports[`SignIn should match snapshot with expired message 1`] = `
       }
       to="/kiwi-login"
     >
-      <Typography
+      <Component
         type="active"
       >
         I want to use my Kiwi.com account
-      </Typography>
+      </Component>
       <img
         alt="kiwi login"
         className="jsx-4100188086 chevron"
