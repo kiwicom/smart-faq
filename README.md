@@ -52,7 +52,7 @@ to compose your commit message using an interactive command line tool.
 To access `git cz` you need to first install commitizen globally using:
 
 ```
-npm install -g commitizen
+yarn global add commitizen
 ```
 
 If you squash your commits when merging a pull request, compose the message of
