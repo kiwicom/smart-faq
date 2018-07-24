@@ -22,8 +22,7 @@ exports[`ScreenThankyou should match snapshot 1`] = `
       />
     </div>
     <WithTheme(Heading)
-      size="small"
-      weight="bold"
+      type="title3"
     >
       Thanks again.
     </WithTheme(Heading)>
@@ -31,8 +30,7 @@ exports[`ScreenThankyou should match snapshot 1`] = `
       className="jsx-3762548811 message-2"
     >
       <WithTheme(Heading)
-        size="small"
-        weight="bold"
+        type="title3"
       >
         We appreciate your insight.
       </WithTheme(Heading)>

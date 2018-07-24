@@ -31,9 +31,7 @@ const BookingCardsList = (props: Props) => {
     <React.Fragment>
       {bookings.length > 0 && (
         <div className="subtitle">
-          <Heading weight="medium" size="small">
-            {title}
-          </Heading>
+          <Heading type="title3">{title}</Heading>
         </div>
       )}
       {bookings.map(booking => {

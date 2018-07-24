@@ -151,12 +151,10 @@ class SignIn extends React.Component<Props> {
         <div className="text">
           <div className="title">
             <MediaQuery query="screen and (max-width: 700px)">
-              <Heading weight="bold" size="medium">
-                Sign in
-              </Heading>
+              <Heading type="title2">Sign in</Heading>
             </MediaQuery>
             <MediaQuery query="screen and (min-width: 701px)">
-              <Heading weight="bold">Sign in</Heading>
+              <Heading>Sign in</Heading>
             </MediaQuery>
           </div>
           <MediaQuery query="(min-width: 480px) and (min-height: 480px)">

@@ -6,8 +6,7 @@ exports[`RawBookingCardsList bookings in list 1`] = `
     className="jsx-1893935473 subtitle"
   >
     <WithTheme(Heading)
-      size="small"
-      weight="medium"
+      type="title3"
     >
       Example
     </WithTheme(Heading)>

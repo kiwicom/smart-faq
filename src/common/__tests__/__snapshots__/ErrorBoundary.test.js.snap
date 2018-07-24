@@ -663,9 +663,7 @@ exports[`ErrorBoundary should throw an error 1`] = `
           <div
             className="jsx-2885065558"
           >
-            <WithTheme(Heading)
-              weight="bold"
-            >
+            <WithTheme(Heading)>
               <Heading
                 theme={
                   Object {
@@ -986,7 +984,6 @@ exports[`ErrorBoundary should throw an error 1`] = `
                     "zIndexSticky": "100",
                   }
                 }
-                weight="bold"
               >
                 <Heading__StyledHeading
                   element="h1"

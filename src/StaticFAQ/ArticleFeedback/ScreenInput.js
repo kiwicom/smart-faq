@@ -110,9 +110,7 @@ class ScreenInput extends React.Component<Props, State> {
           >
             <Close customColor="#bac7d5" size="small" />
           </div>
-          <Heading weight="bold" size="small">
-            Your feedback helps us improve.
-          </Heading>
+          <Heading type="title3">Your feedback helps us improve.</Heading>
           <div className="question">
             <Text>What problem were you trying to solve?</Text>
           </div>

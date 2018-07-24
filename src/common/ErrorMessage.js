@@ -24,7 +24,7 @@ const styles = css`
 const ErrorMessage = () => (
   <div className="errorContainer">
     <div>
-      <Heading weight="bold">Something's not quite right.</Heading>
+      <Heading>Something's not quite right.</Heading>
       <div className="desc">
         <Typography size="large" type="secondary">
           Please, try refreshing the page. Sign out. Then sign in again. If the

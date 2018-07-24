@@ -40,9 +40,7 @@ type Props = {|
 const FAQCategory = (props: Props) => (
   <Card>
     <div className="faq-category">
-      <Heading weight="medium" size="small">
-        {props.category.title}
-      </Heading>
+      <Heading type="title3">{props.category.title}</Heading>
     </div>
     <div className="perex">
       <Text type="secondary" size="small">
