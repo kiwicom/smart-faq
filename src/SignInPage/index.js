@@ -4,12 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
-import {
-  Typography,
-  Text,
-  Heading,
-  SystemMessage,
-} from '@kiwicom/orbit-components';
+import { Typography, Text, Heading, Alert } from '@kiwicom/orbit-components';
 import {
   AlertCircle,
   Google,
@@ -126,9 +121,9 @@ class SignIn extends React.Component<Props> {
   renderExpiredSession() {
     return (
       <div className="infoMessage">
-        <SystemMessage type="info" Icon={AlertCircle}>
+        <Alert type="info" icon={<AlertCircle />}>
           Your last session has expired. Please sign in again.
-        </SystemMessage>
+        </Alert>
         <style jsx>
           {`
             div.infoMessage {
@@ -139,6 +134,7 @@ class SignIn extends React.Component<Props> {
       </div>
     );
   }
+
   render() {
     const { onSocialLogin } = this.props;
     const sessionExpired = idx(
