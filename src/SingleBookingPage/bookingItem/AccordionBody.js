@@ -36,6 +36,7 @@ class AccordionBody extends React.Component<Props> {
             }
             hr {
               margin-top: 16px;
+              margin-bottom: 0;
               border: none;
               border-bottom: 1px solid #e8edf1;
             }

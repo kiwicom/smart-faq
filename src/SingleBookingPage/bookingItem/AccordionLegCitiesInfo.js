@@ -28,7 +28,7 @@ const citiesInfoStyle = css`
     margin-bottom: 6px;
   }
   p {
-    margin-left: 10px;
+    margin: 0 0 0 10px;
   }
   .moreInfoLink {
     color: #00a991;
