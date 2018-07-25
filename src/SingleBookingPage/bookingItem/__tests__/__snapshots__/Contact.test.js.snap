@@ -2,13 +2,13 @@
 
 exports[`Contact should render only email 1`] = `
 <div
-  className="jsx-2410063808 contact"
+  className="jsx-1891334837 contact"
 >
   <hr
-    className="jsx-2410063808"
+    className="jsx-1891334837"
   />
   <div
-    className="jsx-2410063808 contact-options"
+    className="jsx-1891334837 contact-options"
   >
     <withSimpleTokenHOC>
       <withLanguageHOC
@@ -18,28 +18,28 @@ exports[`Contact should render only email 1`] = `
     </withSimpleTokenHOC>
   </div>
   <div
-    className="jsx-2410063808 instructions"
+    className="jsx-1891334837 instructions"
   >
     <ol
-      className="jsx-2410063808"
+      className="jsx-1891334837"
     >
       <li
-        className="jsx-2410063808"
+        className="jsx-1891334837"
       >
         When contacting us we will ask the 
         <b
-          className="jsx-2410063808"
+          className="jsx-1891334837"
         >
           full name
         </b>
          of at least one of the passengers.
       </li>
       <li
-        className="jsx-2410063808"
+        className="jsx-1891334837"
       >
         The full 
         <b
-          className="jsx-2410063808"
+          className="jsx-1891334837"
         >
           email address
         </b>
@@ -48,45 +48,45 @@ exports[`Contact should render only email 1`] = `
     </ol>
   </div>
   <JSXStyle
-    css=".contact.jsx-2410063808{margin-top:32px;}.contact.jsx-2410063808 .title.jsx-2410063808{margin-bottom:18px;}.contact-options.jsx-2410063808,.phone.jsx-2410063808,.chat.jsx-2410063808,.inline-icon.jsx-2410063808{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.phone.jsx-2410063808{margin-right:40px;}hr.jsx-2410063808{margin-bottom:16px;border:none;border-bottom:1px solid #e8edf1;}.phone-icon.jsx-2410063808{margin-right:7px;}.chevron-icon.jsx-2410063808{margin-left:5px;}.chat-icon.jsx-2410063808{margin-right:14px;}.instructions.jsx-2410063808{margin-left:20px;margin-top:34px;font-size:14px;color:#46515e;}.instructions.jsx-2410063808 ol.jsx-2410063808{list-style-type:decimal;}li.jsx-2410063808{margin-bottom:7px;padding-left:10px;}"
-    styleId="2410063808"
+    css=".contact.jsx-1891334837{margin-top:32px;}.contact.jsx-1891334837 .title.jsx-1891334837{margin-bottom:18px;}.contact-options.jsx-1891334837,.phone.jsx-1891334837,.chat.jsx-1891334837,.inline-icon.jsx-1891334837{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.phone.jsx-1891334837{margin-right:40px;}hr.jsx-1891334837{margin-bottom:16px;border:none;border-bottom:1px solid #e8edf1;}.phone-icon.jsx-1891334837{margin-right:7px;}.chevron-icon.jsx-1891334837{margin-left:5px;}.chat-icon.jsx-1891334837{margin-right:14px;}.instructions.jsx-1891334837{margin-left:20px;margin-top:34px;font-size:14px;color:#46515e;}.instructions.jsx-1891334837 ol.jsx-1891334837{list-style-type:decimal;padding:0;}li.jsx-1891334837{margin-bottom:7px;padding-left:10px;}"
+    styleId="1891334837"
   />
 </div>
 `;
 
 exports[`Contact should render with email and phone 1`] = `
 <div
-  class="jsx-2410063808 contact"
+  class="jsx-1891334837 contact"
 >
   <hr
-    class="jsx-2410063808"
+    class="jsx-1891334837"
   />
   <div
-    class="jsx-2410063808 contact-options"
+    class="jsx-1891334837 contact-options"
   />
   <div
-    class="jsx-2410063808 instructions"
+    class="jsx-1891334837 instructions"
   >
     <ol
-      class="jsx-2410063808"
+      class="jsx-1891334837"
     >
       <li
-        class="jsx-2410063808"
+        class="jsx-1891334837"
       >
         When contacting us we will ask the 
         <b
-          class="jsx-2410063808"
+          class="jsx-1891334837"
         >
           full name
         </b>
          of at least one of the passengers.
       </li>
       <li
-        class="jsx-2410063808"
+        class="jsx-1891334837"
       >
         The full 
         <b
-          class="jsx-2410063808"
+          class="jsx-1891334837"
         >
           email address
         </b>
