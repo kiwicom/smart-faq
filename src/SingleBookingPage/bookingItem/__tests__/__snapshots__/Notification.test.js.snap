@@ -2,32 +2,37 @@
 
 exports[`Notification should render 1`] = `
 <div
-  className="jsx-96008846 notification"
+  class="jsx-253481468 notification"
 >
-  <Component
-    type="warning"
+  <div
+    class="Alert__StyledAlert-cJJYQC juWFnr"
   >
     <div
-      className="jsx-96008846 system-message"
+      class="Alert__IconContainer-eSlLEA eyJClo"
+    >
+      <svg
+        fill="currentColor"
+        height="24px"
+        preserveAspectRatio="xMidYMid meet"
+        style="vertical-align:middle"
+        viewBox="0 0 24 24"
+        width="24px"
+      >
+        <path
+          d="M12 19.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zM11 10h2v6h-2v-6zm10.895 10.553l-9-18c-.339-.678-1.451-.678-1.79 0l-9 18c-.154.31-.138.678.044.973.183.294.504.474.851.474h18c.347 0 .668-.18.851-.474.182-.295.198-.663.044-.973z"
+        />
+      </svg>
+    </div>
+    <div
+      class="Alert__ContentWrapper-glEZbs cPHqb"
     >
       <div
-        className="jsx-96008846 icon"
-      >
-        <Alert
-          customColor="#f9971e"
-        />
-      </div>
-      <div
-        className="jsx-96008846 text"
+        class="Alert__Content-KRSaN flVfCN"
       >
         You depart in 25h.
   Don't hesitate to call us if you have an urgent problem.
       </div>
     </div>
-  </Component>
-  <JSXStyle
-    css=".notification.jsx-96008846{margin-bottom:24px;}.system-message.jsx-96008846{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.system-message.jsx-96008846 .icon.jsx-96008846{margin-right:14px;}"
-    styleId="96008846"
-  />
+  </div>
 </div>
 `;
