@@ -112,7 +112,7 @@ const BookingCard = (props: Props) => {
         </Text>
       )}
       <div className="logoCarriers">
-        <CarrierLogo carriers={allCarriers} />
+        <CarrierLogo size="medium" carriers={allCarriers} />
       </div>
       <FromToRowFragment
         type={props.type}
