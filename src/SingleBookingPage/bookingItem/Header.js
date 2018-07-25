@@ -61,9 +61,8 @@ const Header = (props: Props) => {
           {({ onDisplayAll }: BookingStateType) => (
             <UserContext.Consumer>
               {({ simpleToken }: UserContextType) => (
-                <div data-cy="btn-other-bookings">
+                <div className="headerLink" data-cy="btn-other-bookings">
                   <TextLink
-                    url=""
                     onClick={e => {
                       e.preventDefault();
                       simpleTracker('smartFAQBookingOverview', {
@@ -73,9 +72,9 @@ const Header = (props: Props) => {
                         ? props.history.push('/sign-in')
                         : onDisplayAll();
                     }}
-                    size="small"
-                    title="Select another booking"
-                  />
+                  >
+                    Select another booking
+                  </TextLink>
                 </div>
               )}
             </UserContext.Consumer>
@@ -103,6 +102,9 @@ const Header = (props: Props) => {
           .headerAbove {
             display: flex;
             justify-content: space-between;
+          }
+          .headerLink {
+            font-size: 12px;
           }
           .headerBelow {
             margin-bottom: 16px;
