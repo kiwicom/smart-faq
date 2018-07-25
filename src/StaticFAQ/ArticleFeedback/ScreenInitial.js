@@ -26,10 +26,11 @@ const ScreenInitial = (props: Props) => (
     <div className="button">
       <Button
         type="secondary"
-        title="Let us know"
         width={115}
         onClick={() => props.changeScreen(screensList.INPUT)}
-      />
+      >
+        Let us know
+      </Button>
     </div>
     <style jsx>
       {`

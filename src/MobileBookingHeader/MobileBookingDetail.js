@@ -61,8 +61,9 @@ const MobileBookingControls = (props: MobileBookingControlsProps) => (
         }}
         type="secondary"
         size="small"
-        title="Manage My Booking"
-      />
+      >
+        Manage My Booking
+      </Button>
     </div>
     <div className="selectBookingButton">
       <BookingState.Consumer>

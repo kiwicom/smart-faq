@@ -123,7 +123,9 @@ class ScreenInput extends React.Component<Props, State> {
             {error ? <p>You haven't written any feedback.</p> : null}
           </div>
           <div className="button">
-            <Button title="Submit" onClick={() => {}} width={100} />
+            <Button onClick={() => {}} width={100}>
+              Submit
+            </Button>
           </div>
         </form>
         <style jsx>{style}</style>
