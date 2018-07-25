@@ -85,17 +85,18 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
             display: inline-block;
           }
           .leg {
-            margin-left: 5px;
             font-size: 14px;
             font-weight: bold;
             line-height: 1.4;
             color: #46515e;
             display: inline-block;
+            margin: 0 0 0 5px;
           }
           hr.separationLine {
             height: 1px;
             background-color: #e8edf1;
             border: none;
+            margin: 0;
           }
         `}
       </style>
