@@ -55,9 +55,10 @@ exports[`ScreenInput should match snapshot 1`] = `
     >
       <WithTheme(Button)
         onClick={[Function]}
-        title="Submit"
         width={100}
-      />
+      >
+        Submit
+      </WithTheme(Button)>
     </div>
   </form>
   <JSXStyle
@@ -122,9 +123,10 @@ exports[`ScreenInput should try to submit empty form 1`] = `
     >
       <WithTheme(Button)
         onClick={[Function]}
-        title="Submit"
         width={100}
-      />
+      >
+        Submit
+      </WithTheme(Button)>
     </div>
   </form>
   <JSXStyle
