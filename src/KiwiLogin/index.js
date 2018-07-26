@@ -188,12 +188,17 @@ class KiwiLogin extends React.Component<Props, State> {
   };
   render() {
     const { showError, isLoading } = this.state;
-    const loadingButtonProps = isLoading
-      ? {
-          disabled: true,
-          icon: <Loading />,
-        }
-      : null;
+
+    const renderButton = () =>
+      isLoading ? (
+        <Button block onClick={() => {}} disabled icon="<Loading />">
+          Sign In
+        </Button>
+      ) : (
+        <Button block onClick={() => {}}>
+          Sign In
+        </Button>
+      );
 
     return (
       <div className="KiwiLogin">
@@ -257,9 +262,7 @@ class KiwiLogin extends React.Component<Props, State> {
               <div className="forgotPassword">Forgot your password?</div>
             </Link>
             <span className="signIn" data-cy="btn-sign-in">
-              <Button block onClick={() => {}} {...loadingButtonProps}>
-                Sign In
-              </Button>
+              {renderButton()}
             </span>
           </form>
         </div>

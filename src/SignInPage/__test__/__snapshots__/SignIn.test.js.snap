@@ -71,7 +71,6 @@ exports[`SignIn should match snapshot 1`] = `
     >
       <withLoginHOC
         bordered={true}
-        icon={<Google />}
         onSocialLogin={[MockFunction]}
         type="google"
       >
@@ -82,7 +81,6 @@ exports[`SignIn should match snapshot 1`] = `
       className="jsx-3481496158 facebookButton"
     >
       <withLoginHOC
-        icon={<Facebook />}
         onSocialLogin={[MockFunction]}
         type="facebook"
       >
@@ -207,7 +205,6 @@ exports[`SignIn should match snapshot with expired message 1`] = `
     >
       <withLoginHOC
         bordered={true}
-        icon={<Google />}
         onSocialLogin={[MockFunction]}
         type="google"
       >
@@ -218,7 +215,6 @@ exports[`SignIn should match snapshot with expired message 1`] = `
       className="jsx-3481496158 facebookButton"
     >
       <withLoginHOC
-        icon={<Facebook />}
         onSocialLogin={[MockFunction]}
         type="facebook"
       >
