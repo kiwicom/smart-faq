@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
-import { themeListener } from 'theming/dist/cjs';
 
 import ErrorBoundary from '../ErrorBoundary';
 import ComponentWithError from './helpers/ComponentWithError.ignore';

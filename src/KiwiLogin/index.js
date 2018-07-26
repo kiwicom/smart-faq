@@ -191,7 +191,7 @@ class KiwiLogin extends React.Component<Props, State> {
 
     const renderButton = () =>
       isLoading ? (
-        <Button block onClick={() => {}} disabled icon="<Loading />">
+        <Button block onClick={() => {}} disabled icon={<Loading />}>
           Sign In
         </Button>
       ) : (

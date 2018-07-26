@@ -191,8 +191,7 @@ class ForgottenPassword extends React.Component<Props, State> {
         <div className="main">
           <p className="title">Forgotten password</p>
           <Text type="secondary">
-            Please enter your email address. We'll send you instructions to
-            reset your password.
+            {`Please enter your email address. We'll send you instructions to reset your password.`}
           </Text>
         </div>
         <form onSubmit={this.handleSubmitEmail}>
