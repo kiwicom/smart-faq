@@ -57,7 +57,7 @@ const AccordionHeader = ({ trip, isToggled }: Props) => {
         <CarrierLogoWrapper legs={trip.legs} />
       </div>
       <div className="info">
-        <Text type="secondary" size="small">
+        <Text type="secondary" size="small" element="div">
           {departureDate && <FormatDate dateString={departureDate} />}
         </Text>
         <div className="itinerary">
