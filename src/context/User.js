@@ -7,6 +7,7 @@ import type { User, onLogin, onSocialLogin } from '../types';
 export type UserContextType = {
   user: User,
   loginToken: ?string,
+  simpleToken: ?string,
   onLogin: onLogin,
   onSocialLogin: onSocialLogin,
 };
@@ -15,6 +16,7 @@ export const UserContext = React.createContext(
   ({
     user: null,
     loginToken: null,
+    simpleToken: null,
     onLogin: (email, password) => Promise.resolve({ email, password }),
     onSocialLogin: provider => Promise.resolve(provider),
   }: UserContextType),
@@ -53,6 +55,19 @@ export const withUser = <Props>(
     return (
       <UserContext.Consumer>
         {({ user }: UserContextType) => <Component {...props} user={user} />}
+      </UserContext.Consumer>
+    );
+  };
+
+export const withSimpleToken = <Props>(
+  Component: React.ComponentType<{ simpleToken: ?string } & Props>,
+) =>
+  function withSimpleTokenHOC(props: Props) {
+    return (
+      <UserContext.Consumer>
+        {({ simpleToken }: UserContextType) => (
+          <Component {...props} simpleToken={simpleToken} />
+        )}
       </UserContext.Consumer>
     );
   };

@@ -18,6 +18,7 @@ type Props = {||};
 type State = {|
   user: User,
   loginToken: ?string,
+  simpleToken: ?string,
   helpQuery: ?string,
   open: boolean,
 |};
@@ -38,6 +39,7 @@ class Root extends React.Component<Props, State> {
     this.cookieKey = 'mockedLogin';
 
     const loginToken = Cookies.get(this.cookieKey);
+    const simpleToken = null;
 
     this.setupLogs();
     //
@@ -50,6 +52,7 @@ class Root extends React.Component<Props, State> {
     this.state = {
       user: loginToken ? user : null,
       loginToken,
+      simpleToken,
       helpQuery: helpQueryString,
       open: true,
     };
@@ -133,6 +136,7 @@ class Root extends React.Component<Props, State> {
           user={this.state.user}
           route={route}
           loginToken={this.state.loginToken}
+          simpleToken={this.state.simpleToken}
         />
         <style jsx global>
           {`

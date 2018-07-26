@@ -10,6 +10,7 @@ import StaticFAQ from '../../StaticFAQ';
 import Article from '../../StaticFAQ/ArticleDetail/Article';
 import { ScrollableContent } from '../../common';
 import { UserContext, type UserContextType } from '../../context/User';
+import UserStatus from '../../helpers/UserStatus';
 import { BookingState } from '../../context/BookingState';
 import BookingPage from './BookingPage';
 
@@ -88,14 +89,14 @@ class ContentPage extends React.Component<Props> {
               </div>
             ) : (
               <Desktop>
-                {isLoggedIn && (
+                <UserStatus.LoggedIn>
                   <div className="BookingInfo">
                     <BookingPage
                       bookingPage={bookingPage}
                       selectedBooking={selectedBooking}
                     />
                   </div>
-                )}
+                </UserStatus.LoggedIn>
               </Desktop>
             )}
             <div className="FAQWrapper">

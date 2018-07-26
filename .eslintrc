@@ -90,6 +90,13 @@
       "error",
       "always"
     ],
+    "flowtype/space-after-type-colon": [
+      2,
+      "always",
+      {
+        "allowLineBreak": true
+      }
+    ],
     "flowtype/no-weak-types": [
       "warn",
       {

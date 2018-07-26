@@ -1,20 +1,25 @@
 // @flow
 import * as React from 'react';
 
-import { withUser } from '../context/User';
+import { withUser, withSimpleToken } from '../context/User';
 import type { User } from '../types';
 
 type Props = {
   user: User,
+  simpleToken: ?string,
   children?: React.Node,
 };
 
-const RequireUserCriteria = (user_criteria: (user: User) => boolean) =>
-  withUser((props: Props) => {
-    if (!user_criteria(props.user)) return null;
-    return props.children;
-  });
+const RequireUserCriteria = () =>
+  withSimpleToken(
+    withUser((props: Props) => {
+      if (!props.user && !props.simpleToken) {
+        return null;
+      }
+      return props.children;
+    }),
+  );
 
 export default {
-  LoggedIn: RequireUserCriteria(user => user !== null),
+  LoggedIn: RequireUserCriteria(),
 };
