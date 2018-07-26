@@ -5,11 +5,7 @@ import idx from 'idx';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import { Text, Heading, Alert } from '@kiwicom/orbit-components';
-import {
-  AlertCircle,
-  Google,
-  Facebook,
-} from '@kiwicom/orbit-components/lib/icons';
+import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
 import type { Location } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 
@@ -178,7 +174,6 @@ class SignIn extends React.Component<Props> {
             <ResponsiveSocialButton
               type="google"
               bordered
-              icon={<Google />}
               onSocialLogin={onSocialLogin}
             >
               Continue with Google
@@ -187,7 +182,6 @@ class SignIn extends React.Component<Props> {
           <div className="facebookButton">
             <ResponsiveSocialButton
               type="facebook"
-              icon={<Facebook />}
               onSocialLogin={onSocialLogin}
             >
               Continue with Facebook

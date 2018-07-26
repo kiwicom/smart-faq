@@ -3,6 +3,7 @@
 import * as React from 'react';
 import MediaQuery from 'react-responsive';
 import { Button } from '@kiwicom/orbit-components';
+import { Google, Facebook } from '@kiwicom/orbit-components/lib/icons';
 
 import { withSocialLogin } from '../context/User';
 import type { onSocialLogin, Provider } from '../types';
@@ -11,14 +12,17 @@ type Props = {
   type: Provider,
   bordered?: boolean,
   onSocialLogin: onSocialLogin,
-  icon: React.ComponentType<Props>,
+  children: string,
 };
 
 const ResponsiveSocialButton = (props: Props) => {
-  const { type, icon, bordered, onSocialLogin } = props;
+  const { type, bordered, onSocialLogin, children } = props;
 
   const buttonWidth = 212;
   const mobileLandscapeButtonWidth = 288;
+
+  const icon =
+    type === 'google' ? <Google /> : type === 'facebook' ? <Facebook /> : null;
 
   const renderButton = width => (
     <Button
@@ -30,7 +34,7 @@ const ResponsiveSocialButton = (props: Props) => {
       type={type}
       icon={icon}
     >
-      {props.children}
+      {children}
     </Button>
   );
 
