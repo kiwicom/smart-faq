@@ -99,16 +99,12 @@ const LegCitiesInfo = (props: Props) => {
   return (
     <div className="legCitiesInfo">
       <div className="infoRow">
-        <CarrierLogo className="logo" size="small" carriers={[carrier]} />
+        <CarrierLogo size="small" carriers={[carrier]} />
         <p>{`${carrierTitle}: ${carrier.name}`}</p>
       </div>
       {showOperatingAirline() && (
         <div className="infoRow">
-          <CarrierLogo
-            className="logo"
-            size="small"
-            carriers={[operatingAirline]}
-          />
+          <CarrierLogo size="small" carriers={[operatingAirline]} />
           <p>Operating airline: {operatingAirline.name}</p>
         </div>
       )}

@@ -65,7 +65,7 @@ class ArticleContent extends React.Component<Props> {
       <div className="faq-article-content">
         <Heading type="title2">{article.title}</Heading>
         <div className="faq-article-perex">
-          <Text colorText="attention" weight="bold" element="span">
+          <Text type="attention" weight="bold" element="span">
             Summary:
           </Text>
           <Text element="span"> {article.perex}</Text>

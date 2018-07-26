@@ -74,6 +74,8 @@ const MobileBookingControls = (props: MobileBookingControlsProps) => (
                 e.preventDefault();
                 onDisplayAll();
               }}
+              external={false}
+              type="primary"
             >
               Select another booking
             </TextLink>

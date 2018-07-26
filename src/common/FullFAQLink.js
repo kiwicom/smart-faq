@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import { Text } from '@kiwicom/orbit-components';
 import { NewWindow } from '@kiwicom/orbit-components/lib/icons';
 import css from 'styled-jsx/css';

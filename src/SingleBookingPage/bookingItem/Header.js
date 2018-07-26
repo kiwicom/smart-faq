@@ -72,6 +72,8 @@ const Header = (props: Props) => {
                         ? props.history.push('/sign-in')
                         : onDisplayAll();
                     }}
+                    external={false}
+                    type="primary"
                   >
                     Select another booking
                   </TextLink>
