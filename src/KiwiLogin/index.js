@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import MediaQuery from 'react-responsive';
-import { Typography, Alert, Button } from '@kiwicom/orbit-components';
+import { Text, Alert, Button } from '@kiwicom/orbit-components';
 import { AlertCircle, Loading } from '@kiwicom/orbit-components/lib/icons';
 
 import CloseButton from './../common/buttons/CloseButton';
@@ -43,6 +43,8 @@ const style = css`
   .forgotPassword {
     margin-top: 12px;
     display: inline-block;
+    font-size: 14px;
+    color: #00a991;
   }
   .signIn {
     float: right;
@@ -203,16 +205,16 @@ class KiwiLogin extends React.Component<Props, State> {
         <div className="main">
           <p className="title">Kiwi.com account</p>
           <MediaQuery query="(min-width: 480px) and (min-height: 480px)">
-            <Typography type="secondary">
+            <Text type="secondary">
               If you have an account with us, just use your credentials to sign
               in.
-            </Typography>
+            </Text>
           </MediaQuery>
           <MediaQuery query="only screen and (max-width: 480px) and (orientation: portrait)">
-            <Typography type="secondary">
+            <Text type="secondary">
               If you have an account with us, just use your credentials to sign
               in.
-            </Typography>
+            </Text>
           </MediaQuery>
           <form onSubmit={this.handleSignIn}>
             <label htmlFor="email">
@@ -252,9 +254,7 @@ class KiwiLogin extends React.Component<Props, State> {
               style={{ textDecoration: 'none' }}
               data-cy="link-forgotten-password"
             >
-              <div className="forgotPassword">
-                <Typography type="active">Forgot your password?</Typography>
-              </div>
+              <div className="forgotPassword">Forgot your password?</div>
             </Link>
             <span className="signIn" data-cy="btn-sign-in">
               <Button block onClick={() => {}} {...loadingButtonProps}>

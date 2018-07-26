@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import * as React from 'react';
 import idx from 'idx';
 import css from 'styled-jsx/css';
-import { Typography } from '@kiwicom/orbit-components';
+import { Text } from '@kiwicom/orbit-components';
 
 import { Desktop, Mobile } from '../Responsive';
 import FullFAQLink from '../FullFAQLink';
@@ -187,9 +187,7 @@ const renderLoggedOut = (
         ) : (
           <Link to="/sign-in" style={{ textDecoration: 'none' }}>
             <div className="desktopOnly">
-              <Typography type="attention" variant="normal">
-                Sign In
-              </Typography>
+              <Text type="attention">Sign In</Text>
             </div>
           </Link>
         )}

@@ -43,42 +43,34 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
         <div
           class="jsx-1684029042 jsx-2367066345 faqLink desktopOnly"
         >
-          <div
-            class="jsx-3768482590"
+          <a
+            class="jsx-3798246845 primary"
+            href="/helpcenter"
+            rel="noopener noreferrer"
+            target="_blank"
           >
+            Full FAQ site
             <span
-              class="jsx-1328033587"
+              class="jsx-3798246845 inline-icon"
             >
-              <a
-                class="jsx-3768482590 primary"
-                href="/helpcenter"
-                rel="noopener noreferrer"
-                target="_blank"
+              <div
+                class="jsx-3798246845 open-icon"
               >
-                Full FAQ site
-                <span
-                  class="jsx-3768482590 inline-icon"
+                <svg
+                  fill="currentColor"
+                  height="16px"
+                  preserveAspectRatio="xMidYMid meet"
+                  style="vertical-align:middle;color:#00a991"
+                  viewBox="0 0 24 24"
+                  width="16px"
                 >
-                  <div
-                    class="jsx-3768482590 open-icon"
-                  >
-                    <svg
-                      fill="currentColor"
-                      height="16px"
-                      preserveAspectRatio="xMidYMid meet"
-                      style="vertical-align:middle;color:#00a991"
-                      viewBox="0 0 24 24"
-                      width="16px"
-                    >
-                      <path
-                        d="M17.444 17.444H6.556V6.556H12V5H6.556C5.692 5 5 5.7 5 6.556v10.888C5 18.3 5.692 19 6.556 19h10.888C18.3 19 19 18.3 19 17.444V12h-1.556v5.444zM13.556 5v1.556h2.792L8.702 14.2 9.8 15.298l7.645-7.646v2.792H19V5h-5.444z"
-                      />
-                    </svg>
-                  </div>
-                </span>
-              </a>
+                  <path
+                    d="M17.444 17.444H6.556V6.556H12V5H6.556C5.692 5 5 5.7 5 6.556v10.888C5 18.3 5.692 19 6.556 19h10.888C18.3 19 19 18.3 19 17.444V12h-1.556v5.444zM13.556 5v1.556h2.792L8.702 14.2 9.8 15.298l7.645-7.646v2.792H19V5h-5.444z"
+                  />
+                </svg>
+              </div>
             </span>
-          </div>
+          </a>
         </div>
         <div
           class="jsx-1684029042 jsx-2367066345 desktopOnly"
@@ -88,11 +80,11 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
             role="button"
             tabindex="0"
           >
-            <span
-              class="jsx-410270121"
+            <p
+              class="Text__StyledText-inVtPV dVuICh"
             >
               Sign out
-            </span>
+            </p>
           </div>
         </div>
       </div>
@@ -162,7 +154,7 @@ exports[`ContentHeader should render loggedOut user header 1`] = `
               </svg>
             </div>
             <span
-              class="jsx-141524338"
+              class="Text__StyledText-inVtPV iqjyyW"
             >
               Back
             </span>

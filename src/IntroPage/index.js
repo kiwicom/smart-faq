@@ -3,7 +3,7 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Trans } from 'react-i18next';
-import { Typography } from '@kiwicom/orbit-components';
+import { Text } from '@kiwicom/orbit-components';
 
 import image from '../../static/woman-with-laptop@2x.jpg';
 import CloseButton from './../common/buttons/CloseButton';
@@ -169,11 +169,11 @@ export class PureIntro extends React.Component<Props> {
           <p className="title">
             <Trans i18nKey="IntroPage.header">Need help?</Trans>
           </p>
-          <Typography type="secondary">
+          <Text type="secondary">
             <Trans i18nKey="IntroPage.subheader">
               {"We're here for you. First, let's narrow down your request."}
             </Trans>
-          </Typography>
+          </Text>
         </div>
         <div className="buttons">
           <div className="primary">

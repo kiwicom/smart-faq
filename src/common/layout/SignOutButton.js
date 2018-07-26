@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Typography } from '@kiwicom/orbit-components';
+import { Text } from '@kiwicom/orbit-components';
 import { withRouter } from 'react-router-dom';
 
 import { withLogout } from '../../context/BookingState';
@@ -33,9 +33,7 @@ class SignOutButton extends React.Component<Props> {
         role="button"
         tabIndex={0}
       >
-        <Typography type="attention" variant="normal">
-          Sign out
-        </Typography>
+        <Text type="attention">Sign out</Text>
         <style jsx>
           {`
             .signOut {

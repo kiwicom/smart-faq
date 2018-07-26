@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import css from 'styled-jsx/css';
-import { Heading, Typography } from '@kiwicom/orbit-components';
+import { Heading, Text } from '@kiwicom/orbit-components';
 
 import ContactPageLink from './ContactPageLink';
 
@@ -26,10 +26,10 @@ const ErrorMessage = () => (
     <div>
       <Heading>Something's not quite right.</Heading>
       <div className="desc">
-        <Typography size="large" type="secondary">
+        <Text size="large" type="secondary">
           Please, try refreshing the page. Sign out. Then sign in again. If the
           problem persists, don't hesitate to contact us.
-        </Typography>
+        </Text>
       </div>
       <ContactPageLink text="Go to contact page" textColor="#00a991" />
     </div>

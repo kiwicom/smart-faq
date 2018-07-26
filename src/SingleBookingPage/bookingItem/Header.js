@@ -4,7 +4,7 @@ import * as React from 'react';
 import { translate } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import { graphql, createFragmentContainer } from 'react-relay';
-import { Typography, TextLink, Text } from '@kiwicom/orbit-components';
+import { Heading, TextLink, Text } from '@kiwicom/orbit-components';
 
 import OneWayBookingHeader from './BookingHeaders/OneWay';
 import ReturnBookingHeader from './BookingHeaders/Return';
@@ -82,9 +82,9 @@ const Header = (props: Props) => {
         </BookingState.Consumer>
       </div>
       <div className="headerTitle" data-cy="booking-title">
-        <Typography size="header" type="attention" variant="bold">
+        <Heading type="title2">
           {type && renderHeaderTitleByType(type, booking)}
-        </Typography>
+        </Heading>
       </div>
       <div className="headerBelow">
         {status && (

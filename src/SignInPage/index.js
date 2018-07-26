@@ -4,7 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
-import { Typography, Text, Heading, Alert } from '@kiwicom/orbit-components';
+import { Text, Heading, Alert } from '@kiwicom/orbit-components';
 import {
   AlertCircle,
   Google,
@@ -51,9 +51,13 @@ const style = css`
     margin-left: 134px;
     margin-bottom: 24px;
   }
-  div.kiwi-account {
+  div.kiwiAccount {
     margin-top: 8px;
     text-align: center;
+  }
+  div.kiwiAccount .linkText {
+    font-size: 14px;
+    color: #00a991;
   }
   img.chevron {
     width: 8px;
@@ -106,7 +110,7 @@ const style = css`
       margin: 0 auto;
       width: 288px;
     }
-    div.kiwi-account {
+    div.kiwiAccount {
       margin-top: 28px;
     }
   }
@@ -190,15 +194,13 @@ class SignIn extends React.Component<Props> {
             </ResponsiveSocialButton>
           </div>
         </div>
-        <div className="kiwi-account">
+        <div className="kiwiAccount">
           <Link
             to="/kiwi-login"
             style={{ textDecoration: 'none' }}
             data-cy="link-kiwi-login"
           >
-            <Typography type="active">
-              I want to use my Kiwi.com account
-            </Typography>
+            <span className="linkText">I want to use my Kiwi.com account</span>
             <img src={chevronRight} className="chevron" alt="kiwi login" />
           </Link>
         </div>
