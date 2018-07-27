@@ -27,7 +27,8 @@ then
     git checkout gh-pages
     # delete any old site as we are going to replace it
     # Note: this explodes if there aren't any, so moving it here for now
-    git rm -rf . --except .circleci
+    git rm -rf .
+    git checkout HEAD -- .circleci/config.yml
 else
     git checkout --orphan gh-pages
 fi
