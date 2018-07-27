@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Typography } from '@kiwicom/orbit-components';
+import { Typography, Text } from '@kiwicom/orbit-components';
 
 import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
@@ -81,12 +81,16 @@ const style = css`
     div.picture {
       display: none;
     }
+    p.title {
+      font-size: 22px;
+      text-align: center;
+    }
     div.main {
       margin-left: 16px;
       margin-right: 16px;
     }
     form {
-      margin: 28px 16px 0px 16px;
+      margin: 33px 16px 0px;
     }
     label {
       display: block;
@@ -105,6 +109,32 @@ const style = css`
     button.send {
       width: 288px;
       height: 44px;
+    }
+  }
+  @media only screen and (max-height: 480px) and (orientation: landscape) {
+    .ForgottenPassword {
+      width: 288px;
+      padding-top: 20px;
+    }
+    div.picture {
+      display: none;
+    }
+    p.title {
+      font-size: 22px;
+      text-align: center;
+    }
+    div.main {
+      margin: 0;
+    }
+    div.input {
+      width: 288px;
+    }
+    form {
+      margin: 33px 0 0;
+    }
+    form button {
+      width: 100%;
+      margin: 28px 0 0;
     }
   }
 `;
@@ -165,7 +195,7 @@ class ForgottenPassword extends React.Component<Props, State> {
         </div>
         <form onSubmit={this.handleSubmitEmail}>
           <label htmlFor="email">
-            <div>Email:</div>
+            <Text>Email:</Text>
             <div className="input">
               <Input
                 type="email"

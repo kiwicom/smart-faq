@@ -49,7 +49,7 @@ const style = css`
     margin-bottom: 20px;
   }
   form {
-    margin-top: 32.8px;
+    margin-top: 33px;
   }
   div.input {
     width: 400px;
