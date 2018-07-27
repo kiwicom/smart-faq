@@ -117,6 +117,7 @@ class RawFAQCategoryList extends React.Component<Props> {
       </div>
     );
   };
+
   renderCategories = (categories: $ReadOnlyArray<CategoryFragment>) => {
     const { pathname } = this.props.history.location;
     const isBaggageRoute = pathname.includes(extraCategories.BAGGAGE);
