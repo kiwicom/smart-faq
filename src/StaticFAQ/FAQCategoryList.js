@@ -2,6 +2,7 @@
 
 import idx from 'idx';
 import * as React from 'react';
+import { Heading } from '@kiwicom/orbit-components';
 import { graphql } from 'react-relay';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -64,6 +65,15 @@ type FAQArticlePerexFragment = {|
 
 const queryRoot = graphql`
   query FAQCategoryListRootQuery($section: FAQSection) {
+    emergencies: allFAQCategories(tree: EMERGENCIES) {
+      edges {
+        node {
+          id
+          title
+          ...FAQCategory_category
+        }
+      }
+    }
     allFAQCategories(section: $section) {
       edges {
         node {
@@ -172,7 +182,34 @@ class RawFAQCategoryList extends React.Component<Props> {
       const edges =
         idx(rendererProps.props, _ => _.allFAQCategories.edges) || [];
       const categories = edges.map(edge => edge && edge.node).filter(Boolean);
-      return this.renderCategories(categories);
+      const emergencies =
+        idx(rendererProps.props, _ => _.emergencies.edges) || [];
+
+      if (!emergencies.length) {
+        return this.renderCategories(categories);
+      }
+
+      return (
+        <div>
+          <div className="rootHeading">
+            <Heading size="small">Current travel issues:</Heading>
+          </div>
+          {this.renderCategories(
+            emergencies.map(edge => edge && edge.node).filter(Boolean),
+          )}
+          <div className="rootHeading">
+            <Heading size="small">Solve the issue by yourself:</Heading>
+          </div>
+          {this.renderCategories(categories)}
+          <style jsx>
+            {`
+              .rootHeading {
+                margin-top: 32px;
+              }
+            `}
+          </style>
+        </div>
+      );
     }
 
     return <Loader />;

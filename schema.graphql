@@ -1,5 +1,5 @@
-# source: https://graphql.kiwi.com/
-# timestamp: Thu Jul 26 2018 10:51:32 GMT+0200 (Central European Summer Time)
+# source: http://localhost:3000/
+# timestamp: Fri Jul 27 2018 23:26:36 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
@@ -1062,6 +1062,11 @@ enum FAQSection {
   PAST_BOOKING
 }
 
+enum FAQTree {
+  SMARTFAQ
+  EMERGENCIES
+}
+
 type Flight {
   """The ID of an object"""
   id: ID!
@@ -1969,6 +1974,9 @@ type RootQuery {
     Fetch only subsection of FAQ based on the current situation of customer.
     """
     section: FAQSection
+
+    """Specify which tree of FAQs to fetch."""
+    tree: FAQTree = SMARTFAQ
     after: String
     first: Int
     before: String
@@ -1979,6 +1987,9 @@ type RootQuery {
   allFAQs(
     """Keyword for the search"""
     search: String
+
+    """Specify which tree of FAQs to fetch."""
+    tree: FAQTree = SMARTFAQ
     after: String
     first: Int
     before: String
@@ -2078,6 +2089,9 @@ type RootQuery {
   FAQCategory(
     """ID of FAQ category to retrieve."""
     id: ID!
+
+    """Specify in which FAQ tree to search for the category."""
+    tree: FAQTree = SMARTFAQ
 
     """
     DEPRECATED: Subsection of FAQ is handled automatically now, this has no
