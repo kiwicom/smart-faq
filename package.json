@@ -6,8 +6,7 @@
     "start": "NODE_ENV=development LANGUAGE=en webpack-dev-server --open --mode development",
     "start:ci": "NODE_ENV=production LANGUAGE=en webpack-dev-server --mode production",
     "build": "yarn clean && yarn build:lib",
-    "build:bundle":
-      "KEENIO_WRITEKEY=$KEENIO_WRITEKEY KEENIO_PROJECTID=$KEENIO_PROJECTID SENTRY_URL_STAGING=$SENTRY_URL_STAGING NODE_ENV=production LANGUAGE=en webpack --mode production",
+    "build:bundle": "KEENIO_WRITEKEY=$KEENIO_WRITEKEY KEENIO_PROJECTID=$KEENIO_PROJECTID SENTRY_URL_STAGING=$SENTRY_URL_STAGING NODE_ENV=production LANGUAGE=en webpack --mode production",
     "build:pages": "yarn build:bundle && ./scripts/deploy-ghpages.sh",
     "build:lib": "babel --out-dir lib --ignore *.stories.js,*.test.js src",
     "clean": "rimraf lib es dist",
@@ -24,8 +23,7 @@
     "flow:stop": "flow stop",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
-    "deploy:surge":
-      "yarn surge $PWD/dist/ https://smartfaq-$(git rev-parse --abbrev-ref HEAD).surge.sh",
+    "deploy:surge": "yarn surge $PWD/dist/ https://smartfaq-$(git rev-parse --abbrev-ref HEAD).surge.sh",
     "deploy:updateURL": "yarn babel-node scripts/deploymentUtils.js updateLiveURL",
     "translations:collect": "i18next-scanner 'src/**/*.{js,jsx}'",
     "translations:check": "node scripts/checkTranslations.js",
