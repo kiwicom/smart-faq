@@ -49,8 +49,7 @@ const styles = css`
     margin: 0;
   }
   div.subtitle {
-    margin-left: 24px;
-    margin-bottom: 24px;
+    margin: 0 24px 24px;
   }
 `;
 

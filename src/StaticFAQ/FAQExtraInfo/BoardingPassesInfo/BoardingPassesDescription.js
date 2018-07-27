@@ -61,6 +61,7 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
             font-size: 12px;
             line-height: 1.4;
             color: #46515e;
+            margin: 0;
           }
           div.info a.download {
             font-size: 12px;
@@ -97,6 +98,7 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
             background-color: #e8edf1;
             border: none;
             margin: 0;
+            width: 100%;
           }
         `}
       </style>
