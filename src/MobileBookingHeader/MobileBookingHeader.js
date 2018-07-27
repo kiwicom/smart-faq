@@ -141,12 +141,14 @@ class MobileBookingHeader extends React.Component<Props, State> {
     this.setState(prevState => ({
       activeTab: prevState.activeTab === 'summary' ? null : 'summary',
     }));
+    this.contextDisableSearch();
   };
 
   toggleAccount = () => {
     this.setState(prevState => ({
       activeTab: prevState.activeTab === 'account' ? null : 'account',
     }));
+    this.contextDisableSearch();
   };
 
   goBack() {
