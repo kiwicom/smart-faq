@@ -98,15 +98,11 @@
     "request": "2.83.0",
     "request-promise-native": "1.0.5",
     "rimraf": "^2.6.2",
-    "semantic-release": "^15.8.1",
     "storybook-router": "^0.3.3",
     "surge": "^0.20.1",
     "webpack": "4.1.0",
     "webpack-cli": "2.0.10",
     "webpack-dev-server": "3.1.0"
-  },
-  "release": {
-    "verifyRelease": ["semantic-commitlint"]
   },
   "dependencies": {
     "@kiwicom/orbit-components": "0.1.2",
