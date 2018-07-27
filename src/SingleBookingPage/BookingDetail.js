@@ -173,7 +173,9 @@ class BookingDetail extends React.Component<Props> {
         </FAQExtraInfoButton> */}
         <FAQExtraInfoButton category="boarding-passes">
           <Ticket customColor="#00a991" />
-          <p className="iconLabel">Boarding passes</p>
+          <p className="iconLabel" data-cy="btn-boarding-passes">
+            Boarding passes
+          </p>
         </FAQExtraInfoButton>
         {this.renderByType(booking)}
         <div className="buttons" data-cy="btn-manage-booking">

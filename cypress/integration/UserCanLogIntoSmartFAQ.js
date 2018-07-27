@@ -5,7 +5,7 @@
 */
 
 describe('User can log into SmartFAQ', () => {
-  it(`The user should be able to log into SmartFAQ with the correct credentials.`, () => {
+  it(`the user should be able to log into SmartFAQ with the correct credentials.`, () => {
     cy.visit('/');
     cy.get('[data-cy=btn-existent-booking]').click();
     cy.get('[data-cy=link-kiwi-login]').click();
@@ -27,7 +27,7 @@ describe('User can log into SmartFAQ', () => {
     cy.get('[data-cy=booking-card]').should('exist');
   });
 
-  it('checks if upcoming booking is displayed', () => {
+  it('should display upcoming bookings', () => {
     cy
       .get('[data-cy=upcoming-bookings]')
       .find('[data-cy=booking-card]')
@@ -49,7 +49,7 @@ describe('User can log into SmartFAQ', () => {
       .click();
   });
 
-  it('checks if past booking is displayed', () => {
+  it('should display past bookings', () => {
     cy
       .get('[data-cy=past-bookings]')
       .find('[data-cy=booking-card]')
@@ -63,5 +63,18 @@ describe('User can log into SmartFAQ', () => {
 
     cy.get('[data-cy=booking-title]').should('exist');
     cy.get('[data-cy=btn-manage-booking]').should('exist');
+  });
+
+  it('should display boarding passes info', () => {
+    cy
+      .get('[data-cy=btn-boarding-passes]')
+      .click()
+      .get('.boardingPassesCard')
+      .find('p')
+      .contains(
+        'Here, you can download your boarding passes or see when they will become available.',
+      )
+      .get('.boardingPassesRow')
+      .should('exist');
   });
 });
