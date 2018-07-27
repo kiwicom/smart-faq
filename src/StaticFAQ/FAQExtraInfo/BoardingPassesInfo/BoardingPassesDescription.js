@@ -51,6 +51,9 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
       <style jsx>
         {`
           div.boardingPassesRow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 15px 24px 15px 24px;
           }
           div.info {
