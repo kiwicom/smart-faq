@@ -1,6 +1,5 @@
 /node_modules/
 /coverage/
-/storybook-static/
 /dist/
 .env
 package-lock.json
