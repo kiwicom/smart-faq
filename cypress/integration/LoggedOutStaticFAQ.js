@@ -5,7 +5,7 @@ describe('Display Static FAQ', () => {
   it('User can navigate into FAQ Article', () => {
     cy.visit('/');
     cy.get('[data-cy=btn-nonexistent-booking]').trigger('click');
-    cy.get('.signInOrBack span').contains('Sign In');
+    cy.get('.signInOrBack div').contains('Sign In');
 
     cy
       .get('[data-cy=faq-categories]')
@@ -13,7 +13,7 @@ describe('Display Static FAQ', () => {
       .first()
       .click();
 
-    cy.get('.signInOrBack span').contains('Back');
+    cy.get('.signInOrBack div').contains('Back');
 
     cy.get('[data-cy=faq-breadcrumbs]').as('faq-breadcrumbs');
     cy.get('[data-cy=scrollable-box]').as('faq-box');
@@ -95,6 +95,6 @@ describe('Display Static FAQ', () => {
 
     cy.get('@faq-breadcrumbs').should('not.exist');
 
-    cy.get('.signInOrBack span').contains('Sign In');
+    cy.get('.signInOrBack div').contains('Sign In');
   });
 });

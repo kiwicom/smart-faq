@@ -29,7 +29,7 @@ export const FormatDate = ({ dateString }: Props) => {
         ).replace('_', '-');
 
         return (
-          <p>{new Date(dateString).toLocaleDateString(locale, options)}</p>
+          <div>{new Date(dateString).toLocaleDateString(locale, options)}</div>
         );
       }}
     </LanguageContext.Consumer>

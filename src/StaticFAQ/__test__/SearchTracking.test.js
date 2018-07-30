@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { MemoryRouter } from 'react-router';
 import { mount } from 'enzyme';
+import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
 
 //import { RawFAQArticle as FAQArticle } from '../FAQArticle';
 import StaticFAQ from '../';
@@ -25,21 +26,23 @@ describe('SearchTracking', () => {
   it('input query should track query', done => {
     const result = mount(
       <MemoryRouter>
-        <SearchState.Provider
-          value={{
-            incrementQueriesCount,
-            searchText,
-            changeSearchText,
-            resetQueriesCount,
-            queriesBeforeClick,
-            isVisible,
-            toggleSearch,
-            enableSearch,
-            disableSearch,
-          }}
-        >
-          <StaticFAQ />
-        </SearchState.Provider>
+        <ThemeProvider>
+          <SearchState.Provider
+            value={{
+              incrementQueriesCount,
+              searchText,
+              changeSearchText,
+              resetQueriesCount,
+              queriesBeforeClick,
+              isVisible,
+              toggleSearch,
+              enableSearch,
+              disableSearch,
+            }}
+          >
+            <StaticFAQ />
+          </SearchState.Provider>
+        </ThemeProvider>
       </MemoryRouter>,
     );
     result

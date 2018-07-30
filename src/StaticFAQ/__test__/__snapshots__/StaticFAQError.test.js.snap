@@ -8,13 +8,13 @@ exports[`StaticFAQError should match snapshot 1`] = `
     class="jsx-606556222 title"
   >
     <h1
-      class="jsx-2957264124 "
+      class="Heading__StyledHeading-sALAQ gfkQAC"
     >
       Something's not quite right.
     </h1>
   </div>
   <p
-    class="jsx-1323762365 "
+    class="Text__StyledText-inVtPV gJJlTV"
   >
     Please, try refreshing the page. If the problem persists, don't hesitate to contact us.
   </p>
@@ -42,7 +42,7 @@ exports[`StaticFAQError should match snapshot 1`] = `
             width="16px"
           >
             <path
-              d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+              d="M17.444 17.444H6.556V6.556H12V5H6.556C5.692 5 5 5.7 5 6.556v10.888C5 18.3 5.692 19 6.556 19h10.888C18.3 19 19 18.3 19 17.444V12h-1.556v5.444zM13.556 5v1.556h2.792L8.702 14.2 9.8 15.298l7.645-7.646v2.792H19V5h-5.444z"
             />
           </svg>
         </span>

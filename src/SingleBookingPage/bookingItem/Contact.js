@@ -65,6 +65,7 @@ const Contact = () => {
           }
           .instructions ol {
             list-style-type: decimal;
+            padding: 0;
           }
           li {
             margin-bottom: 7px;

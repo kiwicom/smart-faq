@@ -39,9 +39,7 @@ const RawFAQArticle = (props: Props) => (
   >
     <Card>
       <div>
-        <Heading weight="medium" size="small">
-          {props.article.title}
-        </Heading>
+        <Heading type="title3">{props.article.title}</Heading>
       </div>
       <div className="perex">
         <Text type="secondary" size="small" element="span">

@@ -63,9 +63,9 @@ class ArticleContent extends React.Component<Props> {
     const { article } = this.props;
     return (
       <div className="faq-article-content">
-        <Heading size="medium">{article.title}</Heading>
+        <Heading type="title2">{article.title}</Heading>
         <div className="faq-article-perex">
-          <Text colorText="attention" weight="bold" element="span">
+          <Text type="attention" weight="bold" element="span">
             Summary:
           </Text>
           <Text element="span"> {article.perex}</Text>
@@ -89,6 +89,7 @@ class ArticleContent extends React.Component<Props> {
               border: 0;
               height: 1px;
               background-color: #e8edf1;
+              margin: 0;
             }
             .faq-article-text {
               padding: 24px 0;

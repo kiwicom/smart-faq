@@ -6,6 +6,7 @@ import css from 'styled-jsx/css';
 import classNames from 'classnames';
 import { I18nextProvider } from 'react-i18next';
 import 'url-search-params-polyfill';
+import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
 
 import initTranslation from './initTranslation';
 import EnLocale from '../i18n/en/translation.json';
@@ -37,8 +38,6 @@ const style = css`
   }
   .smartFAQ * {
     box-sizing: border-box;
-    padding: 0;
-    margin: 0;
     font-family: 'Roboto', sans-serif;
   }
   @media only screen and (max-width: 901px) {
@@ -135,15 +134,17 @@ class App extends React.PureComponent<Props, State> {
                   <SearchStateProvider>
                     <BookingStateProvider onLogout={this.props.onLogout}>
                       <ExtraInfoStateProvider>
-                        {isOpen && (
-                          <React.Fragment>
-                            <SelectUrlBooking
-                              wasSelected={this.state.urlBookingWasSelected}
-                              setSelected={this.urlBookingSelected}
-                            />
-                            <Routes route={this.props.route} />
-                          </React.Fragment>
-                        )}
+                        <ThemeProvider>
+                          {isOpen && (
+                            <React.Fragment>
+                              <SelectUrlBooking
+                                wasSelected={this.state.urlBookingWasSelected}
+                                setSelected={this.urlBookingSelected}
+                              />
+                              <Routes route={this.props.route} />
+                            </React.Fragment>
+                          )}
+                        </ThemeProvider>
                       </ExtraInfoStateProvider>
                     </BookingStateProvider>
                   </SearchStateProvider>

@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { MemoryRouter } from 'react-router';
 import { mount } from 'enzyme';
+import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
 
 import TrackedFAQArticle from '../TrackedFAQArticle';
 import { SearchState } from '../../context/SearchState';
@@ -27,25 +28,27 @@ describe('TrackedFAQArticle', () => {
   it('click should track queriesBeforeClick and reset queriesCounter', () => {
     const result = mount(
       <MemoryRouter>
-        <SearchState.Provider
-          value={{
-            searchText,
-            isVisible,
-            resetQueriesCount,
-            queriesBeforeClick,
-            changeSearchText,
-            incrementQueriesCount,
-            toggleSearch,
-            enableSearch,
-            disableSearch,
-          }}
-        >
-          <TrackedFAQArticle
-            isSearchResult={false}
-            article={article}
-            categoryId="444"
-          />
-        </SearchState.Provider>
+        <ThemeProvider>
+          <SearchState.Provider
+            value={{
+              searchText,
+              isVisible,
+              resetQueriesCount,
+              queriesBeforeClick,
+              changeSearchText,
+              incrementQueriesCount,
+              toggleSearch,
+              enableSearch,
+              disableSearch,
+            }}
+          >
+            <TrackedFAQArticle
+              isSearchResult={false}
+              article={article}
+              categoryId="444"
+            />
+          </SearchState.Provider>
+        </ThemeProvider>
       </MemoryRouter>,
     );
     result

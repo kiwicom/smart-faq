@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Typography, Text } from '@kiwicom/orbit-components';
+import { Text } from '@kiwicom/orbit-components';
 
 import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
@@ -32,6 +32,7 @@ const style = css`
     color: #171b1e;
     font-size: 28px;
     font-weight: bold;
+    margin-top: 0;
     margin-bottom: 8px;
     line-height: 1.2;
   }
@@ -189,9 +190,9 @@ class ForgottenPassword extends React.Component<Props, State> {
         </div>
         <div className="main">
           <p className="title">Forgotten password</p>
-          <Typography type="secondary">
+          <Text type="secondary">
             {`Please enter your email address. We'll send you instructions to reset your password.`}
-          </Typography>
+          </Text>
         </div>
         <form onSubmit={this.handleSubmitEmail}>
           <label htmlFor="email">

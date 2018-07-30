@@ -23,25 +23,15 @@ exports[`ScreenInput should match snapshot 1`] = `
         size="small"
       />
     </div>
-    <Heading
-      element="h1"
-      size="small"
-      weight="bold"
+    <WithTheme(Heading)
+      type="title3"
     >
       Your feedback helps us improve.
-    </Heading>
+    </WithTheme(Heading)>
     <div
       className="jsx-892344281 question"
     >
-      <Text
-        align="left"
-        element="p"
-        italic={false}
-        size="normal"
-        type="primary"
-        uppercase={false}
-        weight="regular"
-      >
+      <Text>
         What problem were you trying to solve?
       </Text>
     </div>
@@ -63,18 +53,12 @@ exports[`ScreenInput should match snapshot 1`] = `
     <div
       className="jsx-892344281 button"
     >
-      <Button
-        block={false}
-        disabled={false}
-        loading={false}
+      <WithTheme(Button)
         onClick={[Function]}
-        onlyIcon={false}
-        size="normal"
-        title="Submit"
-        type="primary"
-        variation="filled"
         width={100}
-      />
+      >
+        Submit
+      </WithTheme(Button)>
     </div>
   </form>
   <JSXStyle
@@ -107,25 +91,15 @@ exports[`ScreenInput should try to submit empty form 1`] = `
         size="small"
       />
     </div>
-    <Heading
-      element="h1"
-      size="small"
-      weight="bold"
+    <WithTheme(Heading)
+      type="title3"
     >
       Your feedback helps us improve.
-    </Heading>
+    </WithTheme(Heading)>
     <div
       className="jsx-892344281 question"
     >
-      <Text
-        align="left"
-        element="p"
-        italic={false}
-        size="normal"
-        type="primary"
-        uppercase={false}
-        weight="regular"
-      >
+      <Text>
         What problem were you trying to solve?
       </Text>
     </div>
@@ -147,18 +121,12 @@ exports[`ScreenInput should try to submit empty form 1`] = `
     <div
       className="jsx-892344281 button"
     >
-      <Button
-        block={false}
-        disabled={false}
-        loading={false}
+      <WithTheme(Button)
         onClick={[Function]}
-        onlyIcon={false}
-        size="normal"
-        title="Submit"
-        type="primary"
-        variation="filled"
         width={100}
-      />
+      >
+        Submit
+      </WithTheme(Button)>
     </div>
   </form>
   <JSXStyle

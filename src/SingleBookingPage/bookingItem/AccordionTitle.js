@@ -9,7 +9,7 @@ type Props = {|
 
 const AccordionTitle = (props: Props) => (
   <div className="title">
-    <Text size="large" type="attention" variant="medium">
+    <Text size="large" type="attention">
       {props.title}
     </Text>
     <style jsx>

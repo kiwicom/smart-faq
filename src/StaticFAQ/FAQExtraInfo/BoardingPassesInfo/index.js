@@ -46,10 +46,10 @@ const styles = css`
     line-height: 1.8;
     vertical-align: bottom;
     color: #171b1e;
+    margin: 0;
   }
   div.subtitle {
-    margin-left: 24px;
-    margin-bottom: 24px;
+    margin: 0 24px 24px;
   }
 `;
 

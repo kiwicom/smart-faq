@@ -40,7 +40,7 @@ class ArticleNotFound extends React.Component<Props> {
               technical issue.
             </Text>
           </div>
-          <Button onClick={this.goToFAQ} title="Open the Help Center" />
+          <Button onClick={this.goToFAQ}>Open the Help Center</Button>
         </div>
         <style jsx>{style}</style>
       </div>

@@ -4,17 +4,8 @@ import * as React from 'react';
 import idx from 'idx';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
-import {
-  Typography,
-  Text,
-  Heading,
-  SystemMessage,
-} from '@kiwicom/orbit-components';
-import {
-  AlertCircle,
-  Google,
-  Facebook,
-} from '@kiwicom/orbit-components/lib/icons';
+import { Text, Heading, Alert } from '@kiwicom/orbit-components';
+import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
 import type { Location } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 
@@ -56,9 +47,13 @@ const style = css`
     margin-left: 134px;
     margin-bottom: 24px;
   }
-  div.kiwi-account {
+  div.kiwiAccount {
     margin-top: 8px;
     text-align: center;
+  }
+  div.kiwiAccount .linkText {
+    font-size: 14px;
+    color: #00a991;
   }
   img.chevron {
     width: 8px;
@@ -111,7 +106,7 @@ const style = css`
       margin: 0 auto;
       width: 288px;
     }
-    div.kiwi-account {
+    div.kiwiAccount {
       margin-top: 28px;
     }
   }
@@ -126,9 +121,9 @@ class SignIn extends React.Component<Props> {
   renderExpiredSession() {
     return (
       <div className="infoMessage">
-        <SystemMessage type="info" Icon={AlertCircle}>
+        <Alert type="info" icon={<AlertCircle />}>
           Your last session has expired. Please sign in again.
-        </SystemMessage>
+        </Alert>
         <style jsx>
           {`
             div.infoMessage {
@@ -139,6 +134,7 @@ class SignIn extends React.Component<Props> {
       </div>
     );
   }
+
   render() {
     const { onSocialLogin } = this.props;
     const sessionExpired = idx(
@@ -155,12 +151,10 @@ class SignIn extends React.Component<Props> {
         <div className="text">
           <div className="title">
             <MediaQuery query="screen and (max-width: 700px)">
-              <Heading weight="bold" size="medium">
-                Sign in
-              </Heading>
+              <Heading type="title2">Sign in</Heading>
             </MediaQuery>
             <MediaQuery query="screen and (min-width: 701px)">
-              <Heading weight="bold">Sign in</Heading>
+              <Heading>Sign in</Heading>
             </MediaQuery>
           </div>
           <MediaQuery query="(min-width: 480px) and (min-height: 480px)">
@@ -178,31 +172,29 @@ class SignIn extends React.Component<Props> {
         <div className="buttons">
           <div className="googleButton">
             <ResponsiveSocialButton
-              title="Continue with Google"
               type="google"
-              icon={Google}
-              variation="bordered"
+              bordered
               onSocialLogin={onSocialLogin}
-            />
+            >
+              Continue with Google
+            </ResponsiveSocialButton>
           </div>
           <div className="facebookButton">
             <ResponsiveSocialButton
-              title="Continue with Facebook"
               type="facebook"
-              icon={Facebook}
               onSocialLogin={onSocialLogin}
-            />
+            >
+              Continue with Facebook
+            </ResponsiveSocialButton>
           </div>
         </div>
-        <div className="kiwi-account">
+        <div className="kiwiAccount">
           <Link
             to="/kiwi-login"
             style={{ textDecoration: 'none' }}
             data-cy="link-kiwi-login"
           >
-            <Typography type="active">
-              I want to use my Kiwi.com account
-            </Typography>
+            <span className="linkText">I want to use my Kiwi.com account</span>
             <img src={chevronRight} className="chevron" alt="kiwi login" />
           </Link>
         </div>

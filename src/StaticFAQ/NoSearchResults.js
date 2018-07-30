@@ -52,7 +52,7 @@ const NoSearchResults = (props: Props) => {
       {!categoryId && (
         <div className="content">
           <div className="title">
-            <Heading weight="bold" size="small">
+            <Heading type="title3">
               Your search didn&apos;t match any of our articles.
             </Heading>
           </div>

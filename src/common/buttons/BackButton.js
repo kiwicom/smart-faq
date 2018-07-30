@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Text } from '@kiwicom/orbit-components';
 import { ChevronLeft } from '@kiwicom/orbit-components/lib/icons';
-import { Typography } from '@kiwicom/orbit-components';
 
 type Props = {|
   text: string,
@@ -40,9 +40,9 @@ const BackButton = (props: Props) => {
       <div className="chevron">
         <ChevronLeft size="small" customColor="#8291a6" />
       </div>
-      <Typography type="secondary" variant="bold">
+      <Text type="secondary" weight="bold" element="span">
         {props.text}
-      </Typography>
+      </Text>
       <style jsx>
         {`
           div.back {

@@ -28,7 +28,7 @@ const citiesInfoStyle = css`
     margin-bottom: 6px;
   }
   p {
-    margin-left: 10px;
+    margin: 0 0 0 10px;
   }
   .moreInfoLink {
     color: #00a991;
@@ -99,16 +99,12 @@ const LegCitiesInfo = (props: Props) => {
   return (
     <div className="legCitiesInfo">
       <div className="infoRow">
-        <CarrierLogo className="logo" size="small" carriers={[carrier]} />
+        <CarrierLogo size="small" carriers={[carrier]} />
         <p>{`${carrierTitle}: ${carrier.name}`}</p>
       </div>
       {showOperatingAirline() && (
         <div className="infoRow">
-          <CarrierLogo
-            className="logo"
-            size="small"
-            carriers={[operatingAirline]}
-          />
+          <CarrierLogo size="small" carriers={[operatingAirline]} />
           <p>Operating airline: {operatingAirline.name}</p>
         </div>
       )}

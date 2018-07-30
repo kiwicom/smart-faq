@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Typography } from '@kiwicom/orbit-components';
+import { Text } from '@kiwicom/orbit-components';
 import idx from 'idx';
 
 import image from '../../static/mailbox@3x.png';
@@ -92,10 +92,10 @@ const CheckEmail = (props: Props) => {
         </div>
         <div className="text">
           <p className="title">Check your e-mail inbox</p>
-          <Typography size="large" type="secondary">
+          <Text size="large" type="secondary" element="span">
             {props.text}
             <span className="email-text">{` ${email}`}</span>.
-          </Typography>
+          </Text>
         </div>
       </div>
       <style jsx>{style}</style>

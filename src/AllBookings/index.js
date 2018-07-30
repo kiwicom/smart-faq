@@ -66,9 +66,7 @@ class AllBooking extends React.Component<Props> {
       <ScrollableContent styles="background-color: #f5f7f9;">
         <div className="allBookings">
           <Desktop>
-            <Heading weight="medium" size="medium">
-              Bookings
-            </Heading>
+            <Heading type="title2">Bookings</Heading>
           </Desktop>
           {future && (
             <div data-cy="upcoming-bookings">

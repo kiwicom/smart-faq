@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { SystemMessage } from '@kiwicom/orbit-components';
-import { Close, Alert } from '@kiwicom/orbit-components/lib/icons';
+import { Alert } from '@kiwicom/orbit-components';
+import { Close } from '@kiwicom/orbit-components/lib/icons';
 
 import screensList from './screensList';
 import { Box } from '../../common';
@@ -46,14 +46,10 @@ const ScreenError = (props: Props) => {
           <Close customColor="#bac7d5" size="small" />
         </div>
         <div className="systemMessage">
-          <SystemMessage
-            title="Feedback form failed"
-            type="warning"
-            Icon={Alert}
-          >
+          <Alert type="warning" icon>
             Our bad. We weren&apos;t able to send your feedback. But, follow the
             link below to drop us a line.
-          </SystemMessage>
+          </Alert>
         </div>
         <style jsx>{style}</style>
       </div>

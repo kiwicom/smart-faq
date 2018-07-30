@@ -24,6 +24,7 @@ const BoardingPassesSummary = ({ data, mmbUrl }: Props) => {
               height: 1px;
               background-color: #e8edf1;
               border: none;
+              margin: 0;
             }
           `}
         </style>

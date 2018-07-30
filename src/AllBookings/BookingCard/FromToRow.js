@@ -42,6 +42,13 @@ export const FromToRow = (props: Props) => {
       <p className="flight">{`${origin} ${IATAOrigin}`}</p>
       <div className="arrowIcon">{renderFlightIcon(props.type)}</div>
       <p className="flight">{`${destination} ${IATADestination}`}</p>
+      <style jsx>
+        {`
+          .flight {
+            margin-top: 0;
+          }
+        `}
+      </style>
     </div>
   );
 };

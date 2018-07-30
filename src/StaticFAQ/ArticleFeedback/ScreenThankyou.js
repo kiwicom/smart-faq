@@ -42,13 +42,9 @@ const ScreenThankyou = (props: Props) => {
         >
           <Close customColor="#bac7d5" size="small" />
         </div>
-        <Heading weight="bold" size="small">
-          Thanks again.
-        </Heading>
+        <Heading type="title3">Thanks again.</Heading>
         <div className="message-2">
-          <Heading weight="bold" size="small">
-            We appreciate your insight.
-          </Heading>
+          <Heading type="title3">We appreciate your insight.</Heading>
         </div>
         <style jsx>{style}</style>
       </div>

@@ -61,22 +61,24 @@ const MobileBookingControls = (props: MobileBookingControlsProps) => (
         }}
         type="secondary"
         size="small"
-        title="Manage My Booking"
-      />
+      >
+        Manage My Booking
+      </Button>
     </div>
     <div className="selectBookingButton">
       <BookingState.Consumer>
         {({ onDisplayAll }: BookingStateType) => (
           <div data-cy="btn-other-bookings">
             <TextLink
-              url=""
               onClick={e => {
                 e.preventDefault();
                 onDisplayAll();
               }}
-              size="small"
-              title="Select another booking"
-            />
+              external={false}
+              type="primary"
+            >
+              Select another booking
+            </TextLink>
           </div>
         )}
       </BookingState.Consumer>

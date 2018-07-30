@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { SystemMessage } from '@kiwicom/orbit-components';
-import { Alert, InformationCircle } from '@kiwicom/orbit-components/lib/icons';
+import { Alert } from '@kiwicom/orbit-components';
 import { translate } from 'react-i18next';
 
 import { formatCountDown } from '../../helpers/dateUtils';
@@ -18,31 +17,17 @@ const Notification = ({ isUrgent, hoursLeft, t }: Props) => {
   Don't hesitate to call us if you have an urgent problem.`;
   const normalMessage = `You depart in ${formatCountDown(hoursLeft, t)}.
   There is still time to add some nice extras or even change your booking.`;
-  const alert = isUrgent ? (
-    <Alert customColor="#f9971e" />
-  ) : (
-    <InformationCircle customColor="#10709f" />
-  );
   const type = isUrgent ? 'warning' : 'info';
 
   return (
     <div className="notification">
-      <SystemMessage type={type}>
-        <div className="system-message">
-          <div className="icon">{alert}</div>
-          <div className="text">{isUrgent ? urgentMessage : normalMessage}</div>
-        </div>
-      </SystemMessage>
+      <Alert type={type} icon>
+        {isUrgent ? urgentMessage : normalMessage}
+      </Alert>
       <style jsx>
         {`
           .notification {
             margin-bottom: 24px;
-          }
-          .system-message {
-            display: flex;
-          }
-          .system-message .icon {
-            margin-right: 14px;
           }
         `}
       </style>

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { Typography, Text } from '@kiwicom/orbit-components';
+import { Text } from '@kiwicom/orbit-components';
 import {
   FlightDirect,
   ChevronDown,
@@ -57,12 +57,12 @@ const AccordionHeader = ({ trip, isToggled }: Props) => {
         <CarrierLogoWrapper legs={trip.legs} />
       </div>
       <div className="info">
-        <Typography type="secondary" size="small">
+        <Text type="secondary" size="small" element="div">
           {departureDate && <FormatDate dateString={departureDate} />}
-        </Typography>
+        </Text>
         <div className="itinerary">
           <span className="location">
-            <Text variant="bold" type="primary">
+            <Text weight="bold" type="primary">
               {departureCity}&nbsp;{departureCode}
             </Text>
           </span>
@@ -72,7 +72,7 @@ const AccordionHeader = ({ trip, isToggled }: Props) => {
             </span>
           </span>
           <span className="location">
-            <Text variant="bold" type="primary">
+            <Text weight="bold" type="primary">
               {arrivalCity}&nbsp;{arrivalCode}
             </Text>
           </span>
