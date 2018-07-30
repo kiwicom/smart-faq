@@ -6,6 +6,7 @@ import StaticFAQRaw from './StaticFAQRaw';
 import { SearchState, type SearchStateType } from '../context/SearchState';
 import { simpleTracker } from '../helpers/analytics/trackers';
 import { debounce } from '../helpers/functionUtils';
+import type { FAQTree } from '../types';
 
 const logSearchQuery = debounce(q =>
   simpleTracker('smartFAQBookingOverview', {
@@ -13,7 +14,8 @@ const logSearchQuery = debounce(q =>
     searchedText: q,
   }),
 );
-const TrackedStaticFAQ = () => {
+
+const TrackedStaticFAQ = (tree: FAQTree) => () => {
   return (
     <SearchState.Consumer>
       {({
@@ -43,6 +45,7 @@ const TrackedStaticFAQ = () => {
             onSearchChange={onSearchChange}
             onSearchCancel={onSearchCancel}
             searchText={searchText}
+            tree={tree}
             isVisible={isVisible}
           />
         );

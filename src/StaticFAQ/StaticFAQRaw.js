@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom';
 import Input from './../common/Input';
 import FAQCategoryList from './FAQCategoryList';
 import SearchAllFAQs from './SearchAllFAQs';
+import type { FAQTree } from '../types';
 
 const style = css`
   .static-faq {
@@ -37,6 +38,7 @@ type Props = {|
       categoryId: ?string,
     },
   },
+  tree: FAQTree,
   searchText: string,
   isVisible: boolean,
   onSearchChange: (e: SyntheticInputEvent<HTMLInputElement>) => void,
@@ -66,7 +68,7 @@ const StaticFAQRaw = (props: Props) => {
         {isSearching ? (
           <SearchAllFAQs search={searchText} />
         ) : (
-          <FAQCategoryList categoryId={categoryId} />
+          <FAQCategoryList tree={props.tree} categoryId={categoryId} />
         )}
       </div>
       <style jsx>{style}</style>

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash cf85d5f4f0d9e7711179f47b3ec14e2a
+ * @relayHash 8a4eedc32eb0c4aef3a5ca2bb4f8447c
  */
 
 /* eslint-disable */
@@ -11,10 +11,12 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type ArticleContent_article$ref = any;
 export type FAQSection = ('BEFORE_BOOKING' | 'PAST_BOOKING' | 'UPCOMING_BOOKING' | 'URGENT_BOOKING' | '%future added value');
+export type FAQTree = ('EMERGENCIES' | 'SMARTFAQ' | '%future added value');
 export type ArticleDetailQueryVariables = {|
   id: string,
-  category_id: string,
-  section: FAQSection,
+  categoryId: string,
+  tree: FAQTree,
+  section?: ?FAQSection,
 |};
 export type ArticleDetailQueryResponse = {|
   +FAQArticle: ?{|
@@ -36,15 +38,16 @@ export type ArticleDetailQueryResponse = {|
 /*
 query ArticleDetailQuery(
   $id: ID!
-  $category_id: ID!
-  $section: FAQSection!
+  $categoryId: ID!
+  $tree: FAQTree!
+  $section: FAQSection
 ) {
   FAQArticle(id: $id) {
     title
     ...ArticleContent_article
     id
   }
-  FAQCategory(id: $category_id, section: $section) {
+  FAQCategory(id: $categoryId, section: $section, tree: $tree) {
     title
     id
     ancestors {
@@ -72,14 +75,20 @@ var v0 = [
   },
   {
     "kind": "LocalArgument",
-    "name": "category_id",
+    "name": "categoryId",
     "type": "ID!",
     "defaultValue": null
   },
   {
     "kind": "LocalArgument",
+    "name": "tree",
+    "type": "FAQTree!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
     "name": "section",
-    "type": "FAQSection!",
+    "type": "FAQSection",
     "defaultValue": null
   }
 ],
@@ -114,7 +123,7 @@ v4 = {
     {
       "kind": "Variable",
       "name": "id",
-      "variableName": "category_id",
+      "variableName": "categoryId",
       "type": "ID!"
     },
     {
@@ -122,6 +131,12 @@ v4 = {
       "name": "section",
       "variableName": "section",
       "type": "FAQSection"
+    },
+    {
+      "kind": "Variable",
+      "name": "tree",
+      "variableName": "tree",
+      "type": "FAQTree"
     }
   ],
   "concreteType": "FAQCategory",
@@ -149,7 +164,7 @@ return {
   "operationKind": "query",
   "name": "ArticleDetailQuery",
   "id": null,
-  "text": "query ArticleDetailQuery(\n  $id: ID!\n  $category_id: ID!\n  $section: FAQSection!\n) {\n  FAQArticle(id: $id) {\n    title\n    ...ArticleContent_article\n    id\n  }\n  FAQCategory(id: $category_id, section: $section) {\n    title\n    id\n    ancestors {\n      id\n      title\n    }\n  }\n}\n\nfragment ArticleContent_article on FAQArticle {\n  id\n  title\n  perex\n  content\n}\n",
+  "text": "query ArticleDetailQuery(\n  $id: ID!\n  $categoryId: ID!\n  $tree: FAQTree!\n  $section: FAQSection\n) {\n  FAQArticle(id: $id) {\n    title\n    ...ArticleContent_article\n    id\n  }\n  FAQCategory(id: $categoryId, section: $section, tree: $tree) {\n    title\n    id\n    ancestors {\n      id\n      title\n    }\n  }\n}\n\nfragment ArticleContent_article on FAQArticle {\n  id\n  title\n  perex\n  content\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -215,5 +230,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = 'f4320ee608acf164cae8fd611c87dba8';
+(node/*: any*/).hash = 'd3fb2302450965795b31cecb77627a51';
 module.exports = node;

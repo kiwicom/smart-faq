@@ -14,3 +14,5 @@ export type onLogout = () => Promise<*>;
 export type Provider = 'facebook' | 'google';
 
 export type onSocialLogin = Provider => Promise<*>;
+
+export type FAQTree = 'SMARTFAQ' | 'EMERGENCIES';

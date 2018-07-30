@@ -30,6 +30,7 @@ import { BookingState, type FAQSectionType } from '../context/BookingState';
 
 type ComponentProps = {
   categoryId: string | null,
+  tree: 'EMERGENCIES' | 'SMARTFAQ',
   history: {
     location: {
       pathname: string,
@@ -86,8 +87,8 @@ const queryRoot = graphql`
   }
 `;
 const querySubcategory = graphql`
-  query FAQCategoryListSubcategoryQuery($id: ID!) {
-    FAQCategory(id: $id) {
+  query FAQCategoryListSubcategoryQuery($id: ID!, $tree: FAQTree!) {
+    FAQCategory(id: $id, tree: $tree) {
       id
       title
       subcategories {
@@ -128,7 +129,10 @@ class RawFAQCategoryList extends React.Component<Props> {
     );
   };
 
-  renderCategories = (categories: $ReadOnlyArray<CategoryFragment>) => {
+  renderCategories = (
+    categories: $ReadOnlyArray<CategoryFragment>,
+    isEmergency: boolean = false,
+  ) => {
     const { pathname } = this.props.history.location;
     const isBaggageRoute = pathname.includes(extraCategories.BAGGAGE);
     const isBoardingPassRoute = pathname.includes(
@@ -157,11 +161,15 @@ class RawFAQCategoryList extends React.Component<Props> {
               return (
                 <Link
                   key={category.id}
-                  to={`/faq/${category.id}`}
+                  to={
+                    isEmergency
+                      ? `/emergency/${category.id}`
+                      : `/faq/${category.id}`
+                  }
                   style={{ textDecoration: 'none', display: 'block' }}
                   onClick={categoryClicked(category)}
                 >
-                  <FAQCategory category={category} />
+                  <FAQCategory category={category} isWarning={isEmergency} />
                 </Link>
               );
             }
@@ -195,7 +203,8 @@ class RawFAQCategoryList extends React.Component<Props> {
             <Heading size="small">Current travel issues:</Heading>
           </div>
           {this.renderCategories(
-            emergencies.map(edge => edge && edge.node).filter(Boolean),
+            categories, // emergencies.map(edge => edge && edge.node).filter(Boolean),
+            true,
           )}
           <div className="rootHeading">
             <Heading size="small">Solve the issue by yourself:</Heading>
@@ -252,14 +261,14 @@ class RawFAQCategoryList extends React.Component<Props> {
   };
 
   render() {
-    const { categoryId, section } = this.props;
+    const { categoryId, section, tree } = this.props;
 
     if (categoryId) {
       return (
         <QueryRenderer
           query={querySubcategory}
           render={this.renderSubcategory}
-          variables={{ id: categoryId }}
+          variables={{ id: categoryId, tree }}
         />
       );
     }

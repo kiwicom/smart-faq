@@ -45,20 +45,20 @@ type Props = {|
 
 const FAQCategory = (props: Props) => (
   <Card>
-    {props.isWarning && (<div className="warning">
+    {props.isWarning && (
+      <div className="warning">
         <Alert customColor="#171b1e" />
       </div>
     )}
     <div>
       <div className="faqCategory">
-      <Heading type="title3">
-        {props.category.title}
-      </Heading>
-    </div>
-    <div className="perex">
-      <Text type="secondary" size="small">
-        {props.category.perex}
-      </Text></div>
+        <Heading type="title3">{props.category.title}</Heading>
+      </div>
+      <div className="perex">
+        <Text type="secondary" size="small">
+          {props.category.perex}
+        </Text>
+      </div>
     </div>
     <div className="arrow">
       <ChevronRight customColor="#bac7d5" />

@@ -51,14 +51,13 @@ const RawFAQArticle = (props: Props) => (
       )}
       <div>
         <div>
-          <Heading type="title3">
-          {props.article.title}
-        </Heading>
-      </div>
-      <div className="perex">
-        <Text type="secondary" size="small" element="span">
-          {props.article.perex}
-        </Text></div>
+          <Heading type="title3">{props.article.title}</Heading>
+        </div>
+        <div className="perex">
+          <Text type="secondary" size="small" element="span">
+            {props.article.perex}
+          </Text>
+        </div>
       </div>
     </Card>
     <style jsx>{style}</style>
