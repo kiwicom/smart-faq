@@ -123,13 +123,13 @@ exports[`ContentHeader should render loggedOut user header 1`] = `
       </div>
     </div>
     <div
-      class="jsx-2367066345 jsx-1560173719 loggedOut"
+      class="jsx-2367066345 jsx-1604692328 loggedOut"
     >
       <div
-        class="jsx-2367066345 jsx-1560173719 signInOrBack"
+        class="jsx-2367066345 jsx-1604692328 signInOrBack"
       >
         <div
-          class="jsx-2367066345 jsx-1560173719 backButton"
+          class="jsx-2367066345 jsx-1604692328 backButton"
         >
           <div
             class="jsx-1190988628 back"
@@ -162,7 +162,7 @@ exports[`ContentHeader should render loggedOut user header 1`] = `
         </div>
       </div>
       <p
-        class="jsx-2367066345 jsx-1560173719 helpHeader"
+        class="jsx-2367066345 jsx-1604692328 helpHeader"
       >
         Help
       </p>
