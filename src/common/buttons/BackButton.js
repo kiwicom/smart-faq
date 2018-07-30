@@ -22,6 +22,9 @@ type Props = {|
 const BackButton = (props: Props) => {
   const { location, entries } = props.history;
   const goBack = () => {
+    if (props.text === 'Search') {
+      return props.history.push('/faq');
+    }
     const firstEntry = entries[0];
     const faqCategory = firstEntry.pathname.split('article')[0];
     return firstEntry.pathname === location.pathname
