@@ -8,6 +8,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { Desktop } from '../common/Responsive';
 import {
   ExtraInfoState,
+  categories as extraCategories,
   type ExtraInfoStateType,
 } from '../context/ExtraInfoState';
 import UserStatus from '../helpers/UserStatus';
@@ -117,22 +118,26 @@ class RawFAQCategoryList extends React.Component<Props> {
     );
   };
   renderCategories = (categories: $ReadOnlyArray<CategoryFragment>) => {
+    const { pathname } = this.props.history.location;
+    const isBaggageRoute = pathname.includes(extraCategories.BAGGAGE);
+    const isBoardingPassRoute = pathname.includes(
+      extraCategories.BOARDING_PASS,
+    );
     return (
       <React.Fragment>
         <Desktop>
           <UserStatus.LoggedIn>
-            <ExtraInfoState.Consumer>
-              {({ activeExtraInfoCategory }: ExtraInfoStateType) =>
-                activeExtraInfoCategory === 'baggage' && <BaggageInfo />
-              }
-            </ExtraInfoState.Consumer>
-            <ExtraInfoState.Consumer>
-              {({ activeExtraInfoCategory }: ExtraInfoStateType) =>
-                activeExtraInfoCategory === 'boarding-passes' && (
-                  <BoardingPassesInfo />
-                )
-              }
-            </ExtraInfoState.Consumer>
+            {(isBaggageRoute || isBoardingPassRoute) && (
+              <ExtraInfoState.Consumer>
+                {({ activeExtraInfoCategory }: ExtraInfoStateType) =>
+                  activeExtraInfoCategory === 'baggage' ? (
+                    <BaggageInfo />
+                  ) : (
+                    <BoardingPassesInfo />
+                  )
+                }
+              </ExtraInfoState.Consumer>
+            )}
           </UserStatus.LoggedIn>
         </Desktop>
         <div data-cy="faq-categories">
