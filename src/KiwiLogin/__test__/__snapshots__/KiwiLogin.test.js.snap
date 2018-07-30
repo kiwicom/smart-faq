@@ -11,26 +11,26 @@ Object {
 
 exports[`KiwiLogin should match snapshot 1`] = `
 <div
-  className="jsx-1623819923 KiwiLogin"
+  className="jsx-3920282346 KiwiLogin"
 >
   <CloseButton />
   <withRouter(BackButton)
     text="Back"
   />
   <div
-    className="jsx-1623819923 picture"
+    className="jsx-3920282346 picture"
   >
     <img
       alt="Help"
-      className="jsx-1623819923"
+      className="jsx-3920282346"
       src="https://images.kiwi.com/smart-faq/woman-with-laptop@2x.jpg"
     />
   </div>
   <div
-    className="jsx-1623819923 main"
+    className="jsx-3920282346 main"
   >
     <p
-      className="jsx-1623819923 title"
+      className="jsx-3920282346 title"
     >
       Kiwi.com account
     </p>
@@ -55,16 +55,16 @@ exports[`KiwiLogin should match snapshot 1`] = `
       </Text>
     </MediaQuery>
     <form
-      className="jsx-1623819923"
+      className="jsx-3920282346"
       onSubmit={[Function]}
     >
       <label
-        className="jsx-1623819923"
+        className="jsx-3920282346"
         htmlFor="email"
       >
         Email:
         <div
-          className="jsx-1623819923 input"
+          className="jsx-3920282346 input"
         >
           <InputText
             dataCy="input-email"
@@ -77,12 +77,12 @@ exports[`KiwiLogin should match snapshot 1`] = `
         </div>
       </label>
       <label
-        className="jsx-1623819923"
+        className="jsx-3920282346"
         htmlFor="password"
       >
         Password:
         <div
-          className="jsx-1623819923 input"
+          className="jsx-3920282346 input"
         >
           <InputText
             dataCy="input-password"
@@ -104,13 +104,13 @@ exports[`KiwiLogin should match snapshot 1`] = `
         to="/forgotten-password"
       >
         <div
-          className="jsx-1623819923 forgotPassword"
+          className="jsx-3920282346 forgotPassword"
         >
           Forgot your password?
         </div>
       </Link>
       <span
-        className="jsx-1623819923 signIn"
+        className="jsx-3920282346 signIn"
         data-cy="btn-sign-in"
       >
         <WithTheme(Button)
@@ -123,8 +123,8 @@ exports[`KiwiLogin should match snapshot 1`] = `
     </form>
   </div>
   <JSXStyle
-    css=".KiwiLogin.jsx-1623819923{width:480px;padding-top:128px;padding-left:40px;padding-right:40px;height:100%;overflow-y:auto;overflow-x:hidden;margin:auto;}div.picture.jsx-1623819923 img.jsx-1623819923{width:203px;height:156px;}div.picture.jsx-1623819923{margin-left:110px;margin-bottom:68px;}p.title.jsx-1623819923{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:8px;line-height:1.2;}.forgotPassword.jsx-1623819923{margin-top:12px;display:inline-block;font-size:14px;color:#00a991;}.signIn.jsx-1623819923{float:right;margin-bottom:20px;}form.jsx-1623819923{margin-top:32.8px;}div.input.jsx-1623819923{width:400px;height:44px;margin-bottom:34px;margin-top:4px;}label.jsx-1623819923{width:352px;height:20px;font-size:14px;line-height:1.43;text-align:left;color:#46515e;display:inline-table;}div.errorMessage.jsx-1623819923{margin-bottom:15px;}@media only screen and (max-width:480px){.KiwiLogin.jsx-1623819923{width:100%;padding-top:64px;padding-left:0px;padding-right:0px;}p.title.jsx-1623819923{font-size:22px;text-align:center;margin-top:0;}div.picture.jsx-1623819923{display:none;}div.input.jsx-1623819923{width:100%;margin-bottom:26px;}div.main.jsx-1623819923{margin-left:16px;margin-right:16px;}div.forgotPassword.jsx-1623819923{text-align:center;display:block;margin-bottom:20px;margin-top:0px;}.signIn.jsx-1623819923{float:none;}label.jsx-1623819923{width:100%;}}@media only screen and (max-height:480px){.KiwiLogin.jsx-1623819923{width:100%;padding-top:20px;}p.title.jsx-1623819923{font-size:22px;text-align:center;margin-top:0;}div.picture.jsx-1623819923{display:none;}div.main.jsx-1623819923{width:288px;margin-left:auto;margin-right:auto;}div.input.jsx-1623819923{width:288px;margin-bottom:26px;}div.forgotPassword.jsx-1623819923{display:block;text-align:center;margin-bottom:20px;margin-top:0;}.signIn.jsx-1623819923{float:none;}}"
-    styleId="1623819923"
+    css=".KiwiLogin.jsx-3920282346{width:480px;padding-top:128px;padding-left:40px;padding-right:40px;height:100%;overflow-y:auto;overflow-x:hidden;margin:auto;}div.picture.jsx-3920282346 img.jsx-3920282346{width:203px;height:156px;}div.picture.jsx-3920282346{margin-left:110px;margin-bottom:68px;}p.title.jsx-3920282346{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:8px;line-height:1.2;}.forgotPassword.jsx-3920282346{margin-top:12px;display:inline-block;font-size:14px;color:#00a991;}.signIn.jsx-3920282346{float:right;margin-bottom:20px;}form.jsx-3920282346{margin-top:33px;}div.input.jsx-3920282346{width:400px;height:44px;margin-bottom:34px;margin-top:4px;}label.jsx-3920282346{width:352px;height:20px;font-size:14px;line-height:1.43;text-align:left;color:#46515e;display:inline-table;}div.errorMessage.jsx-3920282346{margin-bottom:15px;}@media only screen and (max-width:480px){.KiwiLogin.jsx-3920282346{width:100%;padding-top:64px;padding-left:0px;padding-right:0px;}p.title.jsx-3920282346{font-size:22px;text-align:center;margin-top:0;}div.picture.jsx-3920282346{display:none;}div.input.jsx-3920282346{width:100%;margin-bottom:26px;}div.main.jsx-3920282346{margin-left:16px;margin-right:16px;}div.forgotPassword.jsx-3920282346{text-align:center;display:block;margin-bottom:20px;margin-top:0px;}.signIn.jsx-3920282346{float:none;}label.jsx-3920282346{width:100%;}}@media only screen and (max-height:480px){.KiwiLogin.jsx-3920282346{width:100%;padding-top:20px;}p.title.jsx-3920282346{font-size:22px;text-align:center;margin-top:0;}div.picture.jsx-3920282346{display:none;}div.main.jsx-3920282346{width:288px;margin-left:auto;margin-right:auto;}div.input.jsx-3920282346{width:288px;margin-bottom:26px;}div.forgotPassword.jsx-3920282346{display:block;text-align:center;margin-bottom:20px;margin-top:0;}.signIn.jsx-3920282346{float:none;}}"
+    styleId="3920282346"
   />
 </div>
 `;
