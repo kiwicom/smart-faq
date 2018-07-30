@@ -9,9 +9,6 @@ import image from '../../static/mailbox@3x.png';
 import CloseButton from './../common/buttons/CloseButton';
 
 const style = css`
-  div.mobile-header {
-    display: none;
-  }
   .Email {
     width: 480px;
     padding-top: 240px;
@@ -28,7 +25,7 @@ const style = css`
   }
   div.picture img {
     height: 188px;
-    widht: 226px;
+    width: 226px;
   }
   div.text {
     margin-left: 40px;
@@ -41,15 +38,10 @@ const style = css`
   @media only screen and (max-width: 480px) {
     .Email {
       width: 100%;
-      padding-top: 42px;
+      padding-top: 108px;
     }
-    div.mobile-header {
-      display: block;
-      width: 100%;
-      height: 66px;
-      background-color: #ffffff;
-      box-shadow: inset 0 -1px 0 0 #e8edf1;
-      padding-top: 21px;
+    p.title {
+      font-size: 22px;
     }
     div.help-title {
       height: 24px;
@@ -67,6 +59,21 @@ const style = css`
       margin: 0;
     }
   }
+  @media only screen and (max-height: 480px) and (orientation: landscape) {
+    .Email {
+      width: 100%;
+      padding-top: 0;
+      display: flex;
+      justify-content: space-around;
+    }
+    p.title {
+      font-size: 22px;
+      text-align: center;
+    }
+    div.picture {
+      display: none;
+    }
+  }
 `;
 type Props = {
   text: string,
@@ -82,9 +89,6 @@ const CheckEmail = (props: Props) => {
   const email = idx(location, _ => _.state.email) || 'example@gmail.com';
   return (
     <React.Fragment>
-      <div className="mobile-header">
-        <div className="help-title">Help</div>
-      </div>
       <div className="Email">
         <CloseButton />
         <div className="picture">
@@ -92,7 +96,7 @@ const CheckEmail = (props: Props) => {
         </div>
         <div className="text">
           <p className="title">Check your e-mail inbox</p>
-          <Text size="large" type="secondary" element="span">
+          <Text type="secondary" element="span">
             {props.text}
             <span className="email-text">{` ${email}`}</span>.
           </Text>
