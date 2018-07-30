@@ -96,9 +96,11 @@ const loggedOutStyle = css`
     font-weight: bold;
     color: #171b1e;
     pointer-events: none;
+    margin: 0;
   }
   .loggedOut {
     display: flex;
+    align-items: center;
     padding: 16px;
     height: 66px;
   }
