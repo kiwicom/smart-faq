@@ -200,14 +200,14 @@ class RawFAQCategoryList extends React.Component<Props> {
       return (
         <div>
           <div className="rootHeading">
-            <Heading size="small">Current travel issues:</Heading>
+            <Heading type="title3">Current travel issues:</Heading>
           </div>
           {this.renderCategories(
-            categories, // emergencies.map(edge => edge && edge.node).filter(Boolean),
+            emergencies.map(edge => edge && edge.node).filter(Boolean),
             true,
           )}
           <div className="rootHeading">
-            <Heading size="small">Solve the issue by yourself:</Heading>
+            <Heading type="title3">Solve the issue by yourself:</Heading>
           </div>
           {this.renderCategories(categories)}
           <style jsx>
