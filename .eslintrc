@@ -65,8 +65,6 @@
         "devDependencies": [
           "**/*.test.js",
           "**/*.spec.js",
-          "**/*.stories.js",
-          "**/stories/**",
           "/config/**"
         ]
       }
