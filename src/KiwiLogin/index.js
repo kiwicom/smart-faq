@@ -12,6 +12,7 @@ import BackButton from '../common/buttons/BackButton';
 import Input from '../common/Input';
 import { withLogin } from '../context/User';
 import image from '../../static/woman-with-laptop@2x.jpg';
+import { simpleTracker } from '../helpers/analytics/trackers';
 import type { onLogin } from '../types';
 
 const style = css`
@@ -155,6 +156,12 @@ type State = {|
   isLoading: boolean,
 |};
 
+const kiwiLoginTracker = () =>
+  simpleTracker('smartFAQ', {
+    action: 'clickOnLogin',
+    loginType: 'kiwi',
+  });
+
 class KiwiLogin extends React.Component<Props, State> {
   state = {
     email: '',
@@ -195,7 +202,7 @@ class KiwiLogin extends React.Component<Props, State> {
           Sign In
         </Button>
       ) : (
-        <Button block onClick={() => {}}>
+        <Button block onClick={kiwiLoginTracker}>
           Sign In
         </Button>
       );
