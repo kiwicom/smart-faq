@@ -23,3 +23,7 @@ export const Desktop = createMediaQuery(
 export const Mobile = createMediaQuery(
   `screen and (max-width: ${breakPoint}px)`,
 );
+export const Portrait = createMediaQuery(`screen and (orientation: portrait)`);
+export const Landscape = createMediaQuery(
+  `screen and (orientation: landscape)`,
+);
