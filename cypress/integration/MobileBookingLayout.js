@@ -17,13 +17,13 @@ describe('Mobile Booking Layout', () => {
     cy.get('.TripDescription').should('be.visible');
     cy.contains(/(Upcoming|Past) trip #[0-9 ]+/).should('be.visible');
 
-    cy.contains('Manage My Booking').should('be.visible');
-    cy.contains('Select another booking').should('be.visible');
+    cy.get('.manageBookingButton').should('be.visible');
+    cy.get('[data-cy=btn-other-bookings]').should('be.visible');
 
     cy.contains(/(Upcoming|Past) trip #[0-9 ]+/).click();
 
-    cy.contains('Manage My Booking').should('not.be.visible');
-    cy.contains('Select another booking').should('not.be.visible');
+    cy.get('.manageBookingButton').should('not.be.visible');
+    cy.get('[data-cy=btn-other-bookings]').should('not.be.visible');
 
     cy.contains(/(Upcoming|Past) trip #[0-9 ]+/).click();
     cy.contains('Select another booking').click();
