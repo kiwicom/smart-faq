@@ -53,8 +53,8 @@ const MobileBookingControlsStyle = css`
 `;
 
 type TripIdProps = {|
-  isPastBooking: boolean,
-  databaseId: number,
+  isPastBooking: ?boolean,
+  databaseId: ?number,
 |};
 
 const TripId = (props: TripIdProps) =>
@@ -164,55 +164,7 @@ const renderByType = booking => {
   return null;
 };
 
-class LandscapeMobileBookingDetail extends React.Component<Props, State> {
-  componentDidMount() {
-    updateFAQSection(this.props);
-  }
-
-  componentDidUpdate() {
-    updateFAQSection(this.props);
-  }
-
-  render() {
-    const { booking } = this.props;
-    const { isPastBooking, databaseId } = booking;
-    return (
-      <div>
-        <div className="flexToolbar">
-          <div>
-            <TripId databaseId={databaseId} isPastBooking={isPastBooking} />
-            {renderByType(booking)}
-          </div>
-          <div>
-            <SelectAnotherBookingButton />
-          </div>
-        </div>
-        <div className="centered">
-          <ManageMyBookingButton
-            manageBookingURL={
-              booking.directAccessURL &&
-              replaceWithCurrentDomain(booking.directAccessURL)
-            }
-          />
-        </div>
-        <style jsx>
-          {`
-            .centered {
-              max-width: 288px;
-              margin: auto;
-            }
-            .flexToolbar {
-              display: flex;
-              justify-content: space-between;
-            }
-          `}
-        </style>
-      </div>
-    );
-  }
-}
-
-class PortraitMobileBookingDetail extends React.Component<Props, State> {
+class MobileBookingDetail extends React.Component<Props, State> {
   state = {
     expanded: true,
   };
@@ -229,7 +181,7 @@ class PortraitMobileBookingDetail extends React.Component<Props, State> {
     this.setState(prevState => ({ expanded: !prevState.expanded }));
   }
 
-  render() {
+  renderPortrait() {
     const { booking } = this.props;
     const { isPastBooking, databaseId } = booking;
     return (
@@ -267,25 +219,59 @@ class PortraitMobileBookingDetail extends React.Component<Props, State> {
       </React.Fragment>
     );
   }
+
+  renderLandscape() {
+    const { booking } = this.props;
+    const { isPastBooking, databaseId } = booking;
+    return (
+      <div>
+        <div className="flexToolbar">
+          <div>
+            <TripId databaseId={databaseId} isPastBooking={isPastBooking} />
+            {renderByType(booking)}
+          </div>
+          <div>
+            <SelectAnotherBookingButton />
+          </div>
+        </div>
+        <div className="centered">
+          <ManageMyBookingButton
+            manageBookingURL={
+              booking.directAccessURL &&
+              replaceWithCurrentDomain(booking.directAccessURL)
+            }
+          />
+        </div>
+        <style jsx>
+          {`
+            .centered {
+              max-width: 288px;
+              margin: auto;
+            }
+            .flexToolbar {
+              display: flex;
+              justify-content: space-between;
+            }
+          `}
+        </style>
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Portrait>{this.renderPortrait()}</Portrait>
+        <Landscape>{this.renderLandscape()}</Landscape>
+      </React.Fragment>
+    );
+  }
 }
 
 const MobileBookingDetailWithFAQHandler = (props: ComponentProps) => (
   <BookingState.Consumer>
     {({ onSetFAQSection }: ContextProps) => (
-      <React.Fragment>
-        <Portrait>
-          <PortraitMobileBookingDetail
-            {...props}
-            onSetFAQSection={onSetFAQSection}
-          />
-        </Portrait>
-        <Landscape>
-          <LandscapeMobileBookingDetail
-            {...props}
-            onSetFAQSection={onSetFAQSection}
-          />
-        </Landscape>
-      </React.Fragment>
+      <MobileBookingDetail {...props} onSetFAQSection={onSetFAQSection} />
     )}
   </BookingState.Consumer>
 );
