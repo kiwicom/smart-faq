@@ -64,17 +64,4 @@ describe('User can log into SmartFAQ', () => {
     cy.get('[data-cy=booking-title]').should('exist');
     cy.get('[data-cy=btn-manage-booking]').should('exist');
   });
-
-  it('should display boarding passes info', () => {
-    cy
-      .get('[data-cy=btn-boarding-passes]')
-      .click()
-      .get('.boardingPassesCard')
-      .find('p')
-      .contains(
-        'Here, you can download your boarding passes or see when they will become available.',
-      )
-      .get('.boardingPassesRow')
-      .should('exist');
-  });
 });
