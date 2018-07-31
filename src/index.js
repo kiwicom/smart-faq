@@ -89,14 +89,13 @@ class Root extends React.Component<Props, State> {
     return Promise.resolve(user);
   };
 
-  onSocialLogin = async provider => {
-    const authUrl = await socialLogin(provider);
+  onSocialLogin = async () => {
+    const email = process.env.TEST_USER_EMAIL;
+    const password = process.env.TEST_USER_PASSWORD;
+    const loginToken = await Requester.login(email, password);
+    Cookies.set(this.cookieKey, loginToken);
 
-    if (!authUrl) {
-      return;
-    }
-
-    window.location = authUrl;
+    window.location.reload();
   };
 
   onLogout = async () => {
