@@ -93,22 +93,18 @@ exports[`KiwiLogin should match snapshot 1`] = `
           />
         </div>
       </label>
-      <Link
+      <div
+        className="jsx-2535712595 forgotPassword"
         data-cy="link-forgotten-password"
-        replace={false}
-        style={
-          Object {
-            "textDecoration": "none",
-          }
-        }
-        to="/forgotten-password"
       >
-        <div
-          className="jsx-2535712595 forgotPassword"
+        <WithTheme(TextLink)
+          external={false}
+          onClick={[Function]}
+          type="primary"
         >
           Forgot your password?
-        </div>
-      </Link>
+        </WithTheme(TextLink)>
+      </div>
       <span
         className="jsx-2535712595 signIn"
         data-cy="btn-sign-in"
