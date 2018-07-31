@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import SignIn from '../index';
+import { SignInRaw as SignIn } from '../index';
 
 const onSocialLogin = jest.fn();
 

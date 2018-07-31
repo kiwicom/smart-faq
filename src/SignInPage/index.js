@@ -205,4 +205,6 @@ class SignIn extends React.Component<Props> {
   }
 }
 
+export const SignInRaw = SignIn;
+
 export default redirectsLoggedIn(SignIn);
