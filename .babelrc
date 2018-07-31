@@ -1,24 +1,43 @@
 {
-  "presets": [
-    [
-      "env",
-      {
-        "targets": {
-          "browsers": ["last 2 versions"]
-        }
-      }
-    ],
-    "react",
-    "stage-0"
-  ],
-  "plugins":[
-    "styled-jsx/babel",
-    "transform-runtime",
-    "transform-flow-comments",
-    "relay",
-    ["transform-assets-import-to-string", {
-      "baseDir": "/",
-      "baseUri": "https://images.kiwi.com/smart-faq"
-    }]
-  ]
+  "env": {
+    "production": {
+      "presets": [
+        [
+          "env",
+          {
+            "targets": {
+              "browsers": ["last 2 versions"]
+            }
+          }
+        ],
+        "react",
+        "stage-2"
+      ],
+      "plugins":[
+        "styled-jsx/babel",
+        "transform-runtime",
+        "transform-flow-comments",
+        "relay",
+        ["transform-assets-import-to-string", {
+          "baseDir": "/",
+          "baseUri": "https://images.kiwi.com/smart-faq"
+        }]
+      ]
+    },
+    "module": {
+      "presets": [
+        "react",
+        "stage-2"
+      ],
+      "plugins":[
+        "styled-jsx/babel",
+        "transform-runtime",
+        "relay",
+        ["transform-assets-import-to-string", {
+          "baseDir": "/",
+          "baseUri": "https://images.kiwi.com/smart-faq"
+        }]
+      ]
+    }
+  }
 }

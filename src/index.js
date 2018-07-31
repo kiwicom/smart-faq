@@ -65,7 +65,8 @@ class Root extends React.Component<Props, State> {
     });
     const stagingCuckoo = {
       infinario: (eventName: LogEvent, payload: EventPayload) => {
-        console.info('Event recorded to KeenIO',eventName, payload); //eslint-disable-line
+        //eslint-disable-next-line no-console
+        console.info('Event recorded to KeenIO', eventName, payload);
         keen.recordEvent(eventName, payload);
       },
     };

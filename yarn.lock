@@ -250,9 +250,9 @@
     request-promise "^4.1.1"
     yargs "^8.0.2"
 
-"@kiwicom/orbit-components@0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.1.2.tgz#9a1e91c72fa855ea81f21293222dfde93329252d"
+"@kiwicom/orbit-components@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.2.0.tgz#5f60322781774640b9fa67468e00bab51c4f3acb"
   dependencies:
     "@kiwicom/orbit-design-tokens" "^0.1.1"
     "@sambego/storybook-styles" "^1.0.0"
