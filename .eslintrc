@@ -104,6 +104,7 @@
         "Object": true,
         "Function": true
       }
-    ]
+    ],
+    "flowtype/type-import-style": ["warn", "declaration"]
   }
 }

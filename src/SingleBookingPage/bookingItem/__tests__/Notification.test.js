@@ -20,7 +20,7 @@ describe('Notification', () => {
   it('should show warning when message is urgent', () => {
     const wrapper = render(
       <ThemeProvider>
-        <RawNotification isUrgent hoursLeft={25} t={key => key} />
+        <RawNotification isUrgent hoursLeft={25} t={() => 'h'} />
       </ThemeProvider>,
     );
 
@@ -32,7 +32,7 @@ describe('Notification', () => {
   it('should show just info when it is not urgent', () => {
     const wrapper = render(
       <ThemeProvider>
-        <RawNotification isUrgent={false} hoursLeft={62} t={key => key} />
+        <RawNotification isUrgent={false} hoursLeft={62} t={() => 'h'} />
       </ThemeProvider>,
     );
 
