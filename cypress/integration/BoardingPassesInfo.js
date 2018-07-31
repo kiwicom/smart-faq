@@ -3,6 +3,7 @@
   Cypress,
   cy
 */
+/* eslint-disable jest/valid-expect */
 
 describe('Boarding Passes Info', () => {
   beforeEach(() => {
