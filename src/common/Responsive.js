@@ -7,16 +7,19 @@ type Props = {|
   children: React.Node,
 |};
 
+const createMediaQuery = (mediaQuery: string) => {
+  const MediaQueryComponent = ({ children }: Props) => (
+    <MediaQuery query={mediaQuery}>{children}</MediaQuery>
+  );
+
+  return MediaQueryComponent;
+};
+
 const breakPoint = 900;
 
-export const Desktop = ({ children }: Props) => (
-  <MediaQuery query={`screen and (min-width: ${breakPoint + 1}px)`}>
-    {children}
-  </MediaQuery>
+export const Desktop = createMediaQuery(
+  `screen and (min-width: ${breakPoint + 1}px)`,
 );
-
-export const Mobile = ({ children }: Props) => (
-  <MediaQuery query={`screen and (max-width: ${breakPoint}px)`}>
-    {children}
-  </MediaQuery>
+export const Mobile = createMediaQuery(
+  `screen and (max-width: ${breakPoint}px)`,
 );
