@@ -2,7 +2,10 @@
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
-import { BaggageSmall, BaggageBig } from '@kiwicom/orbit-components/lib/icons';
+import {
+  BaggageCabin,
+  BaggageChecked,
+} from '@kiwicom/orbit-components/lib/icons';
 
 import type { BaggageDescription as BaggageDescriptionProps } from './__generated__/BaggageDescription.graphql';
 
@@ -14,9 +17,9 @@ type Props = {|
 function renderIcon(type: string) {
   switch (type) {
     case 'Cabin':
-      return <BaggageSmall size="medium" customColor="#bac7d5" />;
+      return <BaggageCabin size="medium" customColor="#bac7d5" />;
     case 'Checked':
-      return <BaggageBig size="medium" customColor="#bac7d5" />;
+      return <BaggageChecked size="medium" customColor="#bac7d5" />;
   }
   return null;
 }

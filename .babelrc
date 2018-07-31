@@ -1,6 +1,21 @@
 {
   "env": {
-    "production": {
+    "test": {
+      "presets": [
+        "react",
+        "stage-2"
+      ],
+      "plugins": [
+        "relay",
+        "styled-jsx/babel",
+        "transform-es2015-modules-commonjs",
+        ["transform-assets-import-to-string", {
+          "baseDir": "/",
+          "baseUri": "https://images.kiwi.com/smart-faq"
+        }]
+      ]
+    },
+    "development": {
       "presets": [
         [
           "env",

@@ -8,7 +8,7 @@ exports[`BaggageDescription should render correctly 1`] = `
   <div
     className="jsx-677876937 baggageRow"
   >
-    <BaggageBig
+    <BaggageChecked
       customColor="#bac7d5"
       size="medium"
     />

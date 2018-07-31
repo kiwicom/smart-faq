@@ -25,7 +25,7 @@ describe('BaggageDescription', () => {
 
   it('should render correct icon according to baggage type', () => {
     const component = shallow(baggageDescriptionComponent);
-    expect(component.find('BaggageBig').exists()).toBeTruthy();
+    expect(component.find('BaggageChecked').exists()).toBeTruthy();
   });
 
   it('should show size of the baggage', () => {
