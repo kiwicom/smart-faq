@@ -3,13 +3,14 @@
 import * as React from 'react';
 import { Alert } from '@kiwicom/orbit-components';
 import { translate } from 'react-i18next';
+import type { TFunction } from 'react-i18next';
 
 import { formatCountDown } from '../../helpers/dateUtils';
 
 type Props = {|
   isUrgent: boolean,
   hoursLeft: number,
-  t: string => string,
+  t: TFunction,
 |};
 
 const Notification = ({ isUrgent, hoursLeft, t }: Props) => {
