@@ -4,22 +4,33 @@ import * as React from 'react';
 import { withUser, withSimpleToken } from '../context/User';
 import type { User } from '../types';
 
-type Props = {
+type RequireAccountProps = {
   user: User,
-  simpleToken: ?string,
   children?: React.Node,
 };
 
-const RequireUserCriteria = () =>
-  withSimpleToken(
-    withUser((props: Props) => {
-      if (!props.user && !props.simpleToken) {
-        return null;
-      }
-      return props.children;
-    }),
-  );
+type RequireLoggedInProps = {
+  ...RequireAccountProps,
+  simpleToken: ?string,
+};
+
+const RequireUserLoggedIn = withSimpleToken(
+  withUser((props: RequireLoggedInProps) => {
+    if (!props.user && !props.simpleToken) {
+      return null;
+    }
+    return props.children;
+  }),
+);
+
+const RequireUserAccount = withUser((props: RequireAccountProps) => {
+  if (!props.user) {
+    return null;
+  }
+  return props.children;
+});
 
 export default {
-  LoggedIn: RequireUserCriteria(),
+  LoggedIn: RequireUserLoggedIn,
+  LoggedInAccount: RequireUserAccount,
 };
