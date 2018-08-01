@@ -21,6 +21,7 @@ import { SelectUrlBooking } from './common/integration/urlProcessing';
 import ErrorBoundary from './common/ErrorBoundary';
 import { EnterTracker, TimeTracker } from './helpers/analytics/trackers';
 import type { onLogin, onLogout, onSocialLogin, User } from './types';
+import MobileSafariScroll from './helpers/MobileSafariScroll';
 
 const style = css`
   .smartFAQ {
@@ -163,9 +164,11 @@ class App extends React.PureComponent<Props, State> {
             }
           `}
         </style>
+        <MobileSafariScroll isOpen={isOpen} />
       </div>
     );
   }
+
   render() {
     if (typeof window !== 'undefined' && window.Raven) {
       return window.Raven.context(() => this.renderApp());
