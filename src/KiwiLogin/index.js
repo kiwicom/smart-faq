@@ -103,6 +103,8 @@ const style = css`
     }
     .signIn {
       float: none;
+      display: block;
+      margin: 0;
     }
     label {
       width: 100%;
@@ -138,6 +140,8 @@ const style = css`
     }
     .signIn {
       float: none;
+      display: block;
+      margin: 0;
     }
   }
 `;

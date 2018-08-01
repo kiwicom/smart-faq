@@ -3,17 +3,10 @@
   Cypress,
   cy
 */
-/* eslint-disable jest/valid-expect */
 
 describe('Boarding Passes Info', () => {
   beforeEach(() => {
-    cy.visit('/');
-    cy.get('[data-cy=btn-existent-booking]').click();
-    cy.get('[data-cy=link-kiwi-login]').click();
-
-    cy.get('[data-cy=input-email]').type(Cypress.env('TEST_USER_EMAIL'));
-    cy.get('[data-cy=input-password]').type(Cypress.env('TEST_USER_PASSWORD'));
-    cy.get('[data-cy=btn-sign-in]').click();
+    cy.signIntoAccount();
   });
 
   it('should display boarding passes info', () => {
@@ -38,30 +31,18 @@ describe('Boarding Passes Info', () => {
   });
 
   it('should show the previous root category after clicking home', () => {
-    cy
-      .wait(2000)
-      .get('[data-cy=faq-categories]')
-      .find('a')
-      .first()
-      .then($faqCard => {
-        cy
-          .get('[data-cy=btn-boarding-passes]')
-          .click()
-          .get('.boardingPassesCard');
+    cy.getFirstFaqCategoryTitle().then($initialFaqCategoryTitle => {
+      cy.get('[data-cy=btn-boarding-passes]').click();
 
-        cy
-          .get('[data-cy=faq-breadcrumbs]')
-          .find('.breadcrumb')
-          .contains('Home')
-          .click();
+      cy
+        .get('[data-cy=faq-breadcrumbs]')
+        .find('.breadcrumb')
+        .contains('Home')
+        .click();
 
-        cy
-          .get('[data-cy=faq-categories]')
-          .find('a')
-          .first()
-          .should($faqCard2 => {
-            expect($faqCard2.text()).to.eq($faqCard.text());
-          });
+      cy.getFirstFaqCategoryTitle().should($faqCategoryTitle => {
+        expect($initialFaqCategoryTitle.text()).to.eq($faqCategoryTitle.text());
       });
+    });
   });
 });

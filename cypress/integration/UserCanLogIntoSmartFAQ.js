@@ -6,13 +6,7 @@
 
 describe('User can log into SmartFAQ', () => {
   it(`the user should be able to log into SmartFAQ with the correct credentials.`, () => {
-    cy.visit('/');
-    cy.get('[data-cy=btn-existent-booking]').click();
-    cy.get('[data-cy=link-kiwi-login]').click();
-
-    cy.get('[data-cy=input-email]').type(Cypress.env('TEST_USER_EMAIL'));
-    cy.get('[data-cy=input-password]').type(Cypress.env('TEST_USER_PASSWORD'));
-    cy.get('[data-cy=btn-sign-in]').click();
+    cy.signIntoAccount();
 
     cy.get('[data-cy=nearestBooking]').should('exist');
   });
