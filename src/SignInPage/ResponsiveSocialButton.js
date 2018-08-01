@@ -6,6 +6,7 @@ import { Button } from '@kiwicom/orbit-components';
 import { Google, Facebook } from '@kiwicom/orbit-components/lib/icons';
 
 import { withSocialLogin } from '../context/User';
+import { simpleTracker } from '../helpers/analytics/trackers';
 import type { onSocialLogin, Provider } from '../types';
 
 type Props = {
@@ -14,6 +15,12 @@ type Props = {
   onSocialLogin: onSocialLogin,
   children: string,
 };
+
+const socialLoginTracker = (type: string) =>
+  simpleTracker('smartFAQ', {
+    action: 'clickOnLogin',
+    loginType: type,
+  });
 
 const ResponsiveSocialButton = (props: Props) => {
   const { type, bordered, onSocialLogin, children } = props;
@@ -27,6 +34,7 @@ const ResponsiveSocialButton = (props: Props) => {
   const renderButton = width => (
     <Button
       onClick={() => {
+        socialLoginTracker(type);
         onSocialLogin(type);
       }}
       bordered={bordered ? true : false}
