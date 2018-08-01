@@ -10,7 +10,7 @@ import CloseButton from './../common/buttons/CloseButton';
 import { withUser } from '../context/User';
 import type { User } from '../types';
 import FullFAQLink from '../common/FullFAQLink';
-import redirectsLoggedIn from '../common/redirectsLoggedIn';
+import { redirectsLoggedIn } from '../common/loginHOC';
 
 const style = css`
   .Intro {
