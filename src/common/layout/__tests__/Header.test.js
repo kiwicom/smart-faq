@@ -11,6 +11,7 @@ describe('ContentHeader', () => {
     isLoggedIn: true,
     history: {
       entries: [],
+      push: jest.fn(),
     },
     location: {
       pathname: '/content',

@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import css from 'styled-jsx/css';
-import { Text, Heading, Alert } from '@kiwicom/orbit-components';
+import { Text, Heading, Alert, TextLink } from '@kiwicom/orbit-components';
 import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
 import type { Location } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
@@ -113,10 +113,13 @@ const style = css`
   }
 `;
 
-type Props = {
+type Props = {|
   location?: Location,
   onSocialLogin: onSocialLogin,
-};
+  history: {
+    push: string => void,
+  },
+|};
 
 class SignIn extends React.Component<Props> {
   renderExpiredSession() {
@@ -189,15 +192,15 @@ class SignIn extends React.Component<Props> {
             </ResponsiveSocialButton>
           </div>
         </div>
-        <div className="kiwiAccount">
-          <Link
-            to="/kiwi-login"
-            style={{ textDecoration: 'none' }}
-            data-cy="link-kiwi-login"
+        <div className="kiwiAccount" data-cy="link-kiwi-login">
+          <TextLink
+            external={false}
+            onClick={() => this.props.history.push('/kiwi-login')}
+            type="primary"
           >
             <span className="linkText">I want to use my Kiwi.com account</span>
             <img src={chevronRight} className="chevron" alt="kiwi login" />
-          </Link>
+          </TextLink>
         </div>
         <style jsx>{style}</style>
       </div>
@@ -205,6 +208,6 @@ class SignIn extends React.Component<Props> {
   }
 }
 
-export const SignInRaw = SignIn;
+export const SignInRaw = withRouter(SignIn);
 
-export default redirectsLoggedIn(SignIn);
+export default redirectsLoggedIn(withRouter(SignIn));

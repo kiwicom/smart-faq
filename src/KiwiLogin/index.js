@@ -1,10 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import MediaQuery from 'react-responsive';
-import { Text, Alert, Button } from '@kiwicom/orbit-components';
+import { Text, Alert, Button, TextLink } from '@kiwicom/orbit-components';
 import { AlertCircle, Loading } from '@kiwicom/orbit-components/lib/icons';
 
 import CloseButton from './../common/buttons/CloseButton';
@@ -265,13 +264,15 @@ class KiwiLogin extends React.Component<Props, State> {
                 </Alert>
               </div>
             )}
-            <Link
-              to="/forgotten-password"
-              style={{ textDecoration: 'none' }}
-              data-cy="link-forgotten-password"
-            >
-              <div className="forgotPassword">Forgot your password?</div>
-            </Link>
+            <div className="forgotPassword" data-cy="link-forgotten-password">
+              <TextLink
+                external={false}
+                onClick={() => this.props.history.push('/forgotten-password')}
+                type="primary"
+              >
+                Forgot your password?
+              </TextLink>
+            </div>
             <span className="signIn" data-cy="btn-sign-in">
               {renderButton()}
             </span>

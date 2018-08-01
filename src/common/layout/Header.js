@@ -1,10 +1,10 @@
 // @flow
 
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import * as React from 'react';
 import idx from 'idx';
 import css from 'styled-jsx/css';
-import { Text } from '@kiwicom/orbit-components';
+import { TextLink } from '@kiwicom/orbit-components';
 
 import { Desktop, Mobile } from '../Responsive';
 import FullFAQLink from '../FullFAQLink';
@@ -128,6 +128,9 @@ type State = {
 
 type Props = {
   isLoggedIn: boolean,
+  history: {
+    push: string => void,
+  },
   match: {
     params: {
       categoryId: ?string,
@@ -178,6 +181,7 @@ const renderLoggedOut = (
   hasCategory: string | null,
   isArticle: boolean,
   comesFromSearch: boolean,
+  push: string => void,
 ) => {
   return (
     <div className="loggedOut">
@@ -187,11 +191,15 @@ const renderLoggedOut = (
             <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
           </div>
         ) : (
-          <Link to="/sign-in" style={{ textDecoration: 'none' }}>
-            <div className="desktopOnly">
-              <Text type="attention">Sign In</Text>
-            </div>
-          </Link>
+          <div className="desktopOnly" data-cy="sign-in-link">
+            <TextLink
+              external={false}
+              onClick={() => push('/sign-in')}
+              type="secondary"
+            >
+              Sign&nbsp;In
+            </TextLink>
+          </div>
         )}
       </div>
       <p className="helpHeader">Help</p>
@@ -253,7 +261,12 @@ class Header extends React.Component<Props, State> {
           </BookingState.Consumer>
           {this.props.isLoggedIn
             ? renderLoggedIn()
-            : renderLoggedOut(hasCategory, isArticle, comesFromSearch)}
+            : renderLoggedOut(
+                hasCategory,
+                isArticle,
+                comesFromSearch,
+                this.props.history.push,
+              )}
         </div>
         <style jsx>{style}</style>
       </div>
