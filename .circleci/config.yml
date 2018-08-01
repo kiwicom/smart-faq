@@ -98,7 +98,7 @@ jobs:
           command: yarn
       - run:
           name: commitlint
-          command: semantic-commitlint -- --ci
+          command: yarn run semantic-commitlint -- --ci
       - run:
           name: release
           command: yarn run semantic-release || true
