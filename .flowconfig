@@ -2,6 +2,7 @@
 build/*
 __mocks__/*
 .*/node_modules/cypress
+.*/node_modules/config-chain
 
 [include]
 
