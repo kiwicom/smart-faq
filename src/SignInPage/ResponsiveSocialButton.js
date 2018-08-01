@@ -26,7 +26,7 @@ const ResponsiveSocialButton = (props: Props) => {
   const { type, bordered, onSocialLogin, children } = props;
 
   const buttonWidth = 212;
-  const mobileLandscapeButtonWidth = 288;
+  const mobileButtonWidth = 288;
 
   const icon =
     type === 'google' ? <Google /> : type === 'facebook' ? <Facebook /> : null;
@@ -52,10 +52,10 @@ const ResponsiveSocialButton = (props: Props) => {
         {renderButton(buttonWidth)}
       </MediaQuery>
       <MediaQuery query="only screen and (max-width: 480px) and (orientation: portrait)">
-        {renderButton(mobileLandscapeButtonWidth)}
+        {renderButton(mobileButtonWidth)}
       </MediaQuery>
-      <MediaQuery query="only screen and (max-height: 480px)">
-        {renderButton(mobileLandscapeButtonWidth)}
+      <MediaQuery query="only screen and (max-height: 480px) and (orientation: landscape)">
+        {renderButton(mobileButtonWidth)}
       </MediaQuery>
     </React.Fragment>
   );
