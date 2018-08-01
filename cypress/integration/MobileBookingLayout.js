@@ -4,14 +4,7 @@
 describe('Mobile Booking Layout', () => {
   it('', () => {
     cy.viewport('iphone-6');
-    cy.visit('/');
-
-    cy.get('[data-cy=btn-existent-booking]').click();
-    cy.get('[data-cy=link-kiwi-login]').click();
-
-    cy.get('[data-cy=input-email]').type(Cypress.env('TEST_USER_EMAIL'));
-    cy.get('[data-cy=input-password]').type(Cypress.env('TEST_USER_PASSWORD'));
-    cy.get('[data-cy=btn-sign-in] button').click();
+    cy.signIntoAccount();
 
     cy.get('[data-cy=trip-button]').click();
     cy.get('.TripDescription').should('be.visible');

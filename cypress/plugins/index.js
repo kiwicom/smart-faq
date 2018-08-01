@@ -1,5 +1,5 @@
 // @noflow
-/*eslint no-unused-vars: "off"*/
+/* eslint no-unused-vars: "off" */
 /* eslint-disable import/no-extraneous-dependencies */
 
 // ***********************************************************

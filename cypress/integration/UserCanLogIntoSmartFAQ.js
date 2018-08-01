@@ -6,13 +6,7 @@
 
 describe('User can log into SmartFAQ', () => {
   it(`the user should be able to log into SmartFAQ with the correct credentials.`, () => {
-    cy.visit('/');
-    cy.get('[data-cy=btn-existent-booking]').click();
-    cy.get('[data-cy=link-kiwi-login]').click();
-
-    cy.get('[data-cy=input-email]').type(Cypress.env('TEST_USER_EMAIL'));
-    cy.get('[data-cy=input-password]').type(Cypress.env('TEST_USER_PASSWORD'));
-    cy.get('[data-cy=btn-sign-in]').click();
+    cy.signIntoAccount();
 
     cy.get('[data-cy=nearestBooking]').should('exist');
   });
@@ -63,18 +57,5 @@ describe('User can log into SmartFAQ', () => {
 
     cy.get('[data-cy=booking-title]').should('exist');
     cy.get('[data-cy=btn-manage-booking]').should('exist');
-  });
-
-  it('should display boarding passes info', () => {
-    cy
-      .get('[data-cy=btn-boarding-passes]')
-      .click()
-      .get('.boardingPassesCard')
-      .find('p')
-      .contains(
-        'Here, you can download your boarding passes or see when they will become available.',
-      )
-      .get('.boardingPassesRow')
-      .should('exist');
   });
 });
