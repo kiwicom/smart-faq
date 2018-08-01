@@ -132,11 +132,7 @@ Test script `test-ci` is run on each push
 - Deployed on [https://kiwicom.github.io/smart-faq/](https://kiwicom.github.io/smart-faq/)
 
 ### Release
-
-Done automatically when you add a new release tag on [Github](https://github.com/kiwicom/smart-faq/releases/new)
-
-- automatically updates package.json with correct version
-- publish changes onto npm
+Done automatically by [semantic-release](https://github.com/semantic-release/semantic-release).
 
 ## Analytics
 
