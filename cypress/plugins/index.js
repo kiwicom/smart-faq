@@ -1,6 +1,6 @@
 // @noflow
 /* eslint no-unused-vars: "off" */
-/* eslint-disable import/no-extraneous-dependencies jest/valid-expect */
+/* eslint-disable import/no-extraneous-dependencies */
 
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
