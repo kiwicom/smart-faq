@@ -15,6 +15,7 @@ import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
 import ResponsiveSocialButton from './ResponsiveSocialButton';
 import type { onSocialLogin } from '../types';
+import redirectsLoggedIn from '../common/redirectsLoggedIn';
 
 const style = css`
   .SignIn {
@@ -204,4 +205,6 @@ class SignIn extends React.Component<Props> {
   }
 }
 
-export default SignIn;
+export const SignInRaw = SignIn;
+
+export default redirectsLoggedIn(SignIn);

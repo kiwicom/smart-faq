@@ -8,7 +8,6 @@ import Raven from 'raven-js';
 import KeenTracking from 'keen-tracking';
 
 import App from './App';
-import { socialLogin } from './helpers/Auth';
 import { Requester } from './helpers/Requests';
 import type { User } from './types';
 import { type LogEvent, type EventPayload } from './helpers/analytics/cuckoo';
@@ -89,14 +88,20 @@ class Root extends React.Component<Props, State> {
     return Promise.resolve(user);
   };
 
-  onSocialLogin = async provider => {
-    const authUrl = await socialLogin(provider);
+  onSocialLogin = async () => {
+    const email = process.env.TEST_USER_EMAIL;
+    const password = process.env.TEST_USER_PASSWORD;
 
-    if (!authUrl) {
+    if (!(email && password)) {
+      //eslint-disable-next-line no-console
+      console.error('Testing user not set in env vars.');
       return;
     }
 
-    window.location = authUrl;
+    const loginToken = await Requester.login(email, password);
+    Cookies.set(this.cookieKey, loginToken);
+
+    window.location.reload();
   };
 
   onLogout = async () => {
