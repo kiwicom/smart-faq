@@ -77,7 +77,7 @@ const style = css`
       margin-right: auto;
     }
     div.title {
-      text-align: center;
+      text-align: left;
     }
     .buttons {
       display: table;

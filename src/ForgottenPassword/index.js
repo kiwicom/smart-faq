@@ -84,7 +84,7 @@ const style = css`
     }
     p.title {
       font-size: 22px;
-      text-align: center;
+      text-align: left;
     }
     div.main {
       margin-left: 16px;
