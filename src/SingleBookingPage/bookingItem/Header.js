@@ -60,7 +60,7 @@ const Header = (props: Props) => {
         <BookingState.Consumer>
           {({ onDisplayAll }: BookingStateType) => (
             <UserContext.Consumer>
-              {({ simpleToken }: UserContextType) => (
+              {({ simpleToken, user }: UserContextType) => (
                 <div className="headerLink" data-cy="btn-other-bookings">
                   <TextLink
                     onClick={e => {
@@ -68,7 +68,7 @@ const Header = (props: Props) => {
                       simpleTracker('smartFAQBookingOverview', {
                         action: 'selectAnotherBooking',
                       });
-                      simpleToken
+                      simpleToken && !user
                         ? props.history.push('/sign-in')
                         : onDisplayAll();
                     }}
