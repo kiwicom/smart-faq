@@ -80,7 +80,7 @@ const style = css`
     }
     p.title {
       font-size: 22px;
-      text-align: center;
+      text-align: left;
       margin-top: 0;
     }
     div.picture {
