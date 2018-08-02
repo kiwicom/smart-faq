@@ -5,7 +5,7 @@ import TimeTracker from './TimeTracker';
 import EnterTracker from './EnterTracker';
 
 const exponeaTracker = (eventName: LogEvent, payload?: EventPayload) => {
-  window.infinario
+  typeof window !== 'undefined' && window.infinario
     ? window.infinario.track(eventName, payload || {})
     : emptyCuckoo.infinario(eventName, payload || {});
 };

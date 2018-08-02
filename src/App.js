@@ -167,7 +167,7 @@ class App extends React.PureComponent<Props, State> {
     );
   }
   render() {
-    if (window.Raven) {
+    if (typeof window !== 'undefined' && window.Raven) {
       return window.Raven.context(() => this.renderApp());
     }
     return this.renderApp();

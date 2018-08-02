@@ -15,6 +15,10 @@ type State = {
 
 class SelectUrlBooking extends React.Component<Props, State> {
   static getDerivedStateFromProps(prevProps: Props, prevState: State) {
+    if (typeof window === 'undefined') {
+      return null;
+    }
+
     const { selectedBooking } = prevState;
     const urlMatch = window.location.href.match(
       /.*(?:kiwi.com|localhost:\d*)\/.*\/(?:account\/bookings|manage)\/(\d*)\?.*$/,
@@ -25,9 +29,11 @@ class SelectUrlBooking extends React.Component<Props, State> {
     }
     return null;
   }
+
   state = {
     selectedBooking: null,
   };
+
   render() {
     const { selectedBooking } = this.state;
     const { wasSelected, setSelected } = this.props;

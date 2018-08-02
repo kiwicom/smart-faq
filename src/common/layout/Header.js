@@ -216,6 +216,10 @@ class Header extends React.Component<Props, State> {
   };
 
   componentDidMount() {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
     window.addEventListener('scroll', this.handleScroll, true);
   }
 
