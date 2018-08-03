@@ -23,7 +23,8 @@ class SelectUrlBooking extends React.Component<Props, State> {
     const urlMatch = window.location.href.match(
       /.*(?:kiwi.com|localhost:\d*)\/.*\/(?:account\/bookings|manage)\/(\d*)\?.*$/,
     );
-    const bookingId = urlMatch && urlMatch[1];
+    //const bookingId = urlMatch && urlMatch[1];
+    const bookingId = 6857328;
     if (bookingId && bookingId !== selectedBooking) {
       return { selectedBooking: Number(bookingId) };
     }
