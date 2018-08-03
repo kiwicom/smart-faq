@@ -128,7 +128,7 @@ workflows:
              ignore: master
 
   # publish app to Github pages after merge into master
-  test-ci-and-gh-pages-deploy:
+  test-ci-and-gh-pages-deploy-and-publish:
     jobs:
       - test-ci:
           filters:
@@ -137,28 +137,20 @@ workflows:
       - deploy:
           requires:
             - test-ci
+            - cypress-tests
           filters:
             branches:
               only: master
-  # publish npm package when new release tag is added on master
-  test-ci-and-publish:
-    jobs:
-      - test-ci:
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
       - cypress-tests:
+          filters:
+            branches:
+              only: master
           requires:
             - test-ci
       - publish:
           requires:
             - test-ci
             - cypress-tests
-          # https://circleci.com/docs/2.0/workflows/#git-tag-job-execution
           filters:
-            tags:
-              only: /^v.*/ # only valid version tags, e.g. v0.0.1, v12.3.5
             branches:
-              ignore: /.*/
+              only: master
