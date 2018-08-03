@@ -128,7 +128,7 @@ workflows:
              ignore: master
 
   # publish app to Github pages after merge into master
-  test-ci-and-gh-pages-deploy:
+  test-ci-and-gh-pages-deploy-and-publish:
     jobs:
       - test-ci:
           filters:
@@ -137,6 +137,7 @@ workflows:
       - deploy:
           requires:
             - test-ci
+            - cypress-tests
           filters:
             branches:
               only: master
