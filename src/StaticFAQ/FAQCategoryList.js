@@ -182,6 +182,8 @@ class RawFAQCategoryList extends React.Component<Props> {
       return <StaticFAQError />;
     }
 
+    const FAQCategory = idx(rendererProps.props, _ => _.FAQCategory);
+
     if (rendererProps.props) {
       const categories =
         idx(rendererProps.props, _ => _.FAQCategory.subcategories) || [];
@@ -193,6 +195,10 @@ class RawFAQCategoryList extends React.Component<Props> {
       );
       const faqs = idx(rendererProps.props, _ => _.FAQCategory.FAQs) || [];
       const categoryId = idx(rendererProps.props, _ => _.FAQCategory.id) || '';
+
+      if (FAQCategory === null) {
+        return <StaticFAQError />;
+      }
 
       return (
         <React.Fragment>
