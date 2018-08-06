@@ -49,7 +49,7 @@ const style = css`
   }
 `;
 
-type Props = {|
+export type Props = {|
   language: string,
   user: User,
   loginToken: ?string,
