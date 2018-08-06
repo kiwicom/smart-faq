@@ -13,14 +13,20 @@ import type { ArticleDetailQuery } from './__generated__/ArticleDetailQuery.grap
 import type { ArticleDetailSearchResultQuery } from './__generated__/ArticleDetailSearchResultQuery.graphql';
 import CustomBreadcrumbs from '../breadcrumbs/CustomBreadcrumbs';
 import { BookingState, type FAQSectionType } from '../../context/BookingState';
+import type { FAQTree } from '../../types';
 
 const queryFAQArticleDetail = graphql`
-  query ArticleDetailQuery($id: ID!, $category_id: ID!, $section: FAQSection!) {
+  query ArticleDetailQuery(
+    $id: ID!
+    $categoryId: ID!
+    $tree: FAQTree!
+    $section: FAQSection
+  ) {
     FAQArticle(id: $id) {
       title
       ...ArticleContent_article
     }
-    FAQCategory(id: $category_id, section: $section) {
+    FAQCategory(id: $categoryId, section: $section, tree: $tree) {
       title
       id
       ancestors {
@@ -56,6 +62,7 @@ type ComponentProps = {
     path: string,
     url: string,
   },
+  tree: FAQTree,
 };
 
 type Props = ComponentProps & {
@@ -136,13 +143,16 @@ class RawFAQArticleDetail extends React.Component<Props> {
       );
     }
 
+    const { section, tree } = this.props;
+
     return (
       <QueryRenderer
         query={queryFAQArticleDetail}
         variables={{
           id: this.getArticleId(),
-          category_id: this.getCategoryId(),
-          section: this.props.section,
+          categoryId: this.getCategoryId(),
+          section: tree === 'SMARTFAQ' ? section : undefined,
+          tree,
         }}
         render={this.renderDetailContent}
       />
@@ -171,10 +181,11 @@ class RawFAQArticleDetail extends React.Component<Props> {
   }
 }
 
-const Article = (props: ComponentProps) => (
+// eslint-disable-next-line react/display-name
+const Article = (tree: FAQTree) => (props: ComponentProps) => (
   <BookingState.Consumer>
     {({ FAQSection }) => (
-      <RawFAQArticleDetail section={FAQSection} {...props} />
+      <RawFAQArticleDetail section={FAQSection} tree={tree} {...props} />
     )}
   </BookingState.Consumer>
 );

@@ -68,8 +68,16 @@ const styles = css`
 
 const FAQRoute = ({ history }: Props) => (
   <Switch location={history.location}>
-    <Route exact path="/faq/:categoryId?" component={StaticFAQ} />
-    <Route path="/faq/:categoryId/article/:articleId" component={Article} />
+    <Route exact path="/faq/:categoryId?" component={StaticFAQ('SMARTFAQ')} />
+    <Route
+      path="/faq/:categoryId/article/:articleId"
+      component={Article('SMARTFAQ')}
+    />
+    <Route path="/emergency/:categoryId" component={StaticFAQ('EMERGENCIES')} />
+    <Route
+      path="/emergency/:categoryId/article/:articleId"
+      component={Article('EMERGENCIES')}
+    />
   </Switch>
 );
 

@@ -30,6 +30,11 @@ const Routes = (props: Props) => {
           path="/faq/:categoryId/article/:articleId"
           component={ContentPage}
         />
+        <Route path="/emergency/:categoryId" component={ContentPage} />
+        <Route
+          path="/emergency/:categoryId/article/:articleId"
+          component={ContentPage}
+        />
       </Switch>
     </QueryParamRouter>
   );

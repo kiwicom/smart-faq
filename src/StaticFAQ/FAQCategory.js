@@ -4,16 +4,21 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { Text, Heading } from '@kiwicom/orbit-components';
-import { ChevronRight } from '@kiwicom/orbit-components/lib/icons';
+import { ChevronRight, Alert } from '@kiwicom/orbit-components/lib/icons';
 
 import Card from './../common/Card';
 import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
 
 const styles = css`
-  .faq-category {
+  .faqCategory {
     margin-right: 48px;
   }
-  .faq-item-chevron {
+
+  .warning {
+    margin-right: 14px;
+  }
+
+  .arrow {
     position: absolute;
     width: 24px;
     height: 24px;
@@ -35,20 +40,28 @@ const styles = css`
 
 type Props = {|
   category: FAQCategory_category,
+  isWarning?: boolean,
 |};
 
 const FAQCategory = (props: Props) => (
   <Card>
-    <div className="faq-category">
-      <Heading type="title3">{props.category.title}</Heading>
+    {props.isWarning && (
+      <div className="warning">
+        <Alert customColor="#171b1e" />
+      </div>
+    )}
+    <div>
+      <div className="faqCategory">
+        <Heading type="title3">{props.category.title}</Heading>
+      </div>
+      <div className="perex">
+        <Text type="secondary" size="small">
+          {props.category.perex}
+        </Text>
+      </div>
     </div>
-    <div className="perex">
-      <Text type="secondary" size="small">
-        {props.category.perex}
-      </Text>
-    </div>
-    <div className="faq-item-chevron">
-      <ChevronRight size="small" customColor="#bac7d5" />
+    <div className="arrow">
+      <ChevronRight customColor="#bac7d5" />
     </div>
     <style jsx>{styles}</style>
   </Card>

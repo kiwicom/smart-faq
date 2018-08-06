@@ -5,7 +5,6 @@ import { MemoryRouter } from 'react-router';
 import { mount } from 'enzyme';
 import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
 
-//import { RawFAQArticle as FAQArticle } from '../FAQArticle';
 import StaticFAQ from '../';
 import { SearchState } from '../../context/SearchState';
 
@@ -22,6 +21,8 @@ window.infinario = {
   track: jest.fn(),
 };
 const queryText = 'queeery';
+const FAQComponent = StaticFAQ('SMARTFAQ');
+
 describe('SearchTracking', () => {
   it('input query should track query', done => {
     const result = mount(
@@ -40,7 +41,7 @@ describe('SearchTracking', () => {
               disableSearch,
             }}
           >
-            <StaticFAQ />
+            <FAQComponent />
           </SearchState.Provider>
         </ThemeProvider>
       </MemoryRouter>,

@@ -5,6 +5,7 @@ import css from 'styled-jsx/css';
 
 const styles = css`
   .card {
+    display: flex;
     padding: 14px 22px;
     position: relative;
     margin-top: 24px;
