@@ -11,9 +11,11 @@ import FullFAQLink from '../FullFAQLink';
 import CloseButton from '../buttons/CloseButton';
 import BackButton from '../buttons/BackButton';
 import SignOutButton from './SignOutButton';
+import { UserContext } from '../../context/User';
 import { BookingState } from '../../context/BookingState';
 import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
 import MobileBookingHeader from '../../MobileBookingHeader/MobileBookingHeader';
+import type { UserContextType } from '../../context/User';
 
 const style = css`
   .loggedOut {
@@ -127,7 +129,6 @@ type State = {
 };
 
 type Props = {
-  isLoggedIn: boolean,
   history: {
     push: string => void,
   },
@@ -263,14 +264,18 @@ class Header extends React.Component<Props, State> {
               )
             }
           </BookingState.Consumer>
-          {this.props.isLoggedIn
-            ? renderLoggedIn()
-            : renderLoggedOut(
-                hasCategory,
-                isArticle,
-                comesFromSearch,
-                this.props.history.push,
-              )}
+          <UserContext.Consumer>
+            {({ simpleToken, loginToken }: UserContextType) =>
+              simpleToken || loginToken
+                ? renderLoggedIn()
+                : renderLoggedOut(
+                    hasCategory,
+                    isArticle,
+                    comesFromSearch,
+                    this.props.history.push,
+                  )
+            }
+          </UserContext.Consumer>
         </div>
         <style jsx>{style}</style>
       </div>

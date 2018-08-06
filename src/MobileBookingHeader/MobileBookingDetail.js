@@ -3,20 +3,20 @@
 import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { ChevronDown, ChevronUp } from '@kiwicom/orbit-components/lib/icons';
-import { Button, TextLink } from '@kiwicom/orbit-components';
+import { Button } from '@kiwicom/orbit-components';
 import css from 'styled-jsx/css';
 
 import { updateFAQSection } from '../common/booking/utils';
 import bookingTypes from '../common/booking/bookingTypes';
 import { BookingState } from '../context/BookingState';
-import type { BookingStateType } from '../context/BookingState';
-import type { MobileBookingDetail_booking } from './__generated__/MobileBookingDetail_booking.graphql';
 import OneWayTrip from './OneWayTrip';
 import ReturnTrip from './ReturnTrip';
 import MultiCityTrip from './MultiCityTrip';
 import formatBookingId from '../helpers/formatBookingId';
 import replaceWithCurrentDomain from '../helpers/replaceWithCurrentDomain';
 import { Portrait, Landscape } from '../common/Responsive';
+import SelectAnotherBookingLink from '../common/booking/SelectAnotherBookingLink';
+import type { MobileBookingDetail_booking } from './__generated__/MobileBookingDetail_booking.graphql';
 
 type ContextProps = {
   onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
@@ -32,26 +32,6 @@ type MobileBookingControlsProps = {|
 |};
 
 type Props = ComponentProps;
-
-const MobileBookingControlsStyle = css`
-  .manageBookingButton {
-    height: 32px;
-    margin: 4px 0;
-    margin-bottom: 8px;
-    display: block;
-    text-decoration: none;
-  }
-
-  .selectBookingButton {
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.4;
-    text-align: center;
-    color: #00a991;
-    margin-top: 12px;
-    margin-bottom: 8px;
-  }
-`;
 
 type TripIdProps = {|
   isPastBooking: ?boolean,
@@ -88,43 +68,33 @@ const ManageMyBookingButton = (props: ManageMyBookingButtonProps) => (
     <Button
       block
       onClick={() => {
-        window.open(props.manageBookingURL, '_blank', 'noopener');
+        if (typeof window !== 'undefined') {
+          window.open(props.manageBookingURL, '_blank', 'noopener');
+        }
       }}
       type="secondary"
       size="small"
     >
       Manage My Booking
     </Button>
-    <style jsx>{MobileBookingControlsStyle}</style>
-  </div>
-);
-
-const SelectAnotherBookingButton = () => (
-  <div className="selectBookingButton">
-    <BookingState.Consumer>
-      {({ onDisplayAll }: BookingStateType) => (
-        <div data-cy="btn-other-bookings">
-          <TextLink
-            onClick={e => {
-              e.preventDefault();
-              onDisplayAll();
-            }}
-            external={false}
-            type="primary"
-          >
-            Select another booking
-          </TextLink>
-        </div>
-      )}
-    </BookingState.Consumer>
-    <style jsx>{MobileBookingControlsStyle}</style>
+    <style jsx>
+      {`
+        .manageBookingButton {
+          height: 32px;
+          margin: 4px 0;
+          margin-bottom: 8px;
+          display: block;
+          text-decoration: none;
+        }
+      `}
+    </style>
   </div>
 );
 
 const MobileBookingControls = (props: MobileBookingControlsProps) => (
   <React.Fragment>
     <ManageMyBookingButton manageBookingURL={props.manageBookingURL} />
-    <SelectAnotherBookingButton />
+    <SelectAnotherBookingLink />
   </React.Fragment>
 );
 
@@ -232,7 +202,7 @@ class MobileBookingDetail extends React.Component<Props, State> {
             {renderByType(booking)}
           </div>
           <div>
-            <SelectAnotherBookingButton />
+            <SelectAnotherBookingLink />
           </div>
         </div>
         <div className="centered">

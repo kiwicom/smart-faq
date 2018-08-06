@@ -37,8 +37,8 @@ class Root extends React.Component<Props, State> {
 
     this.cookieKey = 'mockedLogin';
 
-    const loginToken = null; // Cookies.get(this.cookieKey);
-    const simpleToken = 'b834867c-dcf7-4da8-9669-a5282d2ed588'; //null;
+    const loginToken = Cookies.get(this.cookieKey);
+    const simpleToken = null;
 
     this.setupLogs();
     //
