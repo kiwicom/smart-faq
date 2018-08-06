@@ -38,21 +38,21 @@ exports[`KiwiLogin should match snapshot 1`] = `
       query="(min-width: 480px) and (min-height: 480px)"
       values={Object {}}
     >
-      <Text
+      <WithTheme(Text)
         type="secondary"
       >
         If you have an account with us, just use your credentials to sign in.
-      </Text>
+      </WithTheme(Text)>
     </MediaQuery>
     <MediaQuery
       query="only screen and (max-width: 480px) and (orientation: portrait)"
       values={Object {}}
     >
-      <Text
+      <WithTheme(Text)
         type="secondary"
       >
         If you have an account with us, just use your credentials to sign in.
-      </Text>
+      </WithTheme(Text)>
     </MediaQuery>
     <form
       className="jsx-914440731"

@@ -11,11 +11,11 @@ exports[`ScreenInitial should match snapshot 1`] = `
   <div
     className="jsx-3628750341 question"
   >
-    <Text
+    <WithTheme(Text)
       type="secondary"
     >
       Didn't find the answer you were looking for?
-    </Text>
+    </WithTheme(Text)>
   </div>
   <div
     className="jsx-3628750341 button"

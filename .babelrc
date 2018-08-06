@@ -16,6 +16,7 @@
   ],
   "plugins": [
     "styled-jsx/babel",
+    "@kiwicom/babel-plugin-orbit-components",
     "transform-runtime",
     "transform-flow-comments",
     "relay",
