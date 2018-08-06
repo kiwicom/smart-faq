@@ -12,7 +12,8 @@ import FAQArticleNotFound from './FAQArticleNotFound';
 import type { ArticleDetailQuery } from './__generated__/ArticleDetailQuery.graphql';
 import type { ArticleDetailSearchResultQuery } from './__generated__/ArticleDetailSearchResultQuery.graphql';
 import CustomBreadcrumbs from '../breadcrumbs/CustomBreadcrumbs';
-import { BookingState, type FAQSectionType } from '../../context/BookingState';
+import { BookingState } from '../../context/BookingState';
+import type { FAQSectionType } from '../../context/BookingState';
 
 const queryFAQArticleDetail = graphql`
   query ArticleDetailQuery($id: ID!, $category_id: ID!, $section: FAQSection!) {
