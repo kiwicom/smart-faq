@@ -10,7 +10,8 @@ import BookingDetail from './BookingDetail';
 import BookingNotFound from './BookingNotFound';
 import BookingLoader from './BookingLoader';
 import bookingTypes from '../common/booking/bookingTypes';
-import { UserContext, type UserContextType } from '../context/User';
+import { UserContext } from '../context/User';
+import type { UserContextType } from '../context/User';
 import type { SelectedBookingQuery } from './__generated__/SelectedBookingQuery.graphql';
 import type { SelectedBookingBySimpleTokenQuery } from './__generated__/SelectedBookingBySimpleTokenQuery.graphql';
 
