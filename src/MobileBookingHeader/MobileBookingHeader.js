@@ -12,8 +12,7 @@ import {
 } from '@kiwicom/orbit-components/lib/icons';
 import { withRouter } from 'react-router-dom';
 
-import { SearchState } from '../context/SearchState';
-import type { SearchStateType } from '../context/SearchState';
+import { SearchState, type SearchStateType } from '../context/SearchState';
 import { BookingState } from '../context/BookingState';
 import { CloseContext } from '../context/Close';
 import BackButtonMobile from './BackButtonMobile';

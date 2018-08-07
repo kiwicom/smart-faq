@@ -13,8 +13,7 @@ import EnLocale from '../i18n/en/translation.json';
 import Routes from './Routes';
 import { CloseContext } from './context/Close';
 import { LanguageContext } from './context/Language';
-import { UserContext } from './context/User';
-import type { UserContextType } from './context/User';
+import { UserContext, type UserContextType } from './context/User';
 import SearchStateProvider from './context/SearchState';
 import BookingStateProvider from './context/BookingState';
 import ExtraInfoStateProvider from './context/ExtraInfoState';
@@ -49,7 +48,7 @@ const style = css`
   }
 `;
 
-export type Props = {|
+type Props = {|
   language: string,
   user: User,
   loginToken: ?string,

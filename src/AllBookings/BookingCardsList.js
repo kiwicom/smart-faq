@@ -9,8 +9,7 @@ import OneWayBooking from './BookingTypes/OneWayBooking';
 import ReturnBooking from './BookingTypes/ReturnBooking';
 import MulticityBooking from './BookingTypes/MulticityBooking';
 import type { BookingCardsList_booking } from './__generated__/BookingCardsList_booking.graphql';
-import { BookingState } from '../context/BookingState';
-import type { BookingStateType } from '../context/BookingState';
+import { BookingState, type BookingStateType } from '../context/BookingState';
 
 type Props = {
   booking: BookingCardsList_booking,

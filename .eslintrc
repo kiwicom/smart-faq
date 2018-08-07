@@ -103,6 +103,6 @@
         "Function": true
       }
     ],
-    "flowtype/type-import-style": ["error", "declaration"]
+    "flowtype/type-import-style": ["warn", "declaration"]
   }
 }

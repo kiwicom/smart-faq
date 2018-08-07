@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { QueryRenderer as OriginalQueryRenderer } from 'react-relay';
-import { withRouter } from 'react-router-dom';
-import type { RouterHistory } from 'react-router-dom';
+import { withRouter, type RouterHistory } from 'react-router-dom';
 
 import { withLoginToken } from '../context/User';
 import { withLogout } from '../context/BookingState';

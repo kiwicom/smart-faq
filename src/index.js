@@ -10,7 +10,7 @@ import KeenTracking from 'keen-tracking';
 import App from './App';
 import { Requester } from './helpers/Requests';
 import type { User } from './types';
-import type { LogEvent, EventPayload } from './helpers/analytics/cuckoo';
+import { type LogEvent, type EventPayload } from './helpers/analytics/cuckoo';
 
 type Props = {||};
 

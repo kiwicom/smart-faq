@@ -7,8 +7,10 @@ import { graphql } from 'react-relay';
 import { Text } from '@kiwicom/orbit-components';
 import { Baggages } from '@kiwicom/orbit-components/lib/icons';
 
-import { BookingState } from '../../../context/BookingState';
-import type { BookingStateType } from '../../../context/BookingState';
+import {
+  BookingState,
+  type BookingStateType,
+} from '../../../context/BookingState';
 import BaggageSummary from './BaggageSummary';
 import QueryRenderer from '../../../relay/QueryRenderer';
 import type { BaggageInfoQuery } from './__generated__/BaggageInfoSelectedQuery.graphql';

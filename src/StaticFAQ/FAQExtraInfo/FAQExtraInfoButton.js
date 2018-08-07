@@ -5,12 +5,12 @@ import css from 'styled-jsx/css';
 import { withRouter } from 'react-router-dom';
 
 import { simpleTracker } from '../../helpers/analytics/trackers';
-import { SearchState } from '../../context/SearchState';
-import type { SearchStateType } from '../../context/SearchState';
-import { ExtraInfoState, categories } from '../../context/ExtraInfoState';
-import type {
-  ExtraInfoStateType,
-  ExtraInfoCategory,
+import { SearchState, type SearchStateType } from '../../context/SearchState';
+import {
+  ExtraInfoState,
+  categories,
+  type ExtraInfoStateType,
+  type ExtraInfoCategory,
 } from '../../context/ExtraInfoState';
 
 type Props = {|
