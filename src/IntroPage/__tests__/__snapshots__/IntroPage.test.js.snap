@@ -26,7 +26,7 @@ exports[`IntroPage should match snapshot 1`] = `
         Need help?
       </Trans>
     </p>
-    <Text
+    <WithTheme(Text)
       type="secondary"
     >
       <Trans
@@ -34,7 +34,7 @@ exports[`IntroPage should match snapshot 1`] = `
       >
         We're here for you. First, let's narrow down your request.
       </Trans>
-    </Text>
+    </WithTheme(Text)>
   </div>
   <div
     className="jsx-1816167614 buttons"

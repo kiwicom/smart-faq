@@ -31,9 +31,9 @@ exports[`ScreenInput should match snapshot 1`] = `
     <div
       className="jsx-892344281 question"
     >
-      <Text>
+      <WithTheme(Text)>
         What problem were you trying to solve?
-      </Text>
+      </WithTheme(Text)>
     </div>
     <div
       className="jsx-892344281 inputArea invalid"
@@ -99,9 +99,9 @@ exports[`ScreenInput should try to submit empty form 1`] = `
     <div
       className="jsx-892344281 question"
     >
-      <Text>
+      <WithTheme(Text)>
         What problem were you trying to solve?
-      </Text>
+      </WithTheme(Text)>
     </div>
     <div
       className="jsx-892344281 inputArea invalid"

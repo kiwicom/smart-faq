@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { mount } from 'enzyme';
+import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
 
 import WithRouter from '../../../common/__tests__/helpers/ComponentWithRouter.ignore';
 import CustomBreadcrumbs from '../CustomBreadcrumbs';
@@ -17,7 +18,9 @@ describe('CustomBreadcrumbs', () => {
     global.innerWidth = 601;
     const wrapper = mount(
       <WithRouter>
-        <CustomBreadcrumbs breadcrumbs={breadcrumbs} />
+        <ThemeProvider>
+          <CustomBreadcrumbs breadcrumbs={breadcrumbs} />
+        </ThemeProvider>
       </WithRouter>,
     );
     const breadcbumbsElements = wrapper.find('.breadcrumb');
@@ -37,7 +40,9 @@ describe('CustomBreadcrumbs', () => {
     global.innerWidth = 599;
     const wrapper = mount(
       <WithRouter>
-        <CustomBreadcrumbs breadcrumbs={breadcrumbs} />
+        <ThemeProvider>
+          <CustomBreadcrumbs breadcrumbs={breadcrumbs} />
+        </ThemeProvider>
       </WithRouter>,
     );
     const breadcbumbsElements = wrapper.find('.breadcrumb');

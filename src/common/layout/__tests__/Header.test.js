@@ -3,6 +3,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { MemoryRouter as Router } from 'react-router-dom';
+import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
 
 import { RawContentHeader } from '../Header';
 
@@ -25,7 +26,9 @@ describe('ContentHeader', () => {
   it('should render loggedIn user header', () => {
     const wrapper = render(
       <Router>
-        <RawContentHeader {...props} />
+        <ThemeProvider>
+          <RawContentHeader {...props} />
+        </ThemeProvider>
       </Router>,
     );
     expect(wrapper.find('.loggedIn')).toHaveLength(1);
@@ -39,7 +42,9 @@ describe('ContentHeader', () => {
     };
     const wrapper = render(
       <Router>
-        <RawContentHeader {...propsWithoutUser} />
+        <ThemeProvider>
+          <RawContentHeader {...propsWithoutUser} />
+        </ThemeProvider>
       </Router>,
     );
     expect(wrapper.find('.backButton').text()).toEqual('Back');
