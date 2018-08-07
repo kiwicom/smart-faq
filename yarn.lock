@@ -9207,6 +9207,12 @@ react-event-listener@0.6.1:
     prop-types "^15.6.0"
     warning "^4.0.1"
 
+react-focus-trap@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/react-focus-trap/-/react-focus-trap-2.6.0.tgz#2b4f787b16a247c202beea5848ab9b3bfeda7fab"
+  dependencies:
+    babel-preset-react "^6.24.1"
+
 react-i18next@7.4.0:
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-7.4.0.tgz#07a336e49fc8f2599d08136d73134e3dc4830b49"

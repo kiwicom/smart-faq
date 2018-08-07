@@ -55,8 +55,7 @@ export type Props = {|
   language: string,
   user: User,
   loginToken: ?string,
-  route: string,
-  isOpen: boolean,
+  route: ?string,
   simpleToken: ?string,
   onClose: () => void,
   onLogin: onLogin,
@@ -111,7 +110,8 @@ class App extends React.PureComponent<Props, State> {
   };
 
   renderApp() {
-    const { isOpen } = this.props;
+    const route = this.props.route;
+    const isOpen = Boolean(route);
 
     return (
       <FocusTrap active={isOpen}>
@@ -139,20 +139,23 @@ class App extends React.PureComponent<Props, State> {
                       <BookingStateProvider onLogout={this.props.onLogout}>
                         <ExtraInfoStateProvider>
                           <ThemeProvider>
-                            {isOpen && (
-                              <EventListener
-                                target="window"
-                                onKeydown={withOptions(this.onKeyDown, {
-                                  capture: true,
-                                })}
-                              >
-                                <SelectUrlBooking
-                                  wasSelected={this.state.urlBookingWasSelected}
-                                  setSelected={this.urlBookingSelected}
-                                />
-                                <Routes route={this.props.route} />
-                              </EventListener>
-                            )}
+                            {isOpen &&
+                              route && (
+                                <EventListener
+                                  target="window"
+                                  onKeydown={withOptions(this.onKeyDown, {
+                                    capture: true,
+                                  })}
+                                >
+                                  <SelectUrlBooking
+                                    wasSelected={
+                                      this.state.urlBookingWasSelected
+                                    }
+                                    setSelected={this.urlBookingSelected}
+                                  />
+                                  <Routes route={route} />
+                                </EventListener>
+                              )}
                           </ThemeProvider>
                         </ExtraInfoStateProvider>
                       </BookingStateProvider>
