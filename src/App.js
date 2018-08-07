@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { I18nextProvider } from 'react-i18next';
 import 'url-search-params-polyfill';
 import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
+import EventListener, { withOptions } from 'react-event-listener';
 
 import initTranslation from './initTranslation';
 import EnLocale from '../i18n/en/translation.json';
@@ -103,9 +104,9 @@ class App extends React.PureComponent<Props, State> {
     this.setState({ urlBookingWasSelected: true });
   };
 
-  onKeyDown = (e: SyntheticEvent<HTMLElement>) => {
+  onKeyDown = (e: KeyboardEvent<HTMLElement>) => {
     // $FlowExpectedError: I know "noInputFocus" property doesn't exist...
-    e.nativeEvent.noInputFocus = true;
+    e.noInputFocus = true;
   };
 
   renderApp() {
@@ -117,7 +118,6 @@ class App extends React.PureComponent<Props, State> {
           open: isOpen,
         })}
         data-test="SmartFAQHelp"
-        onKeyDown={this.onKeyDown}
       >
         <meta
           name="viewport"
@@ -138,13 +138,18 @@ class App extends React.PureComponent<Props, State> {
                       <ExtraInfoStateProvider>
                         <ThemeProvider>
                           {isOpen && (
-                            <React.Fragment>
+                            <EventListener
+                              target="window"
+                              onKeydown={withOptions(this.onKeyDown, {
+                                capture: true,
+                              })}
+                            >
                               <SelectUrlBooking
                                 wasSelected={this.state.urlBookingWasSelected}
                                 setSelected={this.urlBookingSelected}
                               />
                               <Routes route={this.props.route} />
-                            </React.Fragment>
+                            </EventListener>
                           )}
                         </ThemeProvider>
                       </ExtraInfoStateProvider>
