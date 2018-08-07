@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { I18nextProvider } from 'react-i18next';
 import 'url-search-params-polyfill';
 import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
+import FocusTrap from 'react-focus-trap';
 
 import initTranslation from './initTranslation';
 import EnLocale from '../i18n/en/translation.json';
@@ -112,61 +113,63 @@ class App extends React.PureComponent<Props, State> {
     const { isOpen } = this.props;
 
     return (
-      <div
-        className={classNames('smartFAQ', {
-          open: isOpen,
-        })}
-        data-test="SmartFAQHelp"
-        onKeyDown={this.onKeyDown}
-      >
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1 shrink-to-fit=no"
-        />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <link
-          href="https://fonts.googleapis.com/css?family=Roboto"
-          rel="stylesheet"
-        />
-        <ErrorBoundary>
-          <I18nextProvider i18n={this.i18n}>
-            <LanguageContext.Provider value={this.props.language}>
-              <CloseContext.Provider value={this.props.onClose}>
-                <UserContext.Provider value={this.state.userContext}>
-                  <SearchStateProvider>
-                    <BookingStateProvider onLogout={this.props.onLogout}>
-                      <ExtraInfoStateProvider>
-                        <ThemeProvider>
-                          {isOpen && (
-                            <React.Fragment>
-                              <SelectUrlBooking
-                                wasSelected={this.state.urlBookingWasSelected}
-                                setSelected={this.urlBookingSelected}
-                              />
-                              <Routes route={this.props.route} />
-                            </React.Fragment>
-                          )}
-                        </ThemeProvider>
-                      </ExtraInfoStateProvider>
-                    </BookingStateProvider>
-                  </SearchStateProvider>
-                </UserContext.Provider>
-              </CloseContext.Provider>
-            </LanguageContext.Provider>
-          </I18nextProvider>
-        </ErrorBoundary>
-        <style jsx global>
-          {style}
-        </style>
-        <style jsx global>
-          {`
-            body {
-              overflow-y: ${isOpen ? 'hidden' : 'auto'};
-            }
-          `}
-        </style>
-        <MobileSafariScroll isOpen={isOpen} />
-      </div>
+      <FocusTrap>
+        <div
+          className={classNames('smartFAQ', {
+            open: isOpen,
+          })}
+          data-test="SmartFAQHelp"
+          onKeyDown={this.onKeyDown}
+        >
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1 shrink-to-fit=no"
+          />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <link
+            href="https://fonts.googleapis.com/css?family=Roboto"
+            rel="stylesheet"
+          />
+          <ErrorBoundary>
+            <I18nextProvider i18n={this.i18n}>
+              <LanguageContext.Provider value={this.props.language}>
+                <CloseContext.Provider value={this.props.onClose}>
+                  <UserContext.Provider value={this.state.userContext}>
+                    <SearchStateProvider>
+                      <BookingStateProvider onLogout={this.props.onLogout}>
+                        <ExtraInfoStateProvider>
+                          <ThemeProvider>
+                            {isOpen && (
+                              <React.Fragment>
+                                <SelectUrlBooking
+                                  wasSelected={this.state.urlBookingWasSelected}
+                                  setSelected={this.urlBookingSelected}
+                                />
+                                <Routes route={this.props.route} />
+                              </React.Fragment>
+                            )}
+                          </ThemeProvider>
+                        </ExtraInfoStateProvider>
+                      </BookingStateProvider>
+                    </SearchStateProvider>
+                  </UserContext.Provider>
+                </CloseContext.Provider>
+              </LanguageContext.Provider>
+            </I18nextProvider>
+          </ErrorBoundary>
+          <style jsx global>
+            {style}
+          </style>
+          <style jsx global>
+            {`
+              body {
+                overflow-y: ${isOpen ? 'hidden' : 'auto'};
+              }
+            `}
+          </style>
+          <MobileSafariScroll isOpen={isOpen} />
+        </div>
+      </FocusTrap>
     );
   }
 
