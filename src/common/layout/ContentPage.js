@@ -2,15 +2,13 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
 import { Desktop } from '../Responsive';
 import Header from './Header';
 import StaticFAQ from '../../StaticFAQ';
 import Article from '../../StaticFAQ/ArticleDetail/Article';
 import { ScrollableContent } from '../../common';
-import { UserContext } from '../../context/User';
-import type { UserContextType } from '../../context/User';
 import UserStatus from '../../helpers/UserStatus';
 import { BookingState } from '../../context/BookingState';
 import BookingPage from './BookingPage';
@@ -74,59 +72,49 @@ const FAQRoute = ({ history }: Props) => (
   </Switch>
 );
 
-class ContentPage extends React.Component<Props> {
-  renderPage = (isLoggedIn: boolean) => (
-    <BookingState.Consumer>
-      {({ bookingPage, selectedBooking }) => (
-        <div className="ContentPage">
-          <Header isLoggedIn={isLoggedIn} />
-          <div className="Body">
-            {bookingPage === 'ALL_BOOKINGS' ? (
-              <div className="BookingInfo">
-                <BookingPage
-                  bookingPage={bookingPage}
-                  selectedBooking={selectedBooking}
-                />
-              </div>
-            ) : (
-              <Desktop>
-                <UserStatus.LoggedIn>
-                  <div className="BookingInfo">
-                    <BookingPage
-                      bookingPage={bookingPage}
-                      selectedBooking={selectedBooking}
-                    />
-                  </div>
-                </UserStatus.LoggedIn>
-              </Desktop>
-            )}
-            <div className="FAQWrapper">
-              <ScrollableContent>
-                <div className="FAQ">
-                  {bookingPage === 'ALL_BOOKINGS' ? (
-                    <Desktop>
-                      <FAQRoute history={this.props.history} />
-                    </Desktop>
-                  ) : (
-                    <FAQRoute history={this.props.history} />
-                  )}
-                </div>
-              </ScrollableContent>
+const ContentPage = (props: Props) => (
+  <BookingState.Consumer>
+    {({ bookingPage, selectedBooking }) => (
+      <div className="ContentPage">
+        <Header />
+        <div className="Body">
+          {bookingPage === 'ALL_BOOKINGS' ? (
+            <div className="BookingInfo">
+              <BookingPage
+                bookingPage={bookingPage}
+                selectedBooking={selectedBooking}
+              />
             </div>
+          ) : (
+            <Desktop>
+              <UserStatus.LoggedIn>
+                <div className="BookingInfo">
+                  <BookingPage
+                    bookingPage={bookingPage}
+                    selectedBooking={selectedBooking}
+                  />
+                </div>
+              </UserStatus.LoggedIn>
+            </Desktop>
+          )}
+          <div className="FAQWrapper">
+            <ScrollableContent>
+              <div className="FAQ">
+                {bookingPage === 'ALL_BOOKINGS' ? (
+                  <Desktop>
+                    <FAQRoute history={props.history} />
+                  </Desktop>
+                ) : (
+                  <FAQRoute history={props.history} />
+                )}
+              </div>
+            </ScrollableContent>
           </div>
-          <style jsx>{styles}</style>
         </div>
-      )}
-    </BookingState.Consumer>
-  );
+        <style jsx>{styles}</style>
+      </div>
+    )}
+  </BookingState.Consumer>
+);
 
-  render() {
-    return (
-      <UserContext.Consumer>
-        {({ user }: UserContextType) => this.renderPage(Boolean(user))}
-      </UserContext.Consumer>
-    );
-  }
-}
-
-export default ContentPage;
+export default withRouter(ContentPage);

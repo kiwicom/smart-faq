@@ -5,7 +5,6 @@ import { MemoryRouter } from 'react-router';
 import { mount } from 'enzyme';
 import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
 
-//import { RawFAQArticle as FAQArticle } from '../FAQArticle';
 import StaticFAQ from '../';
 import { SearchState } from '../../context/SearchState';
 

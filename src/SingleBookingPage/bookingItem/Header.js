@@ -4,28 +4,21 @@ import * as React from 'react';
 import { translate } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import { graphql, createFragmentContainer } from 'react-relay';
-import { Heading, TextLink, Text } from '@kiwicom/orbit-components';
+import { Heading, Text } from '@kiwicom/orbit-components';
 
 import OneWayBookingHeader from './BookingHeaders/OneWay';
 import ReturnBookingHeader from './BookingHeaders/Return';
 import MulticityBookingHeader from './BookingHeaders/Multicity';
 import formatBookingId from '../../helpers/formatBookingId';
-import { BookingState } from '../../context/BookingState';
-import type { BookingStateType } from '../../context/BookingState';
-import { simpleTracker } from '../../helpers/analytics/trackers';
 import bookingTypes from '../../common/booking/bookingTypes';
 import bookingStatuses from '../../common/booking/bookingStatuses';
-import { UserContext } from '../../context/User';
-import type { UserContextType } from '../../context/User';
+import SelectAnotherBookingLink from '../../common/booking/SelectAnotherBookingLink';
 import type { Header_booking } from './__generated__/Header_booking.graphql';
 
 type Props = {|
   booking: Header_booking,
   isFuture: boolean,
   t: string => string,
-  history: {
-    push: string => void,
-  },
 |};
 
 function renderHeaderTitleByType(type: string, booking: Header_booking) {
@@ -46,7 +39,7 @@ const Header = (props: Props) => {
   const status = booking.status && bookingStatuses(props.t)[booking.status];
 
   return (
-    <div>
+    <React.Fragment>
       <div className="headerAbove">
         <div data-cy="booking-type">
           {booking.databaseId && (
@@ -56,31 +49,7 @@ const Header = (props: Props) => {
             </Text>
           )}
         </div>
-        <BookingState.Consumer>
-          {({ onDisplayAll }: BookingStateType) => (
-            <UserContext.Consumer>
-              {({ simpleToken, user }: UserContextType) => (
-                <div className="headerLink" data-cy="btn-other-bookings">
-                  <TextLink
-                    onClick={e => {
-                      e.preventDefault();
-                      simpleTracker('smartFAQBookingOverview', {
-                        action: 'selectAnotherBooking',
-                      });
-                      simpleToken && !user
-                        ? props.history.push('/sign-in')
-                        : onDisplayAll();
-                    }}
-                    external={false}
-                    type="primary"
-                  >
-                    Select another booking
-                  </TextLink>
-                </div>
-              )}
-            </UserContext.Consumer>
-          )}
-        </BookingState.Consumer>
+        <SelectAnotherBookingLink />
       </div>
       <div className="headerTitle" data-cy="booking-title">
         <Heading type="title2">
@@ -104,18 +73,12 @@ const Header = (props: Props) => {
             display: flex;
             justify-content: space-between;
           }
-          .headerLink {
-            font-size: 12px;
-          }
           .headerBelow {
             margin-bottom: 16px;
           }
-          .selectOtherBooking {
-            cursor: pointer;
-          }
         `}
       </style>
-    </div>
+    </React.Fragment>
   );
 };
 
