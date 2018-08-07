@@ -104,7 +104,7 @@ class App extends React.PureComponent<Props, State> {
     this.setState({ urlBookingWasSelected: true });
   };
 
-  onKeyDown = (e: KeyboardEvent<HTMLElement>) => {
+  onKeyDown = (e: KeyboardEvent) => {
     // $FlowExpectedError: I know "noInputFocus" property doesn't exist...
     e.noInputFocus = true;
   };
