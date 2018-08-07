@@ -12,16 +12,14 @@ import {
 } from '@kiwicom/orbit-components/lib/icons';
 import { withRouter } from 'react-router-dom';
 
-import { UserContext } from '../context/User';
 import { SearchState } from '../context/SearchState';
+import type { SearchStateType } from '../context/SearchState';
 import { BookingState } from '../context/BookingState';
 import { CloseContext } from '../context/Close';
 import BackButtonMobile from './BackButtonMobile';
 import MobileNearestBooking from './MobileNearestBooking';
 import MobileSelectedBooking from './MobileSelectedBooking';
 import MobileUserDetail from './MobileUserDetail';
-import type { UserContextType } from '../context/User';
-import type { SearchStateType } from '../context/SearchState';
 
 type MobileBookingPageProps = {|
   +bookingPage: string,
@@ -225,25 +223,19 @@ class MobileBookingHeader extends React.Component<Props, State> {
                 >
                   <Trip size="medium" customColor="#45505d" />
                 </div>
-                <UserContext.Consumer>
-                  {({ simpleToken }: UserContextType) =>
-                    !simpleToken && (
-                      <div
-                        className={
-                          this.state.activeTab === 'account'
-                            ? 'option active'
-                            : 'option'
-                        }
-                        onClick={() => this.toggleAccount()}
-                        onKeyDown={() => this.toggleAccount()}
-                        role="button"
-                        tabIndex="0"
-                      >
-                        <AccountCircle size="medium" customColor="#45505d" />
-                      </div>
-                    )
+                <div
+                  className={
+                    this.state.activeTab === 'account'
+                      ? 'option active'
+                      : 'option'
                   }
-                </UserContext.Consumer>
+                  onClick={() => this.toggleAccount()}
+                  onKeyDown={() => this.toggleAccount()}
+                  role="button"
+                  tabIndex="0"
+                >
+                  <AccountCircle size="medium" customColor="#45505d" />
+                </div>
                 <CloseContext.Consumer>
                   {(onClose: () => void) => (
                     <div
