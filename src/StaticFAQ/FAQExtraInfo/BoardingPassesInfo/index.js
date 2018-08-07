@@ -7,13 +7,12 @@ import { graphql } from 'react-relay';
 import { Text } from '@kiwicom/orbit-components';
 import { Ticket } from '@kiwicom/orbit-components/lib/icons';
 
-import {
-  BookingState,
-  type BookingStateType,
-} from '../../../context/BookingState';
+import { BookingState } from '../../../context/BookingState';
+import type { BookingStateType } from '../../../context/BookingState';
 import BoardingPassesSummary from './BoardingPassesSummary';
 import QueryRenderer from '../../../relay/QueryRenderer';
-import { UserContext, type UserContextType } from '../../../context/User';
+import { UserContext } from '../../../context/User';
+import type { UserContextType } from '../../../context/User';
 import type { BoardingPassesInfoQuery } from './__generated__/BoardingPassesInfoSelectedQuery.graphql';
 import type { BoardingPassesInfoNearestQuery } from './__generated__/BoardingPassesInfoNearestQuery.graphql';
 import type { BoardingPassesInfoSingleQuery } from './__generated__/BoardingPassesInfoSingleQuery.graphql';

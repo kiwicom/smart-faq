@@ -10,14 +10,13 @@ import OneWayBookingHeader from './BookingHeaders/OneWay';
 import ReturnBookingHeader from './BookingHeaders/Return';
 import MulticityBookingHeader from './BookingHeaders/Multicity';
 import formatBookingId from '../../helpers/formatBookingId';
-import {
-  BookingState,
-  type BookingStateType,
-} from '../../context/BookingState';
+import { BookingState } from '../../context/BookingState';
+import type { BookingStateType } from '../../context/BookingState';
 import { simpleTracker } from '../../helpers/analytics/trackers';
 import bookingTypes from '../../common/booking/bookingTypes';
 import bookingStatuses from '../../common/booking/bookingStatuses';
-import { UserContext, type UserContextType } from '../../context/User';
+import { UserContext } from '../../context/User';
+import type { UserContextType } from '../../context/User';
 import type { Header_booking } from './__generated__/Header_booking.graphql';
 
 type Props = {|

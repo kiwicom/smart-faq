@@ -3,7 +3,8 @@
 import * as React from 'react';
 
 import StaticFAQRaw from './StaticFAQRaw';
-import { SearchState, type SearchStateType } from '../context/SearchState';
+import { SearchState } from '../context/SearchState';
+import type { SearchStateType } from '../context/SearchState';
 import { simpleTracker } from '../helpers/analytics/trackers';
 import { debounce } from '../helpers/functionUtils';
 

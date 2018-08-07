@@ -4,7 +4,8 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Text } from '@kiwicom/orbit-components';
 
-import { UserContext, type UserContextType } from '../context/User';
+import { UserContext } from '../context/User';
+import type { UserContextType } from '../context/User';
 import SignOutButton from '../common/layout/SignOutButton';
 
 const MobileUserDetailStyle = css`

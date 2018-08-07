@@ -8,7 +8,8 @@ import css from 'styled-jsx/css';
 
 import { updateFAQSection } from '../common/booking/utils';
 import bookingTypes from '../common/booking/bookingTypes';
-import { BookingState, type BookingStateType } from '../context/BookingState';
+import { BookingState } from '../context/BookingState';
+import type { BookingStateType } from '../context/BookingState';
 import type { MobileBookingDetail_booking } from './__generated__/MobileBookingDetail_booking.graphql';
 import OneWayTrip from './OneWayTrip';
 import ReturnTrip from './ReturnTrip';
