@@ -19,7 +19,6 @@ type State = {|
   loginToken: ?string,
   simpleToken: ?string,
   helpQuery: ?string,
-  open: boolean,
 |};
 
 const user = {
@@ -53,11 +52,11 @@ class Root extends React.Component<Props, State> {
       loginToken,
       simpleToken,
       helpQuery: helpQueryString,
-      open: true,
     };
     this.setupLogs();
     this.setupTracker();
   }
+
   setupTracker = () => {
     const keen = new KeenTracking({
       projectId: process.env.KEENIO_PROJECTID,
@@ -72,6 +71,7 @@ class Root extends React.Component<Props, State> {
     };
     window.cuckoo = stagingCuckoo;
   };
+
   setupLogs = () => {
     if (
       process.env.NODE_ENV === 'production' &&
@@ -81,6 +81,7 @@ class Root extends React.Component<Props, State> {
       Raven.config(process.env.SENTRY_URL_STAGING).install();
     }
   };
+
   onLogin = async (email, password) => {
     const loginToken = await Requester.login(email, password);
     this.setState({ user, loginToken });
@@ -110,17 +111,17 @@ class Root extends React.Component<Props, State> {
     Cookies.remove(this.cookieKey);
   };
   toggleApp = () => {
-    const isOpen = this.state.open;
-    this.setState({ open: !isOpen });
+    this.setState(({ helpQuery }) => ({ helpQuery: helpQuery ? null : '/' }));
   };
+
   closeApp = () => {
-    this.setState({ open: false });
+    this.setState({ helpQuery: null });
   };
 
   render() {
     const { helpQuery } = this.state;
     const language = 'en';
-    const route = helpQuery ? helpQuery : '/';
+
     return (
       <div className="root">
         <div
@@ -138,9 +139,8 @@ class Root extends React.Component<Props, State> {
           onSocialLogin={this.onSocialLogin}
           onLogout={this.onLogout}
           language={language}
-          isOpen={this.state.open}
           user={this.state.user}
-          route={route}
+          route={helpQuery}
           loginToken={this.state.loginToken}
           simpleToken={this.state.simpleToken}
         />
