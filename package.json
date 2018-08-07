@@ -114,6 +114,7 @@
     "@kiwicom/orbit-components": "0.2.0",
     "babel-runtime": "^6.26.0",
     "classnames": "2.2.6",
+    "focus-trap-react": "^4.0.0",
     "history": "4.7.2",
     "i18next": "10.5.0",
     "idx": "2.2.0",

@@ -8,6 +8,7 @@ import { I18nextProvider } from 'react-i18next';
 import 'url-search-params-polyfill';
 import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
 import EventListener, { withOptions } from 'react-event-listener';
+import FocusTrap from 'focus-trap-react';
 
 import initTranslation from './initTranslation';
 import EnLocale from '../i18n/en/translation.json';
@@ -138,18 +139,20 @@ class App extends React.PureComponent<Props, State> {
                       <ExtraInfoStateProvider>
                         <ThemeProvider>
                           {isOpen && (
-                            <EventListener
-                              target="window"
-                              onKeydown={withOptions(this.onKeyDown, {
-                                capture: true,
-                              })}
-                            >
-                              <SelectUrlBooking
-                                wasSelected={this.state.urlBookingWasSelected}
-                                setSelected={this.urlBookingSelected}
-                              />
-                              <Routes route={this.props.route} />
-                            </EventListener>
+                            <FocusTrap>
+                              <EventListener
+                                target="window"
+                                onKeydown={withOptions(this.onKeyDown, {
+                                  capture: true,
+                                })}
+                              >
+                                <SelectUrlBooking
+                                  wasSelected={this.state.urlBookingWasSelected}
+                                  setSelected={this.urlBookingSelected}
+                                />
+                                <Routes route={this.props.route} />
+                              </EventListener>
+                            </FocusTrap>
                           )}
                         </ThemeProvider>
                       </ExtraInfoStateProvider>
