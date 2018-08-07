@@ -1,6 +1,7 @@
 //  @flow
 
-import emptyCuckoo, { type LogEvent, type EventPayload } from './cuckoo';
+import emptyCuckoo from './cuckoo';
+import type { LogEvent, EventPayload } from './cuckoo';
 import TimeTracker from './TimeTracker';
 import EnterTracker from './EnterTracker';
 

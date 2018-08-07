@@ -6,7 +6,8 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 import idx from 'idx';
 
-import { UserContext, type UserContextType } from '../../context/User';
+import { UserContext } from '../../context/User';
+import type { UserContextType } from '../../context/User';
 import Markdown from '../../common/Markdown';
 import FAQArticleFeedback from '../ArticleFeedback/FAQArticleFeedback';
 import { EnterTracker, TimeTracker } from '../../helpers/analytics/trackers';

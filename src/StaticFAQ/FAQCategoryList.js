@@ -9,8 +9,8 @@ import { Desktop } from '../common/Responsive';
 import {
   ExtraInfoState,
   categories as extraCategories,
-  type ExtraInfoStateType,
 } from '../context/ExtraInfoState';
+import type { ExtraInfoStateType } from '../context/ExtraInfoState';
 import UserStatus from '../helpers/UserStatus';
 import { Loader, ScrollableBox } from '../common';
 import QueryRenderer from '../relay/QueryRenderer';
@@ -25,7 +25,8 @@ import type { FAQArticle_article } from './__generated__/FAQArticle_article.grap
 import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
 import type { FAQCategoryListRootQueryResponse } from './__generated__/FAQCategoryListRootQuery.graphql';
 import type { FAQCategoryListSubcategoryQueryResponse } from './__generated__/FAQCategoryListSubcategoryQuery.graphql';
-import { BookingState, type FAQSectionType } from '../context/BookingState';
+import { BookingState } from '../context/BookingState';
+import type { FAQSectionType } from '../context/BookingState';
 
 type ComponentProps = {
   categoryId: string | null,
