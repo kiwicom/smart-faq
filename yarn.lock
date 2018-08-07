@@ -4664,19 +4664,6 @@ flush-write-stream@^1.0.0, flush-write-stream@^1.0.2:
     inherits "^2.0.1"
     readable-stream "^2.0.4"
 
-focus-trap-react@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/focus-trap-react/-/focus-trap-react-4.0.0.tgz#bdc3ed9638bbc80623d9363e8063aa2a8e8a79c6"
-  dependencies:
-    focus-trap "^3.0.0"
-
-focus-trap@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-3.0.0.tgz#4d2ee044ae66bf7eb6ebc6c93bd7a1039481d7dc"
-  dependencies:
-    tabbable "^3.1.0"
-    xtend "^4.0.1"
-
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -10858,10 +10845,6 @@ symbol-observable@^0.2.2:
 symbol-tree@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.2.tgz#ae27db38f660a7ae2e1c3b7d1bc290819b8519e6"
-
-tabbable@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-3.1.0.tgz#5cda3c27d4d849785ff078c1f864568cf0a5ea43"
 
 table@4.0.2:
   version "4.0.2"
