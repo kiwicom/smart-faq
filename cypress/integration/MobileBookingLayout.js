@@ -2,7 +2,8 @@
 /* global cy */
 
 describe('Mobile Booking Layout', () => {
-  it('', () => {
+  it('can display booking info', () => {
+    // must be in one step: https://github.com/cypress-io/cypress/issues/1534
     cy.viewport('iphone-6');
     cy.signIntoAccount();
 
