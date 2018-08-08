@@ -14,6 +14,7 @@ import { UserContext } from '../../context/User';
 import { BookingState } from '../../context/BookingState';
 import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
 import MobileBookingHeader from '../../MobileBookingHeader/MobileBookingHeader';
+import type { UserContextType } from '../../context/User';
 import SearchBar from '../../StaticFAQ/SearchBar';
 
 const style = css`
