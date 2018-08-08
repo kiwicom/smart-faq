@@ -148,6 +148,10 @@ These are the events being recorded. Note that additionally to these attributes 
 - Possible payloads
   - When smartFAQ is opened: `{ action: "clickOnHelp", loggedIn: true | false}`
   - When smartFAQ is closed: `{ action: "close", loggedIn: true | false, timeOpen: "number of seconds open"}`
+  - Login Strategies:
+    - Kiwi: `{ action: "clickOnLogin", loginType: "kiwi"}`
+    - Google: `{ action: "clickOnLogin", loginType: "google"}`
+    - Facebook: `{ action: "clickOnLogin", loginType: "facebook"}`
 
 #### Eventname "smartFAQBookingOverview"
 
