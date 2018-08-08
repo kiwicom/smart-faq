@@ -1,6 +1,6 @@
 // @flow
 
-/*  eslint-disable import/no-extraneous-dependencies */
+/*  eslint-disable import/no-extraneous-dependencies, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Cookies from 'js-cookie';
@@ -30,6 +30,7 @@ const user = {
 
 class Root extends React.Component<Props, State> {
   cookieKey: string;
+  input: ?HTMLInputElement;
 
   constructor(props) {
     super(props);
@@ -56,6 +57,22 @@ class Root extends React.Component<Props, State> {
     this.setupLogs();
     this.setupTracker();
   }
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.onKeyDown);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.onKeyDown);
+  }
+
+  onKeyDown = e => {
+    if (e.noInputFocus) {
+      return;
+    }
+
+    this.input && this.input.focus();
+  };
 
   setupTracker = () => {
     const keen = new KeenTracking({
@@ -123,7 +140,7 @@ class Root extends React.Component<Props, State> {
     const language = 'en';
 
     return (
-      <div className="root">
+      <div>
         <div
           className="toggler"
           onKeyUp={() => {}}
@@ -133,26 +150,43 @@ class Root extends React.Component<Props, State> {
         >
           Toggle SmartFAQ
         </div>
-        <App
-          onClose={this.closeApp}
-          onLogin={this.onLogin}
-          onSocialLogin={this.onSocialLogin}
-          onLogout={this.onLogout}
-          language={language}
-          user={this.state.user}
-          route={helpQuery}
-          loginToken={this.state.loginToken}
-          simpleToken={this.state.simpleToken}
-        />
+        <div className="mockedMainView">
+          <h3>Input mimicking frontend search field.</h3>
+          <input ref={c => (this.input = c)} />
+        </div>
+        {helpQuery && (
+          <div className="sidebarOverlay" onClick={this.closeApp} />
+        )}
+        <div className="sidebar">
+          <App
+            onClose={this.closeApp}
+            onLogin={this.onLogin}
+            onSocialLogin={this.onSocialLogin}
+            onLogout={this.onLogout}
+            language={language}
+            user={this.state.user}
+            route={helpQuery}
+            loginToken={this.state.loginToken}
+            simpleToken={this.state.simpleToken}
+          />
+        </div>
         <style jsx global>
           {`
-            body {
-              background: rgba(0, 0, 0, 0.5);
-            }
-            .root {
+            .sidebar {
               position: fixed;
               right: 0;
               top: 0;
+            }
+            .sidebarOverlay {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(0, 0, 0, 0.5);
+            }
+            .mockedMainView {
+              margin-top: 100px;
             }
             .toggler {
               position: fixed;
