@@ -51,7 +51,7 @@ class Root extends React.Component<Props, State> {
       user: loginToken ? user : null,
       loginToken,
       simpleToken,
-      helpQuery: helpQueryString,
+      helpQuery: helpQueryString ? helpQueryString : '/',
     };
     this.setupLogs();
     this.setupTracker();
