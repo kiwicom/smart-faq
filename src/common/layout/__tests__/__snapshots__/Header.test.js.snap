@@ -2,14 +2,14 @@
 
 exports[`ContentHeader should render loggedIn user header 1`] = `
 <div
-  class="jsx-2131308479 header"
+  class="jsx-4290801200 header"
   id="SmartFAQ_header"
 >
   <div
-    class="jsx-2131308479 HeaderFAQ"
+    class="jsx-4290801200 HeaderFAQ"
   >
     <div
-      class="jsx-2131308479 closeButton"
+      class="jsx-4290801200 closeButton"
     >
       <div
         class="jsx-477917638 close-icon"
@@ -31,50 +31,52 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
       </div>
     </div>
     <div
-      class="jsx-1684029042 jsx-2367066345 loggedIn"
+      class="jsx-3005146671 jsx-2367066345 loggedIn"
     >
       <div
-        class="jsx-1684029042 jsx-2367066345 helpHeader"
+        class="jsx-3005146671 jsx-2367066345 helpHeader"
       >
         Help
       </div>
       <div
-        class="jsx-1684029042 jsx-2367066345 links"
+        class="jsx-3005146671 jsx-2367066345 desktopOnly"
       >
         <div
-          class="jsx-1684029042 jsx-2367066345 faqLink desktopOnly"
+          class="jsx-3005146671 jsx-2367066345 staticFaqSearch"
         >
-          <a
-            class="jsx-3798246845 primary"
-            href="/helpcenter"
-            rel="noopener noreferrer"
-            target="_blank"
+          <div
+            class="jsx-3971362595 wrapper"
           >
-            Full FAQ site
-            <span
-              class="jsx-3798246845 inline-icon"
+            <input
+              class="jsx-3971362595"
+              data-cy="input-staticFAQ"
+              placeholder="Search"
+              value=""
+            />
+            <div
+              class="jsx-3971362595 inputIcon"
             >
-              <div
-                class="jsx-3798246845 open-icon"
+              <svg
+                fill="currentColor"
+                height="24px"
+                preserveAspectRatio="xMidYMid meet"
+                style="vertical-align:middle;color:#bac7d5"
+                viewBox="0 0 24 24"
+                width="24px"
               >
-                <svg
-                  fill="currentColor"
-                  height="16px"
-                  preserveAspectRatio="xMidYMid meet"
-                  style="vertical-align:middle;color:#00a991"
-                  viewBox="0 0 24 24"
-                  width="16px"
-                >
-                  <path
-                    d="M17.444 17.444H6.556V6.556H12V5H6.556C5.692 5 5 5.7 5 6.556v10.888C5 18.3 5.692 19 6.556 19h10.888C18.3 19 19 18.3 19 17.444V12h-1.556v5.444zM13.556 5v1.556h2.792L8.702 14.2 9.8 15.298l7.645-7.646v2.792H19V5h-5.444z"
-                  />
-                </svg>
-              </div>
-            </span>
-          </a>
+                <path
+                  d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
+      </div>
+      <div
+        class="jsx-3005146671 jsx-2367066345 links"
+      >
         <div
-          class="jsx-1684029042 jsx-2367066345 desktopOnly"
+          class="jsx-3005146671 jsx-2367066345 desktopOnly"
         >
           <div
             class="jsx-1683419278 signOut"
@@ -96,14 +98,14 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
 
 exports[`ContentHeader should render loggedOut user header 1`] = `
 <div
-  class="jsx-2131308479 header"
+  class="jsx-4290801200 header"
   id="SmartFAQ_header"
 >
   <div
-    class="jsx-2131308479 HeaderFAQ"
+    class="jsx-4290801200 HeaderFAQ"
   >
     <div
-      class="jsx-2131308479 closeButton"
+      class="jsx-4290801200 closeButton"
     >
       <div
         class="jsx-477917638 close-icon"
