@@ -20,7 +20,6 @@ describe(`User can't log into SmartFAQ with wrong credentials`, () => {
     cy.get('[data-cy=input-email]').type(wrongData.email);
     cy.get('[data-cy=input-password]').type(wrongData.password);
     cy.get('[data-cy=btn-sign-in]').click();
-    cy.wait(1000);
     cy.get('.errorMessage').should('exist');
   });
 });
