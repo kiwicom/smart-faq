@@ -152,6 +152,8 @@ These are the events being recorded. Note that additionally to these attributes 
     - Kiwi: `{ action: "clickOnLogin", loginType: "kiwi"}`
     - Google: `{ action: "clickOnLogin", loginType: "google"}`
     - Facebook: `{ action: "clickOnLogin", loginType: "facebook"}`
+  - Downloading boarding pass: `{ action: "downloadBoardingPass" }`
+  - "More info" in boarding pass section is clicked: `{ action: "clickOnMoreInfoBoarding" }`
 
 #### Eventname "smartFAQBookingOverview"
 
