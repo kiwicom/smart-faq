@@ -240,11 +240,11 @@ class Header extends React.Component<Props, State> {
   handleScroll = ({ target }: _SyntheticInputEvent) => {
     const tolerance = 6;
     const newHeaderHeight = idx(
-      document.getElementById('header'),
+      document.getElementById('SmartFAQ_header'),
       _ => _.offsetHeight,
     );
     const currentScroll = target.scrollTop;
-    const Body = document.getElementById('Body');
+    const Body = document.getElementById('SmartFAQ_Body');
     const distanceScrolled = Math.abs(this.state.lastScroll - currentScroll);
     const maxScroll = Math.max(
       idx(document, _ => _.body.scrollHeight) || 0,
@@ -323,7 +323,7 @@ class Header extends React.Component<Props, State> {
 
     return (
       <div
-        id="header"
+        id="SmartFAQ_header"
         className={this.state.isScrolling ? 'header hide' : 'header'}
       >
         <div className="HeaderFAQ">
