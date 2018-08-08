@@ -99,7 +99,7 @@ const ContentPage = (props: Props) => (
           )}
           <div className="FAQWrapper">
             <ScrollableContent>
-              <div className="FAQ">
+              <div className="FAQ" id="SmartFAQ_Body">
                 {bookingPage === 'ALL_BOOKINGS' ? (
                   <Desktop>
                     <FAQRoute history={props.history} />

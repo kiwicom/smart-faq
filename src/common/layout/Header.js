@@ -126,6 +126,7 @@ const loggedOutStyle = css`
 type State = {
   isScrolling: boolean,
   lastScroll: number,
+  headerHeight: number,
 };
 
 type Props = {
@@ -210,10 +211,22 @@ const renderLoggedOut = (
   );
 };
 
+// prettier-ignore
+type _SyntheticInputEvent = {
+  target: { // eslint-disable-line react/no-unused-prop-types
+    scrollTop: number,
+    scrollLeft: number,
+    scrollTopMax: number,
+    scrollHeight: number,
+    clientHeight: number,
+  },
+};
+
 class Header extends React.Component<Props, State> {
   state = {
     isScrolling: false,
     lastScroll: 0,
+    headerHeight: 64, // eslint-disable-line react/no-unused-state
   };
 
   componentDidMount() {
@@ -224,20 +237,82 @@ class Header extends React.Component<Props, State> {
     window.addEventListener('scroll', this.handleScroll, true);
   }
 
-  handleScroll = ({ target }: SyntheticInputEvent<HTMLInputElement>) => {
+  handleScroll = ({ target }: _SyntheticInputEvent) => {
+    const tolerance = 6;
+    const newHeaderHeight = idx(
+      document.getElementById('SmartFAQ_header'),
+      _ => _.offsetHeight,
+    );
     const currentScroll = target.scrollTop;
+    const Body = document.getElementById('SmartFAQ_Body');
+    const distanceScrolled = Math.abs(this.state.lastScroll - currentScroll);
+    const maxScroll = Math.max(
+      idx(document, _ => _.body.scrollHeight) || 0,
+      idx(document, _ => _.body.offsetHeight) || 0,
+      idx(document, _ => _.documentElement.clientHeight) || 0,
+      idx(document, _ => _.documentElement.scrollHeight) || 0,
+      idx(document, _ => _.documentElement.offsetHeight) || 0,
+    );
+    const distanceFromBottom = maxScroll - currentScroll;
 
-    if (currentScroll > this.state.lastScroll) {
-      this.setState({
-        isScrolling: true,
+    const hide = () => {
+      this.setState(prevState => {
+        const headerHeight = newHeaderHeight || prevState.headerHeight;
+        if (!prevState.isScrolling) {
+          if (currentScroll < headerHeight) {
+            target.scrollTop += headerHeight;
+          }
+          if (Body) Body.style.marginTop = `${headerHeight}px`;
+        }
+        return {
+          isScrolling: true,
+          headerHeight: headerHeight,
+          lastScroll: target.scrollTop,
+        };
       });
-    } else {
-      this.setState({
-        isScrolling: false,
+    };
+
+    const show = () => {
+      this.setState(prevState => {
+        if (prevState.isScrolling) {
+          if (Body) {
+            Body.style.marginTop = '0';
+          }
+        }
+        return {
+          isScrolling: false,
+          headerHeight: newHeaderHeight || prevState.headerHeight,
+          lastScroll: currentScroll,
+        };
       });
+    };
+
+    if (currentScroll === undefined) {
+      return;
     }
 
-    this.setState({ lastScroll: currentScroll });
+    if (distanceFromBottom <= tolerance) {
+      target.scrollTop = target.scrollTopMax;
+      this.setState({
+        isScrolling: false,
+        lastScroll: target.scrollTopMax,
+      });
+      return;
+    }
+    if (distanceScrolled <= tolerance || distanceScrolled < 0) {
+      this.setState({
+        lastScroll: currentScroll,
+      });
+      return;
+    }
+
+    if (currentScroll > this.state.lastScroll) {
+      hide();
+      return;
+    } else {
+      show();
+      return;
+    }
   };
 
   render() {
@@ -247,7 +322,10 @@ class Header extends React.Component<Props, State> {
     const comesFromSearch = currentpath.includes('faq/search/');
 
     return (
-      <div className={this.state.isScrolling ? 'header hide' : 'header'}>
+      <div
+        id="SmartFAQ_header"
+        className={this.state.isScrolling ? 'header hide' : 'header'}
+      >
         <div className="HeaderFAQ">
           <BookingState.Consumer>
             {({ bookingPage }) =>

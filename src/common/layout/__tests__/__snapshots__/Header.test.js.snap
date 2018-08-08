@@ -3,6 +3,7 @@
 exports[`ContentHeader should render loggedIn user header 1`] = `
 <div
   class="jsx-665943538 header"
+  id="SmartFAQ_header"
 >
   <div
     class="jsx-665943538 HeaderFAQ"
@@ -96,6 +97,7 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
 exports[`ContentHeader should render loggedOut user header 1`] = `
 <div
   class="jsx-665943538 header"
+  id="SmartFAQ_header"
 >
   <div
     class="jsx-665943538 HeaderFAQ"
