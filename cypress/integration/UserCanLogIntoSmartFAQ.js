@@ -17,7 +17,6 @@ describe('User can log into SmartFAQ', () => {
       .find('a')
       .click();
 
-    cy.wait(5000);
     cy.get('[data-cy=booking-card]').should('exist');
   });
 
@@ -27,8 +26,6 @@ describe('User can log into SmartFAQ', () => {
       .find('[data-cy=booking-card]')
       .first()
       .click();
-
-    cy.wait(5000);
 
     cy
       .get('[data-cy=booking-type]')

@@ -1,6 +1,6 @@
 // @flow
 
-/*  eslint-disable import/no-extraneous-dependencies */
+/*  eslint-disable import/no-extraneous-dependencies, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Cookies from 'js-cookie';
@@ -19,7 +19,6 @@ type State = {|
   loginToken: ?string,
   simpleToken: ?string,
   helpQuery: ?string,
-  open: boolean,
 |};
 
 const user = {
@@ -31,6 +30,7 @@ const user = {
 
 class Root extends React.Component<Props, State> {
   cookieKey: string;
+  input: ?HTMLInputElement;
 
   constructor(props) {
     super(props);
@@ -52,12 +52,28 @@ class Root extends React.Component<Props, State> {
       user: loginToken ? user : null,
       loginToken,
       simpleToken,
-      helpQuery: helpQueryString,
-      open: true,
+      helpQuery: helpQueryString ? helpQueryString : '/',
     };
     this.setupLogs();
     this.setupTracker();
   }
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.onKeyDown);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.onKeyDown);
+  }
+
+  onKeyDown = e => {
+    if (e.noInputFocus) {
+      return;
+    }
+
+    this.input && this.input.focus();
+  };
+
   setupTracker = () => {
     const keen = new KeenTracking({
       projectId: process.env.KEENIO_PROJECTID,
@@ -72,6 +88,7 @@ class Root extends React.Component<Props, State> {
     };
     window.cuckoo = stagingCuckoo;
   };
+
   setupLogs = () => {
     if (
       process.env.NODE_ENV === 'production' &&
@@ -81,6 +98,7 @@ class Root extends React.Component<Props, State> {
       Raven.config(process.env.SENTRY_URL_STAGING).install();
     }
   };
+
   onLogin = async (email, password) => {
     const loginToken = await Requester.login(email, password);
     this.setState({ user, loginToken });
@@ -110,19 +128,19 @@ class Root extends React.Component<Props, State> {
     Cookies.remove(this.cookieKey);
   };
   toggleApp = () => {
-    const isOpen = this.state.open;
-    this.setState({ open: !isOpen });
+    this.setState(({ helpQuery }) => ({ helpQuery: helpQuery ? null : '/' }));
   };
+
   closeApp = () => {
-    this.setState({ open: false });
+    this.setState({ helpQuery: null });
   };
 
   render() {
     const { helpQuery } = this.state;
     const language = 'en';
-    const route = helpQuery ? helpQuery : '/';
+
     return (
-      <div className="root">
+      <div>
         <div
           className="toggler"
           onKeyUp={() => {}}
@@ -132,27 +150,43 @@ class Root extends React.Component<Props, State> {
         >
           Toggle SmartFAQ
         </div>
-        <App
-          onClose={this.closeApp}
-          onLogin={this.onLogin}
-          onSocialLogin={this.onSocialLogin}
-          onLogout={this.onLogout}
-          language={language}
-          isOpen={this.state.open}
-          user={this.state.user}
-          route={route}
-          loginToken={this.state.loginToken}
-          simpleToken={this.state.simpleToken}
-        />
+        <div className="mockedMainView">
+          <h3>Input mimicking frontend search field.</h3>
+          <input ref={c => (this.input = c)} />
+        </div>
+        {helpQuery && (
+          <div className="sidebarOverlay" onClick={this.closeApp} />
+        )}
+        <div className="sidebar">
+          <App
+            onClose={this.closeApp}
+            onLogin={this.onLogin}
+            onSocialLogin={this.onSocialLogin}
+            onLogout={this.onLogout}
+            language={language}
+            user={this.state.user}
+            route={helpQuery}
+            loginToken={this.state.loginToken}
+            simpleToken={this.state.simpleToken}
+          />
+        </div>
         <style jsx global>
           {`
-            body {
-              background: rgba(0, 0, 0, 0.5);
-            }
-            .root {
+            .sidebar {
               position: fixed;
               right: 0;
               top: 0;
+            }
+            .sidebarOverlay {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(0, 0, 0, 0.5);
+            }
+            .mockedMainView {
+              margin-top: 100px;
             }
             .toggler {
               position: fixed;
