@@ -15,8 +15,8 @@ exports[`BaggageDescription should render correctly 1`] = `
     <p
       className="jsx-677876937 baggageWeight"
     >
-      Checked
-       baggage 
+      Checked baggage
+       
       10
        kg
     </p>

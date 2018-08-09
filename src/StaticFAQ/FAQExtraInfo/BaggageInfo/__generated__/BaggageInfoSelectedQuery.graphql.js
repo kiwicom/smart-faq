@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 4f7314356af3ca33ddc6ae9a14060e5e
+ * @relayHash f4be7ac4b427824f5b148eda79a4e247
  */
 
 /* eslint-disable */
@@ -16,9 +16,9 @@ export type BaggageInfoSelectedQueryVariables = {|
 export type BaggageInfoSelectedQueryResponse = {|
   +booking: ?{|
     +directAccessURL: ?string,
-    +allowedBaggage: ?{|
+    +baggage: ?$ReadOnlyArray<?{|
       +$fragmentRefs: BaggageSummary$ref,
-    |},
+    |}>,
   |},
 |};
 */
@@ -30,27 +30,27 @@ query BaggageInfoSelectedQuery(
 ) {
   booking(id: $id) {
     directAccessURL
-    allowedBaggage {
+    baggage {
       ...BaggageSummary
     }
     id
   }
 }
 
-fragment BaggageSummary on AllowedBaggage {
-  checked {
-    ...BaggageDescription
-  }
-  cabin {
-    ...BaggageDescription
-  }
+fragment BaggageSummary on BookingBaggage {
+  ...BaggageDescription
 }
 
-fragment BaggageDescription on Baggage {
-  height
-  weight
-  width
-  length
+fragment BaggageDescription on BookingBaggage {
+  bag {
+    height
+    weight
+    width
+    length
+    note
+    category
+  }
+  quantity
 }
 */
 
@@ -77,43 +77,13 @@ v2 = {
   "name": "directAccessURL",
   "args": null,
   "storageKey": null
-},
-v3 = [
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "height",
-    "args": null,
-    "storageKey": null
-  },
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "weight",
-    "args": null,
-    "storageKey": null
-  },
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "width",
-    "args": null,
-    "storageKey": null
-  },
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "length",
-    "args": null,
-    "storageKey": null
-  }
-];
+};
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "BaggageInfoSelectedQuery",
   "id": null,
-  "text": "query BaggageInfoSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    directAccessURL\n    allowedBaggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on AllowedBaggage {\n  checked {\n    ...BaggageDescription\n  }\n  cabin {\n    ...BaggageDescription\n  }\n}\n\nfragment BaggageDescription on Baggage {\n  height\n  weight\n  width\n  length\n}\n",
+  "text": "query BaggageInfoSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    directAccessURL\n    baggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on BookingBaggage {\n  ...BaggageDescription\n}\n\nfragment BaggageDescription on BookingBaggage {\n  bag {\n    height\n    weight\n    width\n    length\n    note\n    category\n  }\n  quantity\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -135,11 +105,11 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "allowedBaggage",
+            "name": "baggage",
             "storageKey": null,
             "args": null,
-            "concreteType": "AllowedBaggage",
-            "plural": false,
+            "concreteType": "BookingBaggage",
+            "plural": true,
             "selections": [
               {
                 "kind": "FragmentSpread",
@@ -170,31 +140,71 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "allowedBaggage",
+            "name": "baggage",
             "storageKey": null,
             "args": null,
-            "concreteType": "AllowedBaggage",
-            "plural": false,
+            "concreteType": "BookingBaggage",
+            "plural": true,
             "selections": [
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "checked",
+                "name": "bag",
                 "storageKey": null,
                 "args": null,
                 "concreteType": "Baggage",
-                "plural": true,
-                "selections": v3
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "height",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "weight",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "width",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "length",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "note",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "category",
+                    "args": null,
+                    "storageKey": null
+                  }
+                ]
               },
               {
-                "kind": "LinkedField",
+                "kind": "ScalarField",
                 "alias": null,
-                "name": "cabin",
-                "storageKey": null,
+                "name": "quantity",
                 "args": null,
-                "concreteType": "Baggage",
-                "plural": true,
-                "selections": v3
+                "storageKey": null
               }
             ]
           },
@@ -211,5 +221,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '01ff6b79634c9c1eecb4b35ad6a1cfbd';
+(node/*: any*/).hash = 'b00a0f61ad5a64a0d109c5f20255bdc8';
 module.exports = node;

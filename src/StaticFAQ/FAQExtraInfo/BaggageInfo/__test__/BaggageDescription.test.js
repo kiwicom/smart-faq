@@ -8,15 +8,18 @@ import { BaggageDescription } from '../BaggageDescription';
 const mockRefType: any = null;
 const baggage = {
   $refType: mockRefType,
-  height: 40,
-  width: 30,
-  length: 15,
-  weight: 10,
+  bag: {
+    height: 40,
+    width: 30,
+    length: 15,
+    weight: 10,
+    category: 'CHECKED',
+    note: 'asd',
+  },
+  quantity: 0,
 };
 
-const baggageDescriptionComponent = (
-  <BaggageDescription data={baggage} type="Checked" />
-);
+const baggageDescriptionComponent = <BaggageDescription data={baggage} />;
 
 describe('BaggageDescription', () => {
   it('should render correctly', () => {

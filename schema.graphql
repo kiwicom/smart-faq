@@ -1,5 +1,5 @@
-# source: https://graphql.kiwi.com/
-# timestamp: Fri Aug 03 2018 15:54:40 GMT+0200 (CEST)
+# source: http://localhost:3000/
+# timestamp: Thu Aug 09 2018 16:51:53 GMT+0200 (Central European Summer Time)
 
 schema {
   query: RootQuery
@@ -99,6 +99,13 @@ type Baggage {
   width: Int
   weight: Int
   note: String
+  category: BaggageCategory
+}
+
+enum BaggageCategory {
+  CHECKED
+  PERSONAL_ITEM
+  CABIN_BAG
 }
 
 type BoardingPass {
@@ -188,7 +195,8 @@ type Booking {
 
   """Date of the booking creation"""
   bookingDate: Date
-  allowedBaggage: AllowedBaggage
+  allowedBaggage: AllowedBaggage @deprecated(reason: "Use \"baggage\" field instead.")
+  baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -231,6 +239,12 @@ type BookingAssets {
 
   """Boarding passes for flights in this booking"""
   boardingPasses: [BoardingPass]
+}
+
+type BookingBaggage {
+  quantity: Int
+  passengers: [Passenger]
+  bag: Baggage
 }
 
 type BookingConfirmedTimelineEvent implements TimelineEvent {
@@ -288,7 +302,8 @@ interface BookingInterface {
 
   """Date of the booking creation"""
   bookingDate: Date
-  allowedBaggage: AllowedBaggage
+  allowedBaggage: AllowedBaggage @deprecated(reason: "Use \"baggage\" field instead.")
+  baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -349,7 +364,8 @@ type BookingMulticity implements BookingInterface & Node {
 
   """Date of the booking creation"""
   bookingDate: Date
-  allowedBaggage: AllowedBaggage
+  allowedBaggage: AllowedBaggage @deprecated(reason: "Use \"baggage\" field instead.")
+  baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -404,7 +420,8 @@ type BookingOneWay implements BookingInterface & Node {
 
   """Date of the booking creation"""
   bookingDate: Date
-  allowedBaggage: AllowedBaggage
+  allowedBaggage: AllowedBaggage @deprecated(reason: "Use \"baggage\" field instead.")
+  baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -449,7 +466,8 @@ type BookingReturn implements BookingInterface & Node {
 
   """Date of the booking creation"""
   bookingDate: Date
-  allowedBaggage: AllowedBaggage
+  allowedBaggage: AllowedBaggage @deprecated(reason: "Use \"baggage\" field instead.")
+  baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets

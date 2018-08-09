@@ -1,6 +1,5 @@
 // @flow
 
-import idx from 'idx';
 import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 import css from 'styled-jsx/css';
@@ -34,17 +33,11 @@ const styles = css`
 `;
 
 const BaggageSummary = ({ data, mmbUrl }: Props) => {
-  const cabinBaggage = idx(data, _ => _.cabin) || [];
-  const checkedBaggage = idx(data, _ => _.checked) || [];
   return data ? (
     <React.Fragment>
-      {checkedBaggage.map((baggage, i) => (
+      {data.map((baggage, i) => (
         /* eslint-disable react/no-array-index-key*/
-        <BaggageDescriptionFragment key={i} data={baggage} type="Checked" />
-      ))}
-      {cabinBaggage.map((baggage, i) => (
-        /* eslint-disable react/no-array-index-key*/
-        <BaggageDescriptionFragment key={i} data={baggage} type="Cabin" />
+        <BaggageDescriptionFragment key={i} data={baggage} />
       ))}
       <div className="moreInfo">
         <a
@@ -69,13 +62,8 @@ const BaggageSummary = ({ data, mmbUrl }: Props) => {
 export default createFragmentContainer(
   BaggageSummary,
   graphql`
-    fragment BaggageSummary on AllowedBaggage {
-      checked {
-        ...BaggageDescription
-      }
-      cabin {
-        ...BaggageDescription
-      }
+    fragment BaggageSummary on BookingBaggage @relay(plural: true) {
+      ...BaggageDescription
     }
   `,
 );

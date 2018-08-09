@@ -5,36 +5,52 @@ import { graphql, createFragmentContainer } from 'react-relay';
 import {
   BaggageCabin,
   BaggageChecked,
+  BaggagePersonalItem,
 } from '@kiwicom/orbit-components/lib/icons';
 
 import type { BaggageDescription as BaggageDescriptionProps } from './__generated__/BaggageDescription.graphql';
 
 type Props = {|
-  type: 'Cabin' | 'Checked',
   data: BaggageDescriptionProps,
 |};
 
-function renderIcon(type: string) {
-  switch (type) {
-    case 'Cabin':
+function renderIcon(category: ?string) {
+  switch (category) {
+    case 'CABIN_BAG':
       return <BaggageCabin size="medium" customColor="#bac7d5" />;
-    case 'Checked':
+    case 'CHECKED':
       return <BaggageChecked size="medium" customColor="#bac7d5" />;
+    case 'PERSONAL_ITEM':
+      return <BaggagePersonalItem size="medium" customColor="#bac7d5" />;
   }
   return null;
 }
 
-export const BaggageDescription = ({
-  type,
-  data: { height, weight, width, length },
-}: Props) => {
+function formatCategory(category: ?string) {
+  switch (category) {
+    case 'CABIN_BAG':
+      return 'Cabin bag';
+    case 'CHECKED':
+      return 'Checked baggage';
+    case 'PERSONAL_ITEM':
+      return 'Personal item';
+  }
+  return null;
+}
+
+export const BaggageDescription = ({ data: { bag } }: Props) => {
+  if (!bag) {
+    return;
+  }
+  const { height, weight, width, length, category } = bag;
+
   return (
     <React.Fragment>
       <hr className="separationLine" />
       <div className="baggageRow">
-        {renderIcon(type)}
+        {renderIcon(category)}
         <p className="baggageWeight">
-          {type} baggage {weight} kg
+          {formatCategory(category)} {weight} kg
         </p>
         <div className="baggageSize">
           <p>
@@ -89,11 +105,16 @@ export const BaggageDescription = ({
 export default createFragmentContainer(
   BaggageDescription,
   graphql`
-    fragment BaggageDescription on Baggage {
-      height
-      weight
-      width
-      length
+    fragment BaggageDescription on BookingBaggage {
+      bag {
+        height
+        weight
+        width
+        length
+        note
+        category
+      }
+      quantity
     }
   `,
 );
