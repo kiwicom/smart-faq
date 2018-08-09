@@ -5,6 +5,7 @@ import idx from 'idx';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { FlightDirect, Download } from '@kiwicom/orbit-components/lib/icons';
 
+import { simpleTracker } from '../../../helpers/analytics/trackers';
 import replaceWithCurrentDomain from '../../../helpers/replaceWithCurrentDomain';
 import type { BoardingPassesDescription as BoardingPassesDescriptionProps } from './__generated__/BoardingPassesDescription.graphql';
 
@@ -12,6 +13,16 @@ type Props = {|
   data: BoardingPassesDescriptionProps,
   mmbUrl: string,
 |};
+
+const moreInfoBoardingTracker = () =>
+  simpleTracker('smartFAQ', {
+    action: 'clickOnMoreInfoBoarding',
+  });
+
+const downloadBoardingPassTracker = () =>
+  simpleTracker('smartFAQ', {
+    action: 'downloadBoardingPass',
+  });
 
 const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
   if (data.leg === null) return null;
@@ -31,7 +42,12 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
         </p>
         <div className="info">
           {boardingPassUrl ? (
-            <a href={boardingPassUrl} target="_blank" className="download">
+            <a
+              href={boardingPassUrl}
+              onClick={downloadBoardingPassTracker}
+              target="_blank"
+              className="download"
+            >
               <Download size="medium" customColor="#00a991" />
               Download
             </a>
@@ -40,6 +56,7 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
           ) : (
             <a
               href={replaceWithCurrentDomain(mmbUrl)}
+              onClick={moreInfoBoardingTracker}
               target="_blank"
               className="moreInfo"
             >
