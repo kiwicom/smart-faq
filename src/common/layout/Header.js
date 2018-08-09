@@ -216,7 +216,6 @@ type _SyntheticInputEvent = {
   target: { // eslint-disable-line react/no-unused-prop-types
     scrollTop: number,
     scrollLeft: number,
-    scrollTopMax: number,
     scrollHeight: number,
     clientHeight: number,
   },
@@ -246,14 +245,6 @@ class Header extends React.Component<Props, State> {
     const currentScroll = target.scrollTop;
     const Body = document.getElementById('SmartFAQ_Body');
     const distanceScrolled = Math.abs(this.state.lastScroll - currentScroll);
-    const maxScroll = Math.max(
-      idx(document, _ => _.body.scrollHeight) || 0,
-      idx(document, _ => _.body.offsetHeight) || 0,
-      idx(document, _ => _.documentElement.clientHeight) || 0,
-      idx(document, _ => _.documentElement.scrollHeight) || 0,
-      idx(document, _ => _.documentElement.offsetHeight) || 0,
-    );
-    const distanceFromBottom = maxScroll - currentScroll;
 
     const hide = () => {
       this.setState(prevState => {
@@ -291,14 +282,6 @@ class Header extends React.Component<Props, State> {
       return;
     }
 
-    if (distanceFromBottom <= tolerance) {
-      target.scrollTop = target.scrollTopMax;
-      this.setState({
-        isScrolling: false,
-        lastScroll: target.scrollTopMax,
-      });
-      return;
-    }
     if (distanceScrolled <= tolerance || distanceScrolled < 0) {
       this.setState({
         lastScroll: currentScroll,
