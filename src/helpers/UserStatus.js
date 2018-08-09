@@ -23,6 +23,15 @@ const RequireUserLoggedIn = withSimpleToken(
   }),
 );
 
+const RequireUserLoggedOut = withSimpleToken(
+  withUser((props: RequireLoggedInProps) => {
+    if (props.user || props.simpleToken) {
+      return null;
+    }
+    return props.children;
+  }),
+);
+
 const RequireUserAccount = withUser((props: RequireAccountProps) => {
   if (!props.user) {
     return null;
@@ -32,5 +41,6 @@ const RequireUserAccount = withUser((props: RequireAccountProps) => {
 
 export default {
   LoggedIn: RequireUserLoggedIn,
+  LoggedOut: RequireUserLoggedOut,
   LoggedInAccount: RequireUserAccount,
 };

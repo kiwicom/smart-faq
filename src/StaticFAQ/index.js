@@ -9,9 +9,8 @@ import FAQCategoryList from './FAQCategoryList';
 import SearchAllFAQs from './SearchAllFAQs';
 import { SearchState } from '../context/SearchState';
 import type { SearchStateType } from '../context/SearchState';
-import { withUser } from '../context/User';
-import type { User } from '../types';
 import SearchBar from './SearchBar';
+import UserStatus from '../helpers/UserStatus';
 
 const style = css`
   .static-faq {
@@ -35,7 +34,6 @@ const style = css`
 `;
 
 type Props = {|
-  user: User,
   match: {
     params: {
       categoryId: ?string,
@@ -49,7 +47,6 @@ type Props = {|
 
 const StaticFAQ = (props: Props) => {
   const categoryId = idx(props.match, _ => _.params.categoryId) || null;
-  const { user } = props;
 
   return (
     <SearchState.Consumer>
@@ -59,9 +56,11 @@ const StaticFAQ = (props: Props) => {
         return (
           <div className="static-faq">
             <div className="static-faq-body">
-              {!user && !categoryId && isVisible ? (
+              {!categoryId && isVisible ? (
                 <div className="static-faq-search">
-                  <SearchBar />
+                  <UserStatus.LoggedOut>
+                    <SearchBar />
+                  </UserStatus.LoggedOut>
                 </div>
               ) : null}
               {isSearching ? (
@@ -78,4 +77,4 @@ const StaticFAQ = (props: Props) => {
   );
 };
 
-export default withRouter(withUser(StaticFAQ));
+export default withRouter(StaticFAQ);
