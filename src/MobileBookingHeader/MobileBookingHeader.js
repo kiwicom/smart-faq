@@ -173,94 +173,111 @@ class MobileBookingHeader extends React.Component<Props, State> {
   render() {
     return (
       <React.Fragment>
-        <SearchState.Consumer>
-          {({ disableSearch, enableSearch, toggleSearch }: SearchStateType) => {
-            this.contextEnableSearch = enableSearch;
-            this.contextDisableSearch = disableSearch;
-            this.contextToggleSearch = toggleSearch;
-            const { location } = this.props.history;
-            const currentpath = location && location.pathname;
-            const isArticle = currentpath.includes('article/');
-            const hasCategory =
-              idx(this.props.match, _ => _.params.categoryId) || null;
+        <BookingState.Consumer>
+          {({ closeAllBooking }) => (
+            <SearchState.Consumer>
+              {({
+                disableSearch,
+                enableSearch,
+                toggleSearch,
+              }: SearchStateType) => {
+                this.contextEnableSearch = enableSearch;
+                this.contextDisableSearch = disableSearch;
+                this.contextToggleSearch = toggleSearch;
+                const { location } = this.props.history;
+                const currentpath = location && location.pathname;
+                const isArticle = currentpath.includes('article/');
+                const hasCategory =
+                  idx(this.props.match, _ => _.params.categoryId) || null;
+                const buttonEvent = eventHandler => () => {
+                  eventHandler();
+                  closeAllBooking();
+                };
 
-            return (
-              <div className="MobileBookingHeader">
-                {isArticle || hasCategory ? (
-                  <div
-                    className="option"
-                    onClick={() => this.goBack()}
-                    onKeyUp={() => this.goBack()}
-                    role="button"
-                    tabIndex="-1"
-                  >
-                    <BackButtonMobile />
-                  </div>
-                ) : null}
-                <div className="option help">
-                  <Text type="primary" weight="bold">
-                    Help
-                  </Text>
-                </div>
-                <div
-                  className={this.isSearchActive() ? 'option active' : 'option'}
-                  onClick={() => this.toggleSearch()}
-                  onKeyDown={() => this.toggleSearch()}
-                  role="button"
-                  tabIndex="0"
-                >
-                  <Search size="medium" customColor="#45505d" />
-                </div>
-                <div
-                  className={
-                    this.state.activeTab === 'summary'
-                      ? 'option active'
-                      : 'option'
-                  }
-                  onClick={() => this.toggleSummary()}
-                  onKeyDown={() => this.toggleSummary()}
-                  role="button"
-                  tabIndex="0"
-                  data-cy="trip-button"
-                >
-                  <Trip size="medium" customColor="#45505d" />
-                </div>
-                <UserContext.Consumer>
-                  {({ simpleToken }: UserContextType) =>
-                    !simpleToken && (
+                return (
+                  <div className="MobileBookingHeader">
+                    {isArticle || hasCategory ? (
                       <div
-                        className={
-                          this.state.activeTab === 'account'
-                            ? 'option active'
-                            : 'option'
-                        }
-                        onClick={() => this.toggleAccount()}
-                        onKeyDown={() => this.toggleAccount()}
+                        className="option"
+                        onClick={buttonEvent(this.goBack)}
+                        onKeyUp={buttonEvent(this.goBack)}
                         role="button"
-                        tabIndex="0"
+                        tabIndex="-1"
                       >
-                        <AccountCircle size="medium" customColor="#45505d" />
+                        <BackButtonMobile />
                       </div>
-                    )
-                  }
-                </UserContext.Consumer>
-                <CloseContext.Consumer>
-                  {(onClose: () => void) => (
+                    ) : null}
+                    <div className="option help">
+                      <Text type="primary" weight="bold">
+                        Help
+                      </Text>
+                    </div>
                     <div
-                      className="option"
+                      className={
+                        this.isSearchActive() ? 'option active' : 'option'
+                      }
+                      onClick={buttonEvent(this.toggleSearch)}
+                      onKeyDown={buttonEvent(this.toggleSearch)}
                       role="button"
                       tabIndex="0"
-                      onKeyDown={onClose}
-                      onClick={onClose}
                     >
-                      <Close size="medium" customColor="#45505d" />
+                      <Search size="medium" customColor="#45505d" />
                     </div>
-                  )}
-                </CloseContext.Consumer>
-              </div>
-            );
-          }}
-        </SearchState.Consumer>
+                    <div
+                      className={
+                        this.state.activeTab === 'summary'
+                          ? 'option active'
+                          : 'option'
+                      }
+                      onClick={buttonEvent(this.toggleSummary)}
+                      onKeyDown={buttonEvent(this.toggleSummary)}
+                      role="button"
+                      tabIndex="0"
+                      data-cy="trip-button"
+                    >
+                      <Trip size="medium" customColor="#45505d" />
+                    </div>
+                    <UserContext.Consumer>
+                      {({ simpleToken }: UserContextType) =>
+                        !simpleToken && (
+                          <div
+                            className={
+                              this.state.activeTab === 'account'
+                                ? 'option active'
+                                : 'option'
+                            }
+                            onClick={buttonEvent(this.toggleAccount)}
+                            onKeyDown={buttonEvent(this.toggleAccount)}
+                            role="button"
+                            tabIndex="0"
+                          >
+                            <AccountCircle
+                              size="medium"
+                              customColor="#45505d"
+                            />
+                          </div>
+                        )
+                      }
+                    </UserContext.Consumer>
+                    <CloseContext.Consumer>
+                      {(onClose: () => void) => (
+                        <div
+                          className="option"
+                          role="button"
+                          tabIndex="0"
+                          onKeyDown={onClose}
+                          onClick={onClose}
+                        >
+                          <Close size="medium" customColor="#45505d" />
+                        </div>
+                      )}
+                    </CloseContext.Consumer>
+                  </div>
+                );
+              }}
+            </SearchState.Consumer>
+          )}
+        </BookingState.Consumer>
         {this.state.activeTab === 'summary' ? (
           <div className="openedContent">
             <MobileBookingSummary />

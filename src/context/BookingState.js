@@ -29,6 +29,7 @@ type StateValues = {
 };
 
 type StateCallbacks = {
+  closeAllBooking: () => void,
   onDisplayAll: () => void,
   onSelectBooking: (id: number) => void,
   onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
@@ -39,6 +40,7 @@ export type BookingStateType = StateValues & StateCallbacks;
 
 export const BookingState = React.createContext({
   ...initialState,
+  closeAllBooking: () => {},
   onDisplayAll: () => {},
   onSelectBooking: (id: number) => {}, // eslint-disable-line no-unused-vars
   onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => {}, // eslint-disable-line no-unused-vars
@@ -51,12 +53,17 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
 
     this.state = {
       ...initialState,
+      closeAllBooking: this.closeAllBooking,
       onLogout: this.onLogout,
       onSelectBooking: this.onClickSelect,
       onDisplayAll: this.onClickAllBooking,
       onSetFAQSection: this.onSetFAQSection,
     };
   }
+
+  closeAllBooking = () => {
+    this.setState({ bookingPage: 'SINGLE_BOOKING' });
+  };
 
   onLogout = async () => {
     await this.props.onLogout();
