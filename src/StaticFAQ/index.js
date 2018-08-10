@@ -4,6 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import css from 'styled-jsx/css';
 import { withRouter } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
 
 import FAQCategoryList from './FAQCategoryList';
 import SearchAllFAQs from './SearchAllFAQs';
@@ -61,6 +62,11 @@ const StaticFAQ = (props: Props) => {
                   <UserStatus.LoggedOut>
                     <SearchBar />
                   </UserStatus.LoggedOut>
+                  <MediaQuery query="only screen and (max-width: 900px)">
+                    <UserStatus.LoggedIn>
+                      <SearchBar />
+                    </UserStatus.LoggedIn>
+                  </MediaQuery>
                 </div>
               ) : null}
               {isSearching ? (
