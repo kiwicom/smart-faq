@@ -8,9 +8,16 @@ describe('Expandable ground transportation leg', () => {
   it('should expand trip', () => {
     cy.signIntoAccount();
 
+    cy.get('[data-cy=btn-other-bookings]').click();
+
+    cy
+      .get('.bookingCard')
+      .contains('PFL')
+      .click();
+
     cy
       .get('.bookingAccordion')
-      .contains('PFL')
+      .first()
       .click()
       .get('.legCities')
       .should('exist');
