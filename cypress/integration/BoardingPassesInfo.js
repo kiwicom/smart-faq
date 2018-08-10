@@ -31,7 +31,7 @@ describe('Boarding Passes Info', () => {
   });
 
   it('should show the previous root category after clicking home', () => {
-    cy.wait(2000);
+    cy.wait(5000);
 
     cy.getFirstFaqCategoryTitle().then($initialFaqCategoryTitle => {
       cy.get('[data-cy=btn-boarding-passes]').click();
