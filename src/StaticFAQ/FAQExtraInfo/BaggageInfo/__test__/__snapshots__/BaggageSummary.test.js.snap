@@ -14,16 +14,16 @@ Array [
       viewBox="0 0 500 30"
     >
       <rect
-        clip-path="url(#6o8vmhmlw3)"
+        clip-path="url(#y7ayapd935l)"
         height="30"
-        style="fill:url(#nsj6hxg60y9)"
+        style="fill:url(#ttdlsn52gti)"
         width="500"
         x="0"
         y="0"
       />
       <defs>
         <clipPath
-          id="6o8vmhmlw3"
+          id="y7ayapd935l"
         >
           <rect
             class="jsx-624713577"
@@ -54,7 +54,7 @@ Array [
           />
         </clipPath>
         <linearGradient
-          id="nsj6hxg60y9"
+          id="ttdlsn52gti"
         >
           <stop
             offset="0%"
@@ -97,4 +97,43 @@ Array [
     </svg>
   </div>,
 ]
+`;
+
+exports[`BaggageSummary renders correctly 1`] = `
+<React.Fragment>
+  <Relay(BaggageDescription)
+    data={
+      Object {
+        "$fragmentRefs": null,
+        "$refType": null,
+      }
+    }
+    key="0"
+  />
+  <Relay(BaggageDescription)
+    data={
+      Object {
+        "$fragmentRefs": null,
+        "$refType": null,
+      }
+    }
+    key="1"
+  />
+  <div
+    className="jsx-3371679792 moreInfo"
+  >
+    <a
+      className="jsx-3371679792"
+      href="null"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      More Info
+    </a>
+  </div>
+  <JSXStyle
+    css=".moreInfo.jsx-3371679792{padding-left:24px;padding-bottom:24px;}.moreInfo.jsx-3371679792 a.jsx-3371679792{color:#00a991;font-size:12px;-webkit-text-decoration:none;text-decoration:none;font-weight:500;}hr.separationLine.jsx-3371679792{height:1px;background-color:#e8edf1;border:none;}"
+    styleId="3371679792"
+  />
+</React.Fragment>
 `;
