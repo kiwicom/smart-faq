@@ -10,7 +10,7 @@ import replaceWithCurrentDomain from '../../../helpers/replaceWithCurrentDomain'
 import type { BaggageSummary as BaggageSummaryProps } from './__generated__/BaggageSummary.graphql';
 
 type Props = {|
-  data: BaggageSummaryProps,
+  data: ?BaggageSummaryProps,
   mmbUrl: string,
 |};
 
@@ -32,7 +32,7 @@ const styles = css`
   }
 `;
 
-const BaggageSummary = ({ data, mmbUrl }: Props) => {
+export const RawBaggageSummary = ({ data, mmbUrl }: Props) => {
   return data ? (
     <React.Fragment>
       {data.map((baggage, i) => (
@@ -60,7 +60,7 @@ const BaggageSummary = ({ data, mmbUrl }: Props) => {
 };
 
 export default createFragmentContainer(
-  BaggageSummary,
+  RawBaggageSummary,
   graphql`
     fragment BaggageSummary on BookingBaggage @relay(plural: true) {
       ...BaggageDescription
