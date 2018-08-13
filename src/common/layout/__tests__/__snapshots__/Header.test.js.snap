@@ -2,14 +2,14 @@
 
 exports[`ContentHeader should render loggedIn user header 1`] = `
 <div
-  class="jsx-665943538 header"
+  class="jsx-2131308479 header"
   id="SmartFAQ_header"
 >
   <div
-    class="jsx-665943538 HeaderFAQ"
+    class="jsx-2131308479 HeaderFAQ"
   >
     <div
-      class="jsx-665943538 closeButton"
+      class="jsx-2131308479 closeButton"
     >
       <div
         class="jsx-477917638 close-icon"
@@ -96,14 +96,14 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
 
 exports[`ContentHeader should render loggedOut user header 1`] = `
 <div
-  class="jsx-665943538 header"
+  class="jsx-2131308479 header"
   id="SmartFAQ_header"
 >
   <div
-    class="jsx-665943538 HeaderFAQ"
+    class="jsx-2131308479 HeaderFAQ"
   >
     <div
-      class="jsx-665943538 closeButton"
+      class="jsx-2131308479 closeButton"
     >
       <div
         class="jsx-477917638 close-icon"
