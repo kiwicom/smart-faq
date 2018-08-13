@@ -5,6 +5,7 @@ import { Text, Button } from '@kiwicom/orbit-components';
 
 import screensList from './screensList';
 import Box from '../../common/Box';
+import { simpleTracker } from '../../helpers/analytics/trackers';
 
 type Props = {|
   changeScreen: (nextScreen: string) => void,
@@ -27,7 +28,12 @@ const ScreenInitial = (props: Props) => (
       <Button
         type="secondary"
         width={115}
-        onClick={() => props.changeScreen(screensList.INPUT)}
+        onClick={() => {
+          simpleTracker('smartFAQCategories', {
+            action: 'clickOnLetUsKnow',
+          });
+          props.changeScreen(screensList.INPUT);
+        }}
       >
         Let us know
       </Button>
