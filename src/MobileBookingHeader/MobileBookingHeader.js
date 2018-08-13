@@ -220,6 +220,7 @@ class MobileBookingHeader extends React.Component<Props, State> {
                       onKeyDown={buttonEvent(this.toggleSearch)}
                       role="button"
                       tabIndex="0"
+                      data-cy="search-button"
                     >
                       <Search size="medium" customColor="#45505d" />
                     </div>
