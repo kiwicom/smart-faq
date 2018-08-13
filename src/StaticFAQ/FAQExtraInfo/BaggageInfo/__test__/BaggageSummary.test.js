@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { render, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import { RawBaggageSummary } from '../BaggageSummary';
 
@@ -10,7 +10,7 @@ const mockRefType: any = null;
 describe('BaggageSummary', () => {
   it('loading screen renders correctly', () => {
     expect(
-      render(<RawBaggageSummary data={null} mmbUrl="https://example.com" />),
+      shallow(<RawBaggageSummary data={null} mmbUrl="https://example.com" />),
     ).toMatchSnapshot();
   });
 

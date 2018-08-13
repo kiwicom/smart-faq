@@ -1,102 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BaggageSummary loading screen renders correctly 1`] = `
-Array [
+<React.Fragment>
   <hr
-    class="jsx-3371679792 separationLine"
-  />,
-  <div
-    class="jsx-624713577 baggageRow"
-  >
-    <svg
-      preserveAspectRatio="xMidYMid meet"
-      version="1.1"
-      viewBox="0 0 500 30"
-    >
-      <rect
-        clip-path="url(#y7ayapd935l)"
-        height="30"
-        style="fill:url(#ttdlsn52gti)"
-        width="500"
-        x="0"
-        y="0"
-      />
-      <defs>
-        <clipPath
-          id="y7ayapd935l"
-        >
-          <rect
-            class="jsx-624713577"
-            height="18"
-            rx="0"
-            ry="0"
-            width="25"
-            x="0"
-            y="12"
-          />
-          <rect
-            class="jsx-624713577"
-            height="18"
-            rx="0"
-            ry="0"
-            width="130"
-            x="40"
-            y="12"
-          />
-          <rect
-            class="jsx-624713577"
-            height="18"
-            rx="0"
-            ry="0"
-            width="70"
-            x="470"
-            y="12"
-          />
-        </clipPath>
-        <linearGradient
-          id="ttdlsn52gti"
-        >
-          <stop
-            offset="0%"
-            stop-color="#e8edf1"
-            stop-opacity="1"
-          >
-            <animate
-              attributeName="offset"
-              dur="1s"
-              repeatCount="indefinite"
-              values="-2; 1"
-            />
-          </stop>
-          <stop
-            offset="50%"
-            stop-color="#d9dee2"
-            stop-opacity="1"
-          >
-            <animate
-              attributeName="offset"
-              dur="1s"
-              repeatCount="indefinite"
-              values="-1.5; 1.5"
-            />
-          </stop>
-          <stop
-            offset="100%"
-            stop-color="#e8edf1"
-            stop-opacity="1"
-          >
-            <animate
-              attributeName="offset"
-              dur="1s"
-              repeatCount="indefinite"
-              values="-1; 2"
-            />
-          </stop>
-        </linearGradient>
-      </defs>
-    </svg>
-  </div>,
-]
+    className="jsx-3371679792 separationLine"
+  />
+  <BaggageLoader />
+  <JSXStyle
+    css=".moreInfo.jsx-3371679792{padding-left:24px;padding-bottom:24px;}.moreInfo.jsx-3371679792 a.jsx-3371679792{color:#00a991;font-size:12px;-webkit-text-decoration:none;text-decoration:none;font-weight:500;}hr.separationLine.jsx-3371679792{height:1px;background-color:#e8edf1;border:none;}"
+    styleId="3371679792"
+  />
+</React.Fragment>
 `;
 
 exports[`BaggageSummary renders correctly 1`] = `
