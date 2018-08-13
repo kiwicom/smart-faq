@@ -11,6 +11,7 @@ import { withUser } from '../context/User';
 import type { User } from '../types';
 import FullFAQLink from '../common/FullFAQLink';
 import { redirectsLoggedIn } from '../common/loginHOC';
+import { simpleTracker } from '../helpers/analytics/trackers';
 
 const style = css`
   .Intro {
@@ -149,12 +150,20 @@ type Props = {
 
 export class PureIntro extends React.Component<Props> {
   goToExistingBooking = () => {
+    simpleTracker('smartFAQ', {
+      action: 'clickOnIntroButton',
+      haveBooking: true,
+    });
     this.props.user
       ? this.props.history.push('/faq/')
       : this.props.history.push('/sign-in');
   };
 
   goToNoBooking = () => {
+    simpleTracker('smartFAQ', {
+      action: 'clickOnIntroButton',
+      haveBooking: false,
+    });
     this.props.history.push('/faq/');
   };
 
