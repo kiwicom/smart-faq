@@ -36,7 +36,7 @@ const style = css`
     margin-left: 182px;
     line-height: 1.4;
   }
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 900px) {
     .header.hide {
       opacity: 0;
       max-height: 0;
@@ -253,7 +253,9 @@ class Header extends React.Component<Props, State> {
           if (currentScroll < headerHeight) {
             target.scrollTop += headerHeight;
           }
-          if (Body) Body.style.marginTop = `${headerHeight}px`;
+          if (Body && screen.width < 900) {
+            Body.style.marginTop = `${headerHeight}px`;
+          }
         }
         return {
           isScrolling: true,
