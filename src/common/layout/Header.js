@@ -7,7 +7,6 @@ import css from 'styled-jsx/css';
 import { TextLink } from '@kiwicom/orbit-components';
 
 import { Desktop, Mobile } from '../Responsive';
-import FullFAQLink from '../FullFAQLink';
 import CloseButton from '../buttons/CloseButton';
 import BackButton from '../buttons/BackButton';
 import SignOutButton from './SignOutButton';
@@ -16,6 +15,7 @@ import { BookingState } from '../../context/BookingState';
 import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
 import MobileBookingHeader from '../../MobileBookingHeader/MobileBookingHeader';
 import type { UserContextType } from '../../context/User';
+import SearchBar from '../../StaticFAQ/SearchBar';
 
 const style = css`
   .loggedOut {
@@ -32,11 +32,7 @@ const style = css`
     border-bottom: 1px solid #e8edf1;
     background-color: #ffffff;
   }
-  .faqLink {
-    margin-left: 182px;
-    line-height: 1.4;
-  }
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 500px) {
     .header.hide {
       opacity: 0;
       max-height: 0;
@@ -61,12 +57,14 @@ const loggedInStyle = css`
     display: flex;
     align-items: center;
   }
-  .faqLink {
-    display: flex;
-    margin-right: 58px;
-  }
   a.open-icon {
     margin-left: 12px;
+  }
+  .staticFaqSearch {
+    width: 350px;
+    position: absolute;
+    right: 260px;
+    top: 10px;
   }
   @media only screen and (max-width: 900px) and (max-height: 480px) {
     .loggedIn {
@@ -161,10 +159,12 @@ const renderLoggedIn = () => {
             </div>
           )}
         </BookingState.Consumer>
-        <div className="links">
-          <div className="faqLink desktopOnly">
-            <FullFAQLink className="primary" />
+        <div className="desktopOnly">
+          <div className="staticFaqSearch">
+            <SearchBar />
           </div>
+        </div>
+        <div className="links">
           <div className="desktopOnly">
             <SignOutButton />
           </div>
