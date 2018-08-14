@@ -11,6 +11,8 @@ import {
   categories as extraCategories,
 } from '../context/ExtraInfoState';
 import type { ExtraInfoStateType } from '../context/ExtraInfoState';
+import Emergencies from '../context/Emergencies';
+import type { Emergency as EmergencyType } from '../context/Emergencies';
 import UserStatus from '../helpers/UserStatus';
 import { Loader, ScrollableBox } from '../common';
 import QueryRenderer from '../relay/QueryRenderer';
@@ -18,6 +20,8 @@ import BaggageInfo from './FAQExtraInfo/BaggageInfo';
 import BoardingPassesInfo from './FAQExtraInfo/BoardingPassesInfo';
 import FAQArticle from './FAQArticle';
 import FAQCategory from './FAQCategory';
+import Emergency from './emergencies/Emergency';
+import EmergencyHeader from './emergencies/EmergencyHeader';
 import Breadcrumbs from './breadcrumbs/Breadcrumbs';
 import StaticFAQError from './StaticFAQError';
 import { simpleTracker } from '../helpers/analytics/trackers';
@@ -163,6 +167,21 @@ class RawFAQCategoryList extends React.Component<Props> {
     );
   };
 
+  renderCategoriesWithEmergencies = (
+    categories: $ReadOnlyArray<CategoryFragment>,
+    emergencies: EmergencyType[],
+  ) => (
+    <div>
+      <EmergencyHeader title="Current travel issues:" />
+      {emergencies.map((emergency, i) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <Emergency key={i} emergency={emergency} />
+      ))}
+      <EmergencyHeader title="Solve the issue by yourself:" />
+      {this.renderCategories(categories)}
+    </div>
+  );
+
   renderRootCategory = (rendererProps: RootQueryRendererParams) => {
     if (rendererProps.error) {
       return <StaticFAQError />;
@@ -172,7 +191,21 @@ class RawFAQCategoryList extends React.Component<Props> {
       const edges =
         idx(rendererProps.props, _ => _.allFAQCategories.edges) || [];
       const categories = edges.map(edge => edge && edge.node).filter(Boolean);
-      return this.renderCategories(categories);
+
+      return (
+        <Emergencies.Consumer>
+          {emergencies => {
+            if (emergencies && emergencies.length) {
+              return this.renderCategoriesWithEmergencies(
+                categories,
+                emergencies,
+              );
+            }
+
+            return this.renderCategories(categories);
+          }}
+        </Emergencies.Consumer>
+      );
     }
 
     return <Loader />;

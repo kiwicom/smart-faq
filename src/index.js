@@ -19,6 +19,7 @@ type State = {|
   loginToken: ?string,
   simpleToken: ?string,
   helpQuery: ?string,
+  showEmergencies: boolean,
 |};
 
 const user = {
@@ -27,6 +28,11 @@ const user = {
   firstname: 'Joe',
   lastname: 'Doe',
 };
+
+const emergencies = [
+  'Because of the middle age ways how to get to the Prague Airport and all donkeys are at strike, we are receiving far more contacts than usual. Please solve your request in our shiny mobile app.',
+  'The political unrest in Catalan republic has affected many flights and we are experiencing a high number of contacts. Please departure to Belgium to avoid prison.',
+];
 
 class Root extends React.Component<Props, State> {
   cookieKey: string;
@@ -52,6 +58,7 @@ class Root extends React.Component<Props, State> {
       user: loginToken ? user : null,
       loginToken,
       simpleToken,
+      showEmergencies: false,
       helpQuery: helpQueryString ? helpQueryString : '/',
     };
     this.setupLogs();
@@ -135,8 +142,14 @@ class Root extends React.Component<Props, State> {
     this.setState({ helpQuery: null });
   };
 
+  toggleEmergencies = () => {
+    this.setState(({ showEmergencies }) => ({
+      showEmergencies: !showEmergencies,
+    }));
+  };
+
   render() {
-    const { helpQuery } = this.state;
+    const { helpQuery, showEmergencies } = this.state;
     const language = 'en';
 
     return (
@@ -153,6 +166,12 @@ class Root extends React.Component<Props, State> {
         <div className="mockedMainView">
           <h3>Input mimicking frontend search field.</h3>
           <input ref={c => (this.input = c)} />
+          <h3>Show some emergencies</h3>
+          <input
+            type="checkbox"
+            value={showEmergencies}
+            onChange={this.toggleEmergencies}
+          />
         </div>
         {helpQuery && (
           <div className="sidebarOverlay" onClick={this.closeApp} />
@@ -168,6 +187,7 @@ class Root extends React.Component<Props, State> {
             route={helpQuery}
             loginToken={this.state.loginToken}
             simpleToken={this.state.simpleToken}
+            emergencies={showEmergencies ? emergencies : []}
           />
         </div>
         <style jsx global>
