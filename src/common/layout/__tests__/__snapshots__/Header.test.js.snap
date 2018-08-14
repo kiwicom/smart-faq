@@ -9,40 +9,18 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
     class="jsx-4290801200 HeaderFAQ"
   >
     <div
-      class="jsx-4290801200 closeButton"
+      class="jsx-2880528156 jsx-2367066345 loggedIn"
     >
       <div
-        class="jsx-477917638 close-icon"
-        role="button"
-        tabindex="-1"
-      >
-        <svg
-          fill="currentColor"
-          height="24px"
-          preserveAspectRatio="xMidYMid meet"
-          style="vertical-align:middle;color:#46515e"
-          viewBox="0 0 24 24"
-          width="24px"
-        >
-          <path
-            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-          />
-        </svg>
-      </div>
-    </div>
-    <div
-      class="jsx-3005146671 jsx-2367066345 loggedIn"
-    >
-      <div
-        class="jsx-3005146671 jsx-2367066345 helpHeader"
+        class="jsx-2880528156 jsx-2367066345 helpHeader"
       >
         Help
       </div>
       <div
-        class="jsx-3005146671 jsx-2367066345 desktopOnly"
+        class="jsx-2880528156 jsx-2367066345 desktopOnly"
       >
         <div
-          class="jsx-3005146671 jsx-2367066345 staticFaqSearch"
+          class="jsx-2880528156 jsx-2367066345 staticFaqSearch"
         >
           <div
             class="jsx-3971362595 wrapper"
@@ -73,10 +51,10 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
         </div>
       </div>
       <div
-        class="jsx-3005146671 jsx-2367066345 links"
+        class="jsx-2880528156 jsx-2367066345 links"
       >
         <div
-          class="jsx-3005146671 jsx-2367066345 desktopOnly"
+          class="jsx-2880528156 jsx-2367066345 desktopOnly"
         >
           <div
             class="jsx-1683419278 signOut"
@@ -104,28 +82,6 @@ exports[`ContentHeader should render loggedOut user header 1`] = `
   <div
     class="jsx-4290801200 HeaderFAQ"
   >
-    <div
-      class="jsx-4290801200 closeButton"
-    >
-      <div
-        class="jsx-477917638 close-icon"
-        role="button"
-        tabindex="-1"
-      >
-        <svg
-          fill="currentColor"
-          height="24px"
-          preserveAspectRatio="xMidYMid meet"
-          style="vertical-align:middle;color:#46515e"
-          viewBox="0 0 24 24"
-          width="24px"
-        >
-          <path
-            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-          />
-        </svg>
-      </div>
-    </div>
     <div
       class="jsx-2367066345 jsx-1604692328 loggedOut"
     >

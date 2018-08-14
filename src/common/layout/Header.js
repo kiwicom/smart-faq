@@ -72,9 +72,6 @@ const loggedInStyle = css`
     }
   }
   @media only screen and (max-width: 900px) {
-    .closeButton {
-      display: none;
-    }
     .loggedIn {
       padding: 15px;
     }
@@ -312,21 +309,9 @@ class Header extends React.Component<Props, State> {
         className={this.state.isScrolling ? 'header hide' : 'header'}
       >
         <div className="HeaderFAQ">
-          <BookingState.Consumer>
-            {({ bookingPage }) =>
-              bookingPage === 'ALL_BOOKINGS' ? (
-                <Desktop>
-                  <div className="closeButton">
-                    <CloseButton height="24" />
-                  </div>
-                </Desktop>
-              ) : (
-                <div className="closeButton">
-                  <CloseButton height="24" />
-                </div>
-              )
-            }
-          </BookingState.Consumer>
+          <Desktop>
+            <CloseButton height="24" />
+          </Desktop>
           <UserContext.Consumer>
             {({ simpleToken, loginToken }: UserContextType) =>
               simpleToken || loginToken
