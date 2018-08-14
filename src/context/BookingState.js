@@ -36,6 +36,24 @@ type StateCallbacks = {
   onLogout: onLogout,
 };
 
+type BookingStateDescription = {
+  hasBooking: boolean,
+  isPastBooking: ?boolean,
+  isUrgent: ?boolean,
+};
+
+export const getFAQSection = ({
+  hasBooking,
+  isPastBooking,
+  isUrgent,
+}: BookingStateDescription) => {
+  if (!hasBooking) return 'BEFORE_BOOKING';
+  if (isPastBooking) return 'PAST_BOOKING';
+  if (isUrgent) return 'URGENT_BOOKING';
+
+  return 'UPCOMING_BOOKING';
+};
+
 export type BookingStateType = StateValues & StateCallbacks;
 
 export const BookingState = React.createContext({
