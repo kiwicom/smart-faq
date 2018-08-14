@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 
-import { BookingState } from '../../../context/BookingState';
+import { SelectedBooking } from '../../../context/SelectedBooking';
 import { SelectUrlBooking } from '../urlProcessing';
 
 describe('UrlProcessing', () => {
@@ -16,13 +16,13 @@ describe('UrlProcessing', () => {
     });
 
     mount(
-      <BookingState.Provider
+      <SelectedBooking.Provider
         value={{
           onSelectBooking,
         }}
       >
         <SelectUrlBooking setSelected={selectedBooking} />
-      </BookingState.Provider>,
+      </SelectedBooking.Provider>,
     );
 
     expect(selectedBooking.mock.calls).toHaveLength(1);
@@ -40,13 +40,13 @@ describe('UrlProcessing', () => {
     });
 
     mount(
-      <BookingState.Provider
+      <SelectedBooking.Provider
         value={{
           onSelectBooking,
         }}
       >
         <SelectUrlBooking setSelected={selectedBooking} />
-      </BookingState.Provider>,
+      </SelectedBooking.Provider>,
     );
 
     expect(selectedBooking.mock.calls).toHaveLength(1);
@@ -64,13 +64,13 @@ describe('UrlProcessing', () => {
     });
 
     mount(
-      <BookingState.Provider
+      <SelectedBooking.Provider
         value={{
           onSelectBooking,
         }}
       >
         <SelectUrlBooking setSelected={selectedBooking} />
-      </BookingState.Provider>,
+      </SelectedBooking.Provider>,
     );
 
     expect(selectedBooking.mock.calls).toHaveLength(0);
