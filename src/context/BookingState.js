@@ -5,8 +5,20 @@ import * as React from 'react';
 
 import type { onLogout } from '../types';
 
+export const getFAQSection = ({
+  hasBooking,
+  isPastBooking,
+  isUrgent,
+}: BookingStateDescription) => {
+  if (!hasBooking) return 'BEFORE_BOOKING';
+  if (isPastBooking) return 'PAST_BOOKING';
+  if (isUrgent) return 'URGENT_BOOKING';
+
+  return 'UPCOMING_BOOKING';
+};
+
 const initialState = {
-  FAQSection: 'BEFORE_BOOKING',
+  FAQSection: getFAQSection({ hasBooking: false }),
   bookingPage: 'SINGLE_BOOKING',
   selectedBooking: null,
 };
@@ -38,20 +50,8 @@ type StateCallbacks = {
 
 type BookingStateDescription = {
   hasBooking: boolean,
-  isPastBooking: ?boolean,
-  isUrgent: ?boolean,
-};
-
-export const getFAQSection = ({
-  hasBooking,
-  isPastBooking,
-  isUrgent,
-}: BookingStateDescription) => {
-  if (!hasBooking) return 'BEFORE_BOOKING';
-  if (isPastBooking) return 'PAST_BOOKING';
-  if (isUrgent) return 'URGENT_BOOKING';
-
-  return 'UPCOMING_BOOKING';
+  isPastBooking?: boolean,
+  isUrgent?: boolean,
 };
 
 export type BookingStateType = StateValues & StateCallbacks;
@@ -100,13 +100,11 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
   };
 
   onSetFAQSection = (isUrgent: boolean, isPastBooking: boolean) => {
-    let section = 'UPCOMING_BOOKING';
-
-    if (isUrgent) {
-      section = 'URGENT_BOOKING';
-    } else if (isPastBooking) {
-      section = 'PAST_BOOKING';
-    }
+    const section = getFAQSection({
+      isUrgent,
+      isPastBooking,
+      hasBooking: true,
+    });
 
     this.setState(({ FAQSection }) => {
       if (FAQSection !== section) {
