@@ -5,6 +5,7 @@ import * as React from 'react';
 import idx from 'idx';
 import css from 'styled-jsx/css';
 import { TextLink } from '@kiwicom/orbit-components';
+import MediaQuery from 'react-responsive';
 
 import { Desktop, Mobile } from '../Responsive';
 import CloseButton from '../buttons/CloseButton';
@@ -156,16 +157,14 @@ const renderLoggedIn = () => {
             </div>
           )}
         </BookingState.Consumer>
-        <div className="desktopOnly">
+        <MediaQuery query="only screen and (min-width: 900px)">
           <div className="staticFaqSearch">
             <SearchBar />
           </div>
-        </div>
-        <div className="links">
-          <div className="desktopOnly">
+          <div className="links">
             <SignOutButton />
           </div>
-        </div>
+        </MediaQuery>
         <style jsx>{loggedInStyle}</style>
         <style jsx>{responsiveStyleHelperClasses}</style>
       </div>
