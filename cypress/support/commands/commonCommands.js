@@ -14,6 +14,11 @@ Cypress.Commands.add('signIntoAccount', () => {
   cy.get('[data-cy=btn-sign-in]').click();
 });
 
+Cypress.Commands.add('loadStaticFAQ', () => {
+  cy.visit('/');
+  cy.get('[data-cy=btn-nonexistent-booking]').click();
+});
+
 Cypress.Commands.add('getFirstFaqCategoryTitle', () => {
   cy
     .get('[data-cy=faq-categories]')

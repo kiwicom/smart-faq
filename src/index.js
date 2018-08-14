@@ -58,7 +58,7 @@ class Root extends React.Component<Props, State> {
       user: loginToken ? user : null,
       loginToken,
       simpleToken,
-      showEmergencies: false,
+      showEmergencies: Cookies.get('showEmergencies') || false,
       helpQuery: helpQueryString ? helpQueryString : '/',
     };
     this.setupLogs();
