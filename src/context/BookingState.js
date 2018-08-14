@@ -18,7 +18,7 @@ export const getFAQSection = ({
 };
 
 const initialState = {
-  FAQSection: getFAQSection({ hasBooking: false }),
+  FAQSection: null,
   bookingPage: 'SINGLE_BOOKING',
   selectedBooking: null,
 };
@@ -32,10 +32,13 @@ export type FAQSectionType =
 type Props = {
   children: React.Node,
   onLogout: onLogout,
+  hasBooking: boolean,
+  isPastBooking?: boolean,
+  isUrgent?: boolean,
 };
 
 type StateValues = {
-  FAQSection: FAQSectionType,
+  FAQSection: ?FAQSectionType,
   bookingPage: 'SINGLE_BOOKING' | 'ALL_BOOKINGS',
   selectedBooking: ?number,
 };
@@ -68,6 +71,7 @@ export const BookingState = React.createContext({
 class BookingStateProvider extends React.Component<Props, BookingStateType> {
   constructor(props: Props) {
     super(props);
+    const { hasBooking, isUrgent, isPastBooking } = props;
 
     this.state = {
       ...initialState,
@@ -76,6 +80,7 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
       onSelectBooking: this.onClickSelect,
       onDisplayAll: this.onClickAllBooking,
       onSetFAQSection: this.onSetFAQSection,
+      FAQSection: getFAQSection({ hasBooking, isUrgent, isPastBooking }),
     };
   }
 

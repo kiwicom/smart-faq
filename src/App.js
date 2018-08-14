@@ -138,7 +138,10 @@ class App extends React.PureComponent<Props, State> {
                 <CloseContext.Provider value={onClose}>
                   <UserContext.Provider value={this.state.userContext}>
                     <SearchStateProvider>
-                      <BookingStateProvider onLogout={this.props.onLogout}>
+                      <BookingStateProvider
+                        hasBooking={false}
+                        onLogout={this.props.onLogout}
+                      >
                         <ExtraInfoStateProvider>
                           <Emergencies.Provider value={emergencies}>
                             <ThemeProvider>
