@@ -19,7 +19,6 @@ export const getFAQSection = ({
 
 const initialState = {
   FAQSection: null,
-  bookingPage: 'SINGLE_BOOKING',
   selectedBooking: null,
 };
 
@@ -39,14 +38,9 @@ type Props = {
 
 type StateValues = {
   FAQSection: ?FAQSectionType,
-  bookingPage: 'SINGLE_BOOKING' | 'ALL_BOOKINGS',
-  selectedBooking: ?number,
 };
 
 type StateCallbacks = {
-  closeAllBooking: () => void,
-  onDisplayAll: () => void,
-  onSelectBooking: (id: number) => void,
   onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
   onLogout: onLogout,
 };
@@ -61,9 +55,6 @@ export type BookingStateType = StateValues & StateCallbacks;
 
 export const BookingState = React.createContext({
   ...initialState,
-  closeAllBooking: () => {},
-  onDisplayAll: () => {},
-  onSelectBooking: (id: number) => {}, // eslint-disable-line no-unused-vars
   onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => {}, // eslint-disable-line no-unused-vars
   onLogout: () => Promise.resolve(true),
 });
@@ -75,33 +66,15 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
 
     this.state = {
       ...initialState,
-      closeAllBooking: this.closeAllBooking,
       onLogout: this.onLogout,
-      onSelectBooking: this.onClickSelect,
-      onDisplayAll: this.onClickAllBooking,
       onSetFAQSection: this.onSetFAQSection,
       FAQSection: getFAQSection({ hasBooking, isUrgent, isPastBooking }),
     };
   }
 
-  closeAllBooking = () => {
-    this.setState({ bookingPage: 'SINGLE_BOOKING' });
-  };
-
   onLogout = async () => {
     await this.props.onLogout();
     this.setState({ FAQSection: 'BEFORE_BOOKING' });
-  };
-
-  onClickAllBooking = () => {
-    this.setState({ bookingPage: 'ALL_BOOKINGS' });
-  };
-
-  onClickSelect = (id: number) => {
-    this.setState({ bookingPage: 'SINGLE_BOOKING', selectedBooking: id });
-    const Body = document.querySelector('#SmartFAQ_Body');
-    if (!Body) return;
-    Body.dispatchEvent(new Event('scroll'));
   };
 
   onSetFAQSection = (isUrgent: boolean, isPastBooking: boolean) => {
