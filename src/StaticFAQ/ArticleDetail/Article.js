@@ -175,7 +175,10 @@ class RawFAQArticleDetail extends React.Component<Props> {
 const Article = (props: ComponentProps) => (
   <BookingState.Consumer>
     {({ FAQSection }) => (
-      <RawFAQArticleDetail section={FAQSection} {...props} />
+      <RawFAQArticleDetail
+        section={FAQSection || 'BEFORE_BOOKING'}
+        {...props}
+      />
     )}
   </BookingState.Consumer>
 );
