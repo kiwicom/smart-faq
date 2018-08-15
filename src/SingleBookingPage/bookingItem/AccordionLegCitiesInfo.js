@@ -45,7 +45,6 @@ const LegCitiesInfo = (props: Props) => {
   const reservationNumber = leg.pnr || '';
   const carrierTitle =
     transportationMode === bookingLegTypes.AIRCRAFT ? 'Airline' : 'Carrier';
-  const iconProps = { size: 'small', color: 'secondary' };
 
   const carrier = {
     code: idx(leg.airline, _ => _.code) || '',
@@ -89,7 +88,7 @@ const LegCitiesInfo = (props: Props) => {
 
     return (
       <div className="infoRow">
-        <InformationCircle {...iconProps} />
+        <InformationCircle size="small" color="secondary" />
         <p>{`${title} ${carrier.code} ${flightNumber}`}</p>
         <style jsx>{citiesInfoStyle}</style>
       </div>
@@ -111,24 +110,24 @@ const LegCitiesInfo = (props: Props) => {
       {renderFlightNumber()}
       {showReservationNumber() && (
         <div className="infoRow">
-          <Ticket {...iconProps} />
+          <Ticket size="small" color="secondary" />
           <p>PNR: {reservationNumber}</p>
         </div>
       )}
       {showAircraftType() && (
         <div className="infoRow">
-          <Airplane {...iconProps} />
+          <Airplane size="small" color="secondary" />
           <p>{`${vehicle.manufacturer} ${vehicle.model}`}</p>
         </div>
       )}
       {transportationMode !== bookingLegTypes.AIRCRAFT && (
         <React.Fragment>
           <div className="infoRow">
-            <City {...iconProps} />
+            <City size="small" color="secondary" />
             <p>{departureStationName}</p>
           </div>
           <div className="infoRow">
-            <City {...iconProps} />
+            <City size="small" color="secondary" />
             <p>{arrivalStationName}</p>
           </div>
           <div className="infoRow">

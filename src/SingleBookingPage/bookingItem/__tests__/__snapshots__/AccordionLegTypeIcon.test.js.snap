@@ -7,7 +7,7 @@ exports[`LegTypeIcon should render aircraft icon 1`] = `
   >
     <AirplaneDown
       customColor="#adb9c5"
-      height="12"
+      size="medium"
     />
     <JSXStyle
       css="div.legTypeIcon.jsx-885109022{position:absolute;left:-13px;top:40px;background:#fff;}"
@@ -24,7 +24,7 @@ exports[`LegTypeIcon should render bus icon 1`] = `
   >
     <Bus
       customColor="#00a991"
-      height="12"
+      size="medium"
     />
     <JSXStyle
       css="div.legTypeIcon.jsx-885109022{position:absolute;left:-13px;top:40px;background:#fff;}"
@@ -41,7 +41,7 @@ exports[`LegTypeIcon should render train icon 1`] = `
   >
     <Train
       customColor="#00a991"
-      height="12"
+      size="medium"
     />
     <JSXStyle
       css="div.legTypeIcon.jsx-885109022{position:absolute;left:-13px;top:40px;background:#fff;}"

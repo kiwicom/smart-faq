@@ -38,7 +38,8 @@
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-conventional": "^7.0.1",
     "@kiwicom/babel-plugin-orbit-components": "^1.0.0",
-    "@kiwicom/orbit-components": "^0.2.0",
+    "@kiwicom/orbit-components": "^0.7.0",
+    "@kiwicom/orbit-design-tokens": "^0.1.3",
     "@octokit/rest": "^15.2.5",
     "babel-cli": "^6.26.0",
     "babel-core": "6.26.0",
@@ -132,7 +133,8 @@
     "url-search-params-polyfill": "4.0.1"
   },
   "peerDependencies": {
-    "@kiwicom/orbit-components": "^0.2.0",
+    "@kiwicom/orbit-components": "^0.7.0",
+    "@kiwicom/orbit-design-tokens": "^0.1.3",
     "babel-runtime": "^6.26.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",

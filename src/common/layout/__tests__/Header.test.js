@@ -3,7 +3,6 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { MemoryRouter as Router } from 'react-router-dom';
-import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
 
 import { UserContext } from '../../../context/User';
 import { RawContentHeader } from '../Header';
@@ -41,9 +40,7 @@ describe('ContentHeader', () => {
     const wrapper = render(
       <UserContext.Provider value={user}>
         <Router>
-          <ThemeProvider>
-            <RawContentHeader {...props} />
-          </ThemeProvider>
+          <RawContentHeader {...props} />
         </Router>
       </UserContext.Provider>,
     );
@@ -55,9 +52,7 @@ describe('ContentHeader', () => {
   it('should render loggedOut user header', () => {
     const wrapper = render(
       <Router>
-        <ThemeProvider>
-          <RawContentHeader {...props} />
-        </ThemeProvider>
+        <RawContentHeader {...props} />
       </Router>,
     );
     expect(wrapper.find('.backButton').text()).toEqual('Back');
