@@ -17,7 +17,6 @@ import { LanguageContext } from './context/Language';
 import { UserContext } from './context/User';
 import type { UserContextType } from './context/User';
 import SearchStateProvider from './context/SearchState';
-import BookingStateProvider from './context/BookingState';
 import SelectedBookingProvider from './context/SelectedBooking';
 import ExtraInfoStateProvider from './context/ExtraInfoState';
 import Emergencies from './context/Emergencies';
@@ -26,6 +25,7 @@ import ErrorBoundary from './common/ErrorBoundary';
 import { EnterTracker, TimeTracker } from './helpers/analytics/trackers';
 import type { AppProps } from './types';
 import MobileSafariScroll from './helpers/MobileSafariScroll';
+import BookingStateWrapper from './BookingStateWrapper/BookingStateWrapper';
 
 const style = css`
   .smartFAQ {
@@ -99,7 +99,7 @@ class App extends React.PureComponent<AppProps, State> {
   };
 
   renderApp() {
-    const { route, emergencies, language, onClose } = this.props;
+    const { route, emergencies } = this.props;
     const isOpen = Boolean(route);
 
     return (
@@ -121,36 +121,36 @@ class App extends React.PureComponent<AppProps, State> {
           />
           <ErrorBoundary>
             <I18nextProvider i18n={this.i18n}>
-              <LanguageContext.Provider value={language}>
-                <CloseContext.Provider value={onClose}>
+              <LanguageContext.Provider value={this.props.language}>
+                <CloseContext.Provider value={this.props.onClose}>
                   <UserContext.Provider value={this.state.userContext}>
                     <SearchStateProvider>
                       <Emergencies.Provider value={emergencies}>
                         <SelectedBookingProvider>
-                          <BookingStateProvider
-                            hasBooking={false}
-                            onLogout={this.props.onLogout}
-                          >
-                            <ExtraInfoStateProvider>
-                              {isOpen &&
-                                route && (
-                                  <EventListener
-                                    target="window"
-                                    onKeydown={withOptions(this.onKeyDown, {
-                                      capture: true,
-                                    })}
+                          <ExtraInfoStateProvider>
+                            {isOpen &&
+                              route && (
+                                <EventListener
+                                  target="window"
+                                  onKeydown={withOptions(this.onKeyDown, {
+                                    capture: true,
+                                  })}
+                                >
+                                  <SelectUrlBooking
+                                    wasSelected={
+                                      this.state.urlBookingWasSelected
+                                    }
+                                    setSelected={this.urlBookingSelected}
+                                  />
+
+                                  <BookingStateWrapper
+                                    onLogout={this.props.onLogout}
                                   >
-                                    <SelectUrlBooking
-                                      wasSelected={
-                                        this.state.urlBookingWasSelected
-                                      }
-                                      setSelected={this.urlBookingSelected}
-                                    />
                                     <Routes route={route} />
-                                  </EventListener>
-                                )}
-                            </ExtraInfoStateProvider>
-                          </BookingStateProvider>
+                                  </BookingStateWrapper>
+                                </EventListener>
+                              )}
+                          </ExtraInfoStateProvider>
                         </SelectedBookingProvider>
                       </Emergencies.Provider>
                     </SearchStateProvider>
