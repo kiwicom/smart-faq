@@ -119,7 +119,7 @@ const loggedOutStyle = css`
 `;
 
 type State = {
-  isScrolling: boolean,
+  isHeaderVisible: boolean,
   lastScroll: number,
   headerHeight: number,
 };
@@ -220,7 +220,7 @@ type _SyntheticInputEvent = {
 
 class Header extends React.Component<Props, State> {
   state = {
-    isScrolling: false,
+    isHeaderVisible: true,
     lastScroll: 0,
     headerHeight: 64, // eslint-disable-line react/no-unused-state
   };
@@ -243,10 +243,14 @@ class Header extends React.Component<Props, State> {
     const Body = document.getElementById('SmartFAQ_Body');
     const distanceScrolled = Math.abs(this.state.lastScroll - currentScroll);
 
+    if (currentScroll === undefined) {
+      return;
+    }
+
     const hide = () => {
       this.setState(prevState => {
         const headerHeight = newHeaderHeight || prevState.headerHeight;
-        if (!prevState.isScrolling) {
+        if (prevState.isHeaderVisible) {
           if (currentScroll < headerHeight) {
             target.scrollTop += headerHeight;
           }
@@ -255,7 +259,7 @@ class Header extends React.Component<Props, State> {
           }
         }
         return {
-          isScrolling: true,
+          isHeaderVisible: false,
           headerHeight: headerHeight,
           lastScroll: target.scrollTop,
         };
@@ -264,22 +268,16 @@ class Header extends React.Component<Props, State> {
 
     const show = () => {
       this.setState(prevState => {
-        if (prevState.isScrolling) {
-          if (Body) {
-            Body.style.marginTop = '0';
-          }
+        if (Body) {
+          Body.style.marginTop = '0';
         }
         return {
-          isScrolling: false,
+          isHeaderVisible: true,
           headerHeight: newHeaderHeight || prevState.headerHeight,
           lastScroll: currentScroll,
         };
       });
     };
-
-    if (currentScroll === undefined) {
-      return;
-    }
 
     if (distanceScrolled <= tolerance || distanceScrolled < 0) {
       this.setState({
@@ -306,7 +304,7 @@ class Header extends React.Component<Props, State> {
     return (
       <div
         id="SmartFAQ_header"
-        className={this.state.isScrolling ? 'header hide' : 'header'}
+        className={!this.state.isHeaderVisible ? 'header hide' : 'header'}
       >
         <div className="HeaderFAQ">
           <Desktop>
