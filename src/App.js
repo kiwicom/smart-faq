@@ -20,7 +20,6 @@ import SearchStateProvider from './context/SearchState';
 import BookingStateProvider from './context/BookingState';
 import ExtraInfoStateProvider from './context/ExtraInfoState';
 import Emergencies from './context/Emergencies';
-import { SelectUrlBooking } from './common/integration/urlProcessing';
 import ErrorBoundary from './common/ErrorBoundary';
 import { EnterTracker, TimeTracker } from './helpers/analytics/trackers';
 import type { onLogin, onLogout, onSocialLogin, User } from './types';
@@ -65,7 +64,6 @@ export type Props = {|
 |};
 
 type State = {|
-  urlBookingWasSelected: boolean,
   userContext: UserContextType,
 |};
 
@@ -90,7 +88,6 @@ class App extends React.PureComponent<Props, State> {
 
     this.i18n = initTranslation(props.language, EnLocale);
     this.state = {
-      urlBookingWasSelected: false,
       userContext: {
         user: props.user,
         onLogin: props.onLogin,
@@ -100,10 +97,6 @@ class App extends React.PureComponent<Props, State> {
       },
     };
   }
-
-  urlBookingSelected = () => {
-    this.setState({ urlBookingWasSelected: true });
-  };
 
   onKeyDown = (e: KeyboardEvent) => {
     // $FlowExpectedError: I know "noInputFocus" property doesn't exist...
@@ -137,7 +130,10 @@ class App extends React.PureComponent<Props, State> {
                 <CloseContext.Provider value={onClose}>
                   <UserContext.Provider value={this.state.userContext}>
                     <SearchStateProvider>
-                      <BookingStateProvider onLogout={this.props.onLogout}>
+                      <BookingStateProvider
+                        onLogout={this.props.onLogout}
+                        isOpen={isOpen}
+                      >
                         <ExtraInfoStateProvider>
                           <Emergencies.Provider value={emergencies}>
                             {isOpen &&
@@ -148,12 +144,6 @@ class App extends React.PureComponent<Props, State> {
                                     capture: true,
                                   })}
                                 >
-                                  <SelectUrlBooking
-                                    wasSelected={
-                                      this.state.urlBookingWasSelected
-                                    }
-                                    setSelected={this.urlBookingSelected}
-                                  />
                                   <Routes route={route} />
                                 </EventListener>
                               )}
