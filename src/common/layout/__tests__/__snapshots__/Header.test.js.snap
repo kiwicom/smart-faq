@@ -16,59 +16,6 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
       >
         Help
       </div>
-      <div
-        class="jsx-2880528156 jsx-2367066345 desktopOnly"
-      >
-        <div
-          class="jsx-2880528156 jsx-2367066345 staticFaqSearch"
-        >
-          <div
-            class="jsx-3971362595 wrapper"
-          >
-            <input
-              class="jsx-3971362595"
-              data-cy="input-staticFAQ"
-              placeholder="Search"
-              value=""
-            />
-            <div
-              class="jsx-3971362595 inputIcon"
-            >
-              <svg
-                fill="currentColor"
-                height="24px"
-                preserveAspectRatio="xMidYMid meet"
-                style="vertical-align:middle;color:#bac7d5"
-                viewBox="0 0 24 24"
-                width="24px"
-              >
-                <path
-                  d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="jsx-2880528156 jsx-2367066345 links"
-      >
-        <div
-          class="jsx-2880528156 jsx-2367066345 desktopOnly"
-        >
-          <div
-            class="jsx-1683419278 signOut"
-            role="button"
-            tabindex="0"
-          >
-            <p
-              class="Text__StyledText-inVtPV dVuICh"
-            >
-              Sign out
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>

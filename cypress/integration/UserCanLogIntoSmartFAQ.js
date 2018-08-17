@@ -55,4 +55,8 @@ describe('User can log into SmartFAQ', () => {
     cy.get('[data-cy=booking-title]').should('exist');
     cy.get('[data-cy=btn-manage-booking]').should('exist');
   });
+
+  it('should display Sign out button', () => {
+    cy.get('.signOut p').should('to.have.text', 'Sign out');
+  });
 });

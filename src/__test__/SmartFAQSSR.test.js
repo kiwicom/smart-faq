@@ -47,7 +47,7 @@ describe('SmartFAQ', () => {
         simpleToken={null}
       />,
     );
-    expect(app.includes('Search')).toBe(true);
+    expect(app.includes('Help')).toBe(true);
     expect(app).toMatchSnapshot();
   });
 });
