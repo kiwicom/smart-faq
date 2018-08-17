@@ -8,14 +8,15 @@ export const loginEndpoint = endPoints.authApiUrl + '/v1/user.login';
 export const socialLoginEndpoint =
   endPoints.authApiUrl + '/v1/oauth.getAuthorizationUrl';
 
-const USER = process.env.KIWILOGIN_USER || '';
+const USER = process.env.KIWILOGIN_USER;
 
 export const Requester = {
-  login: (login: string, password: string) =>
+  login: (login: string, password: string, authorization?: string) =>
     fetch(loginEndpoint, {
       method: 'post',
       headers: {
-        Authorization: 'Basic ' + window.btoa(`${USER}:`),
+        Authorization:
+          'Basic ' + window.btoa(`${USER || authorization || ''}:`),
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
