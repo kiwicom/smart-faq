@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b449aa5813889141c45d59a78cf567b0
+ * @relayHash 13746e1e1a1048e5282269bcc49343fa
  */
 
 /* eslint-disable */
@@ -10,12 +10,14 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type HasBooking_booking$ref = any;
+type MultiCityTripWrapper_booking$ref = any;
 type OneWayTripWrapper_booking$ref = any;
+type ReturnTripWrapper_booking$ref = any;
 export type BookingStateWrapperNearestQueryVariables = {| |};
 export type BookingStateWrapperNearestQueryResponse = {|
   +nearestBooking: ?{|
     +id: string,
-    +$fragmentRefs: (HasBooking_booking$ref & OneWayTripWrapper_booking$ref),
+    +$fragmentRefs: (HasBooking_booking$ref & OneWayTripWrapper_booking$ref & ReturnTripWrapper_booking$ref & MultiCityTripWrapper_booking$ref),
   |},
 |};
 */
@@ -29,6 +31,12 @@ query BookingStateWrapperNearestQuery {
     ...HasBooking_booking
     ... on BookingOneWay {
       ...OneWayTripWrapper_booking
+    }
+    ... on BookingReturn {
+      ...ReturnTripWrapper_booking
+    }
+    ... on BookingMulticity {
+      ...MultiCityTripWrapper_booking
     }
   }
 }
@@ -61,6 +69,7 @@ fragment HasBooking_booking on BookingInterface {
 }
 
 fragment OneWayTripWrapper_booking on BookingOneWay {
+  isPastBooking
   trip {
     departure {
       time
@@ -69,6 +78,7 @@ fragment OneWayTripWrapper_booking on BookingOneWay {
 }
 
 fragment ReturnTripWrapper_booking on BookingReturn {
+  isPastBooking
   outbound {
     departure {
       time
@@ -77,6 +87,7 @@ fragment ReturnTripWrapper_booking on BookingReturn {
 }
 
 fragment MultiCityTripWrapper_booking on BookingMulticity {
+  isPastBooking
   trips {
     departure {
       time
@@ -119,7 +130,7 @@ return {
   "operationKind": "query",
   "name": "BookingStateWrapperNearestQuery",
   "id": null,
-  "text": "query BookingStateWrapperNearestQuery {\n  nearestBooking {\n    __typename\n    id\n    ...HasBooking_booking\n    ... on BookingOneWay {\n      ...OneWayTripWrapper_booking\n    }\n  }\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
+  "text": "query BookingStateWrapperNearestQuery {\n  nearestBooking {\n    __typename\n    id\n    ...HasBooking_booking\n    ... on BookingOneWay {\n      ...OneWayTripWrapper_booking\n    }\n    ... on BookingReturn {\n      ...ReturnTripWrapper_booking\n    }\n    ... on BookingMulticity {\n      ...MultiCityTripWrapper_booking\n    }\n  }\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  isPastBooking\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  isPastBooking\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  isPastBooking\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -142,6 +153,28 @@ return {
             "kind": "FragmentSpread",
             "name": "HasBooking_booking",
             "args": null
+          },
+          {
+            "kind": "InlineFragment",
+            "type": "BookingMulticity",
+            "selections": [
+              {
+                "kind": "FragmentSpread",
+                "name": "MultiCityTripWrapper_booking",
+                "args": null
+              }
+            ]
+          },
+          {
+            "kind": "InlineFragment",
+            "type": "BookingReturn",
+            "selections": [
+              {
+                "kind": "FragmentSpread",
+                "name": "ReturnTripWrapper_booking",
+                "args": null
+              }
+            ]
           },
           {
             "kind": "InlineFragment",
@@ -258,5 +291,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '94b5998437761fa04d7a00a99b4f1ce2';
+(node/*: any*/).hash = '8f4e204836a10f8dde6d52f05ea1a260';
 module.exports = node;
