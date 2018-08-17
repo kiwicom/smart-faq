@@ -20,6 +20,7 @@ module.exports = (on, config) => {
   // `config` is the resolved Cypress config
   require('dotenv').load();
 
+  config.env.KIWILOGIN_USER = process.env.KIWILOGIN_USER;
   config.env.TEST_USER_EMAIL = process.env.TEST_USER_EMAIL;
   config.env.TEST_USER_PASSWORD = process.env.TEST_USER_PASSWORD;
 
