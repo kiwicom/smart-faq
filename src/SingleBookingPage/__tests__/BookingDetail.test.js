@@ -32,7 +32,6 @@ const createBookingStub = (outboundDate, inboundDate) => ({
   status: 'CONFIRMED',
 });
 const defaults = {
-  onSetFAQSection: jest.fn(),
   history: {
     push: jest.fn(),
   },
