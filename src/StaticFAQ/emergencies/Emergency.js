@@ -17,7 +17,7 @@ const style = css`
 `;
 
 const Emergency = ({ emergency }: Props) => (
-  <div className="warning">
+  <div className="warning" data-cy="emergency">
     <Alert type="warning" icon>
       {emergency}
     </Alert>
