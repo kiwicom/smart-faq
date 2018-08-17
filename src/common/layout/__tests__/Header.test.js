@@ -48,7 +48,6 @@ describe('ContentHeader', () => {
       </UserContext.Provider>,
     );
     expect(wrapper.find('.loggedIn')).toHaveLength(1);
-    expect(wrapper.find('.signOut').text()).toEqual('Sign out');
     expect(wrapper).toMatchSnapshot();
   });
 
