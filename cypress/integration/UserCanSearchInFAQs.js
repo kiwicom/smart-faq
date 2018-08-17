@@ -3,8 +3,7 @@
 
 describe('User can search in FAQs', () => {
   beforeEach(() => {
-    cy.visit('/');
-    cy.get('[data-cy=btn-nonexistent-booking]').click();
+    cy.loadStaticFAQ();
   });
 
   it(`The user can write and see a list of FAQ's and reset the input with cross button.`, () => {

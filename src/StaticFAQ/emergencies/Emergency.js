@@ -17,7 +17,7 @@ const style = css`
     position: absolute;
     top: calc(50% - 12px);
   }
-  .text {
+  .emergencyText {
     overflow: hidden;
     max-height: 100%;
     line-height: 1.4;
@@ -30,7 +30,7 @@ const Emergency = ({ emergency }: Props) => (
     <div className="icon">
       <Alert />
     </div>
-    <div className="text">
+    <div className="emergencyText" data-cy="emergency">
       <Text type="secondary" size="small" element="span">
         {emergency}
       </Text>
