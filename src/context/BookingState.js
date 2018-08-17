@@ -4,6 +4,7 @@
 import * as React from 'react';
 
 import type { onLogout } from '../types';
+import { isUrgentBooking } from '../common/booking/utils';
 
 export const getFAQSection = ({
   hasBooking,
@@ -31,8 +32,8 @@ export type FAQSectionType =
 type Props = {
   children: React.Node,
   isPastBooking?: boolean, // eslint-disable-line react/no-unused-prop-types
-  isUrgent?: boolean, // eslint-disable-line react/no-unused-prop-types
-  onLogout: onLogout,
+  hasBooking: boolean,
+  departureTime: ?Date,
 };
 
 type StateValues = {
@@ -40,7 +41,6 @@ type StateValues = {
 };
 
 type StateCallbacks = {
-  onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
   onLogout: onLogout,
 };
 
@@ -61,32 +61,21 @@ export const BookingState = React.createContext({
 class BookingStateProvider extends React.Component<Props, BookingStateType> {
   constructor(props: Props) {
     super(props);
+    const { hasBooking, departureTime, isPastBooking } = props;
+    const isUrgent =
+      isUrgentBooking !== undefined
+        ? isUrgentBooking(isPastBooking === true, departureTime)
+        : undefined;
 
     this.state = {
       ...initialState,
-      onSetFAQSection: this.onSetFAQSection,
-      FAQSection: getFAQSection({ hasBooking: false }),
       onLogout: this.onLogout,
+      FAQSection: getFAQSection({ hasBooking, isUrgent, isPastBooking }),
     };
   }
 
   onLogout = async () => {
     await this.props.onLogout();
-    this.setState({ FAQSection: 'BEFORE_BOOKING' });
-  };
-
-  onSetFAQSection = (isUrgent: boolean, isPastBooking: boolean) => {
-    const section = getFAQSection({
-      isUrgent,
-      isPastBooking,
-      hasBooking: true,
-    });
-
-    this.setState(({ FAQSection }) => {
-      if (FAQSection !== section) {
-        return { FAQSection: section };
-      }
-    });
   };
 
   render() {
