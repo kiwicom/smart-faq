@@ -10,7 +10,6 @@ import { BaggageChecked, Ticket } from '@kiwicom/orbit-components/lib/icons';
 
 import {
   isUrgentBooking,
-  updateFAQSection,
   getDepartureTimeByType,
 } from '../common/booking/utils';
 import OneWayTrip from './bookingTypes/OneWayTrip';
@@ -35,7 +34,6 @@ type ContextProps = {
 
 type ComponentProps = {
   +booking: NearestBooking_booking,
-  onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
 };
 
 type Props = ComponentProps;
@@ -89,14 +87,6 @@ const clickEticket = () =>
   });
 
 class BookingDetail extends React.Component<Props> {
-  componentDidMount() {
-    updateFAQSection(this.props);
-  }
-
-  componentDidUpdate() {
-    updateFAQSection(this.props);
-  }
-
   renderByType = (booking: NearestBooking_booking) => {
     if (booking.type === bookingTypes.ONE_WAY) {
       return <OneWayTrip booking={booking} />;
@@ -210,11 +200,7 @@ class BookingDetail extends React.Component<Props> {
 export const RawBookingDetail = BookingDetail;
 
 const BookingDetailWithFAQHandler = (props: ComponentProps) => (
-  <BookingState.Consumer>
-    {({ onSetFAQSection }: ContextProps) => (
-      <BookingDetail {...props} onSetFAQSection={onSetFAQSection} />
-    )}
-  </BookingState.Consumer>
+  <BookingDetail {...props} />
 );
 
 export default createFragmentContainer(
