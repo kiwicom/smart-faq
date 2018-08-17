@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { graphql, QueryRenderer } from 'react-relay';
+import idx from 'idx';
 
 import { SelectedBooking } from '../context/SelectedBooking';
 import type { SelectedBookingType } from '../context/SelectedBooking';
@@ -13,6 +14,7 @@ import type { BookingStateWrapperSelectedQueryResponse } from './__generated__/B
 import createEnvironment from '../relay/environment';
 import { withLanguage } from '../context/Language';
 import { withLoginToken } from '../context/User';
+import type { onLogout } from '../types';
 
 const nearestBookingQuery = graphql`
   query BookingStateWrapperNearestQuery {
@@ -22,15 +24,29 @@ const nearestBookingQuery = graphql`
       ... on BookingOneWay {
         ...OneWayTripWrapper_booking
       }
+      ... on BookingReturn {
+        ...ReturnTripWrapper_booking
+      }
+      ... on BookingMulticity {
+        ...MultiCityTripWrapper_booking
+      }
     }
   }
 `;
 
 const selectedBookingQuery = graphql`
   query BookingStateWrapperSelectedQuery($id: ID!) {
-    node(id: $id) {
+    booking(id: $id) {
       id
-      ...HasBooking_booking
+      oneWay {
+        ...HasBooking_booking
+      }
+      return {
+        ...HasBooking_booking
+      }
+      multicity {
+        ...HasBooking_booking
+      }
     }
   }
 `;
@@ -46,15 +62,28 @@ type Props = {
   children: React.Node,
   loginToken: ?string,
   locale: string,
+  onLogout: onLogout,
 };
 
-const BookingStateWrapper = ({ children, loginToken, locale }: Props) => {
+const BookingStateWrapper = ({
+  children,
+  loginToken,
+  locale,
+  onLogout,
+}: Props) => {
   const renderBookingStateWrapper = ({ props }: RenderProps) => {
-    const booking = props && (props.nearestBooking || props.node); // eslint-disable-line react/prop-types
+    const booking =
+      props &&
+      (props.nearestBooking || // eslint-disable-line react/prop-types
+        idx(props, _ => _.booking.oneWay) ||
+        idx(props, _ => _.booking.return) ||
+        idx(props, _ => _.booking.multicity)); // eslint-disable-line react/prop-types
     return booking ? (
-      <HasBooking booking={booking}>{children}</HasBooking>
+      <HasBooking onLogout={onLogout} booking={booking}>
+        {children}
+      </HasBooking>
     ) : (
-      <NoBooking>{children}</NoBooking>
+      <NoBooking onLogout={onLogout}>{children}</NoBooking>
     );
   };
   return (
@@ -82,7 +111,7 @@ const BookingStateWrapper = ({ children, loginToken, locale }: Props) => {
         </SelectedBooking.Consumer>
       </UserStatus.LoggedIn>
       <UserStatus.LoggedOut>
-        <NoBooking>{children}</NoBooking>
+        <NoBooking onLogout={onLogout}>{children}</NoBooking>
       </UserStatus.LoggedOut>
     </React.Fragment>
   );
