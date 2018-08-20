@@ -12,7 +12,7 @@ type Props = {|
   changeScreen: (nextScreen: string) => void,
 |};
 const style = css`
-  div.thank-you {
+  div.feedbackMessage {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,7 +32,7 @@ const style = css`
 const ScreenThankyou = (props: Props) => {
   return (
     <Box border="none" borderRadius="4px" backgroundColor="#f5f7f9">
-      <div className="thank-you">
+      <div className="feedbackMessage">
         <div
           className="close-icon"
           onClick={() => props.changeScreen(screensList.INITIAL)}

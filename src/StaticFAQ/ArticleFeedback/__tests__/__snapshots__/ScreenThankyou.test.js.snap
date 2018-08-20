@@ -7,10 +7,10 @@ exports[`ScreenThankyou should match snapshot 1`] = `
   borderRadius="4px"
 >
   <div
-    className="jsx-3762548811 thank-you"
+    className="jsx-2583630550 feedbackMessage"
   >
     <div
-      className="jsx-3762548811 close-icon"
+      className="jsx-2583630550 close-icon"
       onClick={[Function]}
       onKeyUp={null}
       role="button"
@@ -27,7 +27,7 @@ exports[`ScreenThankyou should match snapshot 1`] = `
       Thanks again.
     </WithTheme(Heading)>
     <div
-      className="jsx-3762548811 message-2"
+      className="jsx-2583630550 message-2"
     >
       <WithTheme(Heading)
         type="title3"
@@ -36,8 +36,8 @@ exports[`ScreenThankyou should match snapshot 1`] = `
       </WithTheme(Heading)>
     </div>
     <JSXStyle
-      css="div.thank-you.jsx-3762548811{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:251px;}div.close-icon.jsx-3762548811{position:absolute;top:8px;right:8px;cursor:pointer;}div.message-2.jsx-3762548811{margin-bottom:16.6px;}"
-      styleId="3762548811"
+      css="div.feedbackMessage.jsx-2583630550{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:251px;}div.close-icon.jsx-2583630550{position:absolute;top:8px;right:8px;cursor:pointer;}div.message-2.jsx-2583630550{margin-bottom:16.6px;}"
+      styleId="2583630550"
     />
   </div>
 </Box>

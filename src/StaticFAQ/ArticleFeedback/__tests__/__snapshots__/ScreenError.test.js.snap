@@ -5,10 +5,10 @@ exports[`ScreenError should match snapshot 1`] = `
   class="jsx-4062952819 box"
 >
   <div
-    class="jsx-1340655337 thankYou"
+    class="jsx-2960163256 feedbackMessage"
   >
     <div
-      class="jsx-1340655337 closeIcon"
+      class="jsx-2960163256 closeIcon"
       role="button"
       tabindex="-1"
     >
@@ -26,7 +26,7 @@ exports[`ScreenError should match snapshot 1`] = `
       </svg>
     </div>
     <div
-      class="jsx-1340655337 systemMessage"
+      class="jsx-2960163256 systemMessage"
     >
       <div
         class="Alert__StyledAlert-cJJYQC juWFnr"
