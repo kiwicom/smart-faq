@@ -247,6 +247,8 @@ class Header extends React.Component<Props, State> {
       return;
     }
 
+    const headerHeight = newHeaderHeight || this.state.headerHeight;
+
     const hide = () => {
       this.setState(prevState => {
         const headerHeight = newHeaderHeight || prevState.headerHeight;
@@ -279,7 +281,11 @@ class Header extends React.Component<Props, State> {
       });
     };
 
+    const isOnTop =
+      currentScroll < headerHeight && currentScroll < this.state.lastScroll;
+
     if (distanceScrolled <= tolerance || distanceScrolled < 0) {
+      if (isOnTop) show();
       this.setState({
         lastScroll: currentScroll,
       });
