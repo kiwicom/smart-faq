@@ -76,6 +76,9 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
 
   onClickSelect = (id: number) => {
     this.setState({ bookingPage: 'SINGLE_BOOKING', selectedBooking: id });
+    const Body = document.querySelector('#SmartFAQ_Body');
+    if (!Body) return;
+    Body.dispatchEvent(new Event('scroll'));
   };
 
   onSetFAQSection = (isUrgent: boolean, isPastBooking: boolean) => {
