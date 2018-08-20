@@ -81,7 +81,7 @@ describe('Display Static FAQ', () => {
 
     cy
       .get('[data-cy=faq-article-form]')
-      .find('.thank-you')
+      .find('.feedbackMessage')
       .should('exist');
   });
 
