@@ -16,12 +16,12 @@ import { BookingState } from '../../context/BookingState';
 import type { FAQSectionType } from '../../context/BookingState';
 
 const queryFAQArticleDetail = graphql`
-  query ArticleDetailQuery($id: ID!, $category_id: ID!, $section: FAQSection!) {
+  query ArticleDetailQuery($id: ID!, $category_id: ID!) {
     FAQArticle(id: $id) {
       title
       ...ArticleContent_article
     }
-    FAQCategory(id: $category_id, section: $section) {
+    FAQCategory(id: $category_id) {
       title
       id
       ancestors {
