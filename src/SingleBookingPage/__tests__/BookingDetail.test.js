@@ -5,11 +5,10 @@ import MockDate from 'mockdate';
 import { shallow } from 'enzyme';
 
 import { RawBookingDetail } from '../BookingDetail';
-import Header from '../bookingItem/Header';
 import Notification from '../bookingItem/Notification';
 import Contact from '../bookingItem/Contact';
 
-beforeEach(() => MockDate.set('06/01/2018'));
+beforeEach(() => MockDate.set('06/01/2018 00:00:00'));
 
 afterEach(() => MockDate.reset());
 
@@ -91,16 +90,16 @@ describe('BookingDetail >', () => {
         expect(wrapper.find(Notification).exists()).toBeFalsy();
       }),
     );
+  });
 
-    it('has prop isFuture true when inbound flight is in future and outbound flight date already passed', () => {
-      const wrapper = shallow(
-        <RawBookingDetail
-          {...defaults}
-          booking={bookingBetweenDepartureAndArrival}
-        />,
-      );
-      expect(wrapper.find(Header).props().isFuture).toBeTruthy();
-    });
+  it('has prop isFuture true when inbound flight is in future and outbound flight date already passed', () => {
+    const wrapper = shallow(
+      <RawBookingDetail
+        {...defaults}
+        booking={bookingBetweenDepartureAndArrival}
+      />,
+    );
+    expect(wrapper.find('.upcoming').exists()).toBeTruthy();
   });
 
   describe('Contact', () => {
