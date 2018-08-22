@@ -25,12 +25,7 @@ import { URGENCY_THRESHOLD } from '../helpers/dateUtils';
 import replaceWithCurrentDomain from '../helpers/replaceWithCurrentDomain';
 import type { NearestBooking_booking } from './__generated__/NearestBookingQuery.graphql';
 import FAQExtraInfoButton from '../StaticFAQ/FAQExtraInfo/FAQExtraInfoButton';
-import { BookingState } from '../context/BookingState';
 import features from '../feature-toggles.json';
-
-type ContextProps = {
-  onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
-};
 
 type ComponentProps = {
   +booking: NearestBooking_booking,

@@ -15,6 +15,7 @@ import { withRouter } from 'react-router-dom';
 import { UserContext } from '../context/User';
 import { SearchState } from '../context/SearchState';
 import { SelectedBooking } from '../context/SelectedBooking';
+import { ActiveTab } from '../context/ActiveTab';
 import { CloseContext } from '../context/Close';
 import BackButtonMobile from './BackButtonMobile';
 import MobileNearestBooking from './MobileNearestBooking';
@@ -22,6 +23,7 @@ import MobileSelectedBooking from './MobileSelectedBooking';
 import MobileUserDetail from './MobileUserDetail';
 import type { UserContextType } from '../context/User';
 import type { SearchStateType } from '../context/SearchState';
+import type { TabType } from '../context/ActiveTab';
 
 type MobileBookingPageProps = {|
   +bookingPage: string,
@@ -113,10 +115,6 @@ type State = {
 };
 
 class MobileBookingHeader extends React.Component<Props, State> {
-  state: State = {
-    activeTab: null,
-  };
-
   componentDidMount() {
     this.contextToggleSearch();
   }
@@ -124,33 +122,27 @@ class MobileBookingHeader extends React.Component<Props, State> {
   contextEnableSearch = () => {};
   contextDisableSearch = () => {};
   contextToggleSearch = () => {};
+  contextActivateTab = (tab: TabType) => {}; // eslint-disable-line no-unused-vars
+  contextToggleTab = (tab: TabType) => {}; // eslint-disable-line no-unused-vars
 
-  toggleSearch = () => {
-    if (this.isSearchActive()) {
-      this.setState({
-        activeTab: null,
-      });
+  toggleSearch = activeTab => () => {
+    if (this.isSearchActive(activeTab)) {
+      this.contextActivateTab(null);
       this.contextDisableSearch();
     } else {
-      this.setState({
-        activeTab: 'search',
-      });
+      this.contextActivateTab('search');
       this.props.history.push('/faq/');
       this.contextEnableSearch();
     }
   };
 
   toggleSummary = () => {
-    this.setState(prevState => ({
-      activeTab: prevState.activeTab === 'summary' ? null : 'summary',
-    }));
+    this.contextToggleTab('summary');
     this.contextDisableSearch();
   };
 
   toggleAccount = () => {
-    this.setState(prevState => ({
-      activeTab: prevState.activeTab === 'account' ? null : 'account',
-    }));
+    this.contextToggleTab('account');
     this.contextDisableSearch();
   };
 
@@ -163,132 +155,144 @@ class MobileBookingHeader extends React.Component<Props, State> {
       : this.props.history.goBack();
   };
 
-  isSearchActive() {
+  isSearchActive(activeTab) {
     return (
-      this.state.activeTab === 'search' &&
-      this.props.history.location.pathname === '/faq/'
+      activeTab === 'search' && this.props.history.location.pathname === '/faq/'
     );
   }
 
   render() {
     return (
       <React.Fragment>
-        <SelectedBooking.Consumer>
-          {({ closeAllBooking }) => (
-            <SearchState.Consumer>
-              {({
-                disableSearch,
-                enableSearch,
-                toggleSearch,
-              }: SearchStateType) => {
-                this.contextEnableSearch = enableSearch;
-                this.contextDisableSearch = disableSearch;
-                this.contextToggleSearch = toggleSearch;
-                const { location } = this.props.history;
-                const currentpath = location && location.pathname;
-                const isArticle = currentpath.includes('article/');
-                const hasCategory =
-                  idx(this.props.match, _ => _.params.categoryId) || null;
-                const buttonEvent = eventHandler => () => {
-                  eventHandler();
-                  closeAllBooking();
-                };
+        <ActiveTab.Consumer>
+          {({ activeTab, toggleTab, activateTab }) => (
+            <React.Fragment>
+              <SelectedBooking.Consumer>
+                {({ closeAllBooking }) => (
+                  <SearchState.Consumer>
+                    {({
+                      disableSearch,
+                      enableSearch,
+                      toggleSearch,
+                    }: SearchStateType) => {
+                      this.contextEnableSearch = enableSearch;
+                      this.contextDisableSearch = disableSearch;
+                      this.contextToggleSearch = toggleSearch;
+                      this.contextActivateTab = activateTab;
+                      this.contextToggleTab = toggleTab;
+                      const { location } = this.props.history;
+                      const currentpath = location && location.pathname;
+                      const isArticle = currentpath.includes('article/');
+                      const hasCategory =
+                        idx(this.props.match, _ => _.params.categoryId) || null;
+                      const buttonEvent = eventHandler => () => {
+                        eventHandler();
+                        closeAllBooking();
+                      };
 
-                return (
-                  <div className="MobileBookingHeader">
-                    {isArticle || hasCategory ? (
-                      <div
-                        className="option"
-                        onClick={buttonEvent(this.goBack)}
-                        onKeyUp={buttonEvent(this.goBack)}
-                        role="button"
-                        tabIndex="-1"
-                      >
-                        <BackButtonMobile />
-                      </div>
-                    ) : null}
-                    <div className="option help">
-                      <Text type="primary" weight="bold">
-                        Help
-                      </Text>
-                    </div>
-                    <div
-                      className={
-                        this.isSearchActive() ? 'option active' : 'option'
-                      }
-                      onClick={buttonEvent(this.toggleSearch)}
-                      onKeyDown={buttonEvent(this.toggleSearch)}
-                      role="button"
-                      tabIndex="0"
-                      data-cy="search-button"
-                    >
-                      <Search size="medium" customColor="#45505d" />
-                    </div>
-                    <div
-                      className={
-                        this.state.activeTab === 'summary'
-                          ? 'option active'
-                          : 'option'
-                      }
-                      onClick={buttonEvent(this.toggleSummary)}
-                      onKeyDown={buttonEvent(this.toggleSummary)}
-                      role="button"
-                      tabIndex="0"
-                      data-cy="trip-button"
-                    >
-                      <Trip size="medium" customColor="#45505d" />
-                    </div>
-                    <UserContext.Consumer>
-                      {({ simpleToken }: UserContextType) =>
-                        !simpleToken && (
+                      return (
+                        <div className="MobileBookingHeader">
+                          {isArticle || hasCategory ? (
+                            <div
+                              className="option"
+                              onClick={buttonEvent(this.goBack)}
+                              onKeyUp={buttonEvent(this.goBack)}
+                              role="button"
+                              tabIndex="-1"
+                            >
+                              <BackButtonMobile />
+                            </div>
+                          ) : null}
+                          <div className="option help">
+                            <Text type="primary" weight="bold">
+                              Help
+                            </Text>
+                          </div>
                           <div
                             className={
-                              this.state.activeTab === 'account'
+                              this.isSearchActive(activeTab)
                                 ? 'option active'
                                 : 'option'
                             }
-                            onClick={buttonEvent(this.toggleAccount)}
-                            onKeyDown={buttonEvent(this.toggleAccount)}
+                            onClick={buttonEvent(this.toggleSearch(activeTab))}
+                            onKeyDown={buttonEvent(
+                              this.toggleSearch(activeTab),
+                            )}
                             role="button"
                             tabIndex="0"
+                            data-cy="search-button"
                           >
-                            <AccountCircle
-                              size="medium"
-                              customColor="#45505d"
-                            />
+                            <Search size="medium" customColor="#45505d" />
                           </div>
-                        )
-                      }
-                    </UserContext.Consumer>
-                    <CloseContext.Consumer>
-                      {(onClose: () => void) => (
-                        <div
-                          className="option"
-                          role="button"
-                          tabIndex="0"
-                          onKeyDown={onClose}
-                          onClick={onClose}
-                        >
-                          <Close size="medium" customColor="#45505d" />
+                          <div
+                            className={
+                              activeTab === 'summary'
+                                ? 'option active'
+                                : 'option'
+                            }
+                            onClick={buttonEvent(this.toggleSummary)}
+                            onKeyDown={buttonEvent(this.toggleSummary)}
+                            role="button"
+                            tabIndex="0"
+                            data-cy="trip-button"
+                          >
+                            <Trip size="medium" customColor="#45505d" />
+                          </div>
+                          <UserContext.Consumer>
+                            {({ simpleToken }: UserContextType) =>
+                              !simpleToken && (
+                                <div
+                                  className={
+                                    activeTab === 'account'
+                                      ? 'option active'
+                                      : 'option'
+                                  }
+                                  onClick={buttonEvent(this.toggleAccount)}
+                                  onKeyDown={buttonEvent(this.toggleAccount)}
+                                  role="button"
+                                  tabIndex="0"
+                                >
+                                  <AccountCircle
+                                    size="medium"
+                                    customColor="#45505d"
+                                  />
+                                </div>
+                              )
+                            }
+                          </UserContext.Consumer>
+                          <CloseContext.Consumer>
+                            {(onClose: () => void) => (
+                              <div
+                                className="option"
+                                role="button"
+                                tabIndex="0"
+                                onKeyDown={onClose}
+                                onClick={onClose}
+                              >
+                                <Close size="medium" customColor="#45505d" />
+                              </div>
+                            )}
+                          </CloseContext.Consumer>
                         </div>
-                      )}
-                    </CloseContext.Consumer>
-                  </div>
-                );
-              }}
-            </SearchState.Consumer>
+                      );
+                    }}
+                  </SearchState.Consumer>
+                )}
+              </SelectedBooking.Consumer>
+              {activeTab === 'summary' ? (
+                <div className="openedContent">
+                  <MobileBookingSummary />
+                </div>
+              ) : null}
+              {activeTab === 'account' ? (
+                <div className="openedContent">
+                  <MobileUserDetail />
+                </div>
+              ) : null}
+            </React.Fragment>
           )}
-        </SelectedBooking.Consumer>
-        {this.state.activeTab === 'summary' ? (
-          <div className="openedContent">
-            <MobileBookingSummary />
-          </div>
-        ) : null}
-        {this.state.activeTab === 'account' ? (
-          <div className="openedContent">
-            <MobileUserDetail />
-          </div>
-        ) : null}
+        </ActiveTab.Consumer>
+
         <style jsx>{MobileBookingHeaderStyle}</style>
       </React.Fragment>
     );
