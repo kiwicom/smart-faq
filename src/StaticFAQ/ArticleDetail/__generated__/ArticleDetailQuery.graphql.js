@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash cf85d5f4f0d9e7711179f47b3ec14e2a
+ * @relayHash 20983d7b78de48985077c2a4d627c1e0
  */
 
 /* eslint-disable */
@@ -10,11 +10,9 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type ArticleContent_article$ref = any;
-export type FAQSection = ('BEFORE_BOOKING' | 'PAST_BOOKING' | 'UPCOMING_BOOKING' | 'URGENT_BOOKING' | '%future added value');
 export type ArticleDetailQueryVariables = {|
   id: string,
   category_id: string,
-  section: FAQSection,
 |};
 export type ArticleDetailQueryResponse = {|
   +FAQArticle: ?{|
@@ -37,14 +35,13 @@ export type ArticleDetailQueryResponse = {|
 query ArticleDetailQuery(
   $id: ID!
   $category_id: ID!
-  $section: FAQSection!
 ) {
   FAQArticle(id: $id) {
     title
     ...ArticleContent_article
     id
   }
-  FAQCategory(id: $category_id, section: $section) {
+  FAQCategory(id: $category_id) {
     title
     id
     ancestors {
@@ -74,12 +71,6 @@ var v0 = [
     "kind": "LocalArgument",
     "name": "category_id",
     "type": "ID!",
-    "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
-    "name": "section",
-    "type": "FAQSection!",
     "defaultValue": null
   }
 ],
@@ -116,12 +107,6 @@ v4 = {
       "name": "id",
       "variableName": "category_id",
       "type": "ID!"
-    },
-    {
-      "kind": "Variable",
-      "name": "section",
-      "variableName": "section",
-      "type": "FAQSection"
     }
   ],
   "concreteType": "FAQCategory",
@@ -149,7 +134,7 @@ return {
   "operationKind": "query",
   "name": "ArticleDetailQuery",
   "id": null,
-  "text": "query ArticleDetailQuery(\n  $id: ID!\n  $category_id: ID!\n  $section: FAQSection!\n) {\n  FAQArticle(id: $id) {\n    title\n    ...ArticleContent_article\n    id\n  }\n  FAQCategory(id: $category_id, section: $section) {\n    title\n    id\n    ancestors {\n      id\n      title\n    }\n  }\n}\n\nfragment ArticleContent_article on FAQArticle {\n  id\n  title\n  perex\n  content\n}\n",
+  "text": "query ArticleDetailQuery(\n  $id: ID!\n  $category_id: ID!\n) {\n  FAQArticle(id: $id) {\n    title\n    ...ArticleContent_article\n    id\n  }\n  FAQCategory(id: $category_id) {\n    title\n    id\n    ancestors {\n      id\n      title\n    }\n  }\n}\n\nfragment ArticleContent_article on FAQArticle {\n  id\n  title\n  perex\n  content\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -215,5 +200,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = 'f4320ee608acf164cae8fd611c87dba8';
+(node/*: any*/).hash = '2e5d902c236f47cc2a17f958a733962d';
 module.exports = node;
