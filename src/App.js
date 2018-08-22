@@ -19,6 +19,7 @@ import { UserContext } from './context/User';
 import type { UserContextType } from './context/User';
 import SearchStateProvider from './context/SearchState';
 import SelectedBookingProvider from './context/SelectedBooking';
+import ActiveTabProvider from './context/ActiveTab';
 import ExtraInfoStateProvider from './context/ExtraInfoState';
 import Emergencies from './context/Emergencies';
 import { SelectUrlBooking } from './common/integration/urlProcessing';
@@ -139,36 +140,38 @@ class App extends React.PureComponent<Props, State> {
                 <LanguageContext.Provider value={this.props.language}>
                   <CloseContext.Provider value={this.props.onClose}>
                     <UserContext.Provider value={this.state.userContext}>
-                      <SearchStateProvider>
-                        <Emergencies.Provider value={emergencies}>
-                          <SelectedBookingProvider>
-                            <ExtraInfoStateProvider>
-                              {isOpen &&
-                                route && (
-                                  <EventListener
-                                    target="window"
-                                    onKeydown={withOptions(this.onKeyDown, {
-                                      capture: true,
-                                    })}
-                                  >
-                                    <SelectUrlBooking
-                                      wasSelected={
-                                        this.state.urlBookingWasSelected
-                                      }
-                                      setSelected={this.urlBookingSelected}
-                                    />
-
-                                    <BookingStateWrapper
-                                      onLogout={this.props.onLogout}
+                      <ActiveTabProvider>
+                        <SearchStateProvider>
+                          <Emergencies.Provider value={emergencies}>
+                            <SelectedBookingProvider>
+                              <ExtraInfoStateProvider>
+                                {isOpen &&
+                                  route && (
+                                    <EventListener
+                                      target="window"
+                                      onKeydown={withOptions(this.onKeyDown, {
+                                        capture: true,
+                                      })}
                                     >
-                                      <Routes route={route} />
-                                    </BookingStateWrapper>
-                                  </EventListener>
-                                )}
-                            </ExtraInfoStateProvider>
-                          </SelectedBookingProvider>
-                        </Emergencies.Provider>
-                      </SearchStateProvider>
+                                      <SelectUrlBooking
+                                        wasSelected={
+                                          this.state.urlBookingWasSelected
+                                        }
+                                        setSelected={this.urlBookingSelected}
+                                      />
+
+                                      <BookingStateWrapper
+                                        onLogout={this.props.onLogout}
+                                      >
+                                        <Routes route={route} />
+                                      </BookingStateWrapper>
+                                    </EventListener>
+                                  )}
+                              </ExtraInfoStateProvider>
+                            </SelectedBookingProvider>
+                          </Emergencies.Provider>
+                        </SearchStateProvider>
+                      </ActiveTabProvider>
                     </UserContext.Provider>
                   </CloseContext.Provider>
                 </LanguageContext.Provider>
