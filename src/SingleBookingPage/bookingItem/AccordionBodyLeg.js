@@ -71,20 +71,20 @@ const AccordionBodyLeg = (props: LegProps) => {
     <React.Fragment>
       <div className="leg">
         <div className="calendarIcon">
-          <Calendar customColor="#2f363c" size="medium" />
+          <Calendar customColor="#2f363c" height="20" />
         </div>
         <div className="date">
           {FormatDate({ dateString: initialDeparture })}
         </div>
         <AccordionLegCities leg={props.leg} />
         <div className="layover">
-          <Clock customColor="#7c8b99" size="medium" />
+          <Clock customColor="#7c8b99" height="16" />
           <span className="text">
             {formatTimeDuration(layoverTime)} layover
           </span>
         </div>
         <div className="guarantee">
-          <Check customColor="#01bba5" size="medium" />
+          <Check customColor="#01bba5" height="23" />
           <Link
             to="/faq/search/article/RkFRQXJ0aWNsZToxNDY="
             style={{ textDecoration: 'none' }}

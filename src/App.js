@@ -6,6 +6,7 @@ import css from 'styled-jsx/css';
 import classNames from 'classnames';
 import { I18nextProvider } from 'react-i18next';
 import 'url-search-params-polyfill';
+import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
 import EventListener, { withOptions } from 'react-event-listener';
 import FocusTrap from 'react-focus-trap';
 
@@ -25,7 +26,6 @@ import ErrorBoundary from './common/ErrorBoundary';
 import { EnterTracker, TimeTracker } from './helpers/analytics/trackers';
 import type { onLogin, onLogout, onSocialLogin, User } from './types';
 import MobileSafariScroll from './helpers/MobileSafariScroll';
-import ThemeProvider from './common/ThemeProvider';
 
 const style = css`
   .smartFAQ {

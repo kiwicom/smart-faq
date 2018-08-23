@@ -26,15 +26,15 @@ const LegTypeIcon = (props: IconProps) => {
   let icon;
   switch (type) {
     case bookingLegTypes.AIRCRAFT:
-      icon = <AirplaneDown customColor="#adb9c5" size="medium" />;
+      icon = <AirplaneDown customColor="#adb9c5" height="12" />;
       break;
 
     case bookingLegTypes.TRAIN:
-      icon = <Train customColor="#00a991" size="medium" />;
+      icon = <Train customColor="#00a991" height="12" />;
       break;
 
     case bookingLegTypes.BUS:
-      icon = <Bus customColor="#00a991" size="medium" />;
+      icon = <Bus customColor="#00a991" height="12" />;
       break;
 
     default:

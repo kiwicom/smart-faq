@@ -11,22 +11,22 @@ exports[`ScreenInitial should match snapshot 1`] = `
   <div
     className="jsx-3628750341 question"
   >
-    <Text
+    <WithTheme(Text)
       type="secondary"
     >
       Didn't find the answer you were looking for?
-    </Text>
+    </WithTheme(Text)>
   </div>
   <div
     className="jsx-3628750341 button"
   >
-    <Button
+    <WithTheme(Button)
       onClick={[Function]}
       type="secondary"
       width={115}
     >
       Let us know
-    </Button>
+    </WithTheme(Button)>
   </div>
   <JSXStyle
     css="div.question.jsx-3628750341{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-bottom:16px;}.button.jsx-3628750341{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}"
