@@ -41,11 +41,12 @@ describe('User can log into SmartFAQ', () => {
   });
 
   it('should display past bookings', () => {
+    cy.wait(2000);
     cy
       .get('[data-cy=past-bookings]')
       .find('[data-cy=booking-card]')
       .first()
-      .click();
+      .click({ force: true });
 
     cy
       .get('[data-cy=booking-type]')
