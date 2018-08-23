@@ -154,14 +154,14 @@ class MobileBookingHeader extends React.Component<Props, State> {
     this.contextDisableSearch();
   };
 
-  goBack() {
+  goBack = () => {
     const { entries } = this.props.history;
     const firstEntry = entries[0];
     const faqCategory = firstEntry.pathname.split('article')[0];
     return firstEntry.pathname === location.pathname
       ? this.props.history.push(faqCategory)
       : this.props.history.goBack();
-  }
+  };
 
   isSearchActive() {
     return (
