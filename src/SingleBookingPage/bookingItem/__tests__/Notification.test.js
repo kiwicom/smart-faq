@@ -2,13 +2,16 @@
 
 import * as React from 'react';
 import { render } from 'enzyme';
+import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
 
 import { RawNotification } from '../Notification';
 
 describe('Notification', () => {
   it('should render', () => {
     const wrapper = render(
-      <RawNotification isUrgent hoursLeft={25} t={() => 'h'} />,
+      <ThemeProvider>
+        <RawNotification isUrgent hoursLeft={25} t={() => 'h'} />
+      </ThemeProvider>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -16,7 +19,9 @@ describe('Notification', () => {
 
   it('should show warning when message is urgent', () => {
     const wrapper = render(
-      <RawNotification isUrgent hoursLeft={25} t={() => 'h'} />,
+      <ThemeProvider>
+        <RawNotification isUrgent hoursLeft={25} t={() => 'h'} />
+      </ThemeProvider>,
     );
 
     expect(wrapper.text()).toContain(
@@ -26,7 +31,9 @@ describe('Notification', () => {
 
   it('should show just info when it is not urgent', () => {
     const wrapper = render(
-      <RawNotification isUrgent={false} hoursLeft={62} t={() => 'h'} />,
+      <ThemeProvider>
+        <RawNotification isUrgent={false} hoursLeft={62} t={() => 'h'} />
+      </ThemeProvider>,
     );
 
     expect(wrapper.text()).toContain(

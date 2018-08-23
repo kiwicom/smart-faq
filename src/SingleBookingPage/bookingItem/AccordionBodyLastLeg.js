@@ -55,7 +55,7 @@ const AccordionLastLeg = (props: LastLegProps) => {
     <React.Fragment>
       <div className="lastLeg">
         <div className="calendarIcon">
-          <Calendar customColor="#2f363c" size="medium" />
+          <Calendar customColor="#2f363c" height="20" />
         </div>
         <div className="date">
           {FormatDate({ dateString: initialDeparture })}

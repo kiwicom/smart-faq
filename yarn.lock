@@ -371,19 +371,20 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@kiwicom/babel-plugin-orbit-components/-/babel-plugin-orbit-components-1.0.0.tgz#f2666a55194d9b717d6cb4bb83ba0e9c2cda2500"
 
-"@kiwicom/orbit-components@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.7.0.tgz#0a36770634fd9abe25ca3353724da886685e88b7"
+"@kiwicom/orbit-components@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.2.0.tgz#5f60322781774640b9fa67468e00bab51c4f3acb"
   dependencies:
-    "@kiwicom/orbit-design-tokens" "^0.1.3"
+    "@kiwicom/orbit-design-tokens" "^0.1.1"
     "@sambego/storybook-styles" "^1.0.0"
     classnames "^2.2.5"
     polished "^1.9.2"
     react-create-component-from-tag-prop "^1.3.1"
     react-icon-base "^2.1.2"
     react-icons "^2.2.7"
+    theming "^1.3.0"
 
-"@kiwicom/orbit-design-tokens@^0.1.3":
+"@kiwicom/orbit-design-tokens@^0.1.1":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@kiwicom/orbit-design-tokens/-/orbit-design-tokens-0.1.3.tgz#42c5ceccdd061508203edf6aa25784f31a65c96b"
 
@@ -2104,6 +2105,10 @@ braces@^2.3.0, braces@^2.3.1:
     snapdragon-node "^2.0.1"
     split-string "^3.0.2"
     to-regex "^3.0.1"
+
+brcast@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/brcast/-/brcast-3.0.1.tgz#6256a8349b20de9eed44257a9b24d71493cd48dd"
 
 brorand@^1.0.1:
   version "1.1.0"
@@ -6132,6 +6137,10 @@ is-fullwidth-code-point@^1.0.0:
 is-fullwidth-code-point@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/is-fullwidth-code-point/-/is-fullwidth-code-point-2.0.0.tgz#a3b30a5c4f199183167aaab93beefae3ddfb654f"
+
+is-function@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/is-function/-/is-function-1.0.1.tgz#12cfb98b65b57dd3d193a3121f5f6e2f437602b5"
 
 is-generator-fn@^1.0.0:
   version "1.0.0"
@@ -10910,6 +10919,15 @@ text-table@^0.2.0, text-table@~0.2.0:
 textextensions@2:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/textextensions/-/textextensions-2.2.0.tgz#38ac676151285b658654581987a0ce1a4490d286"
+
+theming@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/theming/-/theming-1.3.0.tgz#286d5bae80be890d0adc645e5ca0498723725bdc"
+  dependencies:
+    brcast "^3.0.1"
+    is-function "^1.0.1"
+    is-plain-object "^2.0.1"
+    prop-types "^15.5.8"
 
 throat@^4.0.0:
   version "4.1.0"
