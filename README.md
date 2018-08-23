@@ -178,3 +178,4 @@ These are the events being recorded. Note that additionally to these attributes 
   - Enter Article: `{ action: "clickOnArticle", articleId:"id of article", articleName:"article title"}`
   - Close Article: `{ action: "articleClose", articleId:"id of article", articleName:"article title", timeOpen: "time it remained open"}`
   - Click on "Let us know" feedback button: `{ action: "clickOnLetUsKnow" }`
+
