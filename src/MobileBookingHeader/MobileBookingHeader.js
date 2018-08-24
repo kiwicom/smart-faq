@@ -14,7 +14,7 @@ import { withRouter } from 'react-router-dom';
 
 import { UserContext } from '../context/User';
 import { SearchState } from '../context/SearchState';
-import { BookingState } from '../context/BookingState';
+import { SelectedBooking } from '../context/SelectedBooking';
 import { CloseContext } from '../context/Close';
 import BackButtonMobile from './BackButtonMobile';
 import MobileNearestBooking from './MobileNearestBooking';
@@ -43,14 +43,14 @@ const MobileBookingPage = (props: MobileBookingPageProps) => {
 
 const MobileBookingSummary = () => (
   <div>
-    <BookingState.Consumer>
+    <SelectedBooking.Consumer>
       {({ bookingPage, selectedBooking }) => (
         <MobileBookingPage
           bookingPage={bookingPage}
           selectedBooking={selectedBooking}
         />
       )}
-    </BookingState.Consumer>
+    </SelectedBooking.Consumer>
   </div>
 );
 
@@ -173,7 +173,7 @@ class MobileBookingHeader extends React.Component<Props, State> {
   render() {
     return (
       <React.Fragment>
-        <BookingState.Consumer>
+        <SelectedBooking.Consumer>
           {({ closeAllBooking }) => (
             <SearchState.Consumer>
               {({
@@ -278,7 +278,7 @@ class MobileBookingHeader extends React.Component<Props, State> {
               }}
             </SearchState.Consumer>
           )}
-        </BookingState.Consumer>
+        </SelectedBooking.Consumer>
         {this.state.activeTab === 'summary' ? (
           <div className="openedContent">
             <MobileBookingSummary />

@@ -11,7 +11,7 @@ import CloseButton from '../buttons/CloseButton';
 import BackButton from '../buttons/BackButton';
 import SignOutButton from './SignOutButton';
 import { UserContext } from '../../context/User';
-import { BookingState } from '../../context/BookingState';
+import { SelectedBooking } from '../../context/SelectedBooking';
 import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
 import MobileBookingHeader from '../../MobileBookingHeader/MobileBookingHeader';
 import type { UserContextType } from '../../context/User';
@@ -142,7 +142,7 @@ const renderLoggedIn = () => {
   return (
     <React.Fragment>
       <div className="loggedIn">
-        <BookingState.Consumer>
+        <SelectedBooking.Consumer>
           {({ bookingPage }) => (
             <div className="helpHeader">
               {bookingPage === 'ALL_BOOKINGS' ? (
@@ -155,7 +155,7 @@ const renderLoggedIn = () => {
               )}
             </div>
           )}
-        </BookingState.Consumer>
+        </SelectedBooking.Consumer>
         <Desktop>
           <div className="staticFaqSearch">
             <SearchBar />
@@ -314,6 +314,21 @@ class Header extends React.Component<Props, State> {
           <Desktop>
             <CloseButton height="24" />
           </Desktop>
+          <SelectedBooking.Consumer>
+            {({ bookingPage }) =>
+              bookingPage === 'ALL_BOOKINGS' ? (
+                <Desktop>
+                  <div className="closeButton">
+                    <CloseButton height="24" />
+                  </div>
+                </Desktop>
+              ) : (
+                <div className="closeButton">
+                  <CloseButton height="24" />
+                </div>
+              )
+            }
+          </SelectedBooking.Consumer>
           <UserContext.Consumer>
             {({ simpleToken, loginToken }: UserContextType) =>
               simpleToken || loginToken

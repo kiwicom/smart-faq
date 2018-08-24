@@ -18,7 +18,7 @@ import { LanguageContext } from './context/Language';
 import { UserContext } from './context/User';
 import type { UserContextType } from './context/User';
 import SearchStateProvider from './context/SearchState';
-import BookingStateProvider from './context/BookingState';
+import SelectedBookingProvider from './context/SelectedBooking';
 import ExtraInfoStateProvider from './context/ExtraInfoState';
 import Emergencies from './context/Emergencies';
 import { SelectUrlBooking } from './common/integration/urlProcessing';
@@ -26,6 +26,7 @@ import ErrorBoundary from './common/ErrorBoundary';
 import { EnterTracker, TimeTracker } from './helpers/analytics/trackers';
 import type { onLogin, onLogout, onSocialLogin, User } from './types';
 import MobileSafariScroll from './helpers/MobileSafariScroll';
+import BookingStateWrapper from './BookingStateWrapper/BookingStateWrapper';
 
 const style = css`
   .smartFAQ {
@@ -112,7 +113,7 @@ class App extends React.PureComponent<Props, State> {
   };
 
   renderApp() {
-    const { route, emergencies, language, onClose } = this.props;
+    const { route, emergencies } = this.props;
     const isOpen = Boolean(route);
 
     return (
@@ -133,15 +134,15 @@ class App extends React.PureComponent<Props, State> {
             rel="stylesheet"
           />
           <ErrorBoundary>
-            <I18nextProvider i18n={this.i18n}>
-              <LanguageContext.Provider value={language}>
-                <CloseContext.Provider value={onClose}>
-                  <UserContext.Provider value={this.state.userContext}>
-                    <SearchStateProvider>
-                      <BookingStateProvider onLogout={this.props.onLogout}>
-                        <ExtraInfoStateProvider>
-                          <Emergencies.Provider value={emergencies}>
-                            <ThemeProvider>
+            <ThemeProvider>
+              <I18nextProvider i18n={this.i18n}>
+                <LanguageContext.Provider value={this.props.language}>
+                  <CloseContext.Provider value={this.props.onClose}>
+                    <UserContext.Provider value={this.state.userContext}>
+                      <SearchStateProvider>
+                        <Emergencies.Provider value={emergencies}>
+                          <SelectedBookingProvider>
+                            <ExtraInfoStateProvider>
                               {isOpen &&
                                 route && (
                                   <EventListener
@@ -156,18 +157,23 @@ class App extends React.PureComponent<Props, State> {
                                       }
                                       setSelected={this.urlBookingSelected}
                                     />
-                                    <Routes route={route} />
+
+                                    <BookingStateWrapper
+                                      onLogout={this.props.onLogout}
+                                    >
+                                      <Routes route={route} />
+                                    </BookingStateWrapper>
                                   </EventListener>
                                 )}
-                            </ThemeProvider>
-                          </Emergencies.Provider>
-                        </ExtraInfoStateProvider>
-                      </BookingStateProvider>
-                    </SearchStateProvider>
-                  </UserContext.Provider>
-                </CloseContext.Provider>
-              </LanguageContext.Provider>
-            </I18nextProvider>
+                            </ExtraInfoStateProvider>
+                          </SelectedBookingProvider>
+                        </Emergencies.Provider>
+                      </SearchStateProvider>
+                    </UserContext.Provider>
+                  </CloseContext.Provider>
+                </LanguageContext.Provider>
+              </I18nextProvider>
+            </ThemeProvider>
           </ErrorBoundary>
           <style jsx global>
             {style}

@@ -10,7 +10,7 @@ import StaticFAQ from '../../StaticFAQ';
 import Article from '../../StaticFAQ/ArticleDetail/Article';
 import { ScrollableContent } from '../../common';
 import UserStatus from '../../helpers/UserStatus';
-import { BookingState } from '../../context/BookingState';
+import { SelectedBooking } from '../../context/SelectedBooking';
 import BookingPage from './BookingPage';
 
 type Props = {|
@@ -73,7 +73,7 @@ const FAQRoute = ({ history }: Props) => (
 );
 
 const ContentPage = (props: Props) => (
-  <BookingState.Consumer>
+  <SelectedBooking.Consumer>
     {({ bookingPage, selectedBooking }) => (
       <div className="ContentPage">
         <Header />
@@ -114,7 +114,7 @@ const ContentPage = (props: Props) => (
         <style jsx>{styles}</style>
       </div>
     )}
-  </BookingState.Consumer>
+  </SelectedBooking.Consumer>
 );
 
 export default withRouter(ContentPage);
