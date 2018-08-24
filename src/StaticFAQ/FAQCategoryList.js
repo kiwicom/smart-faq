@@ -42,7 +42,7 @@ type ComponentProps = {
 };
 
 type ContainerProps = {
-  section: FAQSectionType,
+  section: ?FAQSectionType,
 };
 
 type Props = ComponentProps & ContainerProps;
@@ -278,10 +278,9 @@ class RawFAQCategoryList extends React.Component<Props> {
 
 const FAQCategoryList = (props: ComponentProps) => (
   <BookingState.Consumer>
-    {({ FAQSection }) => (
-      <RawFAQCategoryList section={FAQSection || 'BEFORE_BOOKING'} {...props} />
-    )}
+    {({ FAQSection }) => {
+      return <RawFAQCategoryList section={FAQSection} {...props} />;
+    }}
   </BookingState.Consumer>
 );
-
 export default withRouter(FAQCategoryList);

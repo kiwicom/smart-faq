@@ -15,6 +15,7 @@ import Routes from './Routes';
 import { CloseContext } from './context/Close';
 import { LanguageContext } from './context/Language';
 import { UserContext } from './context/User';
+import BookingStateProvider from './context/BookingState';
 import type { UserContextType } from './context/User';
 import SearchStateProvider from './context/SearchState';
 import SelectedBookingProvider from './context/SelectedBooking';
@@ -25,7 +26,6 @@ import ErrorBoundary from './common/ErrorBoundary';
 import { EnterTracker, TimeTracker } from './helpers/analytics/trackers';
 import type { AppProps } from './types';
 import MobileSafariScroll from './helpers/MobileSafariScroll';
-import BookingStateWrapper from './BookingStateWrapper/BookingStateWrapper';
 
 const style = css`
   .smartFAQ {
@@ -128,28 +128,28 @@ class App extends React.PureComponent<AppProps, State> {
                     <SearchStateProvider>
                       <Emergencies.Provider value={emergencies}>
                         <SelectedBookingProvider>
-                          <ExtraInfoStateProvider>
-                            {isOpen &&
-                              route && (
-                                <EventListener
-                                  target="window"
-                                  onKeydown={withOptions(this.onKeyDown, {
-                                    capture: true,
-                                  })}
-                                >
-                                  <SelectUrlBooking
-                                    wasSelected={
-                                      this.state.urlBookingWasSelected
-                                    }
-                                    setSelected={this.urlBookingSelected}
-                                  />
+                          <BookingStateProvider onLogout={this.props.onLogout}>
+                            <ExtraInfoStateProvider>
+                              {isOpen &&
+                                route && (
+                                  <EventListener
+                                    target="window"
+                                    onKeydown={withOptions(this.onKeyDown, {
+                                      capture: true,
+                                    })}
+                                  >
+                                    <SelectUrlBooking
+                                      wasSelected={
+                                        this.state.urlBookingWasSelected
+                                      }
+                                      setSelected={this.urlBookingSelected}
+                                    />
 
-                                  <BookingStateWrapper>
                                     <Routes route={route} />
-                                  </BookingStateWrapper>
-                                </EventListener>
-                              )}
-                          </ExtraInfoStateProvider>
+                                  </EventListener>
+                                )}
+                            </ExtraInfoStateProvider>
+                          </BookingStateProvider>
                         </SelectedBookingProvider>
                       </Emergencies.Provider>
                     </SearchStateProvider>

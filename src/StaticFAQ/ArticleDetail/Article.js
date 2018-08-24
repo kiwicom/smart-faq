@@ -60,7 +60,7 @@ type ComponentProps = {
 };
 
 type Props = ComponentProps & {
-  section: FAQSectionType,
+  section: ?FAQSectionType,
 };
 
 const style = css`
@@ -175,10 +175,7 @@ class RawFAQArticleDetail extends React.Component<Props> {
 const Article = (props: ComponentProps) => (
   <BookingState.Consumer>
     {({ FAQSection }) => (
-      <RawFAQArticleDetail
-        section={FAQSection || 'BEFORE_BOOKING'}
-        {...props}
-      />
+      <RawFAQArticleDetail section={FAQSection} {...props} />
     )}
   </BookingState.Consumer>
 );
