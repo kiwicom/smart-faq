@@ -4,6 +4,8 @@
 import * as React from 'react';
 
 import type { onLogout } from '../types';
+import { UserContext } from './User';
+import type { UserContextType } from './User';
 
 export const getFAQSection = ({
   hasBooking,
@@ -105,11 +107,11 @@ export const withLogout = <Props>(
 ) =>
   function withLogoutHOC(props: Props) {
     return (
-      <BookingState.Consumer>
-        {({ onLogout }: BookingStateType) => (
+      <UserContext.Consumer>
+        {({ onLogout }: UserContextType) => (
           <Component {...props} onLogout={onLogout} />
         )}
-      </BookingState.Consumer>
+      </UserContext.Consumer>
     );
   };
 

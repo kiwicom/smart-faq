@@ -65,8 +65,8 @@ class App extends React.PureComponent<AppProps, State> {
       userContext: {
         user: nextProps.user,
         onLogin: nextProps.onLogin,
-        onSocialLogin: nextProps.onSocialLogin,
         onLogout: nextProps.onLogout,
+        onSocialLogin: nextProps.onSocialLogin,
         loginToken: nextProps.loginToken,
         simpleToken: nextProps.simpleToken,
       },
@@ -82,6 +82,7 @@ class App extends React.PureComponent<AppProps, State> {
       userContext: {
         user: props.user,
         onLogin: props.onLogin,
+        onLogout: props.onLogout,
         onSocialLogin: props.onSocialLogin,
         loginToken: props.loginToken,
         simpleToken: props.simpleToken,
@@ -143,9 +144,7 @@ class App extends React.PureComponent<AppProps, State> {
                                     setSelected={this.urlBookingSelected}
                                   />
 
-                                  <BookingStateWrapper
-                                    onLogout={this.props.onLogout}
-                                  >
+                                  <BookingStateWrapper>
                                     <Routes route={route} />
                                   </BookingStateWrapper>
                                 </EventListener>
