@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { shallow, render } from 'enzyme';
-import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
 
 import { RawCarrierLogoWrapper } from '../CarrierLogoWrapper';
 
@@ -48,11 +47,7 @@ describe('CarrierLogoWrapper', () => {
   });
 
   it('should render logo with two carriers', () => {
-    const wrapper = render(
-      <ThemeProvider>
-        <RawCarrierLogoWrapper legs={legs} />
-      </ThemeProvider>,
-    );
+    const wrapper = render(<RawCarrierLogoWrapper legs={legs} />);
 
     expect(wrapper.find('img')).toHaveLength(2);
   });

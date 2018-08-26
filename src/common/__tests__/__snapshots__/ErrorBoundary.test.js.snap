@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ErrorBoundary should render normally 1`] = `
-<ThemeProvider>
-  <ThemeProvider
+
+
     theme={
       Object {
         "backgroundAlertCritical": "#fae8e8",
@@ -328,13 +328,13 @@ exports[`ErrorBoundary should render normally 1`] = `
         This is not an error
       </h1>
     </ErrorBoundaryProvider>
-  </ThemeProvider>
-</ThemeProvider>
+
+
 `;
 
 exports[`ErrorBoundary should throw an error 1`] = `
-<ThemeProvider>
-  <ThemeProvider
+
+
     theme={
       Object {
         "backgroundAlertCritical": "#fae8e8",
@@ -2785,6 +2785,6 @@ exports[`ErrorBoundary should throw an error 1`] = `
         </div>
       </ErrorMessage>
     </ErrorBoundaryProvider>
-  </ThemeProvider>
-</ThemeProvider>
+
+
 `;
