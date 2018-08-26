@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DateAndPassenger should render correctly 1`] = `
-<ThemeProvider
+
   theme={
     Object {
       "backgroundAlertCritical": "#fae8e8",
@@ -339,5 +339,5 @@ exports[`DateAndPassenger should render correctly 1`] = `
     }
     t={[Function]}
   />
-</ThemeProvider>
+
 `;

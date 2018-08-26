@@ -6,7 +6,6 @@ import css from 'styled-jsx/css';
 import classNames from 'classnames';
 import { I18nextProvider } from 'react-i18next';
 import 'url-search-params-polyfill';
-import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
 import EventListener, { withOptions } from 'react-event-listener';
 import FocusTrap from 'react-focus-trap';
 
@@ -141,25 +140,23 @@ class App extends React.PureComponent<Props, State> {
                       <BookingStateProvider onLogout={this.props.onLogout}>
                         <ExtraInfoStateProvider>
                           <Emergencies.Provider value={emergencies}>
-                            <ThemeProvider>
-                              {isOpen &&
-                                route && (
-                                  <EventListener
-                                    target="window"
-                                    onKeydown={withOptions(this.onKeyDown, {
-                                      capture: true,
-                                    })}
-                                  >
-                                    <SelectUrlBooking
-                                      wasSelected={
-                                        this.state.urlBookingWasSelected
-                                      }
-                                      setSelected={this.urlBookingSelected}
-                                    />
-                                    <Routes route={route} />
-                                  </EventListener>
-                                )}
-                            </ThemeProvider>
+                            {isOpen &&
+                              route && (
+                                <EventListener
+                                  target="window"
+                                  onKeydown={withOptions(this.onKeyDown, {
+                                    capture: true,
+                                  })}
+                                >
+                                  <SelectUrlBooking
+                                    wasSelected={
+                                      this.state.urlBookingWasSelected
+                                    }
+                                    setSelected={this.urlBookingSelected}
+                                  />
+                                  <Routes route={route} />
+                                </EventListener>
+                              )}
                           </Emergencies.Provider>
                         </ExtraInfoStateProvider>
                       </BookingStateProvider>
