@@ -38,21 +38,21 @@ exports[`KiwiLogin should match snapshot 1`] = `
       query="(min-width: 480px) and (min-height: 480px)"
       values={Object {}}
     >
-      <WithTheme(Text)
+      <Text
         type="secondary"
       >
         If you have an account with us, just use your credentials to sign in.
-      </WithTheme(Text)>
+      </Text>
     </MediaQuery>
     <MediaQuery
       query="only screen and (max-width: 480px) and (orientation: portrait)"
       values={Object {}}
     >
-      <WithTheme(Text)
+      <Text
         type="secondary"
       >
         If you have an account with us, just use your credentials to sign in.
-      </WithTheme(Text)>
+      </Text>
     </MediaQuery>
     <form
       className="jsx-914440731"
@@ -97,24 +97,24 @@ exports[`KiwiLogin should match snapshot 1`] = `
         className="jsx-914440731 forgotPassword"
         data-cy="link-forgotten-password"
       >
-        <WithTheme(TextLink)
+        <TextLink
           external={false}
           onClick={[Function]}
           type="primary"
         >
           Forgot your password?
-        </WithTheme(TextLink)>
+        </TextLink>
       </div>
       <span
         className="jsx-914440731 signIn"
         data-cy="btn-sign-in"
       >
-        <WithTheme(Button)
+        <Button
           block={true}
           onClick={[Function]}
         >
           Sign In
-        </WithTheme(Button)>
+        </Button>
       </span>
     </form>
   </div>

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 import idx from 'idx';
-import { Calendar } from '@kiwicom/orbit-components/lib/icons';
+import Calendar from '@kiwicom/orbit-components/lib/icons/Calendar';
 
 import LegTypeIcon from './AccordionLegTypeIcon';
 import { FormatDate } from '../../helpers/dateUtils';
@@ -55,7 +55,7 @@ const AccordionLastLeg = (props: LastLegProps) => {
     <React.Fragment>
       <div className="lastLeg">
         <div className="calendarIcon">
-          <Calendar customColor="#2f363c" height="20" />
+          <Calendar customColor="#2f363c" />
         </div>
         <div className="date">
           {FormatDate({ dateString: initialDeparture })}

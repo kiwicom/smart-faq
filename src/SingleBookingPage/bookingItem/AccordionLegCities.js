@@ -4,7 +4,8 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import idx from 'idx';
 import { CarrierLogo } from '@kiwicom/orbit-components';
-import { ShowMore, ShowLess } from '@kiwicom/orbit-components/lib/icons';
+import ShowMore from '@kiwicom/orbit-components/lib/icons/ShowMore';
+import ShowLess from '@kiwicom/orbit-components/lib/icons/ShowLess';
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import LegCitiesInfo from './AccordionLegCitiesInfo';
@@ -169,9 +170,9 @@ class LegCities extends React.Component<Props, State> {
         </div>
         <div className="showMoreIcon">
           {!isExpanded ? (
-            <ShowMore customColor="#94a2b0" size="12" />
+            <ShowMore customColor="#94a2b0" size="small" />
           ) : (
-            <ShowLess customColor="#94a2b0" size="12" />
+            <ShowLess customColor="#94a2b0" size="small" />
           )}
         </div>
         <span className="flightLength">

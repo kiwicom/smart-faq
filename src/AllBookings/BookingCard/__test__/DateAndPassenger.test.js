@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { shallow, render } from 'enzyme';
-import ThemeProvider from '@kiwicom/orbit-components/lib/Theming/ThemeProvider';
 
 import { DateAndPassenger } from '../DateAndPassenger';
 import { formatDepartureDate } from '../../../helpers/dateUtils';
@@ -24,13 +23,11 @@ describe('DateAndPassenger', () => {
   it('should render correctly', () => {
     expect(
       shallow(
-        <ThemeProvider>
-          <DateAndPassenger
-            departure={departure}
-            t={translate}
-            booking={booking}
-          />
-        </ThemeProvider>,
+        <DateAndPassenger
+          departure={departure}
+          t={translate}
+          booking={booking}
+        />,
       ),
     ).toMatchSnapshot();
   });
@@ -48,13 +45,11 @@ describe('DateAndPassenger', () => {
 
   it('should show correct date format', () => {
     const wrapper = render(
-      <ThemeProvider>
-        <DateAndPassenger
-          departure={departure}
-          t={translate}
-          booking={booking}
-        />
-      </ThemeProvider>,
+      <DateAndPassenger
+        departure={departure}
+        t={translate}
+        booking={booking}
+      />,
     );
     const time = departure.time;
     const formatedDate = formatDepartureDate(time);
