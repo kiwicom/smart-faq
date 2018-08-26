@@ -64,6 +64,24 @@ the squashed commit also according to the convention.
 - [DOCs for Phraseapp](https://phraseapp.com/docs/) - where the translations are stored for translators
 - List of all supported languages is defined by file `i18n/languages.js`
 
+## Theming
+
+Use `styled-components`' `ThemeProvider` for `@kiwicom/orbit-components` theming to work. Example:
+
+```js
+import { ThemeProvider } from "styled-components";
+import { getTokens } from "@kiwicom/orbit-components";
+import SmartFAQ from "@kiwicom/smart-faq";
+
+const App = () => (
+  <ThemeProvider theme={{ orbit: getTokens(/* color palette */) }}>
+    <SmartFAQ />
+  </ThemeProvider>
+);
+```
+
+See their [docs](https://orbit.kiwi/guidelines/theming/) for more info.
+
 ### How to use translations in code
 
 - be declarative & use `Trans` component whenever it's possible:
