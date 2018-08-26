@@ -1,9 +1,9 @@
 /node_modules/
 /coverage/
+/cypress/
 /dist/
-.env
+.*
 package-lock.json
-.DS_Store
 
 # Logs
 logs
