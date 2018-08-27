@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import { BookingState } from '../../context/BookingState';
+import { SelectedBooking } from '../../context/SelectedBooking';
 
 type Props = {
   wasSelected: boolean,
@@ -38,7 +38,7 @@ class SelectUrlBooking extends React.Component<Props, State> {
     const { selectedBooking } = this.state;
     const { wasSelected, setSelected } = this.props;
     return (
-      <BookingState.Consumer>
+      <SelectedBooking.Consumer>
         {({ onSelectBooking }) => {
           if (selectedBooking && !wasSelected) {
             onSelectBooking(selectedBooking);
@@ -46,7 +46,7 @@ class SelectUrlBooking extends React.Component<Props, State> {
           }
           return null;
         }}
-      </BookingState.Consumer>
+      </SelectedBooking.Consumer>
     );
   }
 }

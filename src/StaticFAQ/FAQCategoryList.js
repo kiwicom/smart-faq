@@ -278,7 +278,9 @@ class RawFAQCategoryList extends React.Component<Props> {
 
 const FAQCategoryList = (props: ComponentProps) => (
   <BookingState.Consumer>
-    {({ FAQSection }) => <RawFAQCategoryList section={FAQSection} {...props} />}
+    {({ FAQSection }) => (
+      <RawFAQCategoryList section={FAQSection || 'BEFORE_BOOKING'} {...props} />
+    )}
   </BookingState.Consumer>
 );
 

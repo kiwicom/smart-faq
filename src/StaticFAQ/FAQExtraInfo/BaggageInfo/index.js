@@ -7,8 +7,8 @@ import { graphql } from 'react-relay';
 import { Text } from '@kiwicom/orbit-components';
 import { Baggages } from '@kiwicom/orbit-components/lib/icons';
 
-import { BookingState } from '../../../context/BookingState';
-import type { BookingStateType } from '../../../context/BookingState';
+import { SelectedBooking } from '../../../context/SelectedBooking';
+import type { SelectedBookingType } from '../../../context/SelectedBooking';
 import BaggageSummary from './BaggageSummary';
 import QueryRenderer from '../../../relay/QueryRenderer';
 import type { BaggageInfoQuery } from './__generated__/BaggageInfoSelectedQuery.graphql';
@@ -95,8 +95,8 @@ class BaggageInfo extends React.Component<Props> {
 
   render() {
     return (
-      <BookingState.Consumer>
-        {({ selectedBooking }: BookingStateType) => {
+      <SelectedBooking.Consumer>
+        {({ selectedBooking }: SelectedBookingType) => {
           return selectedBooking === null ? (
             <QueryRenderer
               query={nearestInfoBaggage}
@@ -112,7 +112,7 @@ class BaggageInfo extends React.Component<Props> {
             />
           );
         }}
-      </BookingState.Consumer>
+      </SelectedBooking.Consumer>
     );
   }
 }

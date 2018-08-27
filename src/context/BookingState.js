@@ -4,10 +4,22 @@
 import * as React from 'react';
 
 import type { onLogout } from '../types';
+import { isUrgentBooking } from '../common/booking/utils';
+
+export const getFAQSection = ({
+  hasBooking,
+  isPastBooking,
+  isUrgent,
+}: BookingStateDescription) => {
+  if (!hasBooking) return 'BEFORE_BOOKING';
+  if (isPastBooking) return 'PAST_BOOKING';
+  if (isUrgent) return 'URGENT_BOOKING';
+
+  return 'UPCOMING_BOOKING';
+};
 
 const initialState = {
-  FAQSection: 'BEFORE_BOOKING',
-  bookingPage: 'SINGLE_BOOKING',
+  FAQSection: null,
   selectedBooking: null,
 };
 
@@ -20,81 +32,50 @@ export type FAQSectionType =
 type Props = {
   children: React.Node,
   onLogout: onLogout,
+  hasBooking: boolean,
+  isPastBooking?: boolean,
+  departureTime: ?Date,
 };
 
 type StateValues = {
-  FAQSection: FAQSectionType,
-  bookingPage: 'SINGLE_BOOKING' | 'ALL_BOOKINGS',
-  selectedBooking: ?number,
+  FAQSection: ?FAQSectionType,
 };
 
 type StateCallbacks = {
-  closeAllBooking: () => void,
-  onDisplayAll: () => void,
-  onSelectBooking: (id: number) => void,
-  onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
   onLogout: onLogout,
+};
+
+type BookingStateDescription = {
+  hasBooking: boolean,
+  isPastBooking?: boolean,
+  isUrgent?: boolean,
 };
 
 export type BookingStateType = StateValues & StateCallbacks;
 
 export const BookingState = React.createContext({
   ...initialState,
-  closeAllBooking: () => {},
-  onDisplayAll: () => {},
-  onSelectBooking: (id: number) => {}, // eslint-disable-line no-unused-vars
-  onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => {}, // eslint-disable-line no-unused-vars
   onLogout: () => Promise.resolve(true),
 });
 
 class BookingStateProvider extends React.Component<Props, BookingStateType> {
   constructor(props: Props) {
     super(props);
+    const { hasBooking, departureTime, isPastBooking } = props;
+    const isUrgent =
+      isUrgentBooking !== undefined
+        ? isUrgentBooking(isPastBooking === true, departureTime)
+        : undefined;
 
     this.state = {
       ...initialState,
-      closeAllBooking: this.closeAllBooking,
       onLogout: this.onLogout,
-      onSelectBooking: this.onClickSelect,
-      onDisplayAll: this.onClickAllBooking,
-      onSetFAQSection: this.onSetFAQSection,
+      FAQSection: getFAQSection({ hasBooking, isUrgent, isPastBooking }),
     };
   }
 
-  closeAllBooking = () => {
-    this.setState({ bookingPage: 'SINGLE_BOOKING' });
-  };
-
   onLogout = async () => {
     await this.props.onLogout();
-    this.setState({ FAQSection: 'BEFORE_BOOKING' });
-  };
-
-  onClickAllBooking = () => {
-    this.setState({ bookingPage: 'ALL_BOOKINGS' });
-  };
-
-  onClickSelect = (id: number) => {
-    this.setState({ bookingPage: 'SINGLE_BOOKING', selectedBooking: id });
-    const Body = document.querySelector('#SmartFAQ_Body');
-    if (!Body) return;
-    Body.dispatchEvent(new Event('scroll'));
-  };
-
-  onSetFAQSection = (isUrgent: boolean, isPastBooking: boolean) => {
-    let section = 'UPCOMING_BOOKING';
-
-    if (isUrgent) {
-      section = 'URGENT_BOOKING';
-    } else if (isPastBooking) {
-      section = 'PAST_BOOKING';
-    }
-
-    this.setState(({ FAQSection }) => {
-      if (FAQSection !== section) {
-        return { FAQSection: section };
-      }
-    });
   };
 
   render() {
