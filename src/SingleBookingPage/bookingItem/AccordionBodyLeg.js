@@ -5,7 +5,9 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import idx from 'idx';
-import { Clock, Check, Calendar } from '@kiwicom/orbit-components/lib/icons';
+import Clock from '@kiwicom/orbit-components/lib/icons/Clock';
+import Check from '@kiwicom/orbit-components/lib/icons/Check';
+import Calendar from '@kiwicom/orbit-components/lib/icons/Calendar';
 
 import LegTypeIcon from './AccordionLegTypeIcon';
 import { FormatDate, formatTimeDuration } from '../../helpers/dateUtils';
@@ -71,20 +73,20 @@ const AccordionBodyLeg = (props: LegProps) => {
     <React.Fragment>
       <div className="leg">
         <div className="calendarIcon">
-          <Calendar customColor="#2f363c" height="20" />
+          <Calendar customColor="#2f363c" size="medium" />
         </div>
         <div className="date">
           {FormatDate({ dateString: initialDeparture })}
         </div>
         <AccordionLegCities leg={props.leg} />
         <div className="layover">
-          <Clock customColor="#7c8b99" height="16" />
+          <Clock customColor="#7c8b99" size="medium" />
           <span className="text">
             {formatTimeDuration(layoverTime)} layover
           </span>
         </div>
         <div className="guarantee">
-          <Check customColor="#01bba5" height="23" />
+          <Check customColor="#01bba5" size="medium" />
           <Link
             to="/faq/search/article/RkFRQXJ0aWNsZToxNDY="
             style={{ textDecoration: 'none' }}

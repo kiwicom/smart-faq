@@ -23,17 +23,17 @@ exports[`ScreenInput should match snapshot 1`] = `
         size="small"
       />
     </div>
-    <WithTheme(Heading)
+    <Heading
       type="title3"
     >
       Your feedback helps us improve.
-    </WithTheme(Heading)>
+    </Heading>
     <div
       className="jsx-892344281 question"
     >
-      <WithTheme(Text)>
+      <Text>
         What problem were you trying to solve?
-      </WithTheme(Text)>
+      </Text>
     </div>
     <div
       className="jsx-892344281 inputArea invalid"
@@ -53,12 +53,12 @@ exports[`ScreenInput should match snapshot 1`] = `
     <div
       className="jsx-892344281 button"
     >
-      <WithTheme(Button)
+      <Button
         onClick={[Function]}
         width={100}
       >
         Submit
-      </WithTheme(Button)>
+      </Button>
     </div>
   </form>
   <JSXStyle
@@ -91,17 +91,17 @@ exports[`ScreenInput should try to submit empty form 1`] = `
         size="small"
       />
     </div>
-    <WithTheme(Heading)
+    <Heading
       type="title3"
     >
       Your feedback helps us improve.
-    </WithTheme(Heading)>
+    </Heading>
     <div
       className="jsx-892344281 question"
     >
-      <WithTheme(Text)>
+      <Text>
         What problem were you trying to solve?
-      </WithTheme(Text)>
+      </Text>
     </div>
     <div
       className="jsx-892344281 inputArea invalid"
@@ -121,12 +121,12 @@ exports[`ScreenInput should try to submit empty form 1`] = `
     <div
       className="jsx-892344281 button"
     >
-      <WithTheme(Button)
+      <Button
         onClick={[Function]}
         width={100}
       >
         Submit
-      </WithTheme(Button)>
+      </Button>
     </div>
   </form>
   <JSXStyle
