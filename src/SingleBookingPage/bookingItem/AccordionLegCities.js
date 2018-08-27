@@ -169,9 +169,9 @@ class LegCities extends React.Component<Props, State> {
         </div>
         <div className="showMoreIcon">
           {!isExpanded ? (
-            <ShowMore customColor="#94a2b0" size="12" />
+            <ShowMore customColor="#94a2b0" size="small" />
           ) : (
-            <ShowLess customColor="#94a2b0" size="12" />
+            <ShowLess customColor="#94a2b0" size="small" />
           )}
         </div>
         <span className="flightLength">

@@ -3,7 +3,9 @@
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
-import { AirplaneDown, Train, Bus } from '@kiwicom/orbit-components/lib/icons';
+import AirplaneDown from '@kiwicom/orbit-components/lib/icons/AirplaneDown';
+import Train from '@kiwicom/orbit-components/lib/icons/Train';
+import Bus from '@kiwicom/orbit-components/lib/icons/Bus';
 
 import type { AccordionLegTypeIcon_leg } from './__generated__/AccordionLegTypeIcon_leg.graphql';
 import bookingLegTypes from '../../common/booking/bookingLegTypes';
@@ -26,15 +28,15 @@ const LegTypeIcon = (props: IconProps) => {
   let icon;
   switch (type) {
     case bookingLegTypes.AIRCRAFT:
-      icon = <AirplaneDown customColor="#adb9c5" height="12" />;
+      icon = <AirplaneDown customColor="#adb9c5" size="small" />;
       break;
 
     case bookingLegTypes.TRAIN:
-      icon = <Train customColor="#00a991" height="12" />;
+      icon = <Train customColor="#00a991" size="small" />;
       break;
 
     case bookingLegTypes.BUS:
-      icon = <Bus customColor="#00a991" height="12" />;
+      icon = <Bus customColor="#00a991" size="small" />;
       break;
 
     default:

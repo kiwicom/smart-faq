@@ -5,7 +5,7 @@ exports[`Notification should render 1`] = `
   class="jsx-253481468 notification"
 >
   <div
-    class="Alert__StyledAlert-cJJYQC juWFnr"
+    class="Alert__StyledAlert-cJJYQC kLEINk"
   >
     <div
       class="Alert__IconContainer-eSlLEA eyJClo"
@@ -27,7 +27,7 @@ exports[`Notification should render 1`] = `
       class="Alert__ContentWrapper-glEZbs cPHqb"
     >
       <div
-        class="Alert__Content-KRSaN flVfCN"
+        class="Alert__Content-KRSaN iWERJM"
       >
         You depart in 25h.
   Don't hesitate to call us if you have an urgent problem.

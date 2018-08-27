@@ -5,7 +5,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { graphql } from 'react-relay';
 import { Text } from '@kiwicom/orbit-components';
-import { Baggages } from '@kiwicom/orbit-components/lib/icons';
+import BaggageSet from '@kiwicom/orbit-components/lib/icons/BaggageSet';
 
 import { BookingState } from '../../../context/BookingState';
 import type { BookingStateType } from '../../../context/BookingState';
@@ -81,7 +81,7 @@ class BaggageInfo extends React.Component<Props> {
     return (
       <div className="baggageCard">
         <div className="iconTitle">
-          <Baggages customColor="black" />
+          <BaggageSet customColor="black" />
         </div>
         <h1 className="title">Your baggage</h1>
         <div className="subtitle">
