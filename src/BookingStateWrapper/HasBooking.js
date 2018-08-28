@@ -38,25 +38,12 @@ export default createFragmentContainer(
       isPastBooking
       ... on BookingOneWay {
         ...OneWayTripWrapper_booking
-        trip {
-          departure {
-            time
-          }
-        }
       }
       ... on BookingReturn {
         ...ReturnTripWrapper_booking
-        outbound {
-          departure {
-            time
-          }
-        }
       }
       ... on BookingMulticity {
         ...MultiCityTripWrapper_booking
-        start {
-          time
-        }
       }
     }
   `,
