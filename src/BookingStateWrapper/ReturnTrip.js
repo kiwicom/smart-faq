@@ -3,11 +3,11 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import BookingStateProvider from '../context/BookingState';
-import HasBooking_booking from './__generated__/HasBooking_booking.graphql';
+import ReturnTripWrapper_booking from './__generated__/ReturnTripWrapper_booking.graphql';
 
 type Props = {
   children: React.Node,
-  +booking: HasBooking_booking,
+  +booking: ReturnTripWrapper_booking,
 };
 
 const ReturnTrip = ({ children, booking }: Props) => (
