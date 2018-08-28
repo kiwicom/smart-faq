@@ -191,11 +191,11 @@ class App extends React.PureComponent<Props, State> {
 }
 const EnterTrackedApp = EnterTracker(App, 'smartFAQ', props => ({
   action: 'clickOnHelp',
-  loggedIn: props ? !!props.user : false,
+  loggedIn: props ? !!props.user || !!props.simpleToken : false,
 }));
 const TimeTrackedApp = TimeTracker(EnterTrackedApp, 'smartFAQ', props => ({
   action: 'close',
-  loggedIn: props ? !!props.user : false,
+  loggedIn: props ? !!props.user || !!props.simpleToken : false,
 }));
 
 export default TimeTrackedApp;
