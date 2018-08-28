@@ -1,7 +1,7 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
         "targets": {
           "browsers": [
@@ -11,14 +11,14 @@
         }
       }
     ],
-    "react",
-    "stage-2"
+    "@babel/preset-react"
   ],
   "plugins": [
     "styled-jsx/babel",
     "@kiwicom/babel-plugin-orbit-components",
-    "transform-runtime",
-    "transform-flow-comments",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-transform-flow-comments",
+    ["@babel/plugin-proposal-class-properties", { "loose": false }],
     "relay",
     [
       "transform-assets-import-to-string",
