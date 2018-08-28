@@ -9,6 +9,7 @@ const initialState = {
   FAQSection: 'BEFORE_BOOKING',
   bookingPage: 'SINGLE_BOOKING',
   selectedBooking: null,
+  userSelectedBooking: false,
 };
 
 export type FAQSectionType =
@@ -18,6 +19,8 @@ export type FAQSectionType =
   | 'PAST_BOOKING';
 
 type Props = {
+  // isOpen required here only to trigger processUrl when opening/closing SmartFAQ
+  isOpen: boolean, // eslint-disable-line react/no-unused-prop-types
   children: React.Node,
   onLogout: onLogout,
 };
@@ -26,6 +29,7 @@ type StateValues = {
   FAQSection: FAQSectionType,
   bookingPage: 'SINGLE_BOOKING' | 'ALL_BOOKINGS',
   selectedBooking: ?number,
+  userSelectedBooking: boolean,
 };
 
 type StateCallbacks = {
@@ -47,7 +51,26 @@ export const BookingState = React.createContext({
   onLogout: () => Promise.resolve(true),
 });
 
+export const processUrl = (selectedBooking: ?number) => {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  const urlMatch = window.location.href.match(
+    /.*(?:kiwi.com|localhost:\d*)\/.*\/(?:account\/bookings|manage)\/(\d*)\?.*$/,
+  );
+  const bookingId = urlMatch && Number(urlMatch[1]);
+  if (bookingId && bookingId !== selectedBooking) {
+    return { selectedBooking: bookingId };
+  }
+  return null;
+};
+
 class BookingStateProvider extends React.Component<Props, BookingStateType> {
+  static getDerivedStateFromProps(props: Props, state: BookingStateType) {
+    return state.userSelectedBooking ? null : processUrl(state.selectedBooking);
+  }
+
   constructor(props: Props) {
     super(props);
 
@@ -75,7 +98,11 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
   };
 
   onClickSelect = (id: number) => {
-    this.setState({ bookingPage: 'SINGLE_BOOKING', selectedBooking: id });
+    this.setState({
+      bookingPage: 'SINGLE_BOOKING',
+      selectedBooking: id,
+      userSelectedBooking: true,
+    });
     const Body = document.querySelector('#SmartFAQ_Body');
     if (!Body) return;
     Body.dispatchEvent(new Event('scroll'));
