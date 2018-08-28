@@ -5,7 +5,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { graphql } from 'react-relay';
 import { Text } from '@kiwicom/orbit-components';
-import BaggageSet from '@kiwicom/orbit-components/lib/icons/BaggageSet';
+import BaggageChecked from '@kiwicom/orbit-components/lib/icons/BaggageChecked';
 
 import { BookingState } from '../../../context/BookingState';
 import type { BookingStateType } from '../../../context/BookingState';
@@ -36,8 +36,7 @@ const styles = css`
     display: inline-block;
     font-size: 22px;
     font-weight: 500;
-    line-height: 1.7;
-    vertical-align: bottom;
+    line-height: 1.2;
     color: #171b1e;
   }
   div.subtitle {
@@ -50,7 +49,7 @@ const selectedInfoBaggage = graphql`
   query BaggageInfoSelectedQuery($id: ID!) {
     booking(id: $id) {
       directAccessURL
-      allowedBaggage {
+      unstable_baggage {
         ...BaggageSummary
       }
     }
@@ -61,7 +60,7 @@ const nearestInfoBaggage = graphql`
   query BaggageInfoNearestQuery {
     nearestBooking {
       directAccessURL
-      allowedBaggage {
+      unstable_baggage {
         ...BaggageSummary
       }
     }
@@ -70,9 +69,9 @@ const nearestInfoBaggage = graphql`
 
 class BaggageInfo extends React.Component<Props> {
   renderBaggageCard = (queryProps: QueryProps) => {
-    const baggage =
-      idx(queryProps.props, _ => _.booking.allowedBaggage) ||
-      idx(queryProps.props, _ => _.nearestBooking.allowedBaggage);
+    const unstable_baggage =
+      idx(queryProps.props, _ => _.booking.unstable_baggage) ||
+      idx(queryProps.props, _ => _.nearestBooking.unstable_baggage);
 
     const directAccessURL =
       idx(queryProps.props, _ => _.booking.directAccessURL) ||
@@ -81,13 +80,16 @@ class BaggageInfo extends React.Component<Props> {
     return (
       <div className="baggageCard">
         <div className="iconTitle">
-          <BaggageSet customColor="black" />
+          <BaggageChecked customColor="black" />
         </div>
         <h1 className="title">Your baggage</h1>
         <div className="subtitle">
           <Text type="attention">Here you can see your baggage allowance.</Text>
         </div>
-        <BaggageSummary data={baggage} mmbUrl={directAccessURL} />
+        <BaggageSummary
+          data={unstable_baggage || null}
+          mmbUrl={directAccessURL}
+        />
         <style jsx>{styles}</style>
       </div>
     );

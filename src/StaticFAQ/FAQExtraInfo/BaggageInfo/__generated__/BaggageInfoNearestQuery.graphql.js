@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash cafa2983694c84f346da9e1d5840f71e
+ * @relayHash 149aa17221e6d9493b898fab5f4aa266
  */
 
 /* eslint-disable */
@@ -14,9 +14,9 @@ export type BaggageInfoNearestQueryVariables = {| |};
 export type BaggageInfoNearestQueryResponse = {|
   +nearestBooking: ?{|
     +directAccessURL: ?string,
-    +allowedBaggage: ?{|
+    +unstable_baggage: ?$ReadOnlyArray<?{|
       +$fragmentRefs: BaggageSummary$ref,
-    |},
+    |}>,
   |},
 |};
 */
@@ -27,27 +27,27 @@ query BaggageInfoNearestQuery {
   nearestBooking {
     __typename
     directAccessURL
-    allowedBaggage {
+    unstable_baggage {
       ...BaggageSummary
     }
     id
   }
 }
 
-fragment BaggageSummary on AllowedBaggage {
-  checked {
-    ...BaggageDescription
-  }
-  cabin {
-    ...BaggageDescription
-  }
+fragment BaggageSummary on BookingBaggage {
+  ...BaggageDescription
 }
 
-fragment BaggageDescription on Baggage {
-  height
-  weight
-  width
-  length
+fragment BaggageDescription on BookingBaggage {
+  bag {
+    height
+    weight
+    width
+    length
+    note
+    category
+  }
+  quantity
 }
 */
 
@@ -58,43 +58,13 @@ var v0 = {
   "name": "directAccessURL",
   "args": null,
   "storageKey": null
-},
-v1 = [
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "height",
-    "args": null,
-    "storageKey": null
-  },
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "weight",
-    "args": null,
-    "storageKey": null
-  },
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "width",
-    "args": null,
-    "storageKey": null
-  },
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "length",
-    "args": null,
-    "storageKey": null
-  }
-];
+};
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "BaggageInfoNearestQuery",
   "id": null,
-  "text": "query BaggageInfoNearestQuery {\n  nearestBooking {\n    __typename\n    directAccessURL\n    allowedBaggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on AllowedBaggage {\n  checked {\n    ...BaggageDescription\n  }\n  cabin {\n    ...BaggageDescription\n  }\n}\n\nfragment BaggageDescription on Baggage {\n  height\n  weight\n  width\n  length\n}\n",
+  "text": "query BaggageInfoNearestQuery {\n  nearestBooking {\n    __typename\n    directAccessURL\n    unstable_baggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on BookingBaggage {\n  ...BaggageDescription\n}\n\nfragment BaggageDescription on BookingBaggage {\n  bag {\n    height\n    weight\n    width\n    length\n    note\n    category\n  }\n  quantity\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -116,11 +86,11 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "allowedBaggage",
+            "name": "unstable_baggage",
             "storageKey": null,
             "args": null,
-            "concreteType": "AllowedBaggage",
-            "plural": false,
+            "concreteType": "BookingBaggage",
+            "plural": true,
             "selections": [
               {
                 "kind": "FragmentSpread",
@@ -158,31 +128,71 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "allowedBaggage",
+            "name": "unstable_baggage",
             "storageKey": null,
             "args": null,
-            "concreteType": "AllowedBaggage",
-            "plural": false,
+            "concreteType": "BookingBaggage",
+            "plural": true,
             "selections": [
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "checked",
+                "name": "bag",
                 "storageKey": null,
                 "args": null,
                 "concreteType": "Baggage",
-                "plural": true,
-                "selections": v1
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "height",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "weight",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "width",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "length",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "note",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "category",
+                    "args": null,
+                    "storageKey": null
+                  }
+                ]
               },
               {
-                "kind": "LinkedField",
+                "kind": "ScalarField",
                 "alias": null,
-                "name": "cabin",
-                "storageKey": null,
+                "name": "quantity",
                 "args": null,
-                "concreteType": "Baggage",
-                "plural": true,
-                "selections": v1
+                "storageKey": null
               }
             ]
           },
@@ -199,5 +209,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = 'd627cbd49b0462f965c93de285f0172c';
+(node/*: any*/).hash = '23106cf346ce916e79ef55b4bd4f49e6';
 module.exports = node;

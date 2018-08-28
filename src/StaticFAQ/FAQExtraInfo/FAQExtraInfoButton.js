@@ -16,7 +16,6 @@ import type {
 type Props = {|
   children?: React.Node,
   category: ExtraInfoCategory,
-  categoryId: string,
   history: {
     push: string => void,
     location: {

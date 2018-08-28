@@ -42,8 +42,7 @@ const styles = css`
     display: inline-block;
     font-size: 22px;
     font-weight: 500;
-    line-height: 1.8;
-    vertical-align: bottom;
+    line-height: 1.2;
     color: #171b1e;
     margin: 0;
   }

@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaggageSummary loading screen renders correctly 1`] = `
+<React.Fragment>
+  <hr
+    className="jsx-3371679792 separationLine"
+  />
+  <BaggageLoader />
+  <JSXStyle
+    css=".moreInfo.jsx-3371679792{padding-left:24px;padding-bottom:24px;}.moreInfo.jsx-3371679792 a.jsx-3371679792{color:#00a991;font-size:12px;-webkit-text-decoration:none;text-decoration:none;font-weight:500;}hr.separationLine.jsx-3371679792{height:1px;background-color:#e8edf1;border:none;}"
+    styleId="3371679792"
+  />
+</React.Fragment>
+`;
+
+exports[`BaggageSummary renders correctly 1`] = `
+<React.Fragment>
+  <Relay(BaggageDescription)
+    data={
+      Object {
+        "$fragmentRefs": null,
+        "$refType": null,
+      }
+    }
+    key="0"
+  />
+  <Relay(BaggageDescription)
+    data={
+      Object {
+        "$fragmentRefs": null,
+        "$refType": null,
+      }
+    }
+    key="1"
+  />
+  <div
+    className="jsx-3371679792 moreInfo"
+  >
+    <a
+      className="jsx-3371679792"
+      href="null"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      More Info
+    </a>
+  </div>
+  <JSXStyle
+    css=".moreInfo.jsx-3371679792{padding-left:24px;padding-bottom:24px;}.moreInfo.jsx-3371679792 a.jsx-3371679792{color:#00a991;font-size:12px;-webkit-text-decoration:none;text-decoration:none;font-weight:500;}hr.separationLine.jsx-3371679792{height:1px;background-color:#e8edf1;border:none;}"
+    styleId="3371679792"
+  />
+</React.Fragment>
+`;

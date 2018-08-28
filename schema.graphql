@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com/
-# timestamp: Fri Aug 03 2018 15:54:40 GMT+0200 (CEST)
+# timestamp: Tue Aug 28 2018 14:28:18 GMT+0200 (Central European Summer Time)
 
 schema {
   query: RootQuery
@@ -99,6 +99,13 @@ type Baggage {
   width: Int
   weight: Int
   note: String
+  category: BaggageCategory
+}
+
+enum BaggageCategory {
+  CHECKED
+  PERSONAL_ITEM
+  CABIN_BAG
 }
 
 type BoardingPass {
@@ -189,6 +196,7 @@ type Booking {
   """Date of the booking creation"""
   bookingDate: Date
   allowedBaggage: AllowedBaggage
+  unstable_baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -215,6 +223,9 @@ type Booking {
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
+
+  """Nearest upcoming leg by arrival time."""
+  upcomingLeg: Leg
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
@@ -231,6 +242,12 @@ type BookingAssets {
 
   """Boarding passes for flights in this booking"""
   boardingPasses: [BoardingPass]
+}
+
+type BookingBaggage {
+  quantity: Int
+  passengers: [Passenger]
+  bag: Baggage
 }
 
 type BookingConfirmedTimelineEvent implements TimelineEvent {
@@ -289,6 +306,7 @@ interface BookingInterface {
   """Date of the booking creation"""
   bookingDate: Date
   allowedBaggage: AllowedBaggage
+  unstable_baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -315,6 +333,9 @@ interface BookingInterface {
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
+
+  """Nearest upcoming leg by arrival time."""
+  upcomingLeg: Leg
 }
 
 """A connection to a list of items."""
@@ -350,6 +371,7 @@ type BookingMulticity implements BookingInterface & Node {
   """Date of the booking creation"""
   bookingDate: Date
   allowedBaggage: AllowedBaggage
+  unstable_baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -376,6 +398,9 @@ type BookingMulticity implements BookingInterface & Node {
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
+
+  """Nearest upcoming leg by arrival time."""
+  upcomingLeg: Leg
 
   """Initial origin."""
   start: RouteStop
@@ -405,6 +430,7 @@ type BookingOneWay implements BookingInterface & Node {
   """Date of the booking creation"""
   bookingDate: Date
   allowedBaggage: AllowedBaggage
+  unstable_baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -431,6 +457,9 @@ type BookingOneWay implements BookingInterface & Node {
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
+
+  """Nearest upcoming leg by arrival time."""
+  upcomingLeg: Leg
   trip: Trip
 }
 
@@ -450,6 +479,7 @@ type BookingReturn implements BookingInterface & Node {
   """Date of the booking creation"""
   bookingDate: Date
   allowedBaggage: AllowedBaggage
+  unstable_baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -476,6 +506,9 @@ type BookingReturn implements BookingInterface & Node {
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
+
+  """Nearest upcoming leg by arrival time."""
+  upcomingLeg: Leg
 
   """Trip from origin to destination."""
   outbound: Trip
@@ -530,6 +563,10 @@ type Carrier {
 type CheckinClosingTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
+}
+
+type ChildrenType {
+  age: Int
 }
 
 type Coordinates {
@@ -779,6 +816,14 @@ type CurrencyDetailEdge {
 enum CustomerBookingsOnlyEnum {
   FUTURE
   PAST
+}
+
+type CustomerSupportNumber {
+  """Customer Support phone number locale territory"""
+  localeTerritory: String
+
+  """Customer Support phone number"""
+  number: String
 }
 
 """
@@ -1446,6 +1491,18 @@ type HotelRoomPhotoEdge {
   cursor: String!
 }
 
+type HotelService {
+  relevantLocations: [HotelServiceRelevantLocation]
+  roomsConfiguration: RoomsConfigurationOutput
+}
+
+type HotelServiceRelevantLocation {
+  location: Location
+  hotelCity: HotelCity
+  checkin: Date
+  checkout: Date
+}
+
 input HotelsFilterInput {
   """List of hotels classes (stars) you want to filter."""
   starsRating: [Int]
@@ -1600,7 +1657,6 @@ type Leg {
   id: ID!
   airline: Airline
   operatingAirline: OperatingAirline
-  vehicle: Vehicle
   arrival: RouteStop
   departure: RouteStop
 
@@ -1614,6 +1670,7 @@ type Leg {
 
   """Determines whether Leg is related to return flight."""
   isReturn: Boolean
+  vehicle: Vehicle
   type: VehicleType
 
   """Information about who covers the transfer"""
@@ -1853,6 +1910,13 @@ input PassengerInput {
   documentNumber: String!
 }
 
+input PassengerInsuranceInput {
+  passengerId: Int!
+
+  """New insurance type for passenger"""
+  insuranceType: InsuranceType
+}
+
 input PassengersInput {
   adults: Int!
   infants: Int
@@ -1903,6 +1967,12 @@ input RoomsConfiguration {
   children: [RoomsChildrenConfiguration]
 }
 
+"""Booking.com rooms configuration"""
+type RoomsConfigurationOutput {
+  adultsCount: Int
+  children: [ChildrenType]
+}
+
 """Root Mutation."""
 type RootMutation {
   addFAQArticleComment(
@@ -1923,6 +1993,12 @@ type RootMutation {
     simpleToken: String
     passengers: [PassengerInput!]!
   ): UpdatePassenger
+  refundInsurance(
+    """The global booking id"""
+    id: ID!
+    simpleToken: String!
+    passengers: [PassengerInsuranceInput!]!
+  ): Booking
 }
 
 """Root Query"""
@@ -2074,6 +2150,9 @@ type RootQuery {
     last: Int
   ): BookingInterfaceConnection
 
+  """Get customer support number for your locale"""
+  customerSupportNumber: CustomerSupportNumber
+
   """Retrieve single FAQ article."""
   FAQArticle(
     """ID of FAQ article to retrieve."""
@@ -2161,6 +2240,9 @@ type RouteStop {
 
   """Terminal of the route stop"""
   terminal: String
+
+  """Gate for the route stop"""
+  gate: String
 }
 
 type Services {
@@ -2184,6 +2266,16 @@ interface TimelineEvent {
 type TimeToCheckinTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
+}
+
+type TransportationService {
+  relevantLocations: [TransportationServiceRelevantLocations]
+}
+
+type TransportationServiceRelevantLocations {
+  location: Location
+  whitelabelURL: String
+  date: Date
 }
 
 type TransportFromAirportTimelineEvent implements TimelineEvent {
@@ -2244,4 +2336,6 @@ type WhitelabeledServices {
   lounge: LoungeService
   parking: ParkingService
   carRental: CarRentalService
+  hotel: HotelService
+  transportation: TransportationService
 }
