@@ -14,3 +14,16 @@ export type onLogout = () => Promise<*>;
 export type Provider = 'facebook' | 'google';
 
 export type onSocialLogin = Provider => Promise<*>;
+
+export type AppProps = {|
+  language: string,
+  user: User,
+  loginToken: ?string,
+  route: ?string,
+  simpleToken: ?string,
+  onClose: () => void,
+  onLogin: onLogin,
+  onSocialLogin: onSocialLogin,
+  onLogout: onLogout,
+  emergencies: string[],
+|};
