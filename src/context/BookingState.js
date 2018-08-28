@@ -4,8 +4,6 @@
 import * as React from 'react';
 
 import type { onLogout } from '../types';
-import { UserContext } from './User';
-import type { UserContextType } from './User';
 
 export const getFAQSection = ({
   hasBooking,
@@ -34,6 +32,7 @@ type Props = {
   children: React.Node,
   isPastBooking?: boolean, // eslint-disable-line react/no-unused-prop-types
   isUrgent?: boolean, // eslint-disable-line react/no-unused-prop-types
+  onLogout: onLogout,
 };
 
 type StateValues = {
@@ -42,6 +41,7 @@ type StateValues = {
 
 type StateCallbacks = {
   onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
+  onLogout: onLogout,
 };
 
 type BookingStateDescription = {
@@ -55,6 +55,7 @@ export type BookingStateType = StateValues & StateCallbacks;
 export const BookingState = React.createContext({
   ...initialState,
   onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => {}, // eslint-disable-line no-unused-vars
+  onLogout: () => Promise.resolve(null),
 });
 
 class BookingStateProvider extends React.Component<Props, BookingStateType> {
@@ -65,8 +66,14 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
       ...initialState,
       onSetFAQSection: this.onSetFAQSection,
       FAQSection: getFAQSection({ hasBooking: false }),
+      onLogout: this.onLogout,
     };
   }
+
+  onLogout = async () => {
+    await this.props.onLogout();
+    this.setState({ FAQSection: 'BEFORE_BOOKING' });
+  };
 
   onSetFAQSection = (isUrgent: boolean, isPastBooking: boolean) => {
     const section = getFAQSection({
@@ -91,16 +98,14 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
   }
 }
 
-export const withLogout = <Props>(
-  Component: React.ComponentType<{ onLogout: onLogout } & Props>,
-) =>
+export const withLogout = <Props>(Component: React.ComponentType<{} & Props>) =>
   function withLogoutHOC(props: Props) {
     return (
-      <UserContext.Consumer>
-        {({ onLogout }: UserContextType) => (
+      <BookingState.Consumer>
+        {({ onLogout }: BookingStateType) => (
           <Component {...props} onLogout={onLogout} />
         )}
-      </UserContext.Consumer>
+      </BookingState.Consumer>
     );
   };
 
