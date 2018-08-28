@@ -5,7 +5,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { graphql } from 'react-relay';
 import { Text } from '@kiwicom/orbit-components';
-import { BaggageChecked } from '@kiwicom/orbit-components/lib/icons';
+import BaggageChecked from '@kiwicom/orbit-components/lib/icons/BaggageChecked';
 
 import { BookingState } from '../../../context/BookingState';
 import type { BookingStateType } from '../../../context/BookingState';
