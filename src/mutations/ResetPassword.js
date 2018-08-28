@@ -12,7 +12,7 @@ const mutation = graphql`
   }
 `;
 
-export default (email: string) => {
+export default (email: string): Promise<typeof undefined> => {
   const variables = { email };
   return new Promise((resolve, reject) =>
     commitMutation(createEnvironment(), {
