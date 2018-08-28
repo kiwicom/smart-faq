@@ -171,10 +171,7 @@ class BookingDetail extends React.Component<Props> {
             <p className="iconLabel">Baggage</p>
           </FAQExtraInfoButton>
         )}
-        <FAQExtraInfoButton
-          category="boarding-passes"
-          categoryId="RkFRQ2F0ZWdvcnk6ODQ="
-        >
+        <FAQExtraInfoButton category="boarding-passes">
           <Ticket customColor="#00a991" />
           <p className="iconLabel" data-cy="btn-boarding-passes">
             Boarding passes
