@@ -23,7 +23,7 @@ import Emergencies from './context/Emergencies';
 import { SelectUrlBooking } from './common/integration/urlProcessing';
 import ErrorBoundary from './common/ErrorBoundary';
 import { EnterTracker, TimeTracker } from './helpers/analytics/trackers';
-import type { onLogin, onLogout, onSocialLogin, User } from './types';
+import type { AppProps } from './types';
 import MobileSafariScroll from './helpers/MobileSafariScroll';
 
 const style = css`
@@ -51,28 +51,15 @@ const style = css`
   }
 `;
 
-export type Props = {|
-  language: string,
-  user: User,
-  loginToken: ?string,
-  route: ?string,
-  simpleToken: ?string,
-  onClose: () => void,
-  onLogin: onLogin,
-  onSocialLogin: onSocialLogin,
-  onLogout: onLogout,
-  emergencies: string[],
-|};
-
 type State = {|
   urlBookingWasSelected: boolean,
   userContext: UserContextType,
 |};
 
-class App extends React.PureComponent<Props, State> {
+class App extends React.PureComponent<AppProps, State> {
   i18n: {};
 
-  static getDerivedStateFromProps(nextProps: Props) {
+  static getDerivedStateFromProps(nextProps: AppProps) {
     return {
       userContext: {
         user: nextProps.user,
@@ -85,7 +72,7 @@ class App extends React.PureComponent<Props, State> {
     };
   }
 
-  constructor(props: Props) {
+  constructor(props: AppProps) {
     super(props);
 
     this.i18n = initTranslation(props.language, EnLocale);
