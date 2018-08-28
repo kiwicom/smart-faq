@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f4be7ac4b427824f5b148eda79a4e247
+ * @relayHash fbd25370b3fde427bb1a4a09afb3b4e8
  */
 
 /* eslint-disable */
@@ -16,7 +16,7 @@ export type BaggageInfoSelectedQueryVariables = {|
 export type BaggageInfoSelectedQueryResponse = {|
   +booking: ?{|
     +directAccessURL: ?string,
-    +baggage: ?$ReadOnlyArray<?{|
+    +unstable_baggage: ?$ReadOnlyArray<?{|
       +$fragmentRefs: BaggageSummary$ref,
     |}>,
   |},
@@ -30,7 +30,7 @@ query BaggageInfoSelectedQuery(
 ) {
   booking(id: $id) {
     directAccessURL
-    baggage {
+    unstable_baggage {
       ...BaggageSummary
     }
     id
@@ -83,7 +83,7 @@ return {
   "operationKind": "query",
   "name": "BaggageInfoSelectedQuery",
   "id": null,
-  "text": "query BaggageInfoSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    directAccessURL\n    baggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on BookingBaggage {\n  ...BaggageDescription\n}\n\nfragment BaggageDescription on BookingBaggage {\n  bag {\n    height\n    weight\n    width\n    length\n    note\n    category\n  }\n  quantity\n}\n",
+  "text": "query BaggageInfoSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    directAccessURL\n    unstable_baggage {\n      ...BaggageSummary\n    }\n    id\n  }\n}\n\nfragment BaggageSummary on BookingBaggage {\n  ...BaggageDescription\n}\n\nfragment BaggageDescription on BookingBaggage {\n  bag {\n    height\n    weight\n    width\n    length\n    note\n    category\n  }\n  quantity\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -105,7 +105,7 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "baggage",
+            "name": "unstable_baggage",
             "storageKey": null,
             "args": null,
             "concreteType": "BookingBaggage",
@@ -140,7 +140,7 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "baggage",
+            "name": "unstable_baggage",
             "storageKey": null,
             "args": null,
             "concreteType": "BookingBaggage",
@@ -221,5 +221,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = 'b00a0f61ad5a64a0d109c5f20255bdc8';
+(node/*: any*/).hash = '95e3036e4c4c8a35bcc2fa5ad4301662';
 module.exports = node;
