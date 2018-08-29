@@ -2,13 +2,14 @@
 
 import * as React from 'react';
 
-import type { User, onLogin, onSocialLogin } from '../types';
+import type { User, onLogin, onSocialLogin, onLogout } from '../types';
 
 export type UserContextType = {
   user: User,
   loginToken: ?string,
   simpleToken: ?string,
   onLogin: onLogin,
+  onLogout: onLogout,
   onSocialLogin: onSocialLogin,
 };
 
@@ -19,6 +20,7 @@ export const UserContext = React.createContext(
     simpleToken: null,
     onLogin: (email, password) => Promise.resolve({ email, password }),
     onSocialLogin: provider => Promise.resolve(provider),
+    onLogout: () => Promise.resolve(null),
   }: UserContextType),
 );
 

@@ -7,8 +7,8 @@ import { graphql } from 'react-relay';
 import { Text } from '@kiwicom/orbit-components';
 import { Ticket } from '@kiwicom/orbit-components/lib/icons';
 
-import { BookingState } from '../../../context/BookingState';
-import type { BookingStateType } from '../../../context/BookingState';
+import { SelectedBooking } from '../../../context/SelectedBooking';
+import type { SelectedBookingType } from '../../../context/SelectedBooking';
 import BoardingPassesSummary from './BoardingPassesSummary';
 import QueryRenderer from '../../../relay/QueryRenderer';
 import { UserContext } from '../../../context/User';
@@ -115,8 +115,8 @@ class BoardingPassesInfo extends React.Component<Props> {
 
   render() {
     return (
-      <BookingState.Consumer>
-        {({ selectedBooking }: BookingStateType) => {
+      <SelectedBooking.Consumer>
+        {({ selectedBooking }: SelectedBookingType) => {
           return selectedBooking ? (
             <UserContext.Consumer>
               {({ simpleToken }: UserContextType) => {
@@ -142,7 +142,7 @@ class BoardingPassesInfo extends React.Component<Props> {
             />
           );
         }}
-      </BookingState.Consumer>
+      </SelectedBooking.Consumer>
     );
   }
 }

@@ -15,9 +15,10 @@ import Routes from './Routes';
 import { CloseContext } from './context/Close';
 import { LanguageContext } from './context/Language';
 import { UserContext } from './context/User';
+import BookingStateProvider from './context/BookingState';
 import type { UserContextType } from './context/User';
 import SearchStateProvider from './context/SearchState';
-import BookingStateProvider from './context/BookingState';
+import SelectedBookingProvider from './context/SelectedBooking';
 import ExtraInfoStateProvider from './context/ExtraInfoState';
 import Emergencies from './context/Emergencies';
 import { SelectUrlBooking } from './common/integration/urlProcessing';
@@ -64,8 +65,8 @@ class App extends React.PureComponent<AppProps, State> {
       userContext: {
         user: nextProps.user,
         onLogin: nextProps.onLogin,
-        onSocialLogin: nextProps.onSocialLogin,
         onLogout: nextProps.onLogout,
+        onSocialLogin: nextProps.onSocialLogin,
         loginToken: nextProps.loginToken,
         simpleToken: nextProps.simpleToken,
       },
@@ -81,6 +82,7 @@ class App extends React.PureComponent<AppProps, State> {
       userContext: {
         user: props.user,
         onLogin: props.onLogin,
+        onLogout: props.onLogout,
         onSocialLogin: props.onSocialLogin,
         loginToken: props.loginToken,
         simpleToken: props.simpleToken,
@@ -98,7 +100,7 @@ class App extends React.PureComponent<AppProps, State> {
   };
 
   renderApp() {
-    const { route, emergencies, language, onClose } = this.props;
+    const { route, emergencies } = this.props;
     const isOpen = Boolean(route);
 
     return (
@@ -120,33 +122,36 @@ class App extends React.PureComponent<AppProps, State> {
           />
           <ErrorBoundary>
             <I18nextProvider i18n={this.i18n}>
-              <LanguageContext.Provider value={language}>
-                <CloseContext.Provider value={onClose}>
+              <LanguageContext.Provider value={this.props.language}>
+                <CloseContext.Provider value={this.props.onClose}>
                   <UserContext.Provider value={this.state.userContext}>
                     <SearchStateProvider>
-                      <BookingStateProvider onLogout={this.props.onLogout}>
-                        <ExtraInfoStateProvider>
-                          <Emergencies.Provider value={emergencies}>
-                            {isOpen &&
-                              route && (
-                                <EventListener
-                                  target="window"
-                                  onKeydown={withOptions(this.onKeyDown, {
-                                    capture: true,
-                                  })}
-                                >
-                                  <SelectUrlBooking
-                                    wasSelected={
-                                      this.state.urlBookingWasSelected
-                                    }
-                                    setSelected={this.urlBookingSelected}
-                                  />
-                                  <Routes route={route} />
-                                </EventListener>
-                              )}
-                          </Emergencies.Provider>
-                        </ExtraInfoStateProvider>
-                      </BookingStateProvider>
+                      <Emergencies.Provider value={emergencies}>
+                        <SelectedBookingProvider>
+                          <BookingStateProvider onLogout={this.props.onLogout}>
+                            <ExtraInfoStateProvider>
+                              {isOpen &&
+                                route && (
+                                  <EventListener
+                                    target="window"
+                                    onKeydown={withOptions(this.onKeyDown, {
+                                      capture: true,
+                                    })}
+                                  >
+                                    <SelectUrlBooking
+                                      wasSelected={
+                                        this.state.urlBookingWasSelected
+                                      }
+                                      setSelected={this.urlBookingSelected}
+                                    />
+
+                                    <Routes route={route} />
+                                  </EventListener>
+                                )}
+                            </ExtraInfoStateProvider>
+                          </BookingStateProvider>
+                        </SelectedBookingProvider>
+                      </Emergencies.Provider>
                     </SearchStateProvider>
                   </UserContext.Provider>
                 </CloseContext.Provider>

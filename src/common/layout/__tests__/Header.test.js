@@ -33,6 +33,7 @@ describe('ContentHeader', () => {
     loginToken: 'AAAABBBBCCCC',
     simpleToken: null,
     onLogin: jest.fn(),
+    onLogout: jest.fn(),
     onSocialLogin: jest.fn(),
   };
 

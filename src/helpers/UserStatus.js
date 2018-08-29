@@ -23,12 +23,17 @@ const RequireUserLoggedIn = withSimpleToken(
   }),
 );
 
+type RequireLoggedOutProps = {
+  ...RequireAccountProps,
+  simpleToken: ?string,
+};
+
 const RequireUserLoggedOut = withSimpleToken(
-  withUser((props: RequireLoggedInProps) => {
-    if (props.user || props.simpleToken) {
-      return null;
+  withUser((props: RequireLoggedOutProps) => {
+    if (!props.user && !props.simpleToken) {
+      return props.children;
     }
-    return props.children;
+    return null;
   }),
 );
 

@@ -60,7 +60,7 @@ type ComponentProps = {
 };
 
 type Props = ComponentProps & {
-  section: FAQSectionType,
+  section: ?FAQSectionType,
 };
 
 const style = css`

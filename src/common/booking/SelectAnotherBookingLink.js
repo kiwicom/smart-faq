@@ -5,10 +5,10 @@ import { withRouter } from 'react-router-dom';
 import { TextLink } from '@kiwicom/orbit-components';
 
 import { UserContext } from '../../context/User';
-import { BookingState } from '../../context/BookingState';
+import { SelectedBooking } from '../../context/SelectedBooking';
 import { simpleTracker } from '../../helpers/analytics/trackers';
 import type { UserContextType } from '../../context/User';
-import type { BookingStateType } from '../../context/BookingState';
+import type { SelectedBookingType } from '../../context/SelectedBooking';
 
 type Props = {|
   history: {
@@ -18,8 +18,8 @@ type Props = {|
 
 const SelectAnotherBookingLink = (props: Props) => (
   <React.Fragment>
-    <BookingState.Consumer>
-      {({ onDisplayAll }: BookingStateType) => (
+    <SelectedBooking.Consumer>
+      {({ onDisplayAll }: SelectedBookingType) => (
         <UserContext.Consumer>
           {({ simpleToken, user }: UserContextType) => (
             <div
@@ -45,7 +45,7 @@ const SelectAnotherBookingLink = (props: Props) => (
           )}
         </UserContext.Consumer>
       )}
-    </BookingState.Consumer>
+    </SelectedBooking.Consumer>
     <style jsx>
       {`
         .headerLink {
