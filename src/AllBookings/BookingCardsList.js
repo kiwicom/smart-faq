@@ -10,7 +10,7 @@ import ReturnBooking from './BookingTypes/ReturnBooking';
 import MulticityBooking from './BookingTypes/MulticityBooking';
 import type { BookingCardsList_booking } from './__generated__/BookingCardsList_booking.graphql';
 import { SelectedBooking } from '../context/SelectedBooking';
-import type { SelectedBookingType } from '../context/SelectedBooking';
+import type { State } from '../context/SelectedBooking';
 
 type Props = {
   booking: BookingCardsList_booking,
@@ -56,7 +56,7 @@ const BookingCardsList = (props: Props) => {
 
           return (
             <SelectedBooking.Consumer key={id}>
-              {({ onSelectBooking }: SelectedBookingType) => (
+              {({ onSelectBooking }: State) => (
                 <div
                   onClick={() => onSelectBooking(id)}
                   className="bookingCard"

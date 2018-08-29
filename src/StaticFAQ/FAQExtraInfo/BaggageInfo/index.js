@@ -8,7 +8,7 @@ import { Text } from '@kiwicom/orbit-components';
 import BaggageChecked from '@kiwicom/orbit-components/lib/icons/BaggageChecked';
 
 import { SelectedBooking } from '../../../context/SelectedBooking';
-import type { SelectedBookingType } from '../../../context/SelectedBooking';
+import type { State } from '../../../context/SelectedBooking';
 import BaggageSummary from './BaggageSummary';
 import QueryRenderer from '../../../relay/QueryRenderer';
 import type { BaggageInfoQuery } from './__generated__/BaggageInfoSelectedQuery.graphql';
@@ -98,7 +98,7 @@ class BaggageInfo extends React.Component<Props> {
   render() {
     return (
       <SelectedBooking.Consumer>
-        {({ selectedBooking }: SelectedBookingType) => {
+        {({ selectedBooking }: State) => {
           return selectedBooking === null ? (
             <QueryRenderer
               query={nearestInfoBaggage}
