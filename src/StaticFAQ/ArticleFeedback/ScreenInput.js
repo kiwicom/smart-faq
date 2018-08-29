@@ -41,9 +41,10 @@ const style = css`
     border: solid 1px #bac7d5;
     resize: none;
   }
+  div.inputArea textarea::placeholder {
+    color: #bac7d5;
+  }
   div.button {
-    display: flex;
-    justify-content: flex-start;
     margin-top: 19px;
   }
   div.close-icon {
@@ -122,6 +123,7 @@ class ScreenInput extends React.Component<Props, State> {
               data-gramm_editor="false"
               onChange={this.handleChange}
               value={this.state.comment}
+              placeholder="How could this be better?"
             />
             {error ? <p>You haven't written any feedback.</p> : null}
           </div>
