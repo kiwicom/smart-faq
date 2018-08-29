@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash bce599d5734140f2d4fc00cb1e082da9
+ * @relayHash 37229527f3ff4ac49b96a0414c126a81
  */
 
 /* eslint-disable */
@@ -56,25 +56,12 @@ fragment HasBooking_booking on BookingInterface {
   isPastBooking
   ... on BookingOneWay {
     ...OneWayTripWrapper_booking
-    trip {
-      departure {
-        time
-      }
-    }
   }
   ... on BookingReturn {
     ...ReturnTripWrapper_booking
-    outbound {
-      departure {
-        time
-      }
-    }
   }
   ... on BookingMulticity {
     ...MultiCityTripWrapper_booking
-    start {
-      time
-    }
   }
 }
 
@@ -153,15 +140,6 @@ v5 = {
 },
 v6 = [
   {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "time",
-    "args": null,
-    "storageKey": null
-  }
-],
-v7 = [
-  {
     "kind": "LinkedField",
     "alias": null,
     "name": "departure",
@@ -169,10 +147,18 @@ v7 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v6
+    "selections": [
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "time",
+        "args": null,
+        "storageKey": null
+      }
+    ]
   }
 ],
-v8 = {
+v7 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "trip",
@@ -180,9 +166,9 @@ v8 = {
   "args": null,
   "concreteType": "Trip",
   "plural": false,
-  "selections": v7
+  "selections": v6
 },
-v9 = {
+v8 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "trips",
@@ -190,27 +176,16 @@ v9 = {
   "args": null,
   "concreteType": "Trip",
   "plural": true,
-  "selections": v7
-},
-v10 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "start",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "RouteStop",
-  "plural": false,
   "selections": v6
 },
-v11 = {
+v9 = {
   "kind": "InlineFragment",
   "type": "BookingMulticity",
   "selections": [
-    v9,
-    v10
+    v8
   ]
 },
-v12 = {
+v10 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "outbound",
@@ -218,20 +193,20 @@ v12 = {
   "args": null,
   "concreteType": "Trip",
   "plural": false,
-  "selections": v7
+  "selections": v6
 },
-v13 = {
+v11 = {
   "kind": "InlineFragment",
   "type": "BookingReturn",
   "selections": [
-    v12
+    v10
   ]
 },
-v14 = {
+v12 = {
   "kind": "InlineFragment",
   "type": "BookingOneWay",
   "selections": [
-    v8
+    v7
   ]
 };
 return {
@@ -239,7 +214,7 @@ return {
   "operationKind": "query",
   "name": "BookingStateWrapperSelectedQuery",
   "id": null,
-  "text": "query BookingStateWrapperSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    id\n    oneWay {\n      ...HasBooking_booking\n      id\n    }\n    return {\n      ...HasBooking_booking\n      id\n    }\n    multicity {\n      ...HasBooking_booking\n      id\n    }\n  }\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  isPastBooking\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  isPastBooking\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  isPastBooking\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
+  "text": "query BookingStateWrapperSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    id\n    oneWay {\n      ...HasBooking_booking\n      id\n    }\n    return {\n      ...HasBooking_booking\n      id\n    }\n    multicity {\n      ...HasBooking_booking\n      id\n    }\n  }\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  isPastBooking\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  isPastBooking\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  isPastBooking\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -318,10 +293,10 @@ return {
             "selections": [
               v4,
               v5,
-              v8,
+              v7,
               v2,
-              v11,
-              v13
+              v9,
+              v11
             ]
           },
           {
@@ -335,10 +310,10 @@ return {
             "selections": [
               v4,
               v5,
-              v12,
+              v10,
               v2,
-              v11,
-              v14
+              v9,
+              v12
             ]
           },
           {
@@ -352,11 +327,10 @@ return {
             "selections": [
               v4,
               v5,
-              v9,
-              v10,
+              v8,
               v2,
-              v13,
-              v14
+              v11,
+              v12
             ]
           }
         ]

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 13746e1e1a1048e5282269bcc49343fa
+ * @relayHash e96fc479391254d780b934bea52302f8
  */
 
 /* eslint-disable */
@@ -46,25 +46,12 @@ fragment HasBooking_booking on BookingInterface {
   isPastBooking
   ... on BookingOneWay {
     ...OneWayTripWrapper_booking
-    trip {
-      departure {
-        time
-      }
-    }
   }
   ... on BookingReturn {
     ...ReturnTripWrapper_booking
-    outbound {
-      departure {
-        time
-      }
-    }
   }
   ... on BookingMulticity {
     ...MultiCityTripWrapper_booking
-    start {
-      time
-    }
   }
 }
 
@@ -106,15 +93,6 @@ var v0 = {
 },
 v1 = [
   {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "time",
-    "args": null,
-    "storageKey": null
-  }
-],
-v2 = [
-  {
     "kind": "LinkedField",
     "alias": null,
     "name": "departure",
@@ -122,7 +100,15 @@ v2 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v1
+    "selections": [
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "time",
+        "args": null,
+        "storageKey": null
+      }
+    ]
   }
 ];
 return {
@@ -130,7 +116,7 @@ return {
   "operationKind": "query",
   "name": "BookingStateWrapperNearestQuery",
   "id": null,
-  "text": "query BookingStateWrapperNearestQuery {\n  nearestBooking {\n    __typename\n    id\n    ...HasBooking_booking\n    ... on BookingOneWay {\n      ...OneWayTripWrapper_booking\n    }\n    ... on BookingReturn {\n      ...ReturnTripWrapper_booking\n    }\n    ... on BookingMulticity {\n      ...MultiCityTripWrapper_booking\n    }\n  }\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  isPastBooking\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  isPastBooking\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  isPastBooking\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
+  "text": "query BookingStateWrapperNearestQuery {\n  nearestBooking {\n    __typename\n    id\n    ...HasBooking_booking\n    ... on BookingOneWay {\n      ...OneWayTripWrapper_booking\n    }\n    ... on BookingReturn {\n      ...ReturnTripWrapper_booking\n    }\n    ... on BookingMulticity {\n      ...MultiCityTripWrapper_booking\n    }\n  }\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  isPastBooking\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  isPastBooking\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  isPastBooking\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -239,16 +225,6 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": true,
-                "selections": v2
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "start",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "RouteStop",
-                "plural": false,
                 "selections": v1
               }
             ]
@@ -265,7 +241,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v2
+                "selections": v1
               }
             ]
           },
@@ -281,7 +257,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v2
+                "selections": v1
               }
             ]
           }
