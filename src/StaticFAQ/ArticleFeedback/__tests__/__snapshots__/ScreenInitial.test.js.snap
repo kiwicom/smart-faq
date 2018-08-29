@@ -1,36 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ScreenInitial should match snapshot 1`] = `
-<Box
-  backgroundColor="#f5f7f9"
-  border="none"
-  borderRadius="4px"
-  mobileBackgroundColor="transparent"
-  padding="16px 24px"
+<div
+  className="jsx-1123548225 initial-screen"
 >
-  <div
-    className="jsx-3628750341 question"
+  <p
+    className="jsx-1123548225 question"
   >
-    <Text
-      type="secondary"
+    Was this article helpful?
+  </p>
+  <div
+    className="jsx-1123548225 feedback-button thumb-up"
+    onClick={[Function]}
+  >
+    <ThumbUp
+      customColor="#00a991"
+      size="medium"
+    />
+    <p
+      className="jsx-1123548225"
     >
-      Didn't find the answer you were looking for?
-    </Text>
+      Yes
+    </p>
   </div>
   <div
-    className="jsx-3628750341 button"
+    className="jsx-1123548225 feedback-button thumb-down"
+    onClick={[Function]}
   >
-    <Button
-      onClick={[Function]}
-      type="secondary"
-      width={115}
+    <ThumbDown
+      customColor="#00a991"
+      size="medium"
+    />
+    <p
+      className="jsx-1123548225"
     >
-      Let us know
-    </Button>
+      No
+    </p>
   </div>
   <JSXStyle
-    css="div.question.jsx-3628750341{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-bottom:16px;}.button.jsx-3628750341{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}"
-    styleId="3628750341"
+    css="div.initial-screen.jsx-1123548225{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}p.question.jsx-1123548225{font-size:14px;color:#46515e;}div.feedback-button.jsx-1123548225{color:#00a991;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}div.feedback-button.jsx-1123548225 p.jsx-1123548225{margin-left:9px;font-size:14px;}div.feedback-button.thumb-up.jsx-1123548225{margin-left:23px;}div.feedback-button.thumb-down.jsx-1123548225{margin-left:28px;}"
+    styleId="1123548225"
   />
-</Box>
+</div>
 `;

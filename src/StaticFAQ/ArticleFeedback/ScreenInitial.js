@@ -1,58 +1,60 @@
 // @flow
 
 import * as React from 'react';
-import { Text, Button } from '@kiwicom/orbit-components';
+import css from 'styled-jsx/css';
+import { ThumbUp, ThumbDown } from '@kiwicom/orbit-components/lib/icons';
 
 import screensList from './screensList';
-import Box from '../../common/Box';
-import { simpleTracker } from '../../helpers/analytics/trackers';
 
 type Props = {|
   changeScreen: (nextScreen: string) => void,
 |};
 
+const style = css`
+  div.initial-screen {
+    display: flex;
+    align-items: center;
+  }
+  p.question {
+    font-size: 14px;
+    color: #46515e;
+  }
+  div.feedback-button {
+    color: #00a991;
+    display: flex;
+    align-items: center;
+  }
+  div.feedback-button p {
+    margin-left: 9px;
+    font-size: 14px;
+  }
+  div.feedback-button.thumb-up {
+    margin-left: 23px;
+  }
+  div.feedback-button.thumb-down {
+    margin-left: 28px;
+  }
+`;
+
 const ScreenInitial = (props: Props) => (
-  <Box
-    border="none"
-    padding="16px 24px"
-    borderRadius="4px"
-    backgroundColor="#f5f7f9"
-    mobileBackgroundColor="transparent"
-  >
-    <div className="question">
-      <Text type="secondary">
-        Didn&apos;t find the answer you were looking for?
-      </Text>
+  <div className="initial-screen">
+    <p className="question">Was this article helpful?</p>
+    <div
+      className="feedback-button thumb-up"
+      onClick={() => props.changeScreen(screensList.THANK_YOU)}
+    >
+      <ThumbUp size="medium" customColor="#00a991" />
+      <p>Yes</p>
     </div>
-    <div className="button">
-      <Button
-        type="secondary"
-        width={115}
-        onClick={() => {
-          simpleTracker('smartFAQCategories', {
-            action: 'clickOnLetUsKnow',
-          });
-          props.changeScreen(screensList.INPUT);
-        }}
-      >
-        Let us know
-      </Button>
+    <div
+      className="feedback-button thumb-down"
+      onClick={() => props.changeScreen(screensList.INPUT)}
+    >
+      <ThumbDown size="medium" customColor="#00a991" />
+      <p>No</p>
     </div>
-    <style jsx>
-      {`
-        div.question {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin-bottom: 16px;
-        }
-        .button {
-          display: flex;
-          justify-content: center;
-        }
-      `}
-    </style>
-  </Box>
+    <style jsx>{style}</style>
+  </div>
 );
 
 export default ScreenInitial;
