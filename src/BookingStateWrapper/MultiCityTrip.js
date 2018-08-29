@@ -16,7 +16,6 @@ const MultiCityTrip = ({ children, booking }: Props) => (
     hasBooking
     isPastBooking={booking.isPastBooking}
     departureTime={idx(booking, _ => _.trips[0].departure.time)}
-    onLogout={async () => null}
     booking={{ props: booking, error: null }}
   >
     {children}
