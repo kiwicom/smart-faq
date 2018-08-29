@@ -13,7 +13,6 @@ import type { ArticleDetailQuery } from './__generated__/ArticleDetailQuery.grap
 import type { ArticleDetailSearchResultQuery } from './__generated__/ArticleDetailSearchResultQuery.graphql';
 import CustomBreadcrumbs from '../breadcrumbs/CustomBreadcrumbs';
 import { BookingState } from '../../context/BookingState';
-import type { FAQSectionType } from '../../context/BookingState';
 
 const queryFAQArticleDetail = graphql`
   query ArticleDetailQuery($id: ID!, $category_id: ID!) {
@@ -60,7 +59,6 @@ type ComponentProps = {
 };
 
 type Props = ComponentProps & {
-  section: ?FAQSectionType,
   showGuaranteeChat: boolean,
 };
 
@@ -149,7 +147,6 @@ class RawFAQArticleDetail extends React.Component<Props> {
         variables={{
           id: this.getArticleId(),
           category_id: this.getCategoryId(),
-          section: this.props.section,
         }}
         render={this.renderDetailContent}
       />
@@ -180,14 +177,13 @@ class RawFAQArticleDetail extends React.Component<Props> {
 
 const Article = (props: ComponentProps) => (
   <BookingState.Consumer>
-    {({ FAQSection, showGuaranteeChat }) => {
+    {({ showGuaranteeChat }) => {
       // show Guarantee Chat only in Guarantee article
       const articleId = idx(props.match, _ => _.params.articleId);
       const isInGuaranteeArticle = articleId === GUARANTEE_ARTICLE_ID;
 
       return (
         <RawFAQArticleDetail
-          section={FAQSection}
           showGuaranteeChat={showGuaranteeChat && isInGuaranteeArticle}
           {...props}
         />

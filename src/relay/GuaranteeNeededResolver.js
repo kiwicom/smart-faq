@@ -85,6 +85,8 @@ const WrappedGuaranteeNeededResolver = ({ upcomingLeg }: ComponentProps) => (
   </BookingState.Consumer>
 );
 
+export const UnwrappedGuaranteeNeededResolver = GuaranteeNeededResolver;
+
 export default createFragmentContainer(
   WrappedGuaranteeNeededResolver,
   graphql`

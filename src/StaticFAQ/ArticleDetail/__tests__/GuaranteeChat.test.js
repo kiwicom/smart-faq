@@ -8,8 +8,8 @@ import GuaranteeChat from '../GuaranteeChat';
 
 global.ININ = {
   webchat: {
-    create: jest.fn()
-  }
+    create: jest.fn(),
+  },
 };
 
 describe('GuaranteeChat', () => {
