@@ -8,7 +8,7 @@ import { Text } from '@kiwicom/orbit-components';
 import { Ticket } from '@kiwicom/orbit-components/lib/icons';
 
 import { SelectedBooking } from '../../../context/SelectedBooking';
-import type { SelectedBookingType } from '../../../context/SelectedBooking';
+import type { State } from '../../../context/SelectedBooking';
 import BoardingPassesSummary from './BoardingPassesSummary';
 import QueryRenderer from '../../../relay/QueryRenderer';
 import { UserContext } from '../../../context/User';
@@ -116,7 +116,7 @@ class BoardingPassesInfo extends React.Component<Props> {
   render() {
     return (
       <SelectedBooking.Consumer>
-        {({ selectedBooking }: SelectedBookingType) => {
+        {({ selectedBooking }: State) => {
           return selectedBooking ? (
             <UserContext.Consumer>
               {({ simpleToken }: UserContextType) => {

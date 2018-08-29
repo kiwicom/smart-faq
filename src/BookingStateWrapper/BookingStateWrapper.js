@@ -4,7 +4,7 @@ import * as React from 'react';
 import { graphql, QueryRenderer } from 'react-relay';
 
 import { SelectedBooking } from '../context/SelectedBooking';
-import type { SelectedBookingType } from '../context/SelectedBooking';
+import type { State } from '../context/SelectedBooking';
 import HasBooking from './HasBooking';
 import NoBooking from './NoBooking';
 import UserStatus from '../helpers/UserStatus';
@@ -61,7 +61,7 @@ const BookingStateWrapper = ({ children, loginToken, locale }: Props) => {
     <React.Fragment>
       <UserStatus.LoggedIn>
         <SelectedBooking.Consumer>
-          {({ selectedBooking }: SelectedBookingType) => {
+          {({ selectedBooking }: State) => {
             return selectedBooking === null ? (
               <QueryRenderer
                 cacheConfig={{ force: true }}

@@ -8,7 +8,7 @@ import { UserContext } from '../../context/User';
 import { SelectedBooking } from '../../context/SelectedBooking';
 import { simpleTracker } from '../../helpers/analytics/trackers';
 import type { UserContextType } from '../../context/User';
-import type { SelectedBookingType } from '../../context/SelectedBooking';
+import type { State } from '../../context/SelectedBooking';
 
 type Props = {|
   history: {
@@ -19,7 +19,7 @@ type Props = {|
 const SelectAnotherBookingLink = (props: Props) => (
   <React.Fragment>
     <SelectedBooking.Consumer>
-      {({ onDisplayAll }: SelectedBookingType) => (
+      {({ onDisplayAll }: State) => (
         <UserContext.Consumer>
           {({ simpleToken, user }: UserContextType) => (
             <div
