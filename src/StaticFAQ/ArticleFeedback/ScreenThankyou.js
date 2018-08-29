@@ -11,13 +11,11 @@ import { Box } from '../../common';
 type Props = {|
   changeScreen: (nextScreen: string) => void,
 |};
+
 const style = css`
   div.feedbackMessage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 251px;
+    text-align: center;
+    padding: 32px 83px;
   }
   div.close-icon {
     position: absolute;
@@ -25,10 +23,8 @@ const style = css`
     right: 8px;
     cursor: pointer;
   }
-  div.message-2 {
-    margin-bottom: 16.6px;
-  }
 `;
+
 const ScreenThankyou = (props: Props) => {
   return (
     <Box border="none" borderRadius="4px" backgroundColor="#f5f7f9">
@@ -42,10 +38,7 @@ const ScreenThankyou = (props: Props) => {
         >
           <Close customColor="#bac7d5" size="small" />
         </div>
-        <Heading type="title3">Thanks again.</Heading>
-        <div className="message-2">
-          <Heading type="title3">We appreciate your insight.</Heading>
-        </div>
+        <Heading type="title2">Thanks, we appreciate your insight.</Heading>
         <style jsx>{style}</style>
       </div>
     </Box>
