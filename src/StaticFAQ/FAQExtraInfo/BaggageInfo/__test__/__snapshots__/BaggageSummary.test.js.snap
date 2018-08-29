@@ -38,7 +38,7 @@ exports[`BaggageSummary renders correctly 1`] = `
   >
     <a
       className="jsx-3371679792"
-      href="null"
+      href="http://localhost"
       rel="noopener noreferrer"
       target="_blank"
     >
