@@ -5,6 +5,8 @@ import * as React from 'react';
 
 import type { onLogout } from '../types';
 import { isUrgentBooking } from '../common/booking/utils';
+import { UserContext } from './User';
+import type { UserContextType } from './User';
 
 export const getFAQSection = ({
   hasBooking,
@@ -42,6 +44,8 @@ type StateValues = {
 
 type StateCallbacks = {
   onLogout: onLogout,
+  toggleGuaranteeChat: (showGuaranteeChat: boolean) => void,
+  isChatEnabled: () => boolean,
 };
 
 type BookingStateDescription = {
@@ -54,8 +58,9 @@ export type BookingStateType = StateValues & StateCallbacks;
 
 export const BookingState = React.createContext({
   ...initialState,
-  onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => {}, // eslint-disable-line no-unused-vars
   onLogout: () => Promise.resolve(null),
+  toggleGuaranteeChat: (showGuaranteeChat: boolean) => {}, // eslint-disable-line no-unused-vars
+  isChatEnabled: () => true,
 });
 
 class BookingStateProvider extends React.Component<Props, BookingStateType> {
@@ -70,6 +75,8 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
     this.state = {
       ...initialState,
       onLogout: this.onLogout,
+      toggleGuaranteeChat: this.toggleGuaranteeChat,
+      isChatEnabled: this.isChatEnabled,
       FAQSection: getFAQSection({ hasBooking, isUrgent, isPastBooking }),
     };
   }
@@ -87,14 +94,16 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
   }
 }
 
-export const withLogout = <Props>(Component: React.ComponentType<{} & Props>) =>
+export const withLogout = <Props>(
+  Component: React.ComponentType<{ onLogout: onLogout } & Props>,
+) =>
   function withLogoutHOC(props: Props) {
     return (
-      <BookingState.Consumer>
-        {({ onLogout }: BookingStateType) => (
+      <UserContext.Consumer>
+        {({ onLogout }: UserContextType) => (
           <Component {...props} onLogout={onLogout} />
         )}
-      </BookingState.Consumer>
+      </UserContext.Consumer>
     );
   };
 
