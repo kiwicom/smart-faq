@@ -17,6 +17,7 @@ const OneWayTrip = ({ children, booking }: Props) => (
     isPastBooking={booking.isPastBooking}
     departureTime={idx(booking, _ => _.trip.departure.time)}
     onLogout={async () => null}
+    booking={{ props: booking, error: null }}
   >
     {children}
   </BookingStateProvider>
@@ -27,6 +28,7 @@ export default createFragmentContainer(
   graphql`
     fragment OneWayTripWrapper_booking on BookingOneWay {
       isPastBooking
+      databaseId
       trip {
         departure {
           time

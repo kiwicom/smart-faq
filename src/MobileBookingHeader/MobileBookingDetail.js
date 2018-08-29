@@ -1,11 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { graphql, createFragmentContainer } from 'react-relay';
 import { ChevronDown, ChevronUp } from '@kiwicom/orbit-components/lib/icons';
 import { Button } from '@kiwicom/orbit-components';
 import css from 'styled-jsx/css';
 
+import type { BasicBookingDataFields } from '../types';
 import bookingTypes from '../common/booking/bookingTypes';
 import OneWayTrip from './OneWayTrip';
 import ReturnTrip from './ReturnTrip';
@@ -14,10 +14,9 @@ import formatBookingId from '../helpers/formatBookingId';
 import replaceWithCurrentDomain from '../helpers/replaceWithCurrentDomain';
 import { Portrait, Landscape } from '../common/Responsive';
 import SelectAnotherBookingLink from '../common/booking/SelectAnotherBookingLink';
-import type { MobileBookingDetail_booking } from './__generated__/MobileBookingDetail_booking.graphql';
 
 type ComponentProps = {
-  +booking: MobileBookingDetail_booking,
+  +booking: BasicBookingDataFields,
 };
 
 type MobileBookingControlsProps = {|
@@ -228,36 +227,4 @@ const MobileBookingDetailWithFAQHandler = (props: ComponentProps) => (
   <MobileBookingDetail {...props} />
 );
 
-export default createFragmentContainer(
-  MobileBookingDetailWithFAQHandler,
-  graphql`
-    fragment MobileBookingDetail_booking on BookingInterface {
-      type
-      databaseId
-      isPastBooking
-      directAccessURL
-      ... on BookingOneWay {
-        ...OneWayTrip_booking
-        trip {
-          departure {
-            time
-          }
-        }
-      }
-      ... on BookingReturn {
-        ...ReturnTrip_booking
-        outbound {
-          departure {
-            time
-          }
-        }
-      }
-      ... on BookingMulticity {
-        ...MultiCityTrip_booking
-        start {
-          time
-        }
-      }
-    }
-  `,
-);
+export default MobileBookingDetailWithFAQHandler;

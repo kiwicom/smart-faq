@@ -12,6 +12,7 @@ import type { FragmentReference } from 'relay-runtime';
 declare export opaque type MultiCityTripWrapper_booking$ref: FragmentReference;
 export type MultiCityTripWrapper_booking = {|
   +isPastBooking: ?boolean,
+  +databaseId: ?number,
   +trips: ?$ReadOnlyArray<?{|
     +departure: ?{|
       +time: ?any,
@@ -33,6 +34,13 @@ const node/*: ConcreteFragment*/ = {
       "kind": "ScalarField",
       "alias": null,
       "name": "isPastBooking",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "databaseId",
       "args": null,
       "storageKey": null
     },
@@ -67,5 +75,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = '962dbf5efbd39bd5cc67824da104fe28';
+(node/*: any*/).hash = 'bd20dd7b42cdcff2679899bd74eaecd0';
 module.exports = node;

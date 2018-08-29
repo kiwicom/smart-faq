@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e96fc479391254d780b934bea52302f8
+ * @relayHash 54380d9a760ba4fb1a39add2646e1754
  */
 
 /* eslint-disable */
@@ -17,6 +17,7 @@ export type BookingStateWrapperNearestQueryVariables = {| |};
 export type BookingStateWrapperNearestQueryResponse = {|
   +nearestBooking: ?{|
     +id: string,
+    +databaseId: ?number,
     +$fragmentRefs: (HasBooking_booking$ref & OneWayTripWrapper_booking$ref & ReturnTripWrapper_booking$ref & MultiCityTripWrapper_booking$ref),
   |},
 |};
@@ -28,6 +29,7 @@ query BookingStateWrapperNearestQuery {
   nearestBooking {
     __typename
     id
+    databaseId
     ...HasBooking_booking
     ... on BookingOneWay {
       ...OneWayTripWrapper_booking
@@ -57,6 +59,7 @@ fragment HasBooking_booking on BookingInterface {
 
 fragment OneWayTripWrapper_booking on BookingOneWay {
   isPastBooking
+  databaseId
   trip {
     departure {
       time
@@ -66,6 +69,7 @@ fragment OneWayTripWrapper_booking on BookingOneWay {
 
 fragment ReturnTripWrapper_booking on BookingReturn {
   isPastBooking
+  databaseId
   outbound {
     departure {
       time
@@ -75,6 +79,7 @@ fragment ReturnTripWrapper_booking on BookingReturn {
 
 fragment MultiCityTripWrapper_booking on BookingMulticity {
   isPastBooking
+  databaseId
   trips {
     departure {
       time
@@ -91,7 +96,14 @@ var v0 = {
   "args": null,
   "storageKey": null
 },
-v1 = [
+v1 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "databaseId",
+  "args": null,
+  "storageKey": null
+},
+v2 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -116,7 +128,7 @@ return {
   "operationKind": "query",
   "name": "BookingStateWrapperNearestQuery",
   "id": null,
-  "text": "query BookingStateWrapperNearestQuery {\n  nearestBooking {\n    __typename\n    id\n    ...HasBooking_booking\n    ... on BookingOneWay {\n      ...OneWayTripWrapper_booking\n    }\n    ... on BookingReturn {\n      ...ReturnTripWrapper_booking\n    }\n    ... on BookingMulticity {\n      ...MultiCityTripWrapper_booking\n    }\n  }\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  isPastBooking\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  isPastBooking\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  isPastBooking\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
+  "text": "query BookingStateWrapperNearestQuery {\n  nearestBooking {\n    __typename\n    id\n    databaseId\n    ...HasBooking_booking\n    ... on BookingOneWay {\n      ...OneWayTripWrapper_booking\n    }\n    ... on BookingReturn {\n      ...ReturnTripWrapper_booking\n    }\n    ... on BookingMulticity {\n      ...MultiCityTripWrapper_booking\n    }\n  }\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  isPastBooking\n  databaseId\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  isPastBooking\n  databaseId\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  isPastBooking\n  databaseId\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -135,6 +147,7 @@ return {
         "plural": false,
         "selections": [
           v0,
+          v1,
           {
             "kind": "FragmentSpread",
             "name": "HasBooking_booking",
@@ -199,6 +212,7 @@ return {
             "storageKey": null
           },
           v0,
+          v1,
           {
             "kind": "ScalarField",
             "alias": null,
@@ -225,7 +239,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": true,
-                "selections": v1
+                "selections": v2
               }
             ]
           },
@@ -241,7 +255,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v1
+                "selections": v2
               }
             ]
           },
@@ -257,7 +271,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v1
+                "selections": v2
               }
             ]
           }
@@ -267,5 +281,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '8f4e204836a10f8dde6d52f05ea1a260';
+(node/*: any*/).hash = 'f3bfd4b66cce1f6c398ffc2f8dce4716';
 module.exports = node;

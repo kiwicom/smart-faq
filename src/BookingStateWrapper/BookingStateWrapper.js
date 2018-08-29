@@ -20,6 +20,7 @@ const nearestBookingQuery = graphql`
   query BookingStateWrapperNearestQuery {
     nearestBooking {
       id
+      databaseId
       ...HasBooking_booking
       ... on BookingOneWay {
         ...OneWayTripWrapper_booking
@@ -38,6 +39,7 @@ const selectedBookingQuery = graphql`
   query BookingStateWrapperSelectedQuery($id: ID!) {
     booking(id: $id) {
       id
+      databaseId
       oneWay {
         ...HasBooking_booking
       }

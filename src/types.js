@@ -27,3 +27,28 @@ export type AppProps = {|
   onLogout: onLogout,
   emergencies: string[],
 |};
+
+export type BasicBookingDataFields = {
+  directAccessURL: string,
+  databaseId: number,
+  isPastBooking: boolean,
+  type: 'ONE_WAY' | 'RETURN' | 'MULTICITY',
+  start: ?{
+    time: ?Date,
+  },
+  outbound: ?{
+    departure: ?{
+      time: ?Date,
+    },
+  },
+  trip: ?{
+    departure: ?{
+      time: ?Date,
+    },
+  },
+};
+
+export type BasicBookingData = {
+  error: ?Error,
+  props: BasicBookingDataFields,
+};

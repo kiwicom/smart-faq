@@ -18,8 +18,7 @@ import { SelectedBooking } from '../context/SelectedBooking';
 import { ActiveTab } from '../context/ActiveTab';
 import { CloseContext } from '../context/Close';
 import BackButtonMobile from './BackButtonMobile';
-import MobileNearestBooking from './MobileNearestBooking';
-import MobileSelectedBooking from './MobileSelectedBooking';
+import MobileBooking from './MobileBooking';
 import MobileUserDetail from './MobileUserDetail';
 import type { UserContextType } from '../context/User';
 import type { SearchStateType } from '../context/SearchState';
@@ -27,17 +26,12 @@ import type { TabType } from '../context/ActiveTab';
 
 type MobileBookingPageProps = {|
   +bookingPage: string,
-  +selectedBooking: ?number,
 |};
 
 const MobileBookingPage = (props: MobileBookingPageProps) => {
-  const { bookingPage, selectedBooking } = props;
+  const { bookingPage } = props;
   if (bookingPage === 'SINGLE_BOOKING') {
-    if (selectedBooking) {
-      return <MobileSelectedBooking bookingId={selectedBooking} />;
-    }
-
-    return <MobileNearestBooking />;
+    return <MobileBooking />;
   }
 
   return null;
@@ -46,12 +40,7 @@ const MobileBookingPage = (props: MobileBookingPageProps) => {
 const MobileBookingSummary = () => (
   <div>
     <SelectedBooking.Consumer>
-      {({ bookingPage, selectedBooking }) => (
-        <MobileBookingPage
-          bookingPage={bookingPage}
-          selectedBooking={selectedBooking}
-        />
-      )}
+      {({ bookingPage }) => <MobileBookingPage bookingPage={bookingPage} />}
     </SelectedBooking.Consumer>
   </div>
 );

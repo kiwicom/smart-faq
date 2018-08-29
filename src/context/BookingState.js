@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 
-import type { onLogout } from '../types';
+import type { onLogout, BasicBookingData } from '../types';
 import { isUrgentBooking } from '../common/booking/utils';
 import { UserContext } from './User';
 import type { UserContextType } from './User';
@@ -23,6 +23,7 @@ export const getFAQSection = ({
 const initialState = {
   FAQSection: 'BEFORE_BOOKING',
   selectedBooking: null,
+  booking: null,
 };
 
 export type FAQSectionType =
@@ -37,10 +38,12 @@ type Props = {
   hasBooking: boolean,
   isPastBooking?: boolean,
   departureTime: ?Date,
+  booking: ?BasicBookingData,
 };
 
 type StateValues = {
   FAQSection: ?FAQSectionType,
+  booking: ?BasicBookingData,
 };
 
 type StateCallbacks = {};
@@ -60,7 +63,7 @@ export const BookingState = React.createContext({
 class BookingStateProvider extends React.Component<Props, BookingStateType> {
   constructor(props: Props) {
     super(props);
-    const { hasBooking, departureTime, isPastBooking } = props;
+    const { hasBooking, departureTime, isPastBooking, booking } = props;
     const isUrgent =
       isUrgentBooking !== undefined
         ? isUrgentBooking(isPastBooking === true, departureTime)
@@ -69,6 +72,7 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
     this.state = {
       ...initialState,
       FAQSection: getFAQSection({ hasBooking, isUrgent, isPastBooking }),
+      booking,
     };
   }
 

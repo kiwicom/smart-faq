@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 37229527f3ff4ac49b96a0414c126a81
+ * @relayHash d793e19e1a253378a2c5a69c5a6c1044
  */
 
 /* eslint-disable */
@@ -16,6 +16,7 @@ export type BookingStateWrapperSelectedQueryVariables = {|
 export type BookingStateWrapperSelectedQueryResponse = {|
   +booking: ?{|
     +id: string,
+    +databaseId: ?number,
     +oneWay: ?{|
       +$fragmentRefs: HasBooking_booking$ref,
     |},
@@ -36,6 +37,7 @@ query BookingStateWrapperSelectedQuery(
 ) {
   booking(id: $id) {
     id
+    databaseId
     oneWay {
       ...HasBooking_booking
       id
@@ -67,6 +69,7 @@ fragment HasBooking_booking on BookingInterface {
 
 fragment OneWayTripWrapper_booking on BookingOneWay {
   isPastBooking
+  databaseId
   trip {
     departure {
       time
@@ -76,6 +79,7 @@ fragment OneWayTripWrapper_booking on BookingOneWay {
 
 fragment ReturnTripWrapper_booking on BookingReturn {
   isPastBooking
+  databaseId
   outbound {
     departure {
       time
@@ -85,6 +89,7 @@ fragment ReturnTripWrapper_booking on BookingReturn {
 
 fragment MultiCityTripWrapper_booking on BookingMulticity {
   isPastBooking
+  databaseId
   trips {
     departure {
       time
@@ -117,28 +122,35 @@ v2 = {
   "args": null,
   "storageKey": null
 },
-v3 = [
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "databaseId",
+  "args": null,
+  "storageKey": null
+},
+v4 = [
   {
     "kind": "FragmentSpread",
     "name": "HasBooking_booking",
     "args": null
   }
 ],
-v4 = {
+v5 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "type",
   "args": null,
   "storageKey": null
 },
-v5 = {
+v6 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "isPastBooking",
   "args": null,
   "storageKey": null
 },
-v6 = [
+v7 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -158,7 +170,7 @@ v6 = [
     ]
   }
 ],
-v7 = {
+v8 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "trip",
@@ -166,9 +178,9 @@ v7 = {
   "args": null,
   "concreteType": "Trip",
   "plural": false,
-  "selections": v6
+  "selections": v7
 },
-v8 = {
+v9 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "trips",
@@ -176,16 +188,16 @@ v8 = {
   "args": null,
   "concreteType": "Trip",
   "plural": true,
-  "selections": v6
+  "selections": v7
 },
-v9 = {
+v10 = {
   "kind": "InlineFragment",
   "type": "BookingMulticity",
   "selections": [
-    v8
+    v9
   ]
 },
-v10 = {
+v11 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "outbound",
@@ -193,20 +205,20 @@ v10 = {
   "args": null,
   "concreteType": "Trip",
   "plural": false,
-  "selections": v6
-},
-v11 = {
-  "kind": "InlineFragment",
-  "type": "BookingReturn",
-  "selections": [
-    v10
-  ]
+  "selections": v7
 },
 v12 = {
   "kind": "InlineFragment",
+  "type": "BookingReturn",
+  "selections": [
+    v11
+  ]
+},
+v13 = {
+  "kind": "InlineFragment",
   "type": "BookingOneWay",
   "selections": [
-    v7
+    v8
   ]
 };
 return {
@@ -214,7 +226,7 @@ return {
   "operationKind": "query",
   "name": "BookingStateWrapperSelectedQuery",
   "id": null,
-  "text": "query BookingStateWrapperSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    id\n    oneWay {\n      ...HasBooking_booking\n      id\n    }\n    return {\n      ...HasBooking_booking\n      id\n    }\n    multicity {\n      ...HasBooking_booking\n      id\n    }\n  }\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  isPastBooking\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  isPastBooking\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  isPastBooking\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
+  "text": "query BookingStateWrapperSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    id\n    databaseId\n    oneWay {\n      ...HasBooking_booking\n      id\n    }\n    return {\n      ...HasBooking_booking\n      id\n    }\n    multicity {\n      ...HasBooking_booking\n      id\n    }\n  }\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  isPastBooking\n  databaseId\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  isPastBooking\n  databaseId\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  isPastBooking\n  databaseId\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -233,6 +245,7 @@ return {
         "plural": false,
         "selections": [
           v2,
+          v3,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -241,7 +254,7 @@ return {
             "args": null,
             "concreteType": "BookingOneWay",
             "plural": false,
-            "selections": v3
+            "selections": v4
           },
           {
             "kind": "LinkedField",
@@ -251,7 +264,7 @@ return {
             "args": null,
             "concreteType": "BookingReturn",
             "plural": false,
-            "selections": v3
+            "selections": v4
           },
           {
             "kind": "LinkedField",
@@ -261,7 +274,7 @@ return {
             "args": null,
             "concreteType": "BookingMulticity",
             "plural": false,
-            "selections": v3
+            "selections": v4
           }
         ]
       }
@@ -282,6 +295,7 @@ return {
         "plural": false,
         "selections": [
           v2,
+          v3,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -291,12 +305,13 @@ return {
             "concreteType": "BookingOneWay",
             "plural": false,
             "selections": [
-              v4,
               v5,
-              v7,
+              v6,
+              v3,
+              v8,
               v2,
-              v9,
-              v11
+              v10,
+              v12
             ]
           },
           {
@@ -308,12 +323,13 @@ return {
             "concreteType": "BookingReturn",
             "plural": false,
             "selections": [
-              v4,
               v5,
-              v10,
+              v6,
+              v3,
+              v11,
               v2,
-              v9,
-              v12
+              v10,
+              v13
             ]
           },
           {
@@ -325,12 +341,13 @@ return {
             "concreteType": "BookingMulticity",
             "plural": false,
             "selections": [
-              v4,
               v5,
-              v8,
+              v6,
+              v3,
+              v9,
               v2,
-              v11,
-              v12
+              v12,
+              v13
             ]
           }
         ]
@@ -339,5 +356,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '2dca6aa7517087600b6ea4319590147b';
+(node/*: any*/).hash = 'a0d0ad3503c4b437526c1bc844544d25';
 module.exports = node;

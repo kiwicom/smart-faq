@@ -5,10 +5,7 @@ import { DateTime } from 'luxon';
 
 import bookingTypes from './bookingTypes';
 import { URGENCY_THRESHOLD } from '../../helpers/dateUtils';
-import type { BookingDetail_booking } from '../../SingleBookingPage/__generated__/BookingDetail_booking.graphql';
-import type { MobileBookingDetail_booking } from '../../MobileBookingHeader/__generated__/MobileBookingDetail_booking.graphql';
-
-type BookingType = MobileBookingDetail_booking | BookingDetail_booking;
+import type { BasicBookingDataFields } from '../../types';
 
 export const isUrgentBooking = (
   isPastBooking: boolean,
@@ -22,7 +19,7 @@ export const isUrgentBooking = (
   return isPastBooking === false && isUrgent;
 };
 
-export const getDepartureTimeByType = (booking: BookingType) => {
+export const getDepartureTimeByType = (booking: BasicBookingDataFields) => {
   let date = null;
 
   if (booking.type === bookingTypes.ONE_WAY) {

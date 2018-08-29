@@ -15,6 +15,7 @@ const NoBooking = ({ children, onLogout }: Props) => (
     hasBooking={false}
     onLogout={onLogout}
     departureTime={null}
+    booking={null}
   >
     {children}
   </BookingStateProvider>
