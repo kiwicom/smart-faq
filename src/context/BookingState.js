@@ -5,6 +5,8 @@ import * as React from 'react';
 
 import type { onLogout } from '../types';
 import { isUrgentBooking } from '../common/booking/utils';
+import { UserContext } from './User';
+import type { UserContextType } from './User';
 
 export const getFAQSection = ({
   hasBooking,
@@ -32,7 +34,6 @@ export type FAQSectionType =
 type Props = {
   children: React.Node,
   isPastBooking?: boolean, // eslint-disable-line react/no-unused-prop-types
-  onLogout: onLogout,
   hasBooking: boolean,
   isPastBooking?: boolean,
   departureTime: ?Date,
@@ -42,9 +43,7 @@ type StateValues = {
   FAQSection: ?FAQSectionType,
 };
 
-type StateCallbacks = {
-  onLogout: onLogout,
-};
+type StateCallbacks = {};
 
 type BookingStateDescription = {
   hasBooking: boolean,
@@ -56,7 +55,6 @@ export type BookingStateType = StateValues & StateCallbacks;
 
 export const BookingState = React.createContext({
   ...initialState,
-  onLogout: () => Promise.resolve(true),
 });
 
 class BookingStateProvider extends React.Component<Props, BookingStateType> {
@@ -70,14 +68,9 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
 
     this.state = {
       ...initialState,
-      onLogout: this.onLogout,
       FAQSection: getFAQSection({ hasBooking, isUrgent, isPastBooking }),
     };
   }
-
-  onLogout = async () => {
-    await this.props.onLogout();
-  };
 
   render() {
     return (
@@ -88,14 +81,16 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
   }
 }
 
-export const withLogout = <Props>(Component: React.ComponentType<{} & Props>) =>
+export const withLogout = <Props>(
+  Component: React.ComponentType<{ onLogout: onLogout } & Props>,
+) =>
   function withLogoutHOC(props: Props) {
     return (
-      <BookingState.Consumer>
-        {({ onLogout }: BookingStateType) => (
+      <UserContext.Consumer>
+        {({ onLogout }: UserContextType) => (
           <Component {...props} onLogout={onLogout} />
         )}
-      </BookingState.Consumer>
+      </UserContext.Consumer>
     );
   };
 
