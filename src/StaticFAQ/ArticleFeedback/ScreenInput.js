@@ -13,6 +13,7 @@ type Props = {|
   changeScreen: (nextScreen: string) => void,
   articleId: string,
 |};
+
 type State = {|
   comment: string,
   error: boolean,
@@ -20,8 +21,8 @@ type State = {|
 
 const style = css`
   div.question {
+    margin-top: 16px;
     margin-bottom: 4px;
-    margin-top: 8px;
   }
   div.inputArea.invalid textarea {
     border-color: #d21c1c;
@@ -42,7 +43,7 @@ const style = css`
   }
   div.button {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-top: 19px;
   }
   div.close-icon {
@@ -110,9 +111,11 @@ class ScreenInput extends React.Component<Props, State> {
           >
             <Close customColor="#bac7d5" size="small" />
           </div>
-          <Heading type="title3">Your feedback helps us improve.</Heading>
+          <Heading type="title3">
+            Please tell us more about your issue with the article (optional)
+          </Heading>
           <div className="question">
-            <Text>What problem were you trying to solve?</Text>
+            <Text>Comment</Text>
           </div>
           <div className={`inputArea ${error ? 'invalid' : ''}`}>
             <textarea
@@ -123,9 +126,7 @@ class ScreenInput extends React.Component<Props, State> {
             {error ? <p>You haven't written any feedback.</p> : null}
           </div>
           <div className="button">
-            <Button onClick={() => {}} width={100}>
-              Submit
-            </Button>
+            <Button onClick={() => {}}>Submit</Button>
           </div>
         </form>
         <style jsx>{style}</style>
