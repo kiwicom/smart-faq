@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Trans } from 'react-i18next';
 import { Text } from '@kiwicom/orbit-components';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import image from '../../static/woman-with-laptop@2x.jpg';
 import CloseButton from './../common/buttons/CloseButton';
@@ -176,10 +176,10 @@ export class PureIntro extends React.Component<Props> {
         </div>
         <div className="text">
           <p className="title">
-            <Trans i18nKey="IntroPage.header">Need help?</Trans>
+            <Trans t="IntroPage.header">Need help?</Trans>
           </p>
           <Text type="secondary">
-            <Trans i18nKey="IntroPage.subheader">
+            <Trans t="IntroPage.subheader">
               {"We're here for you. First, let's narrow down your request."}
             </Trans>
           </Text>
@@ -190,7 +190,7 @@ export class PureIntro extends React.Component<Props> {
               onClick={this.goToExistingBooking}
               data-cy="btn-existent-booking"
             >
-              <Trans i18nKey="IntroPage.existingBooking">
+              <Trans t="IntroPage.existingBooking">
                 I have an existing booking
               </Trans>
             </button>
@@ -200,9 +200,7 @@ export class PureIntro extends React.Component<Props> {
               onClick={this.goToNoBooking}
               data-cy="btn-nonexistent-booking"
             >
-              <Trans i18nKey="IntroPage.noBooking">
-                I don&apos;t have a booking
-              </Trans>
+              <Trans t="IntroPage.noBooking">I don&apos;t have a booking</Trans>
             </button>
           </div>
         </div>
