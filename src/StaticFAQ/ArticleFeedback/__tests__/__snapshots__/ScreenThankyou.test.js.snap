@@ -7,10 +7,10 @@ exports[`ScreenThankyou should match snapshot 1`] = `
   borderRadius="4px"
 >
   <div
-    className="jsx-2583630550 feedbackMessage"
+    className="jsx-2799696706 feedbackMessage"
   >
     <div
-      className="jsx-2583630550 close-icon"
+      className="jsx-2799696706 close-icon"
       onClick={[Function]}
       onKeyUp={null}
       role="button"
@@ -21,23 +21,14 @@ exports[`ScreenThankyou should match snapshot 1`] = `
         size="small"
       />
     </div>
-    <Heading
-      type="title3"
+    <WithTheme(Heading)
+      type="title2"
     >
-      Thanks again.
-    </Heading>
-    <div
-      className="jsx-2583630550 message-2"
-    >
-      <Heading
-        type="title3"
-      >
-        We appreciate your insight.
-      </Heading>
-    </div>
+      Thanks, we appreciate your insight.
+    </WithTheme(Heading)>
     <JSXStyle
-      css="div.feedbackMessage.jsx-2583630550{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:251px;}div.close-icon.jsx-2583630550{position:absolute;top:8px;right:8px;cursor:pointer;}div.message-2.jsx-2583630550{margin-bottom:16.6px;}"
-      styleId="2583630550"
+      css="div.feedbackMessage.jsx-2799696706{text-align:center;padding:32px 83px;}div.close-icon.jsx-2799696706{position:absolute;top:8px;right:8px;cursor:pointer;}"
+      styleId="2799696706"
     />
   </div>
 </Box>
