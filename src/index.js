@@ -54,6 +54,7 @@ class Root extends React.Component<Props, State> {
 
     const loginToken = Cookies.get(this.cookieKey);
     const simpleToken = null;
+    window.SP_GLOBALS.SKYPICKER_TRANSLATIONS = translations;
 
     this.setupLogs();
     //
