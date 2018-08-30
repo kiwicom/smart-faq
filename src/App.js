@@ -1,6 +1,7 @@
 // @flow
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
+import idx from 'idx';
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import classNames from 'classnames';
@@ -90,12 +91,10 @@ class App extends React.PureComponent<AppProps, State> {
   };
 
   renderApp() {
-    const { route, emergencies, language } = this.props;
+    const { route, emergencies, language = 'en', onClose } = this.props;
     const isOpen = Boolean(route);
-    if (typeof window === 'undefined') {
-      return;
-    }
-    const translations = window.SP_GLOBALS.SKYPICKER_TRANSLATIONS;
+    const translations =
+      idx(window, _ => _.SP_GLOBALS.SKYPICKER_TRANSLATIONS) || {};
     const langInfo = langInfos[language];
 
     return (
@@ -116,7 +115,7 @@ class App extends React.PureComponent<AppProps, State> {
           <ErrorBoundary>
             <Provider translations={translations} language={langInfo}>
               <LanguageContext.Provider value={language}>
-                <CloseContext.Provider value={this.props.onClose}>
+                <CloseContext.Provider value={onClose}>
                   <UserContext.Provider value={this.state.userContext}>
                     <SearchStateProvider>
                       <Emergencies.Provider value={emergencies}>

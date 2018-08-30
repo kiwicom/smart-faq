@@ -2,21 +2,18 @@
 
 import * as React from 'react';
 import { Alert } from '@kiwicom/orbit-components';
-import { translate } from 'react-i18next';
-import type { TFunction } from 'react-i18next';
 
 import { formatCountDown } from '../../helpers/dateUtils';
 
 type Props = {|
   isUrgent: boolean,
   hoursLeft: number,
-  t: TFunction,
 |};
 
-const Notification = ({ isUrgent, hoursLeft, t }: Props) => {
-  const urgentMessage = `You depart in ${formatCountDown(hoursLeft, t)}.
+const Notification = ({ isUrgent, hoursLeft }: Props) => {
+  const urgentMessage = `You depart in ${formatCountDown(hoursLeft)}.
   Don't hesitate to call us if you have an urgent problem.`;
-  const normalMessage = `You depart in ${formatCountDown(hoursLeft, t)}.
+  const normalMessage = `You depart in ${formatCountDown(hoursLeft)}.
   There is still time to add some nice extras or even change your booking.`;
   const type = isUrgent ? 'warning' : 'info';
 
@@ -38,4 +35,4 @@ const Notification = ({ isUrgent, hoursLeft, t }: Props) => {
 
 export const RawNotification = Notification;
 
-export default translate()(Notification);
+export default Notification;
