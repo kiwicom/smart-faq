@@ -39,7 +39,12 @@ export default createFragmentContainer(
           ...BookingCard_arrival
         }
         legs {
-          ...CarrierLogoWrapper_legs
+          ... on Leg @relay(plural: true) {
+            airline {
+              name
+              code
+            }
+          }
         }
       }
     }

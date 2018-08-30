@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Text } from '@kiwicom/orbit-components';
 import { withRouter } from 'react-router-dom';
 
-import { withLogout } from '../../context/BookingState';
+import { withLogout } from '../../context/User';
 import type { onLogout } from '../../types';
 import { simpleTracker } from '../../helpers/analytics/trackers';
 

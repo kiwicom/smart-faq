@@ -1,13 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 import AirplaneDown from '@kiwicom/orbit-components/lib/icons/AirplaneDown';
 import Train from '@kiwicom/orbit-components/lib/icons/Train';
 import Bus from '@kiwicom/orbit-components/lib/icons/Bus';
 
-import type { AccordionLegTypeIcon_leg } from './__generated__/AccordionLegTypeIcon_leg.graphql';
+import type { Leg } from '../../types';
 import bookingLegTypes from '../../common/booking/bookingLegTypes';
 
 const IconStyle = css`
@@ -20,7 +19,7 @@ const IconStyle = css`
 `;
 
 type IconProps = {
-  leg: AccordionLegTypeIcon_leg,
+  leg: Leg,
 };
 
 const LegTypeIcon = (props: IconProps) => {
@@ -56,11 +55,4 @@ const LegTypeIcon = (props: IconProps) => {
 
 export const PureLegTypeIcon = LegTypeIcon;
 
-export default createFragmentContainer(
-  LegTypeIcon,
-  graphql`
-    fragment AccordionLegTypeIcon_leg on Leg {
-      type
-    }
-  `,
-);
+export default LegTypeIcon;

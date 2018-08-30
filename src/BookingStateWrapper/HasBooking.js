@@ -8,23 +8,37 @@ import OneWayTrip from './OneWayTrip';
 import ReturnTrip from './ReturnTrip';
 import MultiCityTrip from './MultiCityTrip';
 import HasBooking_booking from './__generated__/HasBooking_booking.graphql';
+import type { onLogout } from '../types';
 
 type Props = {
   +booking: HasBooking_booking,
   children: React.Node,
+  onLogout: onLogout,
 };
 
-const HasBooking = ({ booking, children }: Props) => {
+const HasBooking = ({ booking, children, onLogout }: Props) => {
   if (booking.type === bookingTypes.ONE_WAY) {
-    return <OneWayTrip booking={booking}>{children}</OneWayTrip>;
+    return (
+      <OneWayTrip onLogout={onLogout} booking={booking}>
+        {children}
+      </OneWayTrip>
+    );
   }
 
   if (booking.type === bookingTypes.RETURN) {
-    return <ReturnTrip booking={booking}>{children}</ReturnTrip>;
+    return (
+      <ReturnTrip onLogout={onLogout} booking={booking}>
+        {children}
+      </ReturnTrip>
+    );
   }
 
   if (booking.type === bookingTypes.MULTICITY) {
-    return <MultiCityTrip booking={booking}>{children}</MultiCityTrip>;
+    return (
+      <MultiCityTrip onLogout={onLogout} booking={booking}>
+        {children}
+      </MultiCityTrip>
+    );
   }
 
   return null;

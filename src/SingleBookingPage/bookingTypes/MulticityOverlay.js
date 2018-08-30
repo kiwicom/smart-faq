@@ -1,13 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 
 import Multicity from './Multicity';
-import type { MulticityOverlay_booking } from './__generated__/MulticityOverlay_booking.graphql';
+import type { BasicBookingDataFields } from '../../types';
 
 type Props = {|
-  booking: MulticityOverlay_booking,
+  booking: BasicBookingDataFields,
 |};
 
 type State = {|
@@ -112,14 +111,4 @@ class MulticityOverlay extends React.Component<Props, State> {
   }
 }
 
-export default createFragmentContainer(
-  MulticityOverlay,
-  graphql`
-    fragment MulticityOverlay_booking on BookingMulticity {
-      trips {
-        duration
-      }
-      ...Multicity_booking
-    }
-  `,
-);
+export default MulticityOverlay;

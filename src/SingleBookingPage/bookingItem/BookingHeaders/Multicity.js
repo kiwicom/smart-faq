@@ -1,12 +1,11 @@
 // @flow
 
 import idx from 'idx';
-import { graphql, createFragmentContainer } from 'react-relay';
 
-import type { Multicity_bookingHeader } from './__generated__/Multicity_bookingHeader.graphql';
+import type { BasicBookingDataFields } from '../../../types';
 
 type Props = {|
-  bookingHeader: Multicity_bookingHeader,
+  bookingHeader: BasicBookingDataFields,
 |};
 
 const MulticityBookingHeader = ({ bookingHeader }: Props) => {
@@ -21,26 +20,4 @@ const MulticityBookingHeader = ({ bookingHeader }: Props) => {
   );
 };
 
-export default createFragmentContainer(
-  MulticityBookingHeader,
-  graphql`
-    fragment Multicity_bookingHeader on BookingMulticity {
-      trips @relay(plural: true) {
-        departure {
-          airport {
-            city {
-              name
-            }
-          }
-        }
-      }
-      end {
-        airport {
-          city {
-            name
-          }
-        }
-      }
-    }
-  `,
-);
+export default MulticityBookingHeader;

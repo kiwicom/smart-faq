@@ -2,13 +2,12 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { graphql, createFragmentContainer } from 'react-relay';
 import { CarrierLogo } from '@kiwicom/orbit-components';
 
-import type { CarrierLogoWrapper_legs } from './__generated__/CarrierLogoWrapper_legs.graphql';
+import type { Leg } from '../../types';
 
 type Props = {
-  legs: CarrierLogoWrapper_legs,
+  legs: Array<Leg>,
 };
 
 const CarrierLogoWrapper = (props: Props) => {
@@ -28,14 +27,4 @@ const CarrierLogoWrapper = (props: Props) => {
 
 export const RawCarrierLogoWrapper = CarrierLogoWrapper;
 
-export default createFragmentContainer(
-  CarrierLogoWrapper,
-  graphql`
-    fragment CarrierLogoWrapper_legs on Leg @relay(plural: true) {
-      airline {
-        name
-        code
-      }
-    }
-  `,
-);
+export default CarrierLogoWrapper;

@@ -1,12 +1,11 @@
 // @flow
 
 import idx from 'idx';
-import { graphql, createFragmentContainer } from 'react-relay';
 
-import type { Return_bookingHeader } from './__generated__/Return_bookingHeader.graphql';
+import type { BasicBookingDataFields } from '../../../types';
 
 type Props = {|
-  bookingHeader: Return_bookingHeader,
+  bookingHeader: BasicBookingDataFields,
 |};
 
 const ReturnBookingHeader = ({ bookingHeader }: Props) => {
@@ -19,26 +18,4 @@ const ReturnBookingHeader = ({ bookingHeader }: Props) => {
 
 export const RawReturnBookingHeader = ReturnBookingHeader;
 
-export default createFragmentContainer(
-  ReturnBookingHeader,
-  graphql`
-    fragment Return_bookingHeader on BookingReturn {
-      outbound {
-        departure {
-          airport {
-            city {
-              name
-            }
-          }
-        }
-        arrival {
-          airport {
-            city {
-              name
-            }
-          }
-        }
-      }
-    }
-  `,
-);
+export default ReturnBookingHeader;

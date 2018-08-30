@@ -1,5 +1,4 @@
 // @flow
-
 import * as React from 'react';
 import MockDate from 'mockdate';
 import { shallow } from 'enzyme';
@@ -13,35 +12,83 @@ beforeEach(() => MockDate.set('06/01/2018'));
 
 afterEach(() => MockDate.reset());
 
+const airport = {
+  name: '',
+  locationId: '',
+  city: {
+    name: '',
+  },
+};
+
 const createBookingStub = (outboundDate, inboundDate) => ({
   inbound: {
     arrival: {
-      time: new Date(inboundDate),
+      time: inboundDate && new Date(inboundDate),
+      localTime: '',
+      airport,
     },
+    departure: {
+      time: null,
+      localTime: '',
+      airport,
+    },
+    legs: [],
   },
   outbound: {
     arrival: {
-      time: new Date(outboundDate),
+      time: outboundDate && new Date(outboundDate),
+      localTime: '',
+      airport,
     },
     departure: {
-      time: new Date(outboundDate),
+      time: outboundDate && new Date(outboundDate),
+      localTime: '',
+      airport,
     },
+    legs: [],
   },
-  isPastBooking: new Date() > new Date(inboundDate),
+  trip: {
+    departure: {
+      localTime: '',
+      time: new Date(),
+      airport: {
+        locationId: '',
+        city: {
+          name: '',
+        },
+      },
+    },
+    arrival: {
+      time: new Date(),
+      localTime: '',
+      airport: {
+        locationId: '',
+        city: {
+          name: '',
+        },
+      },
+    },
+    legs: [],
+  },
+  trips: [],
+  isPastBooking: !!(inboundDate && new Date() > new Date(inboundDate)),
   directAccessURL: 'https://example.com/asd',
+  databaseId: 324324,
   type: 'RETURN',
   status: 'CONFIRMED',
 });
 const defaults = {
-  onSetFAQSection: jest.fn(),
   history: {
     push: jest.fn(),
   },
 };
 
 describe('BookingDetail >', () => {
-  let booking48HoursAgo = null;
-  let bookingBetweenDepartureAndArrival = null;
+  let booking48HoursAgo = createBookingStub(undefined, undefined);
+  let bookingBetweenDepartureAndArrival = createBookingStub(
+    undefined,
+    undefined,
+  );
 
   beforeEach(() => {
     booking48HoursAgo = createBookingStub('06/02/2018', '06/19/2018');

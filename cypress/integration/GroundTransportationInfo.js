@@ -10,10 +10,14 @@ describe('Expandable ground transportation leg', () => {
 
     cy.get('[data-cy=btn-other-bookings]').click();
 
+    cy.wait(2000);
+
     cy
       .get('.bookingCard')
       .contains('PFL')
       .click();
+
+    cy.wait(2000);
 
     cy
       .get('.bookingAccordion')
@@ -24,12 +28,13 @@ describe('Expandable ground transportation leg', () => {
   });
 
   it('should expand leg', () => {
+    cy.wait(2000);
     cy
       .get('.legTitle')
       .contains('Bus')
-      .click()
-      .get('.legCitiesInfo')
-      .should('exist');
+      .click();
+
+    cy.get('.legCitiesInfo').should('exist');
   });
 
   it('should dislay specific article on clicking Trains and Buses Info', () => {

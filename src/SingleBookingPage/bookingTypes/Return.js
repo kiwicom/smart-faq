@@ -1,14 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 
 import TripTitle from '../bookingItem/AccordionTitle';
 import Accordion from '../bookingItem/Accordion';
-import type { Return_booking } from './__generated__/Return_booking.graphql';
+import type { BasicBookingDataFields } from '../../types';
 
 type Props = {
-  booking: Return_booking,
+  booking: BasicBookingDataFields,
 };
 
 const Return = (props: Props) => (
@@ -20,16 +19,4 @@ const Return = (props: Props) => (
   </div>
 );
 
-export default createFragmentContainer(
-  Return,
-  graphql`
-    fragment Return_booking on BookingReturn {
-      outbound {
-        ...AccordionTripSummary_trip
-      }
-      inbound {
-        ...AccordionTripSummary_trip
-      }
-    }
-  `,
-);
+export default Return;

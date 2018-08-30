@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import idx from 'idx';
@@ -12,8 +11,7 @@ import Calendar from '@kiwicom/orbit-components/lib/icons/Calendar';
 import LegTypeIcon from './AccordionLegTypeIcon';
 import { FormatDate, formatTimeDuration } from '../../helpers/dateUtils';
 import AccordionLegCities from './AccordionLegCities';
-import type { AccordionBodyLeg_leg } from './__generated__/AccordionBodyLeg_leg.graphql';
-import type { AccordionBodyLeg_nextLeg } from './__generated__/AccordionBodyLeg_nextLeg.graphql';
+import type { Leg } from '../../types';
 
 const legStyle = css`
   div.leg {
@@ -58,8 +56,8 @@ const legStyle = css`
 `;
 
 type LegProps = {|
-  leg: AccordionBodyLeg_leg,
-  nextLeg: AccordionBodyLeg_nextLeg,
+  leg: Leg,
+  nextLeg: Leg,
 |};
 
 const AccordionBodyLeg = (props: LegProps) => {
@@ -103,26 +101,4 @@ const AccordionBodyLeg = (props: LegProps) => {
   );
 };
 
-export default createFragmentContainer(AccordionBodyLeg, {
-  leg: graphql`
-    fragment AccordionBodyLeg_leg on Leg {
-      ...AccordionLegCities_leg
-      ...AccordionLegTypeIcon_leg
-      arrival {
-        time
-        localTime
-      }
-      departure {
-        time
-        localTime
-      }
-    }
-  `,
-  nextLeg: graphql`
-    fragment AccordionBodyLeg_nextLeg on Leg {
-      departure {
-        time
-      }
-    }
-  `,
-});
+export default AccordionBodyLeg;

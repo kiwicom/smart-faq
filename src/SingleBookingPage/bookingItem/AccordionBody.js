@@ -1,14 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 
 import AccordionBodyLeg from './AccordionBodyLeg';
 import AccordionBodyLastLeg from './AccordionBodyLastLeg';
-import type { AccordionBody_legs } from './__generated__/AccordionBody_legs.graphql';
+import type { Leg } from '../../types';
 
 type Props = {|
-  legs: AccordionBody_legs,
+  legs: Array<Leg>,
 |};
 
 class AccordionBody extends React.Component<Props> {
@@ -47,14 +46,4 @@ class AccordionBody extends React.Component<Props> {
   }
 }
 
-export default createFragmentContainer(
-  AccordionBody,
-  graphql`
-    fragment AccordionBody_legs on Leg @relay(plural: true) {
-      flightNumber
-      ...AccordionBodyLeg_leg
-      ...AccordionBodyLeg_nextLeg
-      ...AccordionBodyLastLeg_leg
-    }
-  `,
-);
+export default AccordionBody;

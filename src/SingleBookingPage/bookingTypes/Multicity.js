@@ -1,14 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 
 import AccordionTitle from '../bookingItem/AccordionTitle';
 import Accordion from '../bookingItem/Accordion';
-import type { Multicity_booking } from './__generated__/Multicity_booking.graphql';
+import type { BasicBookingDataFields } from '../../types';
 
 type Props = {|
-  booking: Multicity_booking,
+  booking: BasicBookingDataFields,
 |};
 
 const Multicity = ({ booking }: Props) => (
@@ -22,13 +21,4 @@ const Multicity = ({ booking }: Props) => (
   </div>
 );
 
-export default createFragmentContainer(
-  Multicity,
-  graphql`
-    fragment Multicity_booking on BookingMulticity {
-      trips @relay(plural: true) {
-        ...AccordionTripSummary_trip
-      }
-    }
-  `,
-);
+export default Multicity;

@@ -1,14 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { graphql, createFragmentContainer } from 'react-relay';
 import { ChevronDown, ChevronUp } from '@kiwicom/orbit-components/lib/icons';
 import { Button } from '@kiwicom/orbit-components';
 import css from 'styled-jsx/css';
 
-import { updateFAQSection } from '../common/booking/utils';
+import type { BasicBookingDataFields } from '../types';
 import bookingTypes from '../common/booking/bookingTypes';
-import { BookingState } from '../context/BookingState';
 import OneWayTrip from './OneWayTrip';
 import ReturnTrip from './ReturnTrip';
 import MultiCityTrip from './MultiCityTrip';
@@ -16,15 +14,9 @@ import formatBookingId from '../helpers/formatBookingId';
 import replaceWithCurrentDomain from '../helpers/replaceWithCurrentDomain';
 import { Portrait, Landscape } from '../common/Responsive';
 import SelectAnotherBookingLink from '../common/booking/SelectAnotherBookingLink';
-import type { MobileBookingDetail_booking } from './__generated__/MobileBookingDetail_booking.graphql';
-
-type ContextProps = {
-  onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
-};
 
 type ComponentProps = {
-  +booking: MobileBookingDetail_booking,
-  onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
+  +booking: BasicBookingDataFields,
 };
 
 type MobileBookingControlsProps = {|
@@ -140,14 +132,6 @@ class MobileBookingDetail extends React.Component<Props, State> {
     expanded: true,
   };
 
-  componentDidMount() {
-    updateFAQSection(this.props);
-  }
-
-  componentDidUpdate() {
-    updateFAQSection(this.props);
-  }
-
   toggle() {
     this.setState(prevState => ({ expanded: !prevState.expanded }));
   }
@@ -240,43 +224,7 @@ class MobileBookingDetail extends React.Component<Props, State> {
 }
 
 const MobileBookingDetailWithFAQHandler = (props: ComponentProps) => (
-  <BookingState.Consumer>
-    {({ onSetFAQSection }: ContextProps) => (
-      <MobileBookingDetail {...props} onSetFAQSection={onSetFAQSection} />
-    )}
-  </BookingState.Consumer>
+  <MobileBookingDetail {...props} />
 );
 
-export default createFragmentContainer(
-  MobileBookingDetailWithFAQHandler,
-  graphql`
-    fragment MobileBookingDetail_booking on BookingInterface {
-      type
-      databaseId
-      isPastBooking
-      directAccessURL
-      ... on BookingOneWay {
-        ...OneWayTrip_booking
-        trip {
-          departure {
-            time
-          }
-        }
-      }
-      ... on BookingReturn {
-        ...ReturnTrip_booking
-        outbound {
-          departure {
-            time
-          }
-        }
-      }
-      ... on BookingMulticity {
-        ...MultiCityTrip_booking
-        start {
-          time
-        }
-      }
-    }
-  `,
-);
+export default MobileBookingDetailWithFAQHandler;

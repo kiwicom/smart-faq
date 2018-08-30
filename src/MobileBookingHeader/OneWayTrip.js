@@ -1,14 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 
-import type { OneWayTrip_booking } from './__generated__/OneWayTrip_booking.graphql';
+import type { BasicBookingDataFields } from '../types';
 import { TripDescriptionStyle } from './commonStyles';
 
 type Props = {|
-  +booking: OneWayTrip_booking,
+  +booking: BasicBookingDataFields,
 |};
 
 const OneWayTrip = ({ booking }: Props) => {
@@ -22,26 +21,4 @@ const OneWayTrip = ({ booking }: Props) => {
   );
 };
 
-export default createFragmentContainer(
-  OneWayTrip,
-  graphql`
-    fragment OneWayTrip_booking on BookingOneWay {
-      trip {
-        departure {
-          airport {
-            city {
-              name
-            }
-          }
-        }
-        arrival {
-          airport {
-            city {
-              name
-            }
-          }
-        }
-      }
-    }
-  `,
-);
+export default OneWayTrip;

@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 import idx from 'idx';
 import Calendar from '@kiwicom/orbit-components/lib/icons/Calendar';
@@ -9,7 +8,7 @@ import Calendar from '@kiwicom/orbit-components/lib/icons/Calendar';
 import LegTypeIcon from './AccordionLegTypeIcon';
 import { FormatDate } from '../../helpers/dateUtils';
 import AccordionLegCities from './AccordionLegCities';
-import type { AccordionBodyLastLeg_leg } from './__generated__/AccordionBodyLastLeg_leg.graphql';
+import type { Leg } from '../../types';
 
 const lastLegStyle = css`
   div.lastLeg {
@@ -45,7 +44,7 @@ const lastLegStyle = css`
 `;
 
 type LastLegProps = {|
-  leg: AccordionBodyLastLeg_leg,
+  leg: Leg,
 |};
 
 const AccordionLastLeg = (props: LastLegProps) => {
@@ -70,15 +69,4 @@ const AccordionLastLeg = (props: LastLegProps) => {
 
 export const RawAccordionLastLeg = AccordionLastLeg;
 
-export default createFragmentContainer(
-  AccordionLastLeg,
-  graphql`
-    fragment AccordionBodyLastLeg_leg on Leg {
-      ...AccordionLegCities_leg
-      ...AccordionLegTypeIcon_leg
-      departure {
-        localTime
-      }
-    }
-  `,
-);
+export default AccordionLastLeg;

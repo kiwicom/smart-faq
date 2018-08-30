@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0dc98811dac5a929d1779af6a3b9ebb6
+ * @relayHash cd1344f790fe60f8ffffe85a70e5212c
  */
 
 /* eslint-disable */
@@ -61,7 +61,10 @@ fragment OneWayBooking_booking on BookingOneWay {
       ...BookingCard_arrival
     }
     legs {
-      ...CarrierLogoWrapper_legs
+      airline {
+        name
+        code
+      }
       id
     }
   }
@@ -77,7 +80,10 @@ fragment ReturnBooking_booking on BookingReturn {
       ...BookingCard_arrival
     }
     legs {
-      ...CarrierLogoWrapper_legs
+      airline {
+        name
+        code
+      }
       id
     }
   }
@@ -93,7 +99,10 @@ fragment MulticityBooking_booking on BookingMulticity {
   }
   trips {
     legs {
-      ...CarrierLogoWrapper_legs
+      airline {
+        name
+        code
+      }
       id
     }
   }
@@ -116,13 +125,6 @@ fragment BookingCard_departure on RouteStop {
 
 fragment BookingCard_arrival on RouteStop {
   ...FromToRow_arrival
-}
-
-fragment CarrierLogoWrapper_legs on Leg {
-  airline {
-    name
-    code
-  }
 }
 
 fragment FromToRow_arrival on RouteStop {
@@ -454,7 +456,7 @@ return {
   "operationKind": "query",
   "name": "AllBookingsQuery",
   "id": null,
-  "text": "query AllBookingsQuery {\n  future: customerBookings(only: FUTURE) {\n    ...BookingCardsList_booking\n  }\n  past: customerBookings(only: PAST) {\n    ...BookingCardsList_booking\n  }\n}\n\nfragment BookingCardsList_booking on BookingInterfaceConnection {\n  edges {\n    node {\n      databaseId\n      __typename\n      ... on BookingOneWay {\n        ...OneWayBooking_booking\n      }\n      ... on BookingReturn {\n        ...ReturnBooking_booking\n      }\n      ... on BookingMulticity {\n        ...MulticityBooking_booking\n      }\n      id\n    }\n  }\n}\n\nfragment OneWayBooking_booking on BookingOneWay {\n  ...BookingCard_booking\n  trip {\n    departure {\n      ...BookingCard_departure\n    }\n    arrival {\n      ...BookingCard_arrival\n    }\n    legs {\n      ...CarrierLogoWrapper_legs\n      id\n    }\n  }\n}\n\nfragment ReturnBooking_booking on BookingReturn {\n  ...BookingCard_booking\n  outbound {\n    departure {\n      ...BookingCard_departure\n    }\n    arrival {\n      ...BookingCard_arrival\n    }\n    legs {\n      ...CarrierLogoWrapper_legs\n      id\n    }\n  }\n}\n\nfragment MulticityBooking_booking on BookingMulticity {\n  ...BookingCard_booking\n  start {\n    ...BookingCard_departure\n  }\n  end {\n    ...BookingCard_arrival\n  }\n  trips {\n    legs {\n      ...CarrierLogoWrapper_legs\n      id\n    }\n  }\n}\n\nfragment BookingCard_booking on BookingInterface {\n  ...DateAndPassenger_booking\n  databaseId\n  carriers {\n    name\n    code\n    id\n  }\n}\n\nfragment BookingCard_departure on RouteStop {\n  ...FromToRow_departure\n  ...DateAndPassenger_departure\n}\n\nfragment BookingCard_arrival on RouteStop {\n  ...FromToRow_arrival\n}\n\nfragment CarrierLogoWrapper_legs on Leg {\n  airline {\n    name\n    code\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    locationId\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    locationId\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment DateAndPassenger_departure on RouteStop {\n  time\n}\n\nfragment DateAndPassenger_booking on BookingInterface {\n  status\n  passengerCount\n  bookingDate\n}\n",
+  "text": "query AllBookingsQuery {\n  future: customerBookings(only: FUTURE) {\n    ...BookingCardsList_booking\n  }\n  past: customerBookings(only: PAST) {\n    ...BookingCardsList_booking\n  }\n}\n\nfragment BookingCardsList_booking on BookingInterfaceConnection {\n  edges {\n    node {\n      databaseId\n      __typename\n      ... on BookingOneWay {\n        ...OneWayBooking_booking\n      }\n      ... on BookingReturn {\n        ...ReturnBooking_booking\n      }\n      ... on BookingMulticity {\n        ...MulticityBooking_booking\n      }\n      id\n    }\n  }\n}\n\nfragment OneWayBooking_booking on BookingOneWay {\n  ...BookingCard_booking\n  trip {\n    departure {\n      ...BookingCard_departure\n    }\n    arrival {\n      ...BookingCard_arrival\n    }\n    legs {\n      airline {\n        name\n        code\n      }\n      id\n    }\n  }\n}\n\nfragment ReturnBooking_booking on BookingReturn {\n  ...BookingCard_booking\n  outbound {\n    departure {\n      ...BookingCard_departure\n    }\n    arrival {\n      ...BookingCard_arrival\n    }\n    legs {\n      airline {\n        name\n        code\n      }\n      id\n    }\n  }\n}\n\nfragment MulticityBooking_booking on BookingMulticity {\n  ...BookingCard_booking\n  start {\n    ...BookingCard_departure\n  }\n  end {\n    ...BookingCard_arrival\n  }\n  trips {\n    legs {\n      airline {\n        name\n        code\n      }\n      id\n    }\n  }\n}\n\nfragment BookingCard_booking on BookingInterface {\n  ...DateAndPassenger_booking\n  databaseId\n  carriers {\n    name\n    code\n    id\n  }\n}\n\nfragment BookingCard_departure on RouteStop {\n  ...FromToRow_departure\n  ...DateAndPassenger_departure\n}\n\nfragment BookingCard_arrival on RouteStop {\n  ...FromToRow_arrival\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    locationId\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    locationId\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment DateAndPassenger_departure on RouteStop {\n  time\n}\n\nfragment DateAndPassenger_booking on BookingInterface {\n  status\n  passengerCount\n  bookingDate\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",

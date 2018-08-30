@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import idx from 'idx';
@@ -11,7 +10,7 @@ import Ticket from '@kiwicom/orbit-components/lib/icons/Ticket';
 import Airplane from '@kiwicom/orbit-components/lib/icons/Airplane';
 import City from '@kiwicom/orbit-components/lib/icons/City';
 
-import type { AccordionLegCitiesInfo_leg } from './__generated__/AccordionLegCitiesInfo_leg.graphql';
+import type { Leg } from '../../types';
 import bookingLegTypes from '../../common/booking/bookingLegTypes';
 
 const citiesInfoStyle = css`
@@ -34,7 +33,7 @@ const citiesInfoStyle = css`
   }
 `;
 
-type Props = {| leg: AccordionLegCitiesInfo_leg |};
+type Props = {| leg: Leg |};
 
 const LegCitiesInfo = (props: Props) => {
   const { leg } = props;
@@ -144,35 +143,4 @@ const LegCitiesInfo = (props: Props) => {
   );
 };
 
-export default createFragmentContainer(
-  LegCitiesInfo,
-  graphql`
-    fragment AccordionLegCitiesInfo_leg on Leg {
-      type
-      airline {
-        code
-        name
-      }
-      operatingAirline {
-        iata
-        name
-      }
-      flightNumber
-      vehicle {
-        manufacturer
-        model
-      }
-      pnr
-      departure {
-        airport {
-          name
-        }
-      }
-      arrival {
-        airport {
-          name
-        }
-      }
-    }
-  `,
-);
+export default LegCitiesInfo;
