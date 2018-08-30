@@ -2,15 +2,15 @@
 
 exports[`ScreenInitial should match snapshot 1`] = `
 <div
-  className="jsx-1123548225 initial-screen"
+  className="jsx-1712138937 initial-screen"
 >
   <p
-    className="jsx-1123548225 question"
+    className="jsx-1712138937 question"
   >
     Was this article helpful?
   </p>
   <div
-    className="jsx-1123548225 feedback-button thumb-up"
+    className="jsx-1712138937 feedback-button thumb-up"
     onClick={[Function]}
   >
     <ThumbUp
@@ -18,13 +18,13 @@ exports[`ScreenInitial should match snapshot 1`] = `
       size="medium"
     />
     <p
-      className="jsx-1123548225"
+      className="jsx-1712138937"
     >
       Yes
     </p>
   </div>
   <div
-    className="jsx-1123548225 feedback-button thumb-down"
+    className="jsx-1712138937 feedback-button thumb-down"
     onClick={[Function]}
   >
     <ThumbDown
@@ -32,14 +32,14 @@ exports[`ScreenInitial should match snapshot 1`] = `
       size="medium"
     />
     <p
-      className="jsx-1123548225"
+      className="jsx-1712138937"
     >
       No
     </p>
   </div>
   <JSXStyle
-    css="div.initial-screen.jsx-1123548225{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}p.question.jsx-1123548225{font-size:14px;color:#46515e;}div.feedback-button.jsx-1123548225{color:#00a991;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}div.feedback-button.jsx-1123548225 p.jsx-1123548225{margin-left:9px;font-size:14px;}div.feedback-button.thumb-up.jsx-1123548225{margin-left:23px;}div.feedback-button.thumb-down.jsx-1123548225{margin-left:28px;}"
-    styleId="1123548225"
+    css="div.initial-screen.jsx-1712138937{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}p.question.jsx-1712138937{font-size:14px;color:#46515e;}div.feedback-button.jsx-1712138937{color:#00a991;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;cursor:pointer;}div.feedback-button.jsx-1712138937 p.jsx-1712138937{margin-left:9px;font-size:14px;}div.feedback-button.thumb-up.jsx-1712138937{margin-left:23px;}div.feedback-button.thumb-down.jsx-1712138937{margin-left:28px;}"
+    styleId="1712138937"
   />
 </div>
 `;
