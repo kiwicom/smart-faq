@@ -20,20 +20,20 @@ exports[`IntroPage should match snapshot 1`] = `
     <p
       className="jsx-1816167614 title"
     >
-      <Trans
-        i18nKey="IntroPage.header"
-      >
-        Need help?
-      </Trans>
+      <Text
+        html={false}
+        t="IntroPage__NeedHelp"
+        values={Object {}}
+      />
     </p>
     <Text
       type="secondary"
     >
-      <Trans
-        i18nKey="IntroPage.subheader"
-      >
-        We're here for you. First, let's narrow down your request.
-      </Trans>
+      <Text
+        html={false}
+        t="IntroPage__HereToHelpYou"
+        values={Object {}}
+      />
     </Text>
   </div>
   <div
@@ -47,11 +47,11 @@ exports[`IntroPage should match snapshot 1`] = `
         data-cy="btn-existent-booking"
         onClick={[Function]}
       >
-        <Trans
-          i18nKey="IntroPage.existingBooking"
-        >
-          I have an existing booking
-        </Trans>
+        <Text
+          html={false}
+          t="IntroPage__existingBooking"
+          values={Object {}}
+        />
       </button>
     </div>
     <div
@@ -62,11 +62,11 @@ exports[`IntroPage should match snapshot 1`] = `
         data-cy="btn-nonexistent-booking"
         onClick={[Function]}
       >
-        <Trans
-          i18nKey="IntroPage.noBooking"
-        >
-          I don't have a booking
-        </Trans>
+        <Text
+          html={false}
+          t="IntroPage__noBooking"
+          values={Object {}}
+        />
       </button>
     </div>
   </div>

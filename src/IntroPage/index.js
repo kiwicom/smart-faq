@@ -5,7 +5,7 @@ import css from 'styled-jsx/css';
 import { Text } from '@kiwicom/orbit-components';
 import Trans from '@kiwicom/nitro/lib/components/Text';
 
-import image from '../../static/woman-with-laptop@2x.jpg';
+import image from '../../static/images/woman-with-laptop@2x.jpg';
 import CloseButton from './../common/buttons/CloseButton';
 import { withUser } from '../context/User';
 import type { User } from '../types';
@@ -176,12 +176,10 @@ export class PureIntro extends React.Component<Props> {
         </div>
         <div className="text">
           <p className="title">
-            <Trans t="IntroPage.header">Need help?</Trans>
+            <Trans t="IntroPage__NeedHelp" />
           </p>
           <Text type="secondary">
-            <Trans t="IntroPage.subheader">
-              {"We're here for you. First, let's narrow down your request."}
-            </Trans>
+            <Trans t="IntroPage__HereToHelpYou" />
           </Text>
         </div>
         <div className="buttons">
@@ -190,9 +188,7 @@ export class PureIntro extends React.Component<Props> {
               onClick={this.goToExistingBooking}
               data-cy="btn-existent-booking"
             >
-              <Trans t="IntroPage.existingBooking">
-                I have an existing booking
-              </Trans>
+              <Trans t="IntroPage__existingBooking" />
             </button>
           </div>
           <div className="secondary">
@@ -200,7 +196,7 @@ export class PureIntro extends React.Component<Props> {
               onClick={this.goToNoBooking}
               data-cy="btn-nonexistent-booking"
             >
-              <Trans t="IntroPage.noBooking">I don&apos;t have a booking</Trans>
+              <Trans t="IntroPage__noBooking" />
             </button>
           </div>
         </div>

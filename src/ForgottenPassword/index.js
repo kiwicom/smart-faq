@@ -7,7 +7,7 @@ import { Text } from '@kiwicom/orbit-components';
 import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
 import Input from '../common/Input';
-import image from '../../static/woman-with-laptop@2x.jpg';
+import image from '../../static/images/woman-with-laptop@2x.jpg';
 import resetPassword from '../mutations/ResetPassword';
 
 const style = css`

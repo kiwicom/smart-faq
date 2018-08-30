@@ -35,7 +35,7 @@ describe('SmartFAQ', () => {
         onAppWithOpenChatClose={jest.fn()}
       />,
     );
-    expect(app.includes('Need help?')).toBe(true);
+    expect(app.includes('IntroPage__NeedHelp')).toBe(true);
     expect(app).toMatchSnapshot();
   });
 

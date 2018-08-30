@@ -9,8 +9,8 @@ import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
 import type { Location } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 
-import image from '../../static/woman-with-laptop@2x.jpg';
-import chevronRight from '../../static/chevron-right.png';
+import image from '../../static/images/woman-with-laptop@2x.jpg';
+import chevronRight from '../../static/images/chevron-right.png';
 import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
 import ResponsiveSocialButton from './ResponsiveSocialButton';

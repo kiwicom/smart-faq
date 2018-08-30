@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import Spinner from '../../static/spinner@2x.png';
+import Spinner from '../../static/images/spinner@2x.png';
 
 const Loader = () => (
   <div className="wrapper">

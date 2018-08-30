@@ -1,6 +1,6 @@
 // @flow
 
-/*  eslint-disable import/no-extraneous-dependencies, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
+/*  eslint-disable import/no-extraneous-dependencies, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, import/no-dynamic-require, no-console */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Cookies from 'js-cookie';
@@ -11,6 +11,7 @@ import App from './App';
 import { Requester } from './helpers/Requests';
 import type { User } from './types';
 import type { LogEvent, EventPayload } from './helpers/analytics/cuckoo';
+import languages from './translations/languages.json';
 
 type Props = {||};
 
@@ -22,7 +23,11 @@ type State = {|
   helpQuery: ?string,
   showEmergencies: boolean,
   enableChat: boolean,
+<<<<<<< master
   forceChat: boolean,
+=======
+  language: string,
+>>>>>>> feat(smartfaq): add translations for standalone app
 |};
 
 const user = {
@@ -42,6 +47,19 @@ const chatConfig = {
   CHAT_DEPLOYMENT_KEY: process.env.CHAT_DEPLOYMENT_KEY || '',
   CHAT_ORG_ID: process.env.CHAT_ORG_ID || '',
   CHAT_QUEUE_NAME: process.env.CHAT_QUEUE_NAME || 'CHAT TEST',
+};
+
+const loadStaticTranslations = (langId: string) => {
+  const { phraseApp = 'en-GB' } = languages[langId];
+  try {
+    return require(`../static/locales/${phraseApp}.json`);
+  } catch (error) {
+    console.error(
+      'Language selected does not exists, default lenguage loaded.',
+      error,
+    );
+    return require('../static/locales/en-GB.json');
+  }
 };
 
 class Root extends React.Component<Props, State> {
@@ -82,13 +100,23 @@ class Root extends React.Component<Props, State> {
       forceChat: window.GuaranteeChatForce,
       showEmergencies,
       helpQuery: helpQueryString ? helpQueryString : '/',
+      language: 'en',
     };
     this.setupLogs();
     this.setupTracker();
+    window.SP_GLOBALS = {
+      SKYPICKER_TRANSLATIONS: loadStaticTranslations(this.state.language),
+    };
   }
 
   componentDidMount() {
     window.addEventListener('keydown', this.onKeyDown);
+  }
+
+  componentDidUpdate() {
+    window.SP_GLOBALS.SKYPICKER_TRANSLATIONS = loadStaticTranslations(
+      this.state.language,
+    );
   }
 
   componentWillUnmount() {
@@ -200,9 +228,12 @@ class Root extends React.Component<Props, State> {
     }));
   };
 
+  toggleLanguage = (e: SyntheticInputEvent<HTMLInputElement>) => {
+    this.setState({ language: e.target.value });
+  };
+
   render() {
-    const { helpQuery, showEmergencies } = this.state;
-    const language = 'en';
+    const { helpQuery, showEmergencies, language } = this.state;
 
     return (
       <div>
@@ -231,11 +262,46 @@ class Root extends React.Component<Props, State> {
             onChange={this.onToggleChat}
           />
           <h3>Force chat (always available in Guarantee article)</h3>
+<<<<<<< master
           <input
             type="checkbox"
             onChange={this.onForceChat}
             checked={this.state.forceChat}
           />
+=======
+          <input type="checkbox" onChange={this.onForceChat} />
+          <h3>Change languages</h3>
+          <label htmlFor="en-GB">
+            <input
+              type="radio"
+              value="en"
+              id="en-GB"
+              checked={language === 'en'}
+              onChange={this.toggleLanguage}
+            />
+            English(en-GB)
+          </label>
+          <label htmlFor="es-ES">
+            <input
+              type="radio"
+              value="es"
+              id="es-ES"
+              checked={language === 'es'}
+              onChange={this.toggleLanguage}
+            />
+            Spanish(es-ES)
+          </label>
+          <label htmlFor="cs-CZ">
+            <input
+              type="radio"
+              value="cz"
+              id="cs-CZ"
+              checked={language === 'cz'}
+              onChange={this.toggleLanguage}
+            />
+            Czech(cs-CZ)
+          </label>
+>>>>>>> feat(smartfaq): add translations for standalone app
         </div>
         {helpQuery && (
           <div className="sidebarOverlay" onClick={this.closeApp} />

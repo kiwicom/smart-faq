@@ -9,18 +9,16 @@ import * as dateUtils from '../dateUtils';
 describe('date utils', () => {
   describe('formatCountDown', () => {
     it('should return number of remaining days if hoursLeft > 24', () => {
-      expect(dateUtils.formatCountDown(100.423, () => 'days')).toBe('4 days');
+      expect(dateUtils.formatCountDown(100.423)).toBe('4 days');
     });
 
     // two translations can't be hardcoded
     it('should return remaining time in minutes', () => {
-      expect(dateUtils.formatCountDown(20.423, t => t)).toBe(
-        '20TimeUnits.Abbr.Hours 25TimeUnits.Abbr.Minutes',
-      );
+      expect(dateUtils.formatCountDown(20.423)).toBe('20 hours 25 minutes');
     });
 
     it('should return remaining time in hours', () => {
-      expect(dateUtils.formatCountDown(20.001, () => 'h')).toBe('20h');
+      expect(dateUtils.formatCountDown(20.001)).toBe('20h');
     });
   });
 
