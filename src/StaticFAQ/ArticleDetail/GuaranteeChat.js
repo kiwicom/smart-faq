@@ -16,7 +16,7 @@ type State = {|
 const guid = process.env.CHAT_GUID;
 const deploymentKey = process.env.CHAT_DEPLOYMENT_KEY;
 const orgId = process.env.CHAT_ORG_ID;
-const queueName = process.env.CHAT_QUEUE_NAME;
+const queueName = process.env.CHAT_QUEUE_NAME || 'CHAT TEST';
 
 if (!(guid && deploymentKey && orgId && queueName)) {
   throw new Error('Secrets for Guarantee chat not provided.');

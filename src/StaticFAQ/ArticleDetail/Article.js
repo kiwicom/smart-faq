@@ -181,10 +181,14 @@ const Article = (props: ComponentProps) => (
       // show Guarantee Chat only in Guarantee article
       const articleId = idx(props.match, _ => _.params.articleId);
       const isInGuaranteeArticle = articleId === GUARANTEE_ARTICLE_ID;
+      const forceGuaranteeChat =
+        typeof window !== 'undefined' && window.GuaranteeChatForce;
 
       return (
         <RawFAQArticleDetail
-          showGuaranteeChat={showGuaranteeChat && isInGuaranteeArticle}
+          showGuaranteeChat={
+            (showGuaranteeChat || forceGuaranteeChat) && isInGuaranteeArticle
+          }
           {...props}
         />
       );

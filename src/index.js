@@ -87,6 +87,14 @@ class Root extends React.Component<Props, State> {
     this.setState(({ enableChat }) => ({ enableChat: !enableChat }));
   };
 
+  onForceChat = () => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    window.GuaranteeChatForce = !window.GuaranteeChatForce;
+  };
+
   setupTracker = () => {
     const keen = new KeenTracking({
       projectId: process.env.KEENIO_PROJECTID,
@@ -184,6 +192,8 @@ class Root extends React.Component<Props, State> {
             checked={this.state.enableChat}
             onChange={this.onToggleChat}
           />
+          <h3>Force chat (always available in Guarantee article)</h3>
+          <input type="checkbox" onChange={this.onForceChat} />
         </div>
         {helpQuery && (
           <div className="sidebarOverlay" onClick={this.closeApp} />
