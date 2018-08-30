@@ -1,7 +1,6 @@
 // @flow
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
-import idx from 'idx';
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import classNames from 'classnames';
@@ -26,6 +25,7 @@ import type { AppProps } from './types';
 import MobileSafariScroll from './helpers/MobileSafariScroll';
 import GuaranteeChatInfo from './context/GuaranteeChatInfo';
 import langInfos from './translations/languages.json';
+import fallBackTranslations from './translations/locales-fallback/en-GB.json';
 
 const style = css`
   .smartFAQ {
@@ -91,10 +91,14 @@ class App extends React.PureComponent<AppProps, State> {
   };
 
   renderApp() {
-    const { route, emergencies, language = 'en', onClose } = this.props;
+    const {
+      route,
+      emergencies,
+      language,
+      translations = fallBackTranslations,
+      onClose,
+    } = this.props;
     const isOpen = Boolean(route);
-    const translations =
-      idx(window, _ => _.SP_GLOBALS.SKYPICKER_TRANSLATIONS) || {};
     const langInfo = langInfos[language];
 
     return (

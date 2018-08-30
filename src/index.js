@@ -9,7 +9,7 @@ import KeenTracking from 'keen-tracking';
 
 import App from './App';
 import { Requester } from './helpers/Requests';
-import type { User } from './types';
+import type { User, Translations } from './types';
 import type { LogEvent, EventPayload } from './helpers/analytics/cuckoo';
 import languages from './translations/languages.json';
 
@@ -61,6 +61,7 @@ const loadStaticTranslations = (langId: string) => {
 class Root extends React.Component<Props, State> {
   cookieKey: string;
   input: ?HTMLInputElement;
+  translations: Translations;
 
   constructor(props) {
     super(props);
@@ -90,9 +91,7 @@ class Root extends React.Component<Props, State> {
     };
     this.setupLogs();
     this.setupTracker();
-    window.SP_GLOBALS = {
-      SKYPICKER_TRANSLATIONS: loadStaticTranslations(this.state.language),
-    };
+    this.translations = loadStaticTranslations(this.state.language);
   }
 
   componentDidMount() {
@@ -100,11 +99,8 @@ class Root extends React.Component<Props, State> {
   }
 
   componentDidUpdate() {
-    window.SP_GLOBALS.SKYPICKER_TRANSLATIONS = loadStaticTranslations(
-      this.state.language,
-    );
+    this.translations = loadStaticTranslations(this.state.language);
   }
-
   componentWillUnmount() {
     window.removeEventListener('keydown', this.onKeyDown);
   }
@@ -136,7 +132,6 @@ class Root extends React.Component<Props, State> {
     });
     const stagingCuckoo = {
       infinario: (eventName: LogEvent, payload: EventPayload) => {
-        //eslint-disable-next-line no-console
         console.info('Event recorded to KeenIO', eventName, payload);
         keen.recordEvent(eventName, payload);
       },
@@ -167,7 +162,6 @@ class Root extends React.Component<Props, State> {
     const password = process.env.TEST_USER_PASSWORD;
 
     if (!(email && password)) {
-      //eslint-disable-next-line no-console
       console.error('Testing user not set in env vars.');
       return;
     }
@@ -288,6 +282,7 @@ class Root extends React.Component<Props, State> {
             onSocialLogin={this.handleSocialLogin}
             onLogout={this.handleLogout}
             language={language}
+            translations={this.translations}
             user={this.state.user}
             route={helpQuery}
             loginToken={this.state.loginToken}
