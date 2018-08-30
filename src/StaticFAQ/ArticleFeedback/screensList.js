@@ -2,7 +2,8 @@
 
 const feedbackScreens = {
   INITIAL: 'initial',
-  INPUT: 'input',
+  FEEDBACK: 'feedback',
+  ADDITIONAL_FEEDBACK: 'additional-feedback',
   THANK_YOU: 'thank-you',
   ERROR: 'error',
 };

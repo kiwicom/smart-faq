@@ -4,6 +4,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 
 import ScreenInitial from './ScreenInitial';
+import ScreenFeedback from './ScreenFeedback';
 import ScreenInput from './ScreenInput';
 import ScreenThankyou from './ScreenThankyou';
 import ScreenError from './ScreenError';
@@ -37,7 +38,9 @@ class FAQArticleFeedback extends React.Component<Props, State> {
     switch (this.state.screen) {
       case screensList.INITIAL:
         return <ScreenInitial changeScreen={this.changeScreen} />;
-      case screensList.INPUT:
+      case screensList.FEEDBACK:
+        return <ScreenFeedback changeScreen={this.changeScreen} />;
+      case screensList.ADDITIONAL_FEEDBACK:
         return (
           <ScreenInput
             articleId={this.props.articleId}

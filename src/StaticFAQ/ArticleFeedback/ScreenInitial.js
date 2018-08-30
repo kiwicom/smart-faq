@@ -23,6 +23,7 @@ const style = css`
     color: #00a991;
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
   div.feedback-button p {
     margin-left: 9px;
@@ -48,7 +49,7 @@ const ScreenInitial = (props: Props) => (
     </div>
     <div
       className="feedback-button thumb-down"
-      onClick={() => props.changeScreen(screensList.INPUT)}
+      onClick={() => props.changeScreen(screensList.FEEDBACK)}
     >
       <ThumbDown size="medium" customColor="#00a991" />
       <p>No</p>
