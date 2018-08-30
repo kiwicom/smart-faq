@@ -7,7 +7,7 @@ import { CarrierLogo } from '@kiwicom/orbit-components';
 import type { Leg } from '../../types';
 
 type Props = {
-  legs: [Leg],
+  legs: Array<Leg>,
 };
 
 const CarrierLogoWrapper = (props: Props) => {

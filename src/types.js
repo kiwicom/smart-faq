@@ -73,7 +73,7 @@ export type Leg = {
 export type Trip = {
   departure: {
     localTime: string,
-    time: Date,
+    time?: ?Date,
     airport: {
       locationId: string,
       city: {
@@ -82,7 +82,7 @@ export type Trip = {
     },
   },
   arrival: {
-    time: Date,
+    time?: ?Date,
     localTime: string,
     airport: {
       locationId: string,
@@ -91,7 +91,7 @@ export type Trip = {
       },
     },
   },
-  legs: [Leg],
+  legs: Array<Leg>,
 };
 
 export type BasicBookingDataFields = {
@@ -99,15 +99,22 @@ export type BasicBookingDataFields = {
   databaseId: number,
   isPastBooking: boolean,
   type?: 'ONE_WAY' | 'RETURN' | 'MULTICITY',
-  status?: 'CLOSED' | 'CONFIRMED' | 'REFUNDED',
+  status?:
+    | 'REFUNDED'
+    | 'CONFIRMED'
+    | 'PENDING'
+    | 'CANCELLED'
+    | 'DELETED'
+    | 'CLOSED'
+    | 'EXPIRED',
   assets?: ?{
     ticketUrl: ?string,
   },
   start?: ?{
-    time: ?Date,
+    time?: ?Date,
   },
   end?: ?{
-    time: ?Date,
+    time?: ?Date,
     airport: ?{
       city: ?{
         name: ?string,
@@ -115,9 +122,9 @@ export type BasicBookingDataFields = {
     },
   },
   outbound: {
-    legs: [Leg],
+    legs: Array<Leg>,
     arrival: {
-      time: Date,
+      time?: ?Date,
       localTime: string,
       airport: {
         locationId: string,
@@ -127,7 +134,7 @@ export type BasicBookingDataFields = {
       },
     },
     departure: {
-      time: Date,
+      time?: ?Date,
       localTime: string,
       airport: {
         locationId: string,
@@ -138,9 +145,9 @@ export type BasicBookingDataFields = {
     },
   },
   inbound: {
-    legs: [Leg],
+    legs: Array<Leg>,
     arrival: {
-      time: Date,
+      time?: ?Date,
       localTime: string,
       airport: {
         locationId: string,
@@ -150,7 +157,7 @@ export type BasicBookingDataFields = {
       },
     },
     departure: {
-      time: Date,
+      time?: ?Date,
       localTime: string,
       airport: {
         locationId: string,
@@ -161,7 +168,7 @@ export type BasicBookingDataFields = {
     },
   },
   trip: Trip,
-  trips: [Trip],
+  trips: Array<Trip>,
 };
 
 export type BasicBookingData = {

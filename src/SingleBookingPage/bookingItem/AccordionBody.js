@@ -7,7 +7,7 @@ import AccordionBodyLastLeg from './AccordionBodyLastLeg';
 import type { Leg } from '../../types';
 
 type Props = {|
-  legs: [Leg],
+  legs: Array<Leg>,
 |};
 
 class AccordionBody extends React.Component<Props> {

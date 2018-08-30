@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
 import idx from 'idx';
@@ -144,35 +143,4 @@ const LegCitiesInfo = (props: Props) => {
   );
 };
 
-export default createFragmentContainer(
-  LegCitiesInfo,
-  graphql`
-    fragment AccordionLegCitiesInfo_leg on Leg {
-      type
-      airline {
-        code
-        name
-      }
-      operatingAirline {
-        iata
-        name
-      }
-      flightNumber
-      vehicle {
-        manufacturer
-        model
-      }
-      pnr
-      departure {
-        airport {
-          name
-        }
-      }
-      arrival {
-        airport {
-          name
-        }
-      }
-    }
-  `,
-);
+export default LegCitiesInfo;
