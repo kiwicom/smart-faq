@@ -3,7 +3,7 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 
-import ScreenInitial from './ScreenInitial';
+import ScreenVoting from './ScreenVoting';
 import ScreenFeedback from './ScreenFeedback';
 import ScreenAdditionalFeedback from './ScreenAdditionalFeedback';
 import ScreenThankyou from './ScreenThankyou';
@@ -39,7 +39,7 @@ class FAQArticleFeedback extends React.Component<Props, State> {
   renderScreen() {
     switch (this.state.screen) {
       case screensList.INITIAL:
-        return <ScreenInitial changeScreen={this.changeScreen} />;
+        return <ScreenVoting changeScreen={this.changeScreen} />;
       case screensList.FEEDBACK:
         return <ScreenFeedback changeScreen={this.changeScreen} />;
       case screensList.ADDITIONAL_FEEDBACK:

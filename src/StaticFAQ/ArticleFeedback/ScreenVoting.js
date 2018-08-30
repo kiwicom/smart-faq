@@ -37,7 +37,7 @@ const style = css`
   }
 `;
 
-const ScreenInitial = (props: Props) => (
+const ScreenVoting = (props: Props) => (
   <div className="initial-screen">
     <p className="question">Was this article helpful?</p>
     <div
@@ -58,4 +58,4 @@ const ScreenInitial = (props: Props) => (
   </div>
 );
 
-export default ScreenInitial;
+export default ScreenVoting;
