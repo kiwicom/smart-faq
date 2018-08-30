@@ -3,10 +3,8 @@
 
 import * as React from 'react';
 
-import type { onLogout, BasicBookingData } from '../types';
+import type { BasicBookingData } from '../types';
 import { isUrgentBooking } from '../common/booking/utils';
-import { UserContext } from './User';
-import type { UserContextType } from './User';
 
 export const getFAQSection = ({
   hasBooking,
@@ -84,18 +82,5 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
     );
   }
 }
-
-export const withLogout = <Props>(
-  Component: React.ComponentType<{ onLogout: onLogout } & Props>,
-) =>
-  function withLogoutHOC(props: Props) {
-    return (
-      <UserContext.Consumer>
-        {({ onLogout }: UserContextType) => (
-          <Component {...props} onLogout={onLogout} />
-        )}
-      </UserContext.Consumer>
-    );
-  };
 
 export default BookingStateProvider;

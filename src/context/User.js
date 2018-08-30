@@ -86,3 +86,16 @@ export const withLoginToken = <Props>(
       </UserContext.Consumer>
     );
   };
+
+export const withLogout = <Props>(
+  Component: React.ComponentType<{ onLogout: onLogout } & Props>,
+) =>
+  function withLogoutHOC(props: Props) {
+    return (
+      <UserContext.Consumer>
+        {({ onLogout }: UserContextType) => (
+          <Component {...props} onLogout={onLogout} />
+        )}
+      </UserContext.Consumer>
+    );
+  };
