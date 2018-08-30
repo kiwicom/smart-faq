@@ -5,7 +5,7 @@ import css from 'styled-jsx/css';
 
 import ScreenInitial from './ScreenInitial';
 import ScreenFeedback from './ScreenFeedback';
-import ScreenInput from './ScreenInput';
+import ScreenAdditionalFeedback from './ScreenAdditionalFeedback';
 import ScreenThankyou from './ScreenThankyou';
 import ScreenError from './ScreenError';
 import screensList from './screensList';
@@ -31,9 +31,11 @@ class FAQArticleFeedback extends React.Component<Props, State> {
       screen: screensList.INITIAL,
     };
   }
+
   changeScreen = (screen: string) => {
     this.setState({ screen });
   };
+
   renderScreen() {
     switch (this.state.screen) {
       case screensList.INITIAL:
@@ -42,7 +44,7 @@ class FAQArticleFeedback extends React.Component<Props, State> {
         return <ScreenFeedback changeScreen={this.changeScreen} />;
       case screensList.ADDITIONAL_FEEDBACK:
         return (
-          <ScreenInput
+          <ScreenAdditionalFeedback
             articleId={this.props.articleId}
             changeScreen={this.changeScreen}
           />
@@ -54,6 +56,7 @@ class FAQArticleFeedback extends React.Component<Props, State> {
     }
     return <ScreenInitial changeScreen={this.changeScreen} />;
   }
+
   render() {
     return (
       <div className="FAQArticleFeedback" data-cy="faq-article-form">

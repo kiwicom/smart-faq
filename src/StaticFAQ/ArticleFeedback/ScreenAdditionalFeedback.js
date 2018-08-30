@@ -64,7 +64,7 @@ const style = css`
   }
 `;
 
-class ScreenInput extends React.Component<Props, State> {
+class ScreenAdditionalFeedback extends React.Component<Props, State> {
   state = {
     comment: '',
     error: false,
@@ -137,4 +137,4 @@ class ScreenInput extends React.Component<Props, State> {
   }
 }
 
-export default ScreenInput;
+export default ScreenAdditionalFeedback;
