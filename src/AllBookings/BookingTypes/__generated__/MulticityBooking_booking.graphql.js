@@ -11,7 +11,6 @@ import type { ConcreteFragment } from 'relay-runtime';
 type BookingCard_arrival$ref = any;
 type BookingCard_booking$ref = any;
 type BookingCard_departure$ref = any;
-type CarrierLogoWrapper_legs$ref = any;
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type MulticityBooking_booking$ref: FragmentReference;
 export type MulticityBooking_booking = {|
@@ -23,7 +22,10 @@ export type MulticityBooking_booking = {|
   |},
   +trips: ?$ReadOnlyArray<?{|
     +legs: ?$ReadOnlyArray<?{|
-      +$fragmentRefs: CarrierLogoWrapper_legs$ref,
+      +airline: ?{|
+        +name: ?string,
+        +code: ?string,
+      |},
     |}>,
   |}>,
   +$fragmentRefs: BookingCard_booking$ref,
@@ -95,9 +97,29 @@ const node/*: ConcreteFragment*/ = {
           "plural": true,
           "selections": [
             {
-              "kind": "FragmentSpread",
-              "name": "CarrierLogoWrapper_legs",
-              "args": null
+              "kind": "LinkedField",
+              "alias": null,
+              "name": "airline",
+              "storageKey": null,
+              "args": null,
+              "concreteType": "Airline",
+              "plural": false,
+              "selections": [
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "name",
+                  "args": null,
+                  "storageKey": null
+                },
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "code",
+                  "args": null,
+                  "storageKey": null
+                }
+              ]
             }
           ]
         }
@@ -105,5 +127,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = '62188f8a5a632355dd3060cfd1a0d02d';
+(node/*: any*/).hash = 'f2f36b3005cf8ecf202108ce835445f1';
 module.exports = node;

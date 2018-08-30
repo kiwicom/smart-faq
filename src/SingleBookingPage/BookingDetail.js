@@ -4,8 +4,6 @@ import idx from 'idx';
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { DateTime } from 'luxon';
-import { graphql, createFragmentContainer } from 'react-relay';
-import { withRouter } from 'react-router-dom';
 import { BaggageChecked, Ticket } from '@kiwicom/orbit-components/lib/icons';
 
 import {
@@ -23,12 +21,12 @@ import { ScrollableContent } from '../common';
 import bookingTypes from '../common/booking/bookingTypes';
 import { URGENCY_THRESHOLD } from '../helpers/dateUtils';
 import replaceWithCurrentDomain from '../helpers/replaceWithCurrentDomain';
-import type { NearestBooking_booking } from './__generated__/NearestBookingQuery.graphql';
 import FAQExtraInfoButton from '../StaticFAQ/FAQExtraInfo/FAQExtraInfoButton';
 import features from '../feature-toggles.json';
+import type { BasicBookingDataFields } from '../types';
 
 type ComponentProps = {
-  +booking: NearestBooking_booking,
+  +booking: BasicBookingDataFields,
 };
 
 type Props = ComponentProps;
@@ -82,7 +80,7 @@ const clickEticket = () =>
   });
 
 class BookingDetail extends React.Component<Props> {
-  renderByType = (booking: NearestBooking_booking) => {
+  renderByType = (booking: BasicBookingDataFields) => {
     if (booking.type === bookingTypes.ONE_WAY) {
       return <OneWay booking={booking} />;
     }
@@ -98,7 +96,7 @@ class BookingDetail extends React.Component<Props> {
     return null;
   };
 
-  getArrivalByType = (booking: NearestBooking_booking) => {
+  getArrivalByType = (booking: BasicBookingDataFields) => {
     let date = null;
 
     if (booking.type === bookingTypes.ONE_WAY) {
@@ -196,51 +194,4 @@ const BookingDetailWithFAQHandler = (props: ComponentProps) => (
   <BookingDetail {...props} />
 );
 
-export default createFragmentContainer(
-  withRouter(BookingDetailWithFAQHandler),
-  graphql`
-    fragment BookingDetail_booking on BookingInterface {
-      type
-      status
-      assets {
-        ticketUrl
-      }
-      directAccessURL
-      isPastBooking
-      ...Header_booking
-      ... on BookingOneWay {
-        ...OneWay_booking
-        trip {
-          departure {
-            time
-          }
-          arrival {
-            time
-          }
-        }
-      }
-      ... on BookingReturn {
-        ...Return_booking
-        outbound {
-          departure {
-            time
-          }
-        }
-        inbound {
-          arrival {
-            time
-          }
-        }
-      }
-      ... on BookingMulticity {
-        ...MulticityOverlay_booking
-        start {
-          time
-        }
-        end {
-          time
-        }
-      }
-    }
-  `,
-);
+export default BookingDetailWithFAQHandler;

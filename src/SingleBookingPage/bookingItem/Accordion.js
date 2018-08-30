@@ -1,14 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 
 import { simpleTracker } from '../../helpers/analytics/trackers';
 import { Box } from '../../common';
 import AccordionBody from './AccordionBody';
 import AccordionHeader from './AccordionHeader';
-import type { AccordionTripSummary_trip } from './__generated__/AccordionTripSummary_trip.graphql';
+import type { Trip } from '../../types';
 
 const styles = css`
   .accordionWrapper {
@@ -25,7 +24,7 @@ const styles = css`
 `;
 
 type Props = {|
-  trip: AccordionTripSummary_trip,
+  trip: Trip,
 |};
 type State = {|
   isToggled: boolean,
@@ -44,7 +43,7 @@ class Accordion extends React.Component<Props, State> {
     this.setState(prevState => ({ isToggled: !prevState.isToggled }));
   };
 
-  handleKeyUp = e => {
+  handleKeyUp = (e: { key: string }) => {
     if (e.key !== 'Enter') return;
     this.toggleBody();
   };
@@ -72,36 +71,4 @@ class Accordion extends React.Component<Props, State> {
   }
 }
 
-export default createFragmentContainer(
-  Accordion,
-  graphql`
-    fragment AccordionTripSummary_trip on Trip {
-      departure {
-        localTime
-        airport {
-          locationId
-          city {
-            name
-          }
-        }
-      }
-      arrival {
-        airport {
-          locationId
-          city {
-            name
-          }
-        }
-      }
-      legs {
-        airline {
-          name
-          code
-          logoUrl
-        }
-        ...CarrierLogoWrapper_legs
-        ...AccordionBody_legs
-      }
-    }
-  `,
-);
+export default Accordion;

@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { translate } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
-import { graphql, createFragmentContainer } from 'react-relay';
 import { Heading, Text } from '@kiwicom/orbit-components';
 
 import OneWayBookingHeader from './BookingHeaders/OneWay';
@@ -13,15 +12,18 @@ import formatBookingId from '../../helpers/formatBookingId';
 import bookingTypes from '../../common/booking/bookingTypes';
 import bookingStatuses from '../../common/booking/bookingStatuses';
 import SelectAnotherBookingLink from '../../common/booking/SelectAnotherBookingLink';
-import type { Header_booking } from './__generated__/Header_booking.graphql';
+import type { BasicBookingDataFields } from '../../types';
 
 type Props = {|
-  booking: Header_booking,
+  booking: BasicBookingDataFields,
   isFuture: boolean,
   t: string => string,
 |};
 
-function renderHeaderTitleByType(type: string, booking: Header_booking) {
+function renderHeaderTitleByType(
+  type: string,
+  booking: BasicBookingDataFields,
+) {
   switch (type) {
     case bookingTypes.ONE_WAY:
       return <OneWayBookingHeader bookingHeader={booking} />;
@@ -82,16 +84,4 @@ const Header = (props: Props) => {
   );
 };
 
-export default createFragmentContainer(
-  translate()(withRouter(Header)),
-  graphql`
-    fragment Header_booking on BookingInterface {
-      type
-      status
-      databaseId
-      ...OneWay_bookingHeader
-      ...Return_bookingHeader
-      ...Multicity_bookingHeader
-    }
-  `,
-);
+export default translate()(withRouter(Header));

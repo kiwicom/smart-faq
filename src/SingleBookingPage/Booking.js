@@ -1,44 +1,34 @@
 // @flow
 
 import * as React from 'react';
-import { graphql } from 'react-relay';
-import idx from 'idx';
 
-import QueryRenderer from '../relay/QueryRenderer';
 import BookingError from './BookingError';
 import BookingDetail from './BookingDetail';
 import BookingNotFound from './BookingNotFound';
 import BookingLoader from './BookingLoader';
-import type { NearestBookingQueryResponse as QueryResponseType } from './__generated__/NearestBookingQuery.graphql';
+import type { BasicBookingData } from '../types';
+import { BookingState } from '../context/BookingState';
 
 type Props = {||};
 
-type RenderState = {
-  props: ?QueryResponseType,
-  error: ?Error,
-};
-
-const query = graphql`
-  query NearestBookingQuery {
-    nearestBooking {
-      ...BookingDetail_booking
-    }
-  }
-`;
-
 class NearestBooking extends React.Component<Props> {
-  renderBooking = (renderState: RenderState) => {
+  renderBooking = (renderState: ?BasicBookingData) => {
     let content = null;
-    const booking = idx(renderState.props, _ => _.nearestBooking);
+    if (!renderState) {
+      content = <BookingLoader />;
+      return (
+        <div style={{ height: '100%', backgroundColor: '#f5f7f9' }}>
+          {content}
+        </div>
+      );
+    }
+
+    const booking = renderState.props;
 
     if (booking) {
       content = <BookingDetail booking={booking} />;
     } else if (!booking) {
       content = <BookingNotFound />;
-    }
-
-    if (!renderState.props) {
-      content = <BookingLoader />;
     }
 
     if (renderState && renderState.error) {
@@ -54,7 +44,9 @@ class NearestBooking extends React.Component<Props> {
 
   render() {
     return (
-      <QueryRenderer query={query} variables={{}} render={this.renderBooking} />
+      <BookingState.Consumer>
+        {({ booking }) => this.renderBooking(booking)}
+      </BookingState.Consumer>
     );
   }
 }

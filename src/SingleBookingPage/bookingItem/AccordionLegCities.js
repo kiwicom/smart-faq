@@ -5,11 +5,10 @@ import css from 'styled-jsx/css';
 import idx from 'idx';
 import { CarrierLogo } from '@kiwicom/orbit-components';
 import { ShowMore, ShowLess } from '@kiwicom/orbit-components/lib/icons';
-import { createFragmentContainer, graphql } from 'react-relay';
 
 import LegCitiesInfo from './AccordionLegCitiesInfo';
 import { formatHour, formatTimeDuration } from '../../helpers/dateUtils';
-import type { AccordionLegCities_leg } from './__generated__/AccordionLegCities_leg.graphql';
+import type { Leg } from '../../types';
 import bookingLegTypes from '../../common/booking/bookingLegTypes';
 
 const citiesStyle = css`
@@ -89,7 +88,7 @@ const citiesStyle = css`
 `;
 
 type Props = {|
-  leg: AccordionLegCities_leg,
+  leg: Leg,
 |};
 
 type State = {|
@@ -112,7 +111,7 @@ class LegCities extends React.Component<Props, State> {
     this.toggleLeg();
   };
 
-  handleKeyUp = e => {
+  handleKeyUp = (e: { key: string }) => {
     if (e.key !== 'Enter') return;
     this.toggleLeg();
   };
@@ -189,35 +188,4 @@ class LegCities extends React.Component<Props, State> {
   }
 }
 
-export default createFragmentContainer(
-  LegCities,
-  graphql`
-    fragment AccordionLegCities_leg on Leg {
-      ...AccordionLegCitiesInfo_leg
-      type
-      duration
-      airline {
-        code
-        name
-      }
-      arrival {
-        localTime
-        airport {
-          locationId
-          city {
-            name
-          }
-        }
-      }
-      departure {
-        localTime
-        airport {
-          locationId
-          city {
-            name
-          }
-        }
-      }
-    }
-  `,
-);
+export default LegCities;

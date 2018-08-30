@@ -11,7 +11,7 @@ import Ticket from '@kiwicom/orbit-components/lib/icons/Ticket';
 import Airplane from '@kiwicom/orbit-components/lib/icons/Airplane';
 import City from '@kiwicom/orbit-components/lib/icons/City';
 
-import type { AccordionLegCitiesInfo_leg } from './__generated__/AccordionLegCitiesInfo_leg.graphql';
+import type { Leg } from '../../types';
 import bookingLegTypes from '../../common/booking/bookingLegTypes';
 
 const citiesInfoStyle = css`
@@ -34,7 +34,7 @@ const citiesInfoStyle = css`
   }
 `;
 
-type Props = {| leg: AccordionLegCitiesInfo_leg |};
+type Props = {| leg: Leg |};
 
 const LegCitiesInfo = (props: Props) => {
   const { leg } = props;

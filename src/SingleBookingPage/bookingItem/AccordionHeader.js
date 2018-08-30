@@ -12,7 +12,7 @@ import css from 'styled-jsx/css';
 
 import CarrierLogoWrapper from './CarrierLogoWrapper';
 import { FormatDate } from '../../helpers/dateUtils';
-import type { AccordionTripSummary_trip } from './__generated__/AccordionTripSummary_trip.graphql';
+import type { Trip } from '../../types';
 
 const headerStyles = css`
   .header {
@@ -42,7 +42,7 @@ const headerStyles = css`
   }
 `;
 type Props = {|
-  trip: AccordionTripSummary_trip,
+  trip: Trip,
   isToggled: boolean,
 |};
 const AccordionHeader = ({ trip, isToggled }: Props) => {

@@ -26,11 +26,85 @@ export default createFragmentContainer(
   MultiCityTrip,
   graphql`
     fragment MultiCityTripWrapper_booking on BookingMulticity {
+      directAccessURL
       isPastBooking
       databaseId
+      type
+      status
+
+      end {
+        time
+        localTime
+        airport {
+          locationId
+          name
+          city {
+            name
+          }
+        }
+      }
+
       trips @relay(plural: true) {
-        departure {
+        legs {
+          duration
+          flightNumber
+          pnr
+          operatingAirline {
+            name
+            iata
+          }
+          vehicle {
+            model
+            manufacturer
+          }
+
+          airline {
+            name
+            code
+            logoUrl
+          }
+          arrival {
+            time
+            localTime
+            airport {
+              locationId
+              name
+              city {
+                name
+              }
+            }
+          }
+          departure {
+            time
+            localTime
+            airport {
+              locationId
+              name
+              city {
+                name
+              }
+            }
+          }
+        }
+        arrival {
           time
+          localTime
+          airport {
+            name
+            city {
+              name
+            }
+          }
+        }
+        departure {
+          localTime
+          time
+          airport {
+            name
+            city {
+              name
+            }
+          }
         }
       }
     }

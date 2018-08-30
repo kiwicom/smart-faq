@@ -26,11 +26,73 @@ export default createFragmentContainer(
   OneWayTrip,
   graphql`
     fragment OneWayTripWrapper_booking on BookingOneWay {
+      directAccessURL
       isPastBooking
       databaseId
+      type
+
       trip {
+        legs {
+          duration
+          flightNumber
+          pnr
+          operatingAirline {
+            name
+            iata
+          }
+          vehicle {
+            model
+            manufacturer
+          }
+          airline {
+            name
+            code
+            logoUrl
+          }
+          arrival {
+            time
+            localTime
+            airport {
+              locationId
+              name
+              city {
+                name
+              }
+            }
+          }
+          departure {
+            time
+            localTime
+            airport {
+              locationId
+              name
+              city {
+                name
+              }
+            }
+          }
+        }
+        arrival {
+          time
+          localTime
+          airport {
+            locationId
+            name
+            city {
+              name
+            }
+          }
+        }
         departure {
           time
+          localTime
+          airport {
+            locationId
+            name
+            city {
+              name
+            }
+          }
         }
       }
     }

@@ -15,7 +15,7 @@ export type Provider = 'facebook' | 'google';
 
 export type onSocialLogin = Provider => Promise<*>;
 
-export type AppProps = {|
+export type AppProps = {
   language: string,
   user: User,
   loginToken: ?string,
@@ -26,26 +26,142 @@ export type AppProps = {|
   onSocialLogin: onSocialLogin,
   onLogout: onLogout,
   emergencies: string[],
-|};
+};
+
+export type Leg = {
+  type: ?'BUS' | 'TRAIN' | 'AIRCRAFT',
+  pnr?: ?string,
+  operatingAirline?: {
+    name: string,
+    iata: string,
+  },
+  vehicle?: {
+    model: string,
+    manufacturer: string,
+  },
+  airline?: ?{
+    name: ?string,
+    code: ?string,
+    logoUrl: ?string,
+  },
+  departure?: {
+    localTime?: string,
+    time?: ?Date,
+    airport?: {
+      locationId?: ?string,
+      name: string,
+      city?: ?{
+        name?: ?string,
+      },
+    },
+  },
+  arrival?: {
+    localTime?: string,
+    time?: ?Date,
+    airport?: {
+      locationId?: ?string,
+      name: string,
+      city?: ?{
+        name?: ?string,
+      },
+    },
+  },
+  flightNumber?: number,
+  duration?: ?number,
+};
+
+export type Trip = {
+  departure: {
+    localTime: string,
+    time: Date,
+    airport: {
+      locationId: string,
+      city: {
+        name: string,
+      },
+    },
+  },
+  arrival: {
+    time: Date,
+    localTime: string,
+    airport: {
+      locationId: string,
+      city: {
+        name: string,
+      },
+    },
+  },
+  legs: [Leg],
+};
 
 export type BasicBookingDataFields = {
   directAccessURL: string,
   databaseId: number,
   isPastBooking: boolean,
-  type: 'ONE_WAY' | 'RETURN' | 'MULTICITY',
-  start: ?{
+  type?: 'ONE_WAY' | 'RETURN' | 'MULTICITY',
+  status?: 'CLOSED' | 'CONFIRMED' | 'REFUNDED',
+  assets?: ?{
+    ticketUrl: ?string,
+  },
+  start?: ?{
     time: ?Date,
   },
-  outbound: ?{
-    departure: ?{
-      time: ?Date,
+  end?: ?{
+    time: ?Date,
+    airport: ?{
+      city: ?{
+        name: ?string,
+      },
     },
   },
-  trip: ?{
-    departure: ?{
-      time: ?Date,
+  outbound: {
+    legs: [Leg],
+    arrival: {
+      time: Date,
+      localTime: string,
+      airport: {
+        locationId: string,
+        city: {
+          name: string,
+        },
+      },
+    },
+    departure: {
+      time: Date,
+      localTime: string,
+      airport: {
+        locationId: string,
+        city: {
+          name: string,
+        },
+      },
     },
   },
+  inbound: {
+    legs: [Leg],
+    arrival: {
+      time: Date,
+      localTime: string,
+      airport: {
+        locationId: string,
+        city: {
+          name: string,
+        },
+      },
+    },
+    departure: {
+      time: Date,
+      localTime: string,
+      airport: {
+        locationId: string,
+        city: {
+          name: string,
+        },
+      },
+    },
+  },
+  trip: Trip,
+  trips: [Trip],
 };
 
 export type BasicBookingData = {
