@@ -8,12 +8,14 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+export type availabilityStatus = ('AT_AIRPORT' | 'AVAILABLE' | 'IN_FUTURE' | 'OTHER' | '%future added value');
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type BoardingPassesDescription$ref: FragmentReference;
 export type BoardingPassesDescription = {|
   +flightNumber: ?string,
   +boardingPassUrl: ?string,
   +availableAt: ?any,
+  +availabilityStatus: ?availabilityStatus,
   +leg: ?{|
     +id: string,
     +departure: ?{|
@@ -97,6 +99,13 @@ return {
       "storageKey": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "availabilityStatus",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "leg",
@@ -137,5 +146,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '27788e9cd44afa2026e76e7f80d9c0d6';
+(node/*: any*/).hash = '0af5205d9fdcf8e2958e866c875ee930';
 module.exports = node;
