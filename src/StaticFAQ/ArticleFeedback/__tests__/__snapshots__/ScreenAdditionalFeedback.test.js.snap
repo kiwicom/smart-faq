@@ -23,17 +23,17 @@ exports[`ScreenAdditionalFeedback should match snapshot 1`] = `
         size="small"
       />
     </div>
-    <WithTheme(Heading)
+    <Heading
       type="title3"
     >
       Please tell us more about your issue with the article (optional)
-    </WithTheme(Heading)>
+    </Heading>
     <div
       className="jsx-2730678398 question"
     >
-      <WithTheme(Text)>
+      <Text>
         Comment
-      </WithTheme(Text)>
+      </Text>
     </div>
     <div
       className="jsx-2730678398 inputArea"
@@ -49,11 +49,11 @@ exports[`ScreenAdditionalFeedback should match snapshot 1`] = `
     <div
       className="jsx-2730678398 button"
     >
-      <WithTheme(Button)
+      <Button
         onClick={[Function]}
       >
         Submit
-      </WithTheme(Button)>
+      </Button>
     </div>
   </form>
   <JSXStyle
