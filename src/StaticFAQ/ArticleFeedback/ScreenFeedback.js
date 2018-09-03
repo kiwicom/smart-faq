@@ -61,7 +61,7 @@ const ScreenFeedback = ({
     <Box border="none" borderRadius="4px" backgroundColor="#f5f7f9">
       <form onSubmit={handleSubmit}>
         <div className="feedback-title">
-          <Heading type="title3">Sorry, why wasn&#39;t this helpful?</Heading>
+          <Heading type="title3">Sorry, why wasn&apos;t this helpful?</Heading>
         </div>
         {Object.entries(labelMap).map(labelMapEntry => {
           const [labelKey, label] = labelMapEntry;
