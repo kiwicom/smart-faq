@@ -99,7 +99,7 @@ describe('BookingDetail >', () => {
         booking={bookingBetweenDepartureAndArrival}
       />,
     );
-    expect(wrapper.find('[dataTest="upcoming"]').exists()).toBeTruthy();
+    expect(wrapper.find('[data-test="upcoming"]').exists()).toBeTruthy();
   });
 
   describe('Contact', () => {

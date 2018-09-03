@@ -1,0 +1,48 @@
+{
+  "data": {
+    "FAQArticle": {
+      "id": "RkFRQXJ0aWNsZToxNDY=",
+      "perex": "Our guarantee protects you from the most common travel problems.",
+      "title": "Kiwi.com Guarantee"
+    },
+    "allFAQCategories": {
+      "edges": [
+        {
+          "node": {
+            "id": "RkFRQ2F0ZWdvcnk6ODg=",
+            "perex": "Come correct with your baggage, personal items, proper weights, \u0026 allowances.",
+            "title": "Baggage"
+          }
+        },
+        {
+          "node": {
+            "id": "RkFRQ2F0ZWdvcnk6ODc=",
+            "perex": "You're on your way. Check important documents, visa info, \u0026 airport advice.",
+            "title": "Travelling"
+          }
+        },
+        {
+          "node": {
+            "id": "RkFRQ2F0ZWdvcnk6ODM=",
+            "perex": "Manage My Booking provides options like seat selection, insurance, hotels, \u0026 taxis.",
+            "title": "Additional services"
+          }
+        },
+        {
+          "node": {
+            "id": "RkFRQ2F0ZWdvcnk6ODQ=",
+            "perex": "Everything you need to know about visas, check-in, your boarding passes, \u0026 e-tickets.",
+            "title": "Documents \u0026 planning"
+          }
+        },
+        {
+          "node": {
+            "id": "RkFRQ2F0ZWdvcnk6ODY=",
+            "perex": "Buyer's remorse? We know plans change. You can still cancel. Learn more.",
+            "title": "Changes \u0026 cancellations"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,8 +1,6 @@
 // @noflow
 /* global cy */
 
-import { Requester } from '../../src/helpers/Requests';
-
 describe('SignIn page redirects', () => {
   before(() => {
     cy.visit('/');
@@ -18,13 +16,8 @@ describe('SignIn page redirects', () => {
     cy.get('[data-cy=link-kiwi-login]').should('exist');
   });
 
-  it('redirect to FAQs with booking on reload with logged in user', async () => {
-    const email = Cypress.env('TEST_USER_EMAIL');
-    const password = Cypress.env('TEST_USER_PASSWORD');
-    const authorization = Cypress.env('KIWILOGIN_USER');
-
-    const loginToken = await Requester.login(email, password, authorization);
-    cy.setCookie('mockedLogin', loginToken);
+  it('redirect to FAQs with booking on reload with logged in user', () => {
+    cy.mockLogin();
     cy.reload();
 
     cy.get('[data-cy=link-kiwi-login]').should('not.exist');
