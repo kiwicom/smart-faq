@@ -10,6 +10,9 @@ import MobileBookingDetail from './MobileBookingDetail';
 const Query = graphql`
   query MobileNearestBookingQuery {
     nearestBooking {
+      upcomingLeg {
+        ...GuaranteeNeededResolver_upcomingLeg
+      }
       ...MobileBookingDetail_booking
     }
   }

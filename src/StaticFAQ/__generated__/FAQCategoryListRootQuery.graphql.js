@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 11d140b2da08939a51ed567964aa5d04
+ * @relayHash 1083252d14edaaef63ea2eddc034d7d1
  */
 
 /* eslint-disable */
@@ -9,12 +9,18 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type FAQArticle_article$ref = any;
 type FAQCategory_category$ref = any;
 export type FAQSection = ('BEFORE_BOOKING' | 'PAST_BOOKING' | 'UPCOMING_BOOKING' | 'URGENT_BOOKING' | '%future added value');
 export type FAQCategoryListRootQueryVariables = {|
   section?: ?FAQSection,
+  articleId: string,
+  showGuaranteeArticle: boolean,
 |};
 export type FAQCategoryListRootQueryResponse = {|
+  +FAQArticle?: ?{|
+    +$fragmentRefs: FAQArticle_article$ref,
+  |},
   +allFAQCategories: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
@@ -31,7 +37,13 @@ export type FAQCategoryListRootQueryResponse = {|
 /*
 query FAQCategoryListRootQuery(
   $section: FAQSection
+  $articleId: ID!
+  $showGuaranteeArticle: Boolean!
 ) {
+  FAQArticle(id: $articleId) @include(if: $showGuaranteeArticle) {
+    ...FAQArticle_article
+    id
+  }
   allFAQCategories(section: $section) {
     edges {
       node {
@@ -41,6 +53,12 @@ query FAQCategoryListRootQuery(
       }
     }
   }
+}
+
+fragment FAQArticle_article on FAQArticle {
+  id
+  title
+  perex
 }
 
 fragment FAQCategory_category on FAQCategory {
@@ -56,6 +74,18 @@ var v0 = [
     "kind": "LocalArgument",
     "name": "section",
     "type": "FAQSection",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "articleId",
+    "type": "ID!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "showGuaranteeArticle",
+    "type": "Boolean!",
     "defaultValue": null
   }
 ],
@@ -80,13 +110,32 @@ v3 = {
   "name": "title",
   "args": null,
   "storageKey": null
-};
+},
+v4 = [
+  {
+    "kind": "Variable",
+    "name": "id",
+    "variableName": "articleId",
+    "type": "ID!"
+  }
+],
+v5 = [
+  v2,
+  v3,
+  {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "perex",
+    "args": null,
+    "storageKey": null
+  }
+];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "FAQCategoryListRootQuery",
   "id": null,
-  "text": "query FAQCategoryListRootQuery(\n  $section: FAQSection\n) {\n  allFAQCategories(section: $section) {\n    edges {\n      node {\n        id\n        title\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n",
+  "text": "query FAQCategoryListRootQuery(\n  $section: FAQSection\n  $articleId: ID!\n  $showGuaranteeArticle: Boolean!\n) {\n  FAQArticle(id: $articleId) @include(if: $showGuaranteeArticle) {\n    ...FAQArticle_article\n    id\n  }\n  allFAQCategories(section: $section) {\n    edges {\n      node {\n        id\n        title\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -134,6 +183,29 @@ return {
             ]
           }
         ]
+      },
+      {
+        "kind": "Condition",
+        "passingValue": true,
+        "condition": "showGuaranteeArticle",
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "FAQArticle",
+            "storageKey": null,
+            "args": v4,
+            "concreteType": "FAQArticle",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "FragmentSpread",
+                "name": "FAQArticle_article",
+                "args": null
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -168,19 +240,26 @@ return {
                 "args": null,
                 "concreteType": "FAQCategory",
                 "plural": false,
-                "selections": [
-                  v2,
-                  v3,
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "perex",
-                    "args": null,
-                    "storageKey": null
-                  }
-                ]
+                "selections": v5
               }
             ]
+          }
+        ]
+      },
+      {
+        "kind": "Condition",
+        "passingValue": true,
+        "condition": "showGuaranteeArticle",
+        "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "FAQArticle",
+            "storageKey": null,
+            "args": v4,
+            "concreteType": "FAQArticle",
+            "plural": false,
+            "selections": v5
           }
         ]
       }
@@ -188,5 +267,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = 'cfa6813e3c6e4a1128cae4d4d757cd29';
+(node/*: any*/).hash = '85b8b8b0e56f289906f5a5e131a6fa96';
 module.exports = node;

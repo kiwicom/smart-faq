@@ -25,6 +25,7 @@ import EmergencyHeader from './emergencies/EmergencyHeader';
 import Breadcrumbs from './breadcrumbs/Breadcrumbs';
 import StaticFAQError from './StaticFAQError';
 import { simpleTracker } from '../helpers/analytics/trackers';
+import { GUARANTEE_ARTICLE_ID } from './ArticleDetail/Article';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
 import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
 import type { FAQCategoryListRootQueryResponse } from './__generated__/FAQCategoryListRootQuery.graphql';
@@ -34,6 +35,7 @@ import type { FAQSectionType } from '../context/BookingState';
 
 type ComponentProps = {
   categoryId: string | null,
+  showGuaranteeArticle: boolean,
   history: {
     location: {
       pathname: string,
@@ -67,8 +69,17 @@ type FAQArticlePerexFragment = {|
   +$fragmentRefs: FAQArticle_article,
 |};
 
+type GuaranteeArticle = ?{| +$fragmentRefs: FAQArticle_article |};
+
 const queryRoot = graphql`
-  query FAQCategoryListRootQuery($section: FAQSection) {
+  query FAQCategoryListRootQuery(
+    $section: FAQSection
+    $articleId: ID!
+    $showGuaranteeArticle: Boolean!
+  ) {
+    FAQArticle(id: $articleId) @include(if: $showGuaranteeArticle) {
+      ...FAQArticle_article
+    }
     allFAQCategories(section: $section) {
       edges {
         node {
@@ -170,6 +181,7 @@ class RawFAQCategoryList extends React.Component<Props> {
   renderCategoriesWithEmergencies = (
     categories: $ReadOnlyArray<CategoryFragment>,
     emergencies: EmergencyType[],
+    guaranteeArticle: ?GuaranteeArticle,
   ) => (
     <div>
       <EmergencyHeader title="Current travel issues:" />
@@ -178,6 +190,9 @@ class RawFAQCategoryList extends React.Component<Props> {
         <Emergency key={i} emergency={emergency} />
       ))}
       <EmergencyHeader title="Solve the issue by yourself:" />
+      {guaranteeArticle && (
+        <FAQArticle article={guaranteeArticle} isSearchResult />
+      )}
       {this.renderCategories(categories)}
     </div>
   );
@@ -191,6 +206,8 @@ class RawFAQCategoryList extends React.Component<Props> {
       const edges =
         idx(rendererProps.props, _ => _.allFAQCategories.edges) || [];
       const categories = edges.map(edge => edge && edge.node).filter(Boolean);
+      const guaranteeArticle =
+        rendererProps.props && rendererProps.props.FAQArticle;
 
       return (
         <Emergencies.Consumer>
@@ -199,10 +216,18 @@ class RawFAQCategoryList extends React.Component<Props> {
               return this.renderCategoriesWithEmergencies(
                 categories,
                 emergencies,
+                guaranteeArticle,
               );
             }
 
-            return this.renderCategories(categories);
+            return (
+              <React.Fragment>
+                {guaranteeArticle && (
+                  <FAQArticle article={guaranteeArticle} isSearchResult />
+                )}
+                {this.renderCategories(categories)}
+              </React.Fragment>
+            );
           }}
         </Emergencies.Consumer>
       );
@@ -254,7 +279,7 @@ class RawFAQCategoryList extends React.Component<Props> {
   };
 
   render() {
-    const { categoryId, section } = this.props;
+    const { categoryId, section, showGuaranteeArticle } = this.props;
 
     if (categoryId) {
       return (
@@ -270,7 +295,11 @@ class RawFAQCategoryList extends React.Component<Props> {
       <QueryRenderer
         query={queryRoot}
         render={this.renderRootCategory}
-        variables={{ section }}
+        variables={{
+          section,
+          showGuaranteeArticle,
+          articleId: GUARANTEE_ARTICLE_ID,
+        }}
       />
     );
   }
@@ -278,9 +307,14 @@ class RawFAQCategoryList extends React.Component<Props> {
 
 const FAQCategoryList = (props: ComponentProps) => (
   <BookingState.Consumer>
-    {({ FAQSection }) => {
-      return <RawFAQCategoryList section={FAQSection} {...props} />;
-    }}
+    {({ FAQSection, showGuaranteeChat }) => (
+      <RawFAQCategoryList
+        section={FAQSection}
+        showGuaranteeArticle={showGuaranteeChat && props.categoryId === null}
+        {...props}
+      />
+    )}
   </BookingState.Consumer>
 );
+
 export default withRouter(FAQCategoryList);

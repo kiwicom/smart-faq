@@ -17,11 +17,11 @@ type RenderArgs<RenderProps> = {
   props: ?RenderProps,
 };
 
-type Props<RenderProps> = {|
+export type Props<RenderProps> = {|
   cacheConfig?: {| force: boolean |},
   query: () => mixed,
   render: (RenderArgs<RenderProps>) => ?React$Element<*>,
-  variables: { [string]: mixed },
+  variables?: { [string]: mixed },
 |};
 
 type ContextTypes = {
@@ -54,11 +54,14 @@ class QueryRenderer<RenderProps> extends React.Component<
     return this.props.render(renderState);
   };
   render() {
-    const { loginToken, language } = this.props;
+    const { loginToken, language, query, variables, cacheConfig } = this.props;
     const locale = frontendLanguageToLocale[language];
+
     return (
       <OriginalQueryRenderer
-        {...this.props}
+        query={query}
+        variables={variables}
+        cacheConfig={cacheConfig}
         render={this.renderContainer}
         environment={createEnvironment(loginToken, locale)}
       />

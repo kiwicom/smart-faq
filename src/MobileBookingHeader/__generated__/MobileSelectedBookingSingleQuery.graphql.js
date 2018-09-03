@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d4bd99d85c5c4f340b0f8fd13cb7834c
+ * @relayHash 1cb8135c7355cfffb4d48222d700087c
  */
 
 /* eslint-disable */
@@ -18,6 +18,14 @@ export type MobileSelectedBookingSingleQueryVariables = {|
 export type MobileSelectedBookingSingleQueryResponse = {|
   +singleBooking: ?{|
     +type: ?BookingType,
+    +upcomingLeg: ?{|
+      +arrival: ?{|
+        +time: ?any,
+      |},
+      +departure: ?{|
+        +time: ?any,
+      |},
+    |},
     +$fragmentRefs: MobileBookingDetail_booking$ref,
   |},
 |};
@@ -32,6 +40,15 @@ query MobileSelectedBookingSingleQuery(
   singleBooking(id: $id, authToken: $authToken) {
     __typename
     type
+    upcomingLeg {
+      arrival {
+        time
+      }
+      departure {
+        time
+      }
+      id
+    }
     ...MobileBookingDetail_booking
     id
   }
@@ -171,11 +188,41 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
+  "name": "time",
+  "args": null,
+  "storageKey": null
+},
+v4 = [
+  v3
+],
+v5 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "arrival",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": v4
+},
+v6 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "departure",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": v4
+},
+v7 = {
+  "kind": "ScalarField",
+  "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v4 = {
+v8 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "airport",
@@ -202,13 +249,13 @@ v4 = {
         }
       ]
     },
-    v3
+    v7
   ]
 },
-v5 = [
-  v4
+v9 = [
+  v8
 ],
-v6 = [
+v10 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -217,17 +264,10 @@ v6 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v5
+    "selections": v9
   }
 ],
-v7 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "time",
-  "args": null,
-  "storageKey": null
-},
-v8 = {
+v11 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "departure",
@@ -236,8 +276,8 @@ v8 = {
   "concreteType": "RouteStop",
   "plural": false,
   "selections": [
-    v4,
-    v7
+    v8,
+    v3
   ]
 };
 return {
@@ -245,7 +285,7 @@ return {
   "operationKind": "query",
   "name": "MobileSelectedBookingSingleQuery",
   "id": null,
-  "text": "query MobileSelectedBookingSingleQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    type\n    ...MobileBookingDetail_booking\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  isPastBooking\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MultiCityTrip_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment MultiCityTrip_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
+  "text": "query MobileSelectedBookingSingleQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    type\n    upcomingLeg {\n      arrival {\n        time\n      }\n      departure {\n        time\n      }\n      id\n    }\n    ...MobileBookingDetail_booking\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  isPastBooking\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MultiCityTrip_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment MultiCityTrip_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -264,6 +304,19 @@ return {
         "plural": false,
         "selections": [
           v2,
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "upcomingLeg",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Leg",
+            "plural": false,
+            "selections": [
+              v5,
+              v6
+            ]
+          },
           {
             "kind": "FragmentSpread",
             "name": "MobileBookingDetail_booking",
@@ -296,6 +349,20 @@ return {
           },
           v2,
           {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "upcomingLeg",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Leg",
+            "plural": false,
+            "selections": [
+              v5,
+              v6,
+              v7
+            ]
+          },
+          {
             "kind": "ScalarField",
             "alias": null,
             "name": "databaseId",
@@ -316,7 +383,7 @@ return {
             "args": null,
             "storageKey": null
           },
-          v3,
+          v7,
           {
             "kind": "InlineFragment",
             "type": "BookingMulticity",
@@ -329,7 +396,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": true,
-                "selections": v6
+                "selections": v10
               },
               {
                 "kind": "LinkedField",
@@ -339,7 +406,7 @@ return {
                 "args": null,
                 "concreteType": "RouteStop",
                 "plural": false,
-                "selections": v5
+                "selections": v9
               },
               {
                 "kind": "LinkedField",
@@ -349,9 +416,7 @@ return {
                 "args": null,
                 "concreteType": "RouteStop",
                 "plural": false,
-                "selections": [
-                  v7
-                ]
+                "selections": v4
               }
             ]
           },
@@ -368,7 +433,7 @@ return {
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": [
-                  v8
+                  v11
                 ]
               },
               {
@@ -379,7 +444,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v6
+                "selections": v10
               }
             ]
           },
@@ -396,7 +461,7 @@ return {
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": [
-                  v8,
+                  v11,
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -405,7 +470,7 @@ return {
                     "args": null,
                     "concreteType": "RouteStop",
                     "plural": false,
-                    "selections": v5
+                    "selections": v9
                   }
                 ]
               }
@@ -417,5 +482,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '8ce057af7400d09c237fd003e617c873';
+(node/*: any*/).hash = '21c425823c01883d15ac57fd07baf73e';
 module.exports = node;

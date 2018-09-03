@@ -5,7 +5,7 @@ import { graphql } from 'react-relay';
 import idx from 'idx';
 
 import { UserContext } from '../context/User';
-import QueryRenderer from '../relay/QueryRenderer';
+import BookingRenderer from '../relay/BookingRenderer';
 import MobileBookingDetail from './MobileBookingDetail';
 import bookingTypes from '../common/booking/bookingTypes';
 import type { UserContextType } from '../context/User';
@@ -20,6 +20,9 @@ const selectedBookingQuery = graphql`
   query MobileSelectedBookingQuery($id: ID!) {
     booking(id: $id) {
       type
+      upcomingLeg {
+        ...GuaranteeNeededResolver_upcomingLeg
+      }
       oneWay {
         ...MobileBookingDetail_booking
       }
@@ -37,6 +40,14 @@ const selectedSingleBookingQuery = graphql`
   query MobileSelectedBookingSingleQuery($id: Int!, $authToken: String!) {
     singleBooking(id: $id, authToken: $authToken) {
       type
+      upcomingLeg {
+        arrival {
+          time
+        }
+        departure {
+          time
+        }
+      }
       ...MobileBookingDetail_booking
     }
   }
@@ -95,7 +106,7 @@ class MobileSelectedBooking extends React.Component<Props> {
         {({ simpleToken, loginToken }: UserContextType) => {
           if (loginToken) {
             return (
-              <QueryRenderer
+              <BookingRenderer
                 query={selectedBookingQuery}
                 variables={{ id: bookingId }}
                 render={this.renderMobileSelectedBooking}
@@ -104,7 +115,7 @@ class MobileSelectedBooking extends React.Component<Props> {
           }
           if (simpleToken) {
             return (
-              <QueryRenderer
+              <BookingRenderer
                 query={selectedSingleBookingQuery}
                 variables={{ id: bookingId, authToken: simpleToken }}
                 render={this.renderMobileSelectedBooking}

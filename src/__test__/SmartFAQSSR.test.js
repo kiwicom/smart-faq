@@ -26,6 +26,7 @@ describe('SmartFAQ', () => {
         route="/"
         loginToken="AAABBBCCC"
         simpleToken={null}
+        enableChat={false}
       />,
     );
     expect(app.includes('Need help?')).toBe(true);
@@ -45,6 +46,7 @@ describe('SmartFAQ', () => {
         route="/faq/"
         loginToken="AAABBBCCC"
         simpleToken={null}
+        enableChat={false}
       />,
     );
     expect(app.includes('Help')).toBe(true);

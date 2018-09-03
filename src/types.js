@@ -26,4 +26,5 @@ export type AppProps = {|
   onSocialLogin: onSocialLogin,
   onLogout: onLogout,
   emergencies: string[],
+  enableChat: boolean,
 |};

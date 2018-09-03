@@ -20,6 +20,7 @@ type State = {|
   simpleToken: ?string,
   helpQuery: ?string,
   showEmergencies: boolean,
+  enableChat: boolean,
 |};
 
 const user = {
@@ -58,6 +59,7 @@ class Root extends React.Component<Props, State> {
       user: loginToken ? user : null,
       loginToken,
       simpleToken,
+      enableChat: true,
       showEmergencies: Cookies.get('showEmergencies') || false,
       helpQuery: helpQueryString ? helpQueryString : '/',
     };
@@ -79,6 +81,18 @@ class Root extends React.Component<Props, State> {
     }
 
     this.input && this.input.focus();
+  };
+
+  onToggleChat = () => {
+    this.setState(({ enableChat }) => ({ enableChat: !enableChat }));
+  };
+
+  onForceChat = () => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    window.GuaranteeChatForce = !window.GuaranteeChatForce;
   };
 
   setupTracker = () => {
@@ -172,6 +186,14 @@ class Root extends React.Component<Props, State> {
             value={showEmergencies}
             onChange={this.toggleEmergencies}
           />
+          <h3>Enable chat</h3>
+          <input
+            type="checkbox"
+            checked={this.state.enableChat}
+            onChange={this.onToggleChat}
+          />
+          <h3>Force chat (always available in Guarantee article)</h3>
+          <input type="checkbox" onChange={this.onForceChat} />
         </div>
         {helpQuery && (
           <div className="sidebarOverlay" onClick={this.closeApp} />
@@ -187,6 +209,7 @@ class Root extends React.Component<Props, State> {
             route={helpQuery}
             loginToken={this.state.loginToken}
             simpleToken={this.state.simpleToken}
+            enableChat={this.state.enableChat}
             emergencies={showEmergencies ? emergencies : []}
           />
         </div>
