@@ -15,7 +15,7 @@ exports[`BaggageSummary loading screen renders correctly 1`] = `
 
 exports[`BaggageSummary renders correctly 1`] = `
 <React.Fragment>
-  <Relay(BaggageDescription)
+  <[object Object]
     data={
       Object {
         "$fragmentRefs": null,
@@ -24,7 +24,7 @@ exports[`BaggageSummary renders correctly 1`] = `
     }
     key="0"
   />
-  <Relay(BaggageDescription)
+  <[object Object]
     data={
       Object {
         "$fragmentRefs": null,

@@ -9,12 +9,14 @@ import idx from 'idx';
 import { UserContext } from '../../context/User';
 import type { UserContextType } from '../../context/User';
 import Markdown from '../../common/Markdown';
+import GuaranteeChat from './GuaranteeChat';
 import FAQArticleFeedback from '../ArticleFeedback/FAQArticleFeedback';
 import { EnterTracker, TimeTracker } from '../../helpers/analytics/trackers';
 import type { ArticleContent_article } from './__generated__/ArticleContent_article.graphql';
 
 type Props = {
   article: ArticleContent_article,
+  showGuaranteeChat: boolean,
 };
 const globalStyle = css`
   .faq-article-text ul {
@@ -61,7 +63,7 @@ const globalStyle = css`
 `;
 class ArticleContent extends React.Component<Props> {
   renderArticle = isLoggedIn => {
-    const { article } = this.props;
+    const { article, showGuaranteeChat } = this.props;
     return (
       <div className="faq-article-content">
         <Heading type="title2">{article.title}</Heading>
@@ -75,6 +77,7 @@ class ArticleContent extends React.Component<Props> {
         <div className="faq-article-text">
           <Markdown>{article.content}</Markdown>
         </div>
+        {showGuaranteeChat && <GuaranteeChat />}
         <hr className="faq-article-delimiter" />
         <FAQArticleFeedback articleId={article.id} />
         <style jsx>
@@ -127,6 +130,7 @@ const EnterTrackedDetail = EnterTracker(
     articleName: idx(props.article, _ => _.title) || '',
   }),
 );
+
 const TimeTrackedDetail = TimeTracker(
   EnterTrackedDetail,
   'smartFAQCategories',
@@ -136,6 +140,7 @@ const TimeTrackedDetail = TimeTracker(
     articleName: idx(props.article, _ => _.title) || '',
   }),
 );
+
 export default createFragmentContainer(
   TimeTrackedDetail,
   graphql`

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { graphql } from 'react-relay';
 import idx from 'idx';
 
-import QueryRenderer from '../relay/QueryRenderer';
+import BookingRenderer from '../relay/BookingRenderer';
 import BookingError from './BookingError';
 import BookingDetail from './BookingDetail';
 import BookingNotFound from './BookingNotFound';
@@ -21,6 +21,9 @@ type RenderState = {
 const query = graphql`
   query NearestBookingQuery {
     nearestBooking {
+      upcomingLeg {
+        ...GuaranteeNeededResolver_upcomingLeg
+      }
       ...BookingDetail_booking
     }
   }
@@ -53,9 +56,7 @@ class NearestBooking extends React.Component<Props> {
   };
 
   render() {
-    return (
-      <QueryRenderer query={query} variables={{}} render={this.renderBooking} />
-    );
+    return <BookingRenderer query={query} render={this.renderBooking} />;
   }
 }
 

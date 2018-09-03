@@ -13,7 +13,6 @@ import type { ArticleDetailQuery } from './__generated__/ArticleDetailQuery.grap
 import type { ArticleDetailSearchResultQuery } from './__generated__/ArticleDetailSearchResultQuery.graphql';
 import CustomBreadcrumbs from '../breadcrumbs/CustomBreadcrumbs';
 import { BookingState } from '../../context/BookingState';
-import type { FAQSectionType } from '../../context/BookingState';
 
 const queryFAQArticleDetail = graphql`
   query ArticleDetailQuery($id: ID!, $category_id: ID!) {
@@ -60,7 +59,7 @@ type ComponentProps = {
 };
 
 type Props = ComponentProps & {
-  section: ?FAQSectionType,
+  showGuaranteeChat: boolean,
 };
 
 const style = css`
@@ -74,6 +73,8 @@ const style = css`
     }
   }
 `;
+
+export const GUARANTEE_ARTICLE_ID = 'RkFRQXJ0aWNsZToxNDY=';
 
 class RawFAQArticleDetail extends React.Component<Props> {
   renderDetailContent = (params: FAQArticleDetailParams) => {
@@ -105,7 +106,10 @@ class RawFAQArticleDetail extends React.Component<Props> {
             <CustomBreadcrumbs breadcrumbs={breadcrumbs} />
           </div>
 
-          <FAQArticleDetailContent article={article} />
+          <FAQArticleDetailContent
+            article={article}
+            showGuaranteeChat={this.props.showGuaranteeChat}
+          />
           <style jsx>{style}</style>
         </React.Fragment>
       );
@@ -143,7 +147,6 @@ class RawFAQArticleDetail extends React.Component<Props> {
         variables={{
           id: this.getArticleId(),
           category_id: this.getCategoryId(),
-          section: this.props.section,
         }}
         render={this.renderDetailContent}
       />
@@ -174,9 +177,22 @@ class RawFAQArticleDetail extends React.Component<Props> {
 
 const Article = (props: ComponentProps) => (
   <BookingState.Consumer>
-    {({ FAQSection }) => (
-      <RawFAQArticleDetail section={FAQSection} {...props} />
-    )}
+    {({ showGuaranteeChat }) => {
+      // show Guarantee Chat only in Guarantee article
+      const articleId = idx(props.match, _ => _.params.articleId);
+      const isInGuaranteeArticle = articleId === GUARANTEE_ARTICLE_ID;
+      const forceGuaranteeChat =
+        typeof window !== 'undefined' && window.GuaranteeChatForce;
+
+      return (
+        <RawFAQArticleDetail
+          showGuaranteeChat={
+            (showGuaranteeChat || forceGuaranteeChat) && isInGuaranteeArticle
+          }
+          {...props}
+        />
+      );
+    }}
   </BookingState.Consumer>
 );
 

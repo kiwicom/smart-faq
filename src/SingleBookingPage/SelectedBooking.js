@@ -28,6 +28,9 @@ const selectedBookingQuery = graphql`
   query SelectedBookingQuery($id: ID!) {
     booking(id: $id) {
       type
+      upcomingLeg {
+        ...GuaranteeNeededResolver_upcomingLeg
+      }
       oneWay {
         ...BookingDetail_booking
       }
@@ -45,6 +48,9 @@ const singleBookingQuery = graphql`
   query SelectedBookingBySimpleTokenQuery($id: Int!, $authToken: String!) {
     singleBooking(id: $id, authToken: $authToken) {
       type
+      upcomingLeg {
+        ...GuaranteeNeededResolver_upcomingLeg
+      }
       ...BookingDetail_booking
     }
   }
