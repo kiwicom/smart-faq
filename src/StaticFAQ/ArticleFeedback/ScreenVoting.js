@@ -42,14 +42,20 @@ const ScreenVoting = (props: Props) => (
     <p className="question">Was this article helpful?</p>
     <div
       className="feedback-button thumb-up"
+      role="button"
       onClick={() => props.changeScreen(screensList.THANK_YOU)}
+      onKeyUp={() => props.changeScreen(screensList.THANK_YOU)}
+      tabIndex={0}
     >
       <ThumbUp size="medium" customColor="#00a991" />
       <p>Yes</p>
     </div>
     <div
       className="feedback-button thumb-down"
+      role="button"
       onClick={() => props.changeScreen(screensList.FEEDBACK)}
+      onKeyUp={() => props.changeScreen(screensList.FEEDBACK)}
+      tabIndex={0}
     >
       <ThumbDown size="medium" customColor="#00a991" />
       <p>No</p>

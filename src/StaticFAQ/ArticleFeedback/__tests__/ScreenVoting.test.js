@@ -3,12 +3,12 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import ScreenInitial from '../ScreenInitial';
+import ScreenVoting from '../ScreenVoting';
 
 const ch = (sc: string) => {}; //eslint-disable-line
 
-describe('ScreenInitial', () => {
-  const component = shallow(<ScreenInitial changeScreen={ch} />);
+describe('ScreenVoting', () => {
+  const component = shallow(<ScreenVoting changeScreen={ch} />);
   it('should match snapshot', () => {
     expect(component).toMatchSnapshot();
   });

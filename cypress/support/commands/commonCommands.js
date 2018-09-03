@@ -26,3 +26,21 @@ Cypress.Commands.add('getFirstFaqCategoryTitle', () => {
     .first()
     .find('h1');
 });
+
+Cypress.Commands.add('loadFAQArticle', () => {
+  cy.visit('/');
+  cy.get('[data-cy=btn-nonexistent-booking]').click();
+
+  cy
+    .get('[data-cy=faq-categories]')
+    .find('a')
+    .first()
+    .click();
+
+  cy
+    .get('[data-cy=scrollable-box]')
+    .children()
+    .find('[data-cy=faq-article-link]')
+    .first()
+    .click();
+});

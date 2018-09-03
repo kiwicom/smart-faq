@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ScreenInitial should match snapshot 1`] = `
+exports[`ScreenVoting should match snapshot 1`] = `
 <div
   className="jsx-1712138937 initial-screen"
 >
@@ -12,6 +12,9 @@ exports[`ScreenInitial should match snapshot 1`] = `
   <div
     className="jsx-1712138937 feedback-button thumb-up"
     onClick={[Function]}
+    onKeyUp={[Function]}
+    role="button"
+    tabIndex={0}
   >
     <ThumbUp
       customColor="#00a991"
@@ -26,6 +29,9 @@ exports[`ScreenInitial should match snapshot 1`] = `
   <div
     className="jsx-1712138937 feedback-button thumb-down"
     onClick={[Function]}
+    onKeyUp={[Function]}
+    role="button"
+    tabIndex={0}
   >
     <ThumbDown
       customColor="#00a991"

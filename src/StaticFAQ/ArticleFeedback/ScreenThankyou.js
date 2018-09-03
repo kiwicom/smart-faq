@@ -31,7 +31,7 @@ const ScreenThankyou = (props: Props) => {
       <div className="feedbackMessage">
         <div
           className="close-icon"
-          onClick={() => props.changeScreen(screensList.INITIAL)}
+          onClick={() => props.changeScreen(screensList.VOTING)}
           onKeyUp={null}
           tabIndex="-1"
           role="button"

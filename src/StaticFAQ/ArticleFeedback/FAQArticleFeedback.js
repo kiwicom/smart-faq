@@ -17,6 +17,7 @@ type Props = {
 };
 type State = {
   screen: $Values<typeof screensList>,
+  feedbackOptionType: string,
 };
 const style = css`
   .FAQArticleFeedback {
@@ -28,7 +29,8 @@ class FAQArticleFeedback extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      screen: screensList.INITIAL,
+      screen: screensList.VOTING,
+      feedbackOptionType: '',
     };
   }
 
@@ -36,17 +38,35 @@ class FAQArticleFeedback extends React.Component<Props, State> {
     this.setState({ screen });
   };
 
+  handleFeedbackOptionChange = (event: SyntheticEvent<HTMLInputElement>) => {
+    const { target } = event;
+    if (!(target instanceof window.HTMLInputElement)) return;
+
+    this.setState({ feedbackOptionType: target.value });
+  };
+
+  clearFeedbackOptionType = () => {
+    this.setState({ feedbackOptionType: '' });
+  };
+
   renderScreen() {
     switch (this.state.screen) {
-      case screensList.INITIAL:
+      case screensList.VOTING:
         return <ScreenVoting changeScreen={this.changeScreen} />;
       case screensList.FEEDBACK:
-        return <ScreenFeedback changeScreen={this.changeScreen} />;
+        return (
+          <ScreenFeedback
+            changeScreen={this.changeScreen}
+            handleFeedbackOptionChange={this.handleFeedbackOptionChange}
+            feedbackOptionType={this.state.feedbackOptionType}
+          />
+        );
       case screensList.ADDITIONAL_FEEDBACK:
         return (
           <ScreenAdditionalFeedback
             articleId={this.props.articleId}
             changeScreen={this.changeScreen}
+            clearFeedbackOptionType={this.clearFeedbackOptionType}
           />
         );
       case screensList.THANK_YOU:
@@ -54,7 +74,7 @@ class FAQArticleFeedback extends React.Component<Props, State> {
       case screensList.ERROR:
         return <ScreenError changeScreen={this.changeScreen} />;
     }
-    return <ScreenInitial changeScreen={this.changeScreen} />;
+    return <ScreenVoting changeScreen={this.changeScreen} />;
   }
 
   render() {

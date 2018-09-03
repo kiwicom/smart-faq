@@ -12,11 +12,12 @@ import screensList from './screensList';
 type Props = {|
   changeScreen: (nextScreen: string) => void,
   articleId: string,
+  clearFeedbackOptionType: () => void,
 |};
 
 type State = {|
   comment: string,
-  error: boolean,
+  // error: boolean,
 |};
 
 const style = css`
@@ -67,34 +68,33 @@ const style = css`
 class ScreenAdditionalFeedback extends React.Component<Props, State> {
   state = {
     comment: '',
-    error: false,
   };
+
   handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    this.setState({ comment: e.target.value, error: false });
+    this.setState({ comment: e.target.value });
   };
+
   handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { changeScreen, articleId } = this.props;
     const { comment } = this.state;
-    if (!comment.length) {
-      this.setState({
-        error: true,
-      });
-      return;
-    }
+
     createComment(
       articleId,
-      this.state.comment,
+      comment,
       () => changeScreen(screensList.THANK_YOU),
       () => changeScreen(screensList.ERROR),
     );
+    this.props.clearFeedbackOptionType();
   };
+
   closeScreen = () => {
-    this.props.changeScreen(screensList.INITIAL);
+    this.props.changeScreen(screensList.VOTING);
+    this.props.clearFeedbackOptionType();
   };
+
   render() {
     /* eslint-disable react/no-unescaped-entities */
-    const { error } = this.state;
     return (
       <Box
         border="none"
@@ -118,14 +118,13 @@ class ScreenAdditionalFeedback extends React.Component<Props, State> {
           <div className="question">
             <Text>Comment</Text>
           </div>
-          <div className={`inputArea ${error ? 'invalid' : ''}`}>
+          <div className="inputArea">
             <textarea
               data-gramm_editor="false"
               onChange={this.handleChange}
               value={this.state.comment}
               placeholder="How could this be better?"
             />
-            {error ? <p>You haven't written any feedback.</p> : null}
           </div>
           <div className="button">
             <Button onClick={() => {}}>Submit</Button>

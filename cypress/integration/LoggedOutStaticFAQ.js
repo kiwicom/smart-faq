@@ -55,15 +55,35 @@ describe('Display Static FAQ', () => {
     cy.get('.FAQArticleFeedback').should('exist');
   });
 
-  it('User can submit some feedback on a FAQ article', () => {
+  it('User can vote on an FAQ article', () => {
+    cy.loadFAQArticle();
+
+    cy.get('.thumb-up').click();
+
+    cy
+      .get('[data-cy=faq-article-form]')
+      .find('.feedbackMessage')
+      .should('exist');
+  });
+
+  it('User can submit feedback on an FAQ article', () => {
+    cy.loadFAQArticle();
+
     cy.server();
     cy.fixture('contact_response.json').as('contactResponse');
     cy.route('POST', 'https://graphql.kiwi.com/', '@contactResponse');
 
     const faqFeedback = 'This is my feedback!';
+
+    cy.get('.thumb-down').click();
+
     cy
-      .get('.FAQArticleFeedback')
-      .find('button')
+      .get('[data-cy=faq-article-form]')
+      .find('.radio-button')
+      .first()
+      .click()
+      .get('button')
+      .contains('Submit')
       .click();
 
     cy.get('[data-cy=faq-article-form]').should('exist');
@@ -76,7 +96,8 @@ describe('Display Static FAQ', () => {
 
     cy
       .get('[data-cy=faq-article-form]')
-      .find('.button button')
+      .get('button')
+      .contains('Submit')
       .click();
 
     cy
