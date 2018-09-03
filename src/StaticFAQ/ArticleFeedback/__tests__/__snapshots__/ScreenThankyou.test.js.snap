@@ -21,11 +21,11 @@ exports[`ScreenThankyou should match snapshot 1`] = `
         size="small"
       />
     </div>
-    <WithTheme(Heading)
+    <Heading
       type="title2"
     >
       Thanks, we appreciate your insight.
-    </WithTheme(Heading)>
+    </Heading>
     <JSXStyle
       css="div.feedbackMessage.jsx-2799696706{text-align:center;padding:32px 83px;}div.close-icon.jsx-2799696706{position:absolute;top:8px;right:8px;cursor:pointer;}"
       styleId="2799696706"
