@@ -24,6 +24,7 @@ import { EnterTracker, TimeTracker } from './helpers/analytics/trackers';
 import type { AppProps } from './types';
 import MobileSafariScroll from './helpers/MobileSafariScroll';
 import GuaranteeChatInfo from './context/GuaranteeChatInfo';
+import { parseDashToUnderscore } from './helpers/frontendLanguageToLocale';
 import langInfos from './translations/languages.json';
 import fallBackTranslations from './translations/locales-fallback/en-GB.json';
 
@@ -100,6 +101,9 @@ class App extends React.PureComponent<AppProps, State> {
     } = this.props;
     const isOpen = Boolean(route);
     const langInfo = langInfos[language];
+    const { phraseApp } = langInfo;
+
+    const parsedLenguage = parseDashToUnderscore(phraseApp);
 
     return (
       <FocusTrap active={isOpen}>
@@ -118,7 +122,7 @@ class App extends React.PureComponent<AppProps, State> {
           />
           <ErrorBoundary>
             <Provider translations={translations} language={langInfo}>
-              <LanguageContext.Provider value={language}>
+              <LanguageContext.Provider value={parsedLenguage}>
                 <CloseContext.Provider value={onClose}>
                   <UserContext.Provider value={this.state.userContext}>
                     <SearchStateProvider>
