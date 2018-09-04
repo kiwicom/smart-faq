@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e96fc479391254d780b934bea52302f8
+ * @relayHash 441aa1870d285a1b62337c5139f5aa85
  */
 
 /* eslint-disable */
@@ -9,6 +9,7 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type GuaranteeNeededResolver_upcomingLeg$ref = any;
 type HasBooking_booking$ref = any;
 type MultiCityTripWrapper_booking$ref = any;
 type OneWayTripWrapper_booking$ref = any;
@@ -17,6 +18,9 @@ export type BookingStateWrapperNearestQueryVariables = {| |};
 export type BookingStateWrapperNearestQueryResponse = {|
   +nearestBooking: ?{|
     +id: string,
+    +upcomingLeg: ?{|
+      +$fragmentRefs: GuaranteeNeededResolver_upcomingLeg$ref,
+    |},
     +$fragmentRefs: (HasBooking_booking$ref & OneWayTripWrapper_booking$ref & ReturnTripWrapper_booking$ref & MultiCityTripWrapper_booking$ref),
   |},
 |};
@@ -28,6 +32,10 @@ query BookingStateWrapperNearestQuery {
   nearestBooking {
     __typename
     id
+    upcomingLeg {
+      ...GuaranteeNeededResolver_upcomingLeg
+      id
+    }
     ...HasBooking_booking
     ... on BookingOneWay {
       ...OneWayTripWrapper_booking
@@ -39,6 +47,16 @@ query BookingStateWrapperNearestQuery {
       ...MultiCityTripWrapper_booking
     }
   }
+}
+
+fragment GuaranteeNeededResolver_upcomingLeg on Leg {
+  arrival {
+    time
+  }
+  departure {
+    time
+  }
+  guarantee
 }
 
 fragment HasBooking_booking on BookingInterface {
@@ -93,30 +111,32 @@ var v0 = {
 },
 v1 = [
   {
-    "kind": "LinkedField",
+    "kind": "ScalarField",
     "alias": null,
-    "name": "departure",
-    "storageKey": null,
+    "name": "time",
     "args": null,
-    "concreteType": "RouteStop",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "time",
-        "args": null,
-        "storageKey": null
-      }
-    ]
+    "storageKey": null
   }
+],
+v2 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "departure",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": v1
+},
+v3 = [
+  v2
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "BookingStateWrapperNearestQuery",
   "id": null,
-  "text": "query BookingStateWrapperNearestQuery {\n  nearestBooking {\n    __typename\n    id\n    ...HasBooking_booking\n    ... on BookingOneWay {\n      ...OneWayTripWrapper_booking\n    }\n    ... on BookingReturn {\n      ...ReturnTripWrapper_booking\n    }\n    ... on BookingMulticity {\n      ...MultiCityTripWrapper_booking\n    }\n  }\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  isPastBooking\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  isPastBooking\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  isPastBooking\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
+  "text": "query BookingStateWrapperNearestQuery {\n  nearestBooking {\n    __typename\n    id\n    upcomingLeg {\n      ...GuaranteeNeededResolver_upcomingLeg\n      id\n    }\n    ...HasBooking_booking\n    ... on BookingOneWay {\n      ...OneWayTripWrapper_booking\n    }\n    ... on BookingReturn {\n      ...ReturnTripWrapper_booking\n    }\n    ... on BookingMulticity {\n      ...MultiCityTripWrapper_booking\n    }\n  }\n}\n\nfragment GuaranteeNeededResolver_upcomingLeg on Leg {\n  arrival {\n    time\n  }\n  departure {\n    time\n  }\n  guarantee\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  isPastBooking\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  isPastBooking\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  isPastBooking\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -135,6 +155,22 @@ return {
         "plural": false,
         "selections": [
           v0,
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "upcomingLeg",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Leg",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "FragmentSpread",
+                "name": "GuaranteeNeededResolver_upcomingLeg",
+                "args": null
+              }
+            ]
+          },
           {
             "kind": "FragmentSpread",
             "name": "HasBooking_booking",
@@ -200,6 +236,36 @@ return {
           },
           v0,
           {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "upcomingLeg",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Leg",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "arrival",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "RouteStop",
+                "plural": false,
+                "selections": v1
+              },
+              v2,
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "guarantee",
+                "args": null,
+                "storageKey": null
+              },
+              v0
+            ]
+          },
+          {
             "kind": "ScalarField",
             "alias": null,
             "name": "type",
@@ -225,7 +291,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": true,
-                "selections": v1
+                "selections": v3
               }
             ]
           },
@@ -241,7 +307,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v1
+                "selections": v3
               }
             ]
           },
@@ -257,7 +323,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v1
+                "selections": v3
               }
             ]
           }
@@ -267,5 +333,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '8f4e204836a10f8dde6d52f05ea1a260';
+(node/*: any*/).hash = '8c6f459c540466ebc2f7209c1371b63a';
 module.exports = node;
