@@ -11,7 +11,7 @@ type Props = {|
   booking: Multicity_booking,
 |};
 
-const Multicity = ({ booking }: Props) => (
+const MulticityTrip = ({ booking }: Props) => (
   <div>
     <AccordionTitle title="Trips" />
     {Array.isArray(booking.trips) &&
@@ -23,7 +23,7 @@ const Multicity = ({ booking }: Props) => (
 );
 
 export default createFragmentContainer(
-  Multicity,
+  MulticityTrip,
   graphql`
     fragment Multicity_booking on BookingMulticity {
       trips @relay(plural: true) {

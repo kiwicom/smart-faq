@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 
-import Multicity from './Multicity';
+import MulticityTrip from './MulticityTrip';
 import type { MulticityOverlay_booking } from './__generated__/MulticityOverlay_booking.graphql';
 
 type Props = {|
@@ -14,7 +14,7 @@ type State = {|
   overlapping: boolean,
 |};
 
-class MulticityOverlay extends React.Component<Props, State> {
+class MulticityOverlayTrip extends React.Component<Props, State> {
   state = {
     overlapping: true,
   };
@@ -36,7 +36,7 @@ class MulticityOverlay extends React.Component<Props, State> {
               : 'multicityWrapper multicityWrapperIsActive'
           }
         >
-          <Multicity booking={booking} />
+          <MulticityTrip booking={booking} />
           <div
             className={
               this.state.overlapping
@@ -107,13 +107,13 @@ class MulticityOverlay extends React.Component<Props, State> {
         </style>
       </div>
     ) : (
-      <Multicity booking={booking} />
+      <MulticityTrip booking={booking} />
     );
   }
 }
 
 export default createFragmentContainer(
-  MulticityOverlay,
+  MulticityOverlayTrip,
   graphql`
     fragment MulticityOverlay_booking on BookingMulticity {
       trips {

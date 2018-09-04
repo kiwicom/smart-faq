@@ -13,9 +13,9 @@ import {
   updateFAQSection,
   getDepartureTimeByType,
 } from '../common/booking/utils';
-import OneWay from './bookingTypes/OneWay';
-import Return from './bookingTypes/Return';
-import MulticityOverlay from './bookingTypes/MulticityOverlay';
+import OneWayTrip from './bookingTypes/OneWayTrip';
+import ReturnTrip from './bookingTypes/ReturnTrip';
+import MulticityOverlayTrip from './bookingTypes/MulticityOverlayTrip';
 import Contact from './bookingItem/Contact';
 import Notification from './bookingItem/Notification';
 import Header from './bookingItem/Header';
@@ -99,15 +99,15 @@ class BookingDetail extends React.Component<Props> {
 
   renderByType = (booking: NearestBooking_booking) => {
     if (booking.type === bookingTypes.ONE_WAY) {
-      return <OneWay booking={booking} />;
+      return <OneWayTrip booking={booking} />;
     }
 
     if (booking.type === bookingTypes.RETURN) {
-      return <Return booking={booking} />;
+      return <ReturnTrip booking={booking} />;
     }
 
     if (booking.type === bookingTypes.MULTICITY) {
-      return <MulticityOverlay booking={booking} />;
+      return <MulticityOverlayTrip booking={booking} />;
     }
 
     return null;
