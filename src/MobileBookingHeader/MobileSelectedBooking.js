@@ -4,8 +4,8 @@ import * as React from 'react';
 import { graphql } from 'react-relay';
 import idx from 'idx';
 
+import QueryRenderer from '../relay/QueryRenderer';
 import { UserContext } from '../context/User';
-import BookingRenderer from '../relay/BookingRenderer';
 import MobileBookingDetail from './MobileBookingDetail';
 import bookingTypes from '../common/booking/bookingTypes';
 import type { UserContextType } from '../context/User';
@@ -99,7 +99,7 @@ class MobileSelectedBooking extends React.Component<Props> {
         {({ simpleToken, loginToken }: UserContextType) => {
           if (loginToken) {
             return (
-              <BookingRenderer
+              <QueryRenderer
                 query={selectedBookingQuery}
                 variables={{ id: bookingId }}
                 render={this.renderMobileSelectedBooking}
@@ -108,7 +108,7 @@ class MobileSelectedBooking extends React.Component<Props> {
           }
           if (simpleToken) {
             return (
-              <BookingRenderer
+              <QueryRenderer
                 query={selectedSingleBookingQuery}
                 variables={{ id: bookingId, authToken: simpleToken }}
                 render={this.renderMobileSelectedBooking}
