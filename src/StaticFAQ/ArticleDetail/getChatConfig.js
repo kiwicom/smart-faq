@@ -19,7 +19,7 @@ export default ({ orgId, queueName, guaranteeChatBookingInfo }: Config) => {
     idx(guaranteeChatBookingInfo, _ => _.departureAirport) || '';
   const arrivalCity = idx(guaranteeChatBookingInfo, _ => _.arrivalCity) || '';
   const arrivalAirport =
-    idx(guaranteeChatBookingInfo, _ => _.departureAirport) || '';
+    idx(guaranteeChatBookingInfo, _ => _.arrivalAirport) || '';
   const phone = idx(guaranteeChatBookingInfo, _ => _.phone) || '';
   const email = idx(guaranteeChatBookingInfo, _ => _.email) || '';
 
