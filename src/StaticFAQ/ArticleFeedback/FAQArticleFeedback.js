@@ -17,7 +17,7 @@ type Props = {
 };
 type State = {
   screen: $Values<typeof screensList>,
-  feedbackOptionType: string,
+  commentType: string,
 };
 const style = css`
   .FAQArticleFeedback {
@@ -30,7 +30,7 @@ class FAQArticleFeedback extends React.Component<Props, State> {
     super(props);
     this.state = {
       screen: screensList.VOTING,
-      feedbackOptionType: '',
+      commentType: '',
     };
   }
 
@@ -38,15 +38,15 @@ class FAQArticleFeedback extends React.Component<Props, State> {
     this.setState({ screen });
   };
 
-  handleFeedbackOptionChange = (event: SyntheticEvent<HTMLInputElement>) => {
+  handleCommentTypeChange = (event: SyntheticEvent<HTMLInputElement>) => {
     const { target } = event;
     if (!(target instanceof window.HTMLInputElement)) return;
 
-    this.setState({ feedbackOptionType: target.value });
+    this.setState({ commentType: target.value });
   };
 
-  clearFeedbackOptionType = () => {
-    this.setState({ feedbackOptionType: '' });
+  clearCommentType = () => {
+    this.setState({ commentType: '' });
   };
 
   renderScreen() {
@@ -57,8 +57,8 @@ class FAQArticleFeedback extends React.Component<Props, State> {
         return (
           <ScreenFeedback
             changeScreen={this.changeScreen}
-            handleFeedbackOptionChange={this.handleFeedbackOptionChange}
-            feedbackOptionType={this.state.feedbackOptionType}
+            handleCommentTypeChange={this.handleCommentTypeChange}
+            commentType={this.state.commentType}
           />
         );
       case screensList.ADDITIONAL_FEEDBACK:
@@ -66,7 +66,8 @@ class FAQArticleFeedback extends React.Component<Props, State> {
           <ScreenAdditionalFeedback
             articleId={this.props.articleId}
             changeScreen={this.changeScreen}
-            clearFeedbackOptionType={this.clearFeedbackOptionType}
+            commentType={this.state.commentType}
+            clearCommentType={this.clearCommentType}
           />
         );
       case screensList.THANK_YOU:

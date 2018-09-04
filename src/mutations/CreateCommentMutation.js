@@ -4,8 +4,6 @@ import { commitMutation, graphql } from 'react-relay';
 
 import createEnvironment from '../relay/environment';
 
-const commentType = 'OTHER';
-
 const mutation = graphql`
   mutation CreateCommentMutation(
     $articleId: ID!
@@ -20,13 +18,14 @@ const mutation = graphql`
 
 export default (
   articleId: string,
+  type: string,
   comment: string,
   callback: () => void,
   errorCallback: () => void,
 ) => {
   const variables = {
     articleId,
-    type: commentType,
+    type,
     comment,
   };
   commitMutation(createEnvironment(), {

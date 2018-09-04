@@ -7,4 +7,5 @@ const feedbackScreens = {
   THANK_YOU: 'thank-you',
   ERROR: 'error',
 };
+
 export default feedbackScreens;

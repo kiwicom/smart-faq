@@ -12,7 +12,8 @@ describe('ScreenAdditionalFeedback', () => {
     <ScreenAdditionalFeedback
       changeScreen={ch}
       articleId="WE4rT"
-      clearFeedbackOptionType={() => {}}
+      commentType="OTHER"
+      clearCommentType={() => {}}
     />,
   );
 

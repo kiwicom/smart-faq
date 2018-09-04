@@ -9,8 +9,8 @@ import { Box } from '../../common';
 
 type Props = {|
   changeScreen: (nextScreen: string) => void,
-  handleFeedbackOptionChange: (e: SyntheticEvent<HTMLInputElement>) => void,
-  feedbackOptionType: string,
+  handleCommentTypeChange: (e: SyntheticEvent<HTMLInputElement>) => void,
+  commentType: string,
 |};
 
 const style = css`
@@ -30,14 +30,14 @@ const style = css`
 
 const ScreenFeedback = ({
   changeScreen,
-  handleFeedbackOptionChange,
-  feedbackOptionType,
+  handleCommentTypeChange,
+  commentType,
 }: Props) => {
   const labelMap = {
-    dontLike: `Don't like how this works`,
-    confusing: 'Confusing',
-    notAccurate: 'Incorrect information',
-    doesntAnswer: `Doesn't answer my question`,
+    DONT_LIKE: `Don't like how this works`,
+    CONFUSING: 'Confusing',
+    NOT_ACCURATE: 'Incorrect information',
+    DOESNT_ANSWER: `Doesn't answer my question`,
   };
 
   const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
@@ -50,8 +50,8 @@ const ScreenFeedback = ({
       <Radio
         label={label}
         value={labelKey}
-        checked={feedbackOptionType === labelKey}
-        onChange={handleFeedbackOptionChange}
+        checked={commentType === labelKey}
+        onChange={handleCommentTypeChange}
       />
       <style jsx>{style}</style>
     </div>
@@ -68,7 +68,7 @@ const ScreenFeedback = ({
           return renderRadioButton(labelKey, String(label));
         })}
         <div className="button">
-          <Button onClick={() => {}} disabled={!feedbackOptionType}>
+          <Button onClick={() => {}} disabled={!commentType}>
             Submit
           </Button>
         </div>
