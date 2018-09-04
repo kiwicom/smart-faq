@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 37229527f3ff4ac49b96a0414c126a81
+ * @relayHash 352a0dda8276bead1ca17304589ee94d
  */
 
 /* eslint-disable */
@@ -9,6 +9,7 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type GuaranteeNeededResolver_upcomingLeg$ref = any;
 type HasBooking_booking$ref = any;
 export type BookingStateWrapperSelectedQueryVariables = {|
   id: string,
@@ -16,6 +17,9 @@ export type BookingStateWrapperSelectedQueryVariables = {|
 export type BookingStateWrapperSelectedQueryResponse = {|
   +booking: ?{|
     +id: string,
+    +upcomingLeg: ?{|
+      +$fragmentRefs: GuaranteeNeededResolver_upcomingLeg$ref,
+    |},
     +oneWay: ?{|
       +$fragmentRefs: HasBooking_booking$ref,
     |},
@@ -36,6 +40,10 @@ query BookingStateWrapperSelectedQuery(
 ) {
   booking(id: $id) {
     id
+    upcomingLeg {
+      ...GuaranteeNeededResolver_upcomingLeg
+      id
+    }
     oneWay {
       ...HasBooking_booking
       id
@@ -49,6 +57,16 @@ query BookingStateWrapperSelectedQuery(
       id
     }
   }
+}
+
+fragment GuaranteeNeededResolver_upcomingLeg on Leg {
+  arrival {
+    time
+  }
+  departure {
+    time
+  }
+  guarantee
 }
 
 fragment HasBooking_booking on BookingInterface {
@@ -124,41 +142,43 @@ v3 = [
     "args": null
   }
 ],
-v4 = {
+v4 = [
+  {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "time",
+    "args": null,
+    "storageKey": null
+  }
+],
+v5 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "departure",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": v4
+},
+v6 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "type",
   "args": null,
   "storageKey": null
 },
-v5 = {
+v7 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "isPastBooking",
   "args": null,
   "storageKey": null
 },
-v6 = [
-  {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "departure",
-    "storageKey": null,
-    "args": null,
-    "concreteType": "RouteStop",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "time",
-        "args": null,
-        "storageKey": null
-      }
-    ]
-  }
+v8 = [
+  v5
 ],
-v7 = {
+v9 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "trip",
@@ -166,9 +186,9 @@ v7 = {
   "args": null,
   "concreteType": "Trip",
   "plural": false,
-  "selections": v6
+  "selections": v8
 },
-v8 = {
+v10 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "trips",
@@ -176,16 +196,16 @@ v8 = {
   "args": null,
   "concreteType": "Trip",
   "plural": true,
-  "selections": v6
+  "selections": v8
 },
-v9 = {
+v11 = {
   "kind": "InlineFragment",
   "type": "BookingMulticity",
   "selections": [
-    v8
+    v10
   ]
 },
-v10 = {
+v12 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "outbound",
@@ -193,20 +213,20 @@ v10 = {
   "args": null,
   "concreteType": "Trip",
   "plural": false,
-  "selections": v6
+  "selections": v8
 },
-v11 = {
+v13 = {
   "kind": "InlineFragment",
   "type": "BookingReturn",
   "selections": [
-    v10
+    v12
   ]
 },
-v12 = {
+v14 = {
   "kind": "InlineFragment",
   "type": "BookingOneWay",
   "selections": [
-    v7
+    v9
   ]
 };
 return {
@@ -214,7 +234,7 @@ return {
   "operationKind": "query",
   "name": "BookingStateWrapperSelectedQuery",
   "id": null,
-  "text": "query BookingStateWrapperSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    id\n    oneWay {\n      ...HasBooking_booking\n      id\n    }\n    return {\n      ...HasBooking_booking\n      id\n    }\n    multicity {\n      ...HasBooking_booking\n      id\n    }\n  }\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  isPastBooking\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  isPastBooking\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  isPastBooking\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
+  "text": "query BookingStateWrapperSelectedQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    id\n    upcomingLeg {\n      ...GuaranteeNeededResolver_upcomingLeg\n      id\n    }\n    oneWay {\n      ...HasBooking_booking\n      id\n    }\n    return {\n      ...HasBooking_booking\n      id\n    }\n    multicity {\n      ...HasBooking_booking\n      id\n    }\n  }\n}\n\nfragment GuaranteeNeededResolver_upcomingLeg on Leg {\n  arrival {\n    time\n  }\n  departure {\n    time\n  }\n  guarantee\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  isPastBooking\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  isPastBooking\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  isPastBooking\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -233,6 +253,22 @@ return {
         "plural": false,
         "selections": [
           v2,
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "upcomingLeg",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Leg",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "FragmentSpread",
+                "name": "GuaranteeNeededResolver_upcomingLeg",
+                "args": null
+              }
+            ]
+          },
           {
             "kind": "LinkedField",
             "alias": null,
@@ -285,18 +321,48 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
+            "name": "upcomingLeg",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Leg",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "arrival",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "RouteStop",
+                "plural": false,
+                "selections": v4
+              },
+              v5,
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "guarantee",
+                "args": null,
+                "storageKey": null
+              },
+              v2
+            ]
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
             "name": "oneWay",
             "storageKey": null,
             "args": null,
             "concreteType": "BookingOneWay",
             "plural": false,
             "selections": [
-              v4,
-              v5,
+              v6,
               v7,
-              v2,
               v9,
-              v11
+              v2,
+              v11,
+              v13
             ]
           },
           {
@@ -308,12 +374,12 @@ return {
             "concreteType": "BookingReturn",
             "plural": false,
             "selections": [
-              v4,
-              v5,
-              v10,
+              v6,
+              v7,
+              v12,
               v2,
-              v9,
-              v12
+              v11,
+              v14
             ]
           },
           {
@@ -325,12 +391,12 @@ return {
             "concreteType": "BookingMulticity",
             "plural": false,
             "selections": [
-              v4,
-              v5,
-              v8,
+              v6,
+              v7,
+              v10,
               v2,
-              v11,
-              v12
+              v13,
+              v14
             ]
           }
         ]
@@ -339,5 +405,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '2dca6aa7517087600b6ea4319590147b';
+(node/*: any*/).hash = 'd9ddf8557b60aa2c9061a81ce00b6847';
 module.exports = node;

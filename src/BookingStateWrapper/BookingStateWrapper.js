@@ -16,11 +16,15 @@ import createEnvironment from '../relay/environment';
 import { withLanguage } from '../context/Language';
 import { withLoginToken } from '../context/User';
 import type { onLogout } from '../types';
+import GuaranteeNeededResolver from '../relay/GuaranteeNeededResolver';
 
 const nearestBookingQuery = graphql`
   query BookingStateWrapperNearestQuery {
     nearestBooking {
       id
+      upcomingLeg {
+        ...GuaranteeNeededResolver_upcomingLeg
+      }
       ...HasBooking_booking
       ... on BookingOneWay {
         ...OneWayTripWrapper_booking
@@ -39,6 +43,9 @@ const selectedBookingQuery = graphql`
   query BookingStateWrapperSelectedQuery($id: ID!) {
     booking(id: $id) {
       id
+      upcomingLeg {
+        ...GuaranteeNeededResolver_upcomingLeg
+      }
       oneWay {
         ...HasBooking_booking
       }
@@ -73,10 +80,22 @@ const BookingStateWrapper = ({ children, loginToken, locale }: Props) => {
         idx(props, _ => _.booking.oneWay) ||
         idx(props, _ => _.booking.return) ||
         idx(props, _ => _.booking.multicity)); // eslint-disable-line react/prop-types
+
+    const upcomingLeg =
+      // $FlowExpectedError: Expected
+      idx(props, _ => _.booking.upcomingLeg) ||
+      // $FlowExpectedError: Expected
+      idx(props, _ => _.singleBooking.upcomingLeg) ||
+      // $FlowExpectedError: Expected
+      idx(props, _ => _.nearestBooking.upcomingLeg);
+
     return booking ? (
-      <HasBooking onLogout={onLogout} booking={booking}>
-        {children}
-      </HasBooking>
+      <React.Fragment>
+        <GuaranteeNeededResolver upcomingLeg={upcomingLeg} />
+        <HasBooking onLogout={onLogout} booking={booking}>
+          {children}
+        </HasBooking>
+      </React.Fragment>
     ) : (
       <NoBooking onLogout={onLogout}>{children}</NoBooking>
     );

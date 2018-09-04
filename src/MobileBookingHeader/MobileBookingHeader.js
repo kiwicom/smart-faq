@@ -46,14 +46,15 @@ const MobileBookingPage = (props: MobileBookingPageProps) => {
 
 const MobileBookingSummary = () => (
   <div>
-    <SelectedBooking.Consumer>
-      {({ bookingPage, selectedBooking }) => (
-        <MobileBookingPage
-          bookingPage={bookingPage}
-          selectedBooking={selectedBooking}
-        />
+    <BookingState.Consumer>
+      {({ booking }) => (
+        <SelectedBooking.Consumer>
+          {({ bookingPage }) => (
+            <MobileBookingPage bookingPage={bookingPage} booking={booking} />
+          )}
+        </SelectedBooking.Consumer>
       )}
-    </SelectedBooking.Consumer>
+    </BookingState.Consumer>
   </div>
 );
 
