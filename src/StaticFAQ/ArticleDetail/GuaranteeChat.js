@@ -80,7 +80,7 @@ class GuaranteeChat extends React.Component<Props, State> {
               Still not sure what to do or how the Guarantee works? Let&apos;s
               talk. One of our agents will gladly assist you.
             </Text>
-            <div className="chatButton">
+            <div className="chatButton" data-cy="guaranteeChatButton">
               <Button
                 type="secondary"
                 size="normal"
@@ -95,6 +95,7 @@ class GuaranteeChat extends React.Component<Props, State> {
         <div
           id="smartFAQGuarantee"
           className={classNames('smartFAQGuarantee', { open: !showButton })}
+          data-cy="guaranteeChatIFrame"
         />
         <style jsx>
           {`

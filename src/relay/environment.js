@@ -25,6 +25,7 @@ export async function fetchQuery(headers, operation, variables) {
     body: JSON.stringify({
       query: operation.text, // GraphQL text from input
       variables,
+      operationName: operation.name,
     }),
   });
   const json = await response.json();
@@ -37,6 +38,7 @@ export async function fetchQuery(headers, operation, variables) {
   ) {
     throw new Error(ERROR_FORBIDDEN);
   }
+
   return json;
 }
 

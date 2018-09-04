@@ -159,7 +159,7 @@ class BookingDetail extends React.Component<Props> {
         dataCy="nearestBooking"
         styles="width: 100%; padding:40px; background-color: #f5f7f9;"
       >
-        <div dataTest={arrivalInfo.isFuture ? 'upcoming' : 'past'}>
+        <div data-test={arrivalInfo.isFuture ? 'upcoming' : 'past'}>
           <Header booking={booking} isFuture={arrivalInfo.isFuture} />
         </div>
         {isFuture &&
