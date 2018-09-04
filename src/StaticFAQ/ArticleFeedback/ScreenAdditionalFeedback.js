@@ -12,12 +12,12 @@ import screensList from './screensList';
 type Props = {|
   changeScreen: (nextScreen: string) => void,
   articleId: string,
-  clearFeedbackOptionType: () => void,
+  commentType: string,
+  clearCommentType: () => void,
 |};
 
 type State = {|
   comment: string,
-  // error: boolean,
 |};
 
 const style = css`
@@ -76,25 +76,25 @@ class ScreenAdditionalFeedback extends React.Component<Props, State> {
 
   handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { changeScreen, articleId } = this.props;
+    const { changeScreen, articleId, commentType } = this.props;
     const { comment } = this.state;
 
     createComment(
       articleId,
+      commentType,
       comment,
       () => changeScreen(screensList.THANK_YOU),
       () => changeScreen(screensList.ERROR),
     );
-    this.props.clearFeedbackOptionType();
+    this.props.clearCommentType();
   };
 
   closeScreen = () => {
     this.props.changeScreen(screensList.VOTING);
-    this.props.clearFeedbackOptionType();
+    this.props.clearCommentType();
   };
 
   render() {
-    /* eslint-disable react/no-unescaped-entities */
     return (
       <Box
         border="none"
