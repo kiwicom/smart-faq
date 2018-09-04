@@ -1,6 +1,13 @@
 // @flow
 
-export default (__t: string => string): Object => ({
+type BookingStatuses = {
+  [key: string]: {
+    text: string,
+    color: string,
+  } | null,
+};
+
+export default (__t: string => string): BookingStatuses => ({
   NEW: { text: __t('Status.New'), color: '#171b1e' },
   REFUNDED: { text: __t('Status.Refunded'), color: '#171b1e' },
   PENDING: { text: __t('Status.Pending'), color: '#ffc345' },

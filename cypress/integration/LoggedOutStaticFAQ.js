@@ -5,7 +5,7 @@ describe('Display Static FAQ', () => {
   it('User can navigate into FAQ Article', () => {
     cy.loadStaticFAQ();
     cy.get('[data-cy=sign-in-link]').should($signInLink => {
-      // FIXME: TextLink Orbit Component is breaking text with space to multiple lines
+      // F.I.X.M.E: TextLink Orbit Component is breaking text with space to multiple lines
       // as a temporary fix we used &nbsp;
       expect($signInLink.text()).to.include('Sign');
       expect($signInLink.text()).to.include('In');
@@ -99,7 +99,7 @@ describe('Display Static FAQ', () => {
     cy.get('@faq-breadcrumbs').should('not.exist');
 
     cy.get('[data-cy=sign-in-link]').should($signInLink => {
-      // FIXME: TextLink Orbit Component is breaking text with space to multiple lines
+      // F.I.X.M.E: TextLink Orbit Component is breaking text with space to multiple lines
       // as a temporary fix we used &nbsp;
       expect($signInLink.text()).to.include('Sign');
       expect($signInLink.text()).to.include('In');
