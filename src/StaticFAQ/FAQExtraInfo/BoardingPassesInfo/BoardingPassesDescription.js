@@ -25,6 +25,11 @@ const moreInfoBoardingTracker = () =>
     action: 'clickOnMoreInfoBoarding',
   });
 
+const tooltipTracker = () =>
+  simpleTracker('smartFAQ', {
+    action: 'showTooltip',
+  });
+
 const downloadBoardingPassTracker = () =>
   simpleTracker('smartFAQ', {
     action: 'downloadBoardingPass',
@@ -59,6 +64,7 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
           <HoverHelpTooltip
             tooltip="You will have to check-in for free at the airport"
             placement="top"
+            tracker={tooltipTracker}
           >
             <Badge type="info" icon={<InformationCircle />}>
               Airport check-in
