@@ -9,6 +9,7 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type GuaranteeNeededResolver_booking$ref = any;
 type MobileBookingDetail_booking$ref = any;
 export type BookingType = ('MULTICITY' | 'ONE_WAY' | 'RETURN' | '%future added value');
 export type MobileSelectedBookingSingleQueryVariables = {|
@@ -26,7 +27,7 @@ export type MobileSelectedBookingSingleQueryResponse = {|
         +time: ?any,
       |},
     |},
-    +$fragmentRefs: MobileBookingDetail_booking$ref,
+    +$fragmentRefs: (MobileBookingDetail_booking$ref & GuaranteeNeededResolver_booking$ref),
   |},
 |};
 */
@@ -50,6 +51,7 @@ query MobileSelectedBookingSingleQuery(
       id
     }
     ...MobileBookingDetail_booking
+    ...GuaranteeNeededResolver_booking
     id
   }
 }
@@ -83,7 +85,40 @@ fragment MobileBookingDetail_booking on BookingInterface {
   }
 }
 
+<<<<<<< master
 fragment OneWayTripMobile_booking on BookingOneWay {
+=======
+fragment GuaranteeNeededResolver_booking on BookingInterface {
+  databaseId
+  status
+  upcomingLeg {
+    guarantee
+    arrival {
+      time
+      airport {
+        city {
+          name
+        }
+        code
+        id
+      }
+    }
+    departure {
+      time
+      airport {
+        city {
+          name
+        }
+        code
+        id
+      }
+    }
+    id
+  }
+}
+
+fragment OneWayTrip_booking on BookingOneWay {
+>>>>>>> feat: provide custom fields for purecloud when chat session is created
   trip {
     departure {
       airport {
@@ -198,30 +233,51 @@ v4 = [
 v5 = {
   "kind": "LinkedField",
   "alias": null,
-  "name": "arrival",
+  "name": "city",
   "storageKey": null,
   "args": null,
-  "concreteType": "RouteStop",
+  "concreteType": "LocationArea",
   "plural": false,
-  "selections": v4
+  "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "name",
+      "args": null,
+      "storageKey": null
+    }
+  ]
 },
 v6 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "departure",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "RouteStop",
-  "plural": false,
-  "selections": v4
-},
-v7 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
+v7 = [
+  v3,
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "airport",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "Location",
+    "plural": false,
+    "selections": [
+      v5,
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "code",
+        "args": null,
+        "storageKey": null
+      },
+      v6
+    ]
+  }
+],
 v8 = {
   "kind": "LinkedField",
   "alias": null,
@@ -231,25 +287,8 @@ v8 = {
   "concreteType": "Location",
   "plural": false,
   "selections": [
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "city",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "LocationArea",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "name",
-          "args": null,
-          "storageKey": null
-        }
-      ]
-    },
-    v7
+    v5,
+    v6
   ]
 },
 v9 = [
@@ -313,13 +352,36 @@ return {
             "concreteType": "Leg",
             "plural": false,
             "selections": [
-              v5,
-              v6
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "arrival",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "RouteStop",
+                "plural": false,
+                "selections": v4
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "departure",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "RouteStop",
+                "plural": false,
+                "selections": v4
+              }
             ]
           },
           {
             "kind": "FragmentSpread",
             "name": "MobileBookingDetail_booking",
+            "args": null
+          },
+          {
+            "kind": "FragmentSpread",
+            "name": "GuaranteeNeededResolver_booking",
             "args": null
           }
         ]
@@ -357,9 +419,34 @@ return {
             "concreteType": "Leg",
             "plural": false,
             "selections": [
-              v5,
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "arrival",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "RouteStop",
+                "plural": false,
+                "selections": v7
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "departure",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "RouteStop",
+                "plural": false,
+                "selections": v7
+              },
               v6,
-              v7
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "guarantee",
+                "args": null,
+                "storageKey": null
+              }
             ]
           },
           {
@@ -383,7 +470,14 @@ return {
             "args": null,
             "storageKey": null
           },
-          v7,
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "status",
+            "args": null,
+            "storageKey": null
+          },
+          v6,
           {
             "kind": "InlineFragment",
             "type": "BookingMulticity",
@@ -482,5 +576,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '21c425823c01883d15ac57fd07baf73e';
+(node/*: any*/).hash = '21923ab06389ba0befefb0e55d2ae7de';
 module.exports = node;

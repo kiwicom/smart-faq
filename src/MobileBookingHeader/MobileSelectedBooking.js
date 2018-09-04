@@ -20,17 +20,17 @@ const selectedBookingQuery = graphql`
   query MobileSelectedBookingQuery($id: ID!) {
     booking(id: $id) {
       type
-      upcomingLeg {
-        ...GuaranteeNeededResolver_upcomingLeg
-      }
       oneWay {
         ...MobileBookingDetail_booking
+        ...GuaranteeNeededResolver_booking
       }
       return {
         ...MobileBookingDetail_booking
+        ...GuaranteeNeededResolver_booking
       }
       multicity {
         ...MobileBookingDetail_booking
+        ...GuaranteeNeededResolver_booking
       }
     }
   }
@@ -49,6 +49,7 @@ const selectedSingleBookingQuery = graphql`
         }
       }
       ...MobileBookingDetail_booking
+      ...GuaranteeNeededResolver_booking
     }
   }
 `;

@@ -32,6 +32,7 @@ import type { FAQCategoryListRootQueryResponse } from './__generated__/FAQCatego
 import type { FAQCategoryListSubcategoryQueryResponse } from './__generated__/FAQCategoryListSubcategoryQuery.graphql';
 import { BookingState } from '../context/BookingState';
 import type { FAQSectionType } from '../context/BookingState';
+import { GuaranteeChatInfoState } from '../context/GuaranteeChatInfo';
 
 type ComponentProps = {
   categoryId: string | null,
@@ -307,12 +308,18 @@ class RawFAQCategoryList extends React.Component<Props> {
 
 const FAQCategoryList = (props: ComponentProps) => (
   <BookingState.Consumer>
-    {({ FAQSection, showGuaranteeChat }) => (
-      <RawFAQCategoryList
-        section={FAQSection}
-        showGuaranteeArticle={showGuaranteeChat && props.categoryId === null}
-        {...props}
-      />
+    {({ FAQSection }) => (
+      <GuaranteeChatInfoState.Consumer>
+        {({ showGuaranteeChat }) => (
+          <RawFAQCategoryList
+            section={FAQSection}
+            showGuaranteeArticle={
+              showGuaranteeChat && props.categoryId === null
+            }
+            {...props}
+          />
+        )}
+      </GuaranteeChatInfoState.Consumer>
     )}
   </BookingState.Consumer>
 );

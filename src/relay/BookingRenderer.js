@@ -16,18 +16,20 @@ class BookingRenderer<RenderProps> extends React.Component<
   QueryRendererProps<RenderProps>,
 > {
   renderBooking = (renderState: RenderState<RenderProps>) => {
-    const upcomingLeg =
+    const guaranteeChatBookingInfo =
       // $FlowExpectedError: Expected
-      idx(renderState.props, _ => _.booking.upcomingLeg) ||
+      idx(renderState.props, _ => _.booking) ||
       // $FlowExpectedError: Expected
-      idx(renderState.props, _ => _.singleBooking.upcomingLeg) ||
+      idx(renderState.props, _ => _.singleBooking) ||
       // $FlowExpectedError: Expected
-      idx(renderState.props, _ => _.nearestBooking.upcomingLeg);
+      idx(renderState.props, _ => _.nearestBooking);
 
     return (
       <React.Fragment>
         {renderState.props && (
-          <GuaranteeNeededResolver upcomingLeg={upcomingLeg} />
+          <React.Fragment>
+            <GuaranteeNeededResolver booking={guaranteeChatBookingInfo} />
+          </React.Fragment>
         )}
         {this.props.render(renderState)}
       </React.Fragment>
@@ -35,7 +37,16 @@ class BookingRenderer<RenderProps> extends React.Component<
   };
 
   render() {
-    return <QueryRenderer {...this.props} render={this.renderBooking} />;
+    const { query, cacheConfig, variables } = this.props;
+
+    return (
+      <QueryRenderer
+        query={query}
+        cacheConfig={cacheConfig}
+        variables={variables}
+        render={this.renderBooking}
+      />
+    );
   }
 }
 

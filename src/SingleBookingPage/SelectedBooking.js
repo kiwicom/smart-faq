@@ -4,7 +4,7 @@ import * as React from 'react';
 import { graphql } from 'react-relay';
 import idx from 'idx';
 
-import QueryRenderer from '../relay/QueryRenderer';
+import BookingRenderer from '../relay/BookingRenderer';
 import BookingError from './BookingError';
 import BookingDetail from './BookingDetail';
 import BookingNotFound from './BookingNotFound';
@@ -28,17 +28,17 @@ const selectedBookingQuery = graphql`
   query SelectedBookingQuery($id: ID!) {
     booking(id: $id) {
       type
-      upcomingLeg {
-        ...GuaranteeNeededResolver_upcomingLeg
-      }
       oneWay {
         ...BookingDetail_booking
+        ...GuaranteeNeededResolver_booking
       }
       return {
         ...BookingDetail_booking
+        ...GuaranteeNeededResolver_booking
       }
       multicity {
         ...BookingDetail_booking
+        ...GuaranteeNeededResolver_booking
       }
     }
   }
@@ -48,10 +48,8 @@ const singleBookingQuery = graphql`
   query SelectedBookingBySimpleTokenQuery($id: Int!, $authToken: String!) {
     singleBooking(id: $id, authToken: $authToken) {
       type
-      upcomingLeg {
-        ...GuaranteeNeededResolver_upcomingLeg
-      }
       ...BookingDetail_booking
+      ...GuaranteeNeededResolver_booking
     }
   }
 `;
@@ -112,7 +110,7 @@ class SelectedBooking extends React.Component<Props> {
         {({ simpleToken, loginToken }: UserContextType) => {
           if (loginToken) {
             return (
-              <QueryRenderer
+              <BookingRenderer
                 query={selectedBookingQuery}
                 variables={{ id: bookingId }}
                 render={this.renderSelectedBooking}
@@ -121,7 +119,7 @@ class SelectedBooking extends React.Component<Props> {
           }
           if (simpleToken) {
             return (
-              <QueryRenderer
+              <BookingRenderer
                 query={singleBookingQuery}
                 variables={{ id: bookingId, authToken: simpleToken }}
                 render={this.renderSelectedBooking}
