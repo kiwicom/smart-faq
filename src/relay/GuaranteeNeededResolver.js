@@ -65,6 +65,8 @@ class GuaranteeNeededResolver extends React.Component<Props> {
       booking,
       _ => _.upcomingLeg.arrival.airport.code,
     );
+    const phone = idx(booking, _ => _.contactDetails.phone);
+    const email = idx(booking, _ => _.contactDetails.email);
 
     onSetBookingInfo({
       bid,
@@ -73,6 +75,8 @@ class GuaranteeNeededResolver extends React.Component<Props> {
       departureAirport,
       arrivalCity,
       arrivalAirport,
+      phone,
+      email,
     });
   };
 
@@ -143,6 +147,10 @@ export default createFragmentContainer(
     fragment GuaranteeNeededResolver_booking on BookingInterface {
       databaseId
       status
+      contactDetails {
+        phone
+        email
+      }
       upcomingLeg {
         guarantee
         arrival {

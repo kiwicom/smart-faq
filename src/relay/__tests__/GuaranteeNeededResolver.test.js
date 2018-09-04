@@ -15,6 +15,7 @@ afterEach(() => MockDate.reset());
 const commonFields = {
   databaseId: 1234567,
   status: 'CONFIRMED',
+  contactDetails: null,
 };
 
 describe('GuaranteeNeededResolver', () => {

@@ -12,6 +12,7 @@ type Config = {|
 
 export default ({ orgId, queueName, guaranteeChatBookingInfo }: Config) => {
   const bid = idx(guaranteeChatBookingInfo, _ => _.bid) || null;
+  const status = idx(guaranteeChatBookingInfo, _ => _.status) || null;
   const departureCity =
     idx(guaranteeChatBookingInfo, _ => _.departureCity) || '';
   const departureAirport =
@@ -19,6 +20,8 @@ export default ({ orgId, queueName, guaranteeChatBookingInfo }: Config) => {
   const arrivalCity = idx(guaranteeChatBookingInfo, _ => _.arrivalCity) || '';
   const arrivalAirport =
     idx(guaranteeChatBookingInfo, _ => _.departureAirport) || '';
+  const phone = idx(guaranteeChatBookingInfo, _ => _.phone) || '';
+  const email = idx(guaranteeChatBookingInfo, _ => _.email) || '';
 
   return {
     webchatAppUrl: 'https://apps.mypurecloud.ie/webchat',
@@ -35,13 +38,21 @@ export default ({ orgId, queueName, guaranteeChatBookingInfo }: Config) => {
       addressCity: '',
       addressPostalCode: '',
       addressState: '',
-      phoneNumber: '',
+      phoneNumber: phone,
       customField1Label: 'BID',
       customField1: bid,
       customField2Label: 'Departure',
       customField2: `${departureCity} (${departureAirport})`,
       customField3Label: 'Arrival',
       customField3: `${arrivalCity} (${arrivalAirport})`,
+      bid,
+      status,
+      phone,
+      email,
+      departureCity,
+      departureAirport,
+      arrivalCity,
+      arrivalAirport,
     },
     companyLogo: {
       width: 600,

@@ -1,6 +1,10 @@
 /**
  * @flow
+<<<<<<< master
  * @relayHash 1552e3f0fd976548960b96044c4468bc
+=======
+ * @relayHash befbfc4f35e29639da69c7a9cc1961ee
+>>>>>>> fix: provide customer email & phone in custom fields as well
  */
 
 /* eslint-disable */
@@ -86,7 +90,44 @@ fragment MobileBookingDetail_booking on BookingInterface {
   }
 }
 
+<<<<<<< master
 fragment OneWayTripMobile_booking on BookingOneWay {
+=======
+fragment GuaranteeNeededResolver_booking on BookingInterface {
+  databaseId
+  status
+  contactDetails {
+    phone
+    email
+  }
+  upcomingLeg {
+    guarantee
+    arrival {
+      time
+      airport {
+        city {
+          name
+        }
+        code
+        id
+      }
+    }
+    departure {
+      time
+      airport {
+        city {
+          name
+        }
+        code
+        id
+      }
+    }
+    id
+  }
+}
+
+fragment OneWayTrip_booking on BookingOneWay {
+>>>>>>> fix: provide customer email & phone in custom fields as well
   trip {
     departure {
       airport {
@@ -191,7 +232,7 @@ v3 = [
 v4 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "databaseId",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
@@ -228,13 +269,6 @@ v7 = {
   ]
 },
 v8 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
-v9 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "airport",
@@ -244,17 +278,17 @@ v9 = {
   "plural": false,
   "selections": [
     v7,
-    v8
+    v4
   ]
 },
-v10 = {
+v9 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "time",
   "args": null,
   "storageKey": null
 },
-v11 = {
+v10 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "departure",
@@ -263,14 +297,14 @@ v11 = {
   "concreteType": "RouteStop",
   "plural": false,
   "selections": [
-    v9,
-    v10
+    v8,
+    v9
   ]
 },
-v12 = [
-  v9
+v11 = [
+  v8
 ],
-v13 = {
+v12 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "trip",
@@ -279,7 +313,7 @@ v13 = {
   "concreteType": "Trip",
   "plural": false,
   "selections": [
-    v11,
+    v10,
     {
       "kind": "LinkedField",
       "alias": null,
@@ -288,19 +322,19 @@ v13 = {
       "args": null,
       "concreteType": "RouteStop",
       "plural": false,
-      "selections": v12
+      "selections": v11
     }
   ]
 },
-v14 = {
+v13 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "status",
+  "name": "databaseId",
   "args": null,
   "storageKey": null
 },
-v15 = [
-  v10,
+v14 = [
+  v9,
   {
     "kind": "LinkedField",
     "alias": null,
@@ -318,11 +352,11 @@ v15 = [
         "args": null,
         "storageKey": null
       },
-      v8
+      v4
     ]
   }
 ],
-v16 = {
+v15 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "upcomingLeg",
@@ -346,7 +380,7 @@ v16 = {
       "args": null,
       "concreteType": "RouteStop",
       "plural": false,
-      "selections": v15
+      "selections": v14
     },
     {
       "kind": "LinkedField",
@@ -356,65 +390,44 @@ v16 = {
       "args": null,
       "concreteType": "RouteStop",
       "plural": false,
-      "selections": v15
+      "selections": v14
     },
-    v8
+    v4
   ]
 },
-v17 = [
-  {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "departure",
-    "storageKey": null,
-    "args": null,
-    "concreteType": "RouteStop",
-    "plural": false,
-    "selections": v12
-  }
-],
+v16 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "status",
+  "args": null,
+  "storageKey": null
+},
+v17 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "contactDetails",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "BookingContactDetails",
+  "plural": false,
+  "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "phone",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "email",
+      "args": null,
+      "storageKey": null
+    }
+  ]
+},
 v18 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "trips",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "Trip",
-  "plural": true,
-  "selections": v17
-},
-v19 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "end",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "RouteStop",
-  "plural": false,
-  "selections": v12
-},
-v20 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "start",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "RouteStop",
-  "plural": false,
-  "selections": [
-    v10
-  ]
-},
-v21 = {
-  "kind": "InlineFragment",
-  "type": "BookingMulticity",
-  "selections": [
-    v18,
-    v19,
-    v20
-  ]
-},
-v22 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "outbound",
@@ -423,10 +436,22 @@ v22 = {
   "concreteType": "Trip",
   "plural": false,
   "selections": [
-    v11
+    v10
   ]
 },
-v23 = {
+v19 = [
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "departure",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "RouteStop",
+    "plural": false,
+    "selections": v11
+  }
+],
+v20 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "inbound",
@@ -434,21 +459,62 @@ v23 = {
   "args": null,
   "concreteType": "Trip",
   "plural": false,
-  "selections": v17
+  "selections": v19
 },
-v24 = {
+v21 = {
   "kind": "InlineFragment",
   "type": "BookingReturn",
   "selections": [
-    v22,
-    v23
+    v18,
+    v20
+  ]
+},
+v22 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "trips",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "Trip",
+  "plural": true,
+  "selections": v19
+},
+v23 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "end",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": v11
+},
+v24 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "start",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": [
+    v9
   ]
 },
 v25 = {
   "kind": "InlineFragment",
+  "type": "BookingMulticity",
+  "selections": [
+    v22,
+    v23,
+    v24
+  ]
+},
+v26 = {
+  "kind": "InlineFragment",
   "type": "BookingOneWay",
   "selections": [
-    v13
+    v12
   ]
 };
 return {
@@ -456,7 +522,11 @@ return {
   "operationKind": "query",
   "name": "MobileSelectedBookingQuery",
   "id": null,
+<<<<<<< master
   "text": "query MobileSelectedBookingQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    type\n    upcomingLeg {\n      ...GuaranteeNeededResolver_upcomingLeg\n      id\n    }\n    oneWay {\n      ...MobileBookingDetail_booking\n      id\n    }\n    return {\n      ...MobileBookingDetail_booking\n      id\n    }\n    multicity {\n      ...MobileBookingDetail_booking\n      id\n    }\n    id\n  }\n}\n\nfragment GuaranteeNeededResolver_upcomingLeg on Leg {\n  arrival {\n    time\n  }\n  departure {\n    time\n  }\n  guarantee\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  isPastBooking\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTripMobile_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTripMobile_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripMobile_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment OneWayTripMobile_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment ReturnTripMobile_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment MultiCityTripMobile_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
+=======
+  "text": "query MobileSelectedBookingQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    type\n    oneWay {\n      ...MobileBookingDetail_booking\n      ...GuaranteeNeededResolver_booking\n      id\n    }\n    return {\n      ...MobileBookingDetail_booking\n      ...GuaranteeNeededResolver_booking\n      id\n    }\n    multicity {\n      ...MobileBookingDetail_booking\n      ...GuaranteeNeededResolver_booking\n      id\n    }\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  isPastBooking\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MultiCityTrip_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment GuaranteeNeededResolver_booking on BookingInterface {\n  databaseId\n  status\n  contactDetails {\n    phone\n    email\n  }\n  upcomingLeg {\n    guarantee\n    arrival {\n      time\n      airport {\n        city {\n          name\n        }\n        code\n        id\n      }\n    }\n    departure {\n      time\n      airport {\n        city {\n          name\n        }\n        code\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment MultiCityTrip_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
+>>>>>>> fix: provide customer email & phone in custom fields as well
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -537,12 +607,13 @@ return {
               v4,
               v5,
               v6,
+              v12,
               v13,
-              v14,
+              v15,
               v16,
-              v8,
+              v17,
               v21,
-              v24
+              v25
             ]
           },
           {
@@ -554,17 +625,18 @@ return {
             "concreteType": "BookingReturn",
             "plural": false,
             "selections": [
-              v22,
+              v20,
               v2,
               v5,
               v6,
+              v15,
+              v18,
+              v13,
+              v17,
               v16,
               v4,
-              v23,
-              v14,
-              v8,
-              v25,
-              v21
+              v26,
+              v25
             ]
           },
           {
@@ -576,21 +648,22 @@ return {
             "concreteType": "BookingMulticity",
             "plural": false,
             "selections": [
-              v18,
+              v22,
               v2,
               v5,
               v6,
+              v15,
+              v17,
+              v13,
+              v23,
+              v24,
               v16,
-              v14,
               v4,
-              v19,
-              v20,
-              v8,
-              v25,
-              v24
+              v26,
+              v21
             ]
           },
-          v8
+          v4
         ]
       }
     ]

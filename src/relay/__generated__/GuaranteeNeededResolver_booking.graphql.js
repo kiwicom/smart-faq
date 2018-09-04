@@ -15,6 +15,10 @@ declare export opaque type GuaranteeNeededResolver_booking$ref: FragmentReferenc
 export type GuaranteeNeededResolver_booking = {|
   +databaseId: ?number,
   +status: ?BookingStatus,
+  +contactDetails: ?{|
+    +phone: ?string,
+    +email: ?string,
+  |},
   +upcomingLeg: ?{|
     +guarantee: ?CoveredBy,
     +arrival: ?{|
@@ -111,6 +115,31 @@ return {
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "contactDetails",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "BookingContactDetails",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "phone",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "email",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
       "name": "upcomingLeg",
       "storageKey": null,
       "args": null,
@@ -149,5 +178,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = 'e01e4d295f66b6177adf0774b88af8af';
+(node/*: any*/).hash = 'a32848c062675d8dd2e0d67f015d96ed';
 module.exports = node;
