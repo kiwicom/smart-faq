@@ -12,7 +12,6 @@ import { withLoginToken } from '../context/User';
 import { withLogout } from '../context/BookingState';
 import { withLanguage } from '../context/Language';
 import createEnvironment, { ERROR_FORBIDDEN } from './environment';
-import frontendLanguageToLocale from '../helpers/frontendLanguageToLocale';
 import type { onLogout } from '../types';
 
 type RenderArgs<RenderProps> = {
@@ -51,15 +50,14 @@ class QueryRenderer<RenderProps> extends React.Component<
 > {
   static getDerivedStateFromProps(nextProps, state) {
     const { loginToken, language } = nextProps;
-    const locale = frontendLanguageToLocale[language];
 
-    if (state.locale === locale && state.loginToken === loginToken) {
+    if (state.locale === language && state.loginToken === loginToken) {
       return null;
     }
 
     return {
-      environment: createEnvironment(loginToken, locale),
-      locale,
+      environment: createEnvironment(loginToken, language),
+      locale: language,
       loginToken,
     };
   }
@@ -68,11 +66,10 @@ class QueryRenderer<RenderProps> extends React.Component<
     super(props);
 
     const { loginToken, language } = props;
-    const locale = frontendLanguageToLocale[language];
     this.state = {
-      environment: createEnvironment(loginToken, locale),
+      environment: createEnvironment(loginToken, language), // eslint-disable-line react/no-unused-state
       loginToken, // eslint-disable-line react/no-unused-state
-      locale, // eslint-disable-line react/no-unused-state
+      locale: language, // eslint-disable-line react/no-unused-state
     };
   }
 
@@ -93,7 +90,7 @@ class QueryRenderer<RenderProps> extends React.Component<
     return this.props.render(renderState);
   };
   render() {
-    const { query, variables, cacheConfig } = this.props;
+    const { loginToken, language, query, variables, cacheConfig } = this.props;
 
     return (
       <OriginalQueryRenderer
@@ -101,7 +98,7 @@ class QueryRenderer<RenderProps> extends React.Component<
         variables={variables}
         cacheConfig={cacheConfig}
         render={this.renderContainer}
-        environment={this.state.environment}
+        environment={createEnvironment(loginToken, language)}
       />
     );
   }

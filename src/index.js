@@ -205,7 +205,7 @@ class Root extends React.Component<Props, State> {
     }));
   };
 
-  toggleLanguage = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  changeLanguage = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({ language: e.target.value });
   };
 
@@ -247,7 +247,7 @@ class Root extends React.Component<Props, State> {
               value="en"
               id="en-GB"
               checked={language === 'en'}
-              onChange={this.toggleLanguage}
+              onChange={this.changeLanguage}
             />
             English(en-GB)
           </label>
@@ -257,7 +257,7 @@ class Root extends React.Component<Props, State> {
               value="es"
               id="es-ES"
               checked={language === 'es'}
-              onChange={this.toggleLanguage}
+              onChange={this.changeLanguage}
             />
             Spanish(es-ES)
           </label>
@@ -267,7 +267,7 @@ class Root extends React.Component<Props, State> {
               value="cz"
               id="cs-CZ"
               checked={language === 'cz'}
-              onChange={this.toggleLanguage}
+              onChange={this.changeLanguage}
             />
             Czech(cs-CZ)
           </label>
