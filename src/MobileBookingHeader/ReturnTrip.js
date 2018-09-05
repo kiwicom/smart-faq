@@ -4,11 +4,11 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 
-import type { ReturnTrip_booking } from './__generated__/ReturnTrip_booking.graphql';
+import type { ReturnTripMobile_booking } from './__generated__/ReturnTripMobile_booking.graphql';
 import { TripDescriptionStyle } from './commonStyles';
 
 type Props = {|
-  +booking: ReturnTrip_booking,
+  +booking: ReturnTripMobile_booking,
 |};
 
 const ReturnTrip = ({ booking }: Props) => {
@@ -27,7 +27,7 @@ const ReturnTrip = ({ booking }: Props) => {
 export default createFragmentContainer(
   ReturnTrip,
   graphql`
-    fragment ReturnTrip_booking on BookingReturn {
+    fragment ReturnTripMobile_booking on BookingReturn {
       outbound {
         departure {
           airport {

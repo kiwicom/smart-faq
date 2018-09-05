@@ -5,10 +5,10 @@ import { createFragmentContainer, graphql } from 'react-relay';
 
 import TripTitle from '../bookingItem/AccordionTitle';
 import Accordion from '../bookingItem/Accordion';
-import type { Return_booking } from './__generated__/Return_booking.graphql';
+import type { ReturnTrip_booking } from './__generated__/ReturnTrip_booking.graphql';
 
 type Props = {
-  booking: Return_booking,
+  booking: ReturnTrip_booking,
 };
 
 const ReturnTrip = (props: Props) => (
@@ -23,7 +23,7 @@ const ReturnTrip = (props: Props) => (
 export default createFragmentContainer(
   ReturnTrip,
   graphql`
-    fragment Return_booking on BookingReturn {
+    fragment ReturnTrip_booking on BookingReturn {
       outbound {
         ...AccordionTripSummary_trip
       }

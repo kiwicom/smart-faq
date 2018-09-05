@@ -9,8 +9,8 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from 'relay-runtime';
-declare export opaque type MultiCityTrip_booking$ref: FragmentReference;
-export type MultiCityTrip_booking = {|
+declare export opaque type MultiCityTripMobile_booking$ref: FragmentReference;
+export type MultiCityTripMobile_booking = {|
   +trips: ?$ReadOnlyArray<?{|
     +departure: ?{|
       +airport: ?{|
@@ -27,7 +27,7 @@ export type MultiCityTrip_booking = {|
       |},
     |},
   |},
-  +$refType: MultiCityTrip_booking$ref,
+  +$refType: MultiCityTripMobile_booking$ref,
 |};
 */
 
@@ -66,7 +66,7 @@ var v0 = [
 ];
 return {
   "kind": "Fragment",
-  "name": "MultiCityTrip_booking",
+  "name": "MultiCityTripMobile_booking",
   "type": "BookingMulticity",
   "metadata": null,
   "argumentDefinitions": [],
@@ -105,5 +105,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = 'a60d9e1e30343c29bbaac4fe24aad6cd';
+(node/*: any*/).hash = 'c2ff6c22dd3884a534e1d0c418b12977';
 module.exports = node;

@@ -8,9 +8,9 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type MultiCityTrip_booking$ref = any;
-type OneWayTrip_booking$ref = any;
-type ReturnTrip_booking$ref = any;
+type MultiCityTripMobile_booking$ref = any;
+type OneWayTripMobile_booking$ref = any;
+type ReturnTripMobile_booking$ref = any;
 export type BookingType = ('MULTICITY' | 'ONE_WAY' | 'RETURN' | '%future added value');
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type MobileBookingDetail_booking$ref: FragmentReference;
@@ -32,7 +32,7 @@ export type MobileBookingDetail_booking = {|
   +start?: ?{|
     +time: ?any,
   |},
-  +$fragmentRefs: (OneWayTrip_booking$ref & ReturnTrip_booking$ref & MultiCityTrip_booking$ref),
+  +$fragmentRefs: (OneWayTripMobile_booking$ref & ReturnTripMobile_booking$ref & MultiCityTripMobile_booking$ref),
   +$refType: MobileBookingDetail_booking$ref,
 |};
 */
@@ -101,7 +101,7 @@ return {
       "selections": [
         {
           "kind": "FragmentSpread",
-          "name": "MultiCityTrip_booking",
+          "name": "MultiCityTripMobile_booking",
           "args": null
         },
         {
@@ -122,7 +122,7 @@ return {
       "selections": [
         {
           "kind": "FragmentSpread",
-          "name": "ReturnTrip_booking",
+          "name": "ReturnTripMobile_booking",
           "args": null
         },
         {
@@ -143,7 +143,7 @@ return {
       "selections": [
         {
           "kind": "FragmentSpread",
-          "name": "OneWayTrip_booking",
+          "name": "OneWayTripMobile_booking",
           "args": null
         },
         {
@@ -161,5 +161,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '575a8e7fa2cfee81491d50c8d6f3468c';
+(node/*: any*/).hash = '4c49931a21b71582f85b3782780e84b3';
 module.exports = node;

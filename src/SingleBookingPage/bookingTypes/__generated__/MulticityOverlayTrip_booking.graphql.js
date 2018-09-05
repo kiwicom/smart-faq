@@ -8,22 +8,22 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type Multicity_booking$ref = any;
+type MulticityTrip_booking$ref = any;
 import type { FragmentReference } from 'relay-runtime';
-declare export opaque type MulticityOverlay_booking$ref: FragmentReference;
-export type MulticityOverlay_booking = {|
+declare export opaque type MulticityOverlayTrip_booking$ref: FragmentReference;
+export type MulticityOverlayTrip_booking = {|
   +trips: ?$ReadOnlyArray<?{|
     +duration: ?number,
   |}>,
-  +$fragmentRefs: Multicity_booking$ref,
-  +$refType: MulticityOverlay_booking$ref,
+  +$fragmentRefs: MulticityTrip_booking$ref,
+  +$refType: MulticityOverlayTrip_booking$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "MulticityOverlay_booking",
+  "name": "MulticityOverlayTrip_booking",
   "type": "BookingMulticity",
   "metadata": null,
   "argumentDefinitions": [],
@@ -48,10 +48,10 @@ const node/*: ConcreteFragment*/ = {
     },
     {
       "kind": "FragmentSpread",
-      "name": "Multicity_booking",
+      "name": "MulticityTrip_booking",
       "args": null
     }
   ]
 };
-(node/*: any*/).hash = 'c5c9d14adfb49286c5ac483ecb671134';
+(node/*: any*/).hash = 'fa2e9943c930537f38303cab2e9c229f';
 module.exports = node;

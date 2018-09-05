@@ -17,48 +17,13 @@ declare export opaque type HasBooking_booking$ref: FragmentReference;
 export type HasBooking_booking = {|
   +type: ?BookingType,
   +isPastBooking: ?boolean,
-  +trip?: ?{|
-    +departure: ?{|
-      +time: ?any,
-    |},
-  |},
-  +outbound?: ?{|
-    +departure: ?{|
-      +time: ?any,
-    |},
-  |},
-  +start?: ?{|
-    +time: ?any,
-  |},
   +$fragmentRefs: (OneWayTripWrapper_booking$ref & ReturnTripWrapper_booking$ref & MultiCityTripWrapper_booking$ref),
   +$refType: HasBooking_booking$ref,
 |};
 */
 
 
-const node/*: ConcreteFragment*/ = (function(){
-var v0 = [
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "time",
-    "args": null,
-    "storageKey": null
-  }
-],
-v1 = [
-  {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "departure",
-    "storageKey": null,
-    "args": null,
-    "concreteType": "RouteStop",
-    "plural": false,
-    "selections": v0
-  }
-];
-return {
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "HasBooking_booking",
   "type": "BookingInterface",
@@ -87,16 +52,6 @@ return {
           "kind": "FragmentSpread",
           "name": "MultiCityTripWrapper_booking",
           "args": null
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "start",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "RouteStop",
-          "plural": false,
-          "selections": v0
         }
       ]
     },
@@ -108,16 +63,6 @@ return {
           "kind": "FragmentSpread",
           "name": "ReturnTripWrapper_booking",
           "args": null
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "outbound",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "Trip",
-          "plural": false,
-          "selections": v1
         }
       ]
     },
@@ -129,21 +74,10 @@ return {
           "kind": "FragmentSpread",
           "name": "OneWayTripWrapper_booking",
           "args": null
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "trip",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "Trip",
-          "plural": false,
-          "selections": v1
         }
       ]
     }
   ]
 };
-})();
-(node/*: any*/).hash = '040da8bbe7ebc84ed4a9e333f739402e';
+(node/*: any*/).hash = '22430182e3c34ca0be0b4d62dc7f1907';
 module.exports = node;
