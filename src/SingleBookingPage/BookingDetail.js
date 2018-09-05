@@ -23,12 +23,11 @@ import { ScrollableContent } from '../common';
 import bookingTypes from '../common/booking/bookingTypes';
 import { URGENCY_THRESHOLD } from '../helpers/dateUtils';
 import replaceWithCurrentDomain from '../helpers/replaceWithCurrentDomain';
-import type { NearestBooking_booking } from './__generated__/NearestBookingQuery.graphql';
 import FAQExtraInfoButton from '../StaticFAQ/FAQExtraInfo/FAQExtraInfoButton';
 import features from '../feature-toggles.json';
 
 type ComponentProps = {
-  +booking: NearestBooking_booking,
+  +booking: any,
 };
 
 type Props = ComponentProps;
@@ -82,7 +81,7 @@ const clickEticket = () =>
   });
 
 class BookingDetail extends React.Component<Props> {
-  renderByType = (booking: NearestBooking_booking) => {
+  renderByType = (booking: any) => {
     if (booking.type === bookingTypes.ONE_WAY) {
       return <OneWayTrip booking={booking} />;
     }
@@ -98,7 +97,7 @@ class BookingDetail extends React.Component<Props> {
     return null;
   };
 
-  getArrivalByType = (booking: NearestBooking_booking) => {
+  getArrivalByType = (booking: any) => {
     let date = null;
 
     if (booking.type === bookingTypes.ONE_WAY) {

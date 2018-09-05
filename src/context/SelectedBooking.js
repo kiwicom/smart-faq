@@ -7,6 +7,7 @@ type Props = {|
   // isOpen required here only to trigger processUrl when opening/closing SmartFAQ
   isOpen: boolean, // eslint-disable-line react/no-unused-prop-types
   children: React.Node,
+  enableChat: boolean,
 |};
 type StateValues = {
   selectedBooking: ?number,
@@ -18,6 +19,7 @@ type StateCallbacks = {
   closeAllBooking: () => void,
   onDisplayAll: () => void,
   onSelectBooking: (id: number) => void,
+  isChatEnabled: () => boolean,
 };
 
 export type State = StateValues & StateCallbacks;
@@ -48,6 +50,7 @@ export const SelectedBooking = React.createContext({
   closeAllBooking: () => {},
   onDisplayAll: () => {},
   onSelectBooking: (id: number) => {}, // eslint-disable-line no-unused-vars
+  isChatEnabled: () => true,
 });
 
 class SelectedBookingProvider extends React.Component<Props, State> {
@@ -64,8 +67,13 @@ class SelectedBookingProvider extends React.Component<Props, State> {
       onSelectBooking: this.onClickSelect,
       closeAllBooking: this.closeAllBooking,
       onDisplayAll: this.onClickAllBooking,
+      isChatEnabled: this.isChatEnabled,
     };
   }
+
+  isChatEnabled = () => {
+    return this.props.enableChat || false;
+  };
 
   onClickSelect = (id: number) => {
     this.setState({
