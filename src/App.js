@@ -124,7 +124,10 @@ class App extends React.PureComponent<AppProps, State> {
                     <ActiveTabProvider>
                       <SearchStateProvider>
                         <Emergencies.Provider value={emergencies}>
-                          <SelectedBookingProvider isOpen={isOpen}>
+                          <SelectedBookingProvider
+                            isOpen={isOpen}
+                            enableChat={this.props.enableChat}
+                          >
                             <ExtraInfoStateProvider>
                               <GuaranteeChatInfo
                                 enableChat={this.props.enableChat}
@@ -142,8 +145,8 @@ class App extends React.PureComponent<AppProps, State> {
                                       })}
                                     >
                                       <BookingStateWrapper
-                                        onLogout={this.props.onLogout}
-                                        enableChat={this.props.enableChat}
+                                        locale={this.props.language}
+                                        loginToken={this.props.loginToken || ''}
                                       >
                                         <Routes route={route} />
                                       </BookingStateWrapper>
