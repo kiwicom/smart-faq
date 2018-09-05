@@ -18,27 +18,38 @@ import { SearchState } from '../context/SearchState';
 import { SelectedBooking } from '../context/SelectedBooking';
 import { ActiveTab } from '../context/ActiveTab';
 import { CloseContext } from '../context/Close';
+import { BookingState } from '../context/BookingState';
 import BackButtonMobile from './BackButtonMobile';
-import MobileNearestBooking from './MobileNearestBooking';
-import MobileSelectedBooking from './MobileSelectedBooking';
 import MobileUserDetail from './MobileUserDetail';
 import type { UserContextType } from '../context/User';
 import type { SearchStateType } from '../context/SearchState';
 import type { TabType } from '../context/ActiveTab';
+import MobileBookingDetail from './MobileBookingDetail';
+import type { BookingType } from '../types';
 
 type MobileBookingPageProps = {|
   +bookingPage: string,
-  +selectedBooking: ?number,
+  booking: ?BookingType,
 |};
 
 const MobileBookingPage = (props: MobileBookingPageProps) => {
-  const { bookingPage, selectedBooking } = props;
+  const { bookingPage, booking } = props;
   if (bookingPage === 'SINGLE_BOOKING') {
-    if (selectedBooking) {
-      return <MobileSelectedBooking bookingId={selectedBooking} />;
+    //if (renderState && renderState.error) {
+    //return <div>Error</div>;
+    //}
+
+    if (!booking) {
+      return <div>Loading</div>;
     }
 
-    return <MobileNearestBooking />;
+    //const booking = renderState.props.nearestBooking;
+
+    //if (!booking) {
+    //return <div>Not found</div>;
+    //}
+
+    return <MobileBookingDetail booking={booking} />;
   }
 
   return null;
@@ -284,33 +295,26 @@ class MobileBookingHeader extends React.Component<Props, State> {
                   </SearchState.Consumer>
                 )}
               </SelectedBooking.Consumer>
-              {activeTab === 'summary' ? (
-                <div className="openedContent">
-                  <MobileBookingSummary />
-                </div>
-              ) : null}
               {activeTab === 'account' ? (
                 <div className="openedContent">
                   <MobileUserDetail />
                 </div>
               ) : null}
+              <div
+                className={classNames('openedContent', {
+                  hidden: activeTab !== 'summary',
+                })}
+              >
+                <MobileBookingSummary />
+              </div>
+              {activeTab === 'account' ? (
+                <div className="openedContent">
+                  <MobileUserDetail />
+                </div>
+              ) : null}
+              <style jsx>{MobileBookingHeaderStyle}</style>
             </React.Fragment>
           )}
-
-          <div
-            className={classNames('openedContent', {
-              hidden: this.state.activeTab !== 'summary',
-            })}
-          >
-            <MobileBookingSummary />
-          </div>
-          {this.state.activeTab === 'account' ? (
-            <div className="openedContent">
-              <MobileUserDetail />
-            </div>
-          ) : null}
-
-          <style jsx>{MobileBookingHeaderStyle}</style>
         </ActiveTab.Consumer>
       </React.Fragment>
     );

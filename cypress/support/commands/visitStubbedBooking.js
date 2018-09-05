@@ -24,7 +24,7 @@ const serverStub = operations => (path, req) => {
 
 Cypress.Commands.add('visitStubbedBooking', (booking, faqs) => {
   const operations = {
-    NearestBookingQuery: booking,
+    BookingStateWrapperNearestQuery: booking,
     FAQCategoryListRootQuery: faqs,
   };
 

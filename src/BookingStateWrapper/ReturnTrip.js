@@ -17,6 +17,7 @@ const ReturnTrip = ({ children, booking }: Props) => (
     isPastBooking={booking.isPastBooking}
     departureTime={idx(booking, _ => _.outbound.departure.time)}
     onLogout={async () => null}
+    booking={booking}
   >
     {children}
   </BookingStateProvider>
@@ -27,6 +28,8 @@ export default createFragmentContainer(
   graphql`
     fragment ReturnTripWrapper_booking on BookingReturn {
       isPastBooking
+      ...MobileBookingDetail_booking
+      ...BookingDetail_booking
       outbound {
         departure {
           time

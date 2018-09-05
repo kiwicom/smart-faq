@@ -17,6 +17,7 @@ const MultiCityTrip = ({ children, booking }: Props) => (
     isPastBooking={booking.isPastBooking}
     departureTime={idx(booking, _ => _.trips[0].departure.time)}
     onLogout={async () => null}
+    booking={booking}
   >
     {children}
   </BookingStateProvider>
@@ -27,6 +28,8 @@ export default createFragmentContainer(
   graphql`
     fragment MultiCityTripWrapper_booking on BookingMulticity {
       isPastBooking
+      ...MobileBookingDetail_booking
+      ...BookingDetail_booking
       trips @relay(plural: true) {
         departure {
           time

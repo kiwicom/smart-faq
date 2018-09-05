@@ -8,6 +8,8 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type BookingDetail_booking$ref = any;
+type MobileBookingDetail_booking$ref = any;
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type OneWayTripWrapper_booking$ref: FragmentReference;
 export type OneWayTripWrapper_booking = {|
@@ -17,6 +19,7 @@ export type OneWayTripWrapper_booking = {|
       +time: ?any,
     |},
   |},
+  +$fragmentRefs: (MobileBookingDetail_booking$ref & BookingDetail_booking$ref),
   +$refType: OneWayTripWrapper_booking$ref,
 |};
 */
@@ -35,6 +38,16 @@ const node/*: ConcreteFragment*/ = {
       "name": "isPastBooking",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "MobileBookingDetail_booking",
+      "args": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "BookingDetail_booking",
+      "args": null
     },
     {
       "kind": "LinkedField",
@@ -67,5 +80,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = '32c3184c918f89c62804511715be6c0c';
+(node/*: any*/).hash = 'a1f7ad8dfafe1e9e57fc7a5f615a0f8d';
 module.exports = node;
