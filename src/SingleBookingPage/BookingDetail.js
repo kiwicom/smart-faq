@@ -230,7 +230,7 @@ export default createFragmentContainer(
       isPastBooking
       ...Header_booking
       ... on BookingOneWay {
-        ...OneWay_booking
+        ...OneWayTrip_booking
         trip {
           departure {
             time
@@ -241,7 +241,7 @@ export default createFragmentContainer(
         }
       }
       ... on BookingReturn {
-        ...Return_booking
+        ...ReturnTrip_booking
         outbound {
           departure {
             time
@@ -254,7 +254,7 @@ export default createFragmentContainer(
         }
       }
       ... on BookingMulticity {
-        ...MulticityOverlay_booking
+        ...MulticityOverlayTrip_booking
         start {
           time
         }

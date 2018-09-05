@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b0218f4437512b15de6e8f468dd3c0ef
+ * @relayHash 131278bb0bbe7edc4d749a021606fc0d
  */
 
 /* eslint-disable */
@@ -38,25 +38,12 @@ fragment HasBooking_booking on BookingInterface {
   isPastBooking
   ... on BookingOneWay {
     ...OneWayTripWrapper_booking
-    trip {
-      departure {
-        time
-      }
-    }
   }
   ... on BookingReturn {
     ...ReturnTripWrapper_booking
-    outbound {
-      departure {
-        time
-      }
-    }
   }
   ... on BookingMulticity {
     ...MultiCityTripWrapper_booking
-    start {
-      time
-    }
   }
 }
 
@@ -111,15 +98,6 @@ v2 = {
 },
 v3 = [
   {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "time",
-    "args": null,
-    "storageKey": null
-  }
-],
-v4 = [
-  {
     "kind": "LinkedField",
     "alias": null,
     "name": "departure",
@@ -127,7 +105,15 @@ v4 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v3
+    "selections": [
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "time",
+        "args": null,
+        "storageKey": null
+      }
+    ]
   }
 ];
 return {
@@ -135,7 +121,7 @@ return {
   "operationKind": "query",
   "name": "BookingStateWrapperSelectedQuery",
   "id": null,
-  "text": "query BookingStateWrapperSelectedQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    id\n    ...HasBooking_booking\n  }\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
+  "text": "query BookingStateWrapperSelectedQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    id\n    ...HasBooking_booking\n  }\n}\n\nfragment HasBooking_booking on BookingInterface {\n  type\n  isPastBooking\n  ... on BookingOneWay {\n    ...OneWayTripWrapper_booking\n  }\n  ... on BookingReturn {\n    ...ReturnTripWrapper_booking\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripWrapper_booking\n  }\n}\n\nfragment OneWayTripWrapper_booking on BookingOneWay {\n  trip {\n    departure {\n      time\n    }\n  }\n}\n\nfragment ReturnTripWrapper_booking on BookingReturn {\n  outbound {\n    departure {\n      time\n    }\n  }\n}\n\nfragment MultiCityTripWrapper_booking on BookingMulticity {\n  trips {\n    departure {\n      time\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -211,16 +197,6 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": true,
-                "selections": v4
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "start",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "RouteStop",
-                "plural": false,
                 "selections": v3
               }
             ]
@@ -237,7 +213,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v4
+                "selections": v3
               }
             ]
           },
@@ -253,7 +229,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v4
+                "selections": v3
               }
             ]
           }

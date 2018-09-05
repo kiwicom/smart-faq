@@ -4,10 +4,10 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import MulticityTrip from './MulticityTrip';
-import type { MulticityOverlay_booking } from './__generated__/MulticityOverlay_booking.graphql';
+import type { MulticityOverlayTrip_booking } from './__generated__/MulticityOverlayTrip_booking.graphql';
 
 type Props = {|
-  booking: MulticityOverlay_booking,
+  booking: MulticityOverlayTrip_booking,
 |};
 
 type State = {|
@@ -115,11 +115,11 @@ class MulticityOverlayTrip extends React.Component<Props, State> {
 export default createFragmentContainer(
   MulticityOverlayTrip,
   graphql`
-    fragment MulticityOverlay_booking on BookingMulticity {
+    fragment MulticityOverlayTrip_booking on BookingMulticity {
       trips {
         duration
       }
-      ...Multicity_booking
+      ...MulticityTrip_booking
     }
   `,
 );

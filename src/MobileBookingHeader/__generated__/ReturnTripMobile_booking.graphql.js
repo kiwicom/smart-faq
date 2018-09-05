@@ -9,9 +9,9 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from 'relay-runtime';
-declare export opaque type OneWayTrip_booking$ref: FragmentReference;
-export type OneWayTrip_booking = {|
-  +trip: ?{|
+declare export opaque type ReturnTripMobile_booking$ref: FragmentReference;
+export type ReturnTripMobile_booking = {|
+  +outbound: ?{|
     +departure: ?{|
       +airport: ?{|
         +city: ?{|
@@ -19,7 +19,9 @@ export type OneWayTrip_booking = {|
         |},
       |},
     |},
-    +arrival: ?{|
+  |},
+  +inbound: ?{|
+    +departure: ?{|
       +airport: ?{|
         +city: ?{|
           +name: ?string,
@@ -27,7 +29,7 @@ export type OneWayTrip_booking = {|
       |},
     |},
   |},
-  +$refType: OneWayTrip_booking$ref,
+  +$refType: ReturnTripMobile_booking$ref,
 |};
 */
 
@@ -37,27 +39,38 @@ var v0 = [
   {
     "kind": "LinkedField",
     "alias": null,
-    "name": "airport",
+    "name": "departure",
     "storageKey": null,
     "args": null,
-    "concreteType": "Location",
+    "concreteType": "RouteStop",
     "plural": false,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "city",
+        "name": "airport",
         "storageKey": null,
         "args": null,
-        "concreteType": "LocationArea",
+        "concreteType": "Location",
         "plural": false,
         "selections": [
           {
-            "kind": "ScalarField",
+            "kind": "LinkedField",
             "alias": null,
-            "name": "name",
+            "name": "city",
+            "storageKey": null,
             "args": null,
-            "storageKey": null
+            "concreteType": "LocationArea",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "name",
+                "args": null,
+                "storageKey": null
+              }
+            ]
           }
         ]
       }
@@ -66,44 +79,33 @@ var v0 = [
 ];
 return {
   "kind": "Fragment",
-  "name": "OneWayTrip_booking",
-  "type": "BookingOneWay",
+  "name": "ReturnTripMobile_booking",
+  "type": "BookingReturn",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "trip",
+      "name": "outbound",
       "storageKey": null,
       "args": null,
       "concreteType": "Trip",
       "plural": false,
-      "selections": [
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "departure",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "RouteStop",
-          "plural": false,
-          "selections": v0
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "arrival",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "RouteStop",
-          "plural": false,
-          "selections": v0
-        }
-      ]
+      "selections": v0
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "inbound",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Trip",
+      "plural": false,
+      "selections": v0
     }
   ]
 };
 })();
-(node/*: any*/).hash = 'f6fdc7c00c42f33116aa84bc77d4486c';
+(node/*: any*/).hash = 'fad2a9bd2bacb0c5bcd8beddb76d8d4a';
 module.exports = node;

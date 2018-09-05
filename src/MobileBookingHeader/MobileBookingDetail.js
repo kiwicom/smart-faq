@@ -256,7 +256,7 @@ export default createFragmentContainer(
       isPastBooking
       directAccessURL
       ... on BookingOneWay {
-        ...OneWayTrip_booking
+        ...OneWayTripMobile_booking
         trip {
           departure {
             time
@@ -264,7 +264,7 @@ export default createFragmentContainer(
         }
       }
       ... on BookingReturn {
-        ...ReturnTrip_booking
+        ...ReturnTripMobile_booking
         outbound {
           departure {
             time
@@ -272,7 +272,7 @@ export default createFragmentContainer(
         }
       }
       ... on BookingMulticity {
-        ...MultiCityTrip_booking
+        ...MultiCityTripMobile_booking
         start {
           time
         }

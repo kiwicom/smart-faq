@@ -5,10 +5,10 @@ import { createFragmentContainer, graphql } from 'react-relay';
 
 import AccordionTitle from '../bookingItem/AccordionTitle';
 import Accordion from '../bookingItem/Accordion';
-import type { Multicity_booking } from './__generated__/Multicity_booking.graphql';
+import type { MulticityTrip_booking } from './__generated__/MulticityTrip_booking.graphql';
 
 type Props = {|
-  booking: Multicity_booking,
+  booking: MulticityTrip_booking,
 |};
 
 const MulticityTrip = ({ booking }: Props) => (
@@ -25,7 +25,7 @@ const MulticityTrip = ({ booking }: Props) => (
 export default createFragmentContainer(
   MulticityTrip,
   graphql`
-    fragment Multicity_booking on BookingMulticity {
+    fragment MulticityTrip_booking on BookingMulticity {
       trips @relay(plural: true) {
         ...AccordionTripSummary_trip
       }

@@ -10,15 +10,15 @@
 import type { ConcreteFragment } from 'relay-runtime';
 type AccordionTripSummary_trip$ref = any;
 import type { FragmentReference } from 'relay-runtime';
-declare export opaque type Return_booking$ref: FragmentReference;
-export type Return_booking = {|
+declare export opaque type ReturnTrip_booking$ref: FragmentReference;
+export type ReturnTrip_booking = {|
   +outbound: ?{|
     +$fragmentRefs: AccordionTripSummary_trip$ref,
   |},
   +inbound: ?{|
     +$fragmentRefs: AccordionTripSummary_trip$ref,
   |},
-  +$refType: Return_booking$ref,
+  +$refType: ReturnTrip_booking$ref,
 |};
 */
 
@@ -33,7 +33,7 @@ var v0 = [
 ];
 return {
   "kind": "Fragment",
-  "name": "Return_booking",
+  "name": "ReturnTrip_booking",
   "type": "BookingReturn",
   "metadata": null,
   "argumentDefinitions": [],
@@ -61,5 +61,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '69a6e790314e56d91762681c893f635c';
+(node/*: any*/).hash = '5b62ae543f792c7f45541b270ebcb82d';
 module.exports = node;
