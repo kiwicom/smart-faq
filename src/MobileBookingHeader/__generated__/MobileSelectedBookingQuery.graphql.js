@@ -1,14 +1,6 @@
 /**
  * @flow
-<<<<<<< master
-<<<<<<< master
- * @relayHash 1552e3f0fd976548960b96044c4468bc
-=======
- * @relayHash befbfc4f35e29639da69c7a9cc1961ee
->>>>>>> fix: provide customer email & phone in custom fields as well
-=======
- * @relayHash 11bc7b22a0897d8316edb5eb50466378
->>>>>>> fix: provide customer passenger name
+ * @relayHash ed3568771b5b81e5b212fc3ca7c08269
  */
 
 /* eslint-disable */
@@ -94,9 +86,6 @@ fragment MobileBookingDetail_booking on BookingInterface {
   }
 }
 
-<<<<<<< master
-fragment OneWayTripMobile_booking on BookingOneWay {
-=======
 fragment GuaranteeNeededResolver_booking on BookingInterface {
   databaseId
   status
@@ -134,8 +123,7 @@ fragment GuaranteeNeededResolver_booking on BookingInterface {
   }
 }
 
-fragment OneWayTrip_booking on BookingOneWay {
->>>>>>> fix: provide customer email & phone in custom fields as well
+fragment OneWayTripMobile_booking on BookingOneWay {
   trip {
     departure {
       airport {
@@ -555,15 +543,7 @@ return {
   "operationKind": "query",
   "name": "MobileSelectedBookingQuery",
   "id": null,
-<<<<<<< master
-<<<<<<< master
-  "text": "query MobileSelectedBookingQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    type\n    upcomingLeg {\n      ...GuaranteeNeededResolver_upcomingLeg\n      id\n    }\n    oneWay {\n      ...MobileBookingDetail_booking\n      id\n    }\n    return {\n      ...MobileBookingDetail_booking\n      id\n    }\n    multicity {\n      ...MobileBookingDetail_booking\n      id\n    }\n    id\n  }\n}\n\nfragment GuaranteeNeededResolver_upcomingLeg on Leg {\n  arrival {\n    time\n  }\n  departure {\n    time\n  }\n  guarantee\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  isPastBooking\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTripMobile_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTripMobile_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripMobile_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment OneWayTripMobile_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment ReturnTripMobile_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment MultiCityTripMobile_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
-=======
-  "text": "query MobileSelectedBookingQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    type\n    oneWay {\n      ...MobileBookingDetail_booking\n      ...GuaranteeNeededResolver_booking\n      id\n    }\n    return {\n      ...MobileBookingDetail_booking\n      ...GuaranteeNeededResolver_booking\n      id\n    }\n    multicity {\n      ...MobileBookingDetail_booking\n      ...GuaranteeNeededResolver_booking\n      id\n    }\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  isPastBooking\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MultiCityTrip_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment GuaranteeNeededResolver_booking on BookingInterface {\n  databaseId\n  status\n  contactDetails {\n    phone\n    email\n  }\n  upcomingLeg {\n    guarantee\n    arrival {\n      time\n      airport {\n        city {\n          name\n        }\n        code\n        id\n      }\n    }\n    departure {\n      time\n      airport {\n        city {\n          name\n        }\n        code\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment MultiCityTrip_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
->>>>>>> fix: provide customer email & phone in custom fields as well
-=======
-  "text": "query MobileSelectedBookingQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    type\n    oneWay {\n      ...MobileBookingDetail_booking\n      ...GuaranteeNeededResolver_booking\n      id\n    }\n    return {\n      ...MobileBookingDetail_booking\n      ...GuaranteeNeededResolver_booking\n      id\n    }\n    multicity {\n      ...MobileBookingDetail_booking\n      ...GuaranteeNeededResolver_booking\n      id\n    }\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  isPastBooking\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MultiCityTrip_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment GuaranteeNeededResolver_booking on BookingInterface {\n  databaseId\n  status\n  contactDetails {\n    phone\n    email\n    passenger {\n      firstname\n      lastname\n    }\n  }\n  upcomingLeg {\n    guarantee\n    arrival {\n      time\n      airport {\n        city {\n          name\n        }\n        code\n        id\n      }\n    }\n    departure {\n      time\n      airport {\n        city {\n          name\n        }\n        code\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment MultiCityTrip_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
->>>>>>> fix: provide customer passenger name
+  "text": "query MobileSelectedBookingQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    type\n    oneWay {\n      ...MobileBookingDetail_booking\n      ...GuaranteeNeededResolver_booking\n      id\n    }\n    return {\n      ...MobileBookingDetail_booking\n      ...GuaranteeNeededResolver_booking\n      id\n    }\n    multicity {\n      ...MobileBookingDetail_booking\n      ...GuaranteeNeededResolver_booking\n      id\n    }\n    id\n  }\n}\n\nfragment MobileBookingDetail_booking on BookingInterface {\n  type\n  databaseId\n  isPastBooking\n  directAccessURL\n  ... on BookingOneWay {\n    ...OneWayTripMobile_booking\n    trip {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTripMobile_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MultiCityTripMobile_booking\n    start {\n      time\n    }\n  }\n}\n\nfragment GuaranteeNeededResolver_booking on BookingInterface {\n  databaseId\n  status\n  contactDetails {\n    phone\n    email\n    passenger {\n      firstname\n      lastname\n    }\n  }\n  upcomingLeg {\n    guarantee\n    arrival {\n      time\n      airport {\n        city {\n          name\n        }\n        code\n        id\n      }\n    }\n    departure {\n      time\n      airport {\n        city {\n          name\n        }\n        code\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment OneWayTripMobile_booking on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment ReturnTripMobile_booking on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  inbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment MultiCityTripMobile_booking on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",

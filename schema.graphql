@@ -1,10 +1,5 @@
-<<<<<<< master
 # source: https://graphql.kiwi.com/
-# timestamp: Wed Sep 05 2018 16:20:24 GMT+0200 (CEST)
-=======
-# source: http://localhost:3000/
-# timestamp: Wed Sep 05 2018 13:26:40 GMT+0200 (CEST)
->>>>>>> fix: provide customer passenger name
+# timestamp: Wed Sep 05 2018 17:31:39 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
