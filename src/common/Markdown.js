@@ -18,6 +18,7 @@ const renderMarkdown = markdown => {
 };
 
 const Markdown = (props: Props) => (
+  // eslint-disable-next-line react/no-danger
   <div dangerouslySetInnerHTML={{ __html: renderMarkdown(props.children) }} />
 );
 
