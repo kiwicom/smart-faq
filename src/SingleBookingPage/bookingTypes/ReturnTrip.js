@@ -11,7 +11,7 @@ type Props = {
   booking: Return_booking,
 };
 
-const Return = (props: Props) => (
+const ReturnTrip = (props: Props) => (
   <div>
     <TripTitle title="Outbound" />
     <Accordion trip={props.booking.outbound} />
@@ -21,7 +21,7 @@ const Return = (props: Props) => (
 );
 
 export default createFragmentContainer(
-  Return,
+  ReturnTrip,
   graphql`
     fragment Return_booking on BookingReturn {
       outbound {

@@ -11,7 +11,7 @@ type Props = {|
   booking: OneWay_booking,
 |};
 
-const OneWay = ({ booking }: Props) => (
+const OneWayTrip = ({ booking }: Props) => (
   <div>
     <AccordionTitle title="Outbound" />
     <Accordion trip={booking.trip} />
@@ -19,7 +19,7 @@ const OneWay = ({ booking }: Props) => (
 );
 
 export default createFragmentContainer(
-  OneWay,
+  OneWayTrip,
   graphql`
     fragment OneWay_booking on BookingOneWay {
       trip {
