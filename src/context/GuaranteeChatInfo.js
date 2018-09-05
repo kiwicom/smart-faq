@@ -12,6 +12,8 @@ export type GuaranteeChatBookingInfo = {|
   arrivalAirport: ?string,
   phone: ?string,
   email: ?string,
+  firstName: ?string,
+  lastName: ?string,
 |};
 
 type Props = {|

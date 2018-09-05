@@ -18,6 +18,10 @@ export type GuaranteeNeededResolver_booking = {|
   +contactDetails: ?{|
     +phone: ?string,
     +email: ?string,
+    +passenger: ?{|
+      +firstname: ?string,
+      +lastname: ?string,
+    |},
   |},
   +upcomingLeg: ?{|
     +guarantee: ?CoveredBy,
@@ -134,6 +138,31 @@ return {
           "name": "email",
           "args": null,
           "storageKey": null
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "passenger",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "Passenger",
+          "plural": false,
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "firstname",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "lastname",
+              "args": null,
+              "storageKey": null
+            }
+          ]
         }
       ]
     },
@@ -178,5 +207,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = 'a32848c062675d8dd2e0d67f015d96ed';
+(node/*: any*/).hash = 'e7628645d1829d0487eee25c7071191c';
 module.exports = node;

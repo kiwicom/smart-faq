@@ -67,6 +67,8 @@ class GuaranteeNeededResolver extends React.Component<Props> {
     );
     const phone = idx(booking, _ => _.contactDetails.phone);
     const email = idx(booking, _ => _.contactDetails.email);
+    const firstName = idx(booking, _ => _.contactDetails.passenger.firstname);
+    const lastName = idx(booking, _ => _.contactDetails.passenger.lastname);
 
     onSetBookingInfo({
       bid,
@@ -77,6 +79,8 @@ class GuaranteeNeededResolver extends React.Component<Props> {
       arrivalAirport,
       phone,
       email,
+      firstName,
+      lastName,
     });
   };
 
@@ -150,6 +154,10 @@ export default createFragmentContainer(
       contactDetails {
         phone
         email
+        passenger {
+          firstname
+          lastname
+        }
       }
       upcomingLeg {
         guarantee

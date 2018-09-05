@@ -22,6 +22,8 @@ export default ({ orgId, queueName, guaranteeChatBookingInfo }: Config) => {
     idx(guaranteeChatBookingInfo, _ => _.arrivalAirport) || '';
   const phone = idx(guaranteeChatBookingInfo, _ => _.phone) || '';
   const email = idx(guaranteeChatBookingInfo, _ => _.email) || '';
+  const firstName = idx(guaranteeChatBookingInfo, _ => _.firstName) || '';
+  const lastName = idx(guaranteeChatBookingInfo, _ => _.lastName) || '';
 
   return {
     webchatAppUrl: 'https://apps.mypurecloud.ie/webchat',
@@ -32,8 +34,8 @@ export default ({ orgId, queueName, guaranteeChatBookingInfo }: Config) => {
     logLevel: process.env.NODE_ENV === 'development' ? 'DEBUG' : 'INFO',
     locale: 'en',
     data: {
-      firstName: '',
-      lastName: '',
+      firstName,
+      lastName,
       addressStreet: '',
       addressCity: '',
       addressPostalCode: '',
