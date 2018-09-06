@@ -5,6 +5,7 @@ import css from 'styled-jsx/css';
 import { Heading, Button, Radio } from '@kiwicom/orbit-components';
 
 import screensList from './screensList';
+import commentTypeList from './commentTypeList';
 import { Box } from '../../common';
 
 type Props = {|
@@ -34,10 +35,10 @@ const ScreenFeedback = ({
   commentType,
 }: Props) => {
   const labelMap = {
-    DONT_LIKE: `Don't like how this works`,
-    CONFUSING: 'Confusing',
-    NOT_ACCURATE: 'Incorrect information',
-    DOESNT_ANSWER: `Doesn't answer my question`,
+    [commentTypeList.DONT_LIKE]: `Don't like how this works`,
+    [commentTypeList.CONFUSING]: 'Confusing',
+    [commentTypeList.NOT_ACCURATE]: 'Incorrect information',
+    [commentTypeList.DOESNT_ANSWER]: `Doesn't answer my question`,
   };
 
   const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
