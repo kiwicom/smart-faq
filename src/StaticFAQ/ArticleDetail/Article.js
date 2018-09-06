@@ -12,7 +12,7 @@ import FAQArticleNotFound from './FAQArticleNotFound';
 import type { ArticleDetailQuery } from './__generated__/ArticleDetailQuery.graphql';
 import type { ArticleDetailSearchResultQuery } from './__generated__/ArticleDetailSearchResultQuery.graphql';
 import CustomBreadcrumbs from '../breadcrumbs/CustomBreadcrumbs';
-import { BookingState } from '../../context/BookingState';
+import { GuaranteeChatInfoState } from '../../context/GuaranteeChatInfo';
 
 const queryFAQArticleDetail = graphql`
   query ArticleDetailQuery($id: ID!, $category_id: ID!) {
@@ -176,7 +176,7 @@ class RawFAQArticleDetail extends React.Component<Props> {
 }
 
 const Article = (props: ComponentProps) => (
-  <BookingState.Consumer>
+  <GuaranteeChatInfoState.Consumer>
     {({ showGuaranteeChat }) => {
       // show Guarantee Chat only in Guarantee article
       const articleId = idx(props.match, _ => _.params.articleId);
@@ -193,7 +193,7 @@ const Article = (props: ComponentProps) => (
         />
       );
     }}
-  </BookingState.Consumer>
+  </GuaranteeChatInfoState.Consumer>
 );
 
 export default Article;

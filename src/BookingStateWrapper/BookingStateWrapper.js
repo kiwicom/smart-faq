@@ -1,18 +1,16 @@
 // @flow
 
 import * as React from 'react';
-import { graphql, QueryRenderer } from 'react-relay';
+import { graphql } from 'react-relay';
 
 import { SelectedBooking } from '../context/SelectedBooking';
 import type { State } from '../context/SelectedBooking';
 import HasBooking from './HasBooking';
 import NoBooking from './NoBooking';
 import UserStatus from '../helpers/UserStatus';
+import BookingRenderer from '../relay/BookingRenderer';
 import type { BookingStateWrapperNearestQueryResponse } from './__generated__/BookingStateWrapperNearestQuery.graphql';
 import type { BookingStateWrapperSelectedQueryResponse } from './__generated__/BookingStateWrapperSelectedQuery.graphql';
-import createEnvironment from '../relay/environment';
-import { withLanguage } from '../context/Language';
-import { withLoginToken } from '../context/User';
 
 const nearestBookingQuery = graphql`
   query BookingStateWrapperNearestQuery {
@@ -36,7 +34,7 @@ const selectedBookingQuery = graphql`
 `;
 
 type RenderProps = {
-  props: {
+  props: ?{
     ...BookingStateWrapperNearestQueryResponse,
     ...BookingStateWrapperSelectedQueryResponse,
   },
@@ -44,11 +42,9 @@ type RenderProps = {
 
 type Props = {
   children: React.Node,
-  loginToken: ?string,
-  locale: string,
 };
 
-const BookingStateWrapper = ({ children, loginToken, locale }: Props) => {
+const BookingStateWrapper = ({ children }: Props) => {
   const renderBookingStateWrapper = ({ props }: RenderProps) => {
     const booking = props && (props.nearestBooking || props.node); // eslint-disable-line react/prop-types
     return booking ? (
@@ -57,25 +53,22 @@ const BookingStateWrapper = ({ children, loginToken, locale }: Props) => {
       <NoBooking>{children}</NoBooking>
     );
   };
+
   return (
     <React.Fragment>
       <UserStatus.LoggedIn>
         <SelectedBooking.Consumer>
           {({ selectedBooking }: State) => {
             return selectedBooking === null ? (
-              <QueryRenderer
-                cacheConfig={{ force: true }}
+              <BookingRenderer
                 query={nearestBookingQuery}
                 render={renderBookingStateWrapper}
-                environment={createEnvironment(loginToken, locale)}
               />
             ) : (
-              <QueryRenderer
+              <BookingRenderer
                 query={selectedBookingQuery}
                 render={renderBookingStateWrapper}
-                cacheConfig={{ force: true }}
                 variables={{ id: selectedBooking }}
-                environment={createEnvironment(loginToken, locale)}
               />
             );
           }}
@@ -88,4 +81,4 @@ const BookingStateWrapper = ({ children, loginToken, locale }: Props) => {
   );
 };
 
-export default withLanguage(withLoginToken(BookingStateWrapper));
+export default BookingStateWrapper;

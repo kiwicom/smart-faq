@@ -25,6 +25,7 @@ import ErrorBoundary from './common/ErrorBoundary';
 import { EnterTracker, TimeTracker } from './helpers/analytics/trackers';
 import type { AppProps } from './types';
 import MobileSafariScroll from './helpers/MobileSafariScroll';
+import GuaranteeChatInfo from './context/GuaranteeChatInfo';
 
 const style = css`
   .smartFAQ {
@@ -121,22 +122,23 @@ class App extends React.PureComponent<AppProps, State> {
                     <SearchStateProvider>
                       <Emergencies.Provider value={emergencies}>
                         <SelectedBookingProvider isOpen={isOpen}>
-                          <BookingStateProvider
-                            onLogout={this.props.onLogout}
-                            enableChat={this.props.enableChat}
-                          >
+                          <BookingStateProvider onLogout={this.props.onLogout}>
                             <ExtraInfoStateProvider>
-                              {isOpen &&
-                                route && (
-                                  <EventListener
-                                    target="window"
-                                    onKeydown={withOptions(this.onKeyDown, {
-                                      capture: true,
-                                    })}
-                                  >
-                                    <Routes route={route} />
-                                  </EventListener>
-                                )}
+                              <GuaranteeChatInfo
+                                enableChat={this.props.enableChat}
+                              >
+                                {isOpen &&
+                                  route && (
+                                    <EventListener
+                                      target="window"
+                                      onKeydown={withOptions(this.onKeyDown, {
+                                        capture: true,
+                                      })}
+                                    >
+                                      <Routes route={route} />
+                                    </EventListener>
+                                  )}
+                              </GuaranteeChatInfo>
                             </ExtraInfoStateProvider>
                           </BookingStateProvider>
                         </SelectedBookingProvider>

@@ -21,10 +21,8 @@ type RenderState = {
 const query = graphql`
   query NearestBookingQuery {
     nearestBooking {
-      upcomingLeg {
-        ...GuaranteeNeededResolver_upcomingLeg
-      }
       ...BookingDetail_booking
+      ...GuaranteeNeededResolver_booking
     }
   }
 `;

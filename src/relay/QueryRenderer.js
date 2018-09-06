@@ -1,7 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { QueryRenderer as OriginalQueryRenderer } from 'react-relay';
+import {
+  QueryRenderer as OriginalQueryRenderer,
+  Environment,
+} from 'react-relay';
 import { withRouter } from 'react-router-dom';
 import type { RouterHistory } from 'react-router-dom';
 
@@ -30,13 +33,49 @@ type ContextTypes = {
   onLogout: onLogout,
   history: RouterHistory,
 };
+
 type RenderState<RenderProps> = {
   props: ?RenderProps,
   error: ?Error,
 };
+
+type State = {|
+  locale: ?string,
+  loginToken: ?string,
+  environment: Environment,
+|};
+
 class QueryRenderer<RenderProps> extends React.Component<
   ContextTypes & Props<RenderProps>,
+  State,
 > {
+  static getDerivedStateFromProps(nextProps, state) {
+    const { loginToken, language } = nextProps;
+    const locale = frontendLanguageToLocale[language];
+
+    if (state.locale === locale && state.loginToken === loginToken) {
+      return null;
+    }
+
+    return {
+      environment: createEnvironment(loginToken, locale),
+      locale,
+      loginToken,
+    };
+  }
+
+  constructor(props) {
+    super(props);
+
+    const { loginToken, language } = props;
+    const locale = frontendLanguageToLocale[language];
+    this.state = {
+      environment: createEnvironment(loginToken, locale),
+      loginToken, // eslint-disable-line react/no-unused-state
+      locale, // eslint-disable-line react/no-unused-state
+    };
+  }
+
   renderContainer = (renderState: RenderState<RenderProps>) => {
     if (renderState.error) {
       if (renderState.error.message === ERROR_FORBIDDEN) {
@@ -54,8 +93,7 @@ class QueryRenderer<RenderProps> extends React.Component<
     return this.props.render(renderState);
   };
   render() {
-    const { loginToken, language, query, variables, cacheConfig } = this.props;
-    const locale = frontendLanguageToLocale[language];
+    const { query, variables, cacheConfig } = this.props;
 
     return (
       <OriginalQueryRenderer
@@ -63,7 +101,7 @@ class QueryRenderer<RenderProps> extends React.Component<
         variables={variables}
         cacheConfig={cacheConfig}
         render={this.renderContainer}
-        environment={createEnvironment(loginToken, locale)}
+        environment={this.state.environment}
       />
     );
   }

@@ -20,7 +20,6 @@ export const getFAQSection = ({
 const initialState = {
   FAQSection: 'BEFORE_BOOKING',
   selectedBooking: null,
-  showGuaranteeChat: false,
 };
 
 export type FAQSectionType =
@@ -34,19 +33,15 @@ type Props = {
   isPastBooking?: boolean, // eslint-disable-line react/no-unused-prop-types
   isUrgent?: boolean, // eslint-disable-line react/no-unused-prop-types
   onLogout: onLogout,
-  enableChat?: boolean,
 };
 
 type StateValues = {
   FAQSection: ?FAQSectionType,
-  showGuaranteeChat: boolean,
 };
 
 type StateCallbacks = {
   onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
   onLogout: onLogout,
-  toggleGuaranteeChat: (showGuaranteeChat: boolean) => void,
-  isChatEnabled: () => boolean,
 };
 
 type BookingStateDescription = {
@@ -61,8 +56,6 @@ export const BookingState = React.createContext({
   ...initialState,
   onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => {}, // eslint-disable-line no-unused-vars
   onLogout: () => Promise.resolve(null),
-  toggleGuaranteeChat: (showGuaranteeChat: boolean) => {}, // eslint-disable-line no-unused-vars
-  isChatEnabled: () => true,
 });
 
 class BookingStateProvider extends React.Component<Props, BookingStateType> {
@@ -74,8 +67,6 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
       onSetFAQSection: this.onSetFAQSection,
       FAQSection: getFAQSection({ hasBooking: false }),
       onLogout: this.onLogout,
-      toggleGuaranteeChat: this.toggleGuaranteeChat,
-      isChatEnabled: this.isChatEnabled,
     };
   }
 
@@ -96,14 +87,6 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
         return { FAQSection: section };
       }
     });
-  };
-
-  toggleGuaranteeChat = (showGuaranteeChat: boolean) => {
-    this.setState({ showGuaranteeChat });
-  };
-
-  isChatEnabled = () => {
-    return this.props.enableChat || false;
   };
 
   render() {

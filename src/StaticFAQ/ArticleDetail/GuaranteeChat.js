@@ -6,8 +6,12 @@ import { Text, Button } from '@kiwicom/orbit-components';
 import Chat from '@kiwicom/orbit-components/lib/icons/Chat';
 
 import getChatConfig from './getChatConfig';
+import { GuaranteeChatInfoState } from '../../context/GuaranteeChatInfo';
+import type { GuaranteeChatBookingInfo } from '../../context/GuaranteeChatInfo';
 
-type Props = {||};
+type Props = {|
+  guaranteeChatBookingInfo: ?GuaranteeChatBookingInfo,
+|};
 
 type State = {|
   showButton: boolean,
@@ -56,7 +60,12 @@ class GuaranteeChat extends React.Component<Props, State> {
       return;
     }
 
-    const chatConfig = getChatConfig({ orgId, queueName });
+    const { guaranteeChatBookingInfo } = this.props;
+    const chatConfig = getChatConfig({
+      orgId,
+      queueName,
+      guaranteeChatBookingInfo,
+    });
     window.ININ.webchat.create(chatConfig, function(err, webchat) {
       if (err) {
         throw err;
@@ -113,4 +122,17 @@ class GuaranteeChat extends React.Component<Props, State> {
   }
 }
 
-export default GuaranteeChat;
+const WrappedGuaranteeChat = (props: {||}) => (
+  <GuaranteeChatInfoState.Consumer>
+    {({ guaranteeChatBookingInfo }) => (
+      <GuaranteeChat
+        {...props}
+        guaranteeChatBookingInfo={guaranteeChatBookingInfo}
+      />
+    )}
+  </GuaranteeChatInfoState.Consumer>
+);
+
+export const UnwrappedGuaranteeChat = GuaranteeChat;
+
+export default WrappedGuaranteeChat;
