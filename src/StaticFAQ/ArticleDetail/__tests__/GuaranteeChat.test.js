@@ -12,15 +12,26 @@ global.ININ = {
   },
 };
 
+const chatConfig = {
+  CHAT_GUID: '1234',
+  CHAT_DEPLOYMENT_KEY: 'XXX',
+  CHAT_ORG_ID: 'XYZ',
+  CHAT_QUEUE_NAME: 'QWERTY',
+};
+
 describe('GuaranteeChat', () => {
   it('shows button by default', () => {
-    const wrapper = shallow(<GuaranteeChat guaranteeChatBookingInfo={null} />);
+    const wrapper = shallow(
+      <GuaranteeChat guaranteeChatBookingInfo={null} chatConfig={chatConfig} />,
+    );
 
     expect(wrapper.find(Button).exists()).toBeTruthy();
   });
 
   it('starts chat when clicking on button', () => {
-    const wrapper = shallow(<GuaranteeChat guaranteeChatBookingInfo={null} />);
+    const wrapper = shallow(
+      <GuaranteeChat guaranteeChatBookingInfo={null} chatConfig={chatConfig} />,
+    );
 
     wrapper.find(Button).simulate('click');
 
@@ -29,7 +40,9 @@ describe('GuaranteeChat', () => {
   });
 
   it('inserts purecloud script into DOM', () => {
-    shallow(<GuaranteeChat guaranteeChatBookingInfo={null} />);
+    shallow(
+      <GuaranteeChat guaranteeChatBookingInfo={null} chatConfig={chatConfig} />,
+    );
 
     expect(document.getElementById('purecloud-webchat-js')).toBeTruthy();
   });

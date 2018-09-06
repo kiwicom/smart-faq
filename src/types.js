@@ -27,4 +27,5 @@ export type AppProps = {|
   onLogout: onLogout,
   emergencies: string[],
   enableChat: boolean,
+  chatConfig: { [key: string]: string } | null,
 |};

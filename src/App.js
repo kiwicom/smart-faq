@@ -100,9 +100,7 @@ class App extends React.PureComponent<AppProps, State> {
     return (
       <FocusTrap active={isOpen}>
         <div
-          className={classNames('smartFAQ', {
-            open: isOpen,
-          })}
+          className={classNames('smartFAQ', { open: isOpen })}
           data-test="SmartFAQHelp"
         >
           <meta
@@ -126,6 +124,7 @@ class App extends React.PureComponent<AppProps, State> {
                             <ExtraInfoStateProvider>
                               <GuaranteeChatInfo
                                 enableChat={this.props.enableChat}
+                                chatConfig={this.props.chatConfig}
                               >
                                 {isOpen &&
                                   route && (

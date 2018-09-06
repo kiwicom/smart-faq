@@ -35,6 +35,13 @@ const emergencies = [
   'The political unrest in Catalan republic has affected many flights and we are experiencing a high number of contacts. Please departure to Belgium to avoid prison.',
 ];
 
+const chatConfig = {
+  CHAT_GUID: process.env.CHAT_GUID || '',
+  CHAT_DEPLOYMENT_KEY: process.env.CHAT_DEPLOYMENT_KEY || '',
+  CHAT_ORG_ID: process.env.CHAT_ORG_ID || '',
+  CHAT_QUEUE_NAME: process.env.CHAT_QUEUE_NAME || 'CHAT TEST',
+};
+
 class Root extends React.Component<Props, State> {
   cookieKey: string;
   input: ?HTMLInputElement;
@@ -210,6 +217,7 @@ class Root extends React.Component<Props, State> {
             loginToken={this.state.loginToken}
             simpleToken={this.state.simpleToken}
             enableChat={this.state.enableChat}
+            chatConfig={chatConfig}
             emergencies={showEmergencies ? emergencies : []}
           />
         </div>
