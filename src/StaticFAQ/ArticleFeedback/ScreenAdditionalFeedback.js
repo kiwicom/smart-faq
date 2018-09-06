@@ -8,6 +8,8 @@ import { Close } from '@kiwicom/orbit-components/lib/icons';
 import { Box } from '../../common';
 import createComment from '../../mutations/CreateCommentMutation';
 import screensList from './screensList';
+import commentTypeList from './commentTypeList';
+import { simpleTracker } from '../../helpers/analytics/trackers';
 
 type Props = {|
   changeScreen: (nextScreen: string) => void,
@@ -19,6 +21,13 @@ type Props = {|
 type State = {|
   comment: string,
 |};
+
+const labelsForTracking = {
+  [commentTypeList.DONT_LIKE]: `dontLike`,
+  [commentTypeList.CONFUSING]: 'confusing',
+  [commentTypeList.NOT_ACCURATE]: 'notAccurate',
+  [commentTypeList.DOESNT_ANSWER]: `doesntAnswer`,
+};
 
 const style = css`
   div.question {
@@ -86,6 +95,12 @@ class ScreenAdditionalFeedback extends React.Component<Props, State> {
       () => changeScreen(screensList.THANK_YOU),
       () => changeScreen(screensList.ERROR),
     );
+
+    simpleTracker('smartFAQCategories', {
+      action: 'submitFeedback',
+      comment: labelsForTracking[commentType],
+    });
+
     this.props.clearCommentType();
   };
 
