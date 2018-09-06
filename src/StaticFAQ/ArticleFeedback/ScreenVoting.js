@@ -5,6 +5,7 @@ import css from 'styled-jsx/css';
 import { ThumbUp, ThumbDown } from '@kiwicom/orbit-components/lib/icons';
 
 import screensList from './screensList';
+import { simpleTracker } from '../../helpers/analytics/trackers';
 
 type Props = {|
   changeScreen: (nextScreen: string) => void,
@@ -37,31 +38,43 @@ const style = css`
   }
 `;
 
-const ScreenVoting = (props: Props) => (
-  <div className="initial-screen">
-    <p className="question">Was this article helpful?</p>
-    <div
-      className="feedback-button thumb-up"
-      role="button"
-      onClick={() => props.changeScreen(screensList.THANK_YOU)}
-      onKeyUp={() => props.changeScreen(screensList.THANK_YOU)}
-      tabIndex={0}
-    >
-      <ThumbUp size="medium" customColor="#00a991" />
-      <p>Yes</p>
+const ScreenVoting = (props: Props) => {
+  const handleUpVote = () => {
+    simpleTracker('smartFAQCategories', { action: 'upVote' });
+    props.changeScreen(screensList.THANK_YOU);
+  };
+
+  const handleDownVote = () => {
+    simpleTracker('smartFAQCategories', { action: 'downVote' });
+    props.changeScreen(screensList.FEEDBACK);
+  };
+
+  return (
+    <div className="initial-screen">
+      <p className="question">Was this article helpful?</p>
+      <div
+        className="feedback-button thumb-up"
+        role="button"
+        onClick={handleUpVote}
+        onKeyUp={handleUpVote}
+        tabIndex={0}
+      >
+        <ThumbUp size="medium" customColor="#00a991" />
+        <p>Yes</p>
+      </div>
+      <div
+        className="feedback-button thumb-down"
+        role="button"
+        onClick={handleDownVote}
+        onKeyUp={handleDownVote}
+        tabIndex={0}
+      >
+        <ThumbDown size="medium" customColor="#00a991" />
+        <p>No</p>
+      </div>
+      <style jsx>{style}</style>
     </div>
-    <div
-      className="feedback-button thumb-down"
-      role="button"
-      onClick={() => props.changeScreen(screensList.FEEDBACK)}
-      onKeyUp={() => props.changeScreen(screensList.FEEDBACK)}
-      tabIndex={0}
-    >
-      <ThumbDown size="medium" customColor="#00a991" />
-      <p>No</p>
-    </div>
-    <style jsx>{style}</style>
-  </div>
-);
+  );
+};
 
 export default ScreenVoting;
