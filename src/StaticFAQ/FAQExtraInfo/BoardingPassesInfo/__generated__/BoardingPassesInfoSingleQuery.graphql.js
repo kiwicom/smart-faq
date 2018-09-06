@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6efeaa2617b93f718529ea2ee5f7a566
+ * @relayHash 7a3146ae33de26dea8615bd03b4f99ab
  */
 
 /* eslint-disable */
@@ -51,6 +51,7 @@ fragment BoardingPassesDescription on BoardingPass {
   flightNumber
   boardingPassUrl
   availableAt
+  availabilityStatus
   leg {
     id
     departure {
@@ -153,7 +154,7 @@ return {
   "operationKind": "query",
   "name": "BoardingPassesInfoSingleQuery",
   "id": null,
-  "text": "query BoardingPassesInfoSingleQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    assets {\n      ...BoardingPassesSummary\n    }\n    directAccessURL\n    id\n  }\n}\n\nfragment BoardingPassesSummary on BookingAssets {\n  boardingPasses {\n    flightNumber\n    ...BoardingPassesDescription\n  }\n}\n\nfragment BoardingPassesDescription on BoardingPass {\n  flightNumber\n  boardingPassUrl\n  availableAt\n  leg {\n    id\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n",
+  "text": "query BoardingPassesInfoSingleQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    assets {\n      ...BoardingPassesSummary\n    }\n    directAccessURL\n    id\n  }\n}\n\nfragment BoardingPassesSummary on BookingAssets {\n  boardingPasses {\n    flightNumber\n    ...BoardingPassesDescription\n  }\n}\n\nfragment BoardingPassesDescription on BoardingPass {\n  flightNumber\n  boardingPassUrl\n  availableAt\n  availabilityStatus\n  leg {\n    id\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -249,6 +250,13 @@ return {
                     "kind": "ScalarField",
                     "alias": null,
                     "name": "availableAt",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "availabilityStatus",
                     "args": null,
                     "storageKey": null
                   },
