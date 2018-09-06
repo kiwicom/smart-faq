@@ -16,8 +16,13 @@ export type GuaranteeChatBookingInfo = {|
   lastName: ?string,
 |};
 
+export type ChatConfig = {
+  [key: string]: string,
+} | null;
+
 type Props = {|
   enableChat?: boolean,
+  chatConfig: ChatConfig,
   children: React.Node,
 |};
 
@@ -27,11 +32,13 @@ type State = {|
   onSetBookingInfo: GuaranteeChatBookingInfo => void,
   toggleGuaranteeChat: (showGuaranteeChat: boolean) => void,
   isChatEnabled: () => boolean,
+  chatConfig: ChatConfig,
 |};
 
 const initialState = {
   showGuaranteeChat: false,
   guaranteeChatBookingInfo: null,
+  chatConfig: {},
 };
 
 export const GuaranteeChatInfoState = React.createContext({
@@ -50,6 +57,7 @@ class GuaranteeChatInfo extends React.Component<Props, State> {
       onSetBookingInfo: this.onSetBookingInfo,
       toggleGuaranteeChat: this.toggleGuaranteeChat,
       isChatEnabled: this.isChatEnabled,
+      chatConfig: this.props.chatConfig,
     };
   }
 

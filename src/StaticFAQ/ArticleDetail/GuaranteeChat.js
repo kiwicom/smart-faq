@@ -1,5 +1,6 @@
 // @flow
 
+import idx from 'idx';
 import * as React from 'react';
 import classNames from 'classnames';
 import { Text, Button } from '@kiwicom/orbit-components';
@@ -7,24 +8,19 @@ import Chat from '@kiwicom/orbit-components/lib/icons/Chat';
 
 import getChatConfig from './getChatConfig';
 import { GuaranteeChatInfoState } from '../../context/GuaranteeChatInfo';
-import type { GuaranteeChatBookingInfo } from '../../context/GuaranteeChatInfo';
+import type {
+  GuaranteeChatBookingInfo,
+  ChatConfig,
+} from '../../context/GuaranteeChatInfo';
 
 type Props = {|
   guaranteeChatBookingInfo: ?GuaranteeChatBookingInfo,
+  chatConfig: ChatConfig,
 |};
 
 type State = {|
   showButton: boolean,
 |};
-
-const guid = process.env.CHAT_GUID;
-const deploymentKey = process.env.CHAT_DEPLOYMENT_KEY;
-const orgId = process.env.CHAT_ORG_ID;
-const queueName = process.env.CHAT_QUEUE_NAME || 'CHAT TEST';
-
-if (!(guid && deploymentKey && orgId && queueName)) {
-  throw new Error('Secrets for Guarantee chat not provided.');
-}
 
 class GuaranteeChat extends React.Component<Props, State> {
   state = {
@@ -32,6 +28,18 @@ class GuaranteeChat extends React.Component<Props, State> {
   };
 
   componentDidMount() {
+    const guid = idx(this.props, _ => _.chatConfig.CHAT_GUID);
+    const deploymentKey = idx(
+      this.props,
+      _ => _.chatConfig.CHAT_DEPLOYMENT_KEY,
+    );
+
+    if (!(guid && deploymentKey)) {
+      throw new Error(
+        'Secrets guid and deploymentKey for Guarantee chat not provided.',
+      );
+    }
+
     const body = document && document.body;
 
     if (!body) {
@@ -60,21 +68,28 @@ class GuaranteeChat extends React.Component<Props, State> {
       return;
     }
 
-    const { guaranteeChatBookingInfo } = this.props;
-    const chatConfig = getChatConfig({
+    const { guaranteeChatBookingInfo, chatConfig } = this.props;
+    const orgId = idx(chatConfig, _ => _.CHAT_ORG_ID);
+    const queueName = idx(chatConfig, _ => _.CHAT_QUEUE_NAME);
+
+    if (!(orgId && queueName)) {
+      throw new Error(
+        'Secrets orgId and queueName for Guarantee chat not provided.',
+      );
+    }
+
+    const chatConfiguration = getChatConfig({
       orgId,
       queueName,
       guaranteeChatBookingInfo,
     });
-    window.ININ.webchat.create(chatConfig, function(err, webchat) {
+    window.ININ.webchat.create(chatConfiguration, function(err, webchat) {
       if (err) {
         throw err;
       }
 
       // Render chat to iframe
-      webchat.renderFrame({
-        containerEl: 'smartFAQGuarantee',
-      });
+      webchat.renderFrame({ containerEl: 'smartFAQGuarantee' });
     });
   };
 
@@ -124,10 +139,11 @@ class GuaranteeChat extends React.Component<Props, State> {
 
 const WrappedGuaranteeChat = (props: {||}) => (
   <GuaranteeChatInfoState.Consumer>
-    {({ guaranteeChatBookingInfo }) => (
+    {({ guaranteeChatBookingInfo, chatConfig }) => (
       <GuaranteeChat
         {...props}
         guaranteeChatBookingInfo={guaranteeChatBookingInfo}
+        chatConfig={chatConfig}
       />
     )}
   </GuaranteeChatInfoState.Consumer>
