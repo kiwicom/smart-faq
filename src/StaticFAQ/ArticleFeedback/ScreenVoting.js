@@ -4,7 +4,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { ThumbUp, ThumbDown } from '@kiwicom/orbit-components/lib/icons';
 
-import screensList from './screensList';
+import screenList from './screenList';
 import { simpleTracker } from '../../helpers/analytics/trackers';
 
 type Props = {|
@@ -41,12 +41,12 @@ const style = css`
 const ScreenVoting = (props: Props) => {
   const handleUpVote = () => {
     simpleTracker('smartFAQCategories', { action: 'upVote' });
-    props.changeScreen(screensList.THANK_YOU);
+    props.changeScreen(screenList.THANK_YOU);
   };
 
   const handleDownVote = () => {
     simpleTracker('smartFAQCategories', { action: 'downVote' });
-    props.changeScreen(screensList.FEEDBACK);
+    props.changeScreen(screenList.FEEDBACK);
   };
 
   return (
