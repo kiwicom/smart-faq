@@ -120,6 +120,7 @@ See their [docs](https://orbit.kiwi/guidelines/theming/) for more info.
 ## Cypress test
 
 In order to be able to run the tests, you need to add the following environment variables to the `.env` file:
+
 ```
 TEST_USER_EMAIL=XXXXXXXX
 TEST_USER_PASSWORD=XXXXXXXX
@@ -150,6 +151,7 @@ Test script `test-ci` is run on each push
 - Deployed on [https://kiwicom.github.io/smart-faq/](https://kiwicom.github.io/smart-faq/)
 
 ### Release
+
 Done automatically by [semantic-release](https://github.com/semantic-release/semantic-release).
 
 ## Analytics
@@ -193,7 +195,7 @@ These are the events being recorded. Note that additionally to these attributes 
 
 - Possible payloads
   - Click on category: `{ action: "clickOnCategory", categoryId:"id of category", categoryName:"category title"}`
-  - Enter Article: `{ action: "clickOnArticle", articleId:"id of article", articleName:"article title"}`
-  - Close Article: `{ action: "articleClose", articleId:"id of article", articleName:"article title", timeOpen: "time it remained open"}`
-  - Click on "Let us know" feedback button: `{ action: "clickOnLetUsKnow" }`
-
+  - Enter article: `{ action: "clickOnArticle", articleId:"id of article", articleName:"article title"}`
+  - Close article: `{ action: "articleClose", articleId:"id of article", articleName:"article title", timeOpen: "time it remained open"}`
+  - Vote on article: `{ action: "upVote" | "downVote" }`
+  - Submit feedback on article: `{ action: "submitFeedback", comment: "dontLike" | "confusing" | "notAccurate" | "doesntAnswer" }`
