@@ -62,7 +62,7 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
       case 'AT_AIRPORT':
         return (
           <HoverHelpTooltip
-            tooltip="You will have to check-in for free at the airport"
+            tooltip="You will have to check-in for free at the airport."
             placement="top"
             tracker={tooltipTracker}
           >
@@ -131,8 +131,8 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
             right: 0;
           }
           div.info :global(.Tooltip-inner.Tooltip-inner) {
-            max-width: 260px;
-            width: 260px;
+            max-width: 265px;
+            width: 265px;
           }
           div.info :global(.Tooltip .Tooltip-arrow.Tooltip-arrow) {
             left: auto;
