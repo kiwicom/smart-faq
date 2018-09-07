@@ -22,11 +22,11 @@ type State = {|
   comment: string,
 |};
 
-const labelsForTracking = {
-  [commentTypeList.DONT_LIKE]: `dontLike`,
-  [commentTypeList.CONFUSING]: 'confusing',
-  [commentTypeList.NOT_ACCURATE]: 'notAccurate',
-  [commentTypeList.DOESNT_ANSWER]: `doesntAnswer`,
+const commentTypeValues = {
+  [commentTypeList.DONT_LIKE]: 'DONT_LIKE',
+  [commentTypeList.CONSFUSING]: 'CONFUSING',
+  [commentTypeList.NOT_ACCURATE]: 'NOT_ACCURATE',
+  [commentTypeList.DOESNT_ANSWER]: 'DOESNT_ANSWER',
 };
 
 const style = css`
@@ -90,7 +90,7 @@ class ScreenAdditionalFeedback extends React.Component<Props, State> {
 
     createComment(
       articleId,
-      commentType,
+      commentTypeValues[commentType],
       comment,
       () => changeScreen(screensList.THANK_YOU),
       () => changeScreen(screensList.ERROR),
@@ -98,7 +98,7 @@ class ScreenAdditionalFeedback extends React.Component<Props, State> {
 
     simpleTracker('smartFAQCategories', {
       action: 'submitFeedback',
-      comment: labelsForTracking[commentType],
+      comment: commentType,
     });
 
     this.props.clearCommentType();
