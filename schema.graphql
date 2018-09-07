@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com/
-# timestamp: Wed Sep 05 2018 17:31:39 GMT+0200 (CEST)
+# timestamp: Fri Sep 07 2018 13:22:38 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
@@ -1988,16 +1988,6 @@ type RoomsConfigurationOutput {
 
 """Root Mutation."""
 type RootMutation {
-  addFAQArticleComment(
-    """ID of FAQ article to receive vote."""
-    id: ID!
-
-    """Value indicating the comment type."""
-    type: FAQCommentType!
-
-    """Comment text"""
-    comment: String!
-  ): FAQArticle
   login(email: String!, password: String!): User
   resetPassword(email: String!): ResetPasswordResponse
   updatePassenger(
@@ -2012,6 +2002,23 @@ type RootMutation {
     simpleToken: String!
     passengers: [PassengerInsuranceInput!]!
   ): Booking
+  voteFAQArticle(
+    """ID of FAQ article to receive vote."""
+    id: ID!
+
+    """Type of vote for article (up/down)"""
+    vote: VoteType
+  ): FAQArticle
+  addFAQArticleComment(
+    """ID of FAQ article to receive vote."""
+    id: ID!
+
+    """Value indicating the comment type."""
+    type: FAQCommentType!
+
+    """Comment text"""
+    comment: String!
+  ): FAQArticle
 }
 
 """Root Query"""
@@ -2343,6 +2350,11 @@ type Visa {
 
   """Countries where visa is not required"""
   okIn: [Location]
+}
+
+enum VoteType {
+  up
+  down
 }
 
 type WhitelabeledServices {

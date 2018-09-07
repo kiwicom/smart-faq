@@ -52,7 +52,12 @@ class FAQArticleFeedback extends React.Component<Props, State> {
   renderScreen() {
     switch (this.state.screen) {
       case screenList.VOTING:
-        return <ScreenVoting changeScreen={this.changeScreen} />;
+        return (
+          <ScreenVoting
+            articleId={this.props.articleId}
+            changeScreen={this.changeScreen}
+          />
+        );
       case screenList.FEEDBACK:
         return (
           <ScreenFeedback
@@ -75,7 +80,12 @@ class FAQArticleFeedback extends React.Component<Props, State> {
       case screenList.ERROR:
         return <ScreenError changeScreen={this.changeScreen} />;
     }
-    return <ScreenVoting changeScreen={this.changeScreen} />;
+    return (
+      <ScreenVoting
+        articleId={this.props.articleId}
+        changeScreen={this.changeScreen}
+      />
+    );
   }
 
   render() {

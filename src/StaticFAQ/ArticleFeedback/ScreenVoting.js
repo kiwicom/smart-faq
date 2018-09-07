@@ -5,11 +5,18 @@ import css from 'styled-jsx/css';
 import { ThumbUp, ThumbDown } from '@kiwicom/orbit-components/lib/icons';
 
 import screenList from './screenList';
+import voteArticle from '../../mutations/VoteArticleMutation';
 import { simpleTracker } from '../../helpers/analytics/trackers';
 
 type Props = {|
+  articleId: string,
   changeScreen: (nextScreen: string) => void,
 |};
+
+const voteType = {
+  UP: 'up',
+  DOWN: 'down',
+};
 
 const style = css`
   div.initial-screen {
@@ -39,14 +46,20 @@ const style = css`
 `;
 
 const ScreenVoting = (props: Props) => {
-  const handleUpVote = () => {
-    simpleTracker('smartFAQCategories', { action: 'upVote' });
-    props.changeScreen(screenList.THANK_YOU);
-  };
+  const handleVote = vote => {
+    const { articleId, changeScreen } = props;
+    const screen =
+      vote === voteType.UP ? screenList.THANK_YOU : screenList.FEEDBACK;
+    const action = vote === voteType.UP ? 'upVote' : 'downVote';
 
-  const handleDownVote = () => {
-    simpleTracker('smartFAQCategories', { action: 'downVote' });
-    props.changeScreen(screenList.FEEDBACK);
+    voteArticle(
+      articleId,
+      vote,
+      () => changeScreen(screen),
+      () => changeScreen(screen),
+    );
+
+    simpleTracker('smartFAQCategories', { action });
   };
 
   return (
@@ -55,8 +68,8 @@ const ScreenVoting = (props: Props) => {
       <div
         className="feedback-button thumb-up"
         role="button"
-        onClick={handleUpVote}
-        onKeyUp={handleUpVote}
+        onClick={() => handleVote(voteType.UP)}
+        onKeyUp={() => handleVote(voteType.UP)}
         tabIndex={0}
       >
         <ThumbUp size="medium" customColor="#00a991" />
@@ -65,8 +78,8 @@ const ScreenVoting = (props: Props) => {
       <div
         className="feedback-button thumb-down"
         role="button"
-        onClick={handleDownVote}
-        onKeyUp={handleDownVote}
+        onClick={() => handleVote(voteType.DOWN)}
+        onKeyUp={() => handleVote(voteType.DOWN)}
         tabIndex={0}
       >
         <ThumbDown size="medium" customColor="#00a991" />
