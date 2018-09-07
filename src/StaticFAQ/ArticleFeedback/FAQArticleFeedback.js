@@ -8,7 +8,7 @@ import ScreenFeedback from './ScreenFeedback';
 import ScreenAdditionalFeedback from './ScreenAdditionalFeedback';
 import ScreenThankyou from './ScreenThankyou';
 import ScreenError from './ScreenError';
-import screensList from './screensList';
+import screenList from './screenList';
 import { ContactPageLink } from '../../common';
 import UserStatus from '../../helpers/UserStatus';
 
@@ -16,7 +16,7 @@ type Props = {
   articleId: string,
 };
 type State = {
-  screen: $Values<typeof screensList>,
+  screen: $Values<typeof screenList>,
   commentType: string,
 };
 const style = css`
@@ -29,7 +29,7 @@ class FAQArticleFeedback extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      screen: screensList.VOTING,
+      screen: screenList.VOTING,
       commentType: '',
     };
   }
@@ -51,9 +51,9 @@ class FAQArticleFeedback extends React.Component<Props, State> {
 
   renderScreen() {
     switch (this.state.screen) {
-      case screensList.VOTING:
+      case screenList.VOTING:
         return <ScreenVoting changeScreen={this.changeScreen} />;
-      case screensList.FEEDBACK:
+      case screenList.FEEDBACK:
         return (
           <ScreenFeedback
             changeScreen={this.changeScreen}
@@ -61,7 +61,7 @@ class FAQArticleFeedback extends React.Component<Props, State> {
             commentType={this.state.commentType}
           />
         );
-      case screensList.ADDITIONAL_FEEDBACK:
+      case screenList.ADDITIONAL_FEEDBACK:
         return (
           <ScreenAdditionalFeedback
             articleId={this.props.articleId}
@@ -70,9 +70,9 @@ class FAQArticleFeedback extends React.Component<Props, State> {
             clearCommentType={this.clearCommentType}
           />
         );
-      case screensList.THANK_YOU:
+      case screenList.THANK_YOU:
         return <ScreenThankyou changeScreen={this.changeScreen} />;
-      case screensList.ERROR:
+      case screenList.ERROR:
         return <ScreenError changeScreen={this.changeScreen} />;
     }
     return <ScreenVoting changeScreen={this.changeScreen} />;

@@ -4,7 +4,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Heading, Button, Radio } from '@kiwicom/orbit-components';
 
-import screensList from './screensList';
+import screenList from './screenList';
 import commentTypeList from './commentTypeList';
 import { Box } from '../../common';
 
@@ -43,7 +43,7 @@ const ScreenFeedback = ({
 
   const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    changeScreen(screensList.ADDITIONAL_FEEDBACK);
+    changeScreen(screenList.ADDITIONAL_FEEDBACK);
   };
 
   const renderRadioButton = (labelKey: string, label: string) => (

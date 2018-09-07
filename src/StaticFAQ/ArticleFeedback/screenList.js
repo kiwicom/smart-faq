@@ -3,8 +3,8 @@
 const feedbackScreens = {
   VOTING: 'voting',
   FEEDBACK: 'feedback',
-  ADDITIONAL_FEEDBACK: 'additional-feedback',
-  THANK_YOU: 'thank-you',
+  ADDITIONAL_FEEDBACK: 'additionalFeedback',
+  THANK_YOU: 'thankYou',
   ERROR: 'error',
 };
 

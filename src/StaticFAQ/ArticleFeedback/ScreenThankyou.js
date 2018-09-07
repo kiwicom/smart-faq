@@ -5,7 +5,7 @@ import css from 'styled-jsx/css';
 import { Heading } from '@kiwicom/orbit-components';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
 
-import screensList from './screensList';
+import screenList from './screenList';
 import { Box } from '../../common';
 
 type Props = {|
@@ -31,7 +31,7 @@ const ScreenThankyou = (props: Props) => {
       <div className="feedbackMessage">
         <div
           className="close-icon"
-          onClick={() => props.changeScreen(screensList.VOTING)}
+          onClick={() => props.changeScreen(screenList.VOTING)}
           onKeyUp={null}
           tabIndex="-1"
           role="button"

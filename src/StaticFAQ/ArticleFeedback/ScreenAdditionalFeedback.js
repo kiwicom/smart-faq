@@ -7,7 +7,7 @@ import { Close } from '@kiwicom/orbit-components/lib/icons';
 
 import { Box } from '../../common';
 import createComment from '../../mutations/CreateCommentMutation';
-import screensList from './screensList';
+import screenList from './screenList';
 import commentTypeList from './commentTypeList';
 import { simpleTracker } from '../../helpers/analytics/trackers';
 
@@ -24,7 +24,7 @@ type State = {|
 
 const commentTypeValues = {
   [commentTypeList.DONT_LIKE]: 'DONT_LIKE',
-  [commentTypeList.CONSFUSING]: 'CONFUSING',
+  [commentTypeList.CONFUSING]: 'CONFUSING',
   [commentTypeList.NOT_ACCURATE]: 'NOT_ACCURATE',
   [commentTypeList.DOESNT_ANSWER]: 'DOESNT_ANSWER',
 };
@@ -92,8 +92,8 @@ class ScreenAdditionalFeedback extends React.Component<Props, State> {
       articleId,
       commentTypeValues[commentType],
       comment,
-      () => changeScreen(screensList.THANK_YOU),
-      () => changeScreen(screensList.ERROR),
+      () => changeScreen(screenList.THANK_YOU),
+      () => changeScreen(screenList.ERROR),
     );
 
     simpleTracker('smartFAQCategories', {
@@ -105,7 +105,7 @@ class ScreenAdditionalFeedback extends React.Component<Props, State> {
   };
 
   closeScreen = () => {
-    this.props.changeScreen(screensList.VOTING);
+    this.props.changeScreen(screenList.VOTING);
     this.props.clearCommentType();
   };
 
