@@ -16,6 +16,7 @@ import responsiveStyleHelperClasses from '../responsiveStyleHelperClasses';
 import MobileBookingHeader from '../../MobileBookingHeader/MobileBookingHeader';
 import type { UserContextType } from '../../context/User';
 import SearchBar from '../../StaticFAQ/SearchBar';
+import UserStatus from '../../helpers/UserStatus';
 
 const style = css`
   .loggedOut {
@@ -311,24 +312,14 @@ class Header extends React.Component<Props, State> {
         className={!this.state.isHeaderVisible ? 'header hide' : 'header'}
       >
         <div className="HeaderFAQ">
-          <Desktop>
+          <UserStatus.LoggedIn>
+            <Desktop>
+              <CloseButton height="24" />
+            </Desktop>
+          </UserStatus.LoggedIn>
+          <UserStatus.LoggedOut>
             <CloseButton height="24" />
-          </Desktop>
-          <SelectedBooking.Consumer>
-            {({ bookingPage }) =>
-              bookingPage === 'ALL_BOOKINGS' ? (
-                <Desktop>
-                  <div className="closeButton">
-                    <CloseButton height="24" />
-                  </div>
-                </Desktop>
-              ) : (
-                <div className="closeButton">
-                  <CloseButton height="24" />
-                </div>
-              )
-            }
-          </SelectedBooking.Consumer>
+          </UserStatus.LoggedOut>
           <UserContext.Consumer>
             {({ simpleToken, loginToken }: UserContextType) =>
               simpleToken || loginToken
