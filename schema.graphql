@@ -1,5 +1,5 @@
-# source: https://graphql.kiwi.com/
-# timestamp: Fri Sep 07 2018 13:22:38 GMT+0200 (CEST)
+# source: https://graphql.kiwi.com
+# timestamp: Mon Sep 10 2018 12:03:21 GMT+0300 (EEST)
 
 schema {
   query: RootQuery
@@ -235,7 +235,10 @@ type Booking {
   authToken: String
 
   """Nearest upcoming leg by arrival time."""
-  upcomingLeg: Leg
+  upcomingLeg(
+    """Filter out only legs with specified guarantee."""
+    guarantee: CoveredBy
+  ): Leg
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
@@ -348,7 +351,10 @@ interface BookingInterface {
   authToken: String
 
   """Nearest upcoming leg by arrival time."""
-  upcomingLeg: Leg
+  upcomingLeg(
+    """Filter out only legs with specified guarantee."""
+    guarantee: CoveredBy
+  ): Leg
 }
 
 """A connection to a list of items."""
@@ -413,7 +419,10 @@ type BookingMulticity implements BookingInterface & Node {
   authToken: String
 
   """Nearest upcoming leg by arrival time."""
-  upcomingLeg: Leg
+  upcomingLeg(
+    """Filter out only legs with specified guarantee."""
+    guarantee: CoveredBy
+  ): Leg
 
   """Initial origin."""
   start: RouteStop
@@ -472,7 +481,10 @@ type BookingOneWay implements BookingInterface & Node {
   authToken: String
 
   """Nearest upcoming leg by arrival time."""
-  upcomingLeg: Leg
+  upcomingLeg(
+    """Filter out only legs with specified guarantee."""
+    guarantee: CoveredBy
+  ): Leg
   trip: Trip
 }
 
@@ -521,7 +533,10 @@ type BookingReturn implements BookingInterface & Node {
   authToken: String
 
   """Nearest upcoming leg by arrival time."""
-  upcomingLeg: Leg
+  upcomingLeg(
+    """Filter out only legs with specified guarantee."""
+    guarantee: CoveredBy
+  ): Leg
 
   """Trip from origin to destination."""
   outbound: Trip
@@ -1675,6 +1690,9 @@ type Leg {
 
   """Leg duration in minutes."""
   duration: Int
+
+  """Leg stopover duration before this leg in minutes."""
+  stopoverDuration: Int
   flightNumber: Int
 
   """Reservation number related to the leg."""
@@ -2183,12 +2201,6 @@ type RootQuery {
   FAQCategory(
     """ID of FAQ category to retrieve."""
     id: ID!
-
-    """
-    DEPRECATED: Subsection of FAQ is handled automatically now, this has no
-    effect.Fetch only subsection of FAQ based on the current situation of customer.
-    """
-    section: FAQSection
   ): FAQCategory
 
   """Geography info by an IP address"""

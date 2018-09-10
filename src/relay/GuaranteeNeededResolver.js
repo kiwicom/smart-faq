@@ -159,7 +159,7 @@ export default createFragmentContainer(
           lastname
         }
       }
-      upcomingLeg {
+      upcomingLeg(guarantee: KIWICOM) {
         guarantee
         arrival {
           time

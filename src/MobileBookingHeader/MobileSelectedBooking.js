@@ -40,14 +40,6 @@ const selectedSingleBookingQuery = graphql`
   query MobileSelectedBookingSingleQuery($id: Int!, $authToken: String!) {
     singleBooking(id: $id, authToken: $authToken) {
       type
-      upcomingLeg {
-        arrival {
-          time
-        }
-        departure {
-          time
-        }
-      }
       ...MobileBookingDetail_booking
       ...GuaranteeNeededResolver_booking
     }
