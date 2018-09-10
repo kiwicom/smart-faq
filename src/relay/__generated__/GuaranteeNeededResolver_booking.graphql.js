@@ -170,8 +170,15 @@ return {
       "kind": "LinkedField",
       "alias": null,
       "name": "upcomingLeg",
-      "storageKey": null,
-      "args": null,
+      "storageKey": "upcomingLeg(guarantee:\"KIWICOM\")",
+      "args": [
+        {
+          "kind": "Literal",
+          "name": "guarantee",
+          "value": "KIWICOM",
+          "type": "CoveredBy"
+        }
+      ],
       "concreteType": "Leg",
       "plural": false,
       "selections": [
@@ -207,5 +214,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = 'e7628645d1829d0487eee25c7071191c';
+(node/*: any*/).hash = '92c9d3d84ef33bc07e2231192e163745';
 module.exports = node;

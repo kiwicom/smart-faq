@@ -8,7 +8,7 @@ import { UnwrappedGuaranteeNeededResolver } from '../GuaranteeNeededResolver';
 
 const mockRefType: any = null;
 
-beforeEach(() => MockDate.set('08/29/2018 21:00:00'));
+beforeEach(() => MockDate.set('2018-08-29T21:00:00.000Z'));
 
 afterEach(() => MockDate.reset());
 
