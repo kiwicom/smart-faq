@@ -31,7 +31,7 @@ const user = {
 };
 
 const emergencies = [
-  'Because of the middle age ways how to get to the Prague Airport and all donkeys are at strike, we are receiving far more contacts than usual. Please solve your request in our shiny mobile app.',
+  'Because of the middle age ways how to get to Prague Airport and all donkeys are at strike, we are receiving far more contacts than usual. Please solve your request in our shiny mobile app.',
   'The political unrest in Catalan republic has affected many flights and we are experiencing a high number of contacts. Please departure to Belgium to avoid prison.',
 ];
 
