@@ -67,6 +67,10 @@ const AccordionBodyLeg = (props: LegProps) => {
   const initialDeparture = idx(leg.departure, _ => _.localTime) || '';
   const arrivalTime = idx(leg.arrival, _ => _.time) || '';
   const nextDepartureTime = idx(nextLeg.departure, _ => _.time) || '';
+  const coveredBy =
+    nextLeg && nextLeg.guarantee === 'KIWICOM'
+      ? 'Kiwi.com Guarantee'
+      : 'carrier';
   const layoverTime =
     (new Date(nextDepartureTime) - new Date(arrivalTime)) / 60e3; // Diff in minutes
   return (
@@ -92,7 +96,7 @@ const AccordionBodyLeg = (props: LegProps) => {
             style={{ textDecoration: 'none' }}
           >
             <span className="text">
-              Transfer protected by the <b>Kiwi.com Guarantee</b>
+              Transfer protected by the <b>{coveredBy}</b>
             </span>
           </Link>
         </div>
@@ -123,6 +127,7 @@ export default createFragmentContainer(AccordionBodyLeg, {
       departure {
         time
       }
+      guarantee
     }
   `,
 });
