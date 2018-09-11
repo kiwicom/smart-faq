@@ -23,6 +23,7 @@ type State = {|
 |};
 
 class GuaranteeChat extends React.Component<Props, State> {
+  chatContainer: ?Element;
   state = {
     showButton: true,
   };
@@ -61,6 +62,14 @@ class GuaranteeChat extends React.Component<Props, State> {
     body.appendChild(script);
   }
 
+  onChatEnded = () => {
+    this.setState({ showButton: true });
+
+    if (this.chatContainer) {
+      this.chatContainer.innerHTML = '';
+    }
+  };
+
   onClickDisplayChat = () => {
     this.setState({ showButton: false });
 
@@ -83,10 +92,12 @@ class GuaranteeChat extends React.Component<Props, State> {
       queueName,
       guaranteeChatBookingInfo,
     });
-    window.ININ.webchat.create(chatConfiguration, function(err, webchat) {
+    window.ININ.webchat.create(chatConfiguration, (err, webchat) => {
       if (err) {
         throw err;
       }
+
+      webchat.chatEnded = this.onChatEnded;
 
       // Render chat to iframe
       webchat.renderFrame({ containerEl: 'smartFAQGuarantee' });
@@ -118,6 +129,9 @@ class GuaranteeChat extends React.Component<Props, State> {
         )}
         <div
           id="smartFAQGuarantee"
+          ref={c => {
+            this.chatContainer = c;
+          }}
           className={classNames('smartFAQGuarantee', { open: !showButton })}
           data-cy="guaranteeChatIFrame"
         />

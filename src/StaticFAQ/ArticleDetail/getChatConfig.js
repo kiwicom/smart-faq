@@ -10,6 +10,12 @@ type Config = {|
   guaranteeChatBookingInfo: ?GuaranteeChatBookingInfo,
 |};
 
+const kiwiLogo = {
+  width: 48,
+  height: 40,
+  url: 'https://images.kiwi.com/whitelabels/0x40/kiwicom-mobile.png',
+};
+
 export default ({ orgId, queueName, guaranteeChatBookingInfo }: Config) => {
   const bid = idx(guaranteeChatBookingInfo, _ => _.bid) || null;
   const status = idx(guaranteeChatBookingInfo, _ => _.status) || null;
@@ -56,24 +62,8 @@ export default ({ orgId, queueName, guaranteeChatBookingInfo }: Config) => {
       arrivalCity,
       arrivalAirport,
     },
-    companyLogo: {
-      width: 600,
-      height: 149,
-      url:
-        'https://d3a63qt71m2kua.cloudfront.net/developer-tools/937/assets/images/PC-blue-nomark.png',
-    },
-    companyLogoSmall: {
-      width: 25,
-      height: 25,
-      url:
-        'https://d3a63qt71m2kua.cloudfront.net/developer-tools/937/assets/images/companylogo.png',
-    },
-    agentAvatar: {
-      width: 462,
-      height: 462,
-      url:
-        'https://d3a63qt71m2kua.cloudfront.net/developer-tools/937/assets/images/agent.jpg',
-    },
+    companyLogoSmall: kiwiLogo,
+    agentAvatar: kiwiLogo,
     welcomeMessage: 'Thanks for chatting with us.',
     cssClass: 'webchat-frame',
     css: {
