@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ac305a723f9652554e259475a0565581
+ * @relayHash abe57c7c363e0a7663b13d7eb6fbe7ab
  */
 
 /* eslint-disable */
@@ -211,6 +211,7 @@ fragment AccordionBodyLeg_nextLeg on Leg {
   departure {
     time
   }
+  guarantee
 }
 
 fragment AccordionBodyLastLeg_leg on Leg {
@@ -367,18 +368,25 @@ v1 = {
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "time",
+  "name": "guarantee",
   "args": null,
   "storageKey": null
 },
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "time",
   "args": null,
   "storageKey": null
 },
 v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "city",
@@ -387,18 +395,76 @@ v4 = {
   "concreteType": "LocationArea",
   "plural": false,
   "selections": [
-    v3
+    v4
   ]
 },
-v5 = {
+v6 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "code",
   "args": null,
   "storageKey": null
 },
-v6 = [
-  v2,
+v7 = [
+  v3,
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "airport",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "Location",
+    "plural": false,
+    "selections": [
+      v5,
+      v6,
+      v1
+    ]
+  }
+],
+v8 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "locationId",
+  "args": null,
+  "storageKey": null
+},
+v9 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "airport",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "Location",
+  "plural": false,
+  "selections": [
+    v5,
+    v1,
+    v8
+  ]
+},
+v10 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "localTime",
+  "args": null,
+  "storageKey": null
+},
+v11 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "departure",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": [
+    v9,
+    v10,
+    v3
+  ]
+},
+v12 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -409,80 +475,22 @@ v6 = [
     "plural": false,
     "selections": [
       v4,
-      v5,
-      v1
-    ]
-  }
-],
-v7 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "locationId",
-  "args": null,
-  "storageKey": null
-},
-v8 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "airport",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "Location",
-  "plural": false,
-  "selections": [
-    v4,
-    v1,
-    v7
-  ]
-},
-v9 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "localTime",
-  "args": null,
-  "storageKey": null
-},
-v10 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "departure",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "RouteStop",
-  "plural": false,
-  "selections": [
-    v8,
-    v9,
-    v2
-  ]
-},
-v11 = [
-  {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "airport",
-    "storageKey": null,
-    "args": null,
-    "concreteType": "Location",
-    "plural": false,
-    "selections": [
-      v3,
       v1,
-      v7,
-      v4
+      v8,
+      v5
     ]
   },
-  v9,
-  v2
+  v10,
+  v3
 ],
-v12 = {
+v13 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "duration",
   "args": null,
   "storageKey": null
 },
-v13 = {
+v14 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "legs",
@@ -492,6 +500,13 @@ v13 = {
   "plural": true,
   "selections": [
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "pnr",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "airline",
@@ -500,8 +515,8 @@ v13 = {
       "concreteType": "Airline",
       "plural": false,
       "selections": [
-        v3,
-        v5,
+        v4,
+        v6,
         {
           "kind": "ScalarField",
           "alias": null,
@@ -510,13 +525,6 @@ v13 = {
           "storageKey": null
         }
       ]
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "flightNumber",
-      "args": null,
-      "storageKey": null
     },
     v0,
     {
@@ -535,7 +543,7 @@ v13 = {
           "args": null,
           "storageKey": null
         },
-        v3
+        v4
       ]
     },
     {
@@ -566,7 +574,7 @@ v13 = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "pnr",
+      "name": "flightNumber",
       "args": null,
       "storageKey": null
     },
@@ -578,7 +586,7 @@ v13 = {
       "args": null,
       "concreteType": "RouteStop",
       "plural": false,
-      "selections": v11
+      "selections": v12
     },
     {
       "kind": "LinkedField",
@@ -588,13 +596,14 @@ v13 = {
       "args": null,
       "concreteType": "RouteStop",
       "plural": false,
-      "selections": v11
+      "selections": v12
     },
-    v12,
+    v13,
+    v2,
     v1
   ]
 },
-v14 = {
+v15 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "airport",
@@ -603,8 +612,8 @@ v14 = {
   "concreteType": "Location",
   "plural": false,
   "selections": [
-    v7,
-    v4,
+    v8,
+    v5,
     v1
   ]
 };
@@ -613,7 +622,7 @@ return {
   "operationKind": "query",
   "name": "NearestBookingQuery",
   "id": null,
-  "text": "query NearestBookingQuery {\n  nearestBooking {\n    __typename\n    ...BookingDetail_booking\n    ...GuaranteeNeededResolver_booking\n    id\n  }\n}\n\nfragment BookingDetail_booking on BookingInterface {\n  type\n  status\n  assets {\n    ticketUrl\n  }\n  directAccessURL\n  isPastBooking\n  ...Header_booking\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n    trip {\n      departure {\n        time\n      }\n      arrival {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n    inbound {\n      arrival {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MulticityOverlayTrip_booking\n    start {\n      time\n    }\n    end {\n      time\n    }\n  }\n}\n\nfragment GuaranteeNeededResolver_booking on BookingInterface {\n  databaseId\n  status\n  contactDetails {\n    phone\n    email\n    passenger {\n      firstname\n      lastname\n    }\n  }\n  upcomingLeg(guarantee: KIWICOM) {\n    guarantee\n    arrival {\n      time\n      airport {\n        city {\n          name\n        }\n        code\n        id\n      }\n    }\n    departure {\n      time\n      airport {\n        city {\n          name\n        }\n        code\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment Header_booking on BookingInterface {\n  type\n  status\n  databaseId\n  ...OneWay_bookingHeader\n  ...Return_bookingHeader\n  ...Multicity_bookingHeader\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    ...AccordionTripSummary_trip\n  }\n  inbound {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment MulticityOverlayTrip_booking on BookingMulticity {\n  trips {\n    duration\n  }\n  ...MulticityTrip_booking\n}\n\nfragment MulticityTrip_booking on BookingMulticity {\n  trips {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment AccordionTripSummary_trip on Trip {\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  legs {\n    airline {\n      name\n      code\n      logoUrl\n    }\n    ...CarrierLogoWrapper_legs\n    ...AccordionBody_legs\n    id\n  }\n}\n\nfragment CarrierLogoWrapper_legs on Leg {\n  airline {\n    name\n    code\n  }\n}\n\nfragment AccordionBody_legs on Leg {\n  flightNumber\n  ...AccordionBodyLeg_leg\n  ...AccordionBodyLeg_nextLeg\n  ...AccordionBodyLastLeg_leg\n}\n\nfragment AccordionBodyLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  ...AccordionLegTypeIcon_leg\n  arrival {\n    time\n    localTime\n  }\n  departure {\n    time\n    localTime\n  }\n}\n\nfragment AccordionBodyLeg_nextLeg on Leg {\n  departure {\n    time\n  }\n}\n\nfragment AccordionBodyLastLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  ...AccordionLegTypeIcon_leg\n  departure {\n    localTime\n  }\n}\n\nfragment AccordionLegCities_leg on Leg {\n  ...AccordionLegCitiesInfo_leg\n  type\n  duration\n  airline {\n    code\n    name\n  }\n  arrival {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment AccordionLegTypeIcon_leg on Leg {\n  type\n}\n\nfragment AccordionLegCitiesInfo_leg on Leg {\n  type\n  airline {\n    code\n    name\n  }\n  operatingAirline {\n    iata\n    name\n  }\n  flightNumber\n  vehicle {\n    manufacturer\n    model\n  }\n  pnr\n  departure {\n    airport {\n      name\n      id\n    }\n  }\n  arrival {\n    airport {\n      name\n      id\n    }\n  }\n}\n\nfragment OneWay_bookingHeader on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment Return_bookingHeader on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment Multicity_bookingHeader on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
+  "text": "query NearestBookingQuery {\n  nearestBooking {\n    __typename\n    ...BookingDetail_booking\n    ...GuaranteeNeededResolver_booking\n    id\n  }\n}\n\nfragment BookingDetail_booking on BookingInterface {\n  type\n  status\n  assets {\n    ticketUrl\n  }\n  directAccessURL\n  isPastBooking\n  ...Header_booking\n  ... on BookingOneWay {\n    ...OneWayTrip_booking\n    trip {\n      departure {\n        time\n      }\n      arrival {\n        time\n      }\n    }\n  }\n  ... on BookingReturn {\n    ...ReturnTrip_booking\n    outbound {\n      departure {\n        time\n      }\n    }\n    inbound {\n      arrival {\n        time\n      }\n    }\n  }\n  ... on BookingMulticity {\n    ...MulticityOverlayTrip_booking\n    start {\n      time\n    }\n    end {\n      time\n    }\n  }\n}\n\nfragment GuaranteeNeededResolver_booking on BookingInterface {\n  databaseId\n  status\n  contactDetails {\n    phone\n    email\n    passenger {\n      firstname\n      lastname\n    }\n  }\n  upcomingLeg(guarantee: KIWICOM) {\n    guarantee\n    arrival {\n      time\n      airport {\n        city {\n          name\n        }\n        code\n        id\n      }\n    }\n    departure {\n      time\n      airport {\n        city {\n          name\n        }\n        code\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment Header_booking on BookingInterface {\n  type\n  status\n  databaseId\n  ...OneWay_bookingHeader\n  ...Return_bookingHeader\n  ...Multicity_bookingHeader\n}\n\nfragment OneWayTrip_booking on BookingOneWay {\n  trip {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment ReturnTrip_booking on BookingReturn {\n  outbound {\n    ...AccordionTripSummary_trip\n  }\n  inbound {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment MulticityOverlayTrip_booking on BookingMulticity {\n  trips {\n    duration\n  }\n  ...MulticityTrip_booking\n}\n\nfragment MulticityTrip_booking on BookingMulticity {\n  trips {\n    ...AccordionTripSummary_trip\n  }\n}\n\nfragment AccordionTripSummary_trip on Trip {\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  legs {\n    airline {\n      name\n      code\n      logoUrl\n    }\n    ...CarrierLogoWrapper_legs\n    ...AccordionBody_legs\n    id\n  }\n}\n\nfragment CarrierLogoWrapper_legs on Leg {\n  airline {\n    name\n    code\n  }\n}\n\nfragment AccordionBody_legs on Leg {\n  flightNumber\n  ...AccordionBodyLeg_leg\n  ...AccordionBodyLeg_nextLeg\n  ...AccordionBodyLastLeg_leg\n}\n\nfragment AccordionBodyLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  ...AccordionLegTypeIcon_leg\n  arrival {\n    time\n    localTime\n  }\n  departure {\n    time\n    localTime\n  }\n}\n\nfragment AccordionBodyLeg_nextLeg on Leg {\n  departure {\n    time\n  }\n  guarantee\n}\n\nfragment AccordionBodyLastLeg_leg on Leg {\n  ...AccordionLegCities_leg\n  ...AccordionLegTypeIcon_leg\n  departure {\n    localTime\n  }\n}\n\nfragment AccordionLegCities_leg on Leg {\n  ...AccordionLegCitiesInfo_leg\n  type\n  duration\n  airline {\n    code\n    name\n  }\n  arrival {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment AccordionLegTypeIcon_leg on Leg {\n  type\n}\n\nfragment AccordionLegCitiesInfo_leg on Leg {\n  type\n  airline {\n    code\n    name\n  }\n  operatingAirline {\n    iata\n    name\n  }\n  flightNumber\n  vehicle {\n    manufacturer\n    model\n  }\n  pnr\n  departure {\n    airport {\n      name\n      id\n    }\n  }\n  arrival {\n    airport {\n      name\n      id\n    }\n  }\n}\n\nfragment OneWay_bookingHeader on BookingOneWay {\n  trip {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment Return_bookingHeader on BookingReturn {\n  outbound {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment Multicity_bookingHeader on BookingMulticity {\n  trips {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n  end {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -730,13 +739,7 @@ return {
             "concreteType": "Leg",
             "plural": false,
             "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "guarantee",
-                "args": null,
-                "storageKey": null
-              },
+              v2,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -745,7 +748,7 @@ return {
                 "args": null,
                 "concreteType": "RouteStop",
                 "plural": false,
-                "selections": v6
+                "selections": v7
               },
               {
                 "kind": "LinkedField",
@@ -755,7 +758,7 @@ return {
                 "args": null,
                 "concreteType": "RouteStop",
                 "plural": false,
-                "selections": v6
+                "selections": v7
               },
               v1
             ]
@@ -823,7 +826,7 @@ return {
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": [
-                  v10,
+                  v11,
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -833,11 +836,11 @@ return {
                     "concreteType": "RouteStop",
                     "plural": false,
                     "selections": [
-                      v8,
-                      v2
+                      v9,
+                      v3
                     ]
                   },
-                  v13
+                  v14
                 ]
               }
             ]
@@ -855,7 +858,7 @@ return {
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": [
-                  v10,
+                  v11,
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -865,10 +868,10 @@ return {
                     "concreteType": "RouteStop",
                     "plural": false,
                     "selections": [
-                      v8
+                      v9
                     ]
                   },
-                  v13
+                  v14
                 ]
               },
               {
@@ -889,8 +892,8 @@ return {
                     "concreteType": "RouteStop",
                     "plural": false,
                     "selections": [
-                      v9,
-                      v14
+                      v10,
+                      v15
                     ]
                   },
                   {
@@ -902,11 +905,11 @@ return {
                     "concreteType": "RouteStop",
                     "plural": false,
                     "selections": [
-                      v14,
-                      v2
+                      v15,
+                      v3
                     ]
                   },
-                  v13
+                  v14
                 ]
               }
             ]
@@ -933,8 +936,8 @@ return {
                     "concreteType": "RouteStop",
                     "plural": false,
                     "selections": [
-                      v8,
-                      v9
+                      v9,
+                      v10
                     ]
                   },
                   {
@@ -946,10 +949,10 @@ return {
                     "concreteType": "RouteStop",
                     "plural": false,
                     "selections": [
-                      v14
+                      v15
                     ]
                   },
-                  v13
+                  v14
                 ]
               },
               {
@@ -970,11 +973,11 @@ return {
                     "concreteType": "Location",
                     "plural": false,
                     "selections": [
-                      v4,
+                      v5,
                       v1
                     ]
                   },
-                  v2
+                  v3
                 ]
               },
               {
@@ -986,7 +989,7 @@ return {
                 "concreteType": "Trip",
                 "plural": true,
                 "selections": [
-                  v12
+                  v13
                 ]
               },
               {
@@ -998,7 +1001,7 @@ return {
                 "concreteType": "RouteStop",
                 "plural": false,
                 "selections": [
-                  v2
+                  v3
                 ]
               }
             ]

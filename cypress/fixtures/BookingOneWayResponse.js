@@ -76,6 +76,7 @@ export default (departureTime, guaranteeBy) => ({
               manufacturer: 'Airbus',
               model: 'A340-600',
             },
+            guarantee: guaranteeBy,
           },
         ],
       },

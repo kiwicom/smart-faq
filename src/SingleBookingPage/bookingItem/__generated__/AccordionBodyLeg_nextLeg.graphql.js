@@ -8,12 +8,14 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+export type CoveredBy = ('CARRIER' | 'KIWICOM' | '%future added value');
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type AccordionBodyLeg_nextLeg$ref: FragmentReference;
 export type AccordionBodyLeg_nextLeg = {|
   +departure: ?{|
     +time: ?any,
   |},
+  +guarantee: ?CoveredBy,
   +$refType: AccordionBodyLeg_nextLeg$ref,
 |};
 */
@@ -43,8 +45,15 @@ const node/*: ConcreteFragment*/ = {
           "storageKey": null
         }
       ]
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "guarantee",
+      "args": null,
+      "storageKey": null
     }
   ]
 };
-(node/*: any*/).hash = '583545155d99635a5c494a4c7b3446a4';
+(node/*: any*/).hash = 'ff049d69200bda7297778ec906f3800d';
 module.exports = node;
