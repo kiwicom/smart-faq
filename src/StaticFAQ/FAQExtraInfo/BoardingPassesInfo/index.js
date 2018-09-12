@@ -39,6 +39,7 @@ const styles = css`
     display: inline-block;
   }
   h1.title {
+    vertical-align: middle;
     display: inline-block;
     font-size: 22px;
     font-weight: 500;

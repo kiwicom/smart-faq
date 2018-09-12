@@ -24,7 +24,6 @@ module.exports = (on, config) => {
   config.env.KIWILOGIN_USER = process.env.KIWILOGIN_USER;
   config.env.TEST_USER_EMAIL = process.env.TEST_USER_EMAIL;
   config.env.TEST_USER_PASSWORD = process.env.TEST_USER_PASSWORD;
-  config.defaultCommandTimeout = 15000;
 
   return config;
 };
