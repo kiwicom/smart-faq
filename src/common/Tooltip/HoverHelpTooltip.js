@@ -9,6 +9,7 @@ import type { Props as HelpTooptipProps } from './HelpTooltip';
 type Props = HelpTooptipProps & {
   disabled: boolean,
   iconName: string,
+  tracker?: () => void,
 };
 
 type State = {
@@ -30,6 +31,7 @@ export default class HoverHelpTooltip extends PureComponent<Props, State> {
     if (!this.props.disabled) {
       this.setState({ opened: true });
     }
+    this.props.tracker && this.props.tracker();
   };
 
   hide = () => {
