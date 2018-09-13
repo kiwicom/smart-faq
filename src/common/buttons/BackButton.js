@@ -31,6 +31,17 @@ const BackButton = (props: Props) => {
   ];
 
   const goBack = () => {
+    const queryParams = window.location.search;
+
+    if (queryParams.includes('article')) {
+      const url = `/${decodeURIComponent(
+        queryParams.match(/(?<=\?help=%2F)(.*)(?=article)/)[0],
+      )}`;
+      return history.push(url);
+    } else if (queryParams.includes('faq')) {
+      return history.push('/faq');
+    }
+
     if (loginPathnames.includes(location.pathname)) {
       return prevScreen && history.push(prevScreen);
     }
