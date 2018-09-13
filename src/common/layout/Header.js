@@ -231,6 +231,9 @@ class Header extends React.Component<Props, State> {
 
     window.addEventListener('scroll', this.handleScroll, true);
   }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll, true);
+  }
 
   handleScroll = ({ target }: _SyntheticInputEvent) => {
     const tolerance = 6;
