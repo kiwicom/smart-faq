@@ -3,6 +3,7 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import idx from 'idx';
+import classNames from 'classnames';
 import { Text } from '@kiwicom/orbit-components';
 import {
   Search,
@@ -80,6 +81,9 @@ const MobileBookingHeaderStyle = css`
     background-color: #f5f7f9;
     box-shadow: inset 0 1px 0 0 #e8edf1;
     padding: 8px 16px;
+  }
+  .openedContent.hidden {
+    display: none;
   }
 
   @media screen and (max-height: 480px) {
@@ -279,11 +283,13 @@ class MobileBookingHeader extends React.Component<Props, State> {
             </SearchState.Consumer>
           )}
         </SelectedBooking.Consumer>
-        {this.state.activeTab === 'summary' ? (
-          <div className="openedContent">
-            <MobileBookingSummary />
-          </div>
-        ) : null}
+        <div
+          className={classNames('openedContent', {
+            hidden: this.state.activeTab !== 'summary',
+          })}
+        >
+          <MobileBookingSummary />
+        </div>
         {this.state.activeTab === 'account' ? (
           <div className="openedContent">
             <MobileUserDetail />
