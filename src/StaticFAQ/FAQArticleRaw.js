@@ -17,12 +17,10 @@ type Props = {|
 
 const style = css`
   .perex {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
     color: #7f91a8;
     line-height: 1.4;
     margin-top: 5px;
+    font-size: 12px;
   }
 `;
 
