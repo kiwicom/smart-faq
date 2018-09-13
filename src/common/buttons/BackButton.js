@@ -7,6 +7,7 @@ import { ChevronLeft } from '@kiwicom/orbit-components/lib/icons';
 
 type Props = {|
   text: string,
+  prevScreen?: string,
   history: {
     goBack: () => void,
     push: string => void,
@@ -21,16 +22,31 @@ type Props = {|
 
 const BackButton = (props: Props) => {
   const { location, entries } = props.history;
+  const { text, prevScreen, history } = props;
+  const loginPathnames = [
+    '/',
+    '/sign-in',
+    '/kiwi-login',
+    '/forgotten-password',
+  ];
+
   const goBack = () => {
-    if (props.text === 'Search') {
-      return props.history.push('/faq');
+    if (loginPathnames.includes(location.pathname)) {
+      return prevScreen && history.push(prevScreen);
     }
+
+    if (text === 'Search') {
+      return history.push('/faq');
+    }
+
     const firstEntry = entries[0];
     const faqCategory = firstEntry.pathname.split('article')[0];
+
     return firstEntry.pathname === location.pathname
-      ? props.history.push(faqCategory)
-      : props.history.goBack();
+      ? history.push(faqCategory)
+      : history.goBack();
   };
+
   return (
     <div
       data-cy="back-button"
