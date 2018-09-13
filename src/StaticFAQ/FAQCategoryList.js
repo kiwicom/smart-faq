@@ -25,7 +25,7 @@ import EmergencyHeader from './emergencies/EmergencyHeader';
 import Breadcrumbs from './breadcrumbs/Breadcrumbs';
 import StaticFAQError from './StaticFAQError';
 import { simpleTracker } from '../helpers/analytics/trackers';
-import { GUARANTEE_ARTICLE_ID } from './ArticleDetail/Article';
+import { GUARANTEE_ARTICLE_ID } from './ArticleDetail/ArticleContent';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
 import type { FAQCategory_category } from './__generated__/FAQCategory_category.graphql';
 import type { FAQCategoryListRootQueryResponse } from './__generated__/FAQCategoryListRootQuery.graphql';

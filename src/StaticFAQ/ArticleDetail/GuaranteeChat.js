@@ -62,14 +62,6 @@ class GuaranteeChat extends React.Component<Props, State> {
     body.appendChild(script);
   }
 
-  onChatEnded = () => {
-    this.setState({ showButton: true });
-
-    if (this.chatContainer) {
-      this.chatContainer.innerHTML = '';
-    }
-  };
-
   onClickDisplayChat = () => {
     this.setState({ showButton: false });
 
@@ -96,8 +88,6 @@ class GuaranteeChat extends React.Component<Props, State> {
       if (err) {
         throw err;
       }
-
-      webchat.chatEnded = this.onChatEnded;
 
       // Render chat to iframe
       webchat.renderFrame({ containerEl: 'smartFAQGuarantee' });

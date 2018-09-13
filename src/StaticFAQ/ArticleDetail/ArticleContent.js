@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Heading, Text } from '@kiwicom/orbit-components';
 import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
@@ -12,12 +13,16 @@ import Markdown from '../../common/Markdown';
 import GuaranteeChat from './GuaranteeChat';
 import FAQArticleFeedback from '../ArticleFeedback/FAQArticleFeedback';
 import { EnterTracker, TimeTracker } from '../../helpers/analytics/trackers';
+import { GuaranteeChatInfoState } from '../../context/GuaranteeChatInfo';
 import type { ArticleContent_article } from './__generated__/ArticleContent_article.graphql';
+
+export const GUARANTEE_ARTICLE_ID = 'RkFRQXJ0aWNsZToxNDY=';
 
 type Props = {
   article: ArticleContent_article,
   showGuaranteeChat: boolean,
 };
+
 const globalStyle = css`
   .faq-article-text ul {
     padding-left: 43px;
@@ -141,8 +146,39 @@ const TimeTrackedDetail = TimeTracker(
   }),
 );
 
+type ContainerProps = {
+  match: {
+    params: {
+      articleId: string,
+      categoryId: string,
+      [key: string]: ?string,
+    },
+  },
+};
+
+const WrappedArticle = (props: Props & ContainerProps) => (
+  <GuaranteeChatInfoState.Consumer>
+    {({ showGuaranteeChat }) => {
+      // show Guarantee Chat only in Guarantee article
+      const articleId = idx(props.match, _ => _.params.articleId);
+      const isInGuaranteeArticle = articleId === GUARANTEE_ARTICLE_ID;
+      const forceGuaranteeChat =
+        typeof window !== 'undefined' && window.GuaranteeChatForce;
+
+      return (
+        <TimeTrackedDetail
+          showGuaranteeChat={
+            (showGuaranteeChat || forceGuaranteeChat) && isInGuaranteeArticle
+          }
+          {...props}
+        />
+      );
+    }}
+  </GuaranteeChatInfoState.Consumer>
+);
+
 export default createFragmentContainer(
-  TimeTrackedDetail,
+  withRouter(WrappedArticle),
   graphql`
     fragment ArticleContent_article on FAQArticle {
       id

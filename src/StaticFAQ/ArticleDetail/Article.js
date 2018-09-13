@@ -12,7 +12,6 @@ import FAQArticleNotFound from './FAQArticleNotFound';
 import type { ArticleDetailQuery } from './__generated__/ArticleDetailQuery.graphql';
 import type { ArticleDetailSearchResultQuery } from './__generated__/ArticleDetailSearchResultQuery.graphql';
 import CustomBreadcrumbs from '../breadcrumbs/CustomBreadcrumbs';
-import { GuaranteeChatInfoState } from '../../context/GuaranteeChatInfo';
 
 const queryFAQArticleDetail = graphql`
   query ArticleDetailQuery($id: ID!, $category_id: ID!) {
@@ -45,7 +44,7 @@ type FAQArticleDetailParams = {
   error: ?Error,
 };
 
-type ComponentProps = {
+type Props = {
   match: {
     params: {
       articleId: string,
@@ -56,10 +55,6 @@ type ComponentProps = {
     path: string,
     url: string,
   },
-};
-
-type Props = ComponentProps & {
-  showGuaranteeChat: boolean,
 };
 
 const style = css`
@@ -74,9 +69,7 @@ const style = css`
   }
 `;
 
-export const GUARANTEE_ARTICLE_ID = 'RkFRQXJ0aWNsZToxNDY=';
-
-class RawFAQArticleDetail extends React.Component<Props> {
+class Article extends React.Component<Props> {
   renderDetailContent = (params: FAQArticleDetailParams) => {
     if (params.error) {
       return <div>{params.error.message}</div>;
@@ -106,10 +99,7 @@ class RawFAQArticleDetail extends React.Component<Props> {
             <CustomBreadcrumbs breadcrumbs={breadcrumbs} />
           </div>
 
-          <FAQArticleDetailContent
-            article={article}
-            showGuaranteeChat={this.props.showGuaranteeChat}
-          />
+          <FAQArticleDetailContent article={article} />
           <style jsx>{style}</style>
         </React.Fragment>
       );
@@ -174,26 +164,5 @@ class RawFAQArticleDetail extends React.Component<Props> {
     );
   }
 }
-
-const Article = (props: ComponentProps) => (
-  <GuaranteeChatInfoState.Consumer>
-    {({ showGuaranteeChat }) => {
-      // show Guarantee Chat only in Guarantee article
-      const articleId = idx(props.match, _ => _.params.articleId);
-      const isInGuaranteeArticle = articleId === GUARANTEE_ARTICLE_ID;
-      const forceGuaranteeChat =
-        typeof window !== 'undefined' && window.GuaranteeChatForce;
-
-      return (
-        <RawFAQArticleDetail
-          showGuaranteeChat={
-            (showGuaranteeChat || forceGuaranteeChat) && isInGuaranteeArticle
-          }
-          {...props}
-        />
-      );
-    }}
-  </GuaranteeChatInfoState.Consumer>
-);
 
 export default Article;
