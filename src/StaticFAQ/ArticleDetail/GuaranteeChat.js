@@ -7,6 +7,7 @@ import { Text, Button } from '@kiwicom/orbit-components';
 import Chat from '@kiwicom/orbit-components/lib/icons/Chat';
 
 import getChatConfig from './getChatConfig';
+import { simpleTracker, EnterTracker } from '../../helpers/analytics/trackers';
 import { GuaranteeChatInfoState } from '../../context/GuaranteeChatInfo';
 import type {
   GuaranteeChatBookingInfo,
@@ -89,7 +90,9 @@ class GuaranteeChat extends React.Component<Props, State> {
         throw err;
       }
 
-      // Render chat to iframe
+      simpleTracker('smartFAQBookingOverview', {
+        action: 'chatOpened',
+      });
       webchat.renderFrame({ containerEl: 'smartFAQGuarantee' });
     });
   };
@@ -141,10 +144,18 @@ class GuaranteeChat extends React.Component<Props, State> {
   }
 }
 
+const TrackedGuaranteeChat = EnterTracker(
+  GuaranteeChat,
+  'smartFAQBookingOverview',
+  () => ({
+    action: 'chatDisplayed',
+  }),
+);
+
 const WrappedGuaranteeChat = (props: {||}) => (
   <GuaranteeChatInfoState.Consumer>
     {({ guaranteeChatBookingInfo, chatConfig }) => (
-      <GuaranteeChat
+      <TrackedGuaranteeChat
         {...props}
         guaranteeChatBookingInfo={guaranteeChatBookingInfo}
         chatConfig={chatConfig}
