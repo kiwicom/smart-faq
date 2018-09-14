@@ -15,6 +15,7 @@ import type { LogEvent, EventPayload } from './helpers/analytics/cuckoo';
 type Props = {||};
 
 type State = {|
+  isClosable: boolean,
   user: User,
   loginToken: ?string,
   simpleToken: ?string,
@@ -63,6 +64,7 @@ class Root extends React.Component<Props, State> {
     const helpQueryString = params.get('help');
 
     this.state = {
+      isClosable: true,
       user: loginToken ? user : null,
       loginToken,
       simpleToken,
@@ -155,11 +157,26 @@ class Root extends React.Component<Props, State> {
     this.setState({ user: null, loginToken: null });
     Cookies.remove(this.cookieKey);
   };
+
+  onChangeIsClosable = (isClosable: boolean) => {
+    this.setState({ isClosable });
+  };
+
   toggleApp = () => {
     this.setState(({ helpQuery }) => ({ helpQuery: helpQuery ? null : '/' }));
   };
 
   closeApp = () => {
+    if (!this.state.isClosable) {
+      const canClose = window.confirm(
+        'Closing this window will cause the chat connection to be interrupted, do you want to proceed?',
+      );
+
+      if (!canClose) {
+        return;
+      }
+    }
+
     this.setState({ helpQuery: null });
   };
 
@@ -218,6 +235,7 @@ class Root extends React.Component<Props, State> {
             simpleToken={this.state.simpleToken}
             enableChat={this.state.enableChat}
             chatConfig={chatConfig}
+            onChangeIsClosable={this.onChangeIsClosable}
             emergencies={showEmergencies ? emergencies : []}
           />
         </div>

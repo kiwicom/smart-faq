@@ -32,6 +32,7 @@ describe('SmartFAQ', () => {
         simpleToken={null}
         enableChat={false}
         chatConfig={chatConfig}
+        onChangeIsClosable={jest.fn()}
       />,
     );
     expect(app.includes('Need help?')).toBe(true);
@@ -53,6 +54,7 @@ describe('SmartFAQ', () => {
         simpleToken={null}
         enableChat={false}
         chatConfig={chatConfig}
+        onChangeIsClosable={jest.fn()}
       />,
     );
     expect(app.includes('Help')).toBe(true);
