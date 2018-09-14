@@ -25,7 +25,7 @@ describe('GuaranteeChat', () => {
       <GuaranteeChat
         guaranteeChatBookingInfo={null}
         chatConfig={chatConfig}
-        onChangeIsClosable={jest.fn()}
+        onAppWithOpenChatClose={jest.fn()}
       />,
     );
 
@@ -37,7 +37,7 @@ describe('GuaranteeChat', () => {
       <GuaranteeChat
         guaranteeChatBookingInfo={null}
         chatConfig={chatConfig}
-        onChangeIsClosable={jest.fn()}
+        onAppWithOpenChatClose={jest.fn()}
       />,
     );
 
@@ -52,7 +52,7 @@ describe('GuaranteeChat', () => {
       <GuaranteeChat
         guaranteeChatBookingInfo={null}
         chatConfig={chatConfig}
-        onChangeIsClosable={jest.fn()}
+        onAppWithOpenChatClose={jest.fn()}
       />,
     );
 

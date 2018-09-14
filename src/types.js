@@ -25,7 +25,7 @@ export type AppProps = {|
   onLogin: onLogin,
   onSocialLogin: onSocialLogin,
   onLogout: onLogout,
-  onChangeIsClosable: boolean => void,
+  onAppWithOpenChatClose: boolean => void,
   emergencies: string[],
   enableChat: boolean,
   chatConfig: { [key: string]: string } | null,

@@ -129,7 +129,7 @@ class Root extends React.Component<Props, State> {
     }
   };
 
-  onLogin = async (email, password) => {
+  handleLogin = async (email, password) => {
     const loginToken = await Requester.login(email, password);
     this.setState({ user, loginToken });
     Cookies.set(this.cookieKey, loginToken);
@@ -137,7 +137,7 @@ class Root extends React.Component<Props, State> {
     return Promise.resolve(user);
   };
 
-  onSocialLogin = async () => {
+  handleSocialLogin = async () => {
     const email = process.env.TEST_USER_EMAIL;
     const password = process.env.TEST_USER_PASSWORD;
 
@@ -153,12 +153,12 @@ class Root extends React.Component<Props, State> {
     window.location.reload();
   };
 
-  onLogout = async () => {
+  handleLogout = async () => {
     this.setState({ user: null, loginToken: null });
     Cookies.remove(this.cookieKey);
   };
 
-  onChangeIsClosable = (isClosable: boolean) => {
+  handleAppWithOpenChatClose = (isClosable: boolean) => {
     this.setState({ isClosable });
   };
 
@@ -225,9 +225,9 @@ class Root extends React.Component<Props, State> {
         <div className="sidebar">
           <App
             onClose={this.closeApp}
-            onLogin={this.onLogin}
-            onSocialLogin={this.onSocialLogin}
-            onLogout={this.onLogout}
+            onLogin={this.handleLogin}
+            onSocialLogin={this.handleSocialLogin}
+            onLogout={this.handleLogout}
             language={language}
             user={this.state.user}
             route={helpQuery}
@@ -235,7 +235,7 @@ class Root extends React.Component<Props, State> {
             simpleToken={this.state.simpleToken}
             enableChat={this.state.enableChat}
             chatConfig={chatConfig}
-            onChangeIsClosable={this.onChangeIsClosable}
+            onAppWithOpenChatClose={this.handleAppWithOpenChatClose}
             emergencies={showEmergencies ? emergencies : []}
           />
         </div>
