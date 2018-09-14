@@ -3,11 +3,11 @@
 import * as React from 'react';
 import { graphql } from 'react-relay';
 
-import QueryRenderer from '../relay/QueryRenderer';
+import BookingRenderer from '../relay/BookingRenderer';
 import type { MobileNearestBookingQuery as QueryResponseType } from './__generated__/MobileNearestBookingQuery.graphql';
 import MobileBookingDetail from './MobileBookingDetail';
 
-const Query = graphql`
+const query = graphql`
   query MobileNearestBookingQuery {
     nearestBooking {
       ...MobileBookingDetail_booking
@@ -43,9 +43,7 @@ class MobileNearestBooking extends React.Component<Props> {
   };
 
   render() {
-    return (
-      <QueryRenderer query={Query} variables={{}} render={this.renderBooking} />
-    );
+    return <BookingRenderer query={query} render={this.renderBooking} />;
   }
 }
 
