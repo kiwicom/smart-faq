@@ -23,7 +23,7 @@ export type ChatConfig = {
 type Props = {|
   enableChat?: boolean,
   chatConfig: ChatConfig,
-  onChangeIsClosable: boolean => void,
+  onAppWithOpenChatClose: boolean => void,
   children: React.Node,
 |};
 
@@ -31,7 +31,7 @@ type State = {|
   showGuaranteeChat: boolean,
   guaranteeChatBookingInfo: ?GuaranteeChatBookingInfo,
   onSetBookingInfo: GuaranteeChatBookingInfo => void,
-  onChangeIsClosable: boolean => void,
+  onAppWithOpenChatClose: boolean => void,
   toggleGuaranteeChat: (showGuaranteeChat: boolean) => void,
   isChatEnabled: () => boolean,
   chatConfig: ChatConfig,
@@ -46,7 +46,7 @@ const initialState = {
 export const GuaranteeChatInfoState = React.createContext({
   ...initialState,
   onSetBookingInfo: () => {},
-  onChangeIsClosable: () => {},
+  onAppWithOpenChatClose: () => {},
   toggleGuaranteeChat: (showGuaranteeChat: boolean) => {}, // eslint-disable-line no-unused-vars
   isChatEnabled: () => true,
 });
@@ -61,7 +61,7 @@ class GuaranteeChatInfo extends React.Component<Props, State> {
       toggleGuaranteeChat: this.toggleGuaranteeChat,
       isChatEnabled: this.isChatEnabled,
       chatConfig: this.props.chatConfig,
-      onChangeIsClosable: this.props.onChangeIsClosable,
+      onAppWithOpenChatClose: this.props.onAppWithOpenChatClose,
     };
   }
 
