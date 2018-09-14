@@ -21,7 +21,7 @@ const BackButton = (props: Props) => {
   const loginPathnames = ['/sign-in', '/kiwi-login', '/forgotten-password'];
 
   const goBack = () => {
-    if (loginPathnames.includes(pathname)) {
+    if (loginPathnames.includes(pathname) && prevScreen) {
       return history.push(prevScreen);
     }
 
