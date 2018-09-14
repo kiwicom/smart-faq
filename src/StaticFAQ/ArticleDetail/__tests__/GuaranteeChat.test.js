@@ -22,7 +22,11 @@ const chatConfig = {
 describe('GuaranteeChat', () => {
   it('shows button by default', () => {
     const wrapper = shallow(
-      <GuaranteeChat guaranteeChatBookingInfo={null} chatConfig={chatConfig} />,
+      <GuaranteeChat
+        guaranteeChatBookingInfo={null}
+        chatConfig={chatConfig}
+        onChangeIsClosable={jest.fn()}
+      />,
     );
 
     expect(wrapper.find(Button).exists()).toBeTruthy();
@@ -30,7 +34,11 @@ describe('GuaranteeChat', () => {
 
   it('starts chat when clicking on button', () => {
     const wrapper = shallow(
-      <GuaranteeChat guaranteeChatBookingInfo={null} chatConfig={chatConfig} />,
+      <GuaranteeChat
+        guaranteeChatBookingInfo={null}
+        chatConfig={chatConfig}
+        onChangeIsClosable={jest.fn()}
+      />,
     );
 
     wrapper.find(Button).simulate('click');
@@ -41,7 +49,11 @@ describe('GuaranteeChat', () => {
 
   it('inserts purecloud script into DOM', () => {
     shallow(
-      <GuaranteeChat guaranteeChatBookingInfo={null} chatConfig={chatConfig} />,
+      <GuaranteeChat
+        guaranteeChatBookingInfo={null}
+        chatConfig={chatConfig}
+        onChangeIsClosable={jest.fn()}
+      />,
     );
 
     expect(document.getElementById('purecloud-webchat-js')).toBeTruthy();

@@ -125,6 +125,9 @@ class App extends React.PureComponent<AppProps, State> {
                               <GuaranteeChatInfo
                                 enableChat={this.props.enableChat}
                                 chatConfig={this.props.chatConfig}
+                                onChangeIsClosable={
+                                  this.props.onChangeIsClosable
+                                }
                               >
                                 {isOpen &&
                                   route && (

@@ -16,6 +16,7 @@ import type {
 
 type Props = {|
   guaranteeChatBookingInfo: ?GuaranteeChatBookingInfo,
+  onChangeIsClosable: boolean => void,
   chatConfig: ChatConfig,
 |};
 
@@ -94,7 +95,13 @@ class GuaranteeChat extends React.Component<Props, State> {
         action: 'chatOpened',
       });
       webchat.renderFrame({ containerEl: 'smartFAQGuarantee' });
+      webchat.chatEnded = this.onChatEnded;
+      this.props.onChangeIsClosable(false);
     });
+  };
+
+  onChatEnded = () => {
+    this.props.onChangeIsClosable(true);
   };
 
   render() {
@@ -154,11 +161,12 @@ const TrackedGuaranteeChat = EnterTracker(
 
 const WrappedGuaranteeChat = (props: {||}) => (
   <GuaranteeChatInfoState.Consumer>
-    {({ guaranteeChatBookingInfo, chatConfig }) => (
+    {({ guaranteeChatBookingInfo, chatConfig, onChangeIsClosable }) => (
       <TrackedGuaranteeChat
         {...props}
         guaranteeChatBookingInfo={guaranteeChatBookingInfo}
         chatConfig={chatConfig}
+        onChangeIsClosable={onChangeIsClosable}
       />
     )}
   </GuaranteeChatInfoState.Consumer>
