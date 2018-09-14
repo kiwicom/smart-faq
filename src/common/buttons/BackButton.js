@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { withRouter } from 'react-router-dom';
+import idx from 'idx';
 import { Text } from '@kiwicom/orbit-components';
 import { ChevronLeft } from '@kiwicom/orbit-components/lib/icons';
 
@@ -9,53 +10,31 @@ type Props = {|
   text: string,
   prevScreen?: string,
   history: {
-    goBack: () => void,
     push: string => void,
-    location: {
-      pathname: string,
-    },
-    entries: Array<{
-      pathname: string,
-    }>,
+    location: { pathname: string },
   },
 |};
 
 const BackButton = (props: Props) => {
-  const { location, entries } = props.history;
   const { text, prevScreen, history } = props;
-  const loginPathnames = [
-    '/',
-    '/sign-in',
-    '/kiwi-login',
-    '/forgotten-password',
-  ];
+  const pathname = history.location.pathname;
+  const loginPathnames = ['/sign-in', '/kiwi-login', '/forgotten-password'];
 
   const goBack = () => {
-    const queryParams = window.location.search;
-
-    if (queryParams.includes('article')) {
-      const url = `/${decodeURIComponent(
-        queryParams.match(/(?<=\?help=%2F)(.*)(?=article)/)[0],
-      )}`;
-      return history.push(url);
-    } else if (queryParams.includes('faq')) {
-      return history.push('/faq');
-    }
-
-    if (loginPathnames.includes(location.pathname)) {
-      return prevScreen && history.push(prevScreen);
+    if (loginPathnames.includes(pathname)) {
+      return history.push(prevScreen);
     }
 
     if (text === 'Search') {
       return history.push('/faq');
     }
 
-    const firstEntry = entries[0];
-    const faqCategory = firstEntry.pathname.split('article')[0];
-
-    return firstEntry.pathname === location.pathname
-      ? history.push(faqCategory)
-      : history.goBack();
+    if (pathname.includes('article')) {
+      const url = idx(pathname.match(/(.*)(?=article)/), _ => _[0]) || '';
+      return history.push(url);
+    } else if (pathname.includes('faq')) {
+      return history.push('/faq');
+    }
   };
 
   return (
