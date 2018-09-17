@@ -2,35 +2,41 @@
 
 import * as React from 'react';
 import { withRouter } from 'react-router-dom';
+import idx from 'idx';
 import { Text } from '@kiwicom/orbit-components';
 import { ChevronLeft } from '@kiwicom/orbit-components/lib/icons';
 
 type Props = {|
   text: string,
+  prevScreen?: string,
   history: {
-    goBack: () => void,
     push: string => void,
-    location: {
-      pathname: string,
-    },
-    entries: Array<{
-      pathname: string,
-    }>,
+    location: { pathname: string },
   },
 |};
 
 const BackButton = (props: Props) => {
-  const { location, entries } = props.history;
+  const { text, prevScreen, history } = props;
+  const pathname = history.location.pathname;
+  const loginPathnames = ['/sign-in', '/kiwi-login', '/forgotten-password'];
+
   const goBack = () => {
-    if (props.text === 'Search') {
-      return props.history.push('/faq');
+    if (loginPathnames.includes(pathname) && prevScreen) {
+      return history.push(prevScreen);
     }
-    const firstEntry = entries[0];
-    const faqCategory = firstEntry.pathname.split('article')[0];
-    return firstEntry.pathname === location.pathname
-      ? props.history.push(faqCategory)
-      : props.history.goBack();
+
+    if (text === 'Search') {
+      return history.push('/faq');
+    }
+
+    if (pathname.includes('article')) {
+      const url = idx(pathname.match(/(.*)(?=article)/), _ => _[0]) || '';
+      return history.push(url);
+    } else if (pathname.includes('faq')) {
+      return history.push('/faq');
+    }
   };
+
   return (
     <div
       data-cy="back-button"
