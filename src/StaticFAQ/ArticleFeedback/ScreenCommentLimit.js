@@ -23,7 +23,7 @@ const style = css`
     cursor: pointer;
   }
 `;
-const ScreenError = ({ changeScreen }: Props) => {
+const ScreenCommentLimit = ({ changeScreen }: Props) => {
   return (
     <Box border="none" borderRadius="4px" backgroundColor="#f5f7f9">
       <div className="feedbackMessage">
@@ -36,9 +36,10 @@ const ScreenError = ({ changeScreen }: Props) => {
         >
           <Close customColor="#bac7d5" size="small" />
         </div>
-        <Alert type="warning" icon>
-          Our bad. We weren&apos;t able to send your feedback. But, follow the
-          link below to drop us a line.
+        <Alert type="warning">
+          You&apos;ve reached the maximum of 3 feedback comments for this
+          article. We&apos;ll review your notes and adjust the article if
+          necessary. Thank you.
         </Alert>
         <style jsx>{style}</style>
       </div>
@@ -46,4 +47,4 @@ const ScreenError = ({ changeScreen }: Props) => {
   );
 };
 
-export default ScreenError;
+export default ScreenCommentLimit;

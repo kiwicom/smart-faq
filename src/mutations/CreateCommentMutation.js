@@ -21,6 +21,7 @@ export default (
   type: string,
   comment: string,
   callback: () => void,
+  commentLimitExceededCallback: () => void,
   errorCallback: () => void,
 ) => {
   const variables = {
@@ -34,10 +35,14 @@ export default (
     onCompleted: (response, errors) => {
       if (!errors) {
         callback();
-      } else {
-        errorCallback();
+      }
+
+      if (errors[0].extensions.proxy.statusCode === '429') {
+        commentLimitExceededCallback();
       }
     },
-    onError: () => errorCallback(),
+    onError: () => {
+      errorCallback();
+    },
   });
 };
