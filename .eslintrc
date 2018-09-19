@@ -6,6 +6,9 @@
     "es6": true,
     "cypress/globals": true
   },
+  "globals": {
+    "__": true
+  },
   "parser": "babel-eslint",
   "extends": [
     "airbnb",

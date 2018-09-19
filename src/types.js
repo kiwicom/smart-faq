@@ -18,7 +18,7 @@ export type onSocialLogin = Provider => Promise<*>;
 export type Translations = { [key: string]: string };
 
 export type AppProps = {|
-  translations: Translations,
+  translations: Translations | null,
   language: string,
   user: User,
   loginToken: ?string,

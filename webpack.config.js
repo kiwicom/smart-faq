@@ -6,12 +6,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const I18nPlugin = require('i18n-webpack-plugin');
 
 const language = process.env.LANGUAGE || 'en';
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const destination = path.join(__dirname, 'dist');
 
 const plugins = [
+  new I18nPlugin(null),
   new HtmlWebpackPlugin({
     title: 'Smart FAQ demo',
   }),

@@ -1,7 +1,7 @@
 {
-  "IntroPage__NeedHelp": "Necessita ayuda?",
-  "IntroPage__HereToHelpYou":
+  "smartfaq.intro_page.title": "Necessita ayuda?",
+  "smartfaq.intro_page.subtitle":
     "Estamos aqui para ti. Primero acotemos su solicitud.",
-  "IntroPage__existingBooking": "Ya tengo una reserva",
-  "IntroPage__noBooking": "No tengo una reserva"
+  "smartfaq.intro_page.existing_booking": "Ya tengo una reserva",
+  "smartfaq.intro_page.no_booking": "No tengo una reserva"
 }

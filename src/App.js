@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import 'url-search-params-polyfill';
 import EventListener, { withOptions } from 'react-event-listener';
 import FocusTrap from 'react-focus-trap';
-import { Provider } from '@kiwicom/nitro/lib/services/intl/context';
+import * as intlContext from '@kiwicom/nitro/lib/services/intl/context';
 
 import Routes from './Routes';
 import { CloseContext } from './context/Close';
@@ -25,7 +25,7 @@ import type { AppProps } from './types';
 import MobileSafariScroll from './helpers/MobileSafariScroll';
 import GuaranteeChatInfo from './context/GuaranteeChatInfo';
 import { parseDashToUnderscore } from './helpers/frontendLanguageToLocale';
-import langInfos from './translations/languages.json';
+import { langInfos } from './translations/langInfos';
 import fallBackTranslations from './translations/locales-fallback/en-GB.json';
 
 const style = css`
@@ -92,17 +92,17 @@ class App extends React.PureComponent<AppProps, State> {
   };
 
   renderApp() {
-    const {
-      route,
-      emergencies,
-      language,
-      translations = fallBackTranslations,
-      onClose,
-    } = this.props;
+    const { route, emergencies, language } = this.props;
     const isOpen = Boolean(route);
-    const langInfo = langInfos[language];
-    const { phraseApp } = langInfo;
 
+    const langInfo = langInfos[language];
+
+    const translations =
+      this.props.translations === null
+        ? fallBackTranslations
+        : this.props.translations;
+
+    const { phraseApp } = langInfo;
     const parsedLenguage = parseDashToUnderscore(phraseApp);
 
     return (
@@ -121,9 +121,12 @@ class App extends React.PureComponent<AppProps, State> {
             rel="stylesheet"
           />
           <ErrorBoundary>
-            <Provider translations={translations} language={langInfo}>
+            <intlContext.Provider
+              language={langInfo}
+              translations={translations}
+            >
               <LanguageContext.Provider value={parsedLenguage}>
-                <CloseContext.Provider value={onClose}>
+                <CloseContext.Provider value={this.props.onClose}>
                   <UserContext.Provider value={this.state.userContext}>
                     <SearchStateProvider>
                       <Emergencies.Provider value={emergencies}>
@@ -157,7 +160,7 @@ class App extends React.PureComponent<AppProps, State> {
                   </UserContext.Provider>
                 </CloseContext.Provider>
               </LanguageContext.Provider>
-            </Provider>
+            </intlContext.Provider>
           </ErrorBoundary>
           <style jsx global>
             {style}

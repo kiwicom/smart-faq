@@ -11,7 +11,7 @@ import App from './App';
 import { Requester } from './helpers/Requests';
 import type { User, Translations } from './types';
 import type { LogEvent, EventPayload } from './helpers/analytics/cuckoo';
-import languages from './translations/languages.json';
+import { langInfos } from './translations/langInfos';
 
 type Props = {||};
 
@@ -46,7 +46,8 @@ const chatConfig = {
 };
 
 const loadStaticTranslations = (langId: string) => {
-  const { phraseApp = 'en-GB' } = languages[langId];
+  const { phraseApp = 'en-GB' } = langInfos[langId];
+
   try {
     return require(`../static/locales/${phraseApp}.json`);
   } catch (error) {

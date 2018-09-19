@@ -1,6 +1,6 @@
 {
-  "IntroPage__NeedHelp": "Potřebovat pomoc?",
-  "IntroPage__HereToHelpYou": "Jsme tu pro vás. Za prvé, zúžte svou žádost.",
-  "IntroPage__existingBooking": "Mám stávající rezervaci",
-  "IntroPage__noBooking": "Nemám rezervaci"
+  "smartfaq.intro_page.title": "Potřebovat pomoc?",
+  "smartfaq.intro_page.subtitle": "Jsme tu pro vás. Za prvé, zúžte svou žádost.",
+  "smartfaq.intro_page.existing_booking": "Mám stávající rezervaci",
+  "smartfaq.intro_page.no_booking": "Nemám rezervaci"
 }
