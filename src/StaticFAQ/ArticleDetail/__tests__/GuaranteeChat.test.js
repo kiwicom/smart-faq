@@ -11,6 +11,14 @@ global.ININ = {
     create: jest.fn(),
   },
 };
+const setData = jest.fn();
+global.webchat = {
+  getConfig: jest.fn(() => ({
+    setData,
+  })),
+  renderFrame: jest.fn(),
+  isChatRendered: () => true,
+};
 
 const chatConfig = {
   CHAT_GUID: '1234',
@@ -33,18 +41,20 @@ describe('GuaranteeChat', () => {
   });
 
   it('starts chat when clicking on button', () => {
+    const onAppWithOpenChatClose = jest.fn();
     const wrapper = shallow(
       <GuaranteeChat
         guaranteeChatBookingInfo={null}
         chatConfig={chatConfig}
-        onAppWithOpenChatClose={jest.fn()}
+        onAppWithOpenChatClose={onAppWithOpenChatClose}
       />,
     );
 
     wrapper.find(Button).simulate('click');
 
     expect(wrapper.find(Button).exists()).toBeFalsy();
-    expect(global.ININ.webchat.create).toBeCalled();
+    expect(setData).toBeCalled();
+    expect(onAppWithOpenChatClose).toBeCalled();
   });
 
   it('inserts purecloud script into DOM', () => {

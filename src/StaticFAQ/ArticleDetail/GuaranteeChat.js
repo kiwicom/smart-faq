@@ -1,13 +1,12 @@
 // @flow
 
-import idx from 'idx';
 import * as React from 'react';
 import { Prompt } from 'react-router-dom';
 import classNames from 'classnames';
 import { Text, Button } from '@kiwicom/orbit-components';
 import Chat from '@kiwicom/orbit-components/lib/icons/Chat';
 
-import getChatConfig from './getChatConfig';
+import * as chatUtils from './chatUtils';
 import { simpleTracker, EnterTracker } from '../../helpers/analytics/trackers';
 import { GuaranteeChatInfoState } from '../../context/GuaranteeChatInfo';
 import type {
@@ -31,74 +30,36 @@ class GuaranteeChat extends React.Component<Props, State> {
     showButton: true,
   };
 
-  componentDidMount() {
-    const guid = idx(this.props, _ => _.chatConfig.CHAT_GUID);
-    const deploymentKey = idx(
-      this.props,
-      _ => _.chatConfig.CHAT_DEPLOYMENT_KEY,
-    );
-
-    if (!(guid && deploymentKey)) {
-      throw new Error(
-        'Secrets guid and deploymentKey for Guarantee chat not provided.',
-      );
-    }
-
-    const body = document && document.body;
-
-    if (!body) {
+  async componentDidMount() {
+    if (typeof window !== 'object') {
       return;
     }
 
-    if (document.getElementById('purecloud-webchat-js')) {
-      return;
+    const { chatConfig } = this.props;
+    await chatUtils.initialize(chatConfig);
+
+    if (window.webchat.isAutoJoined()) {
+      // eslint-disable-next-line react/no-did-mount-set-state
+      this.setState({ showButton: false });
     }
-
-    const script = document.createElement('script');
-
-    script.src = 'https://apps.mypurecloud.com/webchat/jsapi-v1.js';
-    script.id = 'purecloud-webchat-js';
-    script.setAttribute('region', 'eu-west-1');
-    script.setAttribute('org-guid', guid);
-    script.setAttribute('deployment-key', deploymentKey);
-
-    body.appendChild(script);
   }
 
   onClickDisplayChat = () => {
     this.setState({ showButton: false });
 
-    if (!window.ININ) {
-      return;
+    if (!window.webchat) {
+      throw new Error('Unexpected: webchat not initialized.');
     }
 
-    const { guaranteeChatBookingInfo, chatConfig } = this.props;
-    const orgId = idx(chatConfig, _ => _.CHAT_ORG_ID);
-    const queueName = idx(chatConfig, _ => _.CHAT_QUEUE_NAME);
+    const { guaranteeChatBookingInfo } = this.props;
 
-    if (!(orgId && queueName)) {
-      throw new Error(
-        'Secrets orgId and queueName for Guarantee chat not provided.',
-      );
-    }
-
-    const chatConfiguration = getChatConfig({
-      orgId,
-      queueName,
-      guaranteeChatBookingInfo,
+    chatUtils.setData(window.webchat, guaranteeChatBookingInfo);
+    simpleTracker('smartFAQBookingOverview', {
+      action: 'chatOpened',
     });
-    window.ININ.webchat.create(chatConfiguration, (err, webchat) => {
-      if (err) {
-        throw err;
-      }
-
-      simpleTracker('smartFAQBookingOverview', {
-        action: 'chatOpened',
-      });
-      webchat.renderFrame({ containerEl: 'smartFAQGuarantee' });
-      webchat.chatEnded = this.onChatEnded;
-      this.props.onAppWithOpenChatClose(false);
-    });
+    window.webchat.renderFrame({ containerEl: 'smartFAQGuarantee' });
+    window.webchat.chatEnded = this.onChatEnded;
+    this.props.onAppWithOpenChatClose(false);
   };
 
   onChatEnded = () => {
