@@ -22,7 +22,7 @@ exports[`IntroPage should match snapshot 1`] = `
     >
       <Text
         html={false}
-        t="IntroPage__NeedHelp"
+        t="smartfaq.intro_page.title"
         values={Object {}}
       />
     </p>
@@ -31,7 +31,7 @@ exports[`IntroPage should match snapshot 1`] = `
     >
       <Text
         html={false}
-        t="IntroPage__HereToHelpYou"
+        t="smartfaq.intro_page.subtitle"
         values={Object {}}
       />
     </Text>
@@ -49,7 +49,7 @@ exports[`IntroPage should match snapshot 1`] = `
       >
         <Text
           html={false}
-          t="IntroPage__existingBooking"
+          t="smartfaq.intro_page.existing_booking"
           values={Object {}}
         />
       </button>
@@ -64,7 +64,7 @@ exports[`IntroPage should match snapshot 1`] = `
       >
         <Text
           html={false}
-          t="IntroPage__noBooking"
+          t="smartfaq.intro_page.no_booking"
           values={Object {}}
         />
       </button>

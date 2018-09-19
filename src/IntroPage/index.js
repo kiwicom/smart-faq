@@ -5,7 +5,7 @@ import css from 'styled-jsx/css';
 import { Text } from '@kiwicom/orbit-components';
 import Trans from '@kiwicom/nitro/lib/components/Text';
 
-import image from '../../static/images/woman-with-laptop@2x.jpg';
+import image from '../../static/woman-with-laptop@2x.jpg';
 import CloseButton from './../common/buttons/CloseButton';
 import { withUser } from '../context/User';
 import type { User } from '../types';
@@ -176,10 +176,10 @@ export class PureIntro extends React.Component<Props> {
         </div>
         <div className="text">
           <p className="title">
-            <Trans t="IntroPage__NeedHelp" />
+            <Trans t={__('smartfaq.intro_page.title')} />
           </p>
           <Text type="secondary">
-            <Trans t="IntroPage__HereToHelpYou" />
+            <Trans t={__('smartfaq.intro_page.subtitle')} />
           </Text>
         </div>
         <div className="buttons">
@@ -188,7 +188,7 @@ export class PureIntro extends React.Component<Props> {
               onClick={this.goToExistingBooking}
               data-cy="btn-existent-booking"
             >
-              <Trans t="IntroPage__existingBooking" />
+              <Trans t={__('smartfaq.intro_page.existing_booking')} />
             </button>
           </div>
           <div className="secondary">
@@ -196,7 +196,7 @@ export class PureIntro extends React.Component<Props> {
               onClick={this.goToNoBooking}
               data-cy="btn-nonexistent-booking"
             >
-              <Trans t="IntroPage__noBooking" />
+              <Trans t={__('smartfaq.intro_page.no_booking')} />
             </button>
           </div>
         </div>

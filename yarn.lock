@@ -1052,9 +1052,9 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@kiwicom/babel-plugin-orbit-components/-/babel-plugin-orbit-components-1.0.0.tgz#f2666a55194d9b717d6cb4bb83ba0e9c2cda2500"
 
-"@kiwicom/nitro@^0.24.1":
-  version "0.24.1"
-  resolved "https://registry.yarnpkg.com/@kiwicom/nitro/-/nitro-0.24.1.tgz#0cfd37fb65d60ccc7c1afb0ec0b9d2b5921c45b7"
+"@kiwicom/nitro@^0.29.1":
+  version "0.29.1"
+  resolved "https://registry.yarnpkg.com/@kiwicom/nitro/-/nitro-0.29.1.tgz#86499c8cb24343a0b8d2c27d50b3a843203fe516"
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@kiwicom/orbit-design-tokens" "^0.1.4"
@@ -1066,17 +1066,18 @@
     mailcheck "^1.1.1"
     node-fetch "^2.2.0"
     prop-types "^15.6.2"
+    query-string "^6.1.0"
     react-transition-group "^2.4.0"
     validator "^10.7.0"
 
-"@kiwicom/orbit-components@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.7.0.tgz#0a36770634fd9abe25ca3353724da886685e88b7"
+"@kiwicom/orbit-components@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.9.0.tgz#525eb0f855241c4593595632aed086385fdf665d"
   dependencies:
     "@kiwicom/orbit-design-tokens" "^0.1.4"
     react-icon-base "^2.1.2"
 
-"@kiwicom/orbit-design-tokens@^0.1.3", "@kiwicom/orbit-design-tokens@^0.1.4":
+"@kiwicom/orbit-design-tokens@^0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@kiwicom/orbit-design-tokens/-/orbit-design-tokens-0.1.4.tgz#18eb47bd62a78a8109406f91b7d2f0eb000d63fa"
 
@@ -6405,6 +6406,10 @@ i18n-extract@^0.6.1:
     gettext-parser "^1.3.1"
     glob "^7.1.2"
 
+i18n-webpack-plugin@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/i18n-webpack-plugin/-/i18n-webpack-plugin-1.0.0.tgz#0ca12296ec937a4f94325cd0264d08f4e0549831"
+
 i18next-scanner@2.4.6:
   version "2.4.6"
   resolved "https://registry.yarnpkg.com/i18next-scanner/-/i18next-scanner-2.4.6.tgz#c0433757c227cc3517d956cb15d8339deabba4c5"
@@ -9830,6 +9835,13 @@ query-string@^5.0.1:
     object-assign "^4.1.0"
     strict-uri-encode "^1.0.0"
 
+query-string@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.1.0.tgz#01e7d69f6a0940dac67a937d6c6325647aa4532a"
+  dependencies:
+    decode-uri-component "^0.2.0"
+    strict-uri-encode "^2.0.0"
+
 querystring-es3@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/querystring-es3/-/querystring-es3-0.2.1.tgz#9ec61f79049875707d69414596fd907a4d711e73"
@@ -9952,20 +9964,6 @@ react-focus-trap@^2.6.0:
   resolved "https://registry.yarnpkg.com/react-focus-trap/-/react-focus-trap-2.6.0.tgz#2b4f787b16a247c202beea5848ab9b3bfeda7fab"
   dependencies:
     babel-preset-react "^6.24.1"
-
-<<<<<<< master
-react-i18next@7.4.0:
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-7.4.0.tgz#07a336e49fc8f2599d08136d73134e3dc4830b49"
-  dependencies:
-    hoist-non-react-statics "2.3.1"
-    html-parse-stringify2 "2.0.1"
-    prop-types "^15.6.0"
-=======
-react-icon-base@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-icon-base/-/react-icon-base-2.1.0.tgz#a196e33fdf1e7aaa1fda3aefbb68bdad9e82a79d"
->>>>>>> feat(smartfaq): replace i18n by nitrolib
 
 react-icon-base@^2.1.2:
   version "2.1.2"
@@ -11429,6 +11427,10 @@ strict-uri-encode@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-1.1.0.tgz#279b225df1d582b1f54e65addd4352e18faa0713"
 
+strict-uri-encode@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
+
 string-hash@1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/string-hash/-/string-hash-1.1.3.tgz#e8aafc0ac1855b4666929ed7dd1275df5d6c811b"
@@ -12308,8 +12310,8 @@ validate-npm-package-name@^3.0.0:
     builtins "^1.0.3"
 
 validator@^10.7.0:
-  version "10.7.0"
-  resolved "https://registry.yarnpkg.com/validator/-/validator-10.7.0.tgz#2d6443badcf942c86c19dc3deac7b87c0bd9b60d"
+  version "10.7.1"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-10.7.1.tgz#dd4cc750c2134ce4a15a2acfc7b233669d659c5b"
 
 validator@^9.0.0:
   version "9.4.1"

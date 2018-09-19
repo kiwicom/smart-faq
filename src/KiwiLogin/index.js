@@ -10,7 +10,7 @@ import CloseButton from './../common/buttons/CloseButton';
 import BackButton from '../common/buttons/BackButton';
 import Input from '../common/Input';
 import { withLogin } from '../context/User';
-import image from '../../static/images/woman-with-laptop@2x.jpg';
+import image from '../../static/woman-with-laptop@2x.jpg';
 import { simpleTracker } from '../helpers/analytics/trackers';
 import type { onLogin } from '../types';
 

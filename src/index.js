@@ -9,9 +9,8 @@ import KeenTracking from 'keen-tracking';
 
 import App from './App';
 import { Requester } from './helpers/Requests';
-import type { User, Translations } from './types';
+import type { User } from './types';
 import type { LogEvent, EventPayload } from './helpers/analytics/cuckoo';
-import languages from './translations/languages.json';
 
 type Props = {||};
 
@@ -49,23 +48,9 @@ const chatConfig = {
   CHAT_QUEUE_NAME: process.env.CHAT_QUEUE_NAME || 'CHAT TEST',
 };
 
-const loadStaticTranslations = (langId: string) => {
-  const { phraseApp = 'en-GB' } = languages[langId];
-  try {
-    return require(`../static/locales/${phraseApp}.json`);
-  } catch (error) {
-    console.error(
-      'Language selected does not exists, default lenguage loaded.',
-      error,
-    );
-    return require('../static/locales/en-GB.json');
-  }
-};
-
 class Root extends React.Component<Props, State> {
   cookieKey: string;
   input: ?HTMLInputElement;
-  translations: Translations;
 
   constructor(props) {
     super(props);
@@ -105,16 +90,12 @@ class Root extends React.Component<Props, State> {
     };
     this.setupLogs();
     this.setupTracker();
-    this.translations = loadStaticTranslations(this.state.language);
   }
 
   componentDidMount() {
     window.addEventListener('keydown', this.onKeyDown);
   }
 
-  componentDidUpdate() {
-    this.translations = loadStaticTranslations(this.state.language);
-  }
   componentWillUnmount() {
     window.removeEventListener('keydown', this.onKeyDown);
   }
@@ -307,7 +288,6 @@ class Root extends React.Component<Props, State> {
             onSocialLogin={this.handleSocialLogin}
             onLogout={this.handleLogout}
             language={language}
-            translations={this.translations}
             user={this.state.user}
             route={helpQuery}
             loginToken={this.state.loginToken}

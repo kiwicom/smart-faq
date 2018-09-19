@@ -4,7 +4,6 @@ const request = require('request-promise-native');
 const argv = require('minimist')(process.argv.slice(2));
 
 const languages = ['en'];
-
 const prepareRequest = language => {
   const projectId = process.env.PHRASE_PROJECT_ID;
   const accessToken = process.env.PHRASE_ACCESS_TOKEN;
@@ -27,9 +26,13 @@ const prepareRequest = language => {
 const downloadTranslations = () => {
   const result = languages.map(language => {
     return prepareRequest(language).then(translation =>
-      fs.outputJson(`i18n/${language}/translation.json`, translation, {
-        spaces: '  ',
-      }),
+      fs.outputJson(
+        `src/translations/locales/${language}/translation.json`,
+        translation,
+        {
+          spaces: '  ',
+        },
+      ),
     );
   });
   return Promise.all(result);

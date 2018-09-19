@@ -5,7 +5,7 @@ import css from 'styled-jsx/css';
 import { Text } from '@kiwicom/orbit-components';
 import idx from 'idx';
 
-import image from '../../static/images/mailbox@3x.png';
+import image from '../../static/mailbox@3x.png';
 import CloseButton from './../common/buttons/CloseButton';
 
 const style = css`
