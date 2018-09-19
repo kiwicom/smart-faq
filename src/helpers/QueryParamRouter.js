@@ -22,6 +22,8 @@ class QueryParamRouter extends React.Component<Props> {
     const history = createHistory({
       initialEntries: [props.route],
       initialIndex: 0,
+      getUserConfirmation: (message, callback) =>
+        callback(window.confirm(message)),
     });
     this.unlisten = history.listen(this.onHistoryChange);
     this.history = history;

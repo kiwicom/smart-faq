@@ -2,6 +2,7 @@
 
 import idx from 'idx';
 import * as React from 'react';
+import { Prompt } from 'react-router-dom';
 import classNames from 'classnames';
 import { Text, Button } from '@kiwicom/orbit-components';
 import Chat from '@kiwicom/orbit-components/lib/icons/Chat';
@@ -134,6 +135,10 @@ class GuaranteeChat extends React.Component<Props, State> {
           }}
           className={classNames('smartFAQGuarantee', { open: !showButton })}
           data-cy="guaranteeChatIFrame"
+        />
+        <Prompt
+          when={!this.state.showButton}
+          message="Closing this window will cause the chat connection to be interrupted, do you want to proceed?"
         />
         <style jsx>
           {`
