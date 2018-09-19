@@ -44,18 +44,16 @@ export const formatDepartureDate = (dateString: string) => {
   return `${day}/${month}/${year}`;
 };
 
-export const formatCountDown = (hoursLeft: number, __t: string => string) => {
+export const formatCountDown = (hoursLeft: number): string => {
   const nhours = Math.floor(hoursLeft);
   const nmins = Math.floor((hoursLeft - nhours) * 60);
   const ndays = Math.floor(hoursLeft / 24);
   if (hoursLeft < URGENCY_THRESHOLD) {
     return nmins
-      ? `${nhours}${__t('TimeUnits.Abbr.Hours')} ${nmins}${__t(
-          'TimeUnits.Abbr.Minutes',
-        )}`
-      : `${nhours}${__t('TimeUnits.Abbr.Hours')}`;
+      ? `${nhours}${' hours'} ${nmins}${' minutes'}`
+      : `${nhours}${'h'}`;
   }
-  return `${ndays} ${__t('TimeUnits.Days')}`;
+  return `${ndays} ${'days'}`;
 };
 
 export const formatTimeDuration = (mins: number) => {

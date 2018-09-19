@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 const request = require('request-promise-native');
 const argv = require('minimist')(process.argv.slice(2));
 
-const languages = require('../i18n/languages');
+const languages = ['en'];
 
 const prepareRequest = language => {
   const projectId = process.env.PHRASE_PROJECT_ID;

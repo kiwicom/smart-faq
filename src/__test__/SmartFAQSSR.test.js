@@ -4,6 +4,7 @@ import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
 import SmartFAQ from '../App';
+import Translations from '../translations/locales-fallback/en-GB.json';
 
 const user = {
   id: '1',
@@ -25,6 +26,7 @@ describe('SmartFAQ', () => {
         onSocialLogin={jest.fn()}
         onLogout={jest.fn()}
         language="en"
+        translations={Translations}
         emergencies={[]}
         user={user}
         route="/"
@@ -47,6 +49,7 @@ describe('SmartFAQ', () => {
         onSocialLogin={jest.fn()}
         onLogout={jest.fn()}
         language="en"
+        translations={Translations}
         emergencies={[]}
         user={user}
         route="/faq/"

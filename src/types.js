@@ -15,7 +15,10 @@ export type Provider = 'facebook' | 'google';
 
 export type onSocialLogin = Provider => Promise<*>;
 
+export type Translations = { [key: string]: string };
+
 export type AppProps = {|
+  translations: Translations | null,
   language: string,
   user: User,
   loginToken: ?string,

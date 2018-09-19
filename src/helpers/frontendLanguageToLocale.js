@@ -7,3 +7,6 @@ export default {
   us: 'en_US',
   cz: 'cs_CZ',
 };
+
+export const parseDashToUnderscore = (locale: string): string =>
+  locale.replace('-', '_');

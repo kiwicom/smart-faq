@@ -33,10 +33,13 @@ import type { FAQCategoryListSubcategoryQueryResponse } from './__generated__/FA
 import { BookingState } from '../context/BookingState';
 import type { FAQSectionType } from '../context/BookingState';
 import { GuaranteeChatInfoState } from '../context/GuaranteeChatInfo';
+import { withLanguage } from '../context/Language';
+import createEnvironment from '../relay/environment';
 
 type ComponentProps = {
   categoryId: string | null,
   showGuaranteeArticle: boolean,
+  language: string,
   history: {
     location: {
       pathname: string,
@@ -280,7 +283,7 @@ class RawFAQCategoryList extends React.Component<Props> {
   };
 
   render() {
-    const { categoryId, section, showGuaranteeArticle } = this.props;
+    const { categoryId, section, showGuaranteeArticle, language } = this.props;
 
     if (categoryId) {
       return (
@@ -288,6 +291,7 @@ class RawFAQCategoryList extends React.Component<Props> {
           query={querySubcategory}
           render={this.renderSubcategory}
           variables={{ id: categoryId }}
+          createEnvironment={createEnvironment(null, language)}
         />
       );
     }
@@ -301,6 +305,7 @@ class RawFAQCategoryList extends React.Component<Props> {
           showGuaranteeArticle,
           articleId: GUARANTEE_ARTICLE_ID,
         }}
+        createEnvironment={createEnvironment(null, language)}
       />
     );
   }
@@ -324,4 +329,4 @@ const FAQCategoryList = (props: ComponentProps) => (
   </BookingState.Consumer>
 );
 
-export default withRouter(FAQCategoryList);
+export default withRouter(withLanguage(FAQCategoryList));

@@ -1,6 +1,6 @@
 // @flow
 
-/*  eslint-disable import/no-extraneous-dependencies, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
+/*  eslint-disable import/no-extraneous-dependencies, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, import/no-dynamic-require, no-console */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Cookies from 'js-cookie';
@@ -9,8 +9,9 @@ import KeenTracking from 'keen-tracking';
 
 import App from './App';
 import { Requester } from './helpers/Requests';
-import type { User } from './types';
+import type { User, Translations } from './types';
 import type { LogEvent, EventPayload } from './helpers/analytics/cuckoo';
+import { langInfos } from './translations/langInfos';
 
 type Props = {||};
 
@@ -22,6 +23,7 @@ type State = {|
   helpQuery: ?string,
   showEmergencies: boolean,
   enableChat: boolean,
+  language: string,
 |};
 
 const user = {
@@ -43,9 +45,24 @@ const chatConfig = {
   CHAT_QUEUE_NAME: process.env.CHAT_QUEUE_NAME || 'CHAT TEST',
 };
 
+const loadStaticTranslations = (langId: string) => {
+  const { phraseApp = 'en-GB' } = langInfos[langId];
+
+  try {
+    return require(`../static/locales/${phraseApp}.json`);
+  } catch (error) {
+    console.error(
+      'Language selected does not exists, default lenguage loaded.',
+      error,
+    );
+    return require('../static/locales/en-GB.json');
+  }
+};
+
 class Root extends React.Component<Props, State> {
   cookieKey: string;
   input: ?HTMLInputElement;
+  translations: Translations;
 
   constructor(props) {
     super(props);
@@ -71,15 +88,20 @@ class Root extends React.Component<Props, State> {
       enableChat: true,
       showEmergencies: Cookies.get('showEmergencies') || false,
       helpQuery: helpQueryString ? helpQueryString : '/',
+      language: 'en',
     };
     this.setupLogs();
     this.setupTracker();
+    this.translations = loadStaticTranslations(this.state.language);
   }
 
   componentDidMount() {
     window.addEventListener('keydown', this.onKeyDown);
   }
 
+  componentDidUpdate() {
+    this.translations = loadStaticTranslations(this.state.language);
+  }
   componentWillUnmount() {
     window.removeEventListener('keydown', this.onKeyDown);
   }
@@ -111,7 +133,6 @@ class Root extends React.Component<Props, State> {
     });
     const stagingCuckoo = {
       infinario: (eventName: LogEvent, payload: EventPayload) => {
-        //eslint-disable-next-line no-console
         console.info('Event recorded to KeenIO', eventName, payload);
         keen.recordEvent(eventName, payload);
       },
@@ -142,7 +163,6 @@ class Root extends React.Component<Props, State> {
     const password = process.env.TEST_USER_PASSWORD;
 
     if (!(email && password)) {
-      //eslint-disable-next-line no-console
       console.error('Testing user not set in env vars.');
       return;
     }
@@ -186,9 +206,12 @@ class Root extends React.Component<Props, State> {
     }));
   };
 
+  changeLanguage = (e: SyntheticInputEvent<HTMLInputElement>) => {
+    this.setState({ language: e.target.value });
+  };
+
   render() {
-    const { helpQuery, showEmergencies } = this.state;
-    const language = 'en';
+    const { helpQuery, showEmergencies, language } = this.state;
 
     return (
       <div>
@@ -218,6 +241,37 @@ class Root extends React.Component<Props, State> {
           />
           <h3>Force chat (always available in Guarantee article)</h3>
           <input type="checkbox" onChange={this.onForceChat} />
+          <h3>Change languages</h3>
+          <label htmlFor="en-GB">
+            <input
+              type="radio"
+              value="en"
+              id="en-GB"
+              checked={language === 'en'}
+              onChange={this.changeLanguage}
+            />
+            English(en-GB)
+          </label>
+          <label htmlFor="es-ES">
+            <input
+              type="radio"
+              value="es"
+              id="es-ES"
+              checked={language === 'es'}
+              onChange={this.changeLanguage}
+            />
+            Spanish(es-ES)
+          </label>
+          <label htmlFor="cs-CZ">
+            <input
+              type="radio"
+              value="cz"
+              id="cs-CZ"
+              checked={language === 'cz'}
+              onChange={this.changeLanguage}
+            />
+            Czech(cs-CZ)
+          </label>
         </div>
         {helpQuery && (
           <div className="sidebarOverlay" onClick={this.closeApp} />
@@ -229,6 +283,7 @@ class Root extends React.Component<Props, State> {
             onSocialLogin={this.handleSocialLogin}
             onLogout={this.handleLogout}
             language={language}
+            translations={this.translations}
             user={this.state.user}
             route={helpQuery}
             loginToken={this.state.loginToken}
