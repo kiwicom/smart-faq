@@ -3,6 +3,7 @@
 import { commitMutation, graphql } from 'react-relay';
 
 import createEnvironment from '../relay/environment';
+import { simpleTracker } from '../helpers/analytics/trackers';
 
 const mutation = graphql`
   mutation CreateCommentMutation(
@@ -38,6 +39,7 @@ export default (
       }
 
       if (errors[0].extensions.proxy.statusCode === '429') {
+        simpleTracker('smartFAQCategories', { action: 'commentLimitReached' });
         commentLimitExceededCallback();
       }
     },
