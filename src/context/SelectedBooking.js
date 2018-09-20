@@ -72,7 +72,7 @@ class SelectedBookingProvider extends React.Component<Props, State> {
   }
 
   isChatEnabled = () => {
-    return this.props.enableChat || false;
+    return this.props.enableChat;
   };
 
   onClickSelect = (id: number) => {
