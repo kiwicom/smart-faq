@@ -6,7 +6,7 @@ const feedbackScreens = {
   ADDITIONAL_FEEDBACK: 'additionalFeedback',
   THANK_YOU: 'thankYou',
   ERROR: 'error',
-  COMMENT_LIMIT: 'commentLimit',
+  COMMENT_LIMIT_REACHED: 'commentLimitReached',
 };
 
 export default feedbackScreens;

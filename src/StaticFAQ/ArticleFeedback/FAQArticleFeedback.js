@@ -80,7 +80,7 @@ class FAQArticleFeedback extends React.Component<Props, State> {
         return <ScreenThankyou changeScreen={this.changeScreen} />;
       case screenList.ERROR:
         return <ScreenError changeScreen={this.changeScreen} />;
-      case screenList.COMMENT_LIMIT:
+      case screenList.COMMENT_LIMIT_REACHED:
         return <ScreenCommentLimit changeScreen={this.changeScreen} />;
     }
     return (
