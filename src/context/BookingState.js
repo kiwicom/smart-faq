@@ -2,6 +2,7 @@
 /* eslint-disable react/no-unused-state */
 
 import * as React from 'react';
+import idx from 'idx';
 
 import type { onLogout, BookingType } from '../types';
 import { isUrgentBooking } from '../common/booking/utils';
@@ -36,7 +37,6 @@ type Props = {
   children: React.Node,
   isPastBooking?: boolean, // eslint-disable-line react/no-unused-prop-types
   hasBooking: boolean,
-  departureTime: ?Date,
   booking: ?BookingType,
 };
 
@@ -65,7 +65,12 @@ export const BookingState = React.createContext({
 class BookingStateProvider extends React.Component<Props, BookingStateType> {
   constructor(props: Props) {
     super(props);
-    const { hasBooking, departureTime, isPastBooking, booking } = props;
+    const { hasBooking, isPastBooking, booking } = props;
+    const departureTime =
+      idx(booking, _ => _.outbound.departure.time) ||
+      idx(booking, _ => _.trip.departure.time) ||
+      idx(booking, _ => _.trips[0].departure.time);
+
     const isUrgent =
       isUrgentBooking !== undefined
         ? isUrgentBooking(isPastBooking === true, departureTime)
