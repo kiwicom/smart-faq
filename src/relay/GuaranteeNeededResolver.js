@@ -5,6 +5,7 @@ import * as React from 'react';
 import { DateTime } from 'luxon';
 import { graphql, createFragmentContainer } from 'react-relay';
 
+import { simpleTracker } from '../helpers/analytics/trackers';
 import { GuaranteeChatInfoState } from '../context/GuaranteeChatInfo';
 import type { GuaranteeChatBookingInfo } from '../context/GuaranteeChatInfo';
 import type { GuaranteeNeededResolver_booking } from './__generated__/GuaranteeNeededResolver_booking.graphql';
@@ -107,6 +108,12 @@ class GuaranteeNeededResolver extends React.Component<Props> {
     );
 
     if (showGuaranteeChat !== this.props.showGuaranteeChat) {
+      if (showGuaranteeChat) {
+        simpleTracker('smartFAQBookingOverview', {
+          action: 'chatEnabled',
+        });
+      }
+
       this.props.toggleGuaranteeChat(showGuaranteeChat);
     }
   };
