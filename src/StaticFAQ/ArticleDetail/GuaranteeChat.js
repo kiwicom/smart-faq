@@ -22,12 +22,14 @@ type Props = {|
 
 type State = {|
   showButton: boolean,
+  isChatReady: boolean,
 |};
 
 class GuaranteeChat extends React.Component<Props, State> {
   chatContainer: ?Element;
   state = {
     showButton: true,
+    isChatReady: false,
   };
 
   async componentDidMount() {
@@ -37,6 +39,9 @@ class GuaranteeChat extends React.Component<Props, State> {
 
     const { chatConfig } = this.props;
     await chatUtils.initialize(chatConfig);
+
+    // eslint-disable-next-line react/no-did-mount-set-state
+    this.setState({ isChatReady: true });
 
     if (window.webchat.isAutoJoined()) {
       // eslint-disable-next-line react/no-did-mount-set-state
@@ -67,7 +72,7 @@ class GuaranteeChat extends React.Component<Props, State> {
   };
 
   render() {
-    const { showButton } = this.state;
+    const { showButton, isChatReady } = this.state;
 
     return (
       <React.Fragment>
@@ -82,6 +87,7 @@ class GuaranteeChat extends React.Component<Props, State> {
                 type="secondary"
                 size="normal"
                 icon={<Chat />}
+                disabled={!isChatReady}
                 onClick={this.onClickDisplayChat}
               >
                 Guarantee Chat

@@ -30,7 +30,6 @@ describe('Guarantee Chat', () => {
   });
 
   it('can start the chat session', () => {
-    cy.wait(5000); // necessary to give some time to chat to initialize
     cy.get('[data-cy=guaranteeChatButton] button').click();
     cy.get('[data-cy=guaranteeChatButton]').should('not.exist');
     cy.get('[data-cy=guaranteeChatIFrame] iframe').should('exist');
