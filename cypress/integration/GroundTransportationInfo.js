@@ -36,7 +36,7 @@ describe('Expandable ground transportation leg', () => {
     cy
       .get('.moreInfoLink')
       .click()
-      .get('.faq-article-content')
+      .get('[data-cy=faq-article-content]')
       .get('h1')
       .contains('Trains and buses')
       .should('exist');

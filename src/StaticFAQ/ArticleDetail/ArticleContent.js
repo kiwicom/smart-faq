@@ -70,7 +70,7 @@ class ArticleContent extends React.Component<Props> {
   renderArticle = isLoggedIn => {
     const { article, showGuaranteeChat } = this.props;
     return (
-      <div className="faq-article-content">
+      <div className="faq-article-content" data-cy="faq-article-content">
         <Heading type="title2">{article.title}</Heading>
         <div className="faq-article-perex">
           <Text type="attention" weight="bold" element="span">

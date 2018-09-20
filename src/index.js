@@ -62,14 +62,20 @@ class Root extends React.Component<Props, State> {
     const paramsString = window.location.search;
     const params = new URLSearchParams(paramsString);
     const helpQueryString = params.get('help');
+    const enableChat = Cookies.get('enableChat')
+      ? Boolean(parseInt(Cookies.get('enableChat')))
+      : true;
+    const showEmergencies = Cookies.get('showEmergencies')
+      ? Boolean(parseInt(Cookies.get('showEmergencies')))
+      : false;
 
     this.state = {
       isClosable: true,
       user: loginToken ? user : null,
       loginToken,
       simpleToken,
-      enableChat: true,
-      showEmergencies: Cookies.get('showEmergencies') || false,
+      enableChat,
+      showEmergencies,
       helpQuery: helpQueryString ? helpQueryString : '/',
     };
     this.setupLogs();
