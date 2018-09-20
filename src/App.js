@@ -15,7 +15,6 @@ import Routes from './Routes';
 import { CloseContext } from './context/Close';
 import { LanguageContext } from './context/Language';
 import { UserContext } from './context/User';
-import BookingStateWrapper from './BookingStateWrapper/BookingStateWrapper';
 import type { UserContextType } from './context/User';
 import SearchStateProvider from './context/SearchState';
 import SelectedBookingProvider from './context/SelectedBooking';
@@ -141,12 +140,7 @@ class App extends React.PureComponent<AppProps, State> {
                                         capture: true,
                                       })}
                                     >
-                                      <BookingStateWrapper
-                                        locale={this.props.language}
-                                        loginToken={this.props.loginToken || ''}
-                                      >
-                                        <Routes route={route} />
-                                      </BookingStateWrapper>
+                                      <Routes route={route} />
                                     </EventListener>
                                   )}
                               </GuaranteeChatInfo>

@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { graphql, QueryRenderer } from 'react-relay';
+import { graphql } from 'react-relay';
 import idx from 'idx';
 
+import QueryRenderer from '../relay/QueryRenderer';
 import { SelectedBooking } from '../context/SelectedBooking';
 import type { State } from '../context/SelectedBooking';
 import HasBooking from './HasBooking';
@@ -11,7 +12,6 @@ import NoBooking from './NoBooking';
 import UserStatus from '../helpers/UserStatus';
 import type { BookingStateWrapperNearestQueryResponse } from './__generated__/BookingStateWrapperNearestQuery.graphql';
 import type { BookingStateWrapperSelectedQueryResponse } from './__generated__/BookingStateWrapperSelectedQuery.graphql';
-import createEnvironment from '../relay/environment';
 import GuaranteeNeededResolver from '../relay/GuaranteeNeededResolver';
 
 const nearestBookingQuery = graphql`
@@ -62,11 +62,9 @@ type RenderProps = {
 
 type Props = {
   children: React.Node,
-  loginToken: string,
-  locale: string,
 };
 
-const BookingStateWrapper = ({ children, loginToken, locale }: Props) => {
+const BookingStateWrapper = ({ children }: Props) => {
   const renderBookingStateWrapper = ({ props }: RenderProps) => {
     const booking =
       props &&
@@ -97,14 +95,12 @@ const BookingStateWrapper = ({ children, loginToken, locale }: Props) => {
               <QueryRenderer
                 query={nearestBookingQuery}
                 render={renderBookingStateWrapper}
-                environment={createEnvironment(loginToken, locale)}
               />
             ) : (
               <QueryRenderer
                 query={selectedBookingQuery}
                 render={renderBookingStateWrapper}
                 variables={{ id: selectedBooking }}
-                environment={createEnvironment(loginToken, locale)}
               />
             );
           }}
