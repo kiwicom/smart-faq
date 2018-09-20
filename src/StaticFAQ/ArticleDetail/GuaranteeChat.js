@@ -22,6 +22,7 @@ type Props = {|
 
 type State = {|
   showButton: boolean,
+  isClosable: boolean,
   isChatReady: boolean,
 |};
 
@@ -29,6 +30,7 @@ class GuaranteeChat extends React.Component<Props, State> {
   chatContainer: ?Element;
   state = {
     showButton: true,
+    isClosable: true,
     isChatReady: false,
   };
 
@@ -39,15 +41,22 @@ class GuaranteeChat extends React.Component<Props, State> {
 
     const { chatConfig } = this.props;
     await chatUtils.initialize(chatConfig);
+    window.webchat.chatEnded = this.onChatEnded;
 
     // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({ isChatReady: true });
 
     if (window.webchat.isAutoJoined()) {
+      this.onChangeIsClosable(false);
       // eslint-disable-next-line react/no-did-mount-set-state
       this.setState({ showButton: false });
     }
   }
+
+  onChangeIsClosable = (isClosable: boolean) => {
+    this.setState({ isClosable });
+    this.props.onAppWithOpenChatClose(isClosable);
+  };
 
   onClickDisplayChat = () => {
     this.setState({ showButton: false });
@@ -63,12 +72,11 @@ class GuaranteeChat extends React.Component<Props, State> {
       action: 'chatOpened',
     });
     window.webchat.renderFrame({ containerEl: 'smartFAQGuarantee' });
-    window.webchat.chatEnded = this.onChatEnded;
-    this.props.onAppWithOpenChatClose(false);
+    this.onChangeIsClosable(false);
   };
 
   onChatEnded = () => {
-    this.props.onAppWithOpenChatClose(true);
+    this.onChangeIsClosable(true);
   };
 
   render() {
@@ -104,7 +112,7 @@ class GuaranteeChat extends React.Component<Props, State> {
           data-cy="guaranteeChatIFrame"
         />
         <Prompt
-          when={!this.state.showButton}
+          when={!this.state.isClosable}
           message="Closing this window will cause the chat connection to be interrupted, do you want to proceed?"
         />
         <style jsx>

@@ -22,6 +22,7 @@ type State = {|
   helpQuery: ?string,
   showEmergencies: boolean,
   enableChat: boolean,
+  forceChat: boolean,
 |};
 
 const user = {
@@ -54,11 +55,14 @@ class Root extends React.Component<Props, State> {
 
     const loginToken = Cookies.get(this.cookieKey);
     const simpleToken = null;
+    const forceChat = sessionStorage.getItem('forceChat');
+    window.GuaranteeChatForce = forceChat
+      ? Boolean(parseInt(forceChat))
+      : false;
 
     this.setupLogs();
-    //
-    // Cypress Querys
-    //
+
+    // helpers for cypress
     const paramsString = window.location.search;
     const params = new URLSearchParams(paramsString);
     const helpQueryString = params.get('help');
@@ -75,6 +79,7 @@ class Root extends React.Component<Props, State> {
       loginToken,
       simpleToken,
       enableChat,
+      forceChat: window.GuaranteeChatForce,
       showEmergencies,
       helpQuery: helpQueryString ? helpQueryString : '/',
     };
@@ -107,7 +112,10 @@ class Root extends React.Component<Props, State> {
       return;
     }
 
-    window.GuaranteeChatForce = !window.GuaranteeChatForce;
+    const forceChat = !window.GuaranteeChatForce;
+    sessionStorage.setItem('forceChat', forceChat ? '1' : '0');
+    window.GuaranteeChatForce = forceChat;
+    this.setState({ forceChat });
   };
 
   setupTracker = () => {
@@ -223,7 +231,11 @@ class Root extends React.Component<Props, State> {
             onChange={this.onToggleChat}
           />
           <h3>Force chat (always available in Guarantee article)</h3>
-          <input type="checkbox" onChange={this.onForceChat} />
+          <input
+            type="checkbox"
+            onChange={this.onForceChat}
+            checked={this.state.forceChat}
+          />
         </div>
         {helpQuery && (
           <div className="sidebarOverlay" onClick={this.closeApp} />
