@@ -1,6 +1,6 @@
 // @flow
 
-/*  eslint-disable import/no-extraneous-dependencies, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, import/no-dynamic-require, no-console */
+/*  eslint-disable import/no-extraneous-dependencies, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, no-console */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Cookies from 'js-cookie';
@@ -22,11 +22,8 @@ type State = {|
   helpQuery: ?string,
   showEmergencies: boolean,
   enableChat: boolean,
-<<<<<<< master
   forceChat: boolean,
-=======
   language: string,
->>>>>>> feat(smartfaq): add translations for standalone app
 |};
 
 const user = {
@@ -237,14 +234,11 @@ class Root extends React.Component<Props, State> {
             onChange={this.onToggleChat}
           />
           <h3>Force chat (always available in Guarantee article)</h3>
-<<<<<<< master
           <input
             type="checkbox"
             onChange={this.onForceChat}
             checked={this.state.forceChat}
           />
-=======
-          <input type="checkbox" onChange={this.onForceChat} />
           <h3>Change languages</h3>
           <label htmlFor="en-GB">
             <input
@@ -276,7 +270,6 @@ class Root extends React.Component<Props, State> {
             />
             Czech(cs-CZ)
           </label>
->>>>>>> feat(smartfaq): add translations for standalone app
         </div>
         {helpQuery && (
           <div className="sidebarOverlay" onClick={this.closeApp} />

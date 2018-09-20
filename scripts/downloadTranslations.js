@@ -3,7 +3,12 @@ const fs = require('fs-extra');
 const request = require('request-promise-native');
 const argv = require('minimist')(process.argv.slice(2));
 
+// once all translations are ready, download all supported translations
+// const { supportedLanguages } = require('../src/helpers/translationUtils');
+// const languages = Object.keys(supportedLanguages);
+
 const languages = ['en'];
+
 const prepareRequest = language => {
   const projectId = process.env.PHRASE_PROJECT_ID;
   const accessToken = process.env.PHRASE_ACCESS_TOKEN;

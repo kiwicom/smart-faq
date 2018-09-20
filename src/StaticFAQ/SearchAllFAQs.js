@@ -13,6 +13,7 @@ import { Loader, ScrollableBox } from '../common';
 import type { SearchAllFAQsQuery } from './__generated__/SearchAllFAQsQuery.graphql';
 import type { FAQArticle_article } from './__generated__/FAQArticle_article.graphql';
 import { withLanguage } from '../context/Language';
+import { fromLanguageToLocale } from '../helpers/translationUtils';
 
 type AllFAQsQueryRendererParams = {
   props: ?SearchAllFAQsQuery,
@@ -64,12 +65,13 @@ class SearchAllFAQs extends React.Component<Props> {
 
   render() {
     const { search, language } = this.props;
+    const locale = fromLanguageToLocale(language);
     return (
       <QueryRenderer
         query={queryAllFAQs}
         variables={{ search }}
         render={this.renderSearchFAQs}
-        createEnvironment={createEnvironment(null, language)}
+        createEnvironment={createEnvironment(null, locale)}
       />
     );
   }

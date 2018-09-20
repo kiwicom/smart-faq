@@ -43,7 +43,7 @@ const findMissing = (translation, namespaces = []) => {
 };
 
 const checkTranslations = async () => {
-  const files = await glob('src/translations/locales/**/translation.json');
+  const files = await glob('../src/translations/locales/**/translation.json');
   const oldHashes = await getTranslationHashes(files);
   spawnSync('yarn', ['translations:collect']);
   const newHashes = await getTranslationHashes(files);

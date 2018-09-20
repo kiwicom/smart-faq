@@ -25,10 +25,7 @@ import type { AppProps } from './types';
 import MobileSafariScroll from './helpers/MobileSafariScroll';
 import GuaranteeChatInfo from './context/GuaranteeChatInfo';
 import { langInfos } from './translations/langInfos';
-import {
-  parseDashToUnderscore,
-  loadStaticTranslations,
-} from './helpers/frontendLanguageToLocale';
+import { loadStaticTranslations } from './helpers/translationUtils';
 
 const style = css`
   .smartFAQ {
@@ -100,9 +97,6 @@ class App extends React.PureComponent<AppProps, State> {
     const langInfo = langInfos[language];
     const translations = loadStaticTranslations(language);
 
-    const { phraseApp } = langInfo;
-    const parsedLenguage = parseDashToUnderscore(phraseApp);
-
     return (
       <FocusTrap active={isOpen}>
         <div
@@ -123,7 +117,7 @@ class App extends React.PureComponent<AppProps, State> {
               language={langInfo}
               translations={translations}
             >
-              <LanguageContext.Provider value={parsedLenguage}>
+              <LanguageContext.Provider value={language}>
                 <CloseContext.Provider value={this.props.onClose}>
                   <UserContext.Provider value={this.state.userContext}>
                     <SearchStateProvider>

@@ -3,11 +3,7 @@
 import * as React from 'react';
 
 import { LanguageContext } from '../context/Language';
-import {
-  DEFAULT_LOCALE,
-  supportedLanguages,
-  parseDashToUnderscore,
-} from './frontendLanguageToLocale';
+import { DEFAULT_LOCALE, supportedLanguages } from './translationUtils';
 
 export const URGENCY_THRESHOLD = 48;
 
@@ -26,12 +22,12 @@ export const FormatDate = ({ dateString }: Props) => {
   return (
     <LanguageContext.Consumer>
       {language => {
-        const locale = supportedLanguages[language] || DEFAULT_LOCALE;
-        const parsedLocale = parseDashToUnderscore(locale);
+        const locale = (supportedLanguages[language] || DEFAULT_LOCALE).replace(
+          '_',
+          '-',
+        );
         return (
-          <div>
-            {new Date(dateString).toLocaleDateString(parsedLocale, options)}
-          </div>
+          <div>{new Date(dateString).toLocaleDateString(locale, options)}</div>
         );
       }}
     </LanguageContext.Consumer>

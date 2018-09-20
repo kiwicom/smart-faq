@@ -3,22 +3,23 @@
 import { langInfos } from '../translations/langInfos';
 
 export type SupportedLanguages = {
-  [key: string]: {
-    [key: string]: string,
-  },
+  [key: string]: string,
 };
 
 export const DEFAULT_LOCALE = 'en_GB';
 
+const parseDashToUnderscore = (locale: string): string =>
+  locale.replace('-', '_');
+
 export const supportedLanguages: SupportedLanguages = Object.keys(
   langInfos,
 ).reduce((acc, langId) => {
-  acc[langId] = langInfos[langId].phraseApp;
+  acc[langId] = parseDashToUnderscore(langInfos[langId].phraseApp);
   return acc;
 }, {});
 
-export const parseDashToUnderscore = (locale: string): string =>
-  locale.replace('-', '_');
+export const fromLanguageToLocale = (lang: string): string =>
+  supportedLanguages[lang];
 
 export const loadStaticTranslations = (langId: string) => {
   try {

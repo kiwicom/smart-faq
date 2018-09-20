@@ -35,6 +35,7 @@ import type { FAQSectionType } from '../context/BookingState';
 import { GuaranteeChatInfoState } from '../context/GuaranteeChatInfo';
 import { withLanguage } from '../context/Language';
 import createEnvironment from '../relay/environment';
+import { fromLanguageToLocale } from '../helpers/translationUtils';
 
 type ComponentProps = {
   categoryId: string | null,
@@ -284,6 +285,7 @@ class RawFAQCategoryList extends React.Component<Props> {
 
   render() {
     const { categoryId, section, showGuaranteeArticle, language } = this.props;
+    const locale = fromLanguageToLocale(language);
 
     if (categoryId) {
       return (
@@ -291,7 +293,7 @@ class RawFAQCategoryList extends React.Component<Props> {
           query={querySubcategory}
           render={this.renderSubcategory}
           variables={{ id: categoryId }}
-          createEnvironment={createEnvironment(null, language)}
+          createEnvironment={createEnvironment(null, locale)}
         />
       );
     }
@@ -305,7 +307,7 @@ class RawFAQCategoryList extends React.Component<Props> {
           showGuaranteeArticle,
           articleId: GUARANTEE_ARTICLE_ID,
         }}
-        createEnvironment={createEnvironment(null, language)}
+        createEnvironment={createEnvironment(null, locale)}
       />
     );
   }

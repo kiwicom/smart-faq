@@ -13,6 +13,7 @@ import { withLogout } from '../context/BookingState';
 import { withLanguage } from '../context/Language';
 import createEnvironment, { ERROR_FORBIDDEN } from './environment';
 import type { onLogout } from '../types';
+import { fromLanguageToLocale } from '../helpers/translationUtils';
 
 type RenderArgs<RenderProps> = {
   error: ?Error,
@@ -50,14 +51,15 @@ class QueryRenderer<RenderProps> extends React.Component<
 > {
   static getDerivedStateFromProps(nextProps, state) {
     const { loginToken, language } = nextProps;
+    const locale = fromLanguageToLocale(language);
 
-    if (state.locale === language && state.loginToken === loginToken) {
+    if (state.locale === locale && state.loginToken === loginToken) {
       return null;
     }
 
     return {
-      environment: createEnvironment(loginToken, language),
-      locale: language,
+      environment: createEnvironment(loginToken, locale),
+      locale,
       loginToken,
     };
   }
@@ -66,10 +68,12 @@ class QueryRenderer<RenderProps> extends React.Component<
     super(props);
 
     const { loginToken, language } = props;
+    const locale = fromLanguageToLocale(language);
+
     this.state = {
-      environment: createEnvironment(loginToken, language), // eslint-disable-line react/no-unused-state
+      environment: createEnvironment(loginToken, locale),
       loginToken, // eslint-disable-line react/no-unused-state
-      locale: language, // eslint-disable-line react/no-unused-state
+      locale, // eslint-disable-line react/no-unused-state
     };
   }
 
@@ -90,7 +94,7 @@ class QueryRenderer<RenderProps> extends React.Component<
     return this.props.render(renderState);
   };
   render() {
-    const { loginToken, language, query, variables, cacheConfig } = this.props;
+    const { query, variables, cacheConfig } = this.props;
 
     return (
       <OriginalQueryRenderer
@@ -98,7 +102,7 @@ class QueryRenderer<RenderProps> extends React.Component<
         variables={variables}
         cacheConfig={cacheConfig}
         render={this.renderContainer}
-        environment={createEnvironment(loginToken, language)}
+        environment={this.state.environment}
       />
     );
   }

@@ -9,7 +9,7 @@ import {
 } from 'relay-runtime';
 import idx from 'idx';
 
-import { DEFAULT_LOCALE } from '../helpers/frontendLanguageToLocale';
+import { DEFAULT_LOCALE } from '../helpers/translationUtils';
 
 require('isomorphic-fetch');
 // used when smart FAQ installed as dependency
