@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
-import idx from 'idx';
 
 import BookingStateProvider from '../context/BookingState';
 import MultiCityTripWrapper_booking from './__generated__/MultiCityTripWrapper_booking.graphql';
@@ -15,7 +14,6 @@ const MultiCityTrip = ({ children, booking }: Props) => (
   <BookingStateProvider
     hasBooking
     isPastBooking={booking.isPastBooking}
-    departureTime={idx(booking, _ => _.trips[0].departure.time)}
     onLogout={async () => null}
     booking={booking}
   >

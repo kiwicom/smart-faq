@@ -35,7 +35,6 @@ export type AppProps = {|
   chatConfig: { [key: string]: string } | null,
 |};
 
-export type BookingType =
-  | OneWayTripWrapper_booking
-  | ReturnTripWrapper_booking
-  | MultiCityTripWrapper_booking;
+export type BookingType = OneWayTripWrapper_booking &
+  ReturnTripWrapper_booking &
+  MultiCityTripWrapper_booking;
