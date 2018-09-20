@@ -190,6 +190,7 @@ These are the events being recorded. Note that additionally to these attributes 
   - When eTicket is clicked: `{ action: "clickOnEticket" }`
   - When BoardingPasses button is clicked: `{ action: "clickOnBoardingPassButton" }`
   - When Baggage button is clicked: `{ action: "clickOnBaggageButton" }`
+  - When Kiwi.com Guarantee chat can be used for customer booking: `{ action: "chatEnabled" }`
   - When Kiwi.com Guarantee chat is openend by a customer: `{ action: "chatOpened" }`
   - When Kiwi.com Guarantee chat button is displayed because it matches the criteria to show it: `{ action: "chatDisplayed" }`
 
