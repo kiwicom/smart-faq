@@ -204,3 +204,4 @@ These are the events being recorded. Note that additionally to these attributes 
   - Close article: `{ action: "articleClose", articleId:"id of article", articleName:"article title", timeOpen: "time it remained open"}`
   - Vote on article: `{ action: "upVote" | "downVote" }`
   - Submit feedback on article: `{ action: "submitFeedback", comment: "dontLike" | "confusing" | "notAccurate" | "doesntAnswer" }`
+  - Daily feedback comment limit reached: `{ action: "commentLimitReached" }`
