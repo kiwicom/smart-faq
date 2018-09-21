@@ -159,12 +159,19 @@ class MobileBookingHeader extends React.Component<Props, State> {
   };
 
   goBack = () => {
-    const { entries } = this.props.history;
-    const firstEntry = entries[0];
-    const faqCategory = firstEntry.pathname.split('article')[0];
-    return firstEntry.pathname === location.pathname
-      ? this.props.history.push(faqCategory)
-      : this.props.history.goBack();
+    const { history } = this.props;
+    const pathname = history.location.pathname;
+
+    if (pathname.includes('search')) {
+      return history.push('/faq');
+    }
+
+    if (pathname.includes('article')) {
+      const url = idx(pathname.match(/(.*)(?=article)/), _ => _[0]) || '';
+      return history.push(url);
+    } else if (pathname.includes('faq')) {
+      return history.push('/faq');
+    }
   };
 
   isSearchActive() {
