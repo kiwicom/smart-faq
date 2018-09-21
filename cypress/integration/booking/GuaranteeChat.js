@@ -2,8 +2,8 @@
 
 import { DateTime } from 'luxon';
 
-import booking from '../fixtures/BookingOneWayResponse';
-import faqs from '../fixtures/FAQRootCategoriesResponse.json';
+import booking from '../../fixtures/BookingOneWayResponse';
+import faqs from '../../fixtures/FAQRootCategoriesResponse.json';
 
 const testChatNotInArticle = () => {
   cy.get('[data-cy=input-staticFAQ]').type('Kiwi.com Guarantee');

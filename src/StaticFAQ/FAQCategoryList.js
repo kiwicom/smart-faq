@@ -12,7 +12,6 @@ import {
 } from '../context/ExtraInfoState';
 import type { ExtraInfoStateType } from '../context/ExtraInfoState';
 import Emergencies from '../context/Emergencies';
-import type { Emergency as EmergencyType } from '../context/Emergencies';
 import UserStatus from '../helpers/UserStatus';
 import { Loader, ScrollableBox } from '../common';
 import QueryRenderer from '../relay/QueryRenderer';
@@ -70,24 +69,25 @@ type FAQArticlePerexFragment = {|
   +$fragmentRefs: FAQArticle_article,
 |};
 
-type GuaranteeArticle = ?{| +$fragmentRefs: FAQArticle_article |};
-
 const queryRoot = graphql`
   query FAQCategoryListRootQuery(
-    $section: FAQSection
+    $section: FAQSection!
     $articleId: ID!
     $showGuaranteeArticle: Boolean!
   ) {
     FAQArticle(id: $articleId) @include(if: $showGuaranteeArticle) {
       ...FAQArticle_article
     }
-    allFAQCategories(section: $section) {
-      edges {
-        node {
-          id
-          title
-          ...FAQCategory_category
-        }
+    FAQSection(section: $section) {
+      id
+      subcategories {
+        id
+        title
+        ...FAQCategory_category
+      }
+      FAQs {
+        id
+        ...FAQArticle_article
       }
     }
   }
@@ -187,55 +187,43 @@ class RawFAQCategoryList extends React.Component<Props> {
     );
   };
 
-  renderCategoriesWithEmergencies = (
-    categories: $ReadOnlyArray<CategoryFragment>,
-    emergencies: EmergencyType[],
-    guaranteeArticle: ?GuaranteeArticle,
-  ) => (
-    <div>
-      <EmergencyHeader title="Current travel issues:" />
-      {emergencies.map((emergency, i) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <Emergency key={i} emergency={emergency} />
-      ))}
-      <EmergencyHeader title="Solve the issue by yourself:" />
-      {guaranteeArticle && (
-        <FAQArticle article={guaranteeArticle} isSearchResult />
-      )}
-      {this.renderCategories(categories)}
-    </div>
-  );
-
   renderRootCategory = (rendererProps: RootQueryRendererParams) => {
     if (rendererProps.error) {
       return <StaticFAQError />;
     }
 
     if (rendererProps.props) {
-      const edges =
-        idx(rendererProps.props, _ => _.allFAQCategories.edges) || [];
-      const categories = edges.map(edge => edge && edge.node).filter(Boolean);
+      const categories =
+        idx(rendererProps.props, _ => _.FAQSection.subcategories) || [];
+      const faqs = idx(rendererProps.props, _ => _.FAQSection.FAQs) || [];
+      const categoryId = idx(rendererProps.props, _ => _.FAQSection.id) || '';
       const guaranteeArticle =
         rendererProps.props && rendererProps.props.FAQArticle;
 
       return (
         <Emergencies.Consumer>
           {emergencies => {
-            if (emergencies && emergencies.length) {
-              return this.renderCategoriesWithEmergencies(
-                categories,
-                emergencies,
-                guaranteeArticle,
-              );
-            }
+            const hasEmergencies = emergencies && emergencies.length > 0;
 
             return (
-              <React.Fragment>
+              <ScrollableBox>
+                {hasEmergencies && (
+                  <EmergencyHeader title="Current travel issues:" />
+                )}
+                {emergencies &&
+                  emergencies.map((emergency, i) => (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <Emergency key={i} emergency={emergency} />
+                  ))}
+                {hasEmergencies && (
+                  <EmergencyHeader title="Solve the issue by yourself:" />
+                )}
                 {guaranteeArticle && (
                   <FAQArticle article={guaranteeArticle} isSearchResult />
                 )}
-                {this.renderCategories(categories)}
-              </React.Fragment>
+                {this.renderCategories(categories.filter(Boolean))}
+                {this.renderFAQArticlePerexes(faqs, categoryId)}
+              </ScrollableBox>
             );
           }}
         </Emergencies.Consumer>

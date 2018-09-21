@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1083252d14edaaef63ea2eddc034d7d1
+ * @relayHash 7617e465eeb7aa056efe1634774bf6b8
  */
 
 /* eslint-disable */
@@ -13,7 +13,7 @@ type FAQArticle_article$ref = any;
 type FAQCategory_category$ref = any;
 export type FAQSection = ('BEFORE_BOOKING' | 'PAST_BOOKING' | 'UPCOMING_BOOKING' | 'URGENT_BOOKING' | '%future added value');
 export type FAQCategoryListRootQueryVariables = {|
-  section?: ?FAQSection,
+  section: FAQSection,
   articleId: string,
   showGuaranteeArticle: boolean,
 |};
@@ -21,13 +21,16 @@ export type FAQCategoryListRootQueryResponse = {|
   +FAQArticle?: ?{|
     +$fragmentRefs: FAQArticle_article$ref,
   |},
-  +allFAQCategories: ?{|
-    +edges: ?$ReadOnlyArray<?{|
-      +node: ?{|
-        +id: string,
-        +title: ?string,
-        +$fragmentRefs: FAQCategory_category$ref,
-      |},
+  +FAQSection: ?{|
+    +id: string,
+    +subcategories: ?$ReadOnlyArray<?{|
+      +id: string,
+      +title: ?string,
+      +$fragmentRefs: FAQCategory_category$ref,
+    |}>,
+    +FAQs: ?$ReadOnlyArray<?{|
+      +id: string,
+      +$fragmentRefs: FAQArticle_article$ref,
     |}>,
   |},
 |};
@@ -36,7 +39,7 @@ export type FAQCategoryListRootQueryResponse = {|
 
 /*
 query FAQCategoryListRootQuery(
-  $section: FAQSection
+  $section: FAQSection!
   $articleId: ID!
   $showGuaranteeArticle: Boolean!
 ) {
@@ -44,13 +47,16 @@ query FAQCategoryListRootQuery(
     ...FAQArticle_article
     id
   }
-  allFAQCategories(section: $section) {
-    edges {
-      node {
-        id
-        title
-        ...FAQCategory_category
-      }
+  FAQSection(section: $section) {
+    id
+    subcategories {
+      id
+      title
+      ...FAQCategory_category
+    }
+    FAQs {
+      id
+      ...FAQArticle_article
     }
   }
 }
@@ -73,7 +79,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "section",
-    "type": "FAQSection",
+    "type": "FAQSection!",
     "defaultValue": null
   },
   {
@@ -94,7 +100,7 @@ v1 = [
     "kind": "Variable",
     "name": "section",
     "variableName": "section",
-    "type": "FAQSection"
+    "type": "FAQSection!"
   }
 ],
 v2 = {
@@ -111,7 +117,12 @@ v3 = {
   "args": null,
   "storageKey": null
 },
-v4 = [
+v4 = {
+  "kind": "FragmentSpread",
+  "name": "FAQArticle_article",
+  "args": null
+},
+v5 = [
   {
     "kind": "Variable",
     "name": "id",
@@ -119,7 +130,7 @@ v4 = [
     "type": "ID!"
   }
 ],
-v5 = [
+v6 = [
   v2,
   v3,
   {
@@ -135,7 +146,7 @@ return {
   "operationKind": "query",
   "name": "FAQCategoryListRootQuery",
   "id": null,
-  "text": "query FAQCategoryListRootQuery(\n  $section: FAQSection\n  $articleId: ID!\n  $showGuaranteeArticle: Boolean!\n) {\n  FAQArticle(id: $articleId) @include(if: $showGuaranteeArticle) {\n    ...FAQArticle_article\n    id\n  }\n  allFAQCategories(section: $section) {\n    edges {\n      node {\n        id\n        title\n        ...FAQCategory_category\n      }\n    }\n  }\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n",
+  "text": "query FAQCategoryListRootQuery(\n  $section: FAQSection!\n  $articleId: ID!\n  $showGuaranteeArticle: Boolean!\n) {\n  FAQArticle(id: $articleId) @include(if: $showGuaranteeArticle) {\n    ...FAQArticle_article\n    id\n  }\n  FAQSection(section: $section) {\n    id\n    subcategories {\n      id\n      title\n      ...FAQCategory_category\n    }\n    FAQs {\n      id\n      ...FAQArticle_article\n    }\n  }\n}\n\nfragment FAQArticle_article on FAQArticle {\n  id\n  title\n  perex\n}\n\nfragment FAQCategory_category on FAQCategory {\n  id\n  title\n  perex\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -147,39 +158,42 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "allFAQCategories",
+        "name": "FAQSection",
         "storageKey": null,
         "args": v1,
-        "concreteType": "FAQCategoryConnection",
+        "concreteType": "FAQCategory",
         "plural": false,
         "selections": [
+          v2,
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "edges",
+            "name": "subcategories",
             "storageKey": null,
             "args": null,
-            "concreteType": "FAQCategoryEdge",
+            "concreteType": "FAQCategory",
             "plural": true,
             "selections": [
+              v2,
+              v3,
               {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "node",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "FAQCategory",
-                "plural": false,
-                "selections": [
-                  v2,
-                  v3,
-                  {
-                    "kind": "FragmentSpread",
-                    "name": "FAQCategory_category",
-                    "args": null
-                  }
-                ]
+                "kind": "FragmentSpread",
+                "name": "FAQCategory_category",
+                "args": null
               }
+            ]
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "FAQs",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "FAQArticle",
+            "plural": true,
+            "selections": [
+              v2,
+              v4
             ]
           }
         ]
@@ -194,15 +208,11 @@ return {
             "alias": null,
             "name": "FAQArticle",
             "storageKey": null,
-            "args": v4,
+            "args": v5,
             "concreteType": "FAQArticle",
             "plural": false,
             "selections": [
-              {
-                "kind": "FragmentSpread",
-                "name": "FAQArticle_article",
-                "args": null
-              }
+              v4
             ]
           }
         ]
@@ -217,32 +227,32 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "allFAQCategories",
+        "name": "FAQSection",
         "storageKey": null,
         "args": v1,
-        "concreteType": "FAQCategoryConnection",
+        "concreteType": "FAQCategory",
         "plural": false,
         "selections": [
+          v2,
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "edges",
+            "name": "subcategories",
             "storageKey": null,
             "args": null,
-            "concreteType": "FAQCategoryEdge",
+            "concreteType": "FAQCategory",
             "plural": true,
-            "selections": [
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "node",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "FAQCategory",
-                "plural": false,
-                "selections": v5
-              }
-            ]
+            "selections": v6
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "FAQs",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "FAQArticle",
+            "plural": true,
+            "selections": v6
           }
         ]
       },
@@ -256,10 +266,10 @@ return {
             "alias": null,
             "name": "FAQArticle",
             "storageKey": null,
-            "args": v4,
+            "args": v5,
             "concreteType": "FAQArticle",
             "plural": false,
-            "selections": v5
+            "selections": v6
           }
         ]
       }
@@ -267,5 +277,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '85b8b8b0e56f289906f5a5e131a6fa96';
+(node/*: any*/).hash = 'c99a67d790bf11ddc76d011343666a81';
 module.exports = node;

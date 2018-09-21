@@ -12,14 +12,19 @@ import FAQArticleNotFound from './FAQArticleNotFound';
 import type { ArticleDetailQuery } from './__generated__/ArticleDetailQuery.graphql';
 import type { ArticleDetailSearchResultQuery } from './__generated__/ArticleDetailSearchResultQuery.graphql';
 import CustomBreadcrumbs from '../breadcrumbs/CustomBreadcrumbs';
+import sectionFAQCategories from '../sectionFAQCategories';
 
 const queryFAQArticleDetail = graphql`
-  query ArticleDetailQuery($id: ID!, $category_id: ID!) {
+  query ArticleDetailQuery(
+    $id: ID!
+    $categoryId: ID!
+    $isSubcategory: Boolean!
+  ) {
     FAQArticle(id: $id) {
       title
       ...ArticleContent_article
     }
-    FAQCategory(id: $category_id) {
+    FAQCategory(id: $categoryId) @include(if: $isSubcategory) {
       title
       id
       ancestors {
@@ -82,11 +87,11 @@ class Article extends React.Component<Props> {
         return <FAQArticleNotFound />;
       }
 
-      let breadcrumbs = [{ title: 'Search' }].concat([
-        { title: article.title },
-      ]);
+      let breadcrumbs = [{ title: 'Search' }, { title: article.title }];
 
-      if (category) {
+      if (this.isSectionCategory()) {
+        breadcrumbs = [{ title: 'Home' }, { title: article.title }];
+      } else if (category) {
         breadcrumbs = [{ title: 'Home' }]
           .concat(category.ancestors ? category.ancestors : [])
           .concat(category)
@@ -112,20 +117,26 @@ class Article extends React.Component<Props> {
     );
   };
 
-  isSearchResult() {
-    return this.getCategoryId() === 'search';
-  }
-
-  getCategoryId() {
+  getCategoryId = () => {
     return idx(this.props.match, _ => _.params.categoryId);
-  }
+  };
+
+  isSectionCategory = () => {
+    const categoryId = this.getCategoryId();
+
+    return categoryId && sectionFAQCategories.includes(categoryId);
+  };
 
   getQueryRenderer() {
-    if (this.isSearchResult()) {
+    const categoryId = this.getCategoryId();
+    const articleId = idx(this.props.match, _ => _.params.articleId);
+    const isSearchResult = categoryId === 'search';
+
+    if (isSearchResult) {
       return (
         <QueryRenderer
           query={queryFAQArticleDetailSearchResult}
-          variables={{ id: this.getArticleId() }}
+          variables={{ id: articleId }}
           render={this.renderDetailContent}
         />
       );
@@ -135,16 +146,13 @@ class Article extends React.Component<Props> {
       <QueryRenderer
         query={queryFAQArticleDetail}
         variables={{
-          id: this.getArticleId(),
-          category_id: this.getCategoryId(),
+          id: articleId,
+          categoryId,
+          isSubcategory: !this.isSectionCategory(),
         }}
         render={this.renderDetailContent}
       />
     );
-  }
-
-  getArticleId() {
-    return idx(this.props.match, _ => _.params.articleId);
   }
 
   render() {

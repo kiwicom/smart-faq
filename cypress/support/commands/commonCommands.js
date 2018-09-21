@@ -4,6 +4,10 @@
   Cypress
 */
 
+Cypress.Commands.add('getText', element => {
+  return element.invoke('text');
+});
+
 Cypress.Commands.add('signIntoAccount', () => {
   cy.visit('/');
   cy.get('[data-cy=btn-existent-booking]').click();
@@ -25,6 +29,13 @@ Cypress.Commands.add('getFirstFaqCategoryTitle', () => {
     .find('a')
     .first()
     .find('h1');
+});
+
+Cypress.Commands.add('clickOnArticle', () => {
+  cy
+    .get('[data-cy=faq-article-link]')
+    .first()
+    .click();
 });
 
 Cypress.Commands.add('loadFAQArticle', () => {

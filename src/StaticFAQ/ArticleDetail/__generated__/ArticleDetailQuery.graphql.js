@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 20983d7b78de48985077c2a4d627c1e0
+ * @relayHash f5e7342d099a1dbb542b256362fd3195
  */
 
 /* eslint-disable */
@@ -12,14 +12,15 @@ import type { ConcreteRequest } from 'relay-runtime';
 type ArticleContent_article$ref = any;
 export type ArticleDetailQueryVariables = {|
   id: string,
-  category_id: string,
+  categoryId: string,
+  isSubcategory: boolean,
 |};
 export type ArticleDetailQueryResponse = {|
   +FAQArticle: ?{|
     +title: ?string,
     +$fragmentRefs: ArticleContent_article$ref,
   |},
-  +FAQCategory: ?{|
+  +FAQCategory?: ?{|
     +title: ?string,
     +id: string,
     +ancestors: ?$ReadOnlyArray<?{|
@@ -34,14 +35,15 @@ export type ArticleDetailQueryResponse = {|
 /*
 query ArticleDetailQuery(
   $id: ID!
-  $category_id: ID!
+  $categoryId: ID!
+  $isSubcategory: Boolean!
 ) {
   FAQArticle(id: $id) {
     title
     ...ArticleContent_article
     id
   }
-  FAQCategory(id: $category_id) {
+  FAQCategory(id: $categoryId) @include(if: $isSubcategory) {
     title
     id
     ancestors {
@@ -69,8 +71,14 @@ var v0 = [
   },
   {
     "kind": "LocalArgument",
-    "name": "category_id",
+    "name": "categoryId",
     "type": "ID!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "isSubcategory",
+    "type": "Boolean!",
     "defaultValue": null
   }
 ],
@@ -97,34 +105,41 @@ v3 = {
   "storageKey": null
 },
 v4 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "FAQCategory",
-  "storageKey": null,
-  "args": [
-    {
-      "kind": "Variable",
-      "name": "id",
-      "variableName": "category_id",
-      "type": "ID!"
-    }
-  ],
-  "concreteType": "FAQCategory",
-  "plural": false,
+  "kind": "Condition",
+  "passingValue": true,
+  "condition": "isSubcategory",
   "selections": [
-    v2,
-    v3,
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "ancestors",
+      "name": "FAQCategory",
       "storageKey": null,
-      "args": null,
+      "args": [
+        {
+          "kind": "Variable",
+          "name": "id",
+          "variableName": "categoryId",
+          "type": "ID!"
+        }
+      ],
       "concreteType": "FAQCategory",
-      "plural": true,
+      "plural": false,
       "selections": [
+        v2,
         v3,
-        v2
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "ancestors",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "FAQCategory",
+          "plural": true,
+          "selections": [
+            v3,
+            v2
+          ]
+        }
       ]
     }
   ]
@@ -134,7 +149,7 @@ return {
   "operationKind": "query",
   "name": "ArticleDetailQuery",
   "id": null,
-  "text": "query ArticleDetailQuery(\n  $id: ID!\n  $category_id: ID!\n) {\n  FAQArticle(id: $id) {\n    title\n    ...ArticleContent_article\n    id\n  }\n  FAQCategory(id: $category_id) {\n    title\n    id\n    ancestors {\n      id\n      title\n    }\n  }\n}\n\nfragment ArticleContent_article on FAQArticle {\n  id\n  title\n  perex\n  content\n}\n",
+  "text": "query ArticleDetailQuery(\n  $id: ID!\n  $categoryId: ID!\n  $isSubcategory: Boolean!\n) {\n  FAQArticle(id: $id) {\n    title\n    ...ArticleContent_article\n    id\n  }\n  FAQCategory(id: $categoryId) @include(if: $isSubcategory) {\n    title\n    id\n    ancestors {\n      id\n      title\n    }\n  }\n}\n\nfragment ArticleContent_article on FAQArticle {\n  id\n  title\n  perex\n  content\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -200,5 +215,5 @@ return {
   }
 };
 })();
-(node/*: any*/).hash = '2e5d902c236f47cc2a17f958a733962d';
+(node/*: any*/).hash = '65b4847f742f5438129863eb7001d18c';
 module.exports = node;
