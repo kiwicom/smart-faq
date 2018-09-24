@@ -80,6 +80,9 @@ export default (departureTime, guaranteeBy) => ({
           },
         ],
       },
+      customerSupport: {
+        hasGuaranteeChat: guaranteeBy === 'KIWICOM',
+      },
       type: 'ONE_WAY',
       upcomingLeg: {
         arrival: {

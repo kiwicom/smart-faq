@@ -9,7 +9,6 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 export type BookingStatus = ('CANCELLED' | 'CLOSED' | 'CONFIRMED' | 'DELETED' | 'EXPIRED' | 'NEW' | 'PENDING' | 'REFUNDED' | '%future added value');
-export type CoveredBy = ('CARRIER' | 'KIWICOM' | '%future added value');
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type GuaranteeNeededResolver_booking$ref: FragmentReference;
 export type GuaranteeNeededResolver_booking = {|
@@ -23,10 +22,11 @@ export type GuaranteeNeededResolver_booking = {|
       +lastname: ?string,
     |},
   |},
+  +customerSupport: ?{|
+    +hasGuaranteeChat: ?boolean,
+  |},
   +upcomingLeg: ?{|
-    +guarantee: ?CoveredBy,
     +arrival: ?{|
-      +time: ?any,
       +airport: ?{|
         +city: ?{|
           +name: ?string,
@@ -35,7 +35,6 @@ export type GuaranteeNeededResolver_booking = {|
       |},
     |},
     +departure: ?{|
-      +time: ?any,
       +airport: ?{|
         +city: ?{|
           +name: ?string,
@@ -51,13 +50,6 @@ export type GuaranteeNeededResolver_booking = {|
 
 const node/*: ConcreteFragment*/ = (function(){
 var v0 = [
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "time",
-    "args": null,
-    "storageKey": null
-  },
   {
     "kind": "LinkedField",
     "alias": null,
@@ -169,6 +161,24 @@ return {
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "customerSupport",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "BookingCustomerSupport",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "hasGuaranteeChat",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
       "name": "upcomingLeg",
       "storageKey": "upcomingLeg(guarantee:\"KIWICOM\")",
       "args": [
@@ -182,13 +192,6 @@ return {
       "concreteType": "Leg",
       "plural": false,
       "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "guarantee",
-          "args": null,
-          "storageKey": null
-        },
         {
           "kind": "LinkedField",
           "alias": null,
@@ -214,5 +217,5 @@ return {
   ]
 };
 })();
-(node/*: any*/).hash = '92c9d3d84ef33bc07e2231192e163745';
+(node/*: any*/).hash = 'c5f295c3d55615ae5bf9c5b7ed4d2365';
 module.exports = node;

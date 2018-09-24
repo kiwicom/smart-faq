@@ -2,7 +2,6 @@
 
 import idx from 'idx';
 import * as React from 'react';
-import { DateTime } from 'luxon';
 import { graphql, createFragmentContainer } from 'react-relay';
 
 import { simpleTracker } from '../helpers/analytics/trackers';
@@ -21,8 +20,6 @@ type Props = {|
   toggleGuaranteeChat: boolean => void,
   onSetBookingInfo: GuaranteeChatBookingInfo => void,
 |};
-
-const THRESHOLD = 4; // hours before departure
 
 class GuaranteeNeededResolver extends React.Component<Props> {
   componentDidMount() {
@@ -87,24 +84,9 @@ class GuaranteeNeededResolver extends React.Component<Props> {
 
   shouldShowGuaranteeChat = () => {
     const booking = this.props.booking;
-    const departureTime = idx(booking, _ => _.upcomingLeg.departure.time);
-    const arrivalTime = idx(booking, _ => _.upcomingLeg.arrival.time);
-    const hoursBeforeDeparture = departureTime
-      ? DateTime.fromJSDate(new Date(departureTime), { zone: 'utc' }).diffNow(
-          'hours',
-        ).hours
-      : null;
-    const hoursBeforeArrival = arrivalTime
-      ? DateTime.fromJSDate(new Date(arrivalTime), { zone: 'utc' }).diffNow(
-          'hours',
-        ).hours
-      : null;
-    const showGuaranteeChat = Boolean(
-      idx(this.props.booking, _ => _.upcomingLeg.guarantee) === 'KIWICOM' &&
-        hoursBeforeDeparture &&
-        hoursBeforeArrival &&
-        THRESHOLD > hoursBeforeDeparture &&
-        hoursBeforeArrival > 0,
+    const showGuaranteeChat = idx(
+      booking,
+      _ => _.customerSupport.hasGuaranteeChat,
     );
 
     if (showGuaranteeChat !== this.props.showGuaranteeChat) {
@@ -114,7 +96,7 @@ class GuaranteeNeededResolver extends React.Component<Props> {
         });
       }
 
-      this.props.toggleGuaranteeChat(showGuaranteeChat);
+      this.props.toggleGuaranteeChat(Boolean(showGuaranteeChat));
     }
   };
 
@@ -166,10 +148,11 @@ export default createFragmentContainer(
           lastname
         }
       }
+      customerSupport {
+        hasGuaranteeChat
+      }
       upcomingLeg(guarantee: KIWICOM) {
-        guarantee
         arrival {
-          time
           airport {
             city {
               name
@@ -178,7 +161,6 @@ export default createFragmentContainer(
           }
         }
         departure {
-          time
           airport {
             city {
               name
