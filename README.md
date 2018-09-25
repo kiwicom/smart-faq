@@ -60,7 +60,46 @@ the squashed commit also according to the convention.
 
 ## Translations
 
-explain something
+- Check out [nitrolib](https://github.com/kiwicom/nitrolib) docs for more info.
+- [DOCs for Phraseapp](https://phraseapp.com/docs/) - where the translations are stored for translators
+- List of all supported languages is defined by file `src/translations/langInfos.js`
+
+### How to use translations in code
+
+- Use `Text` from [nitrolib](https://github.com/kiwicom/nitrolib) as `Trans` and don't confuse it with `Text` from [Orbit](https://github.com/kiwicom/orbit-components):
+
+Frome Nitrolib docs:
+
+> Make sure to wrap translation keys in the global `__` function!
+
+```js
+import Trans from "@kiwicom/nitro/lib/components/Text";
+```
+
+Props:
+```js
+type Props = {
+  t: string, // the translation key
+  values?: Values, // a map of placeholders and their values
+  html?: boolean, // make it 'true' if your translation string contains HTML elements
+};
+```
+
+Example:
+```js
+const Submit = () => (
+  <Button>
+    <Trans t={__("smartfaq.submit_button")} />
+  </Button>
+);
+```
+
+### Flow with translations
+
+1.  Download latest translations from PhraseApp via `yarn translations:download`.
+2.  Add your keys to `src/translations/enKeys.json` json file.
+3.  Upload translations to PharseApp via `yarn translations:upload`.
+4.  Post it on #web-translations, mentioning all keys that needs to be translated.
 
 ## Theming
 
