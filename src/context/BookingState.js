@@ -25,6 +25,9 @@ const initialState = {
   FAQSection: 'BEFORE_BOOKING',
   selectedBooking: null,
   booking: null,
+  loadingStatus: {
+    loading: true,
+  },
 };
 
 export type FAQSectionType =
@@ -38,11 +41,21 @@ type Props = {
   isPastBooking?: boolean, // eslint-disable-line react/no-unused-prop-types
   hasBooking: boolean,
   booking: ?BookingType,
+  loadingStatus: {
+    notFound?: true,
+    loading?: true,
+    error?: true,
+  },
 };
 
 type StateValues = {
   FAQSection: ?FAQSectionType,
   booking: ?BookingType,
+  loadingStatus: {
+    notFound?: true,
+    loading?: true,
+    error?: true,
+  },
 };
 
 type StateCallbacks = {};
@@ -65,7 +78,7 @@ export const BookingState = React.createContext({
 class BookingStateProvider extends React.Component<Props, BookingStateType> {
   constructor(props: Props) {
     super(props);
-    const { hasBooking, isPastBooking, booking } = props;
+    const { hasBooking, isPastBooking, booking, loadingStatus } = props;
     const departureTime =
       idx(booking, _ => _.outbound.departure.time) ||
       idx(booking, _ => _.trip.departure.time) ||
@@ -80,6 +93,7 @@ class BookingStateProvider extends React.Component<Props, BookingStateType> {
       ...initialState,
       FAQSection: getFAQSection({ hasBooking, isUrgent, isPastBooking }),
       booking: booking,
+      loadingStatus,
     };
   }
 
