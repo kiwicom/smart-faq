@@ -30,24 +30,27 @@ import type { BookingType } from '../types';
 type MobileBookingPageProps = {|
   +bookingPage: string,
   booking: ?BookingType,
+  loadingStatus: {
+    notFound?: true,
+    loading?: true,
+    error?: true,
+  },
 |};
 
 const MobileBookingPage = (props: MobileBookingPageProps) => {
-  const { bookingPage, booking } = props;
+  const { bookingPage, booking, loadingStatus } = props;
   if (bookingPage === 'SINGLE_BOOKING') {
-    //if (renderState && renderState.error) {
-    //return <div>Error</div>;
-    //}
+    if (loadingStatus.error) {
+      return <div>Error</div>;
+    }
 
-    if (!booking) {
+    if (loadingStatus.loading) {
       return <div>Loading</div>;
     }
 
-    //const booking = renderState.props.nearestBooking;
-
-    //if (!booking) {
-    //return <div>Not found</div>;
-    //}
+    if (loadingStatus.notFound) {
+      return <div>Not found</div>;
+    }
 
     return <MobileBookingDetail booking={booking} />;
   }
@@ -58,10 +61,14 @@ const MobileBookingPage = (props: MobileBookingPageProps) => {
 const MobileBookingSummary = () => (
   <div>
     <BookingState.Consumer>
-      {({ booking }) => (
+      {({ booking, loadingStatus }) => (
         <SelectedBooking.Consumer>
           {({ bookingPage }) => (
-            <MobileBookingPage bookingPage={bookingPage} booking={booking} />
+            <MobileBookingPage
+              bookingPage={bookingPage}
+              booking={booking}
+              loadingStatus={loadingStatus}
+            />
           )}
         </SelectedBooking.Consumer>
       )}

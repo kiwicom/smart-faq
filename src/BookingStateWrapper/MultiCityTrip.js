@@ -16,6 +16,7 @@ const MultiCityTrip = ({ children, booking }: Props) => (
     isPastBooking={booking.isPastBooking}
     onLogout={async () => null}
     booking={booking}
+    loadingStatus={{}}
   >
     {children}
   </BookingStateProvider>

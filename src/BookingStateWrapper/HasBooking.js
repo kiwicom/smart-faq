@@ -8,6 +8,7 @@ import OneWayTrip from './OneWayTrip';
 import ReturnTrip from './ReturnTrip';
 import MultiCityTrip from './MultiCityTrip';
 import HasBooking_booking from './__generated__/HasBooking_booking.graphql';
+import NoBooking from './NoBooking';
 import type { onLogout } from '../types';
 
 type Props = {
@@ -41,7 +42,7 @@ const HasBooking = ({ booking, children, onLogout }: Props) => {
     );
   }
 
-  return null;
+  return <NoBooking error>{children}</NoBooking>;
 };
 
 export default createFragmentContainer(

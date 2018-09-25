@@ -75,6 +75,15 @@ const BookingStateWrapper = ({ children, loginToken, locale }: Props) => {
         idx(props, _ => _.booking.return) ||
         idx(props, _ => _.booking.multicity)); // eslint-disable-line react/prop-types
 
+    if (props === null) {
+      return (
+        <React.Fragment>
+          <GuaranteeNeededResolver booking={booking} />
+          <NoBooking loading>{children}</NoBooking>
+        </React.Fragment>
+      );
+    }
+
     return booking ? (
       <React.Fragment>
         <GuaranteeNeededResolver booking={booking} />
@@ -83,7 +92,7 @@ const BookingStateWrapper = ({ children, loginToken, locale }: Props) => {
     ) : (
       <React.Fragment>
         <GuaranteeNeededResolver booking={booking} />
-        <NoBooking>{children}</NoBooking>
+        <NoBooking notFound>{children}</NoBooking>
       </React.Fragment>
     );
   };
@@ -111,7 +120,7 @@ const BookingStateWrapper = ({ children, loginToken, locale }: Props) => {
         </SelectedBooking.Consumer>
       </UserStatus.LoggedIn>
       <UserStatus.LoggedOut>
-        <NoBooking>{children}</NoBooking>
+        <NoBooking notFound>{children}</NoBooking>
       </UserStatus.LoggedOut>
     </React.Fragment>
   );
