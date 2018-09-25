@@ -124,7 +124,7 @@ type Props = {|
 class SignIn extends React.Component<Props> {
   renderExpiredSession() {
     return (
-      <div className="infoMessage">
+      <div className="infoMessage" data-cy="message-expired-session">
         <Alert type="info" icon={<AlertCircle />}>
           Your last session has expired. Please sign in again.
         </Alert>
