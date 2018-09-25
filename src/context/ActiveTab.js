@@ -32,23 +32,22 @@ class ActiveTabProvider extends React.Component<Props, ActiveTabType> {
   constructor(props: Props) {
     super(props);
 
-    const activateTab = (tab: TabType) => {
-      this.setState({ activeTab: tab });
-    };
-
-    const toggleTab = (tab: TabType) => {
-      this.setState(prevState => ({
-        activeTab: prevState.activeTab === tab ? null : tab,
-      }));
-      this.forceUpdate();
-    };
-
     this.state = {
       ...initialState,
-      activateTab: activateTab,
-      toggleTab: toggleTab,
+      activateTab: this.activateTab,
+      toggleTab: this.toggleTab,
     };
   }
+
+  activateTab = (tab: TabType) => {
+    this.setState({ activeTab: tab });
+  };
+
+  toggleTab = (tab: TabType) => {
+    this.setState(prevState => ({
+      activeTab: prevState.activeTab === tab ? null : tab,
+    }));
+  };
 
   render() {
     return (
