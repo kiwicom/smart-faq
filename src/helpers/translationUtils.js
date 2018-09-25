@@ -23,6 +23,7 @@ export const fromLanguageToLocale = (lang: string): string =>
 
 export const loadStaticTranslations = (langId: string) => {
   try {
+    // $FlowExpectedError: Expected use of none string literal
     return require(`../translations/locales/${langId}/translation.json`);
   } catch (error) {
     console.error(
