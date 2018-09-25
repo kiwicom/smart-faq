@@ -49,13 +49,9 @@ class QueryRenderer<RenderProps> extends React.Component<
   ContextTypes & Props<RenderProps>,
   State,
 > {
-  static getDerivedStateFromProps(nextProps, state) {
+  static getDerivedStateFromProps(nextProps) {
     const { loginToken, language } = nextProps;
     const locale = fromLanguageToLocale(language);
-
-    if (state.locale === locale && state.loginToken === loginToken) {
-      return null;
-    }
 
     return {
       environment: createEnvironment(loginToken, locale),
