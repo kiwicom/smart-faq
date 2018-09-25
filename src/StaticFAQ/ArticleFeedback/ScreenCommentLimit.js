@@ -37,9 +37,8 @@ const ScreenCommentLimit = ({ changeScreen }: Props) => {
           <Close customColor="#bac7d5" size="small" />
         </div>
         <Alert type="warning">
-          You&apos;ve reached the maximum of 3 feedback comments for this
-          article. We&apos;ll review your notes and adjust the article if
-          necessary. Thank you.
+          You&apos;ve reached the daily maximum number of comments. We&apos;ll
+          review your notes and adjust the article if necessary. Thank you.
         </Alert>
         <style jsx>{style}</style>
       </div>
