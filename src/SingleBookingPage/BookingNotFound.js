@@ -14,7 +14,8 @@ const style = css`
   }
   div.feedback {
     margin-top: 32px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
   }
 `;
 
@@ -22,7 +23,7 @@ const BookingNotFound = () => (
   <div className="UpcomingBooking">
     <div className="feedback">
       <Text type="secondary" size="large">
-        No Bookings found
+        No bookings found
       </Text>
     </div>
     <style jsx>{style}</style>
