@@ -37,8 +37,8 @@ const ScreenError = ({ changeScreen }: Props) => {
           <Close customColor="#bac7d5" size="small" />
         </div>
         <Alert type="warning" icon>
-          Our bad. We weren&apos;t able to send your feedback. But, follow the
-          link below to drop us a line.
+          Sorry, we didn&apos;t receive your feedback. Please refresh the page
+          or try again later.
         </Alert>
         <style jsx>{style}</style>
       </div>
