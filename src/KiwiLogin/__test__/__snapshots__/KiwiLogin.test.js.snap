@@ -33,7 +33,11 @@ exports[`KiwiLogin should match snapshot 1`] = `
     <p
       className="jsx-914440731 title"
     >
-      Kiwi.com account
+      <Text
+        html={false}
+        t="smartfaq.kiwi_login.title"
+        values={Object {}}
+      />
     </p>
     <MediaQuery
       query="(min-width: 480px) and (min-height: 480px)"
@@ -42,7 +46,11 @@ exports[`KiwiLogin should match snapshot 1`] = `
       <Text
         type="secondary"
       >
-        If you have an account with us, just use your credentials to sign in.
+        <Text
+          html={false}
+          t="smartfaq.kiwi_login.subtitle"
+          values={Object {}}
+        />
       </Text>
     </MediaQuery>
     <MediaQuery
@@ -52,7 +60,11 @@ exports[`KiwiLogin should match snapshot 1`] = `
       <Text
         type="secondary"
       >
-        If you have an account with us, just use your credentials to sign in.
+        <Text
+          html={false}
+          t="smartfaq.kiwi_login.subtitle"
+          values={Object {}}
+        />
       </Text>
     </MediaQuery>
     <form
@@ -63,7 +75,11 @@ exports[`KiwiLogin should match snapshot 1`] = `
         className="jsx-914440731"
         htmlFor="email"
       >
-        Email:
+        <Text
+          html={false}
+          t="smartfaq.kiwi_login.email_label"
+          values={Object {}}
+        />
         <div
           className="jsx-914440731 input"
         >
@@ -81,7 +97,11 @@ exports[`KiwiLogin should match snapshot 1`] = `
         className="jsx-914440731"
         htmlFor="password"
       >
-        Password:
+        <Text
+          html={false}
+          t="smartfaq.kiwi_login.password_label"
+          values={Object {}}
+        />
         <div
           className="jsx-914440731 input"
         >
@@ -103,7 +123,11 @@ exports[`KiwiLogin should match snapshot 1`] = `
           onClick={[Function]}
           type="primary"
         >
-          Forgot your password?
+          <Text
+            html={false}
+            t="smartfaq.kiwi_login.link_to_forgotten_password"
+            values={Object {}}
+          />
         </TextLink>
       </div>
       <span
@@ -114,7 +138,11 @@ exports[`KiwiLogin should match snapshot 1`] = `
           block={true}
           onClick={[Function]}
         >
-          Sign In
+          <Text
+            html={false}
+            t="smartfaq.kiwi_login.sign_in_button"
+            values={Object {}}
+          />
         </Button>
       </span>
     </form>
