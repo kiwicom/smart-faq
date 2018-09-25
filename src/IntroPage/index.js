@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Trans } from 'react-i18next';
 import { Text } from '@kiwicom/orbit-components';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import image from '../../static/woman-with-laptop@2x.jpg';
 import CloseButton from './../common/buttons/CloseButton';
@@ -176,12 +176,10 @@ export class PureIntro extends React.Component<Props> {
         </div>
         <div className="text">
           <p className="title">
-            <Trans i18nKey="IntroPage.header">Need help?</Trans>
+            <Trans t={__('smartfaq.intro_page.title')} />
           </p>
           <Text type="secondary">
-            <Trans i18nKey="IntroPage.subheader">
-              {"We're here for you. First, let's narrow down your request."}
-            </Trans>
+            <Trans t={__('smartfaq.intro_page.subtitle')} />
           </Text>
         </div>
         <div className="buttons">
@@ -190,9 +188,7 @@ export class PureIntro extends React.Component<Props> {
               onClick={this.goToExistingBooking}
               data-cy="btn-existent-booking"
             >
-              <Trans i18nKey="IntroPage.existingBooking">
-                I have an existing booking
-              </Trans>
+              <Trans t={__('smartfaq.intro_page.existing_booking')} />
             </button>
           </div>
           <div className="secondary">
@@ -200,9 +196,7 @@ export class PureIntro extends React.Component<Props> {
               onClick={this.goToNoBooking}
               data-cy="btn-nonexistent-booking"
             >
-              <Trans i18nKey="IntroPage.noBooking">
-                I don&apos;t have a booking
-              </Trans>
+              <Trans t={__('smartfaq.intro_page.no_booking')} />
             </button>
           </div>
         </div>

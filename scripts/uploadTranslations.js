@@ -3,9 +3,7 @@ const fs = require('fs');
 const request = require('request-promise-native');
 const argv = require('minimist')(process.argv.slice(2));
 
-const languages = require('../i18n/languages');
-
-const prepareRequest = (language, translationOpts) => {
+const prepareRequest = translationOpts => {
   const projectId = process.env.PHRASE_PROJECT_ID;
   const accessToken = process.env.PHRASE_ACCESS_TOKEN;
   const options = {
@@ -16,13 +14,13 @@ const prepareRequest = (language, translationOpts) => {
     },
     formData: {
       file: {
-        value: fs.createReadStream(`i18n/${language}/translation.json`),
+        value: fs.createReadStream(`src/translations/enKeys.json`),
         options: {
           filename: 'translation.json',
           contentType: 'application/json',
         },
       },
-      locale_id: language,
+      locale_id: 'en',
       file_format: 'simple_json',
       ...translationOpts,
     },
@@ -37,7 +35,7 @@ const uploadTranslations = async () => {
     branch: argv.branch || '',
   };
 
-  await Promise.all(languages.map(lang => prepareRequest(lang, options)));
+  await prepareRequest(options);
 };
 
 uploadTranslations().then(

@@ -4,13 +4,11 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import classNames from 'classnames';
-import { I18nextProvider } from 'react-i18next';
 import 'url-search-params-polyfill';
 import EventListener, { withOptions } from 'react-event-listener';
 import FocusTrap from 'react-focus-trap';
+import * as intlContext from '@kiwicom/nitro/lib/services/intl/context';
 
-import initTranslation from './initTranslation';
-import EnLocale from '../i18n/en/translation.json';
 import Routes from './Routes';
 import { CloseContext } from './context/Close';
 import { LanguageContext } from './context/Language';
@@ -26,6 +24,8 @@ import { EnterTracker, TimeTracker } from './helpers/analytics/trackers';
 import type { AppProps } from './types';
 import MobileSafariScroll from './helpers/MobileSafariScroll';
 import GuaranteeChatInfo from './context/GuaranteeChatInfo';
+import { langInfos } from './translations/langInfos';
+import { loadStaticTranslations } from './helpers/translationUtils';
 
 const style = css`
   .smartFAQ {
@@ -57,8 +57,6 @@ type State = {|
 |};
 
 class App extends React.PureComponent<AppProps, State> {
-  i18n: {};
-
   static getDerivedStateFromProps(nextProps: AppProps) {
     return {
       userContext: {
@@ -75,7 +73,6 @@ class App extends React.PureComponent<AppProps, State> {
   constructor(props: AppProps) {
     super(props);
 
-    this.i18n = initTranslation(props.language, EnLocale);
     this.state = {
       userContext: {
         user: props.user,
@@ -94,8 +91,11 @@ class App extends React.PureComponent<AppProps, State> {
   };
 
   renderApp() {
-    const { route, emergencies } = this.props;
+    const { route, emergencies, language } = this.props;
     const isOpen = Boolean(route);
+
+    const langInfo = langInfos[language];
+    const translations = loadStaticTranslations(language);
 
     return (
       <FocusTrap active={isOpen}>
@@ -113,8 +113,11 @@ class App extends React.PureComponent<AppProps, State> {
             rel="stylesheet"
           />
           <ErrorBoundary>
-            <I18nextProvider i18n={this.i18n}>
-              <LanguageContext.Provider value={this.props.language}>
+            <intlContext.Provider
+              language={langInfo}
+              translations={translations}
+            >
+              <LanguageContext.Provider value={language}>
                 <CloseContext.Provider value={this.props.onClose}>
                   <UserContext.Provider value={this.state.userContext}>
                     <SearchStateProvider>
@@ -149,7 +152,7 @@ class App extends React.PureComponent<AppProps, State> {
                   </UserContext.Provider>
                 </CloseContext.Provider>
               </LanguageContext.Provider>
-            </I18nextProvider>
+            </intlContext.Provider>
           </ErrorBoundary>
           <style jsx global>
             {style}

@@ -12,8 +12,8 @@ import { withLoginToken } from '../context/User';
 import { withLogout } from '../context/BookingState';
 import { withLanguage } from '../context/Language';
 import createEnvironment, { ERROR_FORBIDDEN } from './environment';
-import frontendLanguageToLocale from '../helpers/frontendLanguageToLocale';
 import type { onLogout } from '../types';
+import { fromLanguageToLocale } from '../helpers/translationUtils';
 
 type RenderArgs<RenderProps> = {
   error: ?Error,
@@ -51,7 +51,7 @@ class QueryRenderer<RenderProps> extends React.Component<
 > {
   static getDerivedStateFromProps(nextProps, state) {
     const { loginToken, language } = nextProps;
-    const locale = frontendLanguageToLocale[language];
+    const locale = fromLanguageToLocale(language);
 
     if (state.locale === locale && state.loginToken === loginToken) {
       return null;
@@ -68,7 +68,8 @@ class QueryRenderer<RenderProps> extends React.Component<
     super(props);
 
     const { loginToken, language } = props;
-    const locale = frontendLanguageToLocale[language];
+    const locale = fromLanguageToLocale(language);
+
     this.state = {
       environment: createEnvironment(loginToken, locale),
       loginToken, // eslint-disable-line react/no-unused-state

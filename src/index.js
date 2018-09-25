@@ -1,6 +1,6 @@
 // @flow
 
-/*  eslint-disable import/no-extraneous-dependencies, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
+/*  eslint-disable import/no-extraneous-dependencies, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, no-console */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Cookies from 'js-cookie';
@@ -23,6 +23,7 @@ type State = {|
   showEmergencies: boolean,
   enableChat: boolean,
   forceChat: boolean,
+  language: string,
 |};
 
 const user = {
@@ -82,6 +83,7 @@ class Root extends React.Component<Props, State> {
       forceChat: window.GuaranteeChatForce,
       showEmergencies,
       helpQuery: helpQueryString ? helpQueryString : '/',
+      language: 'en',
     };
     this.setupLogs();
     this.setupTracker();
@@ -125,7 +127,6 @@ class Root extends React.Component<Props, State> {
     });
     const stagingCuckoo = {
       infinario: (eventName: LogEvent, payload: EventPayload) => {
-        //eslint-disable-next-line no-console
         console.info('Event recorded to KeenIO', eventName, payload);
         keen.recordEvent(eventName, payload);
       },
@@ -156,7 +157,6 @@ class Root extends React.Component<Props, State> {
     const password = process.env.TEST_USER_PASSWORD;
 
     if (!(email && password)) {
-      //eslint-disable-next-line no-console
       console.error('Testing user not set in env vars.');
       return;
     }
@@ -200,9 +200,12 @@ class Root extends React.Component<Props, State> {
     }));
   };
 
+  changeLanguage = (e: SyntheticInputEvent<HTMLInputElement>) => {
+    this.setState({ language: e.target.value });
+  };
+
   render() {
-    const { helpQuery, showEmergencies } = this.state;
-    const language = 'en';
+    const { helpQuery, showEmergencies, language } = this.state;
 
     return (
       <div>
@@ -236,6 +239,37 @@ class Root extends React.Component<Props, State> {
             onChange={this.onForceChat}
             checked={this.state.forceChat}
           />
+          <h3>Change languages</h3>
+          <label htmlFor="en-GB">
+            <input
+              type="radio"
+              value="en"
+              id="en-GB"
+              checked={language === 'en'}
+              onChange={this.changeLanguage}
+            />
+            English(en-GB)
+          </label>
+          <label htmlFor="es-ES">
+            <input
+              type="radio"
+              value="es"
+              id="es-ES"
+              checked={language === 'es'}
+              onChange={this.changeLanguage}
+            />
+            Spanish(es-ES)
+          </label>
+          <label htmlFor="cs-CZ">
+            <input
+              type="radio"
+              value="cz"
+              id="cs-CZ"
+              checked={language === 'cz'}
+              onChange={this.changeLanguage}
+            />
+            Czech(cs-CZ)
+          </label>
         </div>
         {helpQuery && (
           <div className="sidebarOverlay" onClick={this.closeApp} />

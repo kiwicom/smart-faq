@@ -3,7 +3,11 @@ const fs = require('fs-extra');
 const request = require('request-promise-native');
 const argv = require('minimist')(process.argv.slice(2));
 
-const languages = require('../i18n/languages');
+// once all translations are ready, download all supported translations
+// const { supportedLanguages } = require('../src/helpers/translationUtils');
+// const languages = Object.keys(supportedLanguages);
+
+const languages = ['en'];
 
 const prepareRequest = language => {
   const projectId = process.env.PHRASE_PROJECT_ID;
@@ -27,9 +31,13 @@ const prepareRequest = language => {
 const downloadTranslations = () => {
   const result = languages.map(language => {
     return prepareRequest(language).then(translation =>
-      fs.outputJson(`i18n/${language}/translation.json`, translation, {
-        spaces: '  ',
-      }),
+      fs.outputJson(
+        `src/translations/locales/${language}/translation.json`,
+        translation,
+        {
+          spaces: '  ',
+        },
+      ),
     );
   });
   return Promise.all(result);

@@ -60,9 +60,46 @@ the squashed commit also according to the convention.
 
 ## Translations
 
-- Check out [react-i18next](https://react.i18next.com/) and [i18next](https://www.i18next.com/) docs for more info.
+- Check out [nitrolib](https://github.com/kiwicom/nitrolib) docs for more info.
 - [DOCs for Phraseapp](https://phraseapp.com/docs/) - where the translations are stored for translators
-- List of all supported languages is defined by file `i18n/languages.js`
+- List of all supported languages is defined by file `src/translations/langInfos.js`
+
+### How to use translations in code
+
+- Use `Text` from [nitrolib](https://github.com/kiwicom/nitrolib) as `Trans` and don't confuse it with `Text` from [Orbit](https://github.com/kiwicom/orbit-components):
+
+Frome Nitrolib docs:
+
+> Make sure to wrap translation keys in the global `__` function!
+
+```js
+import Trans from "@kiwicom/nitro/lib/components/Text";
+```
+
+Props:
+```js
+type Props = {
+  t: string, // the translation key
+  values?: Values, // a map of placeholders and their values
+  html?: boolean, // make it 'true' if your translation string contains HTML elements
+};
+```
+
+Example:
+```js
+const Submit = () => (
+  <Button>
+    <Trans t={__("smartfaq.submit_button")} />
+  </Button>
+);
+```
+
+### Flow with translations
+
+1.  Download latest translations from PhraseApp via `yarn translations:download`.
+2.  Add your keys to `src/translations/enKeys.json` json file.
+3.  Upload translations to PharseApp via `yarn translations:upload`.
+4.  Post it on #web-translations, mentioning all keys that needs to be translated.
 
 ## Theming
 
@@ -81,41 +118,6 @@ const App = () => (
 ```
 
 See their [docs](https://orbit.kiwi/guidelines/theming/) for more info.
-
-### How to use translations in code
-
-- be declarative & use `Trans` component whenever it's possible:
-
-```
-<Trans i18nKey="translationKey">
-  Hello <strong>{{name}}</strong>, you have {{count}} unread message.
-</Trans>
-```
-
-- Children of the `Trans` component will be used as default translation when executing `yarn translations:collect` & during development when the key is missing (collect command haven't been executed yet).
-- When executing `yarn translations:collect`, such translation key will be saved like this:
-
-```json
-{
-  "translationKey": "Hello <1><0>{{name}}</0></1>, you have <3>{{count}}</3> unread message."
-}
-```
-
-- on places where it's not possible, use function named `__t`:
-
-```
-<div title={__t('translationKey')}></div>
-```
-
-- such key is saved with the value `__STRING_NOT_TRANSLATED__` - you need to provide translation manually.
-
-### Typical flow with translations
-
-1.  _(In future)_ Download latest translations from PhraseApp via `yarn trasnlations:download`.
-2.  Before you push your changes and create PR, collect your translations via `yarn translations:collect`.
-3.  Translate all `__STRING_NOT_TRANSLATED__` fields.
-4.  _(In future)_ Upload collected translations to be translated by professionals into all Kiwi.com languages via `yarn translations:upload`.
-5.  _(In future)_ When the new version is published to npm, translations are uploaded on CDN.
 
 ## Cypress test
 
