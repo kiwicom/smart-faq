@@ -20,7 +20,7 @@ const BackButtonMobileStyle = css`
 `;
 
 const BackButtonMobile = () => (
-  <div data-cy="back-button" className="back">
+  <div data-cy="back-button-mobile" className="back">
     <ChevronLeft size="medium" customColor="#45505d" />
     <style jsx>{BackButtonMobileStyle}</style>
   </div>

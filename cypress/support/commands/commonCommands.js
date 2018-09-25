@@ -23,12 +23,11 @@ Cypress.Commands.add('loadStaticFAQ', () => {
   cy.get('[data-cy=btn-nonexistent-booking]').click();
 });
 
-Cypress.Commands.add('getFirstFaqCategoryTitle', () => {
+Cypress.Commands.add('getFirstFaqCategory', () => {
   cy
     .get('[data-cy=faq-categories]')
     .find('a')
-    .first()
-    .find('h1');
+    .first();
 });
 
 Cypress.Commands.add('clickOnArticle', () => {
