@@ -50,7 +50,7 @@ exports[`ScreenError should match snapshot 1`] = `
         <div
           class="Alert__Content-KRSaN iWERJM"
         >
-          Our bad. We weren't able to send your feedback. But, follow the link below to drop us a line.
+          Sorry, we didn't receive your feedback. Please refresh the page or try again later.
         </div>
       </div>
     </div>
