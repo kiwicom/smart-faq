@@ -40,6 +40,7 @@ class ActiveTabProvider extends React.Component<Props, ActiveTabType> {
       this.setState(prevState => ({
         activeTab: prevState.activeTab === tab ? null : tab,
       }));
+      this.forceUpdate();
     };
 
     this.state = {
