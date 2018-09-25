@@ -25,9 +25,10 @@ import { URGENCY_THRESHOLD } from '../helpers/dateUtils';
 import replaceWithCurrentDomain from '../helpers/replaceWithCurrentDomain';
 import FAQExtraInfoButton from '../StaticFAQ/FAQExtraInfo/FAQExtraInfoButton';
 import features from '../feature-toggles.json';
+import BookingDetail_booking from './__generated__/BookingDetail_booking.graphql';
 
 type ComponentProps = {
-  +booking: any,
+  +booking: BookingDetail_booking,
 };
 
 type Props = ComponentProps;
