@@ -1,6 +1,7 @@
 // @flow
 
 import { commitMutation, graphql } from 'react-relay';
+import idx from 'idx';
 
 import createEnvironment from '../relay/environment';
 import { simpleTracker } from '../helpers/analytics/trackers';
@@ -36,11 +37,17 @@ export default (
     onCompleted: (response, errors) => {
       if (!errors) {
         callback();
+        return;
       }
 
-      if (errors[0].extensions.proxy.statusCode === '429') {
+      const isCommentLimitReached =
+        idx(errors, _ => _[0].extensions.proxy.statusCode) === '429';
+
+      if (isCommentLimitReached) {
         simpleTracker('smartFAQCategories', { action: 'commentLimitReached' });
         commentLimitExceededCallback();
+      } else {
+        errorCallback();
       }
     },
     onError: () => {
