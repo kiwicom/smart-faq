@@ -134,6 +134,18 @@ class RawFAQCategoryList extends React.Component<Props> {
       </div>
     );
   };
+
+  renderExtraInfoCategory = activeExtraInfoCategory => {
+    switch (activeExtraInfoCategory) {
+      case 'baggage':
+        return <BaggageInfo />;
+      case 'boarding-passes':
+        return <BoardingPassesInfo />;
+      default:
+        return null;
+    }
+  };
+
   renderCategories = (categories: $ReadOnlyArray<CategoryFragment>) => {
     const { pathname } = this.props.history.location;
     const isBaggageRoute = pathname.includes(extraCategories.BAGGAGE);
@@ -147,11 +159,7 @@ class RawFAQCategoryList extends React.Component<Props> {
             {(isBaggageRoute || isBoardingPassRoute) && (
               <ExtraInfoState.Consumer>
                 {({ activeExtraInfoCategory }: ExtraInfoStateType) =>
-                  activeExtraInfoCategory === 'baggage' ? (
-                    <BaggageInfo />
-                  ) : (
-                    <BoardingPassesInfo />
-                  )
+                  this.renderExtraInfoCategory(activeExtraInfoCategory)
                 }
               </ExtraInfoState.Consumer>
             )}
