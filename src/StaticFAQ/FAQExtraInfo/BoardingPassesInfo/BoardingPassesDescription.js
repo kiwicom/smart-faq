@@ -4,6 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { Badge } from '@kiwicom/orbit-components/lib';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 import {
   FlightDirect,
   Download,
@@ -54,20 +55,27 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
             className="download"
           >
             <Download size="medium" customColor="#00a991" />
-            Download
+            <Trans t={__('smartfaq.boarding_pass_info.download')} />
           </a>
         );
       case 'IN_FUTURE':
-        return <p>Available {availableAt}</p>;
+        return (
+          <p>
+            <Trans t={__('smartfaq.boarding_pass_info.available_at')} />
+            {availableAt}
+          </p>
+        );
       case 'AT_AIRPORT':
         return (
           <HoverHelpTooltip
-            tooltip="You will have to check-in for free at the airport."
+            tooltip={
+              <Trans t={__('smartfaq.boarding_pass_info.hover_tooltip')} />
+            }
             placement="top"
             tracker={tooltipTracker}
           >
             <Badge type="info" icon={<InformationCircle />}>
-              Airport check-in
+              <Trans t={__('smartfaq.boarding_pass_info.airport_check_in')} />
             </Badge>
           </HoverHelpTooltip>
         );
@@ -80,7 +88,7 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
             target="_blank"
             className="moreInfo"
           >
-            More info
+            <Trans t={__('smartfaq.boarding_pass_info.more_info')} />
           </a>
         );
     }

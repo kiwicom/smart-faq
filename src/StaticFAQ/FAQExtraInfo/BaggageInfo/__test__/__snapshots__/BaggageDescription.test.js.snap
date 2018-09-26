@@ -15,7 +15,11 @@ exports[`BaggageDescription should render correctly 1`] = `
     <p
       className="jsx-677876937 baggageWeight"
     >
-      Checked baggage
+      <Text
+        html={false}
+        t="smartfaq.baggage_info.checked_baggage"
+        values={Object {}}
+      />
        
       10
        kg

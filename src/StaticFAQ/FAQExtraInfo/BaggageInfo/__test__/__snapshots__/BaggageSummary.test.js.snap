@@ -42,7 +42,11 @@ exports[`BaggageSummary renders correctly 1`] = `
       rel="noopener noreferrer"
       target="_blank"
     >
-      More Info
+      <Text
+        html={false}
+        t="smartfaq.baggage_info.more_info"
+        values={Object {}}
+      />
     </a>
   </div>
   <JSXStyle

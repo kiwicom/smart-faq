@@ -6,6 +6,7 @@ import css from 'styled-jsx/css';
 import { graphql } from 'react-relay';
 import { Text } from '@kiwicom/orbit-components';
 import { Ticket } from '@kiwicom/orbit-components/lib/icons';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import { SelectedBooking } from '../../../context/SelectedBooking';
 import type { State } from '../../../context/SelectedBooking';
@@ -101,11 +102,12 @@ class BoardingPassesInfo extends React.Component<Props> {
         <div className="iconTitle">
           <Ticket customColor="black" />
         </div>
-        <h1 className="title">Your boarding passes</h1>
+        <h1 className="title">
+          <Trans t={__('smartfaq.boarding_pass_info.title')} />
+        </h1>
         <div className="subtitle">
           <Text type="attention">
-            Here, you can download your boarding passes or see when they will
-            become available.
+            <Trans t={__('smartfaq.boarding_pass_info.subtitle')} />
           </Text>
         </div>
         <BoardingPassesSummary data={boardingPasses} mmbUrl={directAccessURL} />
