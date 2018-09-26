@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com
-# timestamp: Mon Sep 10 2018 12:03:21 GMT+0300 (EEST)
+# timestamp: Tue Sep 25 2018 17:25:12 GMT+0200 (CEST)
 
 schema {
   query: RootQuery
@@ -230,6 +230,9 @@ type Booking {
 
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
+
+  """Support provided by CS for booking."""
+  customerSupport: BookingCustomerSupport
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
@@ -284,6 +287,13 @@ type BookingContactDetails {
 
   """Documentation and information about the passanger."""
   passenger: Passenger
+}
+
+type BookingCustomerSupport {
+  """
+  Is Guarantee Chat allowed to provide direct contact to customer service.
+  """
+  hasGuaranteeChat: Boolean
 }
 
 enum BookingDestinationImageDimensions {
@@ -346,6 +356,9 @@ interface BookingInterface {
 
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
+
+  """Support provided by CS for booking."""
+  customerSupport: BookingCustomerSupport
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
@@ -414,6 +427,9 @@ type BookingMulticity implements BookingInterface & Node {
 
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
+
+  """Support provided by CS for booking."""
+  customerSupport: BookingCustomerSupport
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
@@ -476,6 +492,9 @@ type BookingOneWay implements BookingInterface & Node {
 
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
+
+  """Support provided by CS for booking."""
+  customerSupport: BookingCustomerSupport
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
@@ -528,6 +547,9 @@ type BookingReturn implements BookingInterface & Node {
 
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
+
+  """Support provided by CS for booking."""
+  customerSupport: BookingCustomerSupport
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
@@ -1299,8 +1321,10 @@ type HotelAvailabilityEdge {
 Overall statistics related to all hotels matching search & filter criteria
 """
 type HotelAvailabilityStats {
-  priceMax: Float
-  priceMin: Float
+  priceMax: Float @deprecated(reason: "Use \"maxPrice\" field instead.")
+  priceMin: Float @deprecated(reason: "Use \"minPrice\" field instead.")
+  minPrice: Float
+  maxPrice: Float
 }
 
 type HotelCity {
@@ -2082,11 +2106,11 @@ type RootQuery {
     last: Int
   ): DynamicPackageConnection
 
-  """Retrieve list of FAQ categories."""
+  """
+  DEPRECATED - use "FAQSection" query instead.Retrieve list of FAQ categories.
+  """
   allFAQCategories(
-    """
-    Fetch only subsection of FAQ based on the current situation of customer.
-    """
+    """Fetch only subsection of FAQ based on customer's booking status."""
     section: FAQSection
     after: String
     first: Int
@@ -2201,6 +2225,14 @@ type RootQuery {
   FAQCategory(
     """ID of FAQ category to retrieve."""
     id: ID!
+  ): FAQCategory
+
+  """Retrieve category by section."""
+  FAQSection(
+    """
+    Fetch FAQ category by section according to current customer's booking status.
+    """
+    section: FAQSection!
   ): FAQCategory
 
   """Geography info by an IP address"""
