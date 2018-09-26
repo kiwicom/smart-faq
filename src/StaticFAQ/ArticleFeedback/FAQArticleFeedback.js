@@ -8,7 +8,6 @@ import ScreenFeedback from './ScreenFeedback';
 import ScreenAdditionalFeedback from './ScreenAdditionalFeedback';
 import ScreenThankyou from './ScreenThankyou';
 import ScreenError from './ScreenError';
-import ScreenCommentLimit from './ScreenCommentLimit';
 import screenList from './screenList';
 import { ContactPageLink } from '../../common';
 import UserStatus from '../../helpers/UserStatus';
@@ -81,7 +80,9 @@ class FAQArticleFeedback extends React.Component<Props, State> {
       case screenList.ERROR:
         return <ScreenError changeScreen={this.changeScreen} />;
       case screenList.COMMENT_LIMIT_REACHED:
-        return <ScreenCommentLimit changeScreen={this.changeScreen} />;
+        return (
+          <ScreenError commentLimitReached changeScreen={this.changeScreen} />
+        );
     }
     return (
       <ScreenVoting

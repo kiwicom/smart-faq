@@ -23,7 +23,7 @@ export default (
   type: string,
   comment: string,
   callback: () => void,
-  commentLimitExceededCallback: () => void,
+  commentLimitReachedCallback: () => void,
   errorCallback: () => void,
 ) => {
   const variables = {
@@ -45,7 +45,7 @@ export default (
 
       if (isCommentLimitReached) {
         simpleTracker('smartFAQCategories', { action: 'commentLimitReached' });
-        commentLimitExceededCallback();
+        commentLimitReachedCallback();
       } else {
         errorCallback();
       }

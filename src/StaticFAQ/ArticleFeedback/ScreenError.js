@@ -10,6 +10,7 @@ import { Box } from '../../common';
 
 type Props = {|
   changeScreen: (nextScreen: string) => void,
+  commentLimitReached?: boolean,
 |};
 
 const style = css`
@@ -23,7 +24,12 @@ const style = css`
     cursor: pointer;
   }
 `;
-const ScreenError = ({ changeScreen }: Props) => {
+
+const ScreenError = ({ changeScreen, commentLimitReached }: Props) => {
+  const warningMessage = commentLimitReached
+    ? `You've reached the daily maximum number of comments. We'll review your notes and adjust the article if necessary. Thank you.`
+    : `Sorry, we didn't receive your feedback. Please refresh the page or try again later.`;
+
   return (
     <Box border="none" borderRadius="4px" backgroundColor="#f5f7f9">
       <div className="feedbackMessage">
@@ -36,9 +42,8 @@ const ScreenError = ({ changeScreen }: Props) => {
         >
           <Close customColor="#bac7d5" size="small" />
         </div>
-        <Alert type="warning" icon>
-          Sorry, we didn&apos;t receive your feedback. Please refresh the page
-          or try again later.
+        <Alert type="warning" icon={commentLimitReached ? false : true}>
+          {warningMessage}
         </Alert>
         <style jsx>{style}</style>
       </div>
