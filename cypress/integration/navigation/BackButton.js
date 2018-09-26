@@ -59,10 +59,7 @@ describe('Back button', () => {
 
     cy.visit('/?help=/faq');
     cy.get('[data-cy=input-staticFAQ]').type('sports equipment');
-    cy
-      .get('[data-cy=faq-article-link]')
-      .first()
-      .click();
+    cy.clickOnArticle();
     cy.get('[data-cy=back-button]').click();
 
     cy.url().should('eq', expectedUrl);
@@ -79,10 +76,7 @@ describe('Back button', () => {
     cy.visit('/?help=/faq');
     cy.getFirstFaqCategoryTitle().then($initialFaqCategoryTitle => {
       cy.get('[data-cy=input-staticFAQ]').type('sports equipment');
-      cy
-        .get('[data-cy=faq-article-link]')
-        .first()
-        .click();
+      cy.clickOnArticle();
       cy.reload();
       cy.get('[data-cy=back-button]').click();
 

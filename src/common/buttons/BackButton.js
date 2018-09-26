@@ -6,6 +6,8 @@ import idx from 'idx';
 import { Text } from '@kiwicom/orbit-components';
 import { ChevronLeft } from '@kiwicom/orbit-components/lib/icons';
 
+import sectionFAQCategories from '../../StaticFAQ/sectionFAQCategories';
+
 type Props = {|
   text: string,
   prevScreen?: string,
@@ -13,10 +15,16 @@ type Props = {|
     push: string => void,
     location: { pathname: string },
   },
+  match: {
+    params: {
+      articleId?: string,
+      categoryId?: string,
+    },
+  },
 |};
 
 const BackButton = (props: Props) => {
-  const { text, prevScreen, history } = props;
+  const { text, prevScreen, history, match } = props;
   const pathname = history.location.pathname;
   const loginPathnames = ['/sign-in', '/kiwi-login', '/forgotten-password'];
 
@@ -30,6 +38,12 @@ const BackButton = (props: Props) => {
     }
 
     if (pathname.includes('article')) {
+      const categoryId = idx(match, _ => _.params.categoryId);
+
+      if (categoryId && sectionFAQCategories.includes(categoryId)) {
+        return history.push('/faq');
+      }
+
       const url = idx(pathname.match(/(.*)(?=article)/), _ => _[0]) || '';
       return history.push(url);
     } else if (pathname.includes('faq')) {
