@@ -14,7 +14,11 @@ exports[`DateAndPassenger should render correctly 1`] = `
         size="small"
         type="secondary"
       >
-        Departure date
+        <Text
+          html={false}
+          t="smartfaq.all_bookings.booking_card.departure_date"
+          values={Object {}}
+        />
       </Text>
     </div>
     <Text>
@@ -31,7 +35,11 @@ exports[`DateAndPassenger should render correctly 1`] = `
         size="small"
         type="secondary"
       >
-        Booking date
+        <Text
+          html={false}
+          t="smartfaq.all_bookings.booking_card.booking_date"
+          values={Object {}}
+        />
       </Text>
     </div>
     <Text>
@@ -48,7 +56,11 @@ exports[`DateAndPassenger should render correctly 1`] = `
         size="small"
         type="secondary"
       >
-        Includes
+        <Text
+          html={false}
+          t="smartfaq.all_bookings.booking_card.includes"
+          values={Object {}}
+        />
       </Text>
     </div>
     <Text>
@@ -69,7 +81,11 @@ exports[`DateAndPassenger should render correctly 1`] = `
         size="small"
         type="secondary"
       >
-        Status
+        <Text
+          html={false}
+          t="smartfaq.all_bookings.booking_card.status"
+          values={Object {}}
+        />
       </Text>
     </div>
     <div

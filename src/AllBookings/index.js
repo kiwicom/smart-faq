@@ -5,6 +5,7 @@ import * as React from 'react';
 import { graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 import { Heading } from '@kiwicom/orbit-components';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import { Desktop } from '../common/Responsive';
 import QueryRenderer from '../relay/QueryRenderer';
@@ -66,16 +67,26 @@ class AllBooking extends React.Component<Props> {
       <ScrollableContent styles="background-color: #f5f7f9;">
         <div className="allBookings">
           <Desktop>
-            <Heading type="title2">Bookings</Heading>
+            <Heading type="title2">
+              <Trans t={__('smartfaq.all_bookings.title')} />
+            </Heading>
           </Desktop>
           {future && (
             <div data-cy="upcoming-bookings">
-              <BookingCardsList booking={future} title="Upcoming" />
+              <BookingCardsList
+                booking={future}
+                title={
+                  <Trans t={__('smartfaq.all_bookings.upcoming.subtitle')} />
+                }
+              />
             </div>
           )}
           {past && (
             <div data-cy="past-bookings">
-              <BookingCardsList booking={past} title="Past" />
+              <BookingCardsList
+                booking={past}
+                title={<Trans t={__('smartfaq.all_bookings.past.subtitle')} />}
+              />
             </div>
           )}
           {!future && !past && <Loader />}
