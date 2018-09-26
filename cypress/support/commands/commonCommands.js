@@ -26,7 +26,7 @@ Cypress.Commands.add('loadStaticFAQ', () => {
 Cypress.Commands.add('getFirstFaqCategory', () => {
   cy
     .get('[data-cy=faq-categories]')
-    .find('a')
+    .find('.faq-category')
     .first();
 });
 
@@ -53,4 +53,11 @@ Cypress.Commands.add('loadFAQArticle', () => {
     .find('[data-cy=faq-article-link]')
     .first()
     .click();
+});
+
+Cypress.Commands.add('waitForFaqsBasedOnBookingStatusToLoad', () => {
+  cy
+    .get('[data-cy=faq-categories]')
+    .contains('About Kiwi.com')
+    .should('not.exist');
 });

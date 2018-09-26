@@ -6,7 +6,7 @@ describe('Navigation for root level article', () => {
 
   before(() => {
     cy.loadStaticFAQ();
-    const firstCategory = cy.getFirstFaqCategoryTitle();
+    const firstCategory = cy.getFirstFaqCategory();
     return firstCategory.invoke('text').then(text => {
       firstCategoryTitle = text;
     });
@@ -32,7 +32,7 @@ describe('Navigation for root level article', () => {
 
   it('back button works', () => {
     cy.get('[data-cy=back-button]').click();
-    const firstCategory = cy.getFirstFaqCategoryTitle();
+    const firstCategory = cy.getFirstFaqCategory();
     return firstCategory.invoke('text').then(text => {
       expect(text).to.not.eq(null);
       expect(text).to.eq(firstCategoryTitle);
