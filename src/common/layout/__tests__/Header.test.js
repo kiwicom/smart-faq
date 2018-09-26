@@ -56,7 +56,9 @@ describe('ContentHeader', () => {
         <RawContentHeader {...props} />
       </Router>,
     );
-    expect(wrapper.find('.backButton').text()).toEqual('Back');
+    expect(wrapper.find('.backButton').text()).toEqual(
+      'smartfaq.back_button.back',
+    );
     expect(wrapper.find('.loggedOut')).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
   });

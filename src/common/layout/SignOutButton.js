@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { Text } from '@kiwicom/orbit-components';
 import { withRouter } from 'react-router-dom';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import { withLogout } from '../../context/BookingState';
 import type { onLogout } from '../../types';
@@ -34,7 +35,9 @@ class SignOutButton extends React.Component<Props> {
         tabIndex={0}
         data-cy="sign-out-button"
       >
-        <Text type="attention">Sign out</Text>
+        <Text type="attention">
+          <Trans t={__('smartfaq.header.sign_out')} />
+        </Text>
         <style jsx>
           {`
             .signOut {

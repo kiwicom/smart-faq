@@ -86,5 +86,11 @@
   "smartfaq.article_feedback.additional_feedback.submit_button": "Submit",
   "smartfaq.article_feedback.additional_feedback.textarea_placeholder": "How could this be better?",
   "smartfaq.article_feedback.error_message.comment_limit_reached": "You've reached the daily maximum number of comments. We'll review your notes and adjust the article if necessary. Thank you.",
-  "smartfaq.article_feedback.error_message.feedback_not_received": "Sorry, we didn't receive your feedback. Please refresh the page or try again later."
+  "smartfaq.article_feedback.error_message.feedback_not_received": "Sorry, we didn't receive your feedback. Please refresh the page or try again later.",
+  "smartfaq.mobile_header.title": "Your Trips",
+  "smartfaq.header.title": "Help",
+  "smartfaq.header.sign_in": "Sign In",
+  "smartfaq.header.sign_out": "Sign out",
+  "smartfaq.back_button.search" : "Search",
+  "smartfaq.back_button.back": "Back"
 }
