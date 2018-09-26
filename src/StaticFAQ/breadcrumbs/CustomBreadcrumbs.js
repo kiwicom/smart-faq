@@ -6,7 +6,7 @@ import MediaQuery from 'react-responsive';
 
 import Breadcrumb from './Breadcrumb';
 import BackArrow from './BackArrow';
-import { withLoginToken } from '../../context/User';
+import UserStatus from '../../helpers/UserStatus';
 import responsiveStyleHelperClasses from '../../common/responsiveStyleHelperClasses';
 
 const style = css`
@@ -49,7 +49,7 @@ class CustomBreadcrumbs extends React.Component<Props> {
       ));
   };
   render() {
-    const { loginToken, breadcrumbs } = this.props;
+    const { breadcrumbs } = this.props;
     const firstCategory = [...breadcrumbs].shift();
     const lastCategory = [...breadcrumbs].pop();
     const previousCategory = [...breadcrumbs].slice(-2)[0];
@@ -59,11 +59,11 @@ class CustomBreadcrumbs extends React.Component<Props> {
 
     return (
       <div className="breadcrumbs" data-cy="faq-breadcrumbs">
-        {loginToken && (
+        <UserStatus.LoggedIn>
           <span className="desktopOnly">
             <BackArrow id={id} />
           </span>
-        )}
+        </UserStatus.LoggedIn>
         <Breadcrumb breadcrumb={{ title: firstCategory.title }} />
         <MediaQuery maxWidth="600px">
           {this.renderBreadCrumbs(breadcrumbs, maxBreadcrumbsLengthMobile)}
@@ -79,4 +79,4 @@ class CustomBreadcrumbs extends React.Component<Props> {
   }
 }
 
-export default withLoginToken(CustomBreadcrumbs);
+export default CustomBreadcrumbs;
