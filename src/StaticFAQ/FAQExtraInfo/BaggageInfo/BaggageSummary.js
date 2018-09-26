@@ -1,8 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { graphql, createFragmentContainer } from 'react-relay';
 import css from 'styled-jsx/css';
+import { graphql, createFragmentContainer } from 'react-relay';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import BaggageLoader from './BaggageLoader';
 import BaggageDescriptionFragment from './BaggageDescription';
@@ -45,7 +46,7 @@ export const RawBaggageSummary = ({ data, mmbUrl }: Props) => {
           rel="noopener noreferrer"
           href={replaceWithCurrentDomain(mmbUrl)}
         >
-          More Info
+          <Trans t={__('smartfaq.baggage_info.more_info')} />
         </a>
       </div>
       <style jsx>{styles}</style>

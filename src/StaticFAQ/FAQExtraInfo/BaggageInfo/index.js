@@ -6,6 +6,7 @@ import css from 'styled-jsx/css';
 import { graphql } from 'react-relay';
 import { Text } from '@kiwicom/orbit-components';
 import BaggageChecked from '@kiwicom/orbit-components/lib/icons/BaggageChecked';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import { SelectedBooking } from '../../../context/SelectedBooking';
 import type { State } from '../../../context/SelectedBooking';
@@ -83,9 +84,13 @@ class BaggageInfo extends React.Component<Props> {
         <div className="iconTitle">
           <BaggageChecked customColor="black" />
         </div>
-        <h1 className="title">Your baggage</h1>
+        <h1 className="title">
+          <Trans t={__('smartfaq.baggage_info.title')} />
+        </h1>
         <div className="subtitle">
-          <Text type="attention">Here you can see your baggage allowance.</Text>
+          <Text type="attention">
+            <Trans t={__('smartfaq.baggage_info.subtitle')} />
+          </Text>
         </div>
         <BaggageSummary
           data={unstable_baggage || null}

@@ -7,6 +7,7 @@ import {
   BaggageChecked,
   BaggagePersonalItem,
 } from '@kiwicom/orbit-components/lib/icons';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import type { BaggageDescription as BaggageDescriptionProps } from './__generated__/BaggageDescription.graphql';
 
@@ -29,11 +30,11 @@ function renderIcon(category: ?string) {
 function formatCategory(category: ?string) {
   switch (category) {
     case 'CABIN_BAG':
-      return 'Cabin bag';
+      return <Trans t={__('smartfaq.baggage_info.cabin_bag')} />;
     case 'CHECKED':
-      return 'Checked baggage';
+      return <Trans t={__('smartfaq.baggage_info.checked_baggage')} />;
     case 'PERSONAL_ITEM':
-      return 'Personal item';
+      return <Trans t={__('smartfaq.baggage_info.personal_item')} />;
   }
   return null;
 }
