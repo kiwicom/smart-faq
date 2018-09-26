@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import idx from 'idx';
 import { Text } from '@kiwicom/orbit-components';
 import { ChevronLeft } from '@kiwicom/orbit-components/lib/icons';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import sectionFAQCategories from '../../StaticFAQ/sectionFAQCategories';
 
@@ -64,7 +65,7 @@ const BackButton = (props: Props) => {
         <ChevronLeft size="small" customColor="#8291a6" />
       </div>
       <Text type="secondary" weight="bold" element="span">
-        {props.text}
+        <Trans t={props.text} />
       </Text>
       <style jsx>
         {`

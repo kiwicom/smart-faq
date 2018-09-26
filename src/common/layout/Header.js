@@ -5,6 +5,7 @@ import * as React from 'react';
 import idx from 'idx';
 import css from 'styled-jsx/css';
 import { TextLink } from '@kiwicom/orbit-components';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import { Desktop, Mobile } from '../Responsive';
 import CloseButton from '../buttons/CloseButton';
@@ -149,11 +150,15 @@ const renderLoggedIn = () => {
             <div className="helpHeader">
               {bookingPage === 'ALL_BOOKINGS' ? (
                 <React.Fragment>
-                  <Mobile>Your Trips</Mobile>
-                  <Desktop>Help</Desktop>
+                  <Mobile>
+                    <Trans t={__('smartfaq.mobile_header.title')} />
+                  </Mobile>
+                  <Desktop>
+                    <Trans t={__('smartfaq.header.title')} />
+                  </Desktop>
                 </React.Fragment>
               ) : (
-                'Help'
+                <Trans t={__('smartfaq.header.title')} />
               )}
             </div>
           )}
@@ -190,7 +195,7 @@ const renderLoggedOut = (
         onClick={() => push('/sign-in')}
         type="secondary"
       >
-        Sign&nbsp;In
+        <Trans t={__('smartfaq.header.sign_in')} />
       </TextLink>
     </div>
   ) : null;
@@ -200,13 +205,21 @@ const renderLoggedOut = (
       <div className="signInOrBack">
         {hasCategory || isArticle ? (
           <div className="backButton">
-            <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
+            <BackButton
+              text={
+                comesFromSearch
+                  ? 'smartfaq.back_button.search'
+                  : 'smartfaq.back_button.back'
+              }
+            />
           </div>
         ) : (
           signIn
         )}
       </div>
-      <p className="helpHeader">Help</p>
+      <p className="helpHeader">
+        <Trans t={__('smartfaq.header.title')} />
+      </p>
       <style jsx>{responsiveStyleHelperClasses}</style>
       <style jsx>{loggedOutStyle}</style>
     </div>

@@ -14,7 +14,7 @@ exports[`ContentHeader should render loggedIn user header 1`] = `
       <div
         class="jsx-2880528156 jsx-2367066345 helpHeader"
       >
-        Help
+        smartfaq.header.title
       </div>
     </div>
   </div>
@@ -81,7 +81,7 @@ exports[`ContentHeader should render loggedOut user header 1`] = `
             <span
               class="Text__StyledText-inVtPV iqjyyW"
             >
-              Back
+              smartfaq.back_button.back
             </span>
           </div>
         </div>
@@ -89,7 +89,7 @@ exports[`ContentHeader should render loggedOut user header 1`] = `
       <p
         class="jsx-2367066345 jsx-1604692328 helpHeader"
       >
-        Help
+        smartfaq.header.title
       </p>
     </div>
   </div>
