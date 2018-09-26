@@ -1,4 +1,11 @@
 {
+  "smartfaq.all_bookings.booking_card.booking_date": "Booking date",
+  "smartfaq.all_bookings.booking_card.departure_date": "Departure date",
+  "smartfaq.all_bookings.booking_card.includes": "Includes",
+  "smartfaq.all_bookings.booking_card.status": "Status",
+  "smartfaq.all_bookings.past.subtitle": "Past",
+  "smartfaq.all_bookings.title": "Bookings",
+  "smartfaq.all_bookings.upcoming.subtitle": "Upcoming",
   "smartfaq.baggage_info.cabin_bag": "Cabin bag",
   "smartfaq.baggage_info.checked_baggage": "Checked baggage",
   "smartfaq.baggage_info.more_info": "More info",

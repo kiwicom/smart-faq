@@ -5,6 +5,7 @@ import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { Text } from '@kiwicom/orbit-components';
 import { Passengers } from '@kiwicom/orbit-components/lib/icons';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import bookingStatuses from '../../common/booking/bookingStatuses';
 import { formatDepartureDate } from '../../helpers/dateUtils';
@@ -28,7 +29,9 @@ export const DateAndPassenger = (props: Props) => {
       <div className="section">
         <div className="label">
           <Text type="secondary" size="small">
-            Departure date
+            <Trans
+              t={__('smartfaq.all_bookings.booking_card.departure_date')}
+            />
           </Text>
         </div>
         <Text>{formatDepartureDate(departureDate)}</Text>
@@ -36,7 +39,7 @@ export const DateAndPassenger = (props: Props) => {
       <div className="section">
         <div className="label">
           <Text type="secondary" size="small">
-            Booking date
+            <Trans t={__('smartfaq.all_bookings.booking_card.booking_date')} />
           </Text>
         </div>
         <Text>{formatDepartureDate(bookingDate)}</Text>
@@ -44,7 +47,7 @@ export const DateAndPassenger = (props: Props) => {
       <div className="section">
         <div className="label">
           <Text type="secondary" size="small">
-            Includes
+            <Trans t={__('smartfaq.all_bookings.booking_card.includes')} />
           </Text>
         </div>
         <Text>
@@ -55,7 +58,7 @@ export const DateAndPassenger = (props: Props) => {
       <div className="section">
         <div className="label">
           <Text type="secondary" size="small">
-            Status
+            <Trans t={__('smartfaq.all_bookings.booking_card.status')} />
           </Text>
         </div>
         <div style={{ color: status.color, fontSize: '14px' }}>
