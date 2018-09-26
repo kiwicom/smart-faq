@@ -283,6 +283,7 @@ class Root extends React.Component<Props, State> {
             language={language}
             user={this.state.user}
             route={helpQuery}
+            showBooking={false}
             loginToken={this.state.loginToken}
             simpleToken={this.state.simpleToken}
             enableChat={this.state.enableChat}

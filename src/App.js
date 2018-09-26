@@ -123,7 +123,10 @@ class App extends React.PureComponent<AppProps, State> {
                     <SearchStateProvider>
                       <Emergencies.Provider value={emergencies}>
                         <SelectedBookingProvider isOpen={isOpen}>
-                          <BookingStateProvider onLogout={this.props.onLogout}>
+                          <BookingStateProvider
+                            onLogout={this.props.onLogout}
+                            showBooking={this.props.showBooking}
+                          >
                             <ExtraInfoStateProvider>
                               <GuaranteeChatInfo
                                 enableChat={this.props.enableChat}

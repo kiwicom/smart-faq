@@ -9,6 +9,7 @@ import { RawContentHeader } from '../Header';
 
 describe('ContentHeader', () => {
   const props = {
+    renderOnlyLoggedOut: false,
     history: {
       entries: [],
       push: jest.fn(),
@@ -58,5 +59,19 @@ describe('ContentHeader', () => {
     expect(wrapper.find('.backButton').text()).toEqual('Back');
     expect(wrapper.find('.loggedOut')).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render without SignIn on Home page without booking', () => {
+    const wrapper = render(
+      <Router>
+        <RawContentHeader
+          {...props}
+          renderOnlyLoggedOut
+          match={{ params: {} }}
+        />
+      </Router>,
+    );
+
+    expect(wrapper.find('.signInOrBack').children()).toHaveLength(0);
   });
 });

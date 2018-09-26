@@ -9,7 +9,11 @@ type Props = {
 };
 
 const NoBooking = ({ children }: Props) => (
-  <BookingStateProvider hasBooking={false} onLogout={async () => null}>
+  <BookingStateProvider
+    hasBooking={false}
+    onLogout={async () => null}
+    showBooking
+  >
     {children}
   </BookingStateProvider>
 );

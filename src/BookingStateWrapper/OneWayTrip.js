@@ -16,6 +16,7 @@ const OneWayTrip = ({ children, booking }: Props) => (
     isPastBooking={booking.isPastBooking}
     isUrgent={false /*fixme*/}
     onLogout={async () => null}
+    showBooking
   >
     {children}
   </BookingStateProvider>
