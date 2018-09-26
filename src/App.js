@@ -13,10 +13,10 @@ import Routes from './Routes';
 import { CloseContext } from './context/Close';
 import { LanguageContext } from './context/Language';
 import { UserContext } from './context/User';
-import BookingStateProvider from './context/BookingState';
 import type { UserContextType } from './context/User';
 import SearchStateProvider from './context/SearchState';
 import SelectedBookingProvider from './context/SelectedBooking';
+import ActiveTabProvider from './context/ActiveTab';
 import ExtraInfoStateProvider from './context/ExtraInfoState';
 import Emergencies from './context/Emergencies';
 import ErrorBoundary from './common/ErrorBoundary';
@@ -120,10 +120,13 @@ class App extends React.PureComponent<AppProps, State> {
               <LanguageContext.Provider value={language}>
                 <CloseContext.Provider value={this.props.onClose}>
                   <UserContext.Provider value={this.state.userContext}>
-                    <SearchStateProvider>
-                      <Emergencies.Provider value={emergencies}>
-                        <SelectedBookingProvider isOpen={isOpen}>
-                          <BookingStateProvider onLogout={this.props.onLogout}>
+                    <ActiveTabProvider>
+                      <SearchStateProvider>
+                        <Emergencies.Provider value={emergencies}>
+                          <SelectedBookingProvider
+                            isOpen={isOpen}
+                            enableChat={this.props.enableChat}
+                          >
                             <ExtraInfoStateProvider>
                               <GuaranteeChatInfo
                                 enableChat={this.props.enableChat}
@@ -145,10 +148,10 @@ class App extends React.PureComponent<AppProps, State> {
                                   )}
                               </GuaranteeChatInfo>
                             </ExtraInfoStateProvider>
-                          </BookingStateProvider>
-                        </SelectedBookingProvider>
-                      </Emergencies.Provider>
-                    </SearchStateProvider>
+                          </SelectedBookingProvider>
+                        </Emergencies.Provider>
+                      </SearchStateProvider>
+                    </ActiveTabProvider>
                   </UserContext.Provider>
                 </CloseContext.Provider>
               </LanguageContext.Provider>

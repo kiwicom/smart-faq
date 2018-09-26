@@ -14,8 +14,9 @@ const OneWayTrip = ({ children, booking }: Props) => (
   <BookingStateProvider
     hasBooking
     isPastBooking={booking.isPastBooking}
-    isUrgent={false /*fixme*/}
     onLogout={async () => null}
+    booking={booking}
+    loadingStatus={{}}
   >
     {children}
   </BookingStateProvider>
@@ -25,6 +26,9 @@ export default createFragmentContainer(
   OneWayTrip,
   graphql`
     fragment OneWayTripWrapper_booking on BookingOneWay {
+      isPastBooking
+      ...MobileBookingDetail_booking
+      ...BookingDetail_booking
       trip {
         departure {
           time

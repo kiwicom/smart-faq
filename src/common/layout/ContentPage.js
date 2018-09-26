@@ -11,7 +11,9 @@ import Article from '../../StaticFAQ/ArticleDetail/Article';
 import { ScrollableContent } from '../../common';
 import UserStatus from '../../helpers/UserStatus';
 import { SelectedBooking } from '../../context/SelectedBooking';
+import { BookingState } from '../../context/BookingState';
 import BookingPage from './BookingPage';
+import BookingStateWrapper from '../../BookingStateWrapper/BookingStateWrapper';
 
 type Props = {|
   history: {
@@ -73,48 +75,51 @@ const FAQRoute = ({ history }: Props) => (
 );
 
 const ContentPage = (props: Props) => (
-  <SelectedBooking.Consumer>
-    {({ bookingPage, selectedBooking }) => (
-      <div className="ContentPage">
-        <Header />
-        <div className="Body">
-          {bookingPage === 'ALL_BOOKINGS' ? (
-            <div className="BookingInfo">
-              <BookingPage
-                bookingPage={bookingPage}
-                selectedBooking={selectedBooking}
-              />
-            </div>
-          ) : (
-            <Desktop>
-              <UserStatus.LoggedIn>
-                <div className="BookingInfo">
-                  <BookingPage
-                    bookingPage={bookingPage}
-                    selectedBooking={selectedBooking}
-                  />
-                </div>
-              </UserStatus.LoggedIn>
-            </Desktop>
-          )}
-          <div className="FAQWrapper">
-            <ScrollableContent>
-              <div className="FAQ" id="SmartFAQ_Body">
+  <BookingStateWrapper>
+    <BookingState.Consumer>
+      {({ booking }) => (
+        <SelectedBooking.Consumer>
+          {({ bookingPage }) => (
+            <div className="ContentPage">
+              <Header />
+              <div className="Body">
                 {bookingPage === 'ALL_BOOKINGS' ? (
-                  <Desktop>
-                    <FAQRoute history={props.history} />
-                  </Desktop>
+                  <div className="BookingInfo">
+                    <BookingPage bookingPage={bookingPage} booking={booking} />
+                  </div>
                 ) : (
-                  <FAQRoute history={props.history} />
+                  <Desktop>
+                    <UserStatus.LoggedIn>
+                      <div className="BookingInfo">
+                        <BookingPage
+                          bookingPage={bookingPage}
+                          booking={booking}
+                        />
+                      </div>
+                    </UserStatus.LoggedIn>
+                  </Desktop>
                 )}
+                <div className="FAQWrapper">
+                  <ScrollableContent>
+                    <div className="FAQ" id="SmartFAQ_Body">
+                      {bookingPage === 'ALL_BOOKINGS' ? (
+                        <Desktop>
+                          <FAQRoute history={props.history} />
+                        </Desktop>
+                      ) : (
+                        <FAQRoute history={props.history} />
+                      )}
+                    </div>
+                  </ScrollableContent>
+                </div>
               </div>
-            </ScrollableContent>
-          </div>
-        </div>
-        <style jsx>{styles}</style>
-      </div>
-    )}
-  </SelectedBooking.Consumer>
+              <style jsx>{styles}</style>
+            </div>
+          )}
+        </SelectedBooking.Consumer>
+      )}
+    </BookingState.Consumer>
+  </BookingStateWrapper>
 );
 
 export default withRouter(ContentPage);

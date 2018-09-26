@@ -8,14 +8,18 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type BookingDetail_booking$ref = any;
+type MobileBookingDetail_booking$ref = any;
 import type { FragmentReference } from 'relay-runtime';
 declare export opaque type ReturnTripWrapper_booking$ref: FragmentReference;
 export type ReturnTripWrapper_booking = {|
+  +isPastBooking: ?boolean,
   +outbound: ?{|
     +departure: ?{|
       +time: ?any,
     |},
   |},
+  +$fragmentRefs: (MobileBookingDetail_booking$ref & BookingDetail_booking$ref),
   +$refType: ReturnTripWrapper_booking$ref,
 |};
 */
@@ -28,6 +32,23 @@ const node/*: ConcreteFragment*/ = {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "isPastBooking",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "MobileBookingDetail_booking",
+      "args": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "BookingDetail_booking",
+      "args": null
+    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -59,5 +80,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = 'c15319faa4672f7b46a681525020cf43';
+(node/*: any*/).hash = '351ccd27f218a442c68128461cbf87ea';
 module.exports = node;

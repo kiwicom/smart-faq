@@ -14,8 +14,9 @@ const MultiCityTrip = ({ children, booking }: Props) => (
   <BookingStateProvider
     hasBooking
     isPastBooking={booking.isPastBooking}
-    isUrgent={false /*fixme*/}
     onLogout={async () => null}
+    booking={booking}
+    loadingStatus={{}}
   >
     {children}
   </BookingStateProvider>
@@ -25,6 +26,9 @@ export default createFragmentContainer(
   MultiCityTrip,
   graphql`
     fragment MultiCityTripWrapper_booking on BookingMulticity {
+      isPastBooking
+      ...MobileBookingDetail_booking
+      ...BookingDetail_booking
       trips @relay(plural: true) {
         departure {
           time

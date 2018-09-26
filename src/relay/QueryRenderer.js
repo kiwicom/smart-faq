@@ -43,6 +43,7 @@ type State = {|
   locale: ?string,
   loginToken: ?string,
   environment: Environment,
+  path: string,
 |};
 
 class QueryRenderer<RenderProps> extends React.Component<
@@ -50,15 +51,22 @@ class QueryRenderer<RenderProps> extends React.Component<
   State,
 > {
   static getDerivedStateFromProps(nextProps, state) {
-    const { loginToken, language } = nextProps;
+    const { loginToken, language, history } = nextProps;
     const locale = fromLanguageToLocale(language);
 
-    if (state.locale === locale && state.loginToken === loginToken) {
+    const path = history.location.pathname;
+
+    if (
+      state.locale === locale &&
+      state.loginToken === loginToken &&
+      state.path === path
+    ) {
       return null;
     }
 
     return {
       environment: createEnvironment(loginToken, locale),
+      path,
       locale,
       loginToken,
     };
@@ -71,6 +79,7 @@ class QueryRenderer<RenderProps> extends React.Component<
     const locale = fromLanguageToLocale(language);
 
     this.state = {
+      path: '', // eslint-disable-line react/no-unused-state
       environment: createEnvironment(loginToken, locale),
       loginToken, // eslint-disable-line react/no-unused-state
       locale, // eslint-disable-line react/no-unused-state

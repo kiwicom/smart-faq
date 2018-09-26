@@ -10,7 +10,6 @@ import { BaggageChecked, Ticket } from '@kiwicom/orbit-components/lib/icons';
 
 import {
   isUrgentBooking,
-  updateFAQSection,
   getDepartureTimeByType,
 } from '../common/booking/utils';
 import OneWayTrip from './bookingTypes/OneWayTrip';
@@ -24,18 +23,12 @@ import { ScrollableContent } from '../common';
 import bookingTypes from '../common/booking/bookingTypes';
 import { URGENCY_THRESHOLD } from '../helpers/dateUtils';
 import replaceWithCurrentDomain from '../helpers/replaceWithCurrentDomain';
-import type { NearestBooking_booking } from './__generated__/NearestBookingQuery.graphql';
 import FAQExtraInfoButton from '../StaticFAQ/FAQExtraInfo/FAQExtraInfoButton';
-import { BookingState } from '../context/BookingState';
 import features from '../feature-toggles.json';
-
-type ContextProps = {
-  onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
-};
+import BookingDetail_booking from './__generated__/BookingDetail_booking.graphql';
 
 type ComponentProps = {
-  +booking: NearestBooking_booking,
-  onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
+  +booking: BookingDetail_booking,
 };
 
 type Props = ComponentProps;
@@ -89,15 +82,7 @@ const clickEticket = () =>
   });
 
 class BookingDetail extends React.Component<Props> {
-  componentDidMount() {
-    updateFAQSection(this.props);
-  }
-
-  componentDidUpdate() {
-    updateFAQSection(this.props);
-  }
-
-  renderByType = (booking: NearestBooking_booking) => {
+  renderByType = (booking: any) => {
     if (booking.type === bookingTypes.ONE_WAY) {
       return <OneWayTrip booking={booking} />;
     }
@@ -113,7 +98,7 @@ class BookingDetail extends React.Component<Props> {
     return null;
   };
 
-  getArrivalByType = (booking: NearestBooking_booking) => {
+  getArrivalByType = (booking: any) => {
     let date = null;
 
     if (booking.type === bookingTypes.ONE_WAY) {
@@ -210,11 +195,7 @@ class BookingDetail extends React.Component<Props> {
 export const RawBookingDetail = BookingDetail;
 
 const BookingDetailWithFAQHandler = (props: ComponentProps) => (
-  <BookingState.Consumer>
-    {({ onSetFAQSection }: ContextProps) => (
-      <BookingDetail {...props} onSetFAQSection={onSetFAQSection} />
-    )}
-  </BookingState.Consumer>
+  <BookingDetail {...props} />
 );
 
 export default createFragmentContainer(

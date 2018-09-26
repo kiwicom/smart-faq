@@ -10,11 +10,6 @@ import type { MobileBookingDetail_booking } from '../../MobileBookingHeader/__ge
 
 type BookingType = MobileBookingDetail_booking | BookingDetail_booking;
 
-type Props = {
-  +booking: BookingType,
-  onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => void,
-};
-
 export const isUrgentBooking = (
   isPastBooking: boolean,
   departureTime: ?Date,
@@ -43,14 +38,4 @@ export const getDepartureTimeByType = (booking: BookingType) => {
   }
 
   return date ? new Date(date) : null;
-};
-
-export const updateFAQSection = (props: Props) => {
-  const { booking } = props;
-  const { isPastBooking } = booking;
-  const departureTime = getDepartureTimeByType(booking);
-  if (isPastBooking !== null && isPastBooking !== undefined) {
-    const isUrgent = isUrgentBooking(isPastBooking, departureTime);
-    props.onSetFAQSection(isUrgent, isPastBooking);
-  }
 };

@@ -14,8 +14,9 @@ const ReturnTrip = ({ children, booking }: Props) => (
   <BookingStateProvider
     hasBooking
     isPastBooking={booking.isPastBooking}
-    isUrgent={false /*fixme*/}
     onLogout={async () => null}
+    booking={booking}
+    loadingStatus={{}}
   >
     {children}
   </BookingStateProvider>
@@ -25,6 +26,9 @@ export default createFragmentContainer(
   ReturnTrip,
   graphql`
     fragment ReturnTripWrapper_booking on BookingReturn {
+      isPastBooking
+      ...MobileBookingDetail_booking
+      ...BookingDetail_booking
       outbound {
         departure {
           time

@@ -1,5 +1,9 @@
 // @flow
 
+import type { OneWayTripWrapper_booking } from './BookingStateWrapper/__generated__/OneWayTripWrapper_booking.graphql';
+import type { ReturnTripWrapper_booking } from './BookingStateWrapper/__generated__/ReturnTripWrapper_booking.graphql';
+import type { MultiCityTripWrapper_booking } from './BookingStateWrapper/__generated__/MultiCityTripWrapper_booking.graphql';
+
 export type User = {
   id: string,
   email: string,
@@ -30,3 +34,7 @@ export type AppProps = {|
   enableChat: boolean,
   chatConfig: { [key: string]: string } | null,
 |};
+
+export type BookingType = OneWayTripWrapper_booking &
+  ReturnTripWrapper_booking &
+  MultiCityTripWrapper_booking;
