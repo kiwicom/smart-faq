@@ -4,6 +4,7 @@ import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { Heading, Text } from '@kiwicom/orbit-components';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import OneWayBookingHeader from './BookingHeaders/OneWay';
 import ReturnBookingHeader from './BookingHeaders/Return';
@@ -42,8 +43,25 @@ const Header = (props: Props) => {
         <div data-cy="booking-type">
           {booking.databaseId && (
             <Text type="secondary">
-              {isFuture ? 'Upcoming' : 'Past'} trip #&nbsp;
-              {formatBookingId(booking.databaseId)}
+              {isFuture ? (
+                <Trans
+                  t={__(
+                    'smartfaq.single_booking_page.header.booking_id.upcoming',
+                  )}
+                  html
+                  values={{
+                    booking_id: formatBookingId(booking.databaseId || 0) || '',
+                  }}
+                />
+              ) : (
+                <Trans
+                  t={__('smartfaq.single_booking_page.header.booking_id.past')}
+                  html
+                  values={{
+                    booking_id: formatBookingId(booking.databaseId || 0) || '',
+                  }}
+                />
+              )}
             </Text>
           )}
         </div>

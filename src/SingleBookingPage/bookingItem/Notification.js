@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { Alert } from '@kiwicom/orbit-components';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import { formatCountDown } from '../../helpers/dateUtils';
 
@@ -11,16 +12,23 @@ type Props = {|
 |};
 
 const Notification = ({ isUrgent, hoursLeft }: Props) => {
-  const urgentMessage = `You depart in ${formatCountDown(hoursLeft)}.
-  Don't hesitate to call us if you have an urgent problem.`;
-  const normalMessage = `You depart in ${formatCountDown(hoursLeft)}.
-  There is still time to add some nice extras or even change your booking.`;
+  const formattedHoursLeft = formatCountDown(hoursLeft);
   const type = isUrgent ? 'warning' : 'info';
 
   return (
     <div className="notification">
       <Alert type={type} icon>
-        {isUrgent ? urgentMessage : normalMessage}
+        {isUrgent ? (
+          <Trans
+            t={__('smartfaq.single_booking_page.notification.urgent_message')}
+            values={{ formattedHoursLeft }}
+          />
+        ) : (
+          <Trans
+            t={__('smartfaq.single_booking_page.notification.normal_message')}
+            values={{ formattedHoursLeft }}
+          />
+        )}
       </Alert>
       <style jsx>
         {`

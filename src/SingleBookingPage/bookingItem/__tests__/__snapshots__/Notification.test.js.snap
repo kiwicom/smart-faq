@@ -29,8 +29,7 @@ exports[`Notification should render 1`] = `
       <div
         class="Alert__Content-KRSaN iWERJM"
       >
-        You depart in 25h.
-  Don't hesitate to call us if you have an urgent problem.
+        smartfaq.single_booking_page.notification.urgent_message
       </div>
     </div>
   </div>

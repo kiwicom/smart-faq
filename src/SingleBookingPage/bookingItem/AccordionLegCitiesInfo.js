@@ -10,6 +10,7 @@ import InformationCircle from '@kiwicom/orbit-components/lib/icons/InformationCi
 import Ticket from '@kiwicom/orbit-components/lib/icons/Ticket';
 import Airplane from '@kiwicom/orbit-components/lib/icons/Airplane';
 import City from '@kiwicom/orbit-components/lib/icons/City';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import type { AccordionLegCitiesInfo_leg } from './__generated__/AccordionLegCitiesInfo_leg.graphql';
 import bookingLegTypes from '../../common/booking/bookingLegTypes';
@@ -41,13 +42,28 @@ const LegCitiesInfo = (props: Props) => {
   const flightNumber = leg.flightNumber || '';
   const transportationMode = leg.type;
   const reservationNumber = leg.pnr || '';
-  const carrierTitle =
-    transportationMode === bookingLegTypes.AIRCRAFT ? 'Airline' : 'Carrier';
 
   const carrier = {
     code: idx(leg.airline, _ => _.code) || '',
     name: idx(leg.airline, _ => _.name) || '',
   };
+
+  const carrierName =
+    transportationMode === bookingLegTypes.AIRCRAFT ? (
+      <Trans
+        t={__(
+          'smartfaq.single_booking_page.accordion_cities_info.airline_title_name',
+        )}
+        values={{ carrierName: carrier.name }}
+      />
+    ) : (
+      <Trans
+        t={__(
+          'smartfaq.single_booking_page.accordion_cities_info.carrier_title_name',
+        )}
+        values={{ carrierName: carrier.name }}
+      />
+    );
 
   const operatingAirline = {
     code: idx(leg.operatingAirline, _ => _.iata) || '',
@@ -76,18 +92,34 @@ const LegCitiesInfo = (props: Props) => {
   const renderFlightNumber = () => {
     if (transportationMode === bookingLegTypes.BUS) return null;
 
-    let title = '';
+    let titleNumber = null;
 
     if (transportationMode === bookingLegTypes.AIRCRAFT) {
-      title = 'Flight no:';
+      titleNumber = (
+        <Trans
+          t={__('smartfaq.single_booking_page.accordion_cities_info.flight_no')}
+          values={{
+            flight_number: flightNumber,
+            carrier_code: carrier.code,
+          }}
+        />
+      );
     } else if (transportationMode === bookingLegTypes.TRAIN) {
-      title = 'Train no:';
+      titleNumber = (
+        <Trans
+          t={__('smartfaq.single_booking_page.accordion_cities_info.train_no')}
+          values={{
+            flight_number: flightNumber,
+            carrier_code: carrier.code,
+          }}
+        />
+      );
     }
 
     return (
       <div className="infoRow">
         <InformationCircle size="small" color="secondary" />
-        <p>{`${title} ${carrier.code} ${flightNumber}`}</p>
+        <p>{titleNumber}</p>
         <style jsx>{citiesInfoStyle}</style>
       </div>
     );
@@ -97,25 +129,49 @@ const LegCitiesInfo = (props: Props) => {
     <div className="legCitiesInfo">
       <div className="infoRow">
         <CarrierLogo size="small" carriers={[carrier]} />
-        <p>{`${carrierTitle}: ${carrier.name}`}</p>
+        <p>{carrierName}</p>
       </div>
       {showOperatingAirline() && (
         <div className="infoRow">
           <CarrierLogo size="small" carriers={[operatingAirline]} />
-          <p>Operating airline: {operatingAirline.name}</p>
+          <p>
+            <Trans
+              t={__(
+                'smartfaq.single_booking_page.accordion_cities_info.operating_airline',
+              )}
+              values={{ operatingAirline: operatingAirline.name }}
+            />
+          </p>
         </div>
       )}
       {renderFlightNumber()}
       {showReservationNumber() && (
         <div className="infoRow">
           <Ticket size="small" color="secondary" />
-          <p>PNR: {reservationNumber}</p>
+          <p>
+            <Trans
+              t={__(
+                'smartfaq.single_booking_page.accordion_cities_info.reservation_number',
+              )}
+              values={{ reservationNumber }}
+            />
+          </p>
         </div>
       )}
       {showAircraftType() && (
         <div className="infoRow">
           <Airplane size="small" color="secondary" />
-          <p>{`${vehicle.manufacturer} ${vehicle.model}`}</p>
+          <p>
+            <Trans
+              t={__(
+                'smartfaq.single_booking_page.accordion_cities_info.vehicle_type',
+              )}
+              values={{
+                vehicle_manufacturer: vehicle.manufacturer,
+                vehicle_model: vehicle.model,
+              }}
+            />
+          </p>
         </div>
       )}
       {transportationMode !== bookingLegTypes.AIRCRAFT && (
@@ -134,7 +190,13 @@ const LegCitiesInfo = (props: Props) => {
               to="/faq/search/article/RkFRQXJ0aWNsZToxMjc="
               style={{ textDecoration: 'none' }}
             >
-              <p className="moreInfoLink">Trains and Buses Info</p>
+              <p className="moreInfoLink">
+                <Trans
+                  t={__(
+                    'smartfaq.single_booking_page.accordion_cities_info.trains_buses_info',
+                  )}
+                />
+              </p>
             </Link>
           </div>
         </React.Fragment>

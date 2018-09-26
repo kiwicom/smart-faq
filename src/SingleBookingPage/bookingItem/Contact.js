@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import ContactPageLink from '../../common/ContactPageLink';
 import UserStatus from '../../helpers/UserStatus';
@@ -15,15 +16,7 @@ const Contact = () => {
         </UserStatus.LoggedIn>
       </div>
       <div className="instructions">
-        <ol>
-          <li>
-            When contacting us we will ask the <b>full name</b> of at least one
-            of the passengers.
-          </li>
-          <li>
-            The full <b>email address</b> provided during the booking.
-          </li>
-        </ol>
+        <Trans html t={__('smartfaq.single_booking_page.instructions')} />
       </div>
       <style jsx>
         {`

@@ -7,6 +7,7 @@ import { DateTime } from 'luxon';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { withRouter } from 'react-router-dom';
 import { BaggageChecked, Ticket } from '@kiwicom/orbit-components/lib/icons';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import {
   isUrgentBooking,
@@ -176,7 +177,11 @@ class BookingDetail extends React.Component<Props> {
         <FAQExtraInfoButton category="boarding-passes">
           <Ticket customColor="#00a991" />
           <p className="iconLabel" data-cy="btn-boarding-passes">
-            Boarding passes
+            <Trans
+              t={__(
+                'smartfaq.single_booking_page.booking_detail.boarding_passes',
+              )}
+            />
           </p>
         </FAQExtraInfoButton>
         {this.renderByType(booking)}
@@ -187,7 +192,13 @@ class BookingDetail extends React.Component<Props> {
             href={replaceWithCurrentDomain(booking.directAccessURL)}
             onClick={goToMMB}
           >
-            <button className="manage-booking">Manage My Booking</button>
+            <button className="manage-booking">
+              <Trans
+                t={__(
+                  'smartfaq.single_booking_page.booking_detail.manage_my_booking',
+                )}
+              />
+            </button>
           </a>
         </div>
         {eTicketLink && (
@@ -197,7 +208,11 @@ class BookingDetail extends React.Component<Props> {
             target="_blank"
             onClick={clickEticket}
           >
-            Download e-ticket
+            <Trans
+              t={__(
+                'smartfaq.single_booking_page.booking_detail.download_e_ticket',
+              )}
+            />
           </a>
         )}
         {isUrgent && <Contact info={booking} />}

@@ -16,7 +16,7 @@ describe('Notification', () => {
     const wrapper = render(<RawNotification isUrgent hoursLeft={25} />);
 
     expect(wrapper.text()).toContain(
-      "Don't hesitate to call us if you have an urgent problem.",
+      'smartfaq.single_booking_page.notification.urgent_message',
     );
   });
 
@@ -24,7 +24,7 @@ describe('Notification', () => {
     const wrapper = render(<RawNotification isUrgent={false} hoursLeft={62} />);
 
     expect(wrapper.text()).toContain(
-      'There is still time to add some nice extras or even change your booking.',
+      'smartfaq.single_booking_page.notification.normal_message',
     );
   });
 });

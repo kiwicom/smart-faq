@@ -3,6 +3,7 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Text } from '@kiwicom/orbit-components';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 const style = css`
   .BookingError {
@@ -26,10 +27,11 @@ const style = css`
 
 const BookingError = () => (
   <div className="BookingError">
-    <h1 className="title">Something&apos;s not right</h1>
+    <h1 className="title">
+      <Trans t={__('smartfaq.single_booking_page.booking_error.title')} />
+    </h1>
     <Text type="secondary" size="large">
-      We weren&apos;t able to find your booking. Please, check your credentials
-      and try again.
+      <Trans t={__('smartfaq.single_booking_page.booking_error.text')} />
     </Text>
     <style jsx>{style}</style>
   </div>

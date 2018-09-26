@@ -13,7 +13,9 @@ type Props = {|
 
 const OneWayTrip = ({ booking }: Props) => (
   <div>
-    <AccordionTitle title="Outbound" />
+    <AccordionTitle
+      title={__('smartfaq.single_booking_page.oneway_trip.outbound')}
+    />
     <Accordion trip={booking.trip} />
   </div>
 );

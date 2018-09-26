@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import MulticityTrip from './MulticityTrip';
 import type { MulticityOverlayTrip_booking } from './__generated__/MulticityOverlayTrip_booking.graphql';
@@ -46,7 +47,11 @@ class MulticityOverlayTrip extends React.Component<Props, State> {
           />
         </div>
         <button className="multicityButton" onClick={this.toggleOverlapping}>
-          {this.state.overlapping ? 'Show more trips' : 'Show less trips'}
+          {this.state.overlapping ? (
+            <Trans t={__('smartfaq.single_booking_page.show_more_trips')} />
+          ) : (
+            <Trans t={__('smartfaq.single_booking_page.show_less_trips')} />
+          )}
         </button>
         <style jsx>
           {`
