@@ -5,6 +5,7 @@ import css from 'styled-jsx/css';
 import MediaQuery from 'react-responsive';
 import { Text, Alert, Button, TextLink } from '@kiwicom/orbit-components';
 import { AlertCircle, Loading } from '@kiwicom/orbit-components/lib/icons';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import CloseButton from './../common/buttons/CloseButton';
 import BackButton from '../common/buttons/BackButton';
@@ -202,11 +203,11 @@ class KiwiLogin extends React.Component<Props, State> {
     const renderButton = () =>
       isLoading ? (
         <Button block onClick={() => {}} disabled icon={<Loading />}>
-          Sign In
+          <Trans t={__('smartfaq.kiwi_login.sign_in_button')} />
         </Button>
       ) : (
         <Button block onClick={kiwiLoginTracker}>
-          Sign In
+          <Trans t={__('smartfaq.kiwi_login.sign_in_button')} />
         </Button>
       );
 
@@ -218,22 +219,22 @@ class KiwiLogin extends React.Component<Props, State> {
           <img alt="Help" src={image} />
         </div>
         <div className="main">
-          <p className="title">Kiwi.com account</p>
+          <p className="title">
+            <Trans t={__('smartfaq.kiwi_login.title')} />
+          </p>
           <MediaQuery query="(min-width: 480px) and (min-height: 480px)">
             <Text type="secondary">
-              If you have an account with us, just use your credentials to sign
-              in.
+              <Trans t={__('smartfaq.kiwi_login.subtitle')} />
             </Text>
           </MediaQuery>
           <MediaQuery query="only screen and (max-width: 480px) and (orientation: portrait)">
             <Text type="secondary">
-              If you have an account with us, just use your credentials to sign
-              in.
+              <Trans t={__('smartfaq.kiwi_login.subtitle')} />
             </Text>
           </MediaQuery>
           <form onSubmit={this.handleSignIn}>
             <label htmlFor="email">
-              Email:
+              <Trans t={__('smartfaq.kiwi_login.email_label')} />
               <div className="input">
                 <Input
                   type="email"
@@ -246,7 +247,7 @@ class KiwiLogin extends React.Component<Props, State> {
               </div>
             </label>
             <label htmlFor="password">
-              Password:
+              <Trans t={__('smartfaq.kiwi_login.password_label')} />
               <div className="input">
                 <Input
                   type="password"
@@ -260,7 +261,7 @@ class KiwiLogin extends React.Component<Props, State> {
             {showError && (
               <div className="errorMessage">
                 <Alert type="critical" icon={<AlertCircle />}>
-                  The username or password you&apos;ve entered is invalid.
+                  <Trans t={__('smartfaq.kiwi_login.wrong_credentials')} />
                 </Alert>
               </div>
             )}
@@ -270,7 +271,9 @@ class KiwiLogin extends React.Component<Props, State> {
                 onClick={() => this.props.history.push('/forgotten-password')}
                 type="primary"
               >
-                Forgot your password?
+                <Trans
+                  t={__('smartfaq.kiwi_login.link_to_forgotten_password')}
+                />
               </TextLink>
             </div>
             <span className="signIn" data-cy="btn-sign-in">

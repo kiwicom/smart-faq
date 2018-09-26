@@ -8,6 +8,7 @@ import { Text, Heading, Alert, TextLink } from '@kiwicom/orbit-components';
 import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
 import type { Location } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import image from '../../static/woman-with-laptop@2x.jpg';
 import chevronRight from '../../static/chevron-right.png';
@@ -126,7 +127,7 @@ class SignIn extends React.Component<Props> {
     return (
       <div className="infoMessage" data-cy="message-expired-session">
         <Alert type="info" icon={<AlertCircle />}>
-          Your last session has expired. Please sign in again.
+          <Trans t={__('smartfaq.sign_in_page.alert')} />
         </Alert>
         <style jsx>
           {`
@@ -155,20 +156,24 @@ class SignIn extends React.Component<Props> {
         <div className="text">
           <div className="title">
             <MediaQuery query="screen and (max-width: 700px)">
-              <Heading type="title2">Sign in</Heading>
+              <Heading type="title2">
+                <Trans t={__('smartfaq.sign_in_page.title')} />
+              </Heading>
             </MediaQuery>
             <MediaQuery query="screen and (min-width: 701px)">
-              <Heading>Sign in</Heading>
+              <Heading>
+                <Trans t={__('smartfaq.sign_in_page.title')} />
+              </Heading>
             </MediaQuery>
           </div>
           <MediaQuery query="(min-width: 480px) and (min-height: 480px)">
             <Text type="secondary">
-              We need you to sign in to provide you with more personalised help.
+              <Trans t={__('smartfaq.sign_in_page.subtitle')} />
             </Text>
           </MediaQuery>
           <MediaQuery query="only screen and (max-width: 480px) and (orientation: portrait)">
             <Text type="secondary">
-              We need you to sign in to provide you with more personalised help.
+              <Trans t={__('smartfaq.sign_in_page.subtitle')} />
             </Text>
           </MediaQuery>
           {sessionExpired && this.renderExpiredSession()}
@@ -180,7 +185,7 @@ class SignIn extends React.Component<Props> {
               bordered
               onSocialLogin={onSocialLogin}
             >
-              Continue with Google
+              <Trans t={__('smartfaq.sign_in_page.google_button')} />
             </ResponsiveSocialButton>
           </div>
           <div className="facebookButton">
@@ -188,7 +193,7 @@ class SignIn extends React.Component<Props> {
               type="facebook"
               onSocialLogin={onSocialLogin}
             >
-              Continue with Facebook
+              <Trans t={__('smartfaq.sign_in_page.facebook_button')} />
             </ResponsiveSocialButton>
           </div>
         </div>
@@ -198,7 +203,9 @@ class SignIn extends React.Component<Props> {
             onClick={() => this.props.history.push('/kiwi-login')}
             type="primary"
           >
-            <span className="linkText">I want to use my Kiwi.com account</span>
+            <span className="linkText">
+              <Trans t={__('smartfaq.sign_in_page.kiwi_account_link')} />
+            </span>
             <img src={chevronRight} className="chevron" alt="kiwi login" />
           </TextLink>
         </div>

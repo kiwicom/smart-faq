@@ -3,6 +3,7 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Text } from '@kiwicom/orbit-components';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
@@ -189,14 +190,18 @@ class ForgottenPassword extends React.Component<Props, State> {
           <img alt="Help" src={image} />
         </div>
         <div className="main">
-          <p className="title">Forgotten password</p>
+          <p className="title">
+            <Trans t={__('smartfaq.forgotten_password.title')} />
+          </p>
           <Text type="secondary">
-            {`Please enter your email address. We'll send you instructions to reset your password.`}
+            <Trans t={__('smartfaq.forgotten_password.subtitle')} />
           </Text>
         </div>
         <form onSubmit={this.handleSubmitEmail}>
           <label htmlFor="email">
-            <Text>Email:</Text>
+            <Text>
+              <Trans t={__('smartfaq.forgotten_password.email_label')} />
+            </Text>
             <div className="input">
               <Input
                 type="email"
@@ -207,7 +212,9 @@ class ForgottenPassword extends React.Component<Props, State> {
               />
             </div>
           </label>
-          <button className="send">Send</button>
+          <button className="send">
+            <Trans t={__('smartfaq.forgotten_password.send_button')} />
+          </button>
         </form>
         <style jsx>{style}</style>
       </div>
