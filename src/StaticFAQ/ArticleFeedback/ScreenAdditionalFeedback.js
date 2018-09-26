@@ -93,6 +93,7 @@ class ScreenAdditionalFeedback extends React.Component<Props, State> {
       commentTypeValues[commentType],
       comment,
       () => changeScreen(screenList.THANK_YOU),
+      () => changeScreen(screenList.COMMENT_LIMIT_REACHED),
       () => changeScreen(screenList.ERROR),
     );
 

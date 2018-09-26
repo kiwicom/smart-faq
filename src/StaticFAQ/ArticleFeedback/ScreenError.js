@@ -10,17 +10,12 @@ import { Box } from '../../common';
 
 type Props = {|
   changeScreen: (nextScreen: string) => void,
+  commentLimitReached?: boolean,
 |};
 
 const style = css`
   div.feedbackMessage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 251px;
-    padding-left: 14px;
-    padding-right: 14px;
+    padding: 32px 24px;
   }
   div.closeIcon {
     position: absolute;
@@ -28,29 +23,28 @@ const style = css`
     right: 8px;
     cursor: pointer;
   }
-  div.systemMessage {
-    margin-bottom: 16px;
-  }
 `;
-const ScreenError = (props: Props) => {
+
+const ScreenError = ({ changeScreen, commentLimitReached }: Props) => {
+  const warningMessage = commentLimitReached
+    ? `You've reached the daily maximum number of comments. We'll review your notes and adjust the article if necessary. Thank you.`
+    : `Sorry, we didn't receive your feedback. Please refresh the page or try again later.`;
+
   return (
     <Box border="none" borderRadius="4px" backgroundColor="#f5f7f9">
       <div className="feedbackMessage">
         <div
           className="closeIcon"
-          onClick={() => props.changeScreen(screenList.VOTING)}
+          onClick={() => changeScreen(screenList.VOTING)}
           onKeyUp={null}
           tabIndex="-1"
           role="button"
         >
           <Close customColor="#bac7d5" size="small" />
         </div>
-        <div className="systemMessage">
-          <Alert type="warning" icon>
-            Our bad. We weren&apos;t able to send your feedback. But, follow the
-            link below to drop us a line.
-          </Alert>
-        </div>
+        <Alert type="warning" icon={commentLimitReached ? false : true}>
+          {warningMessage}
+        </Alert>
         <style jsx>{style}</style>
       </div>
     </Box>

@@ -5,10 +5,10 @@ exports[`ScreenError should match snapshot 1`] = `
   class="jsx-4062952819 box"
 >
   <div
-    class="jsx-2960163256 feedbackMessage"
+    class="jsx-618653150 feedbackMessage"
   >
     <div
-      class="jsx-2960163256 closeIcon"
+      class="jsx-618653150 closeIcon"
       role="button"
       tabindex="-1"
     >
@@ -26,35 +26,31 @@ exports[`ScreenError should match snapshot 1`] = `
       </svg>
     </div>
     <div
-      class="jsx-2960163256 systemMessage"
+      class="Alert__StyledAlert-cJJYQC kLEINk"
     >
       <div
-        class="Alert__StyledAlert-cJJYQC kLEINk"
+        class="Alert__IconContainer-eSlLEA eyJClo"
+      >
+        <svg
+          fill="currentColor"
+          height="24px"
+          preserveAspectRatio="xMidYMid meet"
+          style="vertical-align:middle"
+          viewBox="0 0 24 24"
+          width="24px"
+        >
+          <path
+            d="M12 19.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zM11 10h2v6h-2v-6zm10.895 10.553l-9-18c-.339-.678-1.451-.678-1.79 0l-9 18c-.154.31-.138.678.044.973.183.294.504.474.851.474h18c.347 0 .668-.18.851-.474.182-.295.198-.663.044-.973z"
+          />
+        </svg>
+      </div>
+      <div
+        class="Alert__ContentWrapper-glEZbs cPHqb"
       >
         <div
-          class="Alert__IconContainer-eSlLEA eyJClo"
+          class="Alert__Content-KRSaN iWERJM"
         >
-          <svg
-            fill="currentColor"
-            height="24px"
-            preserveAspectRatio="xMidYMid meet"
-            style="vertical-align:middle"
-            viewBox="0 0 24 24"
-            width="24px"
-          >
-            <path
-              d="M12 19.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zM11 10h2v6h-2v-6zm10.895 10.553l-9-18c-.339-.678-1.451-.678-1.79 0l-9 18c-.154.31-.138.678.044.973.183.294.504.474.851.474h18c.347 0 .668-.18.851-.474.182-.295.198-.663.044-.973z"
-            />
-          </svg>
-        </div>
-        <div
-          class="Alert__ContentWrapper-glEZbs cPHqb"
-        >
-          <div
-            class="Alert__Content-KRSaN iWERJM"
-          >
-            Our bad. We weren't able to send your feedback. But, follow the link below to drop us a line.
-          </div>
+          Sorry, we didn't receive your feedback. Please refresh the page or try again later.
         </div>
       </div>
     </div>

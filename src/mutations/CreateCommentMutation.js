@@ -1,8 +1,10 @@
 // @flow
 
 import { commitMutation, graphql } from 'react-relay';
+import idx from 'idx';
 
 import createEnvironment from '../relay/environment';
+import { simpleTracker } from '../helpers/analytics/trackers';
 
 const mutation = graphql`
   mutation CreateCommentMutation(
@@ -21,6 +23,7 @@ export default (
   type: string,
   comment: string,
   callback: () => void,
+  commentLimitReachedCallback: () => void,
   errorCallback: () => void,
 ) => {
   const variables = {
@@ -34,10 +37,21 @@ export default (
     onCompleted: (response, errors) => {
       if (!errors) {
         callback();
+        return;
+      }
+
+      const isCommentLimitReached =
+        idx(errors, _ => _[0].extensions.proxy.statusCode) === '429';
+
+      if (isCommentLimitReached) {
+        simpleTracker('smartFAQCategories', { action: 'commentLimitReached' });
+        commentLimitReachedCallback();
       } else {
         errorCallback();
       }
     },
-    onError: () => errorCallback(),
+    onError: () => {
+      errorCallback();
+    },
   });
 };
