@@ -1,4 +1,9 @@
 {
+  "single_booking_page.booking_not_found": "No Bookings found",
+  "single_booking_page.oneway_trip.outbound": "Outbound",
+  "single_booking_page.return_trip.inbound": "Return",
+  "single_booking_page.return_trip.outbound": "Outbound",
+  "single_booking_page.return_trip.trips": "Trips",
   "smartfaq.all_bookings.booking_card.booking_date": "Booking date",
   "smartfaq.all_bookings.booking_card.departure_date": "Departure date",
   "smartfaq.all_bookings.booking_card.includes": "Includes",

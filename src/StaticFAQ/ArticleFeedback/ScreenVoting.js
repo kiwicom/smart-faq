@@ -3,6 +3,7 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { ThumbUp, ThumbDown } from '@kiwicom/orbit-components/lib/icons';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import screenList from './screenList';
 import voteArticle from '../../mutations/VoteArticleMutation';
@@ -64,7 +65,9 @@ const ScreenVoting = (props: Props) => {
 
   return (
     <div className="initial-screen">
-      <p className="question">Was this article helpful?</p>
+      <p className="question">
+        <Trans t={__('smartfaq.article_feedback.voting.title')} />
+      </p>
       <div
         className="feedback-button thumb-up"
         role="button"
@@ -73,7 +76,9 @@ const ScreenVoting = (props: Props) => {
         tabIndex={0}
       >
         <ThumbUp size="medium" customColor="#00a991" />
-        <p>Yes</p>
+        <p>
+          <Trans t={__('smartfaq.article_feedback.voting.yes')} />
+        </p>
       </div>
       <div
         className="feedback-button thumb-down"
@@ -83,7 +88,9 @@ const ScreenVoting = (props: Props) => {
         tabIndex={0}
       >
         <ThumbDown size="medium" customColor="#00a991" />
-        <p>No</p>
+        <p>
+          <Trans t={__('smartfaq.article_feedback.voting.no')} />
+        </p>
       </div>
       <style jsx>{style}</style>
     </div>

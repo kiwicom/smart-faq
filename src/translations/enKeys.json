@@ -5,36 +5,30 @@
   "smartfaq.intro_page.no_booking": "I don't have a booking",
   "smartfaq.sign_in_page.alert": "Your last session has expired. Please sign in again.",
   "smartfaq.sign_in_page.title": "Sign in",
-  "smartfaq.sign_in_page.subtitle":
-    "We need you to sign in to provide you with more personalised help.",
+  "smartfaq.sign_in_page.subtitle": "We need you to sign in to provide you with more personalised help.",
   "smartfaq.sign_in_page.google_button": "Continue with Google",
   "smartfaq.sign_in_page.facebook_button": "Continue with Facebook",
   "smartfaq.sign_in_page.kiwi_account_link": "I want to use my Kiwi.com account",
   "smartfaq.kiwi_login.sign_in_button": "Sign In",
   "smartfaq.kiwi_login.title": "Kiwi.com account",
-  "smartfaq.kiwi_login.subtitle":
-    "If you have an account with us, just use your credentials to sign in.",
+  "smartfaq.kiwi_login.subtitle": "If you have an account with us, just use your credentials to sign in.",
   "smartfaq.kiwi_login.email_label": "Email:",
   "smartfaq.kiwi_login.password_label": "Password:",
   "smartfaq.kiwi_login.wrong_credentials": "The username or password you've entered is invalid.",
   "smartfaq.kiwi_login.link_to_forgotten_password": "Forgot your password?",
   "smartfaq.forgotten_password.title": "Forgotten password",
-  "smartfaq.forgotten_password.subtitle":
-    "Please enter your email address. We'll send you instructions to reset your password.",
+  "smartfaq.forgotten_password.subtitle": "Please enter your email address. We'll send you instructions to reset your password.",
   "smartfaq.forgotten_password.email_label": "Email:",
   "smartfaq.forgotten_password.send_button": "Send",
   "smartfaq.email_page.title": "Check your e-mail inbox",
   "smartfaq.email_page.recovery_link_subtitle": "We sent a recovery link to",
-  "smartfaq.email_page.magic_link_subtitle":
-    "To sign in, just click the link in the email we sent to",
+  "smartfaq.email_page.magic_link_subtitle": "To sign in, just click the link in the email we sent to",
   "smartfaq.boarding_pass_info.title": "Your boarding passes",
-  "smartfaq.boarding_pass_info.subtitle":
-    "Here, you can download your boarding passes or see when they will become available.",
+  "smartfaq.boarding_pass_info.subtitle": "Here, you can download your boarding passes or see when they will become available.",
   "smartfaq.boarding_pass_info.airport_check_in": "Airport check-in",
   "smartfaq.boarding_pass_info.available_at": "Available",
   "smartfaq.boarding_pass_info.download": "Download",
-  "smartfaq.boarding_pass_info.airport_check_in.hover":
-    "You will have to check-in for free at the airport.",
+  "smartfaq.boarding_pass_info.airport_check_in.hover": "You will have to check-in for free at the airport.",
   "smartfaq.boarding_pass_info.more_info": "More info",
   "smartfaq.baggage_info.title": "Your baggage",
   "smartfaq.baggage_info.subtitle": "Here you can see your baggage allowance.",
@@ -49,27 +43,17 @@
   "smartfaq.all_bookings.booking_card.booking_date": "Booking date",
   "smartfaq.all_bookings.booking_card.includes": "Includes",
   "smartfaq.all_bookings.booking_card.status": "Status",
-  "smartfaq.single_booking_page.instructions":
-    "<ol>\n <li>\n When contacting us we will ask the <b>full name</b> of at least one\n of the passengers.\n </li>\n <li>\n The full <b>email address</b> provided during the booking.\n </li>\n </ol>",
-  "smartfaq.single_booking_page.notification.urgent_message":
-    "You depart in __formattedHoursLeft__.\n Don't hesitate to call us if you have an urgent problem.",
-  "smartfaq.single_booking_page.notification.normal_message":
-    "You depart in __formattedHoursLeft__.\n There is still time to add some nice extras or even change your booking.",
-  "smartfaq.single_booking_page.accordion_cities_info.airline_title_name":
-    "Airline: __carrierName__",
-  "smartfaq.single_booking_page.accordion_cities_info.carrier_title_name":
-    "Carrier: __carrierName__",
-  "smartfaq.single_booking_page.accordion_cities_info.operating_airline":
-    "Operating airline: __operatingAirline.name__",
-  "smartfaq.single_booking_page.accordion_cities_info.reservation_number":
-    "PNR: __reservationNumber__",
-  "smartfaq.single_booking_page.accordion_cities_info.vehicle_type":
-    "__vehicle_manufacturer__ __vehicle_model__",
+  "smartfaq.single_booking_page.instructions": "<ol>\n <li>\n When contacting us we will ask the <b>full name</b> of at least one\n of the passengers.\n </li>\n <li>\n The full <b>email address</b> provided during the booking.\n </li>\n </ol>",
+  "smartfaq.single_booking_page.notification.urgent_message": "You depart in __formattedHoursLeft__.\n Don't hesitate to call us if you have an urgent problem.",
+  "smartfaq.single_booking_page.notification.normal_message": "You depart in __formattedHoursLeft__.\n There is still time to add some nice extras or even change your booking.",
+  "smartfaq.single_booking_page.accordion_cities_info.airline_title_name": "Airline: __carrierName__",
+  "smartfaq.single_booking_page.accordion_cities_info.carrier_title_name": "Carrier: __carrierName__",
+  "smartfaq.single_booking_page.accordion_cities_info.operating_airline": "Operating airline: __operatingAirline.name__",
+  "smartfaq.single_booking_page.accordion_cities_info.reservation_number": "PNR: __reservationNumber__",
+  "smartfaq.single_booking_page.accordion_cities_info.vehicle_type": "__vehicle_manufacturer__ __vehicle_model__",
   "smartfaq.single_booking_page.accordion_cities_info.trains_buses_info": "Trains and Buses Info",
-  "smartfaq.single_booking_page.accordion_cities_info.flight_no":
-    "Flight no: __carrier_code__ __flight_number__",
-  "smartfaq.single_booking_page.accordion_cities_info.train_no":
-    "Flight no: __carrier_code__ __flight_number__",
+  "smartfaq.single_booking_page.accordion_cities_info.flight_no": "Flight no: __carrier_code__ __flight_number__",
+  "smartfaq.single_booking_page.accordion_cities_info.train_no": "Flight no: __carrier_code__ __flight_number__",
   "smartfaq.single_booking_page.header.booking_id.upcoming": "Upcoming trip #&nbsp; __booking_id__",
   "smartfaq.single_booking_page.header.booking_id.past": "Past trip #&nbsp; __booking_id__",
   "smartfaq.single_booking_page.covered_by": "Transfer protected by the <b>__coveredBy__</b>",
@@ -84,10 +68,11 @@
   "smartfaq.single_booking_page.booking_detail.manage_my_booking": "Manage My Booking",
   "smartfaq.single_booking_page.booking_detail.download_e_ticket": "Download e-ticket",
   "smartfaq.single_booking_page.booking_error.title": "Something&apos;s not right",
-  "smartfaq.single_booking_page.booking_error.text":
-    "We weren&apos;t able to find your booking. Please, check your credentials\n and try again. ",
+  "smartfaq.single_booking_page.booking_error.text": "We weren&apos;t able to find your booking. Please, check your credentials\n and try again. ",
   "smartfaq.single_booking_page.booking_headers.one_way.title": "__origin__ to __destination__",
-  "smartfaq.single_booking_page.booking_headers.return.title":
-    "__origin__ to __destination__ and back",
-  "smartfaq.select_another_booking": "Select another booking"
+  "smartfaq.single_booking_page.booking_headers.return.title": "__origin__ to __destination__ and back",
+  "smartfaq.select_another_booking": "Select another booking",
+  "smartfaq.article_feedback.voting.title": "Was this article helpful?",
+  "smartfaq.article_feedback.voting.yes": "Yes",
+  "smartfaq.article_feedback.voting.no": "No"
 }

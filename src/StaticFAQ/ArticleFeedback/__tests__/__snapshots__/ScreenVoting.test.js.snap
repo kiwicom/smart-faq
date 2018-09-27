@@ -7,7 +7,11 @@ exports[`ScreenVoting should match snapshot 1`] = `
   <p
     className="jsx-1712138937 question"
   >
-    Was this article helpful?
+    <Text
+      html={false}
+      t="smartfaq.article_feedback.voting.title"
+      values={Object {}}
+    />
   </p>
   <div
     className="jsx-1712138937 feedback-button thumb-up"
@@ -23,7 +27,11 @@ exports[`ScreenVoting should match snapshot 1`] = `
     <p
       className="jsx-1712138937"
     >
-      Yes
+      <Text
+        html={false}
+        t="smartfaq.article_feedback.voting.yes"
+        values={Object {}}
+      />
     </p>
   </div>
   <div
@@ -40,7 +48,11 @@ exports[`ScreenVoting should match snapshot 1`] = `
     <p
       className="jsx-1712138937"
     >
-      No
+      <Text
+        html={false}
+        t="smartfaq.article_feedback.voting.no"
+        values={Object {}}
+      />
     </p>
   </div>
   <JSXStyle
