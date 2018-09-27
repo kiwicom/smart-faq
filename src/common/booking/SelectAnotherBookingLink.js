@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import { TextLink } from '@kiwicom/orbit-components';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import { UserContext } from '../../context/User';
 import { SelectedBooking } from '../../context/SelectedBooking';
@@ -39,7 +40,7 @@ const SelectAnotherBookingLink = (props: Props) => (
                 external={false}
                 type="primary"
               >
-                Select another booking
+                <Trans t={__('smartfaq.select_another_booking')} />
               </TextLink>
             </div>
           )}
