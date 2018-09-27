@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7a3146ae33de26dea8615bd03b4f99ab
+ * @relayHash cb5b028b94b68b6d92b2f5250d48350d
  */
 
 /* eslint-disable */
@@ -43,6 +43,12 @@ query BoardingPassesInfoSingleQuery(
 fragment BoardingPassesSummary on BookingAssets {
   boardingPasses {
     flightNumber
+    leg {
+      departure {
+        time
+      }
+      id
+    }
     ...BoardingPassesDescription
   }
 }
@@ -117,44 +123,42 @@ v3 = {
   "args": null,
   "storageKey": null
 },
-v4 = [
-  {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "airport",
-    "storageKey": null,
-    "args": null,
-    "concreteType": "Location",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "city",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "LocationArea",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "name",
-            "args": null,
-            "storageKey": null
-          }
-        ]
-      },
-      v3
-    ]
-  }
-];
+v4 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "airport",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "Location",
+  "plural": false,
+  "selections": [
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "city",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "LocationArea",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "name",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    v3
+  ]
+};
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "BoardingPassesInfoSingleQuery",
   "id": null,
-  "text": "query BoardingPassesInfoSingleQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    assets {\n      ...BoardingPassesSummary\n    }\n    directAccessURL\n    id\n  }\n}\n\nfragment BoardingPassesSummary on BookingAssets {\n  boardingPasses {\n    flightNumber\n    ...BoardingPassesDescription\n  }\n}\n\nfragment BoardingPassesDescription on BoardingPass {\n  flightNumber\n  boardingPassUrl\n  availableAt\n  availabilityStatus\n  leg {\n    id\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n",
+  "text": "query BoardingPassesInfoSingleQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    assets {\n      ...BoardingPassesSummary\n    }\n    directAccessURL\n    id\n  }\n}\n\nfragment BoardingPassesSummary on BookingAssets {\n  boardingPasses {\n    flightNumber\n    leg {\n      departure {\n        time\n      }\n      id\n    }\n    ...BoardingPassesDescription\n  }\n}\n\nfragment BoardingPassesDescription on BoardingPass {\n  flightNumber\n  boardingPassUrl\n  availableAt\n  availabilityStatus\n  leg {\n    id\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -240,6 +244,49 @@ return {
                     "storageKey": null
                   },
                   {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "leg",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "Leg",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "departure",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "RouteStop",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "time",
+                            "args": null,
+                            "storageKey": null
+                          },
+                          v4
+                        ]
+                      },
+                      v3,
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "arrival",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "RouteStop",
+                        "plural": false,
+                        "selections": [
+                          v4
+                        ]
+                      }
+                    ]
+                  },
+                  {
                     "kind": "ScalarField",
                     "alias": null,
                     "name": "boardingPassUrl",
@@ -259,38 +306,6 @@ return {
                     "name": "availabilityStatus",
                     "args": null,
                     "storageKey": null
-                  },
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "leg",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "Leg",
-                    "plural": false,
-                    "selections": [
-                      v3,
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "departure",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "RouteStop",
-                        "plural": false,
-                        "selections": v4
-                      },
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "arrival",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "RouteStop",
-                        "plural": false,
-                        "selections": v4
-                      }
-                    ]
                   }
                 ]
               }

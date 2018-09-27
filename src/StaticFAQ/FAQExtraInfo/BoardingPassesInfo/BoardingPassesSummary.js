@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import idx from 'idx';
 import { graphql, createFragmentContainer } from 'react-relay';
 
 import BoardingPassesLoader from './BoardingPassesLoader';
@@ -34,16 +35,23 @@ const BoardingPassesSummary = ({ data, mmbUrl }: Props) => {
   const { boardingPasses } = data;
   return (
     boardingPasses &&
-    boardingPasses.map(
-      boardingPass =>
-        boardingPass && (
-          <BoardingPassesDescription
-            key={boardingPass.flightNumber}
-            data={boardingPass}
-            mmbUrl={mmbUrl}
-          />
-        ),
-    )
+    boardingPasses
+      .slice()
+      .sort(
+        (a, b) =>
+          new Date(idx(a, _ => _.leg.departure.time) || '') -
+          new Date(idx(b, _ => _.leg.departure.time) || ''),
+      )
+      .map(
+        boardingPass =>
+          boardingPass && (
+            <BoardingPassesDescription
+              key={boardingPass.flightNumber}
+              data={boardingPass}
+              mmbUrl={mmbUrl}
+            />
+          ),
+      )
   );
 };
 
@@ -53,6 +61,11 @@ export default createFragmentContainer(
     fragment BoardingPassesSummary on BookingAssets {
       boardingPasses {
         flightNumber
+        leg {
+          departure {
+            time
+          }
+        }
         ...BoardingPassesDescription
       }
     }

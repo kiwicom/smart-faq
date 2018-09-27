@@ -14,6 +14,11 @@ declare export opaque type BoardingPassesSummary$ref: FragmentReference;
 export type BoardingPassesSummary = {|
   +boardingPasses: ?$ReadOnlyArray<?{|
     +flightNumber: ?string,
+    +leg: ?{|
+      +departure: ?{|
+        +time: ?any,
+      |},
+    |},
     +$fragmentRefs: BoardingPassesDescription$ref,
   |}>,
   +$refType: BoardingPassesSummary$ref,
@@ -45,6 +50,35 @@ const node/*: ConcreteFragment*/ = {
           "storageKey": null
         },
         {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "leg",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "Leg",
+          "plural": false,
+          "selections": [
+            {
+              "kind": "LinkedField",
+              "alias": null,
+              "name": "departure",
+              "storageKey": null,
+              "args": null,
+              "concreteType": "RouteStop",
+              "plural": false,
+              "selections": [
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "time",
+                  "args": null,
+                  "storageKey": null
+                }
+              ]
+            }
+          ]
+        },
+        {
           "kind": "FragmentSpread",
           "name": "BoardingPassesDescription",
           "args": null
@@ -53,5 +87,5 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
-(node/*: any*/).hash = '1780a7863cd543f20f077554a04e2c1d';
+(node/*: any*/).hash = 'e3126536cda510cfd1d5f5a2307da7b9';
 module.exports = node;
