@@ -29,7 +29,7 @@ exports[`StaticFAQError should match snapshot 1`] = `
         href="/en/content/feedback"
         target="_blank"
       >
-        Having trouble? Contact us
+        smartfaq.contact_page_link.default
         <span
           class="jsx-3405637160 open-icon"
         >

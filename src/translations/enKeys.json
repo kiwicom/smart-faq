@@ -43,6 +43,7 @@
   "smartfaq.all_bookings.booking_card.booking_date": "Booking date",
   "smartfaq.all_bookings.booking_card.includes": "Includes",
   "smartfaq.all_bookings.booking_card.status": "Status",
+  "smartfaq.single_booking_page.call_us": "Call us",
   "smartfaq.single_booking_page.instructions": "<ol>\n <li>\n When contacting us we will ask the <b>full name</b> of at least one\n of the passengers.\n </li>\n <li>\n The full <b>email address</b> provided during the booking.\n </li>\n </ol>",
   "smartfaq.single_booking_page.notification.urgent_message": "You depart in __formattedHoursLeft__.\n Don't hesitate to call us if you have an urgent problem.",
   "smartfaq.single_booking_page.notification.normal_message": "You depart in __formattedHoursLeft__.\n There is still time to add some nice extras or even change your booking.",
@@ -92,5 +93,10 @@
   "smartfaq.header.sign_in": "Sign&nbsp;In",
   "smartfaq.header.sign_out": "Sign out",
   "smartfaq.back_button.search": "Search",
-  "smartfaq.back_button.back": "Back"
+  "smartfaq.back_button.back": "Back",
+  "smartfaq.full_faq_link": "Full FAQ site",
+  "smartfaq.error_message.title": "Something's not quite right.",
+  "smartfaq.error_message.description": "Please, try refreshing the page. Sign out. Then sign in again. If the problem persists, don't hesitate to contact us.",
+  "smartfaq.error_message.contact_page_link": "Go to contact page",
+  "smartfaq.contact_page_link.default": "Having trouble? Contact us."
 }

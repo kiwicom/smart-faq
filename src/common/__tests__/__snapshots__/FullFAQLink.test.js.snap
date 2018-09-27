@@ -9,7 +9,13 @@ exports[`FullFAQLink should match snapshot 1`] = `
     rel="noopener noreferrer"
     target="_blank"
   >
-    Full FAQ site
+    <Text
+      html={false}
+      t="smartfaq.full_faq_link"
+      values={Object {}}
+    >
+      smartfaq.full_faq_link
+    </Text>
     <span
       className="jsx-3798246845 inline-icon"
     >
