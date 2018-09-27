@@ -10,6 +10,8 @@
   "smartfaq.article_feedback.additional_feedback.subtitle": "Comment",
   "smartfaq.article_feedback.additional_feedback.textarea_placeholder": "How could this be better?",
   "smartfaq.article_feedback.additional_feedback.title": "Please tell us more about your issue with the article (optional)",
+  "smartfaq.article_feedback.error_message.comment_limit_reached": "You've reached the daily maximum number of comments. We'll review your notes and adjust the article if necessary. Thank you.",
+  "smartfaq.article_feedback.error_message.feedback_not_received": "Sorry, we didn't receive your feedback. Please refresh the page or try again later.",
   "smartfaq.article_feedback.radio_group.confusing_label": "Confusing",
   "smartfaq.article_feedback.radio_group.doesnt_answer_label": "Doesn't answer my question",
   "smartfaq.article_feedback.radio_group.dont_like_label": "Don't like how this works",

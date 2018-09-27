@@ -156,7 +156,6 @@ class ScreenAdditionalFeedback extends React.Component<Props, State> {
               onChange={this.handleChange}
               value={this.state.comment}
               placeholder={placeholder}
-              // placeholder="How could this be better?"
             />
           </div>
           <div className="button">
