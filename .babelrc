@@ -19,6 +19,7 @@
     "@babel/plugin-transform-runtime",
     "@babel/plugin-transform-flow-comments",
     ["@babel/plugin-proposal-class-properties", { "loose": false }],
+    ["id", { "fn": "__" }],
     "relay",
     [
       "transform-assets-import-to-string",
