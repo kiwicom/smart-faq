@@ -67,7 +67,7 @@ class CustomBreadcrumbs extends React.Component<Props> {
           {({ showBooking }) => {
             if (isLoggedIn && showBooking) {
               return (
-                <span className="desktopOnly">
+                <span className="desktopOnly" data-cy="back-button">
                   <BackArrow id={id} />
                 </span>
               );

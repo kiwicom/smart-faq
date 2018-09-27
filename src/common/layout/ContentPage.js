@@ -45,9 +45,6 @@ const styles = css`
     width: 650px;
     height: 100%;
   }
-  .BookingInfo {
-    width: 548px;
-  }
   @media only screen and (max-width: 1180px) {
     .ContentPage {
       min-width: 320px;
@@ -59,12 +56,8 @@ const styles = css`
     .FAQ {
       width: 100%;
     }
-    .BookingInfo {
-      width: 100%;
-    }
   }
   @media only screen and (max-width: 1180px) and (min-width: 900px) {
-    .BookingInfo,
     .FAQWrapper {
       width: 50%;
     }
@@ -78,17 +71,34 @@ const FAQRoute = ({ history }: Props) => (
   </Switch>
 );
 
+const bookingScreenStyles = css`
+  .BookingInfo {
+    width: 548px;
+  }
+  @media only screen and (max-width: 1180px) {
+    .BookingInfo {
+      width: 100%;
+    }
+  }
+  @media only screen and (max-width: 1180px) and (min-width: 900px) {
+    .BookingInfo {
+      width: 50%;
+    }
+  }
+`;
+
 const BookingScreen = ({
   bookingPage,
   selectedBooking,
 }: BookingScreenProps) => {
   if (bookingPage === 'ALL_BOOKINGS') {
     return (
-      <div className="BookingInfo">
+      <div className="BookingInfo" data-cy="booking-info-screen">
         <BookingPage
           bookingPage={bookingPage}
           selectedBooking={selectedBooking}
         />
+        <style jsx>{bookingScreenStyles}</style>
       </div>
     );
   }
@@ -96,11 +106,12 @@ const BookingScreen = ({
   return (
     <Desktop>
       <UserStatus.LoggedIn>
-        <div className="BookingInfo">
+        <div className="BookingInfo" data-cy="booking-info-screen">
           <BookingPage
             bookingPage={bookingPage}
             selectedBooking={selectedBooking}
           />
+          <style jsx>{bookingScreenStyles}</style>
         </div>
       </UserStatus.LoggedIn>
     </Desktop>

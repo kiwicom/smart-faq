@@ -21,6 +21,7 @@ type State = {|
   simpleToken: ?string,
   helpQuery: ?string,
   showEmergencies: boolean,
+  showBooking: boolean,
   enableChat: boolean,
   forceChat: boolean,
   language: string,
@@ -73,6 +74,9 @@ class Root extends React.Component<Props, State> {
     const showEmergencies = Cookies.get('showEmergencies')
       ? Boolean(parseInt(Cookies.get('showEmergencies')))
       : false;
+    const showBooking = Cookies.get('showBooking')
+      ? Boolean(parseInt(Cookies.get('showBooking')))
+      : true;
 
     this.state = {
       isClosable: true,
@@ -82,6 +86,7 @@ class Root extends React.Component<Props, State> {
       enableChat,
       forceChat: window.GuaranteeChatForce,
       showEmergencies,
+      showBooking,
       helpQuery: helpQueryString ? helpQueryString : '/',
       language: 'en',
     };
@@ -200,6 +205,10 @@ class Root extends React.Component<Props, State> {
     }));
   };
 
+  toggleBooking = () => {
+    this.setState(({ showBooking }) => ({ showBooking: !showBooking }));
+  };
+
   changeLanguage = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({ language: e.target.value });
   };
@@ -224,8 +233,14 @@ class Root extends React.Component<Props, State> {
           <h3>Show some emergencies</h3>
           <input
             type="checkbox"
-            value={showEmergencies}
+            checked={showEmergencies}
             onChange={this.toggleEmergencies}
+          />
+          <h3>Enable booking screen</h3>
+          <input
+            type="checkbox"
+            checked={this.state.showBooking}
+            onChange={this.toggleBooking}
           />
           <h3>Enable chat</h3>
           <input
@@ -283,7 +298,7 @@ class Root extends React.Component<Props, State> {
             language={language}
             user={this.state.user}
             route={helpQuery}
-            showBooking={false}
+            showBooking={this.state.showBooking}
             loginToken={this.state.loginToken}
             simpleToken={this.state.simpleToken}
             enableChat={this.state.enableChat}

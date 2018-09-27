@@ -32,6 +32,7 @@ class SignOutButton extends React.Component<Props> {
         onKeyUp={this.onSignOut}
         role="button"
         tabIndex={0}
+        data-cy="sign-out-button"
       >
         <Text type="attention">Sign out</Text>
         <style jsx>
