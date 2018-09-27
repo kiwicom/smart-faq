@@ -13,7 +13,9 @@ type Props = {|
 
 const MulticityTrip = ({ booking }: Props) => (
   <div>
-    <AccordionTitle title="Trips" />
+    <AccordionTitle
+      title={__('smartfaq.single_booking_page.return_trip.trips')}
+    />
     {Array.isArray(booking.trips) &&
       booking.trips.map((trip, i) => (
         //eslint-disable-next-line react/no-array-index-key

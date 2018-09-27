@@ -8,6 +8,7 @@ import idx from 'idx';
 import Clock from '@kiwicom/orbit-components/lib/icons/Clock';
 import Check from '@kiwicom/orbit-components/lib/icons/Check';
 import Calendar from '@kiwicom/orbit-components/lib/icons/Calendar';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import LegTypeIcon from './AccordionLegTypeIcon';
 import { FormatDate, formatTimeDuration } from '../../helpers/dateUtils';
@@ -96,7 +97,11 @@ const AccordionBodyLeg = (props: LegProps) => {
             style={{ textDecoration: 'none' }}
           >
             <span className="text">
-              Transfer protected by the <b>{coveredBy}</b>
+              <Trans
+                t={__('smartfaq.single_booking_page.covered_by')}
+                html
+                values={{ coveredBy }}
+              />
             </span>
           </Link>
         </div>

@@ -13,9 +13,11 @@ type Props = {
 
 const ReturnTrip = (props: Props) => (
   <div>
-    <TripTitle title="Outbound" />
+    <TripTitle
+      title={__('smartfaq.single_booking_page.return_trip.outbound')}
+    />
     <Accordion trip={props.booking.outbound} />
-    <TripTitle title="Return" />
+    <TripTitle title={__('smartfaq.single_booking_page.return_trip.inbound')} />
     <Accordion trip={props.booking.inbound} />
   </div>
 );

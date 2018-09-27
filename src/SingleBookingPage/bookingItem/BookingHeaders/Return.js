@@ -1,7 +1,9 @@
 // @flow
 
+import * as React from 'react';
 import idx from 'idx';
 import { graphql, createFragmentContainer } from 'react-relay';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import type { Return_bookingHeader } from './__generated__/Return_bookingHeader.graphql';
 
@@ -14,7 +16,12 @@ const ReturnBookingHeader = ({ bookingHeader }: Props) => {
     idx(bookingHeader.outbound, _ => _.departure.airport.city.name) || '';
   const destination =
     idx(bookingHeader.outbound, _ => _.arrival.airport.city.name) || '';
-  return `${origin} to ${destination} and back`;
+  return (
+    <Trans
+      t={__('smartfaq.single_booking_page.booking_headers.return.title')}
+      values={{ origin, destination }}
+    />
+  );
 };
 
 export const RawReturnBookingHeader = ReturnBookingHeader;

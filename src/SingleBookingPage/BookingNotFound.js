@@ -3,6 +3,7 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Text } from '@kiwicom/orbit-components';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 const style = css`
   .UpcomingBooking {
@@ -23,7 +24,7 @@ const BookingNotFound = () => (
   <div className="UpcomingBooking">
     <div className="feedback">
       <Text type="secondary" size="large">
-        No bookings found
+        <Trans t={__('smartfaq.single_booking_page.booking_not_found')} />
       </Text>
     </div>
     <style jsx>{style}</style>

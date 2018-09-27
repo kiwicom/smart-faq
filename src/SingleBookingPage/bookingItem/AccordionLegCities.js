@@ -6,6 +6,7 @@ import idx from 'idx';
 import { CarrierLogo } from '@kiwicom/orbit-components';
 import { ShowMore, ShowLess } from '@kiwicom/orbit-components/lib/icons';
 import { createFragmentContainer, graphql } from 'react-relay';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import LegCitiesInfo from './AccordionLegCitiesInfo';
 import { formatHour, formatTimeDuration } from '../../helpers/dateUtils';
@@ -136,11 +137,16 @@ class LegCities extends React.Component<Props, State> {
     };
 
     const { isExpanded } = this.state;
-
     const legTitle =
-      type === bookingLegTypes.BUS
-        ? 'Bus'
-        : type === bookingLegTypes.TRAIN ? 'Train' : null;
+      type === bookingLegTypes.BUS ? (
+        <Trans
+          t={__('smartfaq.single_booking_page.accordion_leg_cities.bus')}
+        />
+      ) : type === bookingLegTypes.TRAIN ? (
+        <Trans
+          t={__('smartfaq.single_booking_page.accordion_leg_cities.train')}
+        />
+      ) : null;
 
     return (
       <div
