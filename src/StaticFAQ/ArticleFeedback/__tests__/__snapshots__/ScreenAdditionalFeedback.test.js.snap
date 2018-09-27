@@ -26,13 +26,21 @@ exports[`ScreenAdditionalFeedback should match snapshot 1`] = `
     <Heading
       type="title3"
     >
-      Please tell us more about your issue with the article (optional)
+      <Text
+        html={false}
+        t="smartfaq.article_feedback.additional_feedback.title"
+        values={Object {}}
+      />
     </Heading>
     <div
       className="jsx-2730678398 question"
     >
       <Text>
-        Comment
+        <Text
+          html={false}
+          t="smartfaq.article_feedback.additional_feedback.subtitle"
+          values={Object {}}
+        />
       </Text>
     </div>
     <div
@@ -42,7 +50,7 @@ exports[`ScreenAdditionalFeedback should match snapshot 1`] = `
         className="jsx-2730678398"
         data-gramm_editor="false"
         onChange={[Function]}
-        placeholder="How could this be better?"
+        placeholder="smartfaq.article_feedback.additional_feedback.textarea_placeholder"
         value=""
       />
     </div>
@@ -52,7 +60,11 @@ exports[`ScreenAdditionalFeedback should match snapshot 1`] = `
       <Button
         onClick={[Function]}
       >
-        Submit
+        <Text
+          html={false}
+          t="smartfaq.article_feedback.additional_feedback.submit_button"
+          values={Object {}}
+        />
       </Button>
     </div>
   </form>

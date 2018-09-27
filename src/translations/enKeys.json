@@ -80,5 +80,9 @@
   "smartfaq.article_feedback.radio_group.dont_like_label": "Don't like how this works",
   "smartfaq.article_feedback.radio_group.confusing_label": "Confusing",
   "smartfaq.article_feedback.radio_group.not_accurate_label": "Incorrect information",
-  "smartfaq.article_feedback.radio_group.doesnt_answer_label": "Doesn't answer my question"
+  "smartfaq.article_feedback.radio_group.doesnt_answer_label": "Doesn't answer my question",
+  "smartfaq.article_feedback.additional_feedback.title": "Please tell us more about your issue with the article (optional)",
+  "smartfaq.article_feedback.additional_feedback.subtitle": "Comment",
+  "smartfaq.article_feedback.additional_feedback.submit_button": "Submit",
+  "smartfaq.article_feedback.additional_feedback.textarea_placeholder": "How could this be better?"
 }
