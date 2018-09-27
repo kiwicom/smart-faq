@@ -1,8 +1,10 @@
 // @flow
 
 import * as React from 'react';
+import { renderToString } from 'react-dom/server';
 import css from 'styled-jsx/css';
 import { Heading, Button, Radio } from '@kiwicom/orbit-components';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import screenList from './screenList';
 import commentTypeList from './commentTypeList';
@@ -35,10 +37,18 @@ const ScreenFeedback = ({
   commentType,
 }: Props) => {
   const labelMap = {
-    [commentTypeList.DONT_LIKE]: `Don't like how this works`,
-    [commentTypeList.CONFUSING]: 'Confusing',
-    [commentTypeList.NOT_ACCURATE]: 'Incorrect information',
-    [commentTypeList.DOESNT_ANSWER]: `Doesn't answer my question`,
+    [commentTypeList.DONT_LIKE]: __(
+      'smartfaq.article_feedback.radio_group.dont_like_label',
+    ),
+    [commentTypeList.CONFUSING]: __(
+      'smartfaq.article_feedback.radio_group.confusing_label',
+    ),
+    [commentTypeList.NOT_ACCURATE]: __(
+      'smartfaq.article_feedback.radio_group.not_accurate_label',
+    ),
+    [commentTypeList.DOESNT_ANSWER]: __(
+      'smartfaq.article_feedback.radio_group.doesnt_answer_label',
+    ),
   };
 
   const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
@@ -46,23 +56,32 @@ const ScreenFeedback = ({
     changeScreen(screenList.ADDITIONAL_FEEDBACK);
   };
 
-  const renderRadioButton = (labelKey: string, label: string) => (
-    <div key={labelKey} className="radio-button">
-      <Radio
-        label={label}
-        value={labelKey}
-        checked={commentType === labelKey}
-        onChange={handleCommentTypeChange}
-      />
-      <style jsx>{style}</style>
-    </div>
-  );
+  const renderRadioButton = (labelKey: string, label: string) => {
+    const labelText = renderToString(<Trans t={label} />).replace(
+      /&#x27;/g,
+      "'",
+    );
+
+    return (
+      <div key={labelKey} className="radio-button">
+        <Radio
+          label={labelText}
+          value={labelKey}
+          checked={commentType === labelKey}
+          onChange={handleCommentTypeChange}
+        />
+        <style jsx>{style}</style>
+      </div>
+    );
+  };
 
   return (
     <Box border="none" borderRadius="4px" backgroundColor="#f5f7f9">
       <form onSubmit={handleSubmit}>
         <div className="feedback-title">
-          <Heading type="title3">Sorry, why wasn&apos;t this helpful?</Heading>
+          <Heading type="title3">
+            <Trans t={__('smartfaq.article_feedback.radio_group.title')} />
+          </Heading>
         </div>
         {Object.entries(labelMap).map(labelMapEntry => {
           const [labelKey, label] = labelMapEntry;

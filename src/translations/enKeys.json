@@ -75,5 +75,10 @@
   "smartfaq.article_feedback.voting.title": "Was this article helpful?",
   "smartfaq.article_feedback.voting.yes": "Yes",
   "smartfaq.article_feedback.voting.no": "No",
-  "smartfaq.article_feedback.thank_you": "Thanks, we appreciate your insight."
+  "smartfaq.article_feedback.thank_you": "Thanks, we appreciate your insight.",
+  "smartfaq.article_feedback.radio_group.title": "Sorry, why wasn't this helpful?",
+  "smartfaq.article_feedback.radio_group.dont_like_label": "Don't like how this works",
+  "smartfaq.article_feedback.radio_group.confusing_label": "Confusing",
+  "smartfaq.article_feedback.radio_group.not_accurate_label": "Incorrect information",
+  "smartfaq.article_feedback.radio_group.doesnt_answer_label": "Doesn't answer my question"
 }
