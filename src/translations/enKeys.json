@@ -87,5 +87,7 @@
   "smartfaq.single_booking_page.booking_error.text":
     "We weren&apos;t able to find your booking. Please, check your credentials\n and try again. ",
   "smartfaq.single_booking_page.booking_headers.one_way.title": "__origin__ to __destination__",
-  "smartfaq.single_booking_page.booking_headers.return.title": "__origin__ to __destination__ and back"
+  "smartfaq.single_booking_page.booking_headers.return.title":
+    "__origin__ to __destination__ and back",
+  "smartfaq.select_another_booking": "Select another booking"
 }
