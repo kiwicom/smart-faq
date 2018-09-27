@@ -74,5 +74,6 @@
   "smartfaq.select_another_booking": "Select another booking",
   "smartfaq.article_feedback.voting.title": "Was this article helpful?",
   "smartfaq.article_feedback.voting.yes": "Yes",
-  "smartfaq.article_feedback.voting.no": "No"
+  "smartfaq.article_feedback.voting.no": "No",
+  "smartfaq.article_feedback.thank_you": "Thanks, we appreciate your insight."
 }
