@@ -1,9 +1,11 @@
 // @flow
 
 import * as React from 'react';
+import { renderToString } from 'react-dom/server';
 import css from 'styled-jsx/css';
 import { Heading, Text, Button } from '@kiwicom/orbit-components';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import { Box } from '../../common';
 import createComment from '../../mutations/CreateCommentMutation';
@@ -111,6 +113,14 @@ class ScreenAdditionalFeedback extends React.Component<Props, State> {
   };
 
   render() {
+    const placeholder = renderToString(
+      <Trans
+        t={__(
+          'smartfaq.article_feedback.additional_feedback.textarea_placeholder',
+        )}
+      />,
+    );
+
     return (
       <Box
         border="none"
@@ -129,21 +139,33 @@ class ScreenAdditionalFeedback extends React.Component<Props, State> {
             <Close customColor="#bac7d5" size="small" />
           </div>
           <Heading type="title3">
-            Please tell us more about your issue with the article (optional)
+            <Trans
+              t={__('smartfaq.article_feedback.additional_feedback.title')}
+            />
           </Heading>
           <div className="question">
-            <Text>Comment</Text>
+            <Text>
+              <Trans
+                t={__('smartfaq.article_feedback.additional_feedback.subtitle')}
+              />
+            </Text>
           </div>
           <div className="inputArea">
             <textarea
               data-gramm_editor="false"
               onChange={this.handleChange}
               value={this.state.comment}
-              placeholder="How could this be better?"
+              placeholder={placeholder}
             />
           </div>
           <div className="button">
-            <Button onClick={() => {}}>Submit</Button>
+            <Button onClick={() => {}}>
+              <Trans
+                t={__(
+                  'smartfaq.article_feedback.additional_feedback.submit_button',
+                )}
+              />
+            </Button>
           </div>
         </form>
         <style jsx>{style}</style>

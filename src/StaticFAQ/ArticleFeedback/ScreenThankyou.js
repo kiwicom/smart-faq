@@ -4,6 +4,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Heading } from '@kiwicom/orbit-components';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import screenList from './screenList';
 import { Box } from '../../common';
@@ -38,7 +39,9 @@ const ScreenThankyou = (props: Props) => {
         >
           <Close customColor="#bac7d5" size="small" />
         </div>
-        <Heading type="title2">Thanks, we appreciate your insight.</Heading>
+        <Heading type="title2">
+          <Trans t={__('smartfaq.article_feedback.thank_you')} />
+        </Heading>
         <style jsx>{style}</style>
       </div>
     </Box>

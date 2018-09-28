@@ -4,6 +4,7 @@ import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Alert } from '@kiwicom/orbit-components';
 import { Close } from '@kiwicom/orbit-components/lib/icons';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import screenList from './screenList';
 import { Box } from '../../common';
@@ -26,9 +27,15 @@ const style = css`
 `;
 
 const ScreenError = ({ changeScreen, commentLimitReached }: Props) => {
-  const warningMessage = commentLimitReached
-    ? `You've reached the daily maximum number of comments. We'll review your notes and adjust the article if necessary. Thank you.`
-    : `Sorry, we didn't receive your feedback. Please refresh the page or try again later.`;
+  const warningMessage = commentLimitReached ? (
+    <Trans
+      t={__('smartfaq.article_feedback.error_message.comment_limit_reached')}
+    />
+  ) : (
+    <Trans
+      t={__('smartfaq.article_feedback.error_message.feedback_not_received')}
+    />
+  );
 
   return (
     <Box border="none" borderRadius="4px" backgroundColor="#f5f7f9">
