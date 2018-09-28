@@ -16,7 +16,6 @@ exports[`KiwiLogin should match snapshot 1`] = `
   <CloseButton />
   <withRouter(BackButton)
     prevScreen="/sign-in"
-    text="Back"
   />
   <div
     className="jsx-914440731 picture"

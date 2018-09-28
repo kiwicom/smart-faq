@@ -149,7 +149,7 @@ class SignIn extends React.Component<Props> {
     return (
       <div className="SignIn">
         <CloseButton />
-        <BackButton text="Back" prevScreen="/" />
+        <BackButton prevScreen="/" />
         <div className="picture">
           <img alt="Help" src={image} />
         </div>

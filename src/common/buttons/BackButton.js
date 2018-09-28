@@ -10,7 +10,7 @@ import Trans from '@kiwicom/nitro/lib/components/Text';
 import sectionFAQCategories from '../../StaticFAQ/sectionFAQCategories';
 
 type Props = {|
-  text: string,
+  type: 'back' | 'search',
   prevScreen?: string,
   history: {
     push: string => void,
@@ -25,16 +25,21 @@ type Props = {|
 |};
 
 const BackButton = (props: Props) => {
-  const { text, prevScreen, history, match } = props;
+  const { type, prevScreen, history, match } = props;
   const pathname = history.location.pathname;
   const loginPathnames = ['/sign-in', '/kiwi-login', '/forgotten-password'];
+
+  const translationKey =
+    type === 'back'
+      ? 'smartfaq.back_button.back'
+      : 'smartfaq.back_button.search';
 
   const goBack = () => {
     if (loginPathnames.includes(pathname) && prevScreen) {
       return history.push(prevScreen);
     }
 
-    if (text === 'smartfaq.back_button.search') {
+    if (type === 'search') {
       return history.push('/faq');
     }
 
@@ -65,7 +70,7 @@ const BackButton = (props: Props) => {
         <ChevronLeft size="small" customColor="#8291a6" />
       </div>
       <Text type="secondary" weight="bold" element="span">
-        <Trans t={text} />
+        <Trans t={translationKey} />
       </Text>
       <style jsx>
         {`
@@ -90,6 +95,10 @@ const BackButton = (props: Props) => {
       </style>
     </div>
   );
+};
+
+BackButton.defaultProps = {
+  type: 'back',
 };
 
 export default withRouter(BackButton);
