@@ -34,7 +34,7 @@ const BackButton = (props: Props) => {
       return history.push(prevScreen);
     }
 
-    if (text === 'Search') {
+    if (text === 'smartfaq.back_button.search') {
       return history.push('/faq');
     }
 
@@ -65,7 +65,7 @@ const BackButton = (props: Props) => {
         <ChevronLeft size="small" customColor="#8291a6" />
       </div>
       <Text type="secondary" weight="bold" element="span">
-        <Trans t={props.text} />
+        <Trans t={text} />
       </Text>
       <style jsx>
         {`
