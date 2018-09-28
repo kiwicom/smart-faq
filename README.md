@@ -61,7 +61,7 @@ the squashed commit also according to the convention.
 ## Translations
 
 - Check out [nitrolib](https://github.com/kiwicom/nitrolib) docs for more info.
-- [DOCs for Phraseapp](https://phraseapp.com/docs/) - where the translations are stored for translators
+- [DOCs for PhraseApp](https://phraseapp.com/docs/) - where the translations are stored for translators
 - List of all supported languages is defined by file `src/translations/langInfos.js`
 
 ### How to use translations in code
@@ -98,7 +98,7 @@ const Submit = () => (
 
 1.  Download latest translations from PhraseApp via `yarn translations:download`.
 2.  Add your keys to `src/translations/enKeys.json` json file.
-3.  Upload translations to PharseApp via `yarn translations:upload`.
+3.  Upload translations to PhraseApp via `yarn translations:upload`.
 4.  Post it on #web-translations, mentioning all keys that needs to be translated.
 
 ## Theming
