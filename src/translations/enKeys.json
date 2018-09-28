@@ -89,8 +89,8 @@
   "smartfaq.article_feedback.error_message.feedback_not_received": "Sorry, we didn't receive your feedback. Please refresh the page or try again later.",
   "smartfaq.mobile_header.title": "Your Trips",
   "smartfaq.header.title": "Help",
-  "smartfaq.header.sign_in": "Sign In",
+  "smartfaq.header.sign_in": "Sign&nbsp;In",
   "smartfaq.header.sign_out": "Sign out",
-  "smartfaq.back_button.search" : "Search",
+  "smartfaq.back_button.search": "Search",
   "smartfaq.back_button.back": "Back"
 }
