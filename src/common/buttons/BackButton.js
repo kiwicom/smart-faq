@@ -29,10 +29,12 @@ const BackButton = (props: Props) => {
   const pathname = history.location.pathname;
   const loginPathnames = ['/sign-in', '/kiwi-login', '/forgotten-password'];
 
-  const translationKey =
-    type === 'back'
-      ? 'smartfaq.back_button.back'
-      : 'smartfaq.back_button.search';
+  const buttonText =
+    type === 'back' ? (
+      <Trans t={__('smartfaq.back_button.back')} />
+    ) : (
+      <Trans t={__('smartfaq.back_button.search')} />
+    );
 
   const goBack = () => {
     if (loginPathnames.includes(pathname) && prevScreen) {
@@ -70,7 +72,7 @@ const BackButton = (props: Props) => {
         <ChevronLeft size="small" customColor="#8291a6" />
       </div>
       <Text type="secondary" weight="bold" element="span">
-        <Trans t={translationKey} />
+        {buttonText}
       </Text>
       <style jsx>
         {`
