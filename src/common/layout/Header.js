@@ -205,13 +205,7 @@ const renderLoggedOut = (
       <div className="signInOrBack">
         {hasCategory || isArticle ? (
           <div className="backButton">
-            <BackButton
-              text={
-                comesFromSearch
-                  ? 'smartfaq.back_button.search'
-                  : 'smartfaq.back_button.back'
-              }
-            />
+            <BackButton type={comesFromSearch ? 'search' : 'back'} />
           </div>
         ) : (
           signIn
