@@ -195,7 +195,7 @@ const renderLoggedOut = (
         onClick={() => push('/sign-in')}
         type="secondary"
       >
-        <Trans t={__('smartfaq.header.sign_in')} />
+        <Trans html t={__('smartfaq.header.sign_in')} />
       </TextLink>
     </div>
   ) : null;
