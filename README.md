@@ -67,14 +67,13 @@ the squashed commit also according to the convention.
 ### How to use translations in code
 
 - Use `Text` from [nitrolib](https://github.com/kiwicom/nitrolib) as `Trans` and don't confuse it with `Text` from [Orbit](https://github.com/kiwicom/orbit-components):
-
-Frome Nitrolib docs:
-
-> Make sure to wrap translation keys in the global `__` function!
-
 ```js
 import Trans from "@kiwicom/nitro/lib/components/Text";
 ```
+
+From Nitrolib docs:
+
+> Make sure to wrap translation keys in the global `__` function!
 
 Props:
 ```js
