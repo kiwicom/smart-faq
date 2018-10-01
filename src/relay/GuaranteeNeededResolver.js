@@ -84,10 +84,8 @@ class GuaranteeNeededResolver extends React.Component<Props> {
 
   shouldShowGuaranteeChat = () => {
     const booking = this.props.booking;
-    const showGuaranteeChat = idx(
-      booking,
-      _ => _.customerSupport.hasGuaranteeChat,
-    );
+    const showGuaranteeChat =
+      idx(booking, _ => _.customerSupport.hasGuaranteeChat) || false;
 
     if (showGuaranteeChat !== this.props.showGuaranteeChat) {
       if (showGuaranteeChat) {
