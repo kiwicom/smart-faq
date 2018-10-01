@@ -13,6 +13,7 @@ import type { ArticleDetailQuery } from './__generated__/ArticleDetailQuery.grap
 import type { ArticleDetailSearchResultQuery } from './__generated__/ArticleDetailSearchResultQuery.graphql';
 import CustomBreadcrumbs from '../breadcrumbs/CustomBreadcrumbs';
 import sectionFAQCategories from '../sectionFAQCategories';
+import StaticFAQError from '../StaticFAQError';
 
 const queryFAQArticleDetail = graphql`
   query ArticleDetailQuery(
@@ -77,8 +78,21 @@ const style = css`
 class Article extends React.Component<Props> {
   renderDetailContent = (params: FAQArticleDetailParams) => {
     if (params.error) {
-      return <div>{params.error.message}</div>;
+      return (
+        <div className="errorWrapper">
+          <StaticFAQError />
+          <style jsx>
+            {`
+              .errorWrapper {
+                height: 100%;
+                padding: 24px 40px;
+              }
+            `}
+          </style>
+        </div>
+      );
     }
+
     if (params.props) {
       const category = params.props.FAQCategory;
       const article = params.props.FAQArticle;
