@@ -28,7 +28,7 @@ const style = css`
 const BookingError = () => (
   <div className="BookingError">
     <h1 className="title">
-      <Trans t={__('smartfaq.single_booking_page.booking_error.title')} />
+      <Trans html t={__('smartfaq.single_booking_page.booking_error.title')} />
     </h1>
     <Text type="secondary" size="large">
       <Trans t={__('smartfaq.single_booking_page.booking_error.text')} />
