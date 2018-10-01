@@ -5,23 +5,6 @@ import * as React from 'react';
 
 import type { onLogout } from '../types';
 
-export const getFAQSection = ({
-  hasBooking,
-  isPastBooking,
-  isUrgent,
-}: BookingStateDescription) => {
-  if (!hasBooking) return 'BEFORE_BOOKING';
-  if (isPastBooking) return 'PAST_BOOKING';
-  if (isUrgent) return 'URGENT_BOOKING';
-
-  return 'UPCOMING_BOOKING';
-};
-
-const initialState = {
-  FAQSection: 'BEFORE_BOOKING',
-  selectedBooking: null,
-};
-
 export type FAQSectionType =
   | 'BEFORE_BOOKING'
   | 'UPCOMING_BOOKING'
@@ -30,6 +13,7 @@ export type FAQSectionType =
 
 type Props = {
   children: React.Node,
+  showBooking: boolean,
   isPastBooking?: boolean, // eslint-disable-line react/no-unused-prop-types
   isUrgent?: boolean, // eslint-disable-line react/no-unused-prop-types
   onLogout: onLogout,
@@ -37,6 +21,7 @@ type Props = {
 
 type StateValues = {
   FAQSection: ?FAQSectionType,
+  showBooking: boolean,
 };
 
 type StateCallbacks = {
@@ -52,6 +37,24 @@ type BookingStateDescription = {
 
 export type BookingStateType = StateValues & StateCallbacks;
 
+export const getFAQSection = ({
+  hasBooking,
+  isPastBooking,
+  isUrgent,
+}: BookingStateDescription) => {
+  if (!hasBooking) return 'BEFORE_BOOKING';
+  if (isPastBooking) return 'PAST_BOOKING';
+  if (isUrgent) return 'URGENT_BOOKING';
+
+  return 'UPCOMING_BOOKING';
+};
+
+const initialState = {
+  FAQSection: 'BEFORE_BOOKING',
+  selectedBooking: null,
+  showBooking: true,
+};
+
 export const BookingState = React.createContext({
   ...initialState,
   onSetFAQSection: (isUrgent: boolean, isPastBooking: boolean) => {}, // eslint-disable-line no-unused-vars
@@ -59,11 +62,20 @@ export const BookingState = React.createContext({
 });
 
 class BookingStateProvider extends React.Component<Props, BookingStateType> {
+  static getDerivedStateFromProps(nextProps: Props, state: BookingStateType) {
+    if (nextProps.showBooking !== state.showBooking) {
+      return { showBooking: nextProps.showBooking };
+    }
+
+    return null;
+  }
+
   constructor(props: Props) {
     super(props);
 
     this.state = {
       ...initialState,
+      showBooking: props.showBooking,
       onSetFAQSection: this.onSetFAQSection,
       FAQSection: getFAQSection({ hasBooking: false }),
       onLogout: this.onLogout,

@@ -31,6 +31,7 @@ describe('SmartFAQ', () => {
         loginToken="AAABBBCCC"
         simpleToken={null}
         enableChat={false}
+        showBooking
         chatConfig={chatConfig}
         onAppWithOpenChatClose={jest.fn()}
       />,
@@ -53,6 +54,7 @@ describe('SmartFAQ', () => {
         loginToken="AAABBBCCC"
         simpleToken={null}
         enableChat={false}
+        showBooking
         chatConfig={chatConfig}
         onAppWithOpenChatClose={jest.fn()}
       />,

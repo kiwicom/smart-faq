@@ -11,7 +11,8 @@ import SearchAllFAQs from './SearchAllFAQs';
 import { SearchState } from '../context/SearchState';
 import type { SearchStateType } from '../context/SearchState';
 import SearchBar from './SearchBar';
-import UserStatus from '../helpers/UserStatus';
+import { withLoginToken, withSimpleToken } from '../context/User';
+import { BookingState } from '../context/BookingState';
 
 const style = css`
   .static-faq {
@@ -35,6 +36,8 @@ const style = css`
 `;
 
 type Props = {|
+  loginToken: ?string,
+  simpleToken: ?string,
   match: {
     params: {
       categoryId: ?string,
@@ -48,39 +51,40 @@ type Props = {|
 
 const StaticFAQ = (props: Props) => {
   const categoryId = idx(props.match, _ => _.params.categoryId) || null;
+  const isLoggedIn = props.loginToken || props.simpleToken;
 
   return (
     <SearchState.Consumer>
-      {({ searchText, isVisible }: SearchStateType) => {
-        const isSearching = searchText.length > 0;
+      {({ searchText, isVisible }: SearchStateType) => (
+        <BookingState.Consumer>
+          {({ showBooking }) => {
+            const isSearching = searchText.length > 0;
 
-        return (
-          <div className="static-faq">
-            <div className="static-faq-body">
-              {!categoryId && isVisible ? (
-                <div className="static-faq-search">
-                  <UserStatus.LoggedOut>
-                    <SearchBar />
-                  </UserStatus.LoggedOut>
-                  <MediaQuery query="only screen and (max-width: 900px)">
-                    <UserStatus.LoggedIn>
-                      <SearchBar />
-                    </UserStatus.LoggedIn>
-                  </MediaQuery>
+            return (
+              <div className="static-faq">
+                <div className="static-faq-body">
+                  {!categoryId && isVisible ? (
+                    <div className="static-faq-search">
+                      {!isLoggedIn || !showBooking ? <SearchBar /> : null}
+                      <MediaQuery query="only screen and (max-width: 900px)">
+                        {isLoggedIn && showBooking && <SearchBar />}
+                      </MediaQuery>
+                    </div>
+                  ) : null}
+                  {isSearching ? (
+                    <SearchAllFAQs search={searchText} />
+                  ) : (
+                    <FAQCategoryList categoryId={categoryId} />
+                  )}
                 </div>
-              ) : null}
-              {isSearching ? (
-                <SearchAllFAQs search={searchText} />
-              ) : (
-                <FAQCategoryList categoryId={categoryId} />
-              )}
-            </div>
-            <style jsx>{style}</style>
-          </div>
-        );
-      }}
+                <style jsx>{style}</style>
+              </div>
+            );
+          }}
+        </BookingState.Consumer>
+      )}
     </SearchState.Consumer>
   );
 };
 
-export default withRouter(StaticFAQ);
+export default withLoginToken(withSimpleToken(withRouter(StaticFAQ)));

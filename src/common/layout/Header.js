@@ -126,12 +126,13 @@ type State = {
 };
 
 type Props = {
+  renderOnlyLoggedOut: boolean,
   history: {
     push: string => void,
   },
   match: {
     params: {
-      categoryId: ?string,
+      categoryId?: string,
     },
   },
   location: {
@@ -179,8 +180,21 @@ const renderLoggedOut = (
   hasCategory: string | null,
   isArticle: boolean,
   comesFromSearch: boolean,
+  renderSignIn: boolean,
   push: string => void,
 ) => {
+  const signIn = renderSignIn ? (
+    <div className="desktopOnly" data-cy="sign-in-link">
+      <TextLink
+        external={false}
+        onClick={() => push('/sign-in')}
+        type="secondary"
+      >
+        Sign&nbsp;In
+      </TextLink>
+    </div>
+  ) : null;
+
   return (
     <div className="loggedOut">
       <div className="signInOrBack">
@@ -189,15 +203,7 @@ const renderLoggedOut = (
             <BackButton text={comesFromSearch ? 'Search' : 'Back'} />
           </div>
         ) : (
-          <div className="desktopOnly" data-cy="sign-in-link">
-            <TextLink
-              external={false}
-              onClick={() => push('/sign-in')}
-              type="secondary"
-            >
-              Sign&nbsp;In
-            </TextLink>
-          </div>
+          signIn
         )}
       </div>
       <p className="helpHeader">Help</p>
@@ -308,6 +314,7 @@ class Header extends React.Component<Props, State> {
     const currentpath = this.props.location && this.props.location.pathname;
     const isArticle = currentpath.includes('article/');
     const comesFromSearch = currentpath.includes('faq/search/');
+    const { renderOnlyLoggedOut } = this.props;
 
     return (
       <div
@@ -315,25 +322,33 @@ class Header extends React.Component<Props, State> {
         className={!this.state.isHeaderVisible ? 'header hide' : 'header'}
       >
         <div className="HeaderFAQ">
-          <UserStatus.LoggedIn>
-            <Desktop>
-              <CloseButton height="24" />
-            </Desktop>
-          </UserStatus.LoggedIn>
-          <UserStatus.LoggedOut>
-            <CloseButton height="24" />
-          </UserStatus.LoggedOut>
+          {!renderOnlyLoggedOut && (
+            <UserStatus.LoggedIn>
+              <Desktop>
+                <CloseButton height="24" />
+              </Desktop>
+            </UserStatus.LoggedIn>
+          )}
           <UserContext.Consumer>
-            {({ simpleToken, loginToken }: UserContextType) =>
-              simpleToken || loginToken
-                ? renderLoggedIn()
-                : renderLoggedOut(
-                    hasCategory,
-                    isArticle,
-                    comesFromSearch,
-                    this.props.history.push,
-                  )
-            }
+            {({ simpleToken, loginToken }: UserContextType) => {
+              const isLoggedIn = simpleToken || loginToken;
+              const renderCloseButton = !isLoggedIn || renderOnlyLoggedOut;
+
+              return (
+                <React.Fragment>
+                  {renderCloseButton && <CloseButton height="24" />}
+                  {isLoggedIn && !renderOnlyLoggedOut
+                    ? renderLoggedIn()
+                    : renderLoggedOut(
+                        hasCategory,
+                        isArticle,
+                        comesFromSearch,
+                        !renderOnlyLoggedOut,
+                        this.props.history.push,
+                      )}
+                </React.Fragment>
+              );
+            }}
           </UserContext.Consumer>
         </div>
         <style jsx>{style}</style>

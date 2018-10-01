@@ -1,7 +1,7 @@
 // @noflow
 /* global cy */
 
-import faqs from '../fixtures/FAQRootCategoriesResponse.json';
+import faqs from '../../fixtures/FAQRootCategoriesResponse.json';
 
 describe('Redirect after 403', () => {
   it('redirects to login screen after GraphQL return 403 for booking', () => {
