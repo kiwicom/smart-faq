@@ -23,6 +23,7 @@
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
     "deploy:surge": "yarn surge $PWD/dist/ https://smartfaq-$(git rev-parse --abbrev-ref HEAD).surge.sh",
+    "deploy:surge:gitlab-ci": "surge -p ./dist --domain https://smartfaq-${CI_COMMIT_REF_SLUG}.surge.sh",
     "deploy:updateURL": "yarn babel-node scripts/deploymentUtils.js updateLiveURL",
     "translations:check": "node scripts/checkTranslations.js",
     "translations:download": "yarn babel-node scripts/downloadTranslations.js",
