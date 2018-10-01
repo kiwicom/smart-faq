@@ -45,9 +45,7 @@ class BookingRenderer<RenderProps> extends React.Component<
     return (
       <React.Fragment>
         {renderState.props && (
-          <React.Fragment>
-            <GuaranteeNeededResolver booking={guaranteeChatBookingInfo} />
-          </React.Fragment>
+          <GuaranteeNeededResolver booking={guaranteeChatBookingInfo} />
         )}
         {this.props.render(renderState)}
       </React.Fragment>
