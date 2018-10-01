@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { Heading } from '@kiwicom/orbit-components';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import { Desktop, Mobile } from '../../common/Responsive';
 
@@ -11,7 +12,9 @@ type Props = {|
 
 const renderHeader = (className: string, title: string) => (
   <div className={className}>
-    <Heading type="title3">{title}</Heading>
+    <Heading type="title3">
+      <Trans t={title} />
+    </Heading>
     <style jsx>
       {`
         .emergencyHeader {

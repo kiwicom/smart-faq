@@ -6,6 +6,7 @@ import { Heading, Text } from '@kiwicom/orbit-components';
 import { createFragmentContainer, graphql } from 'react-relay';
 import css from 'styled-jsx/css';
 import idx from 'idx';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import { UserContext } from '../../context/User';
 import type { UserContextType } from '../../context/User';
@@ -74,7 +75,7 @@ class ArticleContent extends React.Component<Props> {
         <Heading type="title2">{article.title}</Heading>
         <div className="faq-article-perex">
           <Text type="attention" weight="bold" element="span">
-            Summary:
+            <Trans t={__('smartfaq.faq.article.summary')} />
           </Text>
           <Text element="span"> {article.perex}</Text>
         </div>
