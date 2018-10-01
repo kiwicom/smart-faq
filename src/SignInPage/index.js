@@ -4,13 +4,18 @@ import * as React from 'react';
 import idx from 'idx';
 import { withRouter } from 'react-router-dom';
 import css from 'styled-jsx/css';
-import { Text, Heading, Alert, TextLink } from '@kiwicom/orbit-components';
+import {
+  Text,
+  Heading,
+  Alert,
+  TextLink,
+  Illustration,
+} from '@kiwicom/orbit-components';
 import { AlertCircle } from '@kiwicom/orbit-components/lib/icons';
 import type { Location } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import Trans from '@kiwicom/nitro/lib/components/Text';
 
-import image from '../../static/woman-with-laptop@2x.jpg';
 import chevronRight from '../../static/chevron-right.png';
 import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
@@ -28,12 +33,8 @@ const style = css`
     overflow-x: hidden;
     margin: auto;
   }
-  div.picture img {
-    width: 203px;
-    height: 156px;
-  }
   div.picture {
-    margin: 0px 127px 0px 150px;
+    text-align: center;
   }
   div.text {
     margin: 68px 40px 30px 40px;
@@ -151,7 +152,7 @@ class SignIn extends React.Component<Props> {
         <CloseButton />
         <BackButton prevScreen="/" />
         <div className="picture">
-          <img alt="Help" src={image} />
+          <Illustration size="medium" name="Help" />
         </div>
         <div className="text">
           <div className="title">

@@ -127,7 +127,7 @@ exports[`ErrorBoundary should throw an error 1`] = `
                   "borderWidthInput": "1px",
                   "borderWidthInputFocus": "2px",
                   "boxShadowActionable": "0 2px 4px 0 rgba(23, 27, 30, 0.1)",
-                  "boxShadowButtonFocus": "0 0 4px 1px rgba(1,118,210,0.3)",
+                  "boxShadowButtonFocus": "0 0 4px 1px rgba(1, 118, 210, 0.3)",
                   "boxShadowElevatedLevel1": "0 4px 12px 0 rgba(23, 27, 30, 0.15)",
                   "boxShadowModal": "0 20px 60px 0 rgba(23, 27, 30, 0.4)",
                   "colorAlertIconCritical": "#d21c1c",
@@ -530,7 +530,7 @@ exports[`ErrorBoundary should throw an error 1`] = `
                     "borderWidthInput": "1px",
                     "borderWidthInputFocus": "2px",
                     "boxShadowActionable": "0 2px 4px 0 rgba(23, 27, 30, 0.1)",
-                    "boxShadowButtonFocus": "0 0 4px 1px rgba(1,118,210,0.3)",
+                    "boxShadowButtonFocus": "0 0 4px 1px rgba(1, 118, 210, 0.3)",
                     "boxShadowElevatedLevel1": "0 4px 12px 0 rgba(23, 27, 30, 0.15)",
                     "boxShadowModal": "0 20px 60px 0 rgba(23, 27, 30, 0.4)",
                     "colorAlertIconCritical": "#d21c1c",
@@ -955,7 +955,7 @@ exports[`ErrorBoundary should throw an error 1`] = `
                     "borderWidthInput": "1px",
                     "borderWidthInputFocus": "2px",
                     "boxShadowActionable": "0 2px 4px 0 rgba(23, 27, 30, 0.1)",
-                    "boxShadowButtonFocus": "0 0 4px 1px rgba(1,118,210,0.3)",
+                    "boxShadowButtonFocus": "0 0 4px 1px rgba(1, 118, 210, 0.3)",
                     "boxShadowElevatedLevel1": "0 4px 12px 0 rgba(23, 27, 30, 0.15)",
                     "boxShadowModal": "0 20px 60px 0 rgba(23, 27, 30, 0.4)",
                     "colorAlertIconCritical": "#d21c1c",
@@ -1230,29 +1230,6 @@ exports[`ErrorBoundary should throw an error 1`] = `
                   },
                 }
               }
-              tokens={
-                Object {
-                  "colorText": Object {
-                    "attention": "#171b1e",
-                    "critical": "#d21c1c",
-                    "info": "#0176D2",
-                    "primary": "#46515e",
-                    "secondary": "#7f91a8",
-                    "success": "#46B655",
-                    "warning": "#f9971e",
-                    "white": "#fff",
-                  },
-                  "sizeText": Object {
-                    "large": "16px",
-                    "normal": "14px",
-                    "small": "12px",
-                  },
-                  "weightText": Object {
-                    "bold": "700",
-                    "normal": "400",
-                  },
-                }
-              }
               type="secondary"
               uppercase={false}
               weight="normal"
@@ -1369,7 +1346,7 @@ exports[`ErrorBoundary should throw an error 1`] = `
                       "borderWidthInput": "1px",
                       "borderWidthInputFocus": "2px",
                       "boxShadowActionable": "0 2px 4px 0 rgba(23, 27, 30, 0.1)",
-                      "boxShadowButtonFocus": "0 0 4px 1px rgba(1,118,210,0.3)",
+                      "boxShadowButtonFocus": "0 0 4px 1px rgba(1, 118, 210, 0.3)",
                       "boxShadowElevatedLevel1": "0 4px 12px 0 rgba(23, 27, 30, 0.15)",
                       "boxShadowModal": "0 20px 60px 0 rgba(23, 27, 30, 0.4)",
                       "colorAlertIconCritical": "#d21c1c",
@@ -1641,29 +1618,6 @@ exports[`ErrorBoundary should throw an error 1`] = `
                       "zIndexModalOverlay": "800",
                       "zIndexOnTheTop": "900",
                       "zIndexSticky": "100",
-                    },
-                  }
-                }
-                tokens={
-                  Object {
-                    "colorText": Object {
-                      "attention": "#171b1e",
-                      "critical": "#d21c1c",
-                      "info": "#0176D2",
-                      "primary": "#46515e",
-                      "secondary": "#7f91a8",
-                      "success": "#46B655",
-                      "warning": "#f9971e",
-                      "white": "#fff",
-                    },
-                    "sizeText": Object {
-                      "large": "16px",
-                      "normal": "14px",
-                      "small": "12px",
-                    },
-                    "weightText": Object {
-                      "bold": "700",
-                      "normal": "400",
                     },
                   }
                 }

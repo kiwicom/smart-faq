@@ -3,10 +3,9 @@
 import idx from 'idx';
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Text } from '@kiwicom/orbit-components';
+import { Text, Illustration } from '@kiwicom/orbit-components';
 import Trans from '@kiwicom/nitro/lib/components/Text';
 
-import image from '../../static/mailbox@3x.png';
 import CloseButton from './../common/buttons/CloseButton';
 
 const style = css`
@@ -22,11 +21,7 @@ const style = css`
     color: #171b1e;
   }
   div.picture {
-    margin: 0px 127px 52px 127px;
-  }
-  div.picture img {
-    height: 188px;
-    width: 226px;
+    text-align: center;
   }
   div.text {
     margin-left: 40px;
@@ -93,7 +88,7 @@ const CheckEmail = (props: Props) => {
       <div className="Email">
         <CloseButton />
         <div className="picture">
-          <img alt="Email" src={image} />
+          <Illustration size="medium" name="Mailbox" dataTest="test" />
         </div>
         <div className="text">
           <p className="title">

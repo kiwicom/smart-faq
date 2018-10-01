@@ -1070,16 +1070,20 @@
     react-transition-group "^2.4.0"
     validator "^10.7.0"
 
-"@kiwicom/orbit-components@^0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.9.0.tgz#525eb0f855241c4593595632aed086385fdf665d"
+"@kiwicom/orbit-components@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.12.0.tgz#fa8c5e366d240daa70523ab6f3a0240d9926279b"
   dependencies:
-    "@kiwicom/orbit-design-tokens" "^0.1.4"
+    "@kiwicom/orbit-design-tokens" "^0.2.0"
     react-icon-base "^2.1.2"
 
 "@kiwicom/orbit-design-tokens@^0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@kiwicom/orbit-design-tokens/-/orbit-design-tokens-0.1.4.tgz#18eb47bd62a78a8109406f91b7d2f0eb000d63fa"
+
+"@kiwicom/orbit-design-tokens@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-design-tokens/-/orbit-design-tokens-0.2.0.tgz#ca30ade2fd0917e64d5bd93aa518726925d3ca8c"
 
 "@marionebl/sander@^0.6.0":
   version "0.6.1"

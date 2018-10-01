@@ -3,7 +3,13 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import MediaQuery from 'react-responsive';
-import { Text, Alert, Button, TextLink } from '@kiwicom/orbit-components';
+import {
+  Text,
+  Alert,
+  Button,
+  TextLink,
+  Illustration,
+} from '@kiwicom/orbit-components';
 import { AlertCircle, Loading } from '@kiwicom/orbit-components/lib/icons';
 import Trans from '@kiwicom/nitro/lib/components/Text';
 
@@ -11,7 +17,6 @@ import CloseButton from './../common/buttons/CloseButton';
 import BackButton from '../common/buttons/BackButton';
 import Input from '../common/Input';
 import { withLogin } from '../context/User';
-import image from '../../static/woman-with-laptop@2x.jpg';
 import { simpleTracker } from '../helpers/analytics/trackers';
 import type { onLogin } from '../types';
 
@@ -25,14 +30,6 @@ const style = css`
     overflow-y: auto;
     overflow-x: hidden;
     margin: auto;
-  }
-  div.picture img {
-    width: 203px;
-    height: 156px;
-  }
-  div.picture {
-    margin-left: 110px;
-    margin-bottom: 68px;
   }
   p.title {
     color: #171b1e;
@@ -216,7 +213,7 @@ class KiwiLogin extends React.Component<Props, State> {
         <CloseButton />
         <BackButton prevScreen="/sign-in" />
         <div className="picture">
-          <img alt="Help" src={image} />
+          <Illustration size="medium" name="Help" />
         </div>
         <div className="main">
           <p className="title">
