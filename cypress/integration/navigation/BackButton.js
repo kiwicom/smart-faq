@@ -74,15 +74,15 @@ describe('Back button', () => {
     const expectedUrl = createUrl('/faq');
 
     cy.visit('/?help=/faq');
-    cy.getFirstFaqCategoryTitle().then($initialFaqCategoryTitle => {
+    cy.getFirstFaqCategory().then($initialFaqCategory => {
       cy.get('[data-cy=input-staticFAQ]').type('sports equipment');
       cy.clickOnArticle();
       cy.reload();
       cy.get('[data-cy=back-button]').click();
 
       cy.url().should('eq', expectedUrl);
-      cy.getFirstFaqCategoryTitle().should($faqCategoryTitle => {
-        expect($initialFaqCategoryTitle.text()).to.eq($faqCategoryTitle.text());
+      cy.getFirstFaqCategory().should($faqCategory => {
+        expect($initialFaqCategory.text()).to.eq($faqCategory.text());
       });
     });
   });

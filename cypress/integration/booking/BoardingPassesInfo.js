@@ -33,7 +33,7 @@ describe('Boarding Passes Info', () => {
   it('should show the previous root category after clicking home', () => {
     cy.wait(5000);
 
-    cy.getFirstFaqCategoryTitle().then($initialFaqCategoryTitle => {
+    cy.getFirstFaqCategory().then($initialFaqCategory => {
       cy.get('[data-cy=btn-boarding-passes]').click();
 
       cy
@@ -42,8 +42,8 @@ describe('Boarding Passes Info', () => {
         .contains('Home')
         .click();
 
-      cy.getFirstFaqCategoryTitle().should($faqCategoryTitle => {
-        expect($initialFaqCategoryTitle.text()).to.eq($faqCategoryTitle.text());
+      cy.getFirstFaqCategory().should($faqCategory => {
+        expect($initialFaqCategory.text()).to.eq($faqCategory.text());
       });
     });
   });
