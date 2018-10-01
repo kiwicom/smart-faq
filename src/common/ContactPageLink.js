@@ -2,24 +2,25 @@
 
 import * as React from 'react';
 import { NewWindow } from '@kiwicom/orbit-components/lib/icons';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import { withLanguage } from '../context/Language';
 
 type Props = {
-  text?: string,
+  translationKey?: string,
   textColor?: string,
   language?: string,
 };
 
 const ContactPageLink = ({
-  text = 'Having trouble? Contact us',
+  translationKey = __('smartfaq.contact_page_link.default'),
   textColor = '#171b1e',
   language = 'en',
 }: Props) => {
   return (
     <div className="contactUs">
       <a target="_blank" href={`/${language}/content/feedback`}>
-        {text}
+        <Trans t={translationKey} />
         <span className="open-icon">
           <NewWindow size="small" color="attention" customColor={textColor} />
         </span>

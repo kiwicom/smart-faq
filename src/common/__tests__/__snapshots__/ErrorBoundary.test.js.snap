@@ -826,7 +826,13 @@ exports[`ErrorBoundary should throw an error 1`] = `
               <h1
                 className="Heading__StyledHeading-sALAQ gfkQAC"
               >
-                Something's not quite right.
+                <Text
+                  html={false}
+                  t="smartfaq.error_message.title"
+                  values={Object {}}
+                >
+                  smartfaq.error_message.title
+                </Text>
               </h1>
             </Component>
           </Heading__StyledHeading>
@@ -1668,19 +1674,25 @@ exports[`ErrorBoundary should throw an error 1`] = `
                 <p
                   className="Text__StyledText-inVtPV gJJlTV"
                 >
-                  Please, try refreshing the page. Sign out. Then sign in again. If the problem persists, don't hesitate to contact us.
+                  <Text
+                    html={false}
+                    t="smartfaq.error_message.description"
+                    values={Object {}}
+                  >
+                    smartfaq.error_message.description
+                  </Text>
                 </p>
               </Component>
             </Text__StyledText>
           </Text>
         </div>
         <withLanguageHOC
-          text="Go to contact page"
+          text="smartfaq.error_message.contact_page_link"
           textColor="#00a991"
         >
           <ContactPageLink
             language="en"
-            text="Go to contact page"
+            text="smartfaq.error_message.contact_page_link"
             textColor="#00a991"
           >
             <div
@@ -1691,7 +1703,13 @@ exports[`ErrorBoundary should throw an error 1`] = `
                 href="/en/content/feedback"
                 target="_blank"
               >
-                Go to contact page
+                <Text
+                  html={false}
+                  t="smartfaq.contact_page_link.default"
+                  values={Object {}}
+                >
+                  smartfaq.contact_page_link.default
+                </Text>
                 <span
                   className="jsx-4293162489 open-icon"
                 >

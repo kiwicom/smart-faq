@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { NewWindow } from '@kiwicom/orbit-components/lib/icons';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 import css from 'styled-jsx/css';
 
 import { simpleTracker } from '../helpers/analytics/trackers';
@@ -41,7 +42,7 @@ const FullFAQLink = (props: Props) => (
       className={props.className}
       onClick={linkClicked}
     >
-      Full FAQ site
+      <Trans t={__('smartfaq.full_faq_link')} />
       <span className="inline-icon">
         <div className="open-icon">
           <NewWindow

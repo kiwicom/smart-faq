@@ -2,6 +2,7 @@
 import React from 'react';
 import css from 'styled-jsx/css';
 import { Heading, Text } from '@kiwicom/orbit-components';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import ContactPageLink from './ContactPageLink';
 
@@ -24,14 +25,18 @@ const styles = css`
 const ErrorMessage = () => (
   <div className="errorContainer">
     <div>
-      <Heading>Something's not quite right.</Heading>
+      <Heading>
+        <Trans t={__('smartfaq.error_message.title')} />
+      </Heading>
       <div className="desc">
         <Text size="large" type="secondary">
-          Please, try refreshing the page. Sign out. Then sign in again. If the
-          problem persists, don't hesitate to contact us.
+          <Trans t={__('smartfaq.error_message.description')} />
         </Text>
       </div>
-      <ContactPageLink text="Go to contact page" textColor="#00a991" />
+      <ContactPageLink
+        text={__('smartfaq.error_message.contact_page_link')}
+        textColor="#00a991"
+      />
     </div>
     <style jsx>{styles}</style>
   </div>

@@ -12,8 +12,8 @@ exports[`Contact should render only email 1`] = `
   >
     <withSimpleTokenHOC>
       <withLanguageHOC
-        text="Call us"
         textColor="#00a991"
+        translationKey="smartfaq.single_booking_page.call_us"
       />
     </withSimpleTokenHOC>
   </div>

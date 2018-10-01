@@ -12,7 +12,10 @@ const Contact = () => {
       <hr />
       <div className="contact-options">
         <UserStatus.LoggedIn>
-          <ContactPageLink text="Call us" textColor="#00a991" />
+          <ContactPageLink
+            translationKey={__('smartfaq.single_booking_page.call_us')}
+            textColor="#00a991"
+          />
         </UserStatus.LoggedIn>
       </div>
       <div className="instructions">
