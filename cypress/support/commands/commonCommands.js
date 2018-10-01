@@ -56,10 +56,10 @@ Cypress.Commands.add('loadFAQArticle', () => {
 });
 
 Cypress.Commands.add('waitForFaqsBasedOnBookingStatusToLoad', () => {
+  cy.get('[data-cy=faq-categories]').should('exist');
+
   cy
     .get('[data-cy=faq-categories]')
     .contains('About Kiwi.com')
     .should('not.exist');
-
-  cy.get('[data-cy=faq-categories]').should('exist');
 });
