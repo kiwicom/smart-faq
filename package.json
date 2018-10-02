@@ -23,6 +23,7 @@
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
     "deploy:surge": "yarn surge $PWD/dist/ https://smartfaq-$(git rev-parse --abbrev-ref HEAD).surge.sh",
+    "deploy:surge:gitlab-ci": "surge -p ./dist --domain https://smartfaq-${CI_COMMIT_REF_SLUG}.surge.sh",
     "deploy:updateURL": "yarn babel-node scripts/deploymentUtils.js updateLiveURL",
     "translations:check": "node scripts/checkTranslations.js",
     "translations:download": "yarn babel-node scripts/downloadTranslations.js",
@@ -49,7 +50,7 @@
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-conventional": "^7.0.1",
     "@kiwicom/babel-plugin-orbit-components": "^1.0.0",
-    "@kiwicom/orbit-components": "^0.9.0",
+    "@kiwicom/orbit-components": "^0.12.0",
     "@octokit/rest": "^15.2.5",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
@@ -139,7 +140,7 @@
     "url-search-params-polyfill": "4.0.1"
   },
   "peerDependencies": {
-    "@kiwicom/orbit-components": "^0.2.0",
+    "@kiwicom/orbit-components": "^0.12.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "styled-components": "^3.2.6"

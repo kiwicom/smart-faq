@@ -2,10 +2,9 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Text } from '@kiwicom/orbit-components';
+import { Text, Illustration } from '@kiwicom/orbit-components';
 import Trans from '@kiwicom/nitro/lib/components/Text';
 
-import image from '../../static/woman-with-laptop@2x.jpg';
 import CloseButton from './../common/buttons/CloseButton';
 import { withUser } from '../context/User';
 import type { User } from '../types';
@@ -23,15 +22,10 @@ const style = css`
     margin: auto;
   }
   div.picture {
-    margin-left: 150px;
-    margin-bottom: 68px;
+    text-align: center;
   }
   div.text {
     margin-left: 40px;
-  }
-  div.picture img {
-    width: 203px;
-    height: 156px;
   }
   p.title {
     color: #171b1e;
@@ -172,7 +166,7 @@ export class PureIntro extends React.Component<Props> {
       <div className="Intro">
         <CloseButton />
         <div className="picture">
-          <img alt="Help" src={image} />
+          <Illustration size="medium" name="Help" />
         </div>
         <div className="text">
           <p className="title">

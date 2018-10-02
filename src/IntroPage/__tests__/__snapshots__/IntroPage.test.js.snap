@@ -2,23 +2,22 @@
 
 exports[`IntroPage should match snapshot 1`] = `
 <div
-  className="jsx-1816167614 Intro"
+  className="jsx-3382029431 Intro"
 >
   <CloseButton />
   <div
-    className="jsx-1816167614 picture"
+    className="jsx-3382029431 picture"
   >
-    <img
-      alt="Help"
-      className="jsx-1816167614"
-      src="https://images.kiwi.com/smart-faq/woman-with-laptop@2x.jpg"
+    <Illustration
+      name="Help"
+      size="medium"
     />
   </div>
   <div
-    className="jsx-1816167614 text"
+    className="jsx-3382029431 text"
   >
     <p
-      className="jsx-1816167614 title"
+      className="jsx-3382029431 title"
     >
       <Text
         html={false}
@@ -37,13 +36,13 @@ exports[`IntroPage should match snapshot 1`] = `
     </Text>
   </div>
   <div
-    className="jsx-1816167614 buttons"
+    className="jsx-3382029431 buttons"
   >
     <div
-      className="jsx-1816167614 primary"
+      className="jsx-3382029431 primary"
     >
       <button
-        className="jsx-1816167614"
+        className="jsx-3382029431"
         data-cy="btn-existent-booking"
         onClick={[Function]}
       >
@@ -55,10 +54,10 @@ exports[`IntroPage should match snapshot 1`] = `
       </button>
     </div>
     <div
-      className="jsx-1816167614 secondary"
+      className="jsx-3382029431 secondary"
     >
       <button
-        className="jsx-1816167614"
+        className="jsx-3382029431"
         data-cy="btn-nonexistent-booking"
         onClick={[Function]}
       >
@@ -71,16 +70,16 @@ exports[`IntroPage should match snapshot 1`] = `
     </div>
   </div>
   <hr
-    className="jsx-1816167614 hr-line"
+    className="jsx-3382029431 hr-line"
   />
   <div
-    className="jsx-1816167614 faqLink"
+    className="jsx-3382029431 faqLink"
   >
     <FullFAQLink />
   </div>
   <JSXStyle
-    css=".Intro.jsx-1816167614{width:480px;padding-top:128px;height:100%;overflow-y:auto;overflow-x:hidden;margin:auto;}div.picture.jsx-1816167614{margin-left:150px;margin-bottom:68px;}div.text.jsx-1816167614{margin-left:40px;}div.picture.jsx-1816167614 img.jsx-1816167614{width:203px;height:156px;}p.title.jsx-1816167614{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:6px;}button.jsx-1816167614{cursor:pointer;height:44px;border-radius:3px;border:0;font-size:14px;font-weight:bold;line-height:1.43;padding:12px 16px;}.primary.jsx-1816167614 button.jsx-1816167614{background-color:#00a991;color:#ffffff;margin-bottom:16px;}.secondary.jsx-1816167614 button.jsx-1816167614{background-color:#e8edf1;color:#46515e;}div.buttons.jsx-1816167614{margin-left:40px;margin-top:52.4px;}hr.hr-line.jsx-1816167614{margin:36px 64px 22px 64px;height:0;border:0;border-top:1px solid #e8edf1;}.faqLink.jsx-1816167614{margin-left:182px;margin-bottom:20px;line-height:1.4;}@media only screen and (max-width:480px){.Intro.jsx-1816167614{width:100%;padding-top:75px;}div.picture.jsx-1816167614{text-align:center;margin:0px 0px 40px 0px;}hr.hr-line.jsx-1816167614{margin:28px 16px 22px 16px;}div.text.jsx-1816167614{margin-left:16px;margin-right:16px;}p.title.jsx-1816167614{font-size:22px;}div.buttons.jsx-1816167614{margin:28px 16px 24px 16px;}button.jsx-1816167614{width:100%;}.faqLink.jsx-1816167614{text-align:center;margin:0;}}@media only screen and (max-height:480px){.Intro.jsx-1816167614{width:100%;padding-top:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}div.picture.jsx-1816167614{display:none;}hr.hr-line.jsx-1816167614{width:288px;margin:19px 0 22px;}div.text.jsx-1816167614{width:288px;margin:0;}p.title.jsx-1816167614{font-size:22px;text-align:center;margin-bottom:20px;}div.buttons.jsx-1816167614{width:288px;margin:12px 0 0;}div.buttons.jsx-1816167614 button.jsx-1816167614{width:100%;}.faqLink.jsx-1816167614{margin:0;}}"
-    styleId="1816167614"
+    css=".Intro.jsx-3382029431{width:480px;padding-top:128px;height:100%;overflow-y:auto;overflow-x:hidden;margin:auto;}div.picture.jsx-3382029431{text-align:center;}div.text.jsx-3382029431{margin-left:40px;}p.title.jsx-3382029431{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:6px;}button.jsx-3382029431{cursor:pointer;height:44px;border-radius:3px;border:0;font-size:14px;font-weight:bold;line-height:1.43;padding:12px 16px;}.primary.jsx-3382029431 button.jsx-3382029431{background-color:#00a991;color:#ffffff;margin-bottom:16px;}.secondary.jsx-3382029431 button.jsx-3382029431{background-color:#e8edf1;color:#46515e;}div.buttons.jsx-3382029431{margin-left:40px;margin-top:52.4px;}hr.hr-line.jsx-3382029431{margin:36px 64px 22px 64px;height:0;border:0;border-top:1px solid #e8edf1;}.faqLink.jsx-3382029431{margin-left:182px;margin-bottom:20px;line-height:1.4;}@media only screen and (max-width:480px){.Intro.jsx-3382029431{width:100%;padding-top:75px;}div.picture.jsx-3382029431{text-align:center;margin:0px 0px 40px 0px;}hr.hr-line.jsx-3382029431{margin:28px 16px 22px 16px;}div.text.jsx-3382029431{margin-left:16px;margin-right:16px;}p.title.jsx-3382029431{font-size:22px;}div.buttons.jsx-3382029431{margin:28px 16px 24px 16px;}button.jsx-3382029431{width:100%;}.faqLink.jsx-3382029431{text-align:center;margin:0;}}@media only screen and (max-height:480px){.Intro.jsx-3382029431{width:100%;padding-top:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}div.picture.jsx-3382029431{display:none;}hr.hr-line.jsx-3382029431{width:288px;margin:19px 0 22px;}div.text.jsx-3382029431{width:288px;margin:0;}p.title.jsx-3382029431{font-size:22px;text-align:center;margin-bottom:20px;}div.buttons.jsx-3382029431{width:288px;margin:12px 0 0;}div.buttons.jsx-3382029431 button.jsx-3382029431{width:100%;}.faqLink.jsx-3382029431{margin:0;}}"
+    styleId="3382029431"
   />
 </div>
 `;

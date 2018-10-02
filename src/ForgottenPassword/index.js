@@ -2,13 +2,12 @@
 
 import * as React from 'react';
 import css from 'styled-jsx/css';
-import { Text } from '@kiwicom/orbit-components';
+import { Text, Illustration } from '@kiwicom/orbit-components';
 import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import BackButton from '../common/buttons/BackButton';
 import CloseButton from '../common/buttons/CloseButton';
 import Input from '../common/Input';
-import image from '../../static/woman-with-laptop@2x.jpg';
 import resetPassword from '../mutations/ResetPassword';
 
 const style = css`
@@ -17,12 +16,8 @@ const style = css`
     padding-top: 128px;
     margin: auto;
   }
-  div.picture img {
-    width: 203px;
-    height: 156px;
-  }
   div.picture {
-    margin-left: 150px;
+    text-align: center;
     margin-bottom: 68px;
   }
   div.main {
@@ -187,7 +182,7 @@ class ForgottenPassword extends React.Component<Props, State> {
         <CloseButton />
         <BackButton prevScreen="kiwi-login" />
         <div className="picture">
-          <img alt="Help" src={image} />
+          <Illustration size="medium" name="Help" />
         </div>
         <div className="main">
           <p className="title">

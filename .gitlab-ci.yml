@@ -1,0 +1,100 @@
+image: node:9
+
+stages:
+  - build
+  - release
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+  policy: pull
+
+before_script:
+  - yarn
+
+node-modules:
+  stage: build
+  script:
+    - echo 🐖
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules/
+    policy: pull-push
+
+test:
+  stage: build
+  script:
+    - yarn test
+
+eslint:
+  stage: build
+  script:
+    - yarn eslint
+
+flow:
+  stage: build
+  script:
+    - yarn flow:check
+
+translations-check:
+  stage: build
+  script:
+    - yarn translations:check
+
+nodesecurity:
+  except:
+   - pipelines
+   - triggers
+  stage: build
+  image: kiwicom/nodesecurity
+  allow_failure: true
+  before_script:
+   - echo node-security
+  script:
+   - nsp check -o summary
+
+cypress:
+  stage: release
+  image: cypress/base:8
+  retry: 2
+  script:
+   - yarn start:ci &
+   - sleep 45s
+   - wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 20 http://localhost:8080
+   - yarn cypress:run-ci
+
+deploy:
+  stage: release
+  environment:
+    name: smartfaq/$CI_COMMIT_REF_SLUG
+    url: https://smartfaq-${CI_COMMIT_REF_SLUG}.surge.sh
+    on_stop: destroy_staging
+  script:
+    - yarn build:bundle
+    - yarn deploy:surge:gitlab-ci
+
+destroy_staging:
+  stage: release
+  when: manual
+  environment:
+    name: smartfaq/$CI_COMMIT_REF_SLUG
+    action: stop
+  script:
+    - yarn surge teardown https://smartfaq-${CI_COMMIT_REF_SLUG}.surge.sh
+  only:
+    - branches
+  except:
+    - master
+
+publish:
+  stage: release
+  when: manual
+  script:
+   - yarn
+   - yarn run semantic-commitlint -- --ci
+   - yarn run semantic-release
+  only:
+   - /^release\/.*$/
+   - master

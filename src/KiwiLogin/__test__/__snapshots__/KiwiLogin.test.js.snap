@@ -11,26 +11,25 @@ Object {
 
 exports[`KiwiLogin should match snapshot 1`] = `
 <div
-  className="jsx-914440731 KiwiLogin"
+  className="jsx-30246891 KiwiLogin"
 >
   <CloseButton />
   <withRouter(BackButton)
     prevScreen="/sign-in"
   />
   <div
-    className="jsx-914440731 picture"
+    className="jsx-30246891 picture"
   >
-    <img
-      alt="Help"
-      className="jsx-914440731"
-      src="https://images.kiwi.com/smart-faq/woman-with-laptop@2x.jpg"
+    <Illustration
+      name="Help"
+      size="medium"
     />
   </div>
   <div
-    className="jsx-914440731 main"
+    className="jsx-30246891 main"
   >
     <p
-      className="jsx-914440731 title"
+      className="jsx-30246891 title"
     >
       <Text
         html={false}
@@ -67,11 +66,11 @@ exports[`KiwiLogin should match snapshot 1`] = `
       </Text>
     </MediaQuery>
     <form
-      className="jsx-914440731"
+      className="jsx-30246891"
       onSubmit={[Function]}
     >
       <label
-        className="jsx-914440731"
+        className="jsx-30246891"
         htmlFor="email"
       >
         <Text
@@ -80,7 +79,7 @@ exports[`KiwiLogin should match snapshot 1`] = `
           values={Object {}}
         />
         <div
-          className="jsx-914440731 input"
+          className="jsx-30246891 input"
         >
           <InputText
             dataCy="input-email"
@@ -93,7 +92,7 @@ exports[`KiwiLogin should match snapshot 1`] = `
         </div>
       </label>
       <label
-        className="jsx-914440731"
+        className="jsx-30246891"
         htmlFor="password"
       >
         <Text
@@ -102,7 +101,7 @@ exports[`KiwiLogin should match snapshot 1`] = `
           values={Object {}}
         />
         <div
-          className="jsx-914440731 input"
+          className="jsx-30246891 input"
         >
           <InputText
             dataCy="input-password"
@@ -114,7 +113,7 @@ exports[`KiwiLogin should match snapshot 1`] = `
         </div>
       </label>
       <div
-        className="jsx-914440731 forgotPassword"
+        className="jsx-30246891 forgotPassword"
         data-cy="link-forgotten-password"
       >
         <TextLink
@@ -130,7 +129,7 @@ exports[`KiwiLogin should match snapshot 1`] = `
         </TextLink>
       </div>
       <span
-        className="jsx-914440731 signIn"
+        className="jsx-30246891 signIn"
         data-cy="btn-sign-in"
       >
         <Button
@@ -147,8 +146,8 @@ exports[`KiwiLogin should match snapshot 1`] = `
     </form>
   </div>
   <JSXStyle
-    css=".KiwiLogin.jsx-914440731{width:480px;padding-top:128px;padding-left:40px;padding-right:40px;height:100%;overflow-y:auto;overflow-x:hidden;margin:auto;}div.picture.jsx-914440731 img.jsx-914440731{width:203px;height:156px;}div.picture.jsx-914440731{margin-left:110px;margin-bottom:68px;}p.title.jsx-914440731{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:8px;line-height:1.2;}.forgotPassword.jsx-914440731{margin-top:12px;display:inline-block;font-size:14px;color:#00a991;}.signIn.jsx-914440731{float:right;margin-bottom:20px;}form.jsx-914440731{margin-top:33px;}div.input.jsx-914440731{width:400px;height:44px;margin-bottom:34px;margin-top:4px;}label.jsx-914440731{width:352px;height:20px;font-size:14px;line-height:1.43;text-align:left;color:#46515e;display:inline-table;}div.errorMessage.jsx-914440731{margin-bottom:15px;}@media only screen and (max-width:480px){.KiwiLogin.jsx-914440731{width:100%;padding-top:64px;padding-left:0px;padding-right:0px;}p.title.jsx-914440731{font-size:22px;text-align:left;margin-top:0;}div.picture.jsx-914440731{display:none;}div.input.jsx-914440731{width:100%;margin-bottom:26px;}div.main.jsx-914440731{margin-left:16px;margin-right:16px;}div.forgotPassword.jsx-914440731{text-align:center;display:block;margin-bottom:20px;margin-top:0px;}.signIn.jsx-914440731{float:none;display:block;margin:0;}label.jsx-914440731{width:100%;}}@media only screen and (max-height:480px){.KiwiLogin.jsx-914440731{width:100%;padding-top:20px;}p.title.jsx-914440731{font-size:22px;text-align:center;margin-top:0;}div.picture.jsx-914440731{display:none;}div.main.jsx-914440731{width:288px;margin-left:auto;margin-right:auto;}div.input.jsx-914440731{width:288px;margin-bottom:26px;}div.forgotPassword.jsx-914440731{display:block;text-align:center;margin-bottom:20px;margin-top:0;}.signIn.jsx-914440731{float:none;display:block;margin:0;}}"
-    styleId="914440731"
+    css=".KiwiLogin.jsx-30246891{width:480px;padding-top:128px;padding-left:40px;padding-right:40px;height:100%;overflow-y:auto;overflow-x:hidden;margin:auto;}p.title.jsx-30246891{color:#171b1e;font-size:28px;font-weight:bold;margin-bottom:8px;line-height:1.2;}.forgotPassword.jsx-30246891{margin-top:12px;display:inline-block;font-size:14px;color:#00a991;}.signIn.jsx-30246891{float:right;margin-bottom:20px;}form.jsx-30246891{margin-top:33px;}div.input.jsx-30246891{width:400px;height:44px;margin-bottom:34px;margin-top:4px;}label.jsx-30246891{width:352px;height:20px;font-size:14px;line-height:1.43;text-align:left;color:#46515e;display:inline-table;}div.errorMessage.jsx-30246891{margin-bottom:15px;}@media only screen and (max-width:480px){.KiwiLogin.jsx-30246891{width:100%;padding-top:64px;padding-left:0px;padding-right:0px;}p.title.jsx-30246891{font-size:22px;text-align:left;margin-top:0;}div.picture.jsx-30246891{display:none;}div.input.jsx-30246891{width:100%;margin-bottom:26px;}div.main.jsx-30246891{margin-left:16px;margin-right:16px;}div.forgotPassword.jsx-30246891{text-align:center;display:block;margin-bottom:20px;margin-top:0px;}.signIn.jsx-30246891{float:none;display:block;margin:0;}label.jsx-30246891{width:100%;}}@media only screen and (max-height:480px){.KiwiLogin.jsx-30246891{width:100%;padding-top:20px;}p.title.jsx-30246891{font-size:22px;text-align:center;margin-top:0;}div.picture.jsx-30246891{display:none;}div.main.jsx-30246891{width:288px;margin-left:auto;margin-right:auto;}div.input.jsx-30246891{width:288px;margin-bottom:26px;}div.forgotPassword.jsx-30246891{display:block;text-align:center;margin-bottom:20px;margin-top:0;}.signIn.jsx-30246891{float:none;display:block;margin:0;}}"
+    styleId="30246891"
   />
 </div>
 `;
