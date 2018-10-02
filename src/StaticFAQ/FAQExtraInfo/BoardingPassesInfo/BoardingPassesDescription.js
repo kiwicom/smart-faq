@@ -62,6 +62,7 @@ const BoardingPassesDescription = ({ data, mmbUrl }: Props) => {
         return (
           <p>
             <Trans t={__('smartfaq.boarding_pass_info.available_at')} />
+            &nbsp;
             {availableAt}
           </p>
         );
