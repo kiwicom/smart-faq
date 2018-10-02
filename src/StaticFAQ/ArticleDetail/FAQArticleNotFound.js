@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Heading, Text, Button } from '@kiwicom/orbit-components';
 import { withRouter } from 'react-router-dom';
 import css from 'styled-jsx/css';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 const style = css`
   .notFoundContainer {
@@ -33,11 +34,12 @@ class ArticleNotFound extends React.Component<Props> {
     return (
       <div className="notFoundContainer">
         <div>
-          <Heading>Sorry, that article has ceased to exist</Heading>
+          <Heading>
+            <Trans t={__('smartfaq.faq.article.not_found.title')} />
+          </Heading>
           <div className="textMargin">
             <Text>
-              It may have been deleted or moved. Or it could just be a temporary
-              technical issue.
+              <Trans t={__('smartfaq.faq.article.not_found.description')} />
             </Text>
           </div>
           <Button onClick={this.goToFAQ}>Open the Help Center</Button>

@@ -5,6 +5,7 @@ import { Prompt } from 'react-router-dom';
 import classNames from 'classnames';
 import { Text, Button } from '@kiwicom/orbit-components';
 import Chat from '@kiwicom/orbit-components/lib/icons/Chat';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import * as chatUtils from './chatUtils';
 import { simpleTracker, EnterTracker } from '../../helpers/analytics/trackers';
@@ -87,8 +88,7 @@ class GuaranteeChat extends React.Component<Props, State> {
         {this.state.showButton && (
           <React.Fragment>
             <Text>
-              Still not sure what to do or how the Guarantee works? Let&apos;s
-              talk. One of our agents will gladly assist you.
+              <Trans t={__('smartfaq.guarantee_chat.description')} />
             </Text>
             <div className="chatButton" data-cy="guaranteeChatButton">
               <Button
@@ -98,7 +98,7 @@ class GuaranteeChat extends React.Component<Props, State> {
                 disabled={!isChatReady}
                 onClick={this.onClickDisplayChat}
               >
-                Guarantee Chat
+                <Trans t={__('smartfaq.guarantee_chat.button')} />
               </Button>
             </div>
           </React.Fragment>
@@ -108,12 +108,14 @@ class GuaranteeChat extends React.Component<Props, State> {
           ref={c => {
             this.chatContainer = c;
           }}
-          className={classNames('smartFAQGuarantee', { open: !showButton })}
+          className={classNames('smartFAQGuarantee', {
+            open: !showButton,
+          })}
           data-cy="guaranteeChatIFrame"
         />
         <Prompt
           when={!this.state.isClosable}
-          message="Closing this window will cause the chat connection to be interrupted, do you want to proceed?"
+          message={<Trans t={__('smartfaq.guarantee_chat.alert')} />}
         />
         <style jsx>
           {`

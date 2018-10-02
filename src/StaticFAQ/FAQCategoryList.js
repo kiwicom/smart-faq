@@ -208,7 +208,9 @@ class RawFAQCategoryList extends React.Component<Props> {
             return (
               <ScrollableBox>
                 {hasEmergencies && (
-                  <EmergencyHeader title="Current travel issues:" />
+                  <EmergencyHeader
+                    title={__('smartfaq.faq.emergencies.current')}
+                  />
                 )}
                 {emergencies &&
                   emergencies.map((emergency, i) => (
@@ -216,7 +218,9 @@ class RawFAQCategoryList extends React.Component<Props> {
                     <Emergency key={i} emergency={emergency} />
                   ))}
                 {hasEmergencies && (
-                  <EmergencyHeader title="Solve the issue by yourself:" />
+                  <EmergencyHeader
+                    title={__('smartfaq.faq.emergencies.solve')}
+                  />
                 )}
                 {guaranteeArticle && (
                   <FAQArticle article={guaranteeArticle} isSearchResult />

@@ -10,13 +10,13 @@ exports[`StaticFAQError should match snapshot 1`] = `
     <h1
       class="Heading__StyledHeading-sALAQ gfkQAC"
     >
-      Something's not quite right.
+      smartfaq.single_booking_page.booking_error.title
     </h1>
   </div>
   <p
     class="Text__StyledText-inVtPV gJJlTV"
   >
-    Please, try refreshing the page. If the problem persists, don't hesitate to contact us.
+    smartfaq.faq.error_page.description
   </p>
   <div
     class="jsx-606556222 contactLink"

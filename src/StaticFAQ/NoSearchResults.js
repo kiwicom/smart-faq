@@ -5,6 +5,7 @@ import css from 'styled-jsx/css';
 import idx from 'idx';
 import { withRouter } from 'react-router-dom';
 import { Text, Heading } from '@kiwicom/orbit-components';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import FAQCategoryList from './FAQCategoryList';
 
@@ -53,26 +54,13 @@ const NoSearchResults = (props: Props) => {
         <div className="content">
           <div className="title">
             <Heading type="title3">
-              Your search didn&apos;t match any of our articles.
+              <Trans t={__('smartfaq.faq.no_search_results.title')} />
             </Heading>
           </div>
-          <ul>
-            <li>
-              <Text>Try alternative spellings</Text>
-            </li>
-            <li>
-              <Text>Try fewer words (e.g. infant)</Text>
-            </li>
-            <li>
-              <Text>Try different keywords</Text>
-            </li>
-            <li>
-              <Text>Try a more general search</Text>
-            </li>
-          </ul>
+          <Trans html t={__('smartfaq.faq.no_search_results.description')} />
           <div className="subtitle">
             <Text size="normal" weight="bold">
-              Maybe, consider one of the topics below?
+              <Trans t={__('smartfaq.faq.no_search_results.suggestion')} />
             </Text>
           </div>
         </div>

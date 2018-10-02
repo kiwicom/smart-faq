@@ -98,5 +98,18 @@
   "smartfaq.error_message.title": "Something's not quite right.",
   "smartfaq.error_message.description": "Please, try refreshing the page. Sign out. Then sign in again. If the problem persists, don't hesitate to contact us.",
   "smartfaq.error_message.contact_page_link": "Go to contact page",
-  "smartfaq.contact_page_link.default": "Having trouble? Contact us."
+  "smartfaq.contact_page_link.default": "Having trouble? Contact us.",
+  "smartfaq.faq.error_page.description": "Please, try refreshing the page. If the problem persists, don&apos;t hesitate to contact us.",
+  "smartfaq.faq.no_search_results.title": "Your search didn&apos;t match any of our articles.",
+  "smartfaq.faq.no_search_results.description": "<ul><li><Text>Try alternative spellings</Text></li><li><Text>Try fewer words (e.g. infant)</Text></li><li><Text>Try different keywords</Text></li><li><Text>Try a more general search</Text></li></ul>",
+  "smartfaq.faq.no_search_results.suggestion": "Maybe, consider one of the topics below?",
+  "smartfaq.faq.emergencies.current": "Current travel issues:",
+  "smartfaq.faq.emergencies.solve": "Solve the issue by yourself:",
+  "smartfaq.faq.article.summary": "Summary:",
+  "smartfaq.search_input.placeholder": "Search",
+  "smartfaq.guarantee_chat.button": "Guarantee Chat",
+  "smartfaq.guarantee_chat.description": "Still not sure what to do or how the Guarantee works? Let's talk. One of our agents will gladly assist you.",
+  "smartfaq.guarantee_chat.alert": "Closing this window will cause the chat connection to be interrupted, do you want to proceed?",
+  "smartfaq.faq.article.not_found.title": "Sorry, that article has ceased to exist",
+  "smartfaq.faq.article.not_found.description": "It may have been deleted or moved. Or it could just be a temporary technical issue."
 }

@@ -3,6 +3,7 @@
 import * as React from 'react';
 import css from 'styled-jsx/css';
 import { Text, Heading } from '@kiwicom/orbit-components';
+import Trans from '@kiwicom/nitro/lib/components/Text';
 
 import { ContactPageLink } from '../common';
 
@@ -24,11 +25,12 @@ const style = css`
 const StaticFAQError = () => (
   <div className="staticFAQError">
     <div className="title">
-      <Heading>Something&apos;s not quite right.</Heading>
+      <Heading>
+        <Trans t={__('smartfaq.single_booking_page.booking_error.title')} />
+      </Heading>
     </div>
     <Text type="secondary" size="large">
-      Please, try refreshing the page. If the problem persists, don&apos;t
-      hesitate to contact us.
+      <Trans t={__('smartfaq.faq.error_page.description')} />
     </Text>
     <div className="contactLink">
       <ContactPageLink />
