@@ -2,11 +2,9 @@
 
 Smart FAQ
 
-App demo: [https://kiwicom.github.io/smart-faq/](https://kiwicom.github.io/smart-faq/)
-
 ## Installation
 
-Clone the repo `git clone git@github.com:kiwicom/smart-faq.git`
+Clone the repo `git clone git@gitlab.skypicker.com:frontend/smart-faq.git`
 
 Install all the dependencies with `yarn`
 
@@ -67,6 +65,7 @@ the squashed commit also according to the convention.
 ### How to use translations in code
 
 - Use `Text` from [nitrolib](https://github.com/kiwicom/nitrolib) as `Trans` and don't confuse it with `Text` from [Orbit](https://github.com/kiwicom/orbit-components):
+
 ```js
 import Trans from "@kiwicom/nitro/lib/components/Text";
 ```
@@ -76,6 +75,7 @@ From Nitrolib docs:
 > Make sure to wrap translation keys in the global `__` function!
 
 Props:
+
 ```js
 type Props = {
   t: string, // the translation key
@@ -85,6 +85,7 @@ type Props = {
 ```
 
 Example:
+
 ```js
 const Submit = () => (
   <Button>
@@ -144,12 +145,6 @@ Test script `test-ci` is run on each push
 
 - after each push a circleci `test-ci-and-surge-deploy` script is run
 - it generates a live preview link on surge ie. `https://smartfaq-branch-name.surge.sh`
-
-### Github Pages
-
-- After every merge into master, standalone version of this project is published using Github Pages
-- Inspired by repository [Circle CI and Github Pages](https://github.com/Villanuevand/deployment-circleci-gh-pages) and further described on [Github](https://github.com/DevProgress/onboarding/wiki/Using-Circle-CI-with-Github-Pages-for-Continuous-Delivery)
-- Deployed on [https://kiwicom.github.io/smart-faq/](https://kiwicom.github.io/smart-faq/)
 
 ### Release
 
